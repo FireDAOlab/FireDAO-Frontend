@@ -21,7 +21,7 @@ const Guild = (props) => {
         history(url);
     }
     const [myClassAddress, setMyClass] = useState("")
-    const [myClassPid, setMyClassPid] = useState(0)
+    const [myGuild, setMyGuild] = useState([])
     const [cityNodes, setCityNodes] = useState([])
     const [curNav, setCurNav] = useState(1)
     const [myNode, setMyNode] = useState({})
@@ -54,15 +54,17 @@ const Guild = (props) => {
 
     const getAllCityNode = async ()=>{
         const length =await handleViewMethod("getguildInFosLength",[])
-        let arr = []
+        let arr = [],myArr=[]
         for(let i = 0 ;i<length;i++){
             const guild = await handleViewMethod("guildInFos",[i])
-            console.log(guild)
             arr.push({
                 ...guild,
             })
-            console.log(arr)
+            if(guild.guildManager.toLowerCase() == state.account.toLowerCase()){
+                myArr.push(guild)
+            }
         }
+        setMyGuild(myArr)
         setCityNodes(arr)
     }
     const getTokenBalance = async (value) => {
@@ -172,7 +174,7 @@ const Guild = (props) => {
 
                                     <div className="col">
                                         <Button onClick={()=>{
-                                            history("/GuildDetail/"+ item.NodeId)
+                                            history("/GuildDetail/"+ index)
                                         }}>View</Button>
                                     </div>
                                 </div>
@@ -213,49 +215,33 @@ const Guild = (props) => {
                                 View
                             </div>
                         </div>
-                        <div className="list-item">
-                            <div className="address col">
-                                {myNode.NodeId}
-                            </div>
-                            <strong className="pid col">
-                                {myNode.NodeName}
+                        {myGuild.map((item,index)=>{
+                            return(
+                                <div className="list-item" key={index}>
+                                    <div className="col">
+                                        {index}
+                                    </div>
+                                    <div className="col name">
+                                        {item.guildDescribe}
+                                    </div>
 
-                            </strong>
+                                    <div className="col">
+                                        {item.guildName}
+                                    </div>
 
-                            <strong className="pid col">
-                                {myNode.city}
-
-                            </strong>
-
-                            <div className="col">
-                                {pubJs.dealSubAddr(myNode.cityNodeAdmin)}
-                            </div>
-                            <div className="col">
-                                {pubJs.dealSubAddr(myNode.Treasury)}
-                            </div>
-                            <div className="col">
-                                {myNode.nodeTreasuryBalance}
-                            </div>
-                            <div className="col admin">
-                                {pubJs.dealSubAddr(myNode.NodeOwner)}
-                            </div>
+                                    <div className="col admin">
+                                        {pubJs.dealSubAddr(item.guildManager)}
+                                    </div>
 
 
-                            <div className="col">
-                                {dealTime(myNode.createTime)}
-                            </div>
-
-                            <div className="col">
-                                {myNode.memberLength}
-                            </div>
-
-
-                            <div className="col">
-                                <Button onClick={()=>{
-                                    history("/CityNodeDetail/"+ myNode.NodeId)
-                                }}>View</Button>
-                            </div>
-                        </div>
+                                    <div className="col">
+                                        <Button onClick={()=>{
+                                            history("/GuildDetail/"+ index)
+                                        }}>View</Button>
+                                    </div>
+                                </div>
+                            )
+                        })}
                     </div>}
                 </div>
             </div>

@@ -60,6 +60,8 @@ import CityNodeDetail from "./view/Operation/CItyNodeDetail"
 import GuildManage from "./view/Operation/GuildManage"
 import Guild from "./view/Operation/Guild"
 import CreateGuild from "./view/Operation/CreateGuild"
+import GuildDetail from "./view/Operation/GuildDetail"
+
 function App() {
     const history = useNavigate();
     const location = useLocation()
@@ -141,7 +143,7 @@ function App() {
                                 <Route path="/GuildManage" element={<GuildManage/>}/>
                                 <Route path="/Guild" element={<Guild/>}/>
                                 <Route path="/CreateGuild" element={<CreateGuild/>}/>
-
+                                <Route path="/GuildDetail/:id" element={<GuildDetail/>}/>
                             </Routes>
                         </div>
                     </div>
