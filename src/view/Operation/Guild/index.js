@@ -52,9 +52,10 @@ const Guild = (props) => {
         return await viewMethod(contractTemp, state.account, name, params)
     }
 
-    const getAllCityNode = async ()=>{
+    const getAllGuild = async ()=>{
         const length =await handleViewMethod("getguildInFosLength",[])
         let arr = [],myArr=[]
+
         for(let i = 0 ;i<length;i++){
             const guild = await handleViewMethod("guildInFos",[i])
             arr.push({
@@ -85,17 +86,16 @@ const Guild = (props) => {
         if(!judgeRes){
             return
         }
-        getAllCityNode()
+        getAllGuild()
         const node = await handleViewMethod("userInNodeInfo",[state.account])
-        const cityNodeAdmin = await handleViewMethod("cityNodeAdmin",[node.NodeId])
-        node.cityNodeAdmin = cityNodeAdmin
-        const nodeTreasuryBalance = await getTokenBalance(node.Treasury)
-        node.assets = nodeTreasuryBalance
-        const nodeIpfs = await getIpfs(node.hash)
-        const score = await handleViewMethod("getCityNodeReputation",[node.NodeId])
-        node.score = score/10**18
-        node.intro = nodeIpfs.intro
-        node.city = nodeIpfs.city
+        // const cityNodeAdmin = await handleViewMethod("cityNodeAdmin",[node.NodeId])
+        // node.cityNodeAdmin = cityNodeAdmin
+        // const nodeTreasuryBalance = await getTokenBalance(node.Treasury)
+        // node.assets = nodeTreasuryBalance
+        // const nodeIpfs = await getIpfs(node.hash)
+        // const score = await handleViewMethod("getCityNodeReputation",[node.NodeId])
+        // node.score = score/10**18
+
         setMyNode(node)
     }, [state.account, state.networkId]);
 

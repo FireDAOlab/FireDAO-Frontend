@@ -12,6 +12,7 @@ import PrivateExchangePoolOG from "../abi/PrivateExchangePoolOG.json";
 import TreasuryDistribution from "../abi/treasuryDistribution.json"
 import cityNode from "../abi/cityNode.json"
 import Guild from "../abi/Guild.json"
+import erc1155 from "../abi/erc1155.json"
 let CONTRACTS
 if(develop.ENV==="production"){
     CONTRACTS = {
@@ -58,11 +59,11 @@ if(develop.ENV==="production"){
         airdrop:{address:"0xcB9F989490a2084944323C727d159A4D4baA07C9",abi:airdrop},
         PrivateExchangePoolOG:{address:"0xDC7B5f481Fe2d53733c49586130082D04f2b3EAE",abi: PrivateExchangePoolOG},
         TreasuryDistribution:{address:"0xA8FcF03CDEc12CF19767d12aC4c627FF6e5D1c21",abi:TreasuryDistribution},
-        Guild:{address:"0x7Fb0ca18801E72eb7B47faEDAC41A4442040E061",abi:Guild},
+        Guild:{address:"0x94235f5e16d86eD154AD5Ddf26019cC9249Df8CD",abi:Guild},
         cityNode:{address:"0x0bb3fD1442Fd5d000Fa7c85A96df727CEa3491b9",abi:cityNode},
         WETH:{address:"0x7313A220a6220bF83245058a29Eb6187e9964927",abi:erc20Abi},
         FDT:{address:"0x0486e93d84Cb7c272Ff6c302AD2A807F1D3B568c",abi:erc20Abi},
-
+        erc1155:{abi:erc1155},
 
     };
 }else{

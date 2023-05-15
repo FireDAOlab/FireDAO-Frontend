@@ -4,7 +4,17 @@ export default   styled.div`
   display: flex;
   flex-direction: column;
   align-items: stretch;
+  
   /* pc style */
+  .asset-box{
+    .title{
+      font-size: 20px;
+      text-align: center;
+      strong{
+        margin: 0 10px;
+      }
+    }
+  }
   .member-arr{
     .mem{
       font-size: 16px;

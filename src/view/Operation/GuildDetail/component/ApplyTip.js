@@ -22,7 +22,7 @@ const TransferOwner = (props) => {
 
 
     const handleSetAddress = async () => {
-        await handleDealMethod("joinRestrictions", [])
+        await handleDealMethod("submitApplication", [id,form.getFieldValue().link])
         updateData()
         closeDialog()
     }
@@ -37,7 +37,7 @@ const TransferOwner = (props) => {
             <div className="dialog-content">
                 <div className="header">
                     <div className="title">
-                        Join
+                        Apply
                     </div>
                     <div className="close" onClick={closeDialog}>
                         <svg t="1681179633627" className="icon" viewBox="0 0 1024 1024" version="1.1"
@@ -48,12 +48,38 @@ const TransferOwner = (props) => {
                         </svg>
                     </div>
                 </div>
-
-                <div className="tip">
-                    Are you sure you want to join the FireDAO Guild?
+                <div className="flex-box">
+                    <div className="name">
+                        Current FID Score Limit
+                    </div>
+                    <div className="value">
+                        {obj.scoreLimit}
+                    </div>
                 </div>
+                <div className="flex-box">
+                    <div className="name">
+                        My Score
+                    </div>
+                    <div className="value">
+                        {myScore}
+                    </div>
+                </div>
+                <Form form={form} name="control-hooks">
+                    <div className="address-item">
+                        <Form.Item
+                            name="link"
+                            label="Apply Link"
+                            className="address"
+                        >
+                            <div className="flex-box">
+                                <Input/>
+                            </div>
+                        </Form.Item>
+                    </div>
+
+                </Form>
                 <Button className="sub-btn" onClick={handleSetAddress} type="primary">
-                  Join
+                    Mint & Submit
                 </Button>
             </div>
         </TransferOwnerStyle>

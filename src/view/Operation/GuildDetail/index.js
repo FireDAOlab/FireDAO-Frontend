@@ -14,8 +14,11 @@ import {dealTime} from "../../../utils/timeUtil";
 import addressMap from "../../../api/addressMap";
 import TransferOwner from "./component/TransferOwner";
 import cityimg from "../../../imgs/cityNode_img.png"
+import ApplyTip from "./component/ApplyTip";
 import JoinTip from "./component/JoinTip";
+
 import QuitTip from "./component/QuitTip";
+import AddSubAddr from "../../HolyFireAltar/ReputationManage/component/AddSubAddr";
 
 const GuildDetail = (props) => {
 
@@ -25,16 +28,21 @@ const GuildDetail = (props) => {
         history(url);
     }
     const [activeIndex, setActiveIdx] = useState(1)
-    const [cityNode, setCityNode] = useState({})
+    const [guildNode, setguildNode] = useState({})
     const [memberArr, setNodeMember] = useState([])
     const [showTranOwn, setShowTranOwn] = useState(false)
+    const [showApplyTip, setShowApplyTip] = useState(false)
     const [showJoinTip, setShowJoinTip] = useState(false)
+
     const [showQuitTip, setShowQuitTip] = useState(false)
     const [myScore, setMyScore] = useState(0)
+    const [isM2, setISM2] = useState(false)
+    const [isM3, setisM3] = useState(false)
+    const [asset, setAsset] = useState(0)
 
+    const [applyArr, setapplyArr] = useState([])
 
     const params = useParams()
-    console.log(params)
     const openNotification = (message) => {
         notification.error({
             message: message,
@@ -67,7 +75,7 @@ const GuildDetail = (props) => {
         return await viewMethod(contractTemp, state.account, name, params)
     }
 
-    const getNodeInfo = async () => {
+    const getGuildInfo = async () => {
         let node = await handleViewMethod("guildInFos", [params.id])
         console.log(node)
         // node.balance = await getTokenBalance(node.Treasury)
@@ -80,9 +88,8 @@ const GuildDetail = (props) => {
         node.admin = admin
         // const nodeTreasuryBalance = await getTokenBalance(node.Treasury)
         // node.assets = nodeTreasuryBalance
-        await setCityNode(node)
+        await setguildNode(node)
         getMembers(memL,node)
-
 
     }
     const getTokenBalance = async (value) => {
@@ -93,13 +100,23 @@ const GuildDetail = (props) => {
         balance = parseInt(balance * 100) / 100
         return balance
     }
+    const getERC1155Balance = async (value,id) => {
+        let contractTemp = await getContractByContract("erc1155", addressMap["Guild"].address, state.api,)
+        let balance = await viewMethod(contractTemp, value, "balanceOf", [value,id])
+        balance = parseInt(balance * 100) / 100
+        return balance
+    }
     const checkReputation = async () => {
         const score = await handleReputiationViewMethod("checkReputation", [state.account])
-        setMyScore(score)
+        setMyScore(score / 10**18)
     }
-    const submitApplication = async () => {
-        handleDealMethod("submitApplication", [params.id, ""])
-        getNodeInfo()
+    const allowJoinGuild = async (addr) => {
+        handleDealMethod("allowJoinGuild", [params.id, addr])
+        getGuildInfo()
+    }
+    const rejectedApp = async (addr) => {
+        handleDealMethod("rejectedApp", [params.id, addr])
+        getGuildInfo()
     }
     const getMembers = async (length, node) => {
         let arr = []
@@ -111,28 +128,70 @@ const GuildDetail = (props) => {
 
             const score = await viewMethod(contractTemp2, state.account, "checkReputation", [mem.member])
             const guildInFos = await handleViewMethod("guildInFos", [params.id])
+
             arr.push({
                 addr: mem.member,
                 score: score / 10 ** 18,
                 pid: mem.PID,
                 joinT:mem.DATE,
                 asset:guildInFos.asset
+
             })
 
         }
 
         setNodeMember(arr)
     }
-    useEffect(async () => {
 
-    }, [])
     useEffect(async () => {
         let judgeRes = await judgeStatus(state)
         if (!judgeRes) {
             return
         }
-        getNodeInfo()
+        getGuildInfo()
         checkReputation()
+
+        const isM2 = await handleViewMethod("getisNotguildManager", [state.account])
+        setISM2(isM2)
+        const isM3 = await handleViewMethod("getisNotdeputyGuildManager", [state.account])
+        setisM3(isM3)
+
+        const length = await handleViewMethod("gettoBeAdded", [])
+        let applyArr = []
+        for(let i=0;i< length;i++){
+            const addr = await handleViewMethod("toBeAdded", [i])
+            const userApplication = await handleViewMethod("userApplication", [addr])
+            const score = await handleReputiationViewMethod("checkReputation", [addr])
+            const status = await handleViewMethod("userStatus", [addr])
+            const userGuildNum = await handleViewMethod("userGuildNum", [addr])
+
+            const B1155 = await getERC1155Balance(addr,userGuildNum)
+
+            userApplication.score = score / 10**18
+            console.log(
+                B1155
+            )
+            if(B1155===1){
+                userApplication.status = "Pass"
+            }else if(status ===false){
+                userApplication.status = "Reject"
+            }else{
+                userApplication.status = "Pending"
+            }
+            applyArr.push(userApplication)
+
+
+        }
+        setapplyArr(applyArr)
+        const userGuildInFo  = await handleViewMethod("guildInFos", [params.id])
+        setAsset(userGuildInFo.asset)
+        const incomeLength  = await handleViewMethod("getinComeInfosLength", [])
+        let incomeArr = []
+        for (let i;i<incomeLength;i++){
+            const item  = await handleViewMethod("inComeInfos", [i])
+            incomeArr.push(item)
+        }
+
     }, [state.account, state.networkId]);
 
 
@@ -141,19 +200,23 @@ const GuildDetail = (props) => {
 
             <div className="panel-box userinfo-box">
                 <div className="panel-title">
-                    City Node Detail
+                    Guild  Detail
                 </div>
                 {showTranOwn && <TransferOwner closeDialog={() => {
                     setShowTranOwn(false)
-                }} updateData={getNodeInfo}/>
+                }} updateData={getGuildInfo}/>
                 }
-                {showJoinTip && <JoinTip nodeId={params.id} closeDialog={() => {
+                {showApplyTip && <ApplyTip obj={guildNode} myScore={myScore} id={params.id} closeDialog={() => {
+                    setShowApplyTip(false)
+                }} updateData={getGuildInfo}/>
+                }
+                {showJoinTip && <JoinTip obj={guildNode} myScore={myScore} id={params.id} closeDialog={() => {
                     setShowJoinTip(false)
-                }} updateData={getNodeInfo}/>
+                }} updateData={getGuildInfo}/>
                 }
                 {showQuitTip && <QuitTip nodeId={params.id} closeDialog={() => {
                     setShowQuitTip(false)
-                }} updateData={getNodeInfo}/>
+                }} updateData={getGuildInfo}/>
                 }
                 <div className="panel-container">
 
@@ -162,11 +225,11 @@ const GuildDetail = (props) => {
                         <div className="img-box">
                             <img src={cityimg} alt=""/>
                             <div className="city-name">
-                                <div className={"status " + (cityNode.isNotLightCity ? "active" : "")}>
+                                <div className={"status " + (guildNode.isNotLightCity ? "active" : "")}>
                                 </div>
 
                                 <div className="name">
-                                    {cityNode.guildName}
+                                    {guildNode.guildName}
                                 </div>
                             </div>
                         </div>
@@ -177,7 +240,7 @@ const GuildDetail = (props) => {
                                     Name
                                 </div>
                                 <div className="value">
-                                    {cityNode.guildName}
+                                    {guildNode.guildName}
                                 </div>
                             </div>
                             <div className="info-box">
@@ -185,7 +248,7 @@ const GuildDetail = (props) => {
                                     scoreLimit
                                 </div>
                                 <div className="value">
-                                    {cityNode.scoreLimit}
+                                    {guildNode.scoreLimit}
                                 </div>
                             </div>
                             <div className="info-box">
@@ -193,7 +256,7 @@ const GuildDetail = (props) => {
                                     Member
                                 </div>
                                 <div className="value">
-                                    {cityNode.memberLength}
+                                    {guildNode.memberLength}
                                 </div>
                             </div>
 
@@ -202,7 +265,7 @@ const GuildDetail = (props) => {
                                     Intro
                                 </div>
                                 <div className="value">
-                                    {cityNode.guildDescribe}
+                                    {guildNode.guildDescribe}
                                 </div>
                             </div>
 
@@ -211,7 +274,7 @@ const GuildDetail = (props) => {
                                     Assets
                                 </div>
                                 <div className="value">
-                                    {cityNode.asset}
+                                    {guildNode.asset}
                                 </div>
                             </div>
                             <div className="operate-box">
@@ -221,8 +284,8 @@ const GuildDetail = (props) => {
                                 <Button type="primary" onClick={() => {
                                     setShowQuitTip(true)
                                 }}>Quit</Button>
-                                <Button type="primary" onClick={submitApplication}>Apply</Button>
-                                {myScore}
+                                <Button type="primary" onClick={()=>{setShowApplyTip(true)}}>Apply</Button>
+
                             </div>
                         </div>
                     </div>
@@ -238,6 +301,13 @@ const GuildDetail = (props) => {
                             }}>
                                 Members
                             </div>
+                            {
+                                (isM3||isM2)&&(<div className={"nav-item " + (activeIndex == 4? "active" : "")} onClick={() => {
+                                    setActiveIdx(4)
+                                }}>
+                                    Apply List
+                                </div>)
+                            }
                             <div className={"nav-item " + (activeIndex == 3 ? "active" : "")} onClick={() => {
                                 setActiveIdx(3)
                             }}>
@@ -250,16 +320,15 @@ const GuildDetail = (props) => {
                                     Owner
                                 </div>
                                 <div className="value">
-                                    {cityNode.guildManager}
+                                    {guildNode.guildManager}
                                 </div>
-
                             </div>
                             <div className="info-box">
                                 <div className="name">
                                     Vault Admin
                                 </div>
                                 <div className="value">
-                                    {cityNode.guildManager}
+                                    {guildNode.guildManager}
                                 </div>
                             </div>
                             <div className="info-box">
@@ -267,12 +336,12 @@ const GuildDetail = (props) => {
                                     Admin
                                 </div>
                                 <div className="value">
-                                    {cityNode.admin}
+                                    {guildNode.admin}
                                 </div>
                             </div>
                         </div>}
-                        {activeIndex == 2 && <div className="member-arr">
-                            <div className="mem">
+                        {activeIndex == 2 && <div className="member-arr fire-list-box">
+                            <div className="mem list-header">
                                 <div className="col">
                                     No
                                 </div>
@@ -303,12 +372,79 @@ const GuildDetail = (props) => {
                                     <div className="col">
                                         {item.score}
                                     </div>
+
                                     <div className="addr">
                                         {dealTime(item.joinT)}
                                     </div>
                                 </div>)
                             })}
                         </div>}
+                        {
+                            activeIndex==3&&<div className="asset-box">
+                                <div className="title">
+                                    Asset <strong>{asset}</strong> ETH
+                                </div>
+                            </div>
+                        }
+                        {
+                            activeIndex==4&&(<div className="applyList fire-list-box">
+                                <div className="list-item list-header">
+                                    <div className="col">
+                                        No.
+                                    </div>
+                                    <div className="col">
+                                        Applicant
+                                    </div>
+                                    <div className="col">
+                                        PID
+                                    </div>
+                                    <div className="col">
+                                        FID Score
+                                    </div>
+                                    <div className="col">
+                                        Apply Link
+                                    </div>
+                                    <div className="col">
+                                        Date
+                                    </div>
+                                    <div className="col">
+                                        State
+                                    </div>
+                                </div>
+                                {applyArr.map((item,index)=>{
+                                    return (
+                                        <div className="list-item">
+                                            <div className="col">
+                                                {index}
+                                            </div>
+                                            <div className="col">
+                                                {pubJs.dealSubAddr(item.applicationer)}
+                                            </div>
+                                            <div className="col">
+                                                {item.PID}
+                                            </div>
+                                            <div className="col">
+                                                {item.score}
+                                            </div>
+
+                                            <div className="col">
+                                                {item.applicationLink}
+                                            </div>
+
+                                            <div className="col">
+                                                {dealTime(item.time)}
+                                            </div>
+                                            <div className="col">
+                                                {item.status}
+                                                <Button onClick={()=>{allowJoinGuild(item.applicationer)}}>Pass</Button>
+                                                <Button onClick={()=>{rejectedApp(item.applicationer)}}>Reject</Button>
+                                            </div>
+                                        </div>
+                                    )
+
+                                })}
+                            </div>)
+                        }
                     </div>
                 </div>
             </div>

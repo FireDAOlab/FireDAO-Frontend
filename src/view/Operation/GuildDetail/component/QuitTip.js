@@ -14,7 +14,7 @@ const TransferOwner = (props) => {
 
 
     const handleDealMethod = async (name, params) => {
-        let contractTemp = await getContractByName("cityNode", state.api,)
+        let contractTemp = await getContractByName("Guild", state.api,)
         if (!contractTemp) {
         }
         return dealMethod(contractTemp, state.account, name, params)
@@ -22,7 +22,7 @@ const TransferOwner = (props) => {
 
 
     const handleSetAddress = async () => {
-        await handleDealMethod("quitCityNode", [nodeId])
+        await handleDealMethod("quitGuild", [nodeId])
         updateData()
         closeDialog()
     }
@@ -48,7 +48,7 @@ const TransferOwner = (props) => {
                     </div>
                 </div>
                 <div className="tip">
-                    Quit the city node, and the NFT of the corresponding city node will also be destroyed. Are you sure you want to Quit?
+                    Quit the guild node, and the NFT of the corresponding guild node will also be destroyed. Are you sure you want to Quit?
                 </div>
                 <Button className="sub-btn" onClick={handleSetAddress} type="primary">
                     Destory & Quit

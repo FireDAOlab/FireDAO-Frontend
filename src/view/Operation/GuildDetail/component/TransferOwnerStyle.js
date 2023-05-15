@@ -4,6 +4,14 @@ export default   styled.div`
   left: 0;
   top: 0;
   z-index: 1;
+  .flex-box{
+    justify-content: space-between;
+    margin-top: 10px;
+    font-size: 18px;
+    .value{
+      font-weight: bold;
+    }
+  }
   .address-list {
     .address-item {
       display: flex;
