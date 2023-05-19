@@ -18,7 +18,9 @@ import ApplyTip from "./component/ApplyTip";
 import JoinTip from "./component/JoinTip";
 
 import QuitTip from "./component/QuitTip";
-import AddSubAddr from "../../HolyFireAltar/ReputationManage/component/AddSubAddr";
+import AddAddr from "./component/AddAddr"
+import RemoveAddr from "./component/RemoveAddr"
+import FireLockStyle from "../GuildManage/style";
 
 const GuildDetail = (props) => {
 
@@ -34,6 +36,8 @@ const GuildDetail = (props) => {
     const [showApplyTip, setShowApplyTip] = useState(false)
     const [showJoinTip, setShowJoinTip] = useState(false)
 
+    const [whitelist, setWhiteList] = useState([])
+
     const [showQuitTip, setShowQuitTip] = useState(false)
     const [myScore, setMyScore] = useState(0)
     const [isM2, setISM2] = useState(false)
@@ -41,6 +45,11 @@ const GuildDetail = (props) => {
     const [asset, setAsset] = useState(0)
 
     const [applyArr, setapplyArr] = useState([])
+    const [incomeArr, setIncomeArr] = useState([])
+    const [showAdd, setShowAdd] = useState(false)
+    const [showRemove, setShowRemove] = useState(false)
+
+    const [transferArr, setTransferArr] = useState([])
 
     const params = useParams()
     const openNotification = (message) => {
@@ -142,7 +151,16 @@ const GuildDetail = (props) => {
 
         setNodeMember(arr)
     }
+    const getAddrArr =async  ()=>{
+        let arr = []
+        const length = await handleViewMethod("getdeputyGuildManagerLength", [params.id])
+        for(let i =0;i<length;i++){
+            const item = await handleViewMethod("idDeputyGuildManager", [params.id,i])
+            arr.push(item)
+        }
+        setWhiteList(arr)
 
+    }
     useEffect(async () => {
         let judgeRes = await judgeStatus(state)
         if (!judgeRes) {
@@ -187,11 +205,22 @@ const GuildDetail = (props) => {
         setAsset(userGuildInFo.asset)
         const incomeLength  = await handleViewMethod("getinComeInfosLength", [])
         let incomeArr = []
-        for (let i;i<incomeLength;i++){
+        for (let i=0;i<incomeLength;i++){
             const item  = await handleViewMethod("inComeInfos", [i])
             incomeArr.push(item)
         }
+        setIncomeArr(incomeArr)
 
+        const  transferLength  = await handleViewMethod("gettransferOperatesLength", [])
+        let transferArr = []
+        for (let i=0;i<transferLength;i++){
+            const item  = await handleViewMethod("transferOperates  ", [i])
+            transferArr.push(item)
+        }
+        setTransferArr(transferArr)
+        if(isM2){
+            getAddrArr()
+        }
     }, [state.account, state.networkId]);
 
 
@@ -218,6 +247,17 @@ const GuildDetail = (props) => {
                     setShowQuitTip(false)
                 }} updateData={getGuildInfo}/>
                 }
+
+                {showAdd && <AddAddr id={params.id} updateData={() => {
+                    getAddrArr()
+                }} closeDialog={() => {
+                    setShowAdd(false)
+                }}/>}
+                {showRemove && <RemoveAddr id={params.id} updateData={() => {
+                    getAddrArr()
+                }} closeDialog={() => {
+                    setShowRemove(false)
+                }}/>}
                 <div className="panel-container">
 
 
@@ -308,6 +348,13 @@ const GuildDetail = (props) => {
                                     Apply List
                                 </div>)
                             }
+                            {
+                                (isM2)&&(<div className={"nav-item " + (activeIndex == 5? "active" : "")} onClick={() => {
+                                    setActiveIdx(5)
+                                }}>
+                                    White List
+                                </div>)
+                            }
                             <div className={"nav-item " + (activeIndex == 3 ? "active" : "")} onClick={() => {
                                 setActiveIdx(3)
                             }}>
@@ -384,6 +431,43 @@ const GuildDetail = (props) => {
                                 <div className="title">
                                     Asset <strong>{asset}</strong> ETH
                                 </div>
+                                <div className="income-list fire-list-box">
+                                    <h3>Income</h3>
+                                    {incomeArr.map((item,index)=>{
+                                        return (<div className="list-item" key={index}>
+                                            <div className="col">
+                                                {item.id}
+                                            </div>
+                                            <div className="col">
+                                                {item.amount / 10**18}
+                                            </div>
+                                            <div className="col">
+                                                {dealTime(item.time)}
+                                            </div>
+                                            <div className="col">
+                                                {pubJs.dealSubAddr(item.transfer)}
+                                            </div>
+                                        </div>)
+                                    })}
+                                    <h3>Transfer</h3>
+                                    {transferArr.map((item,index)=>{
+                                        return (<div className="list-item" key={index}>
+                                            <div className="col">
+                                                {item.id}
+                                            </div>
+                                            <div className="col">
+                                                {item.amount / 10**18}
+                                            </div>
+                                            <div className="col">
+                                                {dealTime(item.time)}
+                                            </div>
+                                            <div className="col">
+                                                {pubJs.dealSubAddr(item.transfer)}
+                                            </div>
+                                        </div>)
+                                    })}
+
+                                </div>
                             </div>
                         }
                         {
@@ -438,6 +522,37 @@ const GuildDetail = (props) => {
                                                 {item.status}
                                                 <Button onClick={()=>{allowJoinGuild(item.applicationer)}}>Pass</Button>
                                                 <Button onClick={()=>{rejectedApp(item.applicationer)}}>Reject</Button>
+                                            </div>
+                                        </div>
+                                    )
+
+                                })}
+                            </div>)
+                        }
+                        {
+                            activeIndex==5&&(<div className="applyList fire-list-box">
+                                <div className="list-header">
+                                    <Button type="primary" onClick={()=>{setShowAdd(true)}}>Add</Button>
+                                    <Button type="primary" onClick={()=>{setShowRemove(true)}}>Remove</Button>
+                                </div>
+
+                                <div className="list-item list-header">
+                                    <div className="col">
+                                        No.
+                                    </div>
+                                    <div className="col">
+                                        Address
+                                    </div>
+
+                                </div>
+                                {whitelist.map((item,index)=>{
+                                    return (
+                                        <div className="list-item">
+                                            <div className="col">
+                                                {index}
+                                            </div>
+                                            <div className="col">
+                                                {item}
                                             </div>
                                         </div>
                                     )

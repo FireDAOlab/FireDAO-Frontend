@@ -104,7 +104,7 @@ const Guild = (props) => {
 
             <div className="panel-box userinfo-box">
                 <div className="panel-title">
-                    City Node
+                    Guild Node
                 </div>
                 <div className="panel-container">
                     <div className="panel-header">
@@ -129,26 +129,13 @@ const Guild = (props) => {
                                 Name
                             </strong>
                             <div className="address col">
-                                City
-                            </div>
-                            <strong className="user col">
-                                Creator
-                            </strong>
-                            <div className="address col">
-                                Vault
-                            </div>
-                            <div className="address col">
                                 Assets(ETH)
                             </div>
-                            <div className="detail col">
-                                Node Admin
-                            </div>
+
                             <div className="col">
                                 Member
                             </div>
-                            <div className="col">
-                                FID Score
-                            </div>
+
                             <div className="View col">
                                 View
                             </div>
@@ -190,27 +177,17 @@ const Guild = (props) => {
                             <strong className="pid col">
                                 Name
                             </strong>
-                            <div className="address col">
-                                City
-                            </div>
-                            <strong className="user col">
-                                Creator
-                            </strong>
-                            <div className="address col">
-                                Vault
-                            </div>
+
                             <div className="address col">
                                 Assets(ETH)
                             </div>
                             <div className="detail col">
-                                Node Admin
+                                Limit
                             </div>
                             <div className="col">
                                 Member
                             </div>
-                            <div className="col">
-                                FID Score
-                            </div>
+
                             <div className="View col">
                                 View
                             </div>

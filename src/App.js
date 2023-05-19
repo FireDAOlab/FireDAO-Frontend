@@ -47,6 +47,10 @@ import SourceDetail from "./view/Treasury/SourceDetail"
 //FDTSquare
 import OGPool from "./view/FDTSquare/OGPool/OGPool";
 import OGPoolAdmin from "./view/FDTSquare/OGPool/OGPoolAdmin";
+import FDTRelease from "./view/FDTSquare/FDTRelease/index";
+import FDTReleaseManage from "./view/FDTSquare/FDTReleaseManage/index";
+import FDTOgToFdt from "./view/FDTSquare/FDTOgToFdt"
+import FLMPool from "./view/FDTSquare/FLMPool/index"
 
 //Operation
 import FireLock from "./view/Operation/FireLock/FireLock";
@@ -131,6 +135,11 @@ function App() {
                                 {/* FDTSquare*/}
                                 <Route path="/OGPool" element={<OGPool/>}/>
                                 <Route path="/OGPoolAdmin" element={<OGPoolAdmin/>}/>
+                                <Route path="/FDTRelease" element={<FDTRelease/>}/>
+                                <Route path="/FDTReleaseManage" element={<FDTReleaseManage/>}/>
+                                <Route path="/FDTOgToFdt" element={<FDTOgToFdt/>}/>
+                                <Route path="/FLMPool" element={<FLMPool/>}/>
+
                                 {/*Operation*/}
                                 <Route path="/FireLock" element={<FireLock/>}/>
                                 <Route path="/FireLockView" element={<FireLockView/>}/>
