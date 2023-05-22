@@ -173,7 +173,7 @@ const FireDAOFooter = () => {
                                 Community Vault
                             </div>
                             <div className="link-row">
-                                Repurchase&Burn
+                                RepurchaseAndBurn
                             </div>
                             <div className="link-row">
                                 FireSeed Competition

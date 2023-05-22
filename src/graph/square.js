@@ -26,7 +26,7 @@ export function getFDTOgExchange(amount, skip) {
 
 
 export function getFLMExchange(amount, skip) {
-    return fetchQueryBase("patton-sr/dd", {
+    return fetchQueryBase("patton-sr/ffda", {
         text: `{
                  allClaimRecords(first:1000) {
                     id

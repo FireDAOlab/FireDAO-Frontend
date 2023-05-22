@@ -138,96 +138,35 @@ const FLMPool = (props) => {
     return (
         <FLMPoolStyle>
             <h1 className="title">
-                FLM Pool
+                Repurchase and Burn
             </h1>
             <div className="panel-box">
                 <div className="panel-container">
                     <div className="op-box">
-                        <div className="exchange-box">
-                            <div className="exchange">
-                                <div className="part1">
-                                    <div className="left">
-                                        <strong>FLM</strong>
-                                    </div>
-                                    <div className="right">
-                                        <Form form={form} name="control-hooks">
-                                            <Form.Item
-                                                name="amount"
-                                            >
-                                                <Input type="number" onChange={event => {
-                                                    getCanExc(event)
-                                                }}/>
-                                            </Form.Item>
-                                        </Form>
-                                        <Button className="sub-btn" onClick={() => {
-                                            setMax()
-                                        }} type="primary">
-                                            Max
-                                        </Button>
-                                        <div className="balance">
-                                            Balance:
-                                            {ogCoinInfo.balance}
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="to">
-                                    TO
-                                </div>
-                                <div className="part2">
-                                    <div className="left">
-                                        FDT
-                                    </div>
-                                    <div className="right">
-                                        <div className="can-exc">
-                                            {canExchange}
-                                        </div>
-                                        <div className="balance">
-                                            Balance:
-                                            {fdtCoinInfo.balance}
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="tip">
-                                    1 FLM=0.001FDT($0.001)
-                                </div>
-                                <Button type="primary" onClick={approve}> Approve </Button>
-                                <Button type="primary" onClick={exchange}> Exchange </Button>
-                            </div>
+                        <div className="left">
+                            <h2 className="title">
+                                Live Repo Pool
+                            </h2>
                         </div>
-                        <div className="withdraw-box">
-                            <div className="name">
-                                Number of FDT that can be withdrawn
-                            </div>
-                            <div className="value">
-                                {canClaim}
-                            </div>
-                            <div className="input-box">
-                                <div className="name">
-                                    Withdraw Amount(s)
-                                </div>
-                                <Form form={form} name="control-hooks">
-                                    <Form.Item
-                                        name="wAmount"
-                                        className="withdraw-input"
-                                    >
-                                        <Input/>
-                                    </Form.Item>
-                                </Form>
-                                <Button type="primary" onClick={setMax2}>Max </Button>
-                            </div>
-                            <Button type="primary" onClick={withdraw}>Withdraw </Button>
+                        <div className="right">
+                            <h2 className="title">
+                                Emergency Repo Pool
+                            </h2>
+                        </div>
+                        <div className="right">
+
                         </div>
                     </div>
                     <div className="nav-list">
                         <div className={"nav-item " + (curNav == 1 ? "active" : "")} onClick={() => {
                             setCurNav(1)
                         }}>
-                            Exchange Record
+                            Live Repo Pool
                         </div>
                         <div className={"nav-item " + (curNav == 2 ? "active" : "")} onClick={() => {
                             setCurNav(2)
                         }}>
-                            Claim Record
+                            Emergency Repo Pool
                         </div>
                     </div>
                     <div className="nav-list">
