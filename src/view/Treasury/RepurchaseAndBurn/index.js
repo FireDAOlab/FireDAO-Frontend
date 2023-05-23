@@ -39,16 +39,30 @@ const FLMPool = (props) => {
         });
     };
     const handleDealMethod = async (name, params) => {
-        let contractTemp = await getContractByName("FLMPool", state.api,)
+        let contractTemp = await getContractByName("normalPool", state.api,)
+        if (!contractTemp) {
+            openNotification("Please connect")
+        }
+        return dealMethod(contractTemp, state.account, name, params)
+    }
+    const handleEDealMethod = async (name, params) => {
+        let contractTemp = await getContractByName("emergencyPool", state.api,)
         if (!contractTemp) {
             openNotification("Please connect")
         }
         return dealMethod(contractTemp, state.account, name, params)
     }
 
+    const handleMDealMethod = async (name, params) => {
+        let contractTemp = await getContractByName("poolManager", state.api,)
+        if (!contractTemp) {
+            openNotification("Please connect")
+        }
+        return dealMethod(contractTemp, state.account, name, params)
+    }
 
     const handleViewMethod = async (name, params) => {
-        let contractTemp = await getContractByName("FLMPool", state.api,)
+        let contractTemp = await getContractByName("normalPool", state.api,)
         if (!contractTemp) {
             openNotification("Please connect")
         }
@@ -70,39 +84,24 @@ const FLMPool = (props) => {
     }
     const getTokens = async () => {
         const fdt = await getTokenInfo(addressMap["FDT"].address)
-        const og = await getTokenInfo(addressMap["FLM"].address)
         setFDTCoinInfo(fdt)
-        setFLMCoinInfo(og)
     }
     const getCanClaim = async () => {
         const CanClaim = await handleViewMethod("CanClaim", [])
         setCanClaim(CanClaim / 10 ** 18)
     }
-    const approve = async () => {
-        const contractTemp = await getContractByContract("erc20", addressMap["FLM"].address, state.api,)
-        await dealMethod(contractTemp, state.account, "approve", [addressMap["FLMPool"].address, state.api.utils.toWei((10 ** 18).toString())])
+
+    const fundAllocation = async () => {
+        await handleMDealMethod("fundAllocation", [])
     }
-    const exchange = async () => {
-        await handleDealMethod("exchange", [state.api.utils.toWei(form.getFieldValue().amount.toString())])
-        getTokens()
+    const swapTokensForOther = async () => {
+        await handleDealMethod("swapTokensForOther", [])
     }
-    const withdraw = async () => {
-        await handleDealMethod("Claim", [state.api.utils.toWei(form.getFieldValue().wAmount.toString())])
-        getTokens()
-        getCanClaim()
+    const swapTokensForOther2 = async () => {
+        await handleEDealMethod("swapTokensForOther", [])
     }
     const dealNum = (num) => {
         return parseInt(num * 100) / 100
-    }
-    const getCanExc = async (event) => {
-        setCanExchange(event.target.value * 0.001)
-    }
-    const setMax = () => {
-        form.setFieldsValue({"amount": ogCoinInfo.balance})
-        setCanExchange(ogCoinInfo.balance*0.001)
-    }
-    const setMax2 = () => {
-        form.setFieldsValue({"wAmount": canClaim})
     }
     useEffect(async () => {
         let judgeRes = await judgeStatus(state)
@@ -142,16 +141,26 @@ const FLMPool = (props) => {
             </h1>
             <div className="panel-box">
                 <div className="panel-container">
+                    <Button type="primary" onClick={fundAllocation}>fundAllocation</Button>
                     <div className="op-box">
                         <div className="left">
                             <h2 className="title">
                                 Live Repo Pool
                             </h2>
+                            <div className="balance">
+                                {fdtCoinInfo.balance} fdt
+                            </div>
+                            <Button type="primary" onClick={swapTokensForOther}>Repurchase and Burn</Button>
+
                         </div>
                         <div className="right">
                             <h2 className="title">
                                 Emergency Repo Pool
                             </h2>
+                            <div className="balance">
+                                {state.ethBalance} eth
+                            </div>
+                            <Button type="primary" onClick={swapTokensForOther2}>Repurchase and Burn</Button>
                         </div>
                         <div className="right">
 
