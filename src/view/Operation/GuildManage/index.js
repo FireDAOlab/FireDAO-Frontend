@@ -122,11 +122,7 @@ const FireLock = (props) => {
         getOwner()
     }
 
-    const setCityNodeRate = async () => {
-        let contractTemp = await getContractByName("MintFireSeed", state.api,)
-        const rate = await dealMethod(contractTemp, state.account, "setCityNodeRate", [form.getFieldValue().memrate])
-        getMemberRate()
-    }
+
     const handleSetCreationScore = async () => {
         await handleDealMethod("setJoinRestrictions", [form.getFieldValue().CreationScore])
         getCreationScore()

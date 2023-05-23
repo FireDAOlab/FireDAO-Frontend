@@ -21,7 +21,7 @@ const Guild = (props) => {
         history(url);
     }
     const [myClassAddress, setMyClass] = useState("")
-    const [myClassPid, setMyClassPid] = useState(0)
+    const [myGuild, setMyGuild] = useState([])
     const [cityNodes, setCityNodes] = useState([])
     const [curNav, setCurNav] = useState(1)
     const [myNode, setMyNode] = useState({})
@@ -52,17 +52,20 @@ const Guild = (props) => {
         return await viewMethod(contractTemp, state.account, name, params)
     }
 
-    const getAllCityNode = async ()=>{
+    const getAllGuild = async ()=>{
         const length =await handleViewMethod("getguildInFosLength",[])
-        let arr = []
+        let arr = [],myArr=[]
+
         for(let i = 0 ;i<length;i++){
             const guild = await handleViewMethod("guildInFos",[i])
-            console.log(guild)
             arr.push({
                 ...guild,
             })
-            console.log(arr)
+            if(guild.guildManager.toLowerCase() == state.account.toLowerCase()){
+                myArr.push(guild)
+            }
         }
+        setMyGuild(myArr)
         setCityNodes(arr)
     }
     const getTokenBalance = async (value) => {
@@ -83,17 +86,16 @@ const Guild = (props) => {
         if(!judgeRes){
             return
         }
-        getAllCityNode()
+        getAllGuild()
         const node = await handleViewMethod("userInNodeInfo",[state.account])
-        const cityNodeAdmin = await handleViewMethod("cityNodeAdmin",[node.NodeId])
-        node.cityNodeAdmin = cityNodeAdmin
-        const nodeTreasuryBalance = await getTokenBalance(node.Treasury)
-        node.assets = nodeTreasuryBalance
-        const nodeIpfs = await getIpfs(node.hash)
-        const score = await handleViewMethod("getCityNodeReputation",[node.NodeId])
-        node.score = score/10**18
-        node.intro = nodeIpfs.intro
-        node.city = nodeIpfs.city
+        // const cityNodeAdmin = await handleViewMethod("cityNodeAdmin",[node.NodeId])
+        // node.cityNodeAdmin = cityNodeAdmin
+        // const nodeTreasuryBalance = await getTokenBalance(node.Treasury)
+        // node.assets = nodeTreasuryBalance
+        // const nodeIpfs = await getIpfs(node.hash)
+        // const score = await handleViewMethod("getCityNodeReputation",[node.NodeId])
+        // node.score = score/10**18
+
         setMyNode(node)
     }, [state.account, state.networkId]);
 
@@ -102,7 +104,7 @@ const Guild = (props) => {
 
             <div className="panel-box userinfo-box">
                 <div className="panel-title">
-                    City Node
+                    Guild Node
                 </div>
                 <div className="panel-container">
                     <div className="panel-header">
@@ -127,26 +129,13 @@ const Guild = (props) => {
                                 Name
                             </strong>
                             <div className="address col">
-                                City
-                            </div>
-                            <strong className="user col">
-                                Creator
-                            </strong>
-                            <div className="address col">
-                                Vault
-                            </div>
-                            <div className="address col">
                                 Assets(ETH)
                             </div>
-                            <div className="detail col">
-                                Node Admin
-                            </div>
+
                             <div className="col">
                                 Member
                             </div>
-                            <div className="col">
-                                FID Score
-                            </div>
+
                             <div className="View col">
                                 View
                             </div>
@@ -172,7 +161,7 @@ const Guild = (props) => {
 
                                     <div className="col">
                                         <Button onClick={()=>{
-                                            history("/GuildDetail/"+ item.NodeId)
+                                            history("/GuildDetail/"+ index)
                                         }}>View</Button>
                                     </div>
                                 </div>
@@ -188,74 +177,48 @@ const Guild = (props) => {
                             <strong className="pid col">
                                 Name
                             </strong>
-                            <div className="address col">
-                                City
-                            </div>
-                            <strong className="user col">
-                                Creator
-                            </strong>
-                            <div className="address col">
-                                Vault
-                            </div>
+
                             <div className="address col">
                                 Assets(ETH)
                             </div>
                             <div className="detail col">
-                                Node Admin
+                                Limit
                             </div>
                             <div className="col">
                                 Member
                             </div>
-                            <div className="col">
-                                FID Score
-                            </div>
+
                             <div className="View col">
                                 View
                             </div>
                         </div>
-                        <div className="list-item">
-                            <div className="address col">
-                                {myNode.NodeId}
-                            </div>
-                            <strong className="pid col">
-                                {myNode.NodeName}
+                        {myGuild.map((item,index)=>{
+                            return(
+                                <div className="list-item" key={index}>
+                                    <div className="col">
+                                        {index}
+                                    </div>
+                                    <div className="col name">
+                                        {item.guildDescribe}
+                                    </div>
 
-                            </strong>
+                                    <div className="col">
+                                        {item.guildName}
+                                    </div>
 
-                            <strong className="pid col">
-                                {myNode.city}
-
-                            </strong>
-
-                            <div className="col">
-                                {pubJs.dealSubAddr(myNode.cityNodeAdmin)}
-                            </div>
-                            <div className="col">
-                                {pubJs.dealSubAddr(myNode.Treasury)}
-                            </div>
-                            <div className="col">
-                                {myNode.nodeTreasuryBalance}
-                            </div>
-                            <div className="col admin">
-                                {pubJs.dealSubAddr(myNode.NodeOwner)}
-                            </div>
+                                    <div className="col admin">
+                                        {pubJs.dealSubAddr(item.guildManager)}
+                                    </div>
 
 
-                            <div className="col">
-                                {dealTime(myNode.createTime)}
-                            </div>
-
-                            <div className="col">
-                                {myNode.memberLength}
-                            </div>
-
-
-                            <div className="col">
-                                <Button onClick={()=>{
-                                    history("/CityNodeDetail/"+ myNode.NodeId)
-                                }}>View</Button>
-                            </div>
-                        </div>
+                                    <div className="col">
+                                        <Button onClick={()=>{
+                                            history("/GuildDetail/"+ index)
+                                        }}>View</Button>
+                                    </div>
+                                </div>
+                            )
+                        })}
                     </div>}
                 </div>
             </div>

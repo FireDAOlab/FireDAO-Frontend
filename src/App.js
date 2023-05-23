@@ -47,6 +47,10 @@ import SourceDetail from "./view/Treasury/SourceDetail"
 //FDTSquare
 import OGPool from "./view/FDTSquare/OGPool/OGPool";
 import OGPoolAdmin from "./view/FDTSquare/OGPool/OGPoolAdmin";
+import FDTRelease from "./view/FDTSquare/FDTRelease/index";
+import FDTReleaseManage from "./view/FDTSquare/FDTReleaseManage/index";
+import FDTOgToFdt from "./view/FDTSquare/FDTOgToFdt"
+import FLMPool from "./view/FDTSquare/FLMPool/index"
 
 //Operation
 import FireLock from "./view/Operation/FireLock/FireLock";
@@ -60,6 +64,8 @@ import CityNodeDetail from "./view/Operation/CItyNodeDetail"
 import GuildManage from "./view/Operation/GuildManage"
 import Guild from "./view/Operation/Guild"
 import CreateGuild from "./view/Operation/CreateGuild"
+import GuildDetail from "./view/Operation/GuildDetail"
+
 function App() {
     const history = useNavigate();
     const location = useLocation()
@@ -129,6 +135,11 @@ function App() {
                                 {/* FDTSquare*/}
                                 <Route path="/OGPool" element={<OGPool/>}/>
                                 <Route path="/OGPoolAdmin" element={<OGPoolAdmin/>}/>
+                                <Route path="/FDTRelease" element={<FDTRelease/>}/>
+                                <Route path="/FDTReleaseManage" element={<FDTReleaseManage/>}/>
+                                <Route path="/FDTOgToFdt" element={<FDTOgToFdt/>}/>
+                                <Route path="/FLMPool" element={<FLMPool/>}/>
+
                                 {/*Operation*/}
                                 <Route path="/FireLock" element={<FireLock/>}/>
                                 <Route path="/FireLockView" element={<FireLockView/>}/>
@@ -141,7 +152,7 @@ function App() {
                                 <Route path="/GuildManage" element={<GuildManage/>}/>
                                 <Route path="/Guild" element={<Guild/>}/>
                                 <Route path="/CreateGuild" element={<CreateGuild/>}/>
-
+                                <Route path="/GuildDetail/:id" element={<GuildDetail/>}/>
                             </Routes>
                         </div>
                     </div>
