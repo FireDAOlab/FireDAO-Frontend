@@ -39,16 +39,30 @@ const FLMPool = (props) => {
         });
     };
     const handleDealMethod = async (name, params) => {
-        let contractTemp = await getContractByName("FLMPool", state.api,)
+        let contractTemp = await getContractByName("normalPool", state.api,)
+        if (!contractTemp) {
+            openNotification("Please connect")
+        }
+        return dealMethod(contractTemp, state.account, name, params)
+    }
+    const handleEDealMethod = async (name, params) => {
+        let contractTemp = await getContractByName("emergencyPool", state.api,)
         if (!contractTemp) {
             openNotification("Please connect")
         }
         return dealMethod(contractTemp, state.account, name, params)
     }
 
+    const handleMDealMethod = async (name, params) => {
+        let contractTemp = await getContractByName("poolManager", state.api,)
+        if (!contractTemp) {
+            openNotification("Please connect")
+        }
+        return dealMethod(contractTemp, state.account, name, params)
+    }
 
     const handleViewMethod = async (name, params) => {
-        let contractTemp = await getContractByName("FLMPool", state.api,)
+        let contractTemp = await getContractByName("normalPool", state.api,)
         if (!contractTemp) {
             openNotification("Please connect")
         }
@@ -70,39 +84,24 @@ const FLMPool = (props) => {
     }
     const getTokens = async () => {
         const fdt = await getTokenInfo(addressMap["FDT"].address)
-        const og = await getTokenInfo(addressMap["FLM"].address)
         setFDTCoinInfo(fdt)
-        setFLMCoinInfo(og)
     }
     const getCanClaim = async () => {
         const CanClaim = await handleViewMethod("CanClaim", [])
         setCanClaim(CanClaim / 10 ** 18)
     }
-    const approve = async () => {
-        const contractTemp = await getContractByContract("erc20", addressMap["FLM"].address, state.api,)
-        await dealMethod(contractTemp, state.account, "approve", [addressMap["FLMPool"].address, state.api.utils.toWei((10 ** 18).toString())])
+
+    const fundAllocation = async () => {
+        await handleMDealMethod("fundAllocation", [])
     }
-    const exchange = async () => {
-        await handleDealMethod("exchange", [state.api.utils.toWei(form.getFieldValue().amount.toString())])
-        getTokens()
+    const swapTokensForOther = async () => {
+        await handleDealMethod("swapTokensForOther", [])
     }
-    const withdraw = async () => {
-        await handleDealMethod("Claim", [state.api.utils.toWei(form.getFieldValue().wAmount.toString())])
-        getTokens()
-        getCanClaim()
+    const swapTokensForOther2 = async () => {
+        await handleEDealMethod("swapTokensForOther", [])
     }
     const dealNum = (num) => {
         return parseInt(num * 100) / 100
-    }
-    const getCanExc = async (event) => {
-        setCanExchange(event.target.value * 0.001)
-    }
-    const setMax = () => {
-        form.setFieldsValue({"amount": ogCoinInfo.balance})
-        setCanExchange(ogCoinInfo.balance*0.001)
-    }
-    const setMax2 = () => {
-        form.setFieldsValue({"wAmount": canClaim})
     }
     useEffect(async () => {
         let judgeRes = await judgeStatus(state)
@@ -138,96 +137,45 @@ const FLMPool = (props) => {
     return (
         <FLMPoolStyle>
             <h1 className="title">
-                FLM Pool
+                Repurchase and Burn
             </h1>
             <div className="panel-box">
                 <div className="panel-container">
+                    <Button type="primary" onClick={fundAllocation}>fundAllocation</Button>
                     <div className="op-box">
-                        <div className="exchange-box">
-                            <div className="exchange">
-                                <div className="part1">
-                                    <div className="left">
-                                        <strong>FLM</strong>
-                                    </div>
-                                    <div className="right">
-                                        <Form form={form} name="control-hooks">
-                                            <Form.Item
-                                                name="amount"
-                                            >
-                                                <Input type="number" onChange={event => {
-                                                    getCanExc(event)
-                                                }}/>
-                                            </Form.Item>
-                                        </Form>
-                                        <Button className="sub-btn" onClick={() => {
-                                            setMax()
-                                        }} type="primary">
-                                            Max
-                                        </Button>
-                                        <div className="balance">
-                                            Balance:
-                                            {ogCoinInfo.balance}
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="to">
-                                    TO
-                                </div>
-                                <div className="part2">
-                                    <div className="left">
-                                        FDT
-                                    </div>
-                                    <div className="right">
-                                        <div className="can-exc">
-                                            {canExchange}
-                                        </div>
-                                        <div className="balance">
-                                            Balance:
-                                            {fdtCoinInfo.balance}
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="tip">
-                                    1 FLM=0.001FDT($0.001)
-                                </div>
-                                <Button type="primary" onClick={approve}> Approve </Button>
-                                <Button type="primary" onClick={exchange}> Exchange </Button>
+                        <div className="left">
+                            <h2 className="title">
+                                Live Repo Pool
+                            </h2>
+                            <div className="balance">
+                                {fdtCoinInfo.balance} fdt
                             </div>
+                            <Button type="primary" onClick={swapTokensForOther}>Repurchase and Burn</Button>
+
                         </div>
-                        <div className="withdraw-box">
-                            <div className="name">
-                                Number of FDT that can be withdrawn
+                        <div className="right">
+                            <h2 className="title">
+                                Emergency Repo Pool
+                            </h2>
+                            <div className="balance">
+                                {state.ethBalance} eth
                             </div>
-                            <div className="value">
-                                {canClaim}
-                            </div>
-                            <div className="input-box">
-                                <div className="name">
-                                    Withdraw Amount(s)
-                                </div>
-                                <Form form={form} name="control-hooks">
-                                    <Form.Item
-                                        name="wAmount"
-                                        className="withdraw-input"
-                                    >
-                                        <Input/>
-                                    </Form.Item>
-                                </Form>
-                                <Button type="primary" onClick={setMax2}>Max </Button>
-                            </div>
-                            <Button type="primary" onClick={withdraw}>Withdraw </Button>
+                            <Button type="primary" onClick={swapTokensForOther2}>Repurchase and Burn</Button>
+                        </div>
+                        <div className="right">
+
                         </div>
                     </div>
                     <div className="nav-list">
                         <div className={"nav-item " + (curNav == 1 ? "active" : "")} onClick={() => {
                             setCurNav(1)
                         }}>
-                            Exchange Record
+                            Live Repo Pool
                         </div>
                         <div className={"nav-item " + (curNav == 2 ? "active" : "")} onClick={() => {
                             setCurNav(2)
                         }}>
-                            Claim Record
+                            Emergency Repo Pool
                         </div>
                     </div>
                     <div className="nav-list">

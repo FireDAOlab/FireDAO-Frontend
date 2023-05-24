@@ -43,6 +43,8 @@ import TreasuryDistributionManage from "./view/Treasury/TreasuryDistributionMana
 import Distribution from "./view/Treasury/Distribution"
 import TreasurySource from "./view/Treasury/Source"
 import SourceDetail from "./view/Treasury/SourceDetail"
+import RepurchaseAndBurnManage from "./view/Treasury/RepurchaseAndBurnManage"
+import RepurchaseAndBurn from "./view/Treasury/RepurchaseAndBurn"
 
 //FDTSquare
 import OGPool from "./view/FDTSquare/OGPool/OGPool";
@@ -130,7 +132,8 @@ function App() {
                                 <Route path="/Distribution" element={<Distribution/>}/>
                                 <Route path="/Source" element={<TreasurySource/>}/>
                                 <Route path="/SourceDetail" element={<SourceDetail/>}/>
-
+                                <Route path="/RepurchaseAndBurnManage" element={<RepurchaseAndBurnManage/>}/>
+                                <Route path="/RepurchaseAndBurn" element={<RepurchaseAndBurn/>}/>
 
                                 {/* FDTSquare*/}
                                 <Route path="/OGPool" element={<OGPool/>}/>

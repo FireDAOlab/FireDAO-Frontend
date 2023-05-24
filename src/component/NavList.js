@@ -69,7 +69,7 @@ const items = [
         getItem('Source', 'Source'),
         getItem('Distribution', 'Distribution'),
         getItem('Community Vault', 'Community Vault'),
-        getItem('Repurchase&Burn', 'Repurchase&Burn'),
+        getItem('Repurchase&Burn', 'RepurchaseAndBurn'),
         getItem('FireSeed Competition', 'FireSeedCompetition'),
         getItem('Citynode Competition', 'CitynodeCompetition'),
         getItem('Incentive Fund', 'IncentiveFund'),
