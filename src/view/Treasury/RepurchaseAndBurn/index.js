@@ -6,7 +6,7 @@ import {dealMethod, viewMethod} from "../../../utils/contractUtil"
 import {useNavigate, useLocation} from "react-router-dom";
 import FLMPoolStyle from "./style";
 import judgeStatus from "../../../utils/judgeStatus";
-import {getFLMExchange} from "../../../graph/square";
+import {getRepurchaseNormal,getRepurchaseEmergency} from "../../../graph/square";
 import addressMap from "../../../api/addressMap";
 import publicJs from "../../../utils/publicJs";
 import {dealTime} from "../../../utils/timeUtil";
@@ -111,8 +111,9 @@ const FLMPool = (props) => {
         getTokens()
         getCanClaim()
         try {
-            const res = await getFLMExchange()
-            const excArr = res.data.allExchangeRecords, claArr = res.data.allClaimRecords
+            const res2 = await getRepurchaseEmergency()
+            const res1 = await getRepurchaseNormal()
+            const excArr = res1.data.records, claArr = res2.data.records
             setChangeRecord(excArr)
             setClaimRecord(claArr)
             let myEecArr = [],myClaimArr = []

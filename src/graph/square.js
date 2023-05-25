@@ -47,3 +47,35 @@ export function getFLMExchange(amount, skip) {
                 }`
     }, "")
 }
+export function getRepurchaseNormal(amount, skip) {
+    return fetchQueryBase("patton-sr/normal", {
+        text: `{
+                records(first: 1000) {
+    id
+    pid
+    username
+    fidScore
+     user
+    burn
+    rewards
+   time
+  }
+                }`
+    }, "")
+}
+export function getRepurchaseEmergency(amount, skip) {
+    return fetchQueryBase("patton-sr/emergency", {
+        text: `{
+                records(first: 1000) {
+    id
+    pid
+    username
+    fidScore
+     user
+    burn
+    rewards
+   time
+  }
+                }`
+    }, "")
+}
