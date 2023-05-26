@@ -19,9 +19,7 @@ const MyPassport = (props) => {
     const goPage = (url) => {
         history(url);
     }
-    const [myClassAddress, setMyClass] = useState("")
-    const [myClassPid, setMyClassPid] = useState(0)
-    const [myPassport, setPassport] = useState("")
+
     const [records, setRecords] = useState([])
 
 

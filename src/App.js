@@ -54,6 +54,9 @@ import FDTReleaseManage from "./view/FDTSquare/FDTReleaseManage/index";
 import FDTOgToFdt from "./view/FDTSquare/FDTOgToFdt"
 import FLMPool from "./view/FDTSquare/FLMPool/index"
 import FDTMining from "./view/FDTSquare/FDTMining/index"
+import AutoReflowLP from "./view/FDTSquare/AutoReflowLP"
+import AutoReflowLPManage from "./view/FDTSquare/AutoReflowLPManage"
+
 //Operation
 import FireLock from "./view/Operation/FireLock/FireLock";
 import FireLockView from "./view/Operation/FireLockView"
@@ -143,6 +146,8 @@ function App() {
                                 <Route path="/FDTOgToFdt" element={<FDTOgToFdt/>}/>
                                 <Route path="/FLMPool" element={<FLMPool/>}/>
                                 <Route path="/FDTMining" element={<FDTMining/>}/>
+                                <Route path="/AutoReflowLP" element={<AutoReflowLP/>}/>
+                                <Route path="/AutoReflowLPManage" element={<AutoReflowLPManage/>}/>
 
                                 {/*Operation*/}
                                 <Route path="/FireLock" element={<FireLock/>}/>

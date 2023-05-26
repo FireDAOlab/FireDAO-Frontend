@@ -55,6 +55,8 @@ const items = [
         getItem('FDT Release', 'FDTRelease'),
         getItem('FLM Release', 'FLMRelease'),
         getItem('FDT Holder', 'FDTHolder'),
+        getItem('FDT-OG', 'FDTOgToFdt'),
+        getItem('Auto Reflow LP', 'AutoReflowLP'),
 
     ]),
     getItem('Operation', 'Operation', <img className="fireIcon" src={fireIcon3} />, [
