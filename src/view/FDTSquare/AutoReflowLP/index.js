@@ -10,16 +10,11 @@ import {getFLMExchange} from "../../../graph/square";
 import addressMap from "../../../api/addressMap";
 import publicJs from "../../../utils/publicJs";
 import {dealTime} from "../../../utils/timeUtil";
-
 const FLMPool = (props) => {
     let {state, dispatch} = useConnect();
 
     const [curNav, setCurNav] = useState(1)
 
-    const [fdtCoinInfo, setFDTCoinInfo] = useState({})
-    const [ogCoinInfo, setFLMCoinInfo] = useState({})
-    const [canExchange, setCanExchange] = useState(0)
-    const [canClaim, setCanClaim] = useState(0)
     const [isMeNav, setIsMeNav] = useState(1)
 
     const [form] = Form.useForm();
@@ -27,6 +22,8 @@ const FLMPool = (props) => {
     const [claimRecord, setClaimRecord] = useState([])
     const [myExchangeRecord, setMyChangeRecord] = useState([])
     const [myClaimRecord, setMyClaimRecord] = useState([])
+    const [wethAmount, setWeth] = useState(0)
+
     const location = useLocation()
 
     const openNotification = (message) => {
@@ -39,7 +36,7 @@ const FLMPool = (props) => {
         });
     };
     const handleDealMethod = async (name, params) => {
-        let contractTemp = await getContractByName("FLMPool", state.api,)
+        let contractTemp = await getContractByName("autolp", state.api,)
         if (!contractTemp) {
             openNotification("Please connect")
         }
@@ -48,62 +45,28 @@ const FLMPool = (props) => {
 
 
     const handleViewMethod = async (name, params) => {
-        let contractTemp = await getContractByName("FLMPool", state.api,)
+        let contractTemp = await getContractByName("autolp", state.api,)
         if (!contractTemp) {
             openNotification("Please connect")
         }
         return await viewMethod(contractTemp, state.account, name, params)
     }
 
-    const getTokenInfo = async (value) => {
-        let contractTemp = await getContractByContract("erc20", value.toString().trim(), state.api,)
+    const getTokenInfo = async () => {
+        let contractTemp = await getContractByContract("erc20",addressMap["WETH"].address, state.api,)
         const decimal = await viewMethod(contractTemp, state.account, "decimals", [])
         let balance = await viewMethod(contractTemp, state.account, "balanceOf", [state.account])
         balance = balance / (10 ** parseInt(decimal))
         balance = parseInt(balance * 100) / 100
-        return {
-            address: value,
-            decimal,
-            balance
-        }
+        setWeth(balance)
 
     }
-    const getTokens = async () => {
-        const fdt = await getTokenInfo(addressMap["FDT"].address)
-        const og = await getTokenInfo(addressMap["FLM"].address)
-        setFDTCoinInfo(fdt)
-        setFLMCoinInfo(og)
+
+    const buyAndAddLiquidity = async () => {
+        await handleDealMethod("buyAndAddLiquidity", [])
     }
-    const getCanClaim = async () => {
-        const CanClaim = await handleViewMethod("CanClaim", [])
-        setCanClaim(CanClaim / 10 ** 18)
-    }
-    const approve = async () => {
-        const contractTemp = await getContractByContract("erc20", addressMap["FLM"].address, state.api,)
-        await dealMethod(contractTemp, state.account, "approve", [addressMap["FLMPool"].address, state.api.utils.toWei((10 ** 18).toString())])
-    }
-    const exchange = async () => {
-        await handleDealMethod("exchange", [state.api.utils.toWei(form.getFieldValue().amount.toString())])
-        getTokens()
-    }
-    const withdraw = async () => {
-        await handleDealMethod("Claim", [state.api.utils.toWei(form.getFieldValue().wAmount.toString())])
-        getTokens()
-        getCanClaim()
-    }
-    const dealNum = (num) => {
-        return parseInt(num * 100) / 100
-    }
-    const getCanExc = async (event) => {
-        setCanExchange(event.target.value * 0.001)
-    }
-    const setMax = () => {
-        form.setFieldsValue({"amount": ogCoinInfo.balance})
-        setCanExchange(ogCoinInfo.balance*0.001)
-    }
-    const setMax2 = () => {
-        form.setFieldsValue({"wAmount": canClaim})
-    }
+
+
     useEffect(async () => {
         let judgeRes = await judgeStatus(state)
         if (!judgeRes) {
@@ -121,9 +84,20 @@ const FLMPool = (props) => {
     return (
         <FLMPoolStyle>
             <h1 className="title">
-                FLM Pool
+                Auto Reflow LP
             </h1>
             <div className="panel-box">
+                <div className="panel-container">
+                    <h3>
+                        Contract Address
+                    </h3>
+                    <div className="contract">
+                        {addressMap["autolp"].address}
+                    </div>
+                    <h3>WETH Balance</h3>
+                    <p>{wethAmount}</p>
+                    <Button type="primary" onClick={buyAndAddLiquidity}>Auto Reflow</Button>
+                </div>
                 <div className="panel-container">
                     <div className="op-box">
 
