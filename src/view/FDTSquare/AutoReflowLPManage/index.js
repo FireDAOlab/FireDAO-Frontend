@@ -10,30 +10,14 @@ import addressMap from "../../../api/addressMap";
 
 const FireLock = (props) => {
     let {state, dispatch} = useConnect();
-    const [whitelist, setWhitelistArr] = useState([])
 
-    const [lpwhitelist, setlpWhitelistArr] = useState([])
-    const [blwhitelist, setblWhitelistArr] = useState([])
-
-    const [curNav, setCurNav] = useState(1)
     const [ownerAddr, setOwner] = useState("")
-    const [tax, setTax] = useState()
-    const [startBlockNumber, setstartBlockNumber] = useState("")
-    const [StartBlock, setStartBlock] = useState("")
-
-    const [distribuRateObj, setDistribuRateObj] = useState({})
-
-
-    const [openTrade, setOpenTrade] = useState(false)
-    const [referObj, setReferObj] = useState({})
-    const [distribuRate, setDistribuRate] = useState({})
-
-    const [treasuryDistributionContract, setTreasuryDistributionContract] = useState("")
-
-
-    const [status, setstatus] = useState()
-
-    const [coinInfo, setCoinInfo] = useState({})
+    const [contractIntervals, setcontractIntervals] = useState()
+    const [interval, setinterval] = useState()
+    const [reputationAmount, setreputationAmount] = useState()
+    const [ reward,  setRewards] = useState()
+    const [ min,  setmin] = useState()
+    const [ max,  setmax] = useState()
 
     const [form] = Form.useForm();
 
@@ -48,7 +32,7 @@ const FireLock = (props) => {
         });
     };
     const handleDealMethod = async (name, params) => {
-        let contractTemp = await getContractByName("FDT", state.api,)
+        let contractTemp = await getContractByName("autolp", state.api,)
         if (!contractTemp) {
             openNotification("Please connect")
         }
@@ -57,177 +41,84 @@ const FireLock = (props) => {
 
 
     const handleViewMethod = async (name, params) => {
-        let contractTemp = await getContractByName("FDT", state.api,)
+        let contractTemp = await getContractByName("autolp", state.api,)
         if (!contractTemp) {
             openNotification("Please connect")
         }
         return await viewMethod(contractTemp, state.account, name, params)
     }
 
-    const getTokenInfo = async (value) => {
-        value = addressMap["FDT"].address
-        let contractTemp = await getContractByContract("erc20", value.toString().trim(), state.api,)
-        const decimal = await viewMethod(contractTemp, state.account, "decimals", [])
-        const name = await viewMethod(contractTemp, state.account, "name", [])
-        const symbol = await viewMethod(contractTemp, state.account, "symbol", [])
-        const totalSupply = await viewMethod(contractTemp, state.account, "totalSupply", [])
-        let balance = await viewMethod(contractTemp, state.account, "balanceOf", [state.account])
-        balance = balance / (10 ** parseInt(decimal))
-        balance = parseInt(balance * 100) / 100
-        setCoinInfo({
-            address: value,
-            name,
-            symbol,
-            decimal,
-            totalSupply: totalSupply / (10 ** parseInt(decimal)),
-            balance
-        })
-    }
 
 
-
-    const getDistribution = async () => {
-        const TREASURY_RATIO = await handleViewMethod("TREASURY_RATIO", [])
-        const CITY_NODE_RATIO = await handleViewMethod("CITY_NODE_RATIO", [])
-        const THREE_RATIO = await handleViewMethod("THREE_RATIO", [])
-
-        setDistribuRateObj({
-            TREASURY_RATIO,
-            CITY_NODE_RATIO,
-            THREE_RATIO
-        })
-    }
     const getOwner = async () => {
         const ownerAddr = await handleViewMethod("owner", [])
         setOwner(ownerAddr)
     }
-    const getBlock = async () => {
-        const startBlockNumber = await handleViewMethod("startBlockNumber", [])
-        const StartBlock = await handleViewMethod("StartBlock", [])
 
-        setstartBlockNumber(startBlockNumber)
-        setStartBlock(StartBlock)
-    }
-    const getStatus = async () => {
-        const res = await handleViewMethod("status", [])
-        setstatus(res)
-    }
-    const getTax= async () => {
-        const res = await handleViewMethod("_tax", [])
-        setTax(res)
+    const getcontractIntervals = async () => {
+        const res = await handleViewMethod("contractIntervals", [])
+        setcontractIntervals(res)
     }
 
-
-    const getopenTrade = async () => {
-        const res = await handleViewMethod("openTrade", [])
-        setOpenTrade(res)
+    const getinterval= async () => {
+        const res = await handleViewMethod("interval", [])
+        setinterval(res)
     }
-    const getdistributeRates  = async () => {
-        setDistribuRate({
-            rate1: await handleViewMethod("distributeRates", [0]),
-            rate2: await handleViewMethod("distributeRates", [1]),
-            rate3: await handleViewMethod("distributeRates", [2])
-        })
+    const getreputationAmount= async () => {
+        const res = await handleViewMethod("reputationAmount", [])
+        setreputationAmount(res)
     }
-    const getTreasuryDistributionContract = async () => {
-        const res = await handleViewMethod("TreasuryDistributionContract", [])
-        setTreasuryDistributionContract(res)
+    const getRewards= async () => {
+        const res = await handleViewMethod("reward", [])
+        setRewards(res/10**18)
     }
-
-
-    const getWList = async () => {
-        const length = await handleViewMethod("getwhiteListUserLength", [])
-        let arr = []
-        for (let i = 0; i < length; i++) {
-            const item = await handleViewMethod("whiteListUser", [i])
-            arr.push(item)
-        }
-        setWhitelistArr(arr)
+    const getMins= async () => {
+        const res = await handleViewMethod("min", [])
+        setmin(res/10**18)
     }
-    const getlpWList = async () => {
-        const length = await handleViewMethod("getallowAddLPListUserLength", [])
-        let arr = []
-        for (let i = 0; i < length; i++) {
-            const item = await handleViewMethod("allowAddLPListUser", [i])
-            arr.push(item)
-        }
-        setlpWhitelistArr(arr)
+    const getMax= async () => {
+        const res = await handleViewMethod("max", [])
+        setmax(res/10**18)
     }
-    const getblWList = async () => {
-        const length = await handleViewMethod("getblackListUserLenght", [])
-        let arr = []
-        for (let i = 0; i < length; i++) {
-            const item = await handleViewMethod("blackListUser", [i])
-            arr.push(item)
-        }
-        setblWhitelistArr(arr)
-    }
-
-    const handlesetStartBlock = async () => {
-        await handleDealMethod("setStartBlock", [form.getFieldValue().block])
-        getBlock()
-    }
-
     const transferOwnership = async () => {
         await handleDealMethod("transferOwnership", [form.getFieldValue().owner])
         getOwner()
     }
-
-    const setTREASURY_RATIO = async () => {
-        await handleDealMethod("setTREASURY_RATIO", [form.getFieldValue().drate2])
-        getdistributeRates()
+    const handleSetcontractIntervals = async () => {
+        await handleDealMethod("setcontractIntervals", [form.getFieldValue().contractIntervals])
+        getcontractIntervals()
     }
-    const setTHREE_RATIO = async () => {
-        await handleDealMethod("setTHREE_RATIO", [form.getFieldValue().drate1])
-        getdistributeRates()
+    const handlesetinterval = async () => {
+        await handleDealMethod("setinterval", [form.getFieldValue().interval])
+        getinterval()
     }
-    const setCITY_NODE_RATIO = async () => {
-        await handleDealMethod("setCITY_NODE_RATIO", [form.getFieldValue().drate3])
-        getdistributeRates()
+    const handlesetreputationAmount = async () => {
+        await handleDealMethod("setreputationAmount", [form.getFieldValue().reputationAmount])
+        getreputationAmount()
     }
-    const handlesetTax = async () => {
-        await handleDealMethod("setTax", [form.getFieldValue().tax])
-        getTax()
+    const handlesetreward = async () => {
+        await handleDealMethod("setreward", [state.api.utils.toWei(form.getFieldValue().reward)])
+        getRewards()
     }
-    const handlesetMinistryOfFinance = async () => {
-        await handleDealMethod("setMinistryOfFinance", [form.getFieldValue().financeAddr])
-        getTreasuryDistributionContract()
+    const handlesetmins= async () => {
+        await handleDealMethod("setmin", [state.api.utils.toWei(form.getFieldValue().min)])
+        getMins()
     }
-    const handlesetOpenTrade = async (name, params) => {
-        await handleDealMethod("setOpenTrade", [!openTrade])
-        getopenTrade()
+    const handlesetmax= async () => {
+        await handleDealMethod("setmax", [state.api.utils.toWei(form.getFieldValue().max)])
+        getMax()
     }
-    const handlesetstatus = async () => {
-        await handleDealMethod("setstatus", [])
-        getStatus()
-    }
-    const adddistributeRates = async () => {
-        await handleDealMethod("adddistributeRates", [[form.getFieldValue().rate1,form.getFieldValue().rate2,form.getFieldValue().rate3]])
-        getdistributeRates()
-    }
-
-    const setdistributeRates = async () => {
-        await handleDealMethod("setdistributeRates", [form.getFieldValue().rateid,form.getFieldValue().ratenum])
-        getdistributeRates()
-    }
-
-
     useEffect(async () => {
         let judgeRes = await judgeStatus(state)
         if (!judgeRes) {
             return
         }
         getOwner()
-        getopenTrade()
-        getTreasuryDistributionContract()
-        getTokenInfo()
-        getdistributeRates()
-        getWList()
-        getlpWList()
-        getStatus()
-        getDistribution()
-        getblWList()
-        getBlock()
+        getcontractIntervals()
+        getinterval()
+        getreputationAmount()
+        getRewards()
+        getMins()
     }, [state.account]);
 
     return (
@@ -268,371 +159,181 @@ const FireLock = (props) => {
                             </Button>
                         </div>
                         <div className="content-item">
-                            <h3>OpenTrade </h3>
+                            <h3>Frequency </h3>
                             <Form form={form} name="control-hooks">
                                 <div className="current">
                                     <div className="name">
                                         Current:
                                     </div>
                                     <div className="value">
-                                        {openTrade ? "true" : "false"}
+                                        {contractIntervals/60} mins
                                     </div>
                                 </div>
-
+                                <Form.Item
+                                    name="contractIntervals"
+                                    label="contractIntervals"
+                                    validateTrigger="onBlur"
+                                    validateFirst={true}
+                                    rules={[
+                                        {required: true, message: 'Please input !'},
+                                    ]}
+                                >
+                                    <Input/>
+                                </Form.Item>
                             </Form>
                             <Button type="primary" className="max-btn" onClick={() => {
-                                handlesetOpenTrade()
+                                handleSetcontractIntervals()
                             }}>
                                 Submit
                             </Button>
                         </div>
                         <div className="content-item">
-                            <h3>Rainbow City Treasury </h3>
+                            <h3>Address Frequency </h3>
                             <Form form={form} name="control-hooks">
                                 <div className="current">
                                     <div className="name">
                                         Current:
                                     </div>
                                     <div className="value">
-                                        {treasuryDistributionContract}
+                                        {interval/60} mins
                                     </div>
                                 </div>
                                 <Form.Item
-                                    name="financeAddr"
-                                    label=" address"
+                                    name="interval"
+                                    label="interval"
                                     validateTrigger="onBlur"
                                     validateFirst={true}
                                     rules={[
-                                        {required: true, message: 'Please input  Address!'},
+                                        {required: true, message: 'Please input !'},
                                     ]}
                                 >
                                     <Input/>
                                 </Form.Item>
                             </Form>
                             <Button type="primary" className="max-btn" onClick={() => {
-                                handlesetMinistryOfFinance()
+                                handlesetinterval()
                             }}>
                                 Submit
                             </Button>
                         </div>
                         <div className="content-item">
-                            <h3>Is Pause </h3>
+                            <h3>FID Score </h3>
                             <Form form={form} name="control-hooks">
                                 <div className="current">
                                     <div className="name">
                                         Current:
                                     </div>
                                     <div className="value">
-                                        {status?"Pause":"Un Pause"}
+                                        {reputationAmount}
                                     </div>
                                 </div>
-
+                                <Form.Item
+                                    name="reputationAmount"
+                                    label="reputationAmount"
+                                    validateTrigger="onBlur"
+                                    validateFirst={true}
+                                    rules={[
+                                        {required: true, message: 'Please input !'},
+                                    ]}
+                                >
+                                    <Input/>
+                                </Form.Item>
                             </Form>
                             <Button type="primary" className="max-btn" onClick={() => {
-                                handlesetstatus()
+                                handlesetreputationAmount()
                             }}>
-                                {status?"UnPause":"Pause"}
+                                Submit
                             </Button>
                         </div>
                         <div className="content-item">
-                            <h3> Tax </h3>
+                            <h3> Rewards</h3>
                             <Form form={form} name="control-hooks">
                                 <div className="current">
                                     <div className="name">
                                         Current:
                                     </div>
                                     <div className="value">
-                                        {tax}
+                                        {reward}
                                     </div>
                                 </div>
                                 <Form.Item
-                                    name="tax"
-                                    label=" tax"
+                                    name="reward"
+                                    label="reward"
                                     validateTrigger="onBlur"
                                     validateFirst={true}
                                     rules={[
-                                        {required: true, message: 'Please input  tax!'},
+                                        {required: true, message: 'Please input !'},
                                     ]}
                                 >
                                     <Input/>
                                 </Form.Item>
                             </Form>
                             <Button type="primary" className="max-btn" onClick={() => {
-                                handlesetTax()
+                                handlesetreward()
                             }}>
                                 Submit
                             </Button>
                         </div>
-                        <div className="content-item">
-                            <h3>
-                                FDT Info
-                            </h3>
-                            <div className="flex-box info-line">
-                                <div className="name">Name</div>
-                                <div className="value">
-                                    {coinInfo.name}
-                                </div>
-                            </div>
-                            <div className="flex-box info-line">
-                                <div className="name">Decimal</div>
-                                <div className="value">
-                                    {coinInfo.decimal}
-                                </div>
-                            </div>
-                            <div className="flex-box info-line">
-                                <div className="name">Symbol</div>
-                                <div className="value">
-                                    {coinInfo.symbol}
-                                </div>
-                            </div>
-                            <div className="flex-box info-line">
-                                <div className="name">Symbol</div>
-                                <div className="value">
-                                    {coinInfo.symbol}
-                                </div>
-                            </div>
-                            <div className="flex-box info-line">
-                                <div className="name">Address</div>
-                                <div className="value">
-                                    {coinInfo.address}
-                                </div>
-                            </div>
-                            <div className="flex-box info-line">
-                                <div className="name">totalSupply</div>
-                                <div className="value">
-                                    {coinInfo.totalSupply}
-                                </div>
-                            </div>
-                        </div>
 
                         <div className="content-item">
-                            <h2>Economics</h2>
-                            <h3>
-                                Tax Distribution
-                            </h3>
-
-                            <div className="fire-list-box">
-                                <div className="list-header">
-                                    <div className="col"> No.
-                                    </div>
-                                    <div className="col">Level</div>
-                                    <div className="col">Percentage</div>
-                                </div>
-                                <div className="list-item">
-                                    <div className="col">1</div>
-                                    <div className="col">Referrer</div>
-                                    <div className="col">{distribuRateObj.THREE_RATIO}</div>
-                                </div>
-                                <div className="list-item">
-                                    <div className="col">2</div>
-                                    <div className="col">Citynode</div>
-                                    <div className="col">{distribuRateObj.CITY_NODE_RATIO}</div>
-                                </div>
-                                <div className="list-item">
-                                    <div className="col">3</div>
-                                    <div className="col">Rainbow City Treasury</div>
-                                    <div className="col">{distribuRateObj.TREASURY_RATIO}</div>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div className="content-item">
-                            <h3>setTHREE_RATIO</h3>
-                            <Form form={form} name="control-hooks">
-                                <Form.Item
-                                    name="drate1"
-                                    label="rate"
-                                    validateTrigger="onBlur"
-                                    validateFirst={true}
-                                    rules={[
-                                        {required: true, message: 'Please input owner Address!'},
-                                    ]}
-                                >
-                                    <Input/>
-                                </Form.Item>
-                            </Form>
-
-                            <Button type="primary" className="max-btn" onClick={() => {
-                                setTHREE_RATIO()
-                            }}>
-                                Submit
-                            </Button>
-                        </div>
-                        <div className="content-item">
-                            <h3>setTREASURY_RATIO</h3>
-                            <Form form={form} name="control-hooks">
-                                <Form.Item
-                                    name="drate2"
-                                    label=" rate"
-                                    validateTrigger="onBlur"
-                                    validateFirst={true}
-                                    rules={[
-                                        {required: true, message: 'Please input owner Address!'},
-                                    ]}
-                                >
-                                    <Input/>
-                                </Form.Item>
-                            </Form>
-
-                            <Button type="primary" className="max-btn" onClick={() => {
-                                setTREASURY_RATIO()
-                            }}>
-                                Submit
-                            </Button>
-                        </div>
-                        <div className="content-item">
-                            <h3>setCITY_NODE_RATIO</h3>
-                            <Form form={form} name="control-hooks">
-                                <Form.Item
-                                    name="drate3"
-                                    label="rate "
-                                    validateTrigger="onBlur"
-                                    validateFirst={true}
-                                    rules={[
-                                        {required: true, message: 'Please input owner Address!'},
-                                    ]}
-                                >
-                                    <Input/>
-                                </Form.Item>
-                            </Form>
-
-                            <Button type="primary" className="max-btn" onClick={() => {
-                                setCITY_NODE_RATIO()
-                            }}>
-                                Submit
-                            </Button>
-                        </div>
-                        <div className="content-item">
-                            <h3>Category: Referrer</h3>
-                            <div className="fire-list-box">
-                                <div className="list-header">
-                                    <div className="col"> No.
-                                    </div>
-                                    <div className="col">Level</div>
-                                    <div className="col">Percentage</div>
-                                </div>
-                                <div className="list-item">
-                                    <div className="col">1</div>
-                                    <div className="col">1</div>
-                                    <div className="col">{distribuRate.rate1}</div>
-                                </div>
-                                <div className="list-item">
-                                    <div className="col">2</div>
-                                    <div className="col">2</div>
-                                    <div className="col">{distribuRate.rate2}</div>
-                                </div>
-                                <div className="list-item">
-                                    <div className="col">3</div>
-                                    <div className="col">3</div>
-                                    <div className="col">{distribuRate.rate3}</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="content-item">
-                            <h3>Init Rates </h3>
-                            <Form form={form} name="control-hooks">
-                                <Form.Item
-                                    name="rate1"
-                                    label=" rate1"
-                                    validateTrigger="onBlur"
-                                    validateFirst={true}
-                                    rules={[
-                                        {required: true, message: 'Please input  rate1!'},
-                                    ]}
-                                >
-                                    <Input/>
-                                </Form.Item>
-                                <Form.Item
-                                    name="rate2"
-                                    label=" rate2"
-                                    validateTrigger="onBlur"
-                                    validateFirst={true}
-                                    rules={[
-                                        {required: true, message: 'Please input  rate!'},
-                                    ]}
-                                >
-                                    <Input/>
-                                </Form.Item>
-                                <Form.Item
-                                    name="rate3"
-                                    label=" rate3"
-                                    validateTrigger="onBlur"
-                                    validateFirst={true}
-                                    rules={[
-                                        {required: true, message: 'Please input  rate!'},
-                                    ]}
-                                >
-                                    <Input/>
-                                </Form.Item>
-                            </Form>
-                            <Button type="primary" className="max-btn" onClick={() => {
-                                adddistributeRates()
-                            }}>
-                                Submit
-                            </Button>
-                        </div>
-                        <div className="content-item">
-                            <h3>Set Rates </h3>
-                            <Form form={form} name="control-hooks">
-                                <Form.Item
-                                    name="rateid"
-                                    label=" id"
-                                    validateTrigger="onBlur"
-                                    validateFirst={true}
-                                    rules={[
-                                        {required: true, message: 'Please input  id!'},
-                                    ]}
-                                >
-                                    <Input/>
-                                </Form.Item>
-
-                                <Form.Item
-                                    name="ratenum"
-                                    label=" num"
-                                    validateTrigger="onBlur"
-                                    validateFirst={true}
-                                    rules={[
-                                        {required: true, message: 'Please input  rate!'},
-                                    ]}
-                                >
-                                    <Input/>
-                                </Form.Item>
-                            </Form>
-                            <Button type="primary" className="max-btn" onClick={() => {
-                                setdistributeRates()
-                            }}>
-                                Submit
-                            </Button>
-                        </div>
-                        <div className="content-item">
-                            <h3>Block Set</h3>
+                            <h3> Min</h3>
                             <Form form={form} name="control-hooks">
                                 <div className="current">
                                     <div className="name">
                                         Current:
                                     </div>
                                     <div className="value">
-                                        {StartBlock} + {startBlockNumber}
+                                        {min}
                                     </div>
                                 </div>
                                 <Form.Item
-                                    name="block"
-                                    label="block"
+                                    name="min"
+                                    label="min"
                                     validateTrigger="onBlur"
                                     validateFirst={true}
                                     rules={[
-                                        {required: true, message: 'Please inputblock!'},
+                                        {required: true, message: 'Please input !'},
                                     ]}
                                 >
                                     <Input/>
                                 </Form.Item>
                             </Form>
                             <Button type="primary" className="max-btn" onClick={() => {
-                                handlesetStartBlock()
+                                handlesetmins()
                             }}>
                                 Submit
                             </Button>
                         </div>
+                        <div className="content-item">
+                            <h3> Max</h3>
+                            <Form form={form} name="control-hooks">
+                                <div className="current">
+                                    <div className="name">
+                                        Current:
+                                    </div>
+                                    <div className="value">
+                                        {max}
+                                    </div>
+                                </div>
+                                <Form.Item
+                                    name="min"
+                                    label="min"
+                                    validateTrigger="onBlur"
+                                    validateFirst={true}
+                                    rules={[
+                                        {required: true, message: 'Please input !'},
+                                    ]}
+                                >
+                                    <Input/>
+                                </Form.Item>
+                            </Form>
+                            <Button type="primary" className="max-btn" onClick={() => {
+                                handlesetmax()
+                            }}>
+                                Submit
+                            </Button>
+                        </div>
+
                     </div>
 
                 </div>
