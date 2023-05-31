@@ -28,14 +28,11 @@ import judgeStatus from "../../../utils/judgeStatus";
 import {getDonateRecord} from "../../../graph/donate";
 import OGPoolStyle from "./OGPoolStyle";
 import AddNormalWhiteListStyle from "./AddNormalWhiteListStyle";
+import addressMap from "../../../api/addressMap";
 const OGPoolkk = (props) => {
     let {state, dispatch} = useConnect();
-    const [isDelMolOpen, setDelOpen] = useState(false)
-    const [curWhiteUser, setCurWhiteUser] = useState(false)
-    const [addressValue, setAddressValue] = useState("")
 
     const [activeNav, setActiveNav] = useState(1)
-    const [MYPIDARR, setMYPIDARR] = useState([])
     const [total, setTotal] = useState(0)
     const [total2, setTotal2] = useState(0)
     const [recordNav, setRecordNav] = useState(1)
@@ -47,21 +44,16 @@ const OGPoolkk = (props) => {
     const [totalDonate, setTotalDonate] = useState(0)
     const [exchangeAmount, setExchangeAmount] = useState(0)
     const [inputValue, setInputValue] = useState(0)
-    const [isSAdmin, setIsSecondAdmin] = useState(false)
-    const [isTAdmin, setIsThreeAdmin] = useState(false)
     const [ethBalance, setEthBalance] = useState(0)
     const [fdtBalance, setFdtBalance] = useState(0)
     const [allRecords, setAllRecords] = useState([])
     const [refRecords, setREFRecords] = useState([])
     const [myRecords, seMyRecords] = useState([])
-    const [whiteList, setAllWhiteList] = useState([])
     const [isInWhiteList, setIsInWhiteList] = useState(false)
-    const [adminWhiteList, setAdminWhiteList] = useState([])
     const [salePrice, setSalePriceV] = useState(0.01)
     const [round, setRound] = useState([0])
     const history = useNavigate();
     const [form] = Form.useForm();
-    const [form2] = Form.useForm();
 
 
     const handleUserViewMethod = async (name, params) => {
@@ -153,29 +145,14 @@ const OGPoolkk = (props) => {
 
         </div>
     }
-    const Row2 = (item, index) => {
-        return <div className="list-item row2-list-item" key={index}>
-            <div className="col no">
-                {index + 1}
-            </div>
-            <div className="col id">
-                {item.Pid}
-            </div>
-            <div className="col">
-                {item.name}
-            </div>
-
-            <div className="col address">
-                {
-                    item.user && <a href={develop.ethScan + "address/" + item.user} target="_blank">
-                        {item.user.substr(0, 6) + "..." + item.user.substr(item.user.length - 6, item.user.length)}
-                    </a>
-                }
-
-            </div>
-
-
-        </div>
+    const getTokenBalance = async (value) => {
+        value = addressMap["FDT"].address
+        let contractTemp = await getContractByContract("erc20", value.toString().trim(), state.api,)
+        const decimal = await viewMethod(contractTemp, state.account, "decimals", [])
+        let balance = await viewMethod(contractTemp, state.account, "balanceOf", [state.account])
+        balance = balance / (10 ** parseInt(decimal))
+        balance = parseInt(balance * 100) / 100
+        return balance
     }
     const getBalanceOfFDT = async () => {
         let balance = await handleViewMethod("getBalanceOfFDT", [])
@@ -190,46 +167,29 @@ const OGPoolkk = (props) => {
         setRound(res)
     }
     const getTotalDonate = async () => {
-        let res = await handleViewMethod("totalDonate", [])
-        setTotalDonate(res / 10 ** 18)
+        // let res = await handleViewMethod("totalDonate", [])
+        // setTotalDonate(res / 10 ** 18)
     }
     const getfdtAmount = async (value) => {
         if (value > 0) {
             setInputValue(value)
             /* eslint-disable */
-            let res = await handleViewMethod("getfdtAmount", [BigInt(value * 10 ** 18)])
+            let res = await handleViewMethod("getRewardAmount", [BigInt(value * 10 ** 18)])
             setExchangeAmount(BigNumber(res / 10 ** 18).toFixed(2))
         }
     }
 
     const exchangeFdt = async () => {
         if (inputValue > 0) {
-            await handlePayDealMethod("donate", [(BigInt(inputValue * 10 ** 18)).toString()], state.api.utils.toWei(inputValue.toString()))
+            await handlePayDealMethod("donation", [], state.api.utils.toWei(inputValue.toString()))
             getData()
         }
     }
-    const getShowWhiteList = async () => {
-        let length = await handleViewMethod("getWhiteListLength", [])
-        let isW = await handleViewMethod("WhiteListUser", [state.account])
-        setIsInWhiteList(isW)
-        let arr = []
-        for (let i = 0; i < length; i++) {
-            let res = await handleViewMethod("ShowWhiteList", [i])
-            arr.push(res)
-        }
-        setTotal2(length)
-        setAllWhiteList(arr)
-    }
 
-    const getIsAdmin = async () => {
-        let res1 = await handleViewMethod("IsAdminLevelTwo", [state.account])
-        let res2 = await handleViewMethod("IsAdminLevelThree", [state.account])
-        setIsSecondAdmin(res1)
-        setIsThreeAdmin(res2)
-    }
+
     const getSalePrice = async () => {
-        let res = await handleViewMethod("salePrice", [])
-        setSalePriceV(res / 1000)
+        // let res = await handleViewMethod("salePrice", [])
+        // setSalePriceV(res / 1000)
     }
     const CoinBalance = async () => {
         let res = await handleCoinViewMethod("balanceOf", "WETH", [state.account])
@@ -245,12 +205,10 @@ const OGPoolkk = (props) => {
             if (!judgeRes) {
                 return
             }
-            getIsAdmin()
             getTotalDonate()
             getRound()
-            getBalanceOfFDT()
+            // getBalanceOfFDT()
             CoinBalance()
-            getShowWhiteList()
             getUserInfo()
             getSalePrice()
             let res = await getDonateRecord()
@@ -280,28 +238,24 @@ const OGPoolkk = (props) => {
     const onChangePage = async (page) => {
         await setCurPage(page)
     }
-    const onChangePage2 = async (page) => {
-        await setCurPage2(page)
-    }
 
     const handleShowSizeChange = async (page, count) => {
         setPageCount(count)
     }
-    const handleShowSizeChange2 = async (page, count) => {
-        setPageCount2(count)
-    }
+
     useEffect(() => {
         getData()
     }, [state.account]);
     const coinOptions = [
         {
-            label: "0.25ETH",
-            value: '0.25',
+            label: "0.05ETH",
+            value: '0.05',
         },
         {
-            label: "0.5ETH",
-            value: '0.5',
+            label: "0.1ETH",
+            value: '0.1',
         },
+
         {
             label: "0.75ETH",
             value: '0.75',
@@ -343,24 +297,7 @@ const OGPoolkk = (props) => {
                 }}>
                     WhiteList
                 </div>
-                {
-                    (isSAdmin) && (
-                        <div className={"nav-item " + (activeNav ==4 ? "active" : "")} onClick={() => {
-                            setActiveNav(4)
-                        }}>
-                            Set Admin
-                        </div>
-                    )
-                }
-                {
-                    (isTAdmin||isSAdmin) && (
-                        <div className={"nav-item " + (activeNav == 3 ? "active" : "")} onClick={() => {
-                            setActiveNav(3)
-                        }}>
-                            Set WhiteList
-                        </div>
-                    )
-                }
+
 
             </div>
             {activeNav == 1 && (
@@ -496,14 +433,7 @@ const OGPoolkk = (props) => {
                                 }}>
                                     My Records
                                 </div>
-                                {(isTAdmin) && (
-                                    <div className={"nav-item " + (recordNav == 3 ? "active" : "")} onClick={() => {
-                                        setRecordNav(3)
-                                    }}>
-                                        My recommendation
-                                    </div>
-                                )
-                                }
+
 
                             </div>
                             <div className="fire-list-box">
@@ -570,65 +500,8 @@ const OGPoolkk = (props) => {
                     </div>
                 </div>
             )}
-            {activeNav == 2 && (
-                <div className="white-list">
-                    <div className="panel-box">
-                        <div className="panel-container">
-                            <div className="isInW">
-                                <span>
-                                    My Pid:{state.pid}
-                                </span>
-                                <span>
-                                    Whiterlist:{isInWhiteList ? "Yes" : "False"}
-                                </span>
-                            </div>
-                            <div className="fire-list-box">
-                                <div className=" list-header2 flex-box">
-                                    <div className="col">
-                                        No.
-                                    </div>
-                                    <div className="col">
-                                        PID
-                                    </div>
-                                    <div className="col">
-                                        Username
-                                    </div>
-                                    <div className="col">
-                                        Address
-                                    </div>
 
-                                </div>
-                                {
-                                    whiteList.map((item, index) => (
-                                        index >= pageCount2 * (curPage2 - 1) && index < pageCount2 * curPage2 &&
-                                        Row2(item, index)
-                                    ))
-                                }
-                                <div className="pagination">
-                                    {
-                                        <Pagination current={curPage2} showSizeChanger
-                                                    onShowSizeChange={handleShowSizeChange2}
-                                                    onChange={onChangePage2} total={total2}
-                                                    defaultPageSize={pageCount2}/>
-                                    }
-                                </div>
 
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            )}
-            {activeNav == 3 &&(
-                <div>
-                    <AddThreeWhiteList allRecords={allRecords}></AddThreeWhiteList>
-
-                </div>
-            )}
-            {activeNav == 4 &&(
-                <div>
-                    <AddNomalWhiteList allRecords={allRecords}></AddNomalWhiteList>
-                </div>
-            )}
         </OGPoolStyle>
     )
 }

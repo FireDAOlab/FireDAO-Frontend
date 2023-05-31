@@ -71,11 +71,11 @@ if (develop.ENV === "production") {
         Guild: {address: "0xD75a1A6F27993571048C17FD1D346a36DD38E6Bd", abi: Guild},
         cityNode: {address: "0x0bb3fD1442Fd5d000Fa7c85A96df727CEa3491b9", abi: cityNode},
         WETH: {address: "0x7313A220a6220bF83245058a29Eb6187e9964927", abi: erc20Abi},
-        FDT: {address: "0xE666D83E7778dd949265B12Ee72011601544de98", abi: FDT},
+        FDT: {address: "0x5a9aed6b0049854d9da3e8cfa771f6079a6a1b13", abi: FDT},
         fdtOgToFdt: {address: "0x21212FC679C23bbAa8ae3dDAE43127590331ccA1", abi: fdtOgToFdt},
         FLMPool: {address: "0xF9Fab4D282746B16168c6B41069BB7CBEE530AF5", abi: FLMPool},
         autolp: {address: "0xEACd7603C3b6BD101636B214EE36887D88d199E9", abi: autolp},
-        OGPool: {address: "0x1643e658188b135B186669300aa2f5d382Be8722", abi: seedDonation},
+        OGPool: {address: "0xf2b2575DEbb48FC225D2289ed77D246322a60dbF", abi: seedDonation},
 
         FLM:{address:"0x926C1319AF0EBfb02e104d4940565940d2D0d0eC"},
         emergencyPool: {address: "0x251a7c07Ff5b71650DF9FEeB01184FC31a2bD57C", abi: emergencyPool},

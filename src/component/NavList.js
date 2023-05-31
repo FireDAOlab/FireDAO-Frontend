@@ -47,6 +47,8 @@ const items = [
 
     getItem('FDT Square', 'FDTSquare', <img className="fireIcon" src={fireIcon7} />, [
         getItem('OG Pool', 'OGPool'),
+        getItem('Seed Donation', 'SeedDonation'),
+
         getItem('Seed Pool', 'SeedPool'),
         getItem('Consensus Pool', 'ConsensusPool'),
         getItem('FLM Pool', 'FLMPool'),

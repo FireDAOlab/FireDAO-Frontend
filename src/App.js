@@ -56,7 +56,9 @@ import FLMPool from "./view/FDTSquare/FLMPool/index"
 import FDTMining from "./view/FDTSquare/FDTMining/index"
 import AutoReflowLP from "./view/FDTSquare/AutoReflowLP"
 import AutoReflowLPManage from "./view/FDTSquare/AutoReflowLPManage"
-import OGPoolNew from "./view/FDTSquare/OGPoolNew/OGPool";
+import SeedDonation from "./view/FDTSquare/SeedDonation/SeedDonation";
+import SeedDonationManage from "./view/FDTSquare/SeedDonation/Manage";
+
 //Operation
 import FireLock from "./view/Operation/FireLock/FireLock";
 import FireLockView from "./view/Operation/FireLockView"
@@ -148,7 +150,8 @@ function App() {
                                 <Route path="/FDTMining" element={<FDTMining/>}/>
                                 <Route path="/AutoReflowLP" element={<AutoReflowLP/>}/>
                                 <Route path="/AutoReflowLPManage" element={<AutoReflowLPManage/>}/>
-                                <Route path="/OGPoolNew" element={<OGPoolNew/>}/>
+                                <Route path="/SeedDonation" element={<SeedDonation/>}/>
+                                <Route path="/SeedDonationManage" element={<SeedDonationManage/>}/>
 
                                 {/*Operation*/}
                                 <Route path="/FireLock" element={<FireLock/>}/>
