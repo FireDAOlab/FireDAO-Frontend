@@ -18,3 +18,23 @@ export function getDonateRecord() {
         }`
     }, "")
 }
+
+
+export function getSeedDonateRecord() {
+    return fetchQueryBase("patton-sr/seeddonation", {
+        text: `{
+  claims(first: 1000) {
+    id
+    _user
+    _amount
+  }
+  donations(first: 1000) {
+    id
+    _user
+    _spend
+    _amounts
+    _prices
+  }
+}`
+    }, "")
+}

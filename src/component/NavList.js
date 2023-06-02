@@ -62,7 +62,7 @@ const items = [
     getItem('Operation', 'Operation', <img className="fireIcon" src={fireIcon3} />, [
         getItem('Guild', 'Guild'),
         getItem('Citynode', 'Citynode'),
-        getItem('LP Mining', 'LP Mining'),
+        getItem('LP Mining', 'LPMining'),
         getItem('FDT Mining', 'FDT Mining'),
         getItem('Soul Airdrop', 'Soul Airdrop'),
         getItem('FireLock', 'FireLock'),

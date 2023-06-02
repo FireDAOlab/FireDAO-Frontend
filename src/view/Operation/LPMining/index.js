@@ -17,9 +17,9 @@ import develop from "../../../env";
 import {useNavigate} from "react-router-dom";
 import judgeStatus from "../../../utils/judgeStatus";
 import {getSeedDonateRecord} from "../../../graph/donate";
-import SeedDonationStyle from "./SeedDonationStyle";
+import StyleBox from "./style";
 import addressMap from "../../../api/addressMap";
-const SeedDonationNew = (props) => {
+const ViewBox = (props) => {
     let {state, dispatch} = useConnect();
     const [total, setTotal] = useState(0)
     const [total2, setTotal2] = useState(0)
@@ -315,7 +315,7 @@ const SeedDonationNew = (props) => {
     ];
 
     return (
-        <SeedDonationStyle>
+        <StyleBox>
             <div className="part1">
                 <div className="panel-box">
                     <div className="panel-container">
@@ -531,7 +531,7 @@ const SeedDonationNew = (props) => {
 
                 </div>
             </div>
-        </SeedDonationStyle>
+        </StyleBox>
     )
 }
-export default SeedDonationNew
+export default ViewBox
