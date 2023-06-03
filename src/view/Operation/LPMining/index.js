@@ -42,9 +42,9 @@ const ViewBox = (props) => {
     const [claimMyRecords, setMyClaimRecords] = useState([])
 
     const [myRecords, seMyRecords] = useState([])
-    const [isInWhiteList, setIsInWhiteList] = useState(false)
-    const [salePrice, setSalePriceV] = useState(0.01)
-    const [round, setRound] = useState([0])
+    const [Pool, setPool] = useState()
+    const [FLM_AMOUNT, setFLM_AMOUNT] = useState()
+    const [oneBlockAward, setoneBlockAward] = useState()
     const [canClaim, setCanClaim] = useState(0)
 
     const history = useNavigate();
@@ -59,7 +59,7 @@ const ViewBox = (props) => {
         return await viewMethod(contractTemp, state.account, name, params)
     }
     const handleDealMethod = async (name, params) => {
-        let contractTemp = await getContractByName("seedDonation", state.api,)
+        let contractTemp = await getContractByName("FLMPool", state.api,)
         if (!contractTemp) {
             message.warn("Please connect", 5)
         }
@@ -68,14 +68,14 @@ const ViewBox = (props) => {
 
 
     const handlePayDealMethod = async (name, params, value) => {
-        let contractTemp = await getContractByName("seedDonation", state.api,)
+        let contractTemp = await getContractByName("FLMPool", state.api,)
         if (!contractTemp) {
             message.warn("Please connect", 5)
         }
         await dealPayMethod(contractTemp, state.account, name, params, value)
     }
     const handleViewMethod = async (name, params) => {
-        let contractTemp = await getContractByName("seedDonation", state.api,)
+        let contractTemp = await getContractByName("FLMPool", state.api,)
         if (!contractTemp) {
             message.warn("Please connect", 5)
         }
@@ -112,16 +112,13 @@ const ViewBox = (props) => {
                 {item._amount}
             </div>
 
-
-
         </div>
     }
 
 
-    const getRound = async ()=>{
-        let res = await handleViewMethod("round", [])
-        console.log(res)
-        setRound(res)
+    const getoneBlockAward = async ()=>{
+        let res = await handleViewMethod("oneBlockAward", [])
+        setoneBlockAward(parseInt(res/10**14) / 10000)
     }
     const getTotalDonate = async () => {
         // let res = await handleViewMethod("totalDonate", [])
@@ -155,19 +152,16 @@ const ViewBox = (props) => {
         return balance
     }
 
-    const getSalePrice = async () => {
-        // let res = await handleViewMethod("salePrice", [])
-        // setSalePriceV(res / 1000)
+    const getFLM_AMOUNT = async () => {
+        let res = await handleViewMethod("FLM_AMOUNT", [])
+        console.log(res)
+        setFLM_AMOUNT( parseInt(res/10**18) / 100)
     }
-    const getClaimAmount = async () => {
-        let res = await handleViewMethod("getClaimAmount", [])
-        setCanClaim(res / 10**18)
-    }
-    const CoinBalance = async () => {
-        let res = await handleCoinViewMethod("balanceOf", "WETH", [state.account])
-        let res2 = await handleCoinViewMethod("balanceOf", "FDT", [state.account])
-        setEthBalance(res / 10 ** 18)
-        setFdtBalance(res2 / 10 ** 18)
+    const getPool = async () => {
+        let res = await handleViewMethod("Pool", [])
+        const balance = await getTokenBalance(res)
+        setFDTBalance(balance)
+        setPool(res)
     }
 
 
@@ -177,15 +171,10 @@ const ViewBox = (props) => {
             if (!judgeRes) {
                 return
             }
-            getTotalDonate()
-            getRound()
-            // getBalanceOfFDT()
-            CoinBalance()
-            getUserInfo()
-            getSalePrice()
-            getClaimAmount()
-            const balance = await getTokenBalance(addressMap["seedDonation"].address)
-            setFDTBalance(balance)
+            getFLM_AMOUNT()
+            getPool()
+            getoneBlockAward()
+
 
         } catch (e) {
 
@@ -201,31 +190,8 @@ const ViewBox = (props) => {
     }
 
     useEffect(async () => {
-        let res = await getSeedDonateRecord()
 
-        if (res.data) {
-            let arr = []
-            res.data.donations.forEach(item => {
-                if (item._user.toString() === state.account.toLowerCase()) {
-                    arr.push(item)
-                }
-            })
-            if (res.data.donations && res.data.donations.length > 0) {
-                setAllRecords(res.data.donations)
-                setTotal(res.data.donations.length)
-                seMyRecords(arr)
-            }
-            arr = []
-            res.data.claims.forEach(item => {
-                if (item._user.toString() === state.account.toLowerCase()) {
-                    arr.push(item)
-                }
-            })
-            if (res.data.claims && res.data.claims.length > 0) {
-                setClaimRecords(res.data.claims)
-                setMyClaimRecords(arr)
-            }
-        }
+
         getData()
     }, [state.account]);
     const coinOptions = [
@@ -320,44 +286,48 @@ const ViewBox = (props) => {
                 <div className="panel-box">
                     <div className="panel-container">
                         <div className="panel-title">
-                             Seed Donate {round}
+                            LP Mining
                         </div>
                         <div className="donate-info">
-                            <div className="info-item">
-                                <div className="name">
-                                   Seed Donate Pool Amount
-                                </div>
-                                <div className="value">
-                                    {FDTBalance}
-                                </div>
-                            </div>
+
                             <div className="flex-box">
                                 <div className="info-item">
                                     <div className="name">
-                                        Value
+                                        FDT/ETH LP
                                     </div>
                                     <div className="value">
-                                        {(FDTBalance * salePrice).toFixed(1)}
+                                        {FDTBalance}
                                     </div>
                                 </div>
+                                <div className="info-item">
+                                    <div className="name">
+                                        FLM
+                                    </div>
+                                    <div className="value">
+                                        {FLM_AMOUNT}
+                                    </div>
+                                </div>
+                                <div className="info-item">
+                                    <div className="name">
+                                        Single Block Rewards
+                                    </div>
+                                    <div className="value">
+                                        {oneBlockAward}
+                                    </div>
+                                </div>
+                                <div className="info-item">
+                                    <div className="name">
+                                        Estimate Yield
+                                    </div>
+                                    <div className="value">
+                                        {}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-                            </div>
-                        </div>
-                        <div className="donate-pid">
-                            <div className="panel-title">
-                                Donate
-                            </div>
-                            <div className="flex-box">
-                                <div className="pid">
-                                    PID：{state.pid}
-                                </div>
-                                <div className="value">
-                                    {isInWhiteList == false && "Not a whitelist user"}
-                                    {isInWhiteList == true && "Whitelist user"}
-                                </div>
-                            </div>
-                        </div>
                         <Form form={form} name="control-hooks" className="form">
+                            <h2>FDT/ETH Lock-up Amount(s)</h2>
                             <div className="balance-box">
                                 <div className="name">
                                     Balance
