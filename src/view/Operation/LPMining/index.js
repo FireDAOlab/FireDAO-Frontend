@@ -28,11 +28,11 @@ const ViewBox = (props) => {
 
     const [curPage, setCurPage] = useState(1)
     const [pageCount, setPageCount] = useState(20)
-    const [pageCount2, setPageCount2] = useState(20)
-    const [curPage2, setCurPage2] = useState(1)
+    const [allowance, setAllowance] = useState(0)
+    const [mylpBalance, setMylpBalance] = useState(0)
     const [FDTBalance, setFDTBalance] = useState(0)
     const [totalDonate, setTotalDonate] = useState(0)
-    const [exchangeAmount, setExchangeAmount] = useState(0)
+    const [month, setMonth] = useState(0)
     const [inputValue, setInputValue] = useState(0)
     const [ethBalance, setEthBalance] = useState(0)
     const [fdtBalance, setFdtBalance] = useState(0)
@@ -66,14 +66,6 @@ const ViewBox = (props) => {
         await dealMethod(contractTemp, state.account, name, params)
     }
 
-
-    const handlePayDealMethod = async (name, params, value) => {
-        let contractTemp = await getContractByName("FLMPool", state.api,)
-        if (!contractTemp) {
-            message.warn("Please connect", 5)
-        }
-        await dealPayMethod(contractTemp, state.account, name, params, value)
-    }
     const handleViewMethod = async (name, params) => {
         let contractTemp = await getContractByName("FLMPool", state.api,)
         if (!contractTemp) {
@@ -120,31 +112,17 @@ const ViewBox = (props) => {
         let res = await handleViewMethod("oneBlockAward", [])
         setoneBlockAward(parseInt(res/10**14) / 10000)
     }
-    const getTotalDonate = async () => {
-        // let res = await handleViewMethod("totalDonate", [])
-        // setTotalDonate(res / 10 ** 18)
-    }
-    const getfdtAmount = async (value) => {
-        if (value > 0) {
-            setInputValue(value)
-            /* eslint-disable */
-            let res = await handleViewMethod("getRewardAmount", [BigInt(value * 10 ** 18)])
-            setExchangeAmount(BigNumber(res / 10 ** 18).toFixed(2))
-        }
+
+    const getMonth = async (value) => {
+        setMonth(value )
     }
 
-    const exchangeFdt = async () => {
-        if (inputValue > 0) {
-            await handlePayDealMethod("donation", [], state.api.utils.toWei(inputValue.toString()))
-            getData()
-        }
-    }
     const withdraw= async () => {
         await handleDealMethod("claim", [])
         getData()
     }
     const getTokenBalance = async (value) => {
-        let contractTemp = await getContractByContract("erc20", addressMap["FDT"].address, state.api,)
+        let contractTemp = await getContractByContract("erc20", addressMap["FLMPoolLPAddress"].address, state.api,)
         const decimal = await viewMethod(contractTemp, state.account, "decimals", [])
         let balance = await viewMethod(contractTemp, state.account, "balanceOf", [value])
         balance = balance / (10 ** parseInt(decimal))
@@ -154,7 +132,6 @@ const ViewBox = (props) => {
 
     const getFLM_AMOUNT = async () => {
         let res = await handleViewMethod("FLM_AMOUNT", [])
-        console.log(res)
         setFLM_AMOUNT( parseInt(res/10**18) / 100)
     }
     const getPool = async () => {
@@ -163,8 +140,16 @@ const ViewBox = (props) => {
         setFDTBalance(balance)
         setPool(res)
     }
-
-
+    const getallowance =async ()=>{
+        const contractTemp = await getContractByContract("erc20", addressMap["FLMPoolLPAddress"].address, state.api,)
+        const allowance = await viewMethod(contractTemp, state.account, "allowance", [state.account, addressMap["FLMPool"].address])
+        console.log(addressMap["FLMPoolLPAddress"].address,state.account, addressMap["FLMPool"].address,allowance)
+        setAllowance(allowance)
+    }
+    const approve = async () => {
+        const contractTemp = await getContractByContract("erc20", addressMap["FLMPoolLPAddress"].address, state.api,)
+        await dealMethod(contractTemp, state.account, "approve", [addressMap["FLMPool"].address, state.api.utils.toWei((10 ** 18).toString())])
+    }
     const getData = async () => {
         try {
             let judgeRes = await judgeStatus(state)
@@ -174,8 +159,9 @@ const ViewBox = (props) => {
             getFLM_AMOUNT()
             getPool()
             getoneBlockAward()
-
-
+            const mylpBlance = await getTokenBalance(state.account)
+            setMylpBalance(mylpBlance)
+            getallowance()
         } catch (e) {
 
         }
@@ -189,95 +175,45 @@ const ViewBox = (props) => {
         setPageCount(count)
     }
 
+    const lockLp = async () => {
+        console.log(month,state.api.utils.toWei(form.getFieldValue().amount) )
+        await handleDealMethod("lockLp", [month, state.api.utils.toWei(form.getFieldValue().amount) ] )
+    }
     useEffect(async () => {
-
-
         getData()
     }, [state.account]);
     const coinOptions = [
 
         {
-            label: "0.1ETH",
-            value: '0.1',
+            label: "Demand Deposit",
+            value: '0',
+        },
+        {
+            label: "1 month",
+            value: '1',
         },
 
-        {
-            label: "0.2ETH",
-            value: '0.2',
-        },
-        {
-            label: "0.3ETH",
-            value: '0.3',
-        },
-        {
-            label: "0.4ETH",
-            value: '0.4',
-        },
-        {
-            label: "0.5ETH",
-            value: '0.5',
-        }, {
-            label: "0.6ETH",
-            value: '0.6',
-        },
-        {
-            label: "0.7ETH",
-            value: '0.7',
-        }, {
-            label: "0.8ETH",
-            value: '0.8',
-        },
-        {
-            label: "0.9ETH",
-            value: '0.9',
-        },
 
         {
-            label: "1.0ETH",
-            value: '1.0',
+            label: "3 month",
+            value: '3',
         },
         {
-            label: "1.1ETH",
-            value: '1.1',
+            label: "6 month",
+            value: '6',
         },
         {
-            label: "1.2ETH",
-            value: '1.2',
+            label: "12 month",
+            value: '12',
         },
         {
-            label: "1.3ETH",
-            value: '1.3',
+            label: "24 month",
+            value: '24',
         },
         {
-            label: "1.4ETH",
-            value: '1.4',
+            label: "36 month",
+            value: '36',
         },
-        {
-            label: "1.5ETH",
-            value: '1.5',
-        },
-        {
-            label: "1.6ETH",
-            value: '1.6',
-        },
-        {
-            label: "1.7ETH",
-            value: '1.7',
-        },
-        {
-            label: "1.8ETH",
-            value: '1.8',
-        },
-        {
-            label: "1.9ETH",
-            value: '1.9',
-        },
-
-        {
-            label: "2.0ETH",
-            value: '2.0',
-        },
-
     ];
 
     return (
@@ -296,7 +232,7 @@ const ViewBox = (props) => {
                                         FDT/ETH LP
                                     </div>
                                     <div className="value">
-                                        {FDTBalance}
+                                        {mylpBalance}
                                     </div>
                                 </div>
                                 <div className="info-item">
@@ -333,7 +269,7 @@ const ViewBox = (props) => {
                                     Balance
                                 </div>
                                 <div className="value">
-                                    {state.ethBalance} <span>ETH</span>
+                                    {mylpBalance} <span>lp</span>
                                 </div>
                             </div>
                             <Form.Item
@@ -342,14 +278,12 @@ const ViewBox = (props) => {
                                 validateFirst={true}
                             >
                                 <div className="input-box">
-                                    <img className="coin-icon" src={ethIcon} alt=""/>
                                     <AutoComplete
                                         allowClear
-                                        value={inputValue}
+                                        value={month}
                                         onChange={(e) => {
-                                            getfdtAmount(e)
+                                            getMonth(e)
                                         }}
-                                        style={{width: 200}}
                                         options={coinOptions}
                                         placeholder=""
                                         filterOption={(inputValue, option) =>
@@ -360,34 +294,30 @@ const ViewBox = (props) => {
 
                                 </div>
                             </Form.Item>
-                            <img className="down-icon" src={downIcon} alt=""/>
                             <Form.Item
-                                name="pid"
+                                name="amount"
                                 validateTrigger="onBlur"
                                 validateFirst={true}
 
                             >
                                 <div className="input-box">
                                     <div className="exchangeAmount">
-                                        {exchangeAmount}
+                                        <Input type="number"/>
                                     </div>
                                     <div className="coin-name">
-                                       FDT
+                                        {mylpBalance}
                                     </div>
                                 </div>
                             </Form.Item>
-                            <div className="balance-box">
-                                <div className="name">
-                                    Balance
-                                </div>
-                                <div className="value">
-                                    {fdtBalance} <span>FDT</span>
-                                </div>
-                            </div>
                             <Button type="primary" className="donate" onClick={() => {
-                                exchangeFdt()
+                                approve()
                             }}>
-                                Donate
+                                Approve
+                            </Button>
+                            <Button type="primary" className="donate" onClick={() => {
+                                lockLp()
+                            }}>
+                                Submit
                             </Button>
                             <div className="tip">
                             </div>
@@ -420,18 +350,23 @@ const ViewBox = (props) => {
                 <div className="panel-box part2">
                     <div className="panel-container">
                         <div className="panel-title">
-                            Donate Records
+                            LP Mining Records
                         </div>
                         <div className="og-nav-list">
                             <div className={"nav-item " + (typeNav == 1 ? "active" : "")} onClick={() => {
                                 setTypeNav(1)
                             }}>
-                                Donation
+                                LP Mining Records
                             </div>
                             <div className={"nav-item " + (typeNav == 2 ? "active" : "")} onClick={() => {
                                 setTypeNav(2)
                             }}>
-                                Claim
+                                FLM Withdraw Records
+                            </div>
+                            <div className={"nav-item " + (typeNav == 3 ? "active" : "")} onClick={() => {
+                                setTypeNav(3)
+                            }}>
+                                LP Mining Withdraw Records
                             </div>
                         </div>
                         <div className="og-nav-list">
