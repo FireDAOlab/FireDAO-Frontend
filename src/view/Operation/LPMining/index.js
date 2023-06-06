@@ -31,6 +31,8 @@ const ViewBox = (props) => {
     const [allowance, setAllowance] = useState(0)
     const [mylpBalance, setMylpBalance] = useState(0)
     const [FDTBalance, setFDTBalance] = useState(0)
+    const [FLMCanClaim, setFLMCanClaim] = useState(0)
+
     const [totalDonate, setTotalDonate] = useState(0)
     const [month, setMonth] = useState(0)
     const [inputValue, setInputValue] = useState(0)
@@ -143,7 +145,6 @@ const ViewBox = (props) => {
     const getallowance =async ()=>{
         const contractTemp = await getContractByContract("erc20", addressMap["FLMPoolLPAddress"].address, state.api,)
         const allowance = await viewMethod(contractTemp, state.account, "allowance", [state.account, addressMap["FLMPool"].address])
-        console.log(addressMap["FLMPoolLPAddress"].address,state.account, addressMap["FLMPool"].address,allowance)
         setAllowance(allowance)
     }
     const approve = async () => {
@@ -159,13 +160,21 @@ const ViewBox = (props) => {
             getFLM_AMOUNT()
             getPool()
             getoneBlockAward()
-            const mylpBlance = await getTokenBalance(state.account)
-            setMylpBalance(mylpBlance)
+            getBalance()
             getallowance()
+            getIDArr()
         } catch (e) {
 
         }
         // dispatch({type: "SET_PidArr", payload: tempArr})
+    }
+    const getBalance = async ()=>{
+        const mylpBlance = await getTokenBalance(state.account)
+        setMylpBalance(mylpBlance)
+    }
+    const getTotalAward = async ()=>{
+        const mylpBlance =  await handleViewMethod("getTotalAward", [state.account] )
+        setFLMCanClaim(mylpBlance)
     }
     const onChangePage = async (page) => {
         await setCurPage(page)
@@ -174,10 +183,24 @@ const ViewBox = (props) => {
     const handleShowSizeChange = async (page, count) => {
         setPageCount(count)
     }
+    const getIDArr = async ()=>{
+        const length =  await handleViewMethod("getuserlockDetailsLength", [state.account] )
+        console.log(length)
+        for(let i = 0;i<length;i++){
 
+            const detail =await handleViewMethod("userlockDetails", [state.account,i] )
+            console.log(detail)
+        }
+    }
+    const Claim =async ()=>{
+        await handleDealMethod("Claim", [0,month, state.api.utils.toWei(form.getFieldValue().claimAmount) ] )
+    }
+    const ClaimFLM =async ()=>{
+        await handleDealMethod("ClaimFLM", [0 ] )
+    }
     const lockLp = async () => {
-        console.log(month,state.api.utils.toWei(form.getFieldValue().amount) )
         await handleDealMethod("lockLp", [month, state.api.utils.toWei(form.getFieldValue().amount) ] )
+        getBalance()
     }
     useEffect(async () => {
         getData()
@@ -328,16 +351,25 @@ const ViewBox = (props) => {
                         <Form form={form} name="control-hooks" className="form">
                             <div className="balance-box">
                                 <div className="name">
-                                    Balance
+                                    Total LP Mining
                                 </div>
                                 <div className="value">
-                                    {canClaim}
+                                    {FLM_AMOUNT}
                                 </div>
                             </div>
+                            <Form.Item
+                                name="claimAmount"
+                                validateTrigger="onBlur"
+                                validateFirst={true}
 
+                            >
+                                <div className="input-box">
+                                     <Input type="number"/>
+                                </div>
+                            </Form.Item>
 
                             <Button type="primary" className="donate" onClick={() => {
-                                withdraw()
+                                Claim()
                             }}>
                                 Withdraw
                             </Button>

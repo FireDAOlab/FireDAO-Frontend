@@ -12,7 +12,6 @@ export async function dealMethod(contract,account,methodName,params){
                 gas: parseInt(gas * 1.2),
                 // gasPrice,
             }).then(async res => {
-
                 setTimeout(hide3, 1000);
                 notification.success({
                     message: "Success",
