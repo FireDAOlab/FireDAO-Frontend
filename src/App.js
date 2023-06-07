@@ -73,7 +73,7 @@ import Guild from "./view/Operation/Guild"
 import CreateGuild from "./view/Operation/CreateGuild"
 import GuildDetail from "./view/Operation/GuildDetail"
 import LPMining from "./view/Operation/LPMining"
-
+import LPMiningManage from "./view/Operation/LPMining/Manage"
 function App() {
     const history = useNavigate();
     const location = useLocation()
@@ -168,7 +168,7 @@ function App() {
                                 <Route path="/CreateGuild" element={<CreateGuild/>}/>
                                 <Route path="/GuildDetail/:id" element={<GuildDetail/>}/>
                                 <Route path="/LPMining" element={<LPMining/>}/>
-
+                                <Route path="/LPMiningManage" element={<LPMiningManage/>}/>
                             </Routes>
                         </div>
                     </div>
