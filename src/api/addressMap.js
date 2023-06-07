@@ -73,7 +73,7 @@ if (develop.ENV === "production") {
         WETH: {address: "0x7313A220a6220bF83245058a29Eb6187e9964927", abi: erc20Abi},
         FDT: {address: "0x5a9aed6b0049854d9da3e8cfa771f6079a6a1b13", abi: FDT},
         fdtOgToFdt: {address: "0x21212FC679C23bbAa8ae3dDAE43127590331ccA1", abi: fdtOgToFdt},
-        FLMPool: {address: "0x1D9757A38D250b59Ae8344E21b5a12FE79116244", abi: FLMPool},
+        FLMPool: {address: "0x62568370d980c6d4666B67c45b3ef887AF5d5deB", abi: FLMPool},
         autolp: {address: "0xEACd7603C3b6BD101636B214EE36887D88d199E9", abi: autolp},
         seedDonation: {address: "0xf2b2575DEbb48FC225D2289ed77D246322a60dbF", abi: seedDonation},
         FLMPoolLPAddress:{address:"0x6adf22540e77a100d136ca76a79a39af3b30484a"},

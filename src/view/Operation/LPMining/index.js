@@ -119,10 +119,7 @@ const ViewBox = (props) => {
         setMonth(value )
     }
 
-    const withdraw= async () => {
-        await handleDealMethod("claim", [])
-        getData()
-    }
+
     const getTokenBalance = async (value) => {
         let contractTemp = await getContractByContract("erc20", addressMap["FLMPoolLPAddress"].address, state.api,)
         const decimal = await viewMethod(contractTemp, state.account, "decimals", [])
@@ -193,7 +190,7 @@ const ViewBox = (props) => {
         }
     }
     const Claim =async ()=>{
-        await handleDealMethod("Claim", [0,month, state.api.utils.toWei(form.getFieldValue().claimAmount) ] )
+        await handleDealMethod("Claim", [month, 0,] )
     }
     const ClaimFLM =async ()=>{
         await handleDealMethod("ClaimFLM", [0 ] )
