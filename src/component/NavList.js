@@ -63,7 +63,7 @@ const items = [
         getItem('Guild', 'Guild'),
         getItem('Citynode', 'Citynode'),
         getItem('LP Mining', 'LPMining'),
-        getItem('FDT Mining', 'FDT Mining'),
+        getItem('FDT Mining', 'FDTMining'),
         getItem('Soul Airdrop', 'Soul Airdrop'),
         getItem('FireLock', 'FireLock'),
     ]),

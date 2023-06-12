@@ -17,6 +17,7 @@ import judgeStatus from "../../../utils/judgeStatus";
 import {getFLMPoolData} from "../../../graph/pools";
 import StyleBox from "./style";
 import addressMap from "../../../api/addressMap";
+
 const ViewBox = (props) => {
     let {state, dispatch} = useConnect();
     const [total, setTotal] = useState(0)
@@ -29,10 +30,11 @@ const ViewBox = (props) => {
     const [allowance, setAllowance] = useState(0)
     const [mylpBalance, setMylpBalance] = useState(0)
     const [FDTBalance, setFDTBalance] = useState(0)
+    const [PoolFDTBalance, setPoolFDTBalance] = useState(0)
+
     const [status, setStatus] = useState()
 
     const [month, setMonth] = useState(0)
-    const [fdtBalance, setFdtBalance] = useState(0)
     const [allRecords, setAllRecords] = useState([])
 
     const [claimRecords, setClaimRecords] = useState([])
@@ -48,13 +50,6 @@ const ViewBox = (props) => {
     const [form] = Form.useForm();
 
 
-    const handleUserViewMethod = async (name, params) => {
-        let contractTemp = await getContractByName("user", state.api,)
-        if (!contractTemp) {
-            message.warn("Please connect", 5)
-        }
-        return await viewMethod(contractTemp, state.account, name, params)
-    }
     const handleDealMethod = async (name, params) => {
         let contractTemp = await getContractByName("FDTLockMining", state.api,)
         if (!contractTemp) {
@@ -70,25 +65,11 @@ const ViewBox = (props) => {
         }
         return await viewMethod(contractTemp, state.account, name, params)
     }
-    const getUserInfo = async () => {
-        if (!state.pid) {
-            const userInfo = await handleUserViewMethod("userInfo", [state.account])
-            dispatch({type: "SET_PID", payload: userInfo.PID})
-        }
-    }
-
-    const handleCoinViewMethod = async (name, coinName, params) => {
-        let contractTemp = await getContractByName(coinName, state.api,)
-        if (!contractTemp) {
-            message.warn("Please connect", 5)
-        }
-        return await viewMethod(contractTemp, state.account, name, params)
-    }
 
     const Row = (item, index) => {
         return <div className="list-item " key={index}>
             <div className="col id">
-                {index+1}
+                {index + 1}
             </div>
             <div className="col address">
                 {item._user && (
@@ -105,13 +86,13 @@ const ViewBox = (props) => {
     }
 
 
-    const getoneBlockAward = async ()=>{
+    const getoneBlockAward = async () => {
         let res = await handleViewMethod("oneBlockAward", [])
-        setoneBlockAward(parseInt(res/10**14) / 10000)
+        setoneBlockAward(parseInt(res / 10 ** 14) / 10000)
     }
 
     const getMonth = async (value) => {
-        setMonth(value )
+        setMonth(value)
     }
 
 
@@ -126,22 +107,32 @@ const ViewBox = (props) => {
 
     const getFLM_AMOUNT = async () => {
         let res = await handleViewMethod("FLM_AMOUNT", [])
-        setFLM_AMOUNT( parseInt(res/10**18) / 100)
+        setFLM_AMOUNT(parseInt(res / 10 ** 18) / 100)
     }
-    const getPool = async () => {
+    const getPoolBalance = async () => {
+        // let res = await handleViewMethod("Pool", [])
+        const balance = await getTokenBalance(addressMap["FDTLockMining"].address)
+        setPoolFDTBalance(balance)
+        // setPool(res)
+    }
+    const getMyBalance = async () => {
         // let res = await handleViewMethod("Pool", [])
         const balance = await getTokenBalance(state.account)
         setFDTBalance(balance)
         // setPool(res)
     }
-    const getallowance =async ()=>{
+    const getallowance = async () => {
         const contractTemp = await getContractByContract("erc20", addressMap["FLMPoolLPAddress"].address, state.api,)
         const allowance = await viewMethod(contractTemp, state.account, "allowance", [state.account, addressMap["FLMPool"].address])
         setAllowance(allowance)
     }
     const approve = async () => {
-        const contractTemp = await getContractByContract("erc20", addressMap["FLMPoolLPAddress"].address, state.api,)
-        await dealMethod(contractTemp, state.account, "approve", [addressMap["FLMPool"].address, state.api.utils.toWei((10 ** 18).toString())])
+        const contractTemp = await getContractByContract("erc20", addressMap["FDT"].address, state.api,)
+        await dealMethod(contractTemp, state.account, "approve", [addressMap["FDTLockMining"].address, state.api.utils.toWei((10 ** 18).toString())])
+    }
+    const getcanClaim = async () => {
+        const balance = await handleViewMethod("canClaim", [state.account])
+        setCanClaim(balance / 10**18)
     }
     const getData = async () => {
         try {
@@ -152,9 +143,10 @@ const ViewBox = (props) => {
                 return
             }
             getFLM_AMOUNT()
-            getPool()
+            getPoolBalance()
+            getMyBalance()
             getoneBlockAward()
-
+            getcanClaim()
             getallowance()
             getisNotActivation()
 
@@ -164,8 +156,8 @@ const ViewBox = (props) => {
         // dispatch({type: "SET_PidArr", payload: tempArr})
     }
 
-    const getisNotActivation = async ()=>{
-        const isNotActivation =  await handleViewMethod("isNotActivation", [state.account] )
+    const getisNotActivation = async () => {
+        const isNotActivation = await handleViewMethod("isNotActivation", [state.account])
         // setStatus(new Date(parseInt(isNotActivation*1000)))
     }
     const onChangePage = async (page) => {
@@ -175,27 +167,27 @@ const ViewBox = (props) => {
     const handleShowSizeChange = async (page, count) => {
         setPageCount(count)
     }
-    const getIDArr = async ()=>{
-        const length =  await handleViewMethod("getuserlockDetailsLength", [state.account] )
+    const getIDArr = async () => {
+        const length = await handleViewMethod("getuserlockDetailsLength", [state.account])
         console.log(length)
-        for(let i = 0;i<length;i++){
+        for (let i = 0; i < length; i++) {
 
-            const detail =await handleViewMethod("userlockDetails", [state.account,i] )
+            const detail = await handleViewMethod("userlockDetails", [state.account, i])
             console.log(detail)
         }
     }
-    const Claim =async ()=>{
-        await handleDealMethod("Claim", [month, 0,] )
+    const Claim = async () => {
+        await handleDealMethod("Claim", [month, 0,])
     }
-    const activateExtraction =async ()=>{
-        await handleDealMethod("activateExtraction", [] )
+    const activateExtraction = async () => {
+        await handleDealMethod("activateExtraction", [])
     }
-    const ClaimFLM =async ()=>{
-        await handleDealMethod("ClaimFLM", [0 ] )
+    const ClaimFLM = async () => {
+        await handleDealMethod("ClaimFLM", [0])
     }
     const lockLp = async () => {
-        await handleDealMethod("lockFdt", [month, state.api.utils.toWei(form.getFieldValue().amount) ] )
-        getPool()
+        await handleDealMethod("lockFdt", [month, state.api.utils.toWei(form.getFieldValue().amount)])
+        getPoolBalance()
     }
     useEffect(async () => {
         getData()
@@ -250,7 +242,7 @@ const ViewBox = (props) => {
                                         FDT Mining Pool
                                     </div>
                                     <div className="value">
-                                        {fdtBalance}
+                                        {PoolFDTBalance}
                                     </div>
                                 </div>
 
@@ -274,13 +266,13 @@ const ViewBox = (props) => {
                         </div>
 
                         <Form form={form} name="control-hooks" className="form">
-                            <h2>FDT/ETH Lock-up Amount(s)</h2>
+                            <h2>FDT Lock-up Amount(s)</h2>
                             <div className="balance-box">
                                 <div className="name">
                                     Balance
                                 </div>
                                 <div className="value">
-                                    {fdtBalance} <span>fdt</span>
+                                    {FDTBalance} <span>fdt</span>
                                 </div>
                             </div>
                             <Form.Item
@@ -340,10 +332,10 @@ const ViewBox = (props) => {
                         <Form form={form} name="control-hooks" className="form">
                             <div className="balance-box">
                                 <div className="name">
-                                    Total LP Mining
+                                    can claim
                                 </div>
                                 <div className="value">
-                                    {FLM_AMOUNT}
+                                    {canClaim}
                                 </div>
                             </div>
                             <Form.Item
@@ -353,7 +345,7 @@ const ViewBox = (props) => {
 
                             >
                                 <div className="input-box">
-                                     <Input type="number"/>
+                                    <Input type="number"/>
                                 </div>
                             </Form.Item>
 
@@ -422,29 +414,29 @@ const ViewBox = (props) => {
                                 </div>
                             </div>
                             {
-                                typeNav==1&&  <div>
-                                    {recordNav==1&& allRecords.map((item,index)=>{
+                                typeNav == 1 && <div>
+                                    {recordNav == 1 && allRecords.map((item, index) => {
                                         return (
-                                            Row(item,index)
+                                            Row(item, index)
                                         )
                                     })}
-                                    {recordNav==2&& myRecords.map((item,index)=>{
+                                    {recordNav == 2 && myRecords.map((item, index) => {
                                         return (
-                                            Row(item,index)
+                                            Row(item, index)
                                         )
                                     })}
                                 </div>
                             }
                             {
-                                typeNav==2&&  <div>
-                                    {recordNav==1&& claimRecords.map((item,index)=>{
+                                typeNav == 2 && <div>
+                                    {recordNav == 1 && claimRecords.map((item, index) => {
                                         return (
-                                            Row(item,index)
+                                            Row(item, index)
                                         )
                                     })}
-                                    {recordNav==2&& claimMyRecords.map((item,index)=>{
+                                    {recordNav == 2 && claimMyRecords.map((item, index) => {
                                         return (
-                                            Row(item,index)
+                                            Row(item, index)
                                         )
                                     })}
                                 </div>
@@ -452,10 +444,10 @@ const ViewBox = (props) => {
                         </div>
                         <div className="pagination">
                             {
-                              <Pagination current={curPage} showSizeChanger
-                                                              onShowSizeChange={handleShowSizeChange}
-                                                              onChange={onChangePage} total={total}
-                                                              defaultPageSize={pageCount}/>
+                                <Pagination current={curPage} showSizeChanger
+                                            onShowSizeChange={handleShowSizeChange}
+                                            onChange={onChangePage} total={total}
+                                            defaultPageSize={pageCount}/>
                             }
                         </div>
                     </div>

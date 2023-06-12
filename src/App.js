@@ -53,7 +53,6 @@ import FDTRelease from "./view/FDTSquare/FDTRelease/index";
 import FDTReleaseManage from "./view/FDTSquare/FDTReleaseManage/index";
 import FDTOgToFdt from "./view/FDTSquare/FDTOgToFdt"
 import FLMPool from "./view/FDTSquare/FLMPool/index"
-import FDTMining from "./view/FDTSquare/FDTMining/index"
 import AutoReflowLP from "./view/FDTSquare/AutoReflowLP"
 import AutoReflowLPManage from "./view/FDTSquare/AutoReflowLPManage"
 import SeedDonation from "./view/FDTSquare/SeedDonation/SeedDonation";
@@ -150,7 +149,6 @@ function App() {
                                 <Route path="/FDTReleaseManage" element={<FDTReleaseManage/>}/>
                                 <Route path="/FDTOgToFdt" element={<FDTOgToFdt/>}/>
                                 <Route path="/FLMPool" element={<FLMPool/>}/>
-                                <Route path="/FDTMining" element={<FDTMining/>}/>
                                 <Route path="/AutoReflowLP" element={<AutoReflowLP/>}/>
                                 <Route path="/AutoReflowLPManage" element={<AutoReflowLPManage/>}/>
                                 <Route path="/SeedDonation" element={<SeedDonation/>}/>
@@ -171,8 +169,8 @@ function App() {
                                 <Route path="/GuildDetail/:id" element={<GuildDetail/>}/>
                                 <Route path="/LPMining" element={<LPMining/>}/>
                                 <Route path="/LPMiningManage" element={<LPMiningManage/>}/>
-                                <Route path="/FDTLockMining" element={<FDTLockMining/>}/>
-                                <Route path="/FDTLockMiningManage" element={<FDTLockMiningManage/>}/>
+                                <Route path="/FDTMining" element={<FDTLockMining/>}/>
+                                <Route path="/FDTMiningManage" element={<FDTLockMiningManage/>}/>
 
                             </Routes>
                         </div>

@@ -72,20 +72,7 @@ const ViewBox = (props) => {
         }
         return await viewMethod(contractTemp, state.account, name, params)
     }
-    const getUserInfo = async () => {
-        if (!state.pid) {
-            const userInfo = await handleUserViewMethod("userInfo", [state.account])
-            dispatch({type: "SET_PID", payload: userInfo.PID})
-        }
-    }
 
-    const handleCoinViewMethod = async (name, coinName, params) => {
-        let contractTemp = await getContractByName(coinName, state.api,)
-        if (!contractTemp) {
-            message.warn("Please connect", 5)
-        }
-        return await viewMethod(contractTemp, state.account, name, params)
-    }
 
     const Row = (item, index) => {
         return <div className="list-item " key={index}>
@@ -145,6 +132,10 @@ const ViewBox = (props) => {
         const contractTemp = await getContractByContract("erc20", addressMap["FLMPoolLPAddress"].address, state.api,)
         await dealMethod(contractTemp, state.account, "approve", [addressMap["FLMPool"].address, state.api.utils.toWei((10 ** 18).toString())])
     }
+    const getcanClaim = async () => {
+        const balance = await handleViewMethod("canClaim", [state.account])
+        setCanClaim(balance / 10**18)
+    }
     const getData = async () => {
         try {
             const res = await getFLMPoolData()
@@ -159,7 +150,7 @@ const ViewBox = (props) => {
             getBalance()
             getallowance()
             getisNotActivation()
-
+            getcanClaim()
             getIDArr()
         } catch (e) {
 
@@ -353,10 +344,10 @@ const ViewBox = (props) => {
                         <Form form={form} name="control-hooks" className="form">
                             <div className="balance-box">
                                 <div className="name">
-                                    Total LP Mining
+                                     can claim
                                 </div>
                                 <div className="value">
-                                    {FLM_AMOUNT}
+                                    {canClaim}
                                 </div>
                             </div>
                             <Form.Item
