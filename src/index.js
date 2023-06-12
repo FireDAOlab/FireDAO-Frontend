@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from "react-router-dom";
-import 'antd/dist/antd.compact.css';
-import "antd/dist/antd.dark.css"
+import 'antd/dist/antd.min.css';
+import "antd/dist/antd.dark.min.css"
 ReactDOM.render(
     <BrowserRouter>
         <App />

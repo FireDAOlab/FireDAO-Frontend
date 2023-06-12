@@ -14,6 +14,7 @@ const FireLock = (props) => {
     const [whitelist, setWhitelistArr] = useState([])
     const [allocation, setAllocation] = useState({})
 
+    const [isPause, setIsPause] = useState(false)
 
     const [curNav, setCurNav] = useState(1)
     const [ownerAddr, setOwner] = useState("")
@@ -61,6 +62,7 @@ const FireLock = (props) => {
         getOwner()
         getratioAmount()
         getWeights()
+        getStatus()
     }
 
     const dealNum = (num) => {
@@ -73,6 +75,10 @@ const FireLock = (props) => {
     const getOwner = async () => {
         const ownerAddr = await handleViewMethod("owner", [])
         setOwner(ownerAddr)
+    }
+    const getStatus = async () => {
+        const res = await handleViewMethod("status", [])
+        setIsPause(res)
     }
 
     const getWeights = async () => {
@@ -107,12 +113,16 @@ const FireLock = (props) => {
         getOwner()
     }
 
-
+    const setstatus= async () => {
+        await handleDealMethod("setstatus", [])
+        getStatus()
+    }
     const handlesetratioAmount = async () => {
         await handleDealMethod("setratioAmount", [form.getFieldValue().ratioAmount])
         getratioAmount()
     }
     const handleSetWeight= async () => {
+        console.log(form.getFieldValue().month,form.getFieldValue().weight)
         await handleDealMethod("setWeights", [form.getFieldValue().month,form.getFieldValue().weight])
         getWeights()
     }
@@ -153,11 +163,7 @@ const FireLock = (props) => {
                         }}>
                             Weight Coefficient
                         </div>
-                        <div className={"nav-item " + (curNav == 4 ? "active" : "")} onClick={() => {
-                            setCurNav(4)
-                        }}>
-                            Mint Revenue Allocation
-                        </div>
+
                     </div>
                     {curNav == 1 && <div className="part1">
                         <div className="content-item">
@@ -185,6 +191,24 @@ const FireLock = (props) => {
                             </Form>
                             <Button type="primary" className="max-btn" onClick={() => {
                                 transferOwnership()
+                            }}>
+                                Submit
+                            </Button>
+                        </div>
+                        <div className="content-item">
+                            <h3>Is Pause</h3>
+                            <Form form={form} name="control-hooks">
+                                <div className="current">
+                                    <div className="name">
+                                        Current:
+                                    </div>
+                                    <div className="value">
+                                        {isPause?"Pause":"UnPause"}
+                                    </div>
+                                </div>
+                            </Form>
+                            <Button type="primary" className="max-btn" onClick={() => {
+                                setstatus()
                             }}>
                                 Submit
                             </Button>

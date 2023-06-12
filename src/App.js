@@ -74,6 +74,8 @@ import CreateGuild from "./view/Operation/CreateGuild"
 import GuildDetail from "./view/Operation/GuildDetail"
 import LPMining from "./view/Operation/LPMining"
 import LPMiningManage from "./view/Operation/LPMining/Manage"
+import FDTLockMining from "./view/Operation/FDTLockMining"
+import FDTLockMiningManage from "./view/Operation/FDTLockMining/Manage"
 function App() {
     const history = useNavigate();
     const location = useLocation()
@@ -169,6 +171,9 @@ function App() {
                                 <Route path="/GuildDetail/:id" element={<GuildDetail/>}/>
                                 <Route path="/LPMining" element={<LPMining/>}/>
                                 <Route path="/LPMiningManage" element={<LPMiningManage/>}/>
+                                <Route path="/FDTLockMining" element={<FDTLockMining/>}/>
+                                <Route path="/FDTLockMiningManage" element={<FDTLockMiningManage/>}/>
+
                             </Routes>
                         </div>
                     </div>

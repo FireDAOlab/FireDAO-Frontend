@@ -16,7 +16,7 @@ import listIcon from "../../../imgs/list-icon.webp";
 import develop from "../../../env";
 import {useNavigate} from "react-router-dom";
 import judgeStatus from "../../../utils/judgeStatus";
-import {getSeedDonateRecord} from "../../../graph/donate";
+import {getFLMPoolData} from "../../../graph/pools";
 import StyleBox from "./style";
 import addressMap from "../../../api/addressMap";
 const ViewBox = (props) => {
@@ -31,13 +31,10 @@ const ViewBox = (props) => {
     const [allowance, setAllowance] = useState(0)
     const [mylpBalance, setMylpBalance] = useState(0)
     const [FDTBalance, setFDTBalance] = useState(0)
-    const [FLMCanClaim, setFLMCanClaim] = useState(0)
+    const [status, setStatus] = useState()
 
     const [totalDonate, setTotalDonate] = useState(0)
     const [month, setMonth] = useState(0)
-    const [inputValue, setInputValue] = useState(0)
-    const [ethBalance, setEthBalance] = useState(0)
-    const [fdtBalance, setFdtBalance] = useState(0)
     const [allRecords, setAllRecords] = useState([])
 
     const [claimRecords, setClaimRecords] = useState([])
@@ -119,10 +116,7 @@ const ViewBox = (props) => {
         setMonth(value )
     }
 
-    const withdraw= async () => {
-        await handleDealMethod("claim", [])
-        getData()
-    }
+
     const getTokenBalance = async (value) => {
         let contractTemp = await getContractByContract("erc20", addressMap["FLMPoolLPAddress"].address, state.api,)
         const decimal = await viewMethod(contractTemp, state.account, "decimals", [])
@@ -153,6 +147,8 @@ const ViewBox = (props) => {
     }
     const getData = async () => {
         try {
+            const res = await getFLMPoolData()
+            console.log(res)
             let judgeRes = await judgeStatus(state)
             if (!judgeRes) {
                 return
@@ -162,6 +158,8 @@ const ViewBox = (props) => {
             getoneBlockAward()
             getBalance()
             getallowance()
+            getisNotActivation()
+
             getIDArr()
         } catch (e) {
 
@@ -172,9 +170,9 @@ const ViewBox = (props) => {
         const mylpBlance = await getTokenBalance(state.account)
         setMylpBalance(mylpBlance)
     }
-    const getTotalAward = async ()=>{
-        const mylpBlance =  await handleViewMethod("getTotalAward", [state.account] )
-        setFLMCanClaim(mylpBlance)
+    const getisNotActivation = async ()=>{
+        const isNotActivation =  await handleViewMethod("isNotActivation", [state.account] )
+        // setStatus(new Date(parseInt(isNotActivation*1000)))
     }
     const onChangePage = async (page) => {
         await setCurPage(page)
@@ -193,7 +191,10 @@ const ViewBox = (props) => {
         }
     }
     const Claim =async ()=>{
-        await handleDealMethod("Claim", [0,month, state.api.utils.toWei(form.getFieldValue().claimAmount) ] )
+        await handleDealMethod("Claim", [month, 0,] )
+    }
+    const activateExtraction =async ()=>{
+        await handleDealMethod("activateExtraction", [] )
     }
     const ClaimFLM =async ()=>{
         await handleDealMethod("ClaimFLM", [0 ] )
@@ -348,6 +349,7 @@ const ViewBox = (props) => {
                     </div>
                     <div className="panel-container">
                         Withdraw
+                        <h3>{status}</h3>
                         <Form form={form} name="control-hooks" className="form">
                             <div className="balance-box">
                                 <div className="name">
@@ -368,6 +370,11 @@ const ViewBox = (props) => {
                                 </div>
                             </Form.Item>
 
+                            <Button type="primary" className="donate" onClick={() => {
+                                activateExtraction()
+                            }}>
+                                activateExtraction
+                            </Button>
                             <Button type="primary" className="donate" onClick={() => {
                                 Claim()
                             }}>
