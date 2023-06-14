@@ -14,7 +14,7 @@ import {dealMethod, dealPayMethod, viewMethod} from "../../../utils/contractUtil
 import develop from "../../../env";
 import {useNavigate} from "react-router-dom";
 import judgeStatus from "../../../utils/judgeStatus";
-import {getFLMPoolData} from "../../../graph/pools";
+import {getFDTPoolData} from "../../../graph/pools";
 import StyleBox from "./style";
 import addressMap from "../../../api/addressMap";
 
@@ -131,12 +131,12 @@ const ViewBox = (props) => {
         await dealMethod(contractTemp, state.account, "approve", [addressMap["FDTLockMining"].address, state.api.utils.toWei((10 ** 18).toString())])
     }
     const getcanClaim = async () => {
-        const balance = await handleViewMethod("canClaim", [state.account])
+        const balance = await handleViewMethod("canClaim", [])
         setCanClaim(balance / 10**18)
     }
     const getData = async () => {
         try {
-            const res = await getFLMPoolData()
+            const res = await getFDTPoolData()
             console.log(res)
             let judgeRes = await judgeStatus(state)
             if (!judgeRes) {
@@ -159,6 +159,7 @@ const ViewBox = (props) => {
     const getisNotActivation = async () => {
         const isNotActivation = await handleViewMethod("isNotActivation", [state.account])
         // setStatus(new Date(parseInt(isNotActivation*1000)))
+
     }
     const onChangePage = async (page) => {
         await setCurPage(page)
