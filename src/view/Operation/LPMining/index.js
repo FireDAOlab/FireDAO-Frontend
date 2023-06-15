@@ -1,6 +1,5 @@
 import React, {useEffect, useRef, useState} from 'react';
 import {useConnect} from "../../../api/contracts";
-import BigNumber from "bignumber.js"
 import {
     Button,
     message,
@@ -10,15 +9,14 @@ import {
 } from 'antd';
 import {getContractByName, getContractByContract} from "../../../api/connectContract";
 import {dealMethod, dealPayMethod, viewMethod} from "../../../utils/contractUtil"
-import ethIcon from "../../../imgs/eth_icon.webp";
-import downIcon from "../../../imgs/down_icon.webp";
-import listIcon from "../../../imgs/list-icon.webp";
+
 import develop from "../../../env";
 import {useNavigate} from "react-router-dom";
 import judgeStatus from "../../../utils/judgeStatus";
 import {getFLMPoolData} from "../../../graph/pools";
 import StyleBox from "./style";
 import addressMap from "../../../api/addressMap";
+import {dealTime} from "../../../utils/timeUtil";
 const ViewBox = (props) => {
     let {state, dispatch} = useConnect();
     const [total, setTotal] = useState(0)
@@ -72,40 +70,67 @@ const ViewBox = (props) => {
         }
         return await viewMethod(contractTemp, state.account, name, params)
     }
-    const getUserInfo = async () => {
-        if (!state.pid) {
-            const userInfo = await handleUserViewMethod("userInfo", [state.account])
-            dispatch({type: "SET_PID", payload: userInfo.PID})
-        }
-    }
 
-    const handleCoinViewMethod = async (name, coinName, params) => {
-        let contractTemp = await getContractByName(coinName, state.api,)
-        if (!contractTemp) {
-            message.warn("Please connect", 5)
-        }
-        return await viewMethod(contractTemp, state.account, name, params)
-    }
 
     const Row = (item, index) => {
         return <div className="list-item " key={index}>
             <div className="col id">
                 {index+1}
             </div>
+            <div className="col id">
+                {item.pid}
+            </div>
+
+            <div className="col id">
+                {item.rewardCycle}
+            </div>
+            <div className="col id">
+                {item.amount / 10**18}
+            </div>
+            <div className="col id">
+                {dealTime(item.time)}
+            </div>
+
             <div className="col address">
-                {item._user && (
+                {item.user && (
                     <a href={develop.ethScan + "address/" + item._user} target="_blank">
-                        {item._user.substr(0, 6) + "..." + item._user.substr(item._user.length - 3, item._user.length)}
+                        {item.user.substring(0, 6) + "..." + item.user.substring(item.user.length - 3, item.user.length)}
                     </a>
                 )}
             </div>
-            <div className="col">
-                {item._amount}
-            </div>
+
 
         </div>
     }
 
+    const Row2 = (item, index) => {
+        return <div className="list-item " key={index}>
+            <div className="col id">
+                {index+1}
+            </div>
+            <div className="col id">
+                {item.pid}
+            </div>
+            <div className="col id">
+                {item.fid}
+            </div>
+            <div className="col id">
+                {item.lpAmount / 10**18}
+            </div>
+            <div className="col id">
+                {dealTime(item.time)}
+            </div>
+            <div className="col address">
+                {item.user && (
+                    <a href={develop.ethScan + "address/" + item._user} target="_blank">
+                        {item.user.substring(0, 6) + "..." + item.user.substring(item.user.length - 3, item.user.length)}
+                    </a>
+                )}
+            </div>
+
+
+        </div>
+    }
 
     const getoneBlockAward = async ()=>{
         let res = await handleViewMethod("oneBlockAward", [])
@@ -145,10 +170,31 @@ const ViewBox = (props) => {
         const contractTemp = await getContractByContract("erc20", addressMap["FLMPoolLPAddress"].address, state.api,)
         await dealMethod(contractTemp, state.account, "approve", [addressMap["FLMPool"].address, state.api.utils.toWei((10 ** 18).toString())])
     }
+    const getcanClaim = async () => {
+        const balance = await handleViewMethod("canClaim", [state.account])
+        setCanClaim(balance / 10**18)
+    }
+    const getRecord = async ()=>{
+        const res = await getFLMPoolData()
+        console.log(res)
+        setClaimRecords(res.data.extractLpRecords)
+        let myRecord= [],myClaimRecord =[]
+        res.data.adminTransferRecords.forEach(item=>{
+            if(item.user.toLowerCase() === state.account){
+                myRecord.push(item)
+            }
+        })
+        res.data.extractLpRecords.forEach(item=>{
+            if(item.user.toLowerCase() === state.account){
+                myClaimRecord.push(item)
+            }
+        })
+        setAllRecords(allRecords)
+        setMyClaimRecords(myClaimRecord)
+    }
     const getData = async () => {
         try {
-            const res = await getFLMPoolData()
-            console.log(res)
+            getRecord()
             let judgeRes = await judgeStatus(state)
             if (!judgeRes) {
                 return
@@ -159,7 +205,7 @@ const ViewBox = (props) => {
             getBalance()
             getallowance()
             getisNotActivation()
-
+            getcanClaim()
             getIDArr()
         } catch (e) {
 
@@ -353,10 +399,10 @@ const ViewBox = (props) => {
                         <Form form={form} name="control-hooks" className="form">
                             <div className="balance-box">
                                 <div className="name">
-                                    Total LP Mining
+                                     can claim
                                 </div>
                                 <div className="value">
-                                    {FLM_AMOUNT}
+                                    {canClaim}
                                 </div>
                             </div>
                             <Form.Item
@@ -402,11 +448,7 @@ const ViewBox = (props) => {
                             }}>
                                 FLM Withdraw Records
                             </div>
-                            <div className={"nav-item " + (typeNav == 3 ? "active" : "")} onClick={() => {
-                                setTypeNav(3)
-                            }}>
-                                LP Mining Withdraw Records
-                            </div>
+
                         </div>
                         <div className="og-nav-list">
                             <div className={"nav-item " + (recordNav == 1 ? "active" : "")} onClick={() => {
@@ -421,21 +463,29 @@ const ViewBox = (props) => {
                             </div>
                         </div>
                         <div className="fire-list-box">
-                            <div className="list-header flex-box">
-                                <div className="col">
-                                    No.
-                                </div>
 
-                                <div className="col">
-                                    Address
-                                </div>
-
-                                <div className="col">
-                                    Amount
-                                </div>
-                            </div>
                             {
                                 typeNav==1&&  <div>
+                                    <div className="list-header flex-box">
+                                        <div className="col">
+                                            No.
+                                        </div>
+                                        <div className="col">
+                                            PID
+                                        </div>
+                                        <div className="col">
+                                            rewardCycle
+                                        </div>
+                                        <div className="col">
+                                            Amount
+                                        </div>
+                                        <div className="col">
+                                            time
+                                        </div>
+                                        <div className="col">
+                                            User
+                                        </div>
+                                    </div>
                                     {recordNav==1&& allRecords.map((item,index)=>{
                                         return (
                                             Row(item,index)
@@ -450,14 +500,34 @@ const ViewBox = (props) => {
                             }
                             {
                                 typeNav==2&&  <div>
+                                    <div className="list-header flex-box">
+                                        <div className="col">
+                                            No.
+                                        </div>
+                                        <div className="col">
+                                            PID
+                                        </div>
+                                        <div className="col">
+                                            weightCoefficient
+                                        </div>
+                                        <div className="col">
+                                            lpAmount
+                                        </div>
+                                        <div className="col">
+                                            time
+                                        </div>
+                                        <div className="col">
+                                            User
+                                        </div>
+                                    </div>
                                     {recordNav==1&& claimRecords.map((item,index)=>{
                                         return (
-                                            Row(item,index)
+                                            Row2(item,index)
                                         )
                                     })}
                                     {recordNav==2&& claimMyRecords.map((item,index)=>{
                                         return (
-                                            Row(item,index)
+                                            Row2(item,index)
                                         )
                                     })}
                                 </div>

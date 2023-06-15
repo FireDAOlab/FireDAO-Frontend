@@ -75,7 +75,7 @@ if (develop.ENV === "production") {
         FDT: {address: "0xd1ad4a44f65141edcac9a23838f1bc6ed6dfeaef", abi: FDT},
         fdtOgToFdt: {address: "0x21212FC679C23bbAa8ae3dDAE43127590331ccA1", abi: fdtOgToFdt},
         FLMPool: {address: "0xF4CFfc4e0D71B26592D3a916160e3Fc6ca58aa62", abi: FLMPool},
-        FDTLockMining:{address:"0xC9Ae81f38f7a80e48cb713a18ed8cC1Ac92ca741",abi:FDTLockMining},
+        FDTLockMining:{address:"0x8Fe6595636e03dee7b8BDcC23b0533E6Eb26B781",abi:FDTLockMining},
         autolp: {address: "0xEACd7603C3b6BD101636B214EE36887D88d199E9", abi: autolp},
         seedDonation: {address: "0xf2b2575DEbb48FC225D2289ed77D246322a60dbF", abi: seedDonation},
         FLMPoolLPAddress:{address:"0x6adf22540e77a100d136ca76a79a39af3b30484a"},
