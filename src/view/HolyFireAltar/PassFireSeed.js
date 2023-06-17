@@ -429,7 +429,9 @@ const LockList = (props) => {
         getMyFireSeed()
         myClass()
         logs = await getPasslist()
-        logs = logs.data.passFireSeeds
+        if(logs.data){
+            logs = logs.data.passFireSeeds
+        }
         getTransfer()
     }, [state.account]);
     return (
