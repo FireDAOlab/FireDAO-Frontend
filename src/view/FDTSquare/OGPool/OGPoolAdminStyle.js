@@ -15,7 +15,12 @@ const OGPoolStyle = styled.div`
     width: 90%;
     margin: 10px auto;
     padding: 1em;
-
+    .operate-box{
+      margin-top: 20px;
+      .add{
+        width: 160px;
+      }
+    }
     .info {
       font-size: 20px;
       font-family: Roboto-Medium, Roboto;

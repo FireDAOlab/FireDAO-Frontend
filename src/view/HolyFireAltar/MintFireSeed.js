@@ -2,18 +2,10 @@ import React, {useEffect, useRef, useState} from 'react';
 import styled from "styled-components";
 import {useConnect} from "../../api/contracts";
 import {
-    Card,
-    Select,
     Button,
-    InputNumber,
-    Descriptions,
     message,
     Form,
-    List,
-    Input,
     notification,
-    Switch,
-    Radio,
     AutoComplete
 } from 'antd';
 import {getContractByName, getContractByContract} from "../../api/connectContract";

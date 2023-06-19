@@ -276,7 +276,7 @@ const Register = (props) => {
           if (paytype == 1) {
               const isOpenFeeOn = await feeOn()
               let feeValue = 0
-
+              console.log([userName, Email, jsonUrl.IpfsHash])
               if (isOpenFeeOn) {
                   feeValue = await getFee()
                   await handleDealPayMethod("register",
