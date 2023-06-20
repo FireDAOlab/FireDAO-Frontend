@@ -12,6 +12,7 @@ import MintFireSoul from "./view/HolyFireAltar/MintFireSoul"
 import AdminPage from "./view/passportAdmin"
 import MyPassport from "./view/HolyFireAltar/MyPassport"
 import GlobalStyle from "./style/style";
+import CommonStyle from "./style/commonStyle";
 import AntdOverride from "./style/antdOverride";
 import React from "react";
 import {ConnectProvider, useConnect} from "./api/contracts";
@@ -82,6 +83,7 @@ function App() {
     return (
 
         <ConnectProvider>
+            <CommonStyle/>
             <GlobalStyle/>
             <AntdOverride/>
 
