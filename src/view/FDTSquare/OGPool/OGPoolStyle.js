@@ -3,13 +3,20 @@ export default   styled.div`
   .ant-select-selector {
     border: none !important;
   }
-
+  .header-nav{
+    width: 90%;
+    margin: 0 auto;
+    .fire-nav-list{
+      width: 360px;
+      margin: 0;
+    }
+  }
   .panel-container {
     padding: 2em;
     width: 90%;
     margin: 10px auto;
 
-
+   
     .isInW {
       display: flex;
       width: 100%;
@@ -215,7 +222,7 @@ export default   styled.div`
     .list-top-part {
       display: flex;
 
-      .og-nav-list {
+      .fire-nav-list {
         padding: 3px;
         margin-top: 1em;
         height: 40px;
@@ -253,36 +260,6 @@ export default   styled.div`
     }
   }
 
-  .og-nav-list {
-    margin: 10px auto;
-    display: flex;
-    width: 90%;
-    height: 60px;
-    background: #3E2727;
-    border-radius: 10px;
-    border: 1px solid #333333;
-    font-size: 24px;
-    font-family: Roboto-Bold, Roboto;
-    font-weight: bold;
-    color: #999999;
-
-    .nav-item {
-      width: 50%;
-      display: flex;
-      align-items: center;
-      text-align: center;
-      justify-content: center;
-      padding: 0 10px;
-
-      &.active {
-        font-weight: bold;
-        color: #FFFFFF;
-        background: linear-gradient(320deg, #DD3642 0%, #FFC02C 100%);
-        box-shadow: 0px 3px 6px 0px rgba(128, 4, 149, 0.3);
-        border-radius: 10px;
-      }
-    }
-  }
 
   .fire-list-box {
     .list-item, .list-header {
@@ -468,6 +445,14 @@ export default   styled.div`
 
   /* mobile style */
   @media screen and (max-width: 1000px) {
+    .header-nav{
+      width: 90%;
+      margin: 0 auto;
+      .fire-nav-list{
+        width: 100%;
+        margin: 0;
+      }
+    }
     .fire-list-box {
       width: 100%;
       overflow-x: scroll;
@@ -497,7 +482,7 @@ export default   styled.div`
       .list-top-part {
         display: block;
 
-        .og-nav-list {
+        .fire-nav-list {
           width: 100%;
         }
       }

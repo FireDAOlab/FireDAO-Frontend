@@ -319,36 +319,38 @@ const OGPoolkk = (props) => {
 
     return (
         <OGPoolStyle>
+            <div className="header-nav">
+                <div className="fire-nav-list ">
+                    <div className={"nav-item " + (activeNav == 1 ? "active" : "")} onClick={() => {
+                        setActiveNav(1)
+                    }}>
+                        OG Donate Pool
+                    </div>
+                    <div className={"nav-item " + (activeNav == 2 ? "active" : "")} onClick={() => {
+                        setActiveNav(2)
+                    }}>
+                        WhiteList
+                    </div>
+                    {
+                        (isSAdmin) && (
+                            <div className={"nav-item " + (activeNav ==4 ? "active" : "")} onClick={() => {
+                                setActiveNav(4)
+                            }}>
+                                Set Admin
+                            </div>
+                        )
+                    }
+                    {
+                        (isTAdmin||isSAdmin) && (
+                            <div className={"nav-item " + (activeNav == 3 ? "active" : "")} onClick={() => {
+                                setActiveNav(3)
+                            }}>
+                                Set WhiteList
+                            </div>
+                        )
+                    }
 
-            <div className="og-nav-list">
-                <div className={"nav-item " + (activeNav == 1 ? "active" : "")} onClick={() => {
-                    setActiveNav(1)
-                }}>
-                    OG Donate Pool
                 </div>
-                <div className={"nav-item " + (activeNav == 2 ? "active" : "")} onClick={() => {
-                    setActiveNav(2)
-                }}>
-                    WhiteList
-                </div>
-                {
-                    (isSAdmin) && (
-                        <div className={"nav-item " + (activeNav ==4 ? "active" : "")} onClick={() => {
-                            setActiveNav(4)
-                        }}>
-                            Set Admin
-                        </div>
-                    )
-                }
-                {
-                    (isTAdmin||isSAdmin) && (
-                        <div className={"nav-item " + (activeNav == 3 ? "active" : "")} onClick={() => {
-                            setActiveNav(3)
-                        }}>
-                            Set WhiteList
-                        </div>
-                    )
-                }
 
             </div>
             {activeNav == 1 && (
@@ -476,7 +478,7 @@ const OGPoolkk = (props) => {
                                 <div className="panel-title">
                                     Donate Records
                                 </div>
-                                <div className="og-nav-list">
+                                <div className="fire-nav-list">
                                     <div className={"nav-item " + (recordNav == 1 ? "active" : "")} onClick={() => {
                                         setRecordNav(1)
                                     }}>
