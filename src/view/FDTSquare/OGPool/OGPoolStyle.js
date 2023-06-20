@@ -1,10 +1,13 @@
 import styled from "styled-components";
 export default   styled.div`
+  .ant-select-selector {
+    border: none !important;
+  }
+
   .panel-container {
     padding: 2em;
     width: 90%;
     margin: 10px auto;
-
 
 
     .isInW {
@@ -25,13 +28,16 @@ export default   styled.div`
   }
 
   .part1 {
+
     .donate-info {
       margin-top: 2em;
+      display: flex;
 
       .flex-box {
         justify-content: space-between;
 
         .info-item {
+          margin-left: 50px;
 
           .value {
             line-height: 50px !important;
@@ -63,10 +69,20 @@ export default   styled.div`
       }
     }
 
+
+    .donation-box {
+      width: 420px;
+
+      margin: 0 auto;
+      background: #1E1212;
+      border-radius: 10px;
+      border: 1px solid #333333;
+      padding: 20px;
+    }
+
     .donate-pid {
-      .panel-title { {
+      .panel-title { 
         margin-top: 1.5em;
-      }
       }
 
       .flex-box {
@@ -196,11 +212,17 @@ export default   styled.div`
   }
 
   .part2 {
-    .og-nav-list {
-      margin-top: 1em;
-      width: 100%;
-      height: 50px;
+    .list-top-part {
+      display: flex;
+
+      .og-nav-list {
+        padding: 3px;
+        margin-top: 1em;
+        height: 40px;
+        width: 370px;
+      }
     }
+
   }
 
   .part3 {
@@ -386,18 +408,6 @@ export default   styled.div`
     }
   }
 
-  /* mobile style */
-  @media screen and (max-width: 1000px) {
-    .fire-list-box {
-      width: 100%;
-      overflow-x: scroll;
-      min-width: 100%;
-
-      .list-item {
-        background: none;
-      }
-    }
-  }
 
   .row2-list-item {
     padding: 6px 0;
@@ -453,6 +463,45 @@ export default   styled.div`
       &:nth-child(4) {
         width: 20% !important;
       }
+    }
+  }
+
+  /* mobile style */
+  @media screen and (max-width: 1000px) {
+    .fire-list-box {
+      width: 100%;
+      overflow-x: scroll;
+      min-width: 100%;
+
+      .list-item {
+        background: none;
+      }
+    }
+    .part1 {
+      .donate-info {
+        display: block;
+        .flex-box{
+          .info-item{
+            margin-left: 0;
+          }
+        }
+      }
+      .donation-box{
+        padding: 0;
+        border: none;
+        background: none;
+        width: 100%;
+      }
+    }
+    .part2 {
+      .list-top-part {
+        display: block;
+
+        .og-nav-list {
+          width: 100%;
+        }
+      }
+
     }
   }
 

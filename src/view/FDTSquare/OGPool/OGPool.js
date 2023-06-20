@@ -3,18 +3,12 @@ import {useConnect} from "../../../api/contracts";
 import BigNumber from "bignumber.js"
 import AddNomalWhiteList from "./AddNomalWhiteList";
 import AddThreeWhiteList from "./AddThreeWhiteList";
+import {dealNum} from "../../../utils/bigNumberUtil";
 import {
-    Card,
     Button,
-    Modal,
     message,
     AutoComplete,
     Form,
-    List,
-    Input,
-    notification,
-    InputNumber,
-    Switch,
     Pagination
 } from 'antd';
 import {getContractByName, getContractByContract} from "../../../api/connectContract";
@@ -27,7 +21,6 @@ import {useNavigate} from "react-router-dom";
 import judgeStatus from "../../../utils/judgeStatus";
 import {getDonateRecord} from "../../../graph/donate";
 import OGPoolStyle from "./OGPoolStyle";
-import AddNormalWhiteListStyle from "./AddNormalWhiteListStyle";
 const OGPoolkk = (props) => {
     let {state, dispatch} = useConnect();
     const [isDelMolOpen, setDelOpen] = useState(false)
@@ -371,7 +364,7 @@ const OGPoolkk = (props) => {
                                         FDT-OG Donate Pool Amount
                                     </div>
                                     <div className="value">
-                                        {FDTBalance}
+                                        {dealNum(FDTBalance)}
                                     </div>
                                 </div>
                                 <div className="flex-box">
@@ -380,7 +373,7 @@ const OGPoolkk = (props) => {
                                             Value
                                         </div>
                                         <div className="value">
-                                            {(FDTBalance * salePrice).toFixed(1)}
+                                            {dealNum(BigNumber(FDTBalance).multipliedBy(salePrice) )}
                                         </div>
                                     </div>
                                     <div className="info-item">
@@ -407,99 +400,102 @@ const OGPoolkk = (props) => {
                                     </div>
                                 </div>
                             </div>
-                            <Form form={form} name="control-hooks" className="form">
-                                <div className="balance-box">
-                                    <div className="name">
-                                        Balance
-                                    </div>
-                                    <div className="value">
-                                        {state.ethBalance} <span>ETH</span>
-                                    </div>
-                                </div>
-                                <Form.Item
-                                    name="amount"
-                                    validateTrigger="onBlur"
-                                    validateFirst={true}
-                                >
-                                    <div className="input-box">
-                                        <img className="coin-icon" src={ethIcon} alt=""/>
-                                        <AutoComplete
-                                            allowClear
-                                            value={inputValue}
-                                            onChange={(e) => {
-                                                getfdtAmount(e)
-                                            }}
-                                            style={{width: 200}}
-                                            options={coinOptions}
-                                            placeholder=""
-                                            filterOption={(inputValue, option) =>
-                                                option.value.indexOf(inputValue) !== -1 &&
-                                                /^-?(0|[1-9][0-9]*)(\.[0-9]*)?$/.test(inputValue)
-                                            }
-                                        />
-
-                                    </div>
-                                </Form.Item>
-                                <img className="down-icon" src={downIcon} alt=""/>
-                                <Form.Item
-                                    name="pid"
-                                    validateTrigger="onBlur"
-                                    validateFirst={true}
-
-                                >
-                                    <div className="input-box">
-                                        <div className="exchangeAmount">
-                                            {exchangeAmount}
+                            <div className="donation-box">
+                                <Form form={form} name="control-hooks" className="form">
+                                    <div className="balance-box">
+                                        <div className="name">
+                                            Balance
                                         </div>
-                                        <div className="coin-name">
-                                            FDT-OG
+                                        <div className="value">
+                                            {state.ethBalance} <span>ETH</span>
                                         </div>
                                     </div>
-                                </Form.Item>
-                                <div className="balance-box">
-                                    <div className="name">
-                                        Balance
+                                    <Form.Item
+                                        name="amount"
+                                        validateTrigger="onBlur"
+                                        validateFirst={true}
+                                    >
+                                        <div className="input-box">
+                                            <img className="coin-icon" src={ethIcon} alt=""/>
+                                            <AutoComplete
+                                                allowClear
+                                                value={inputValue}
+                                                onChange={(e) => {
+                                                    getfdtAmount(e)
+                                                }}
+                                                style={{width: 200}}
+                                                options={coinOptions}
+                                                placeholder=""
+                                                filterOption={(inputValue, option) =>
+                                                    option.value.indexOf(inputValue) !== -1 &&
+                                                    /^-?(0|[1-9][0-9]*)(\.[0-9]*)?$/.test(inputValue)
+                                                }
+                                            />
+
+                                        </div>
+                                    </Form.Item>
+                                    <img className="down-icon" src={downIcon} alt=""/>
+                                    <Form.Item
+                                        name="pid"
+                                        validateTrigger="onBlur"
+                                        validateFirst={true}
+
+                                    >
+                                        <div className="input-box">
+                                            <div className="exchangeAmount">
+                                                {exchangeAmount}
+                                            </div>
+                                            <div className="coin-name">
+                                                FDT-OG
+                                            </div>
+                                        </div>
+                                    </Form.Item>
+                                    <div className="balance-box">
+                                        <div className="name">
+                                            Balance
+                                        </div>
+                                        <div className="value">
+                                            {fdtBalance} <span>FDT</span>
+                                        </div>
                                     </div>
-                                    <div className="value">
-                                        {fdtBalance} <span>FDT</span>
+                                    <Button type="primary" className="donate" onClick={() => {
+                                        exchangeFdt()
+                                    }}>
+                                        Donate
+                                    </Button>
+                                    <div className="tip">
+                                        1FDT-OG = {salePrice} USD ，Donate up to 2ETH
                                     </div>
-                                </div>
-                                <Button type="primary" className="donate" onClick={() => {
-                                    exchangeFdt()
-                                }}>
-                                    Donate
-                                </Button>
-                                <div className="tip">
-                                    1FDT-OG = {salePrice} USD ，Donate up to 2ETH
-                                </div>
-                            </Form>
+                                </Form>
+                            </div>
                         </div>
                     </div>
                     <div className="panel-box part2">
                         <div className="panel-container">
-                            <div className="panel-title">
-                                Donate Records
-                            </div>
-                            <div className="og-nav-list">
-                                <div className={"nav-item " + (recordNav == 1 ? "active" : "")} onClick={() => {
-                                    setRecordNav(1)
-                                }}>
-                                    All Records
+                            <div className="list-top-part">
+                                <div className="panel-title">
+                                    Donate Records
                                 </div>
-                                <div className={"nav-item " + (recordNav == 2 ? "active" : "")} onClick={() => {
-                                    setRecordNav(2)
-                                }}>
-                                    My Records
-                                </div>
-                                {(isTAdmin) && (
-                                    <div className={"nav-item " + (recordNav == 3 ? "active" : "")} onClick={() => {
-                                        setRecordNav(3)
+                                <div className="og-nav-list">
+                                    <div className={"nav-item " + (recordNav == 1 ? "active" : "")} onClick={() => {
+                                        setRecordNav(1)
                                     }}>
-                                        My recommendation
+                                        All Records
                                     </div>
-                                )
-                                }
-
+                                    <div className={"nav-item " + (recordNav == 2 ? "active" : "")} onClick={() => {
+                                        setRecordNav(2)
+                                    }}>
+                                        My Records
+                                    </div>
+                                    {(isTAdmin) && (
+                                        <div className={"nav-item " + (recordNav == 3 ? "active" : "")} onClick={() => {
+                                            setRecordNav(3)
+                                        }}>
+                                            My recommendation
+                                        </div>
+                                    )
+                                    }
+                                </div>
                             </div>
                             <div className="fire-list-box">
                                 <div className="list-header flex-box">
