@@ -1,5 +1,4 @@
 import {createGlobalStyle} from "styled-components";
-import GlobalStyle from "./style";
 
 const CommonStyle = createGlobalStyle`
   .fire-nav-list {
