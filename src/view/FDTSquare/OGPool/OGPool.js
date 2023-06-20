@@ -3,7 +3,7 @@ import {useConnect} from "../../../api/contracts";
 import BigNumber from "bignumber.js"
 import AddNomalWhiteList from "./AddNomalWhiteList";
 import AddThreeWhiteList from "./AddThreeWhiteList";
-import {dealNum} from "../../../utils/bigNumberUtil";
+import {showNum} from "../../../utils/bigNumberUtil";
 import {
     Button,
     message,
@@ -366,7 +366,7 @@ const OGPoolkk = (props) => {
                                         FDT-OG Donate Pool Amount
                                     </div>
                                     <div className="value">
-                                        {dealNum(FDTBalance)}
+                                        {showNum(FDTBalance)}
                                     </div>
                                 </div>
                                 <div className="flex-box">
@@ -375,7 +375,7 @@ const OGPoolkk = (props) => {
                                             Value
                                         </div>
                                         <div className="value">
-                                            {dealNum(BigNumber(FDTBalance).multipliedBy(salePrice) )}
+                                            {showNum(BigNumber(FDTBalance).multipliedBy(salePrice) )}
                                         </div>
                                     </div>
                                     <div className="info-item">

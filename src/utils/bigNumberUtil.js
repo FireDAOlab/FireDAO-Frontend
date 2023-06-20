@@ -30,7 +30,7 @@ class MathCalculator {
     }
 
 }
-export function dealNum(val){
+export function showNum(val){
     if (val) {
         return val ? (BigNumber(Number(val) * 100).toFixed(0, BigNumber.ROUND_DOWN) / 100).toLocaleString() : 0
     }
