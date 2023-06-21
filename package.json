@@ -8,6 +8,7 @@
     "animate.css": "^4.1.1",
     "antd": "^4.24.0",
     "axios": "^1.1.0",
+    "babel-loader": "^9.1.2",
     "bignumber.js": "^9.1.1",
     "cross-env": "^7.0.3",
     "highland": "2.8.1",

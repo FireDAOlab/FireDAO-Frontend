@@ -17,8 +17,6 @@ const PidList = (props) => {
     const PidList = styled.div`
 
       .panel-container {
-
-
         .header-box {
           display: flex;
           width: 100%;
