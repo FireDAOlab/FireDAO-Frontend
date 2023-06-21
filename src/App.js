@@ -72,6 +72,10 @@ import GuildManage from "./view/Operation/GuildManage"
 import Guild from "./view/Operation/Guild"
 import CreateGuild from "./view/Operation/CreateGuild"
 import GuildDetail from "./view/Operation/GuildDetail"
+import FLMAirdrop from "./view/Operation/FLMAirdrop"
+import FLMAirdropLv1 from "./view/Operation/FLMAirdrop/component/FLMAirdropLv1"
+import FLMAirdropLv2 from "./view/Operation/FLMAirdrop/component/FLMAirdropLv2"
+
 
 function App() {
     const history = useNavigate();
@@ -166,6 +170,11 @@ function App() {
                                 <Route path="/Guild" element={<Guild/>}/>
                                 <Route path="/CreateGuild" element={<CreateGuild/>}/>
                                 <Route path="/GuildDetail/:id" element={<GuildDetail/>}/>
+                                <Route path="/FLMAirdrop" element={<FLMAirdrop/>}/>
+                                
+                                <Route path="/FLMAirdropLv1" element={<FLMAirdropLv1/>}/>
+                                <Route path="/FLMAirdropLv2" element={<FLMAirdropLv2/>}/>
+
                             </Routes>
                         </div>
                     </div>

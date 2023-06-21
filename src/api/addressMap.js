@@ -21,6 +21,7 @@ import normalPool from "../abi/normalPool.json"
 import poolManger from "../abi/pooManger.json"
 import autolp from "../abi/autolp.json"
 import seedDonation from "../abi/seedDonation.json"
+import FLMExchange from "../abi/FLMExchange.json"
 
 let CONTRACTS
 if (develop.ENV === "production") {
@@ -76,6 +77,7 @@ if (develop.ENV === "production") {
         FLMPool: {address: "0xF9Fab4D282746B16168c6B41069BB7CBEE530AF5", abi: FLMPool},
         autolp: {address: "0xEACd7603C3b6BD101636B214EE36887D88d199E9", abi: autolp},
         OGPool: {address: "0xf2b2575DEbb48FC225D2289ed77D246322a60dbF", abi: seedDonation},
+        FLMExchange:{address:"0xC63595DBE3dC5B8727f69C64d93990c510cf5AB0",abi:FLMExchange},
 
         FLM:{address:"0x926C1319AF0EBfb02e104d4940565940d2D0d0eC"},
         emergencyPool: {address: "0x251a7c07Ff5b71650DF9FEeB01184FC31a2bD57C", abi: emergencyPool},
