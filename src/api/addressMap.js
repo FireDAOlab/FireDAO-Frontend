@@ -3,7 +3,7 @@ import MintPassPort from "../abi/MintPassPort.json";
 import firelockFactory from "../abi/firelockFactory.json";
 import fireLock from "../abi/fireLock.json";
 import firelockFee from "../abi/firelockFee.json"
-import MintFireSeed from "../abi/fireSeed.json";
+import MintFireSeed from "../abi/MintFireSeed.json";
 import MintFireSoul from "../abi/MintFireSoul.json";
 import Reputation from "../abi/Reputation.json";
 import develop from "../env.js"

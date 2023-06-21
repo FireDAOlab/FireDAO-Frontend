@@ -2,24 +2,17 @@ import React, {useEffect, useRef, useState} from 'react';
 import styled from "styled-components";
 import {useConnect} from "../../api/contracts";
 import {
-    Card,
-    Select,
     Button,
-    InputNumber,
-    Descriptions,
     message,
     Form,
-    List,
-    Input,
     notification,
-    Switch,
-    Radio,
     AutoComplete
 } from 'antd';
 import {getContractByName, getContractByContract} from "../../api/connectContract";
 import {dealPayMethod,dealMethod, viewMethod} from "../../utils/contractUtil"
 import {useNavigate} from "react-router-dom";
 import FireSeed from "../../imgs/FireSeed@2x.webp"
+import judgeStatus from "../../utils/judgeStatus";
 
 const MintFireSeed = (props) => {
     const [form] = Form.useForm();
@@ -143,6 +136,7 @@ const MintFireSeed = (props) => {
         return await viewMethod(contractTemp, state.account, name, params)
     }
     const onChooseAmount = (value) =>{
+        value = parseFloat(value)
         setInputValue(value)
         setFee(0.08*value)
         if(value>=10){
@@ -235,8 +229,12 @@ const MintFireSeed = (props) => {
         }
 
     }
-    useEffect(() => {
-        FeeStatus()
+    useEffect(async () => {
+        let judgeRes = await judgeStatus(state)
+        if (!judgeRes) {
+            return
+        }
+        // FeeStatus()
         getWhitelist()
     }, [state.account]);
     return (
