@@ -56,7 +56,7 @@ const FireLock = (props) => {
         });
     };
     const handleDealMethod = async (name, params) => {
-        let contractTemp = await getContractByName("OGPool", state.api,)
+        let contractTemp = await getContractByName("seedDonation", state.api,)
         if (!contractTemp) {
             openNotification("Please connect")
         }
@@ -65,7 +65,7 @@ const FireLock = (props) => {
 
 
     const handleViewMethod = async (name, params) => {
-        let contractTemp = await getContractByName("OGPool", state.api,)
+        let contractTemp = await getContractByName("seedDonation", state.api,)
         if (!contractTemp) {
             openNotification("Please connect")
         }
@@ -75,7 +75,7 @@ const FireLock = (props) => {
     const getTokenBalance = async (value) => {
         let contractTemp = await getContractByContract("erc20", addressMap["FDT"].address, state.api,)
         const decimal = await viewMethod(contractTemp, value, "decimals", [])
-        let balance = await viewMethod(contractTemp, value, "balanceOf", [state.account])
+        let balance = await viewMethod(contractTemp, value, "balanceOf", [value])
         balance = balance / (10 ** parseInt(decimal))
         balance = parseInt(balance * 100) / 100
         return balance
@@ -177,7 +177,7 @@ const FireLock = (props) => {
         getRadio()
         getFDTLiquity()
         getTreasury()
-        const balance = await getTokenBalance(addressMap["OGPool"].address)
+        const balance = await getTokenBalance(addressMap["seedDonation"].address)
         setBalance(balance)
     }, [state.account]);
 

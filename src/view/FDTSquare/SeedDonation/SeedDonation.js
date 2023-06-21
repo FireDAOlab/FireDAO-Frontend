@@ -16,14 +16,16 @@ import listIcon from "../../../imgs/list-icon.webp";
 import develop from "../../../env";
 import {useNavigate} from "react-router-dom";
 import judgeStatus from "../../../utils/judgeStatus";
-import {getDonateRecord} from "../../../graph/donate";
-import OGPoolStyle from "./OGPoolStyle";
+import {getSeedDonateRecord} from "../../../graph/donate";
+import SeedDonationStyle from "./SeedDonationStyle";
 import addressMap from "../../../api/addressMap";
-const OGPoolNew = (props) => {
+const SeedDonationNew = (props) => {
     let {state, dispatch} = useConnect();
     const [total, setTotal] = useState(0)
     const [total2, setTotal2] = useState(0)
     const [recordNav, setRecordNav] = useState(1)
+    const [typeNav, setTypeNav] = useState(1)
+
     const [curPage, setCurPage] = useState(1)
     const [pageCount, setPageCount] = useState(20)
     const [pageCount2, setPageCount2] = useState(20)
@@ -35,7 +37,10 @@ const OGPoolNew = (props) => {
     const [ethBalance, setEthBalance] = useState(0)
     const [fdtBalance, setFdtBalance] = useState(0)
     const [allRecords, setAllRecords] = useState([])
-    const [refRecords, setREFRecords] = useState([])
+
+    const [claimRecords, setClaimRecords] = useState([])
+    const [claimMyRecords, setMyClaimRecords] = useState([])
+
     const [myRecords, seMyRecords] = useState([])
     const [isInWhiteList, setIsInWhiteList] = useState(false)
     const [salePrice, setSalePriceV] = useState(0.01)
@@ -54,7 +59,7 @@ const OGPoolNew = (props) => {
         return await viewMethod(contractTemp, state.account, name, params)
     }
     const handleDealMethod = async (name, params) => {
-        let contractTemp = await getContractByName("OGPool", state.api,)
+        let contractTemp = await getContractByName("seedDonation", state.api,)
         if (!contractTemp) {
             message.warn("Please connect", 5)
         }
@@ -63,14 +68,14 @@ const OGPoolNew = (props) => {
 
 
     const handlePayDealMethod = async (name, params, value) => {
-        let contractTemp = await getContractByName("OGPool", state.api,)
+        let contractTemp = await getContractByName("seedDonation", state.api,)
         if (!contractTemp) {
             message.warn("Please connect", 5)
         }
         await dealPayMethod(contractTemp, state.account, name, params, value)
     }
     const handleViewMethod = async (name, params) => {
-        let contractTemp = await getContractByName("OGPool", state.api,)
+        let contractTemp = await getContractByName("seedDonation", state.api,)
         if (!contractTemp) {
             message.warn("Please connect", 5)
         }
@@ -94,38 +99,20 @@ const OGPoolNew = (props) => {
     const Row = (item, index) => {
         return <div className="list-item " key={index}>
             <div className="col id">
-                {item.no}
+                {index+1}
             </div>
-            <div className="col">
-                {item.pid}
-            </div>
-            <div className="col">
-                {item.name}
-            </div>
-
             <div className="col address">
-                {item.addr && (
-                    <a href={develop.ethScan + "address/" + item.addr} target="_blank">
-                        {item.addr.substr(0, 6) + "..." + item.addr.substr(item.addr.length - 3, item.addr.length)}
+                {item._user && (
+                    <a href={develop.ethScan + "address/" + item._user} target="_blank">
+                        {item._user.substr(0, 6) + "..." + item._user.substr(item._user.length - 3, item._user.length)}
                     </a>
                 )}
             </div>
-            <div className="col ">
-                {item.ethAmount / 10 ** 18}
-            </div>
-            <div className="col ">
-                {BigNumber(item.fdtAmount / 10 ** 18).toFixed(2)}
+            <div className="col">
+                {item._amount}
             </div>
 
-            <div className="col">
-                {item.rate}%
-            </div>
-            <div className="col">
-                {BigNumber(item.usdtAmount / 10 ** 18).toFixed(2)}
-            </div>
-            <div className="col">
-                {item.time}
-            </div>
+
 
         </div>
     }
@@ -161,8 +148,8 @@ const OGPoolNew = (props) => {
     }
     const getTokenBalance = async (value) => {
         let contractTemp = await getContractByContract("erc20", addressMap["FDT"].address, state.api,)
-        const decimal = await viewMethod(contractTemp, value, "decimals", [])
-        let balance = await viewMethod(contractTemp, value, "balanceOf", [state.account])
+        const decimal = await viewMethod(contractTemp, state.account, "decimals", [])
+        let balance = await viewMethod(contractTemp, state.account, "balanceOf", [value])
         balance = balance / (10 ** parseInt(decimal))
         balance = parseInt(balance * 100) / 100
         return balance
@@ -197,27 +184,9 @@ const OGPoolNew = (props) => {
             getUserInfo()
             getSalePrice()
             getClaimAmount()
-            const balance = await getTokenBalance(addressMap["OGPool"].address)
+            const balance = await getTokenBalance(addressMap["seedDonation"].address)
             setFDTBalance(balance)
-            let res = await getDonateRecord()
-            if (res.data) {
-                let arr = []
-                res.data.allRecords.forEach(item => {
-                    if (item.time) {
-                        item.time = new Date(item.time * 1000).toUTCString()
-                    }
-                    if (item.addr.toString() == state.account.toLowerCase()) {
-                        arr.push(item)
-                    }
-                })
 
-                if (res.data.allRecords && res.data.allRecords.length > 0) {
-                    setAllRecords(res.data.allRecords)
-                    setTotal(res.data.allRecords.length)
-                    seMyRecords(arr)
-                }
-
-            }
         } catch (e) {
 
         }
@@ -231,48 +200,122 @@ const OGPoolNew = (props) => {
         setPageCount(count)
     }
 
-    useEffect(() => {
+    useEffect(async () => {
+        let res = await getSeedDonateRecord()
+
+        if (res.data) {
+            let arr = []
+            res.data.donations.forEach(item => {
+                if (item._user.toString() === state.account.toLowerCase()) {
+                    arr.push(item)
+                }
+            })
+            if (res.data.donations && res.data.donations.length > 0) {
+                setAllRecords(res.data.donations)
+                setTotal(res.data.donations.length)
+                seMyRecords(arr)
+            }
+            arr = []
+            res.data.claims.forEach(item => {
+                if (item._user.toString() === state.account.toLowerCase()) {
+                    arr.push(item)
+                }
+            })
+            if (res.data.claims && res.data.claims.length > 0) {
+                setClaimRecords(res.data.claims)
+                setMyClaimRecords(arr)
+            }
+        }
         getData()
     }, [state.account]);
     const coinOptions = [
-        {
-            label: "0.05ETH",
-            value: '0.05',
-        },
+
         {
             label: "0.1ETH",
             value: '0.1',
         },
 
         {
-            label: "0.75ETH",
-            value: '0.75',
+            label: "0.2ETH",
+            value: '0.2',
         },
         {
-            label: "1.00ETH",
-            value: '1.00',
+            label: "0.3ETH",
+            value: '0.3',
         },
         {
-            label: "1.25ETH",
-            value: '1.25',
+            label: "0.4ETH",
+            value: '0.4',
+        },
+        {
+            label: "0.5ETH",
+            value: '0.5',
+        }, {
+            label: "0.6ETH",
+            value: '0.6',
+        },
+        {
+            label: "0.7ETH",
+            value: '0.7',
+        }, {
+            label: "0.8ETH",
+            value: '0.8',
+        },
+        {
+            label: "0.9ETH",
+            value: '0.9',
+        },
+
+        {
+            label: "1.0ETH",
+            value: '1.0',
+        },
+        {
+            label: "1.1ETH",
+            value: '1.1',
+        },
+        {
+            label: "1.2ETH",
+            value: '1.2',
+        },
+        {
+            label: "1.3ETH",
+            value: '1.3',
+        },
+        {
+            label: "1.4ETH",
+            value: '1.4',
         },
         {
             label: "1.5ETH",
             value: '1.5',
         },
         {
-            label: "1.75ETH",
-            value: '1.75',
+            label: "1.6ETH",
+            value: '1.6',
         },
         {
-            label: "2.00ETH",
-            value: '2.00',
+            label: "1.7ETH",
+            value: '1.7',
+        },
+        {
+            label: "1.8ETH",
+            value: '1.8',
+        },
+        {
+            label: "1.9ETH",
+            value: '1.9',
+        },
+
+        {
+            label: "2.0ETH",
+            value: '2.0',
         },
 
     ];
 
     return (
-        <OGPoolStyle>
+        <SeedDonationStyle>
             <div className="part1">
                 <div className="panel-box">
                     <div className="panel-container">
@@ -282,7 +325,7 @@ const OGPoolNew = (props) => {
                         <div className="donate-info">
                             <div className="info-item">
                                 <div className="name">
-                                   FDT Donate Pool Amount
+                                   Seed Donate Pool Amount
                                 </div>
                                 <div className="value">
                                     {FDTBalance}
@@ -297,14 +340,7 @@ const OGPoolNew = (props) => {
                                         {(FDTBalance * salePrice).toFixed(1)}
                                     </div>
                                 </div>
-                                <div className="info-item">
-                                    <div className="name">
-                                        Total Donate
-                                    </div>
-                                    <div className="value">
-                                        {totalDonate} ETH
-                                    </div>
-                                </div>
+
                             </div>
                         </div>
                         <div className="donate-pid">
@@ -417,6 +453,18 @@ const OGPoolNew = (props) => {
                             Donate Records
                         </div>
                         <div className="og-nav-list">
+                            <div className={"nav-item " + (typeNav == 1 ? "active" : "")} onClick={() => {
+                                setTypeNav(1)
+                            }}>
+                                Donation
+                            </div>
+                            <div className={"nav-item " + (typeNav == 2 ? "active" : "")} onClick={() => {
+                                setTypeNav(2)
+                            }}>
+                                Claim
+                            </div>
+                        </div>
+                        <div className="og-nav-list">
                             <div className={"nav-item " + (recordNav == 1 ? "active" : "")} onClick={() => {
                                 setRecordNav(1)
                             }}>
@@ -433,32 +481,43 @@ const OGPoolNew = (props) => {
                                 <div className="col">
                                     No.
                                 </div>
-                                <div className="col">
-                                    PID<img src={listIcon} alt="" className="list-icon"/>
-                                </div>
-                                <div className="col">
-                                    Username
-                                </div>
+
                                 <div className="col">
                                     Address
                                 </div>
-                                <div className="col">
-                                    ETH
-                                </div>
+
                                 <div className="col">
                                     Amount
                                 </div>
-                                <div className="col">
-                                    Rate
-                                </div>
-                                <div className="col">
-                                    USDT Cost
-                                </div>
-                                <div className="col">
-                                    Time(UTC)
-                                </div>
                             </div>
-
+                            {
+                                typeNav==1&&  <div>
+                                    {recordNav==1&& allRecords.map((item,index)=>{
+                                        return (
+                                            Row(item,index)
+                                        )
+                                    })}
+                                    {recordNav==2&& myRecords.map((item,index)=>{
+                                        return (
+                                            Row(item,index)
+                                        )
+                                    })}
+                                </div>
+                            }
+                            {
+                                typeNav==2&&  <div>
+                                    {recordNav==1&& claimRecords.map((item,index)=>{
+                                        return (
+                                            Row(item,index)
+                                        )
+                                    })}
+                                    {recordNav==2&& claimMyRecords.map((item,index)=>{
+                                        return (
+                                            Row(item,index)
+                                        )
+                                    })}
+                                </div>
+                            }
                         </div>
                         <div className="pagination">
                             {
@@ -472,7 +531,7 @@ const OGPoolNew = (props) => {
 
                 </div>
             </div>
-        </OGPoolStyle>
+        </SeedDonationStyle>
     )
 }
-export default OGPoolNew
+export default SeedDonationNew

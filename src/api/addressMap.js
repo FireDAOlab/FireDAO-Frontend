@@ -16,6 +16,7 @@ import erc1155 from "../abi/erc1155.json"
 import FDT from "../abi/fdt.json"
 import fdtOgToFdt from "../abi/fdtOgTOFdt.json"
 import FLMPool from "../abi/FLMPool.json";
+import FDTLockMining from "../abi/FDTLockMining.json";
 import emergencyPool from "../abi/emergencyPool.json"
 import normalPool from "../abi/normalPool.json"
 import poolManger from "../abi/pooManger.json"
@@ -72,12 +73,18 @@ if (develop.ENV === "production") {
         Guild: {address: "0xD75a1A6F27993571048C17FD1D346a36DD38E6Bd", abi: Guild},
         cityNode: {address: "0x0bb3fD1442Fd5d000Fa7c85A96df727CEa3491b9", abi: cityNode},
         WETH: {address: "0x7313A220a6220bF83245058a29Eb6187e9964927", abi: erc20Abi},
-        FDT: {address: "0x5a9aed6b0049854d9da3e8cfa771f6079a6a1b13", abi: FDT},
+        FDT: {address: "0xd1ad4a44f65141edcac9a23838f1bc6ed6dfeaef", abi: FDT},
         fdtOgToFdt: {address: "0x21212FC679C23bbAa8ae3dDAE43127590331ccA1", abi: fdtOgToFdt},
-        FLMPool: {address: "0xF9Fab4D282746B16168c6B41069BB7CBEE530AF5", abi: FLMPool},
+        FLMPool: {address: "0xF4CFfc4e0D71B26592D3a916160e3Fc6ca58aa62", abi: FLMPool},
+        FDTLockMining:{address:"0x8Fe6595636e03dee7b8BDcC23b0533E6Eb26B781",abi:FDTLockMining},
         autolp: {address: "0xEACd7603C3b6BD101636B214EE36887D88d199E9", abi: autolp},
+
         OGPool: {address: "0xf2b2575DEbb48FC225D2289ed77D246322a60dbF", abi: seedDonation},
         FLMExchange:{address:"0xC63595DBE3dC5B8727f69C64d93990c510cf5AB0",abi:FLMExchange},
+
+
+        seedDonation: {address: "0xf2b2575DEbb48FC225D2289ed77D246322a60dbF", abi: seedDonation},
+        FLMPoolLPAddress:{address:"0x6adf22540e77a100d136ca76a79a39af3b30484a"},
 
         FLM:{address:"0x926C1319AF0EBfb02e104d4940565940d2D0d0eC"},
         emergencyPool: {address: "0x251a7c07Ff5b71650DF9FEeB01184FC31a2bD57C", abi: emergencyPool},

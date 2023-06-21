@@ -53,7 +53,6 @@ import FDTRelease from "./view/FDTSquare/FDTRelease/index";
 import FDTReleaseManage from "./view/FDTSquare/FDTReleaseManage/index";
 import FDTOgToFdt from "./view/FDTSquare/FDTOgToFdt"
 import FLMPool from "./view/FDTSquare/FLMPool/index"
-import FDTMining from "./view/FDTSquare/FDTMining/index"
 import AutoReflowLP from "./view/FDTSquare/AutoReflowLP"
 import AutoReflowLPManage from "./view/FDTSquare/AutoReflowLPManage"
 import SeedDonation from "./view/FDTSquare/SeedDonation/SeedDonation";
@@ -72,10 +71,16 @@ import GuildManage from "./view/Operation/GuildManage"
 import Guild from "./view/Operation/Guild"
 import CreateGuild from "./view/Operation/CreateGuild"
 import GuildDetail from "./view/Operation/GuildDetail"
+
 import FLMAirdrop from "./view/Operation/FLMAirdrop"
 import FLMAirdropLv1 from "./view/Operation/FLMAirdrop/component/FLMAirdropLv1"
 import FLMAirdropLv2 from "./view/Operation/FLMAirdrop/component/FLMAirdropLv2"
 
+
+import LPMining from "./view/Operation/LPMining"
+import LPMiningManage from "./view/Operation/LPMining/Manage"
+import FDTLockMining from "./view/Operation/FDTLockMining"
+import FDTLockMiningManage from "./view/Operation/FDTLockMining/Manage"
 
 function App() {
     const history = useNavigate();
@@ -151,7 +156,6 @@ function App() {
                                 <Route path="/FDTReleaseManage" element={<FDTReleaseManage/>}/>
                                 <Route path="/FDTOgToFdt" element={<FDTOgToFdt/>}/>
                                 <Route path="/FLMPool" element={<FLMPool/>}/>
-                                <Route path="/FDTMining" element={<FDTMining/>}/>
                                 <Route path="/AutoReflowLP" element={<AutoReflowLP/>}/>
                                 <Route path="/AutoReflowLPManage" element={<AutoReflowLPManage/>}/>
                                 <Route path="/SeedDonation" element={<SeedDonation/>}/>
@@ -170,10 +174,17 @@ function App() {
                                 <Route path="/Guild" element={<Guild/>}/>
                                 <Route path="/CreateGuild" element={<CreateGuild/>}/>
                                 <Route path="/GuildDetail/:id" element={<GuildDetail/>}/>
+
                                 <Route path="/FLMAirdrop" element={<FLMAirdrop/>}/>
                                 
                                 <Route path="/FLMAirdropLv1" element={<FLMAirdropLv1/>}/>
                                 <Route path="/FLMAirdropLv2" element={<FLMAirdropLv2/>}/>
+
+                                <Route path="/LPMining" element={<LPMining/>}/>
+                                <Route path="/LPMiningManage" element={<LPMiningManage/>}/>
+                                <Route path="/FDTMining" element={<FDTLockMining/>}/>
+                                <Route path="/FDTMiningManage" element={<FDTLockMiningManage/>}/>
+
 
                             </Routes>
                         </div>
