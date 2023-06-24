@@ -4,6 +4,7 @@ import BigNumber from "bignumber.js"
 import AddNomalWhiteList from "./AddNomalWhiteList";
 import AddThreeWhiteList from "./AddThreeWhiteList";
 import {showNum} from "../../../utils/bigNumberUtil";
+import {formatAddress} from "../../../utils/publicJs";
 import {
     Button,
     message,
@@ -42,7 +43,6 @@ const OGPoolkk = (props) => {
     const [inputValue, setInputValue] = useState(0)
     const [isSAdmin, setIsSecondAdmin] = useState(false)
     const [isTAdmin, setIsThreeAdmin] = useState(false)
-    const [ethBalance, setEthBalance] = useState(0)
     const [fdtBalance, setFdtBalance] = useState(0)
     const [allRecords, setAllRecords] = useState([])
     const [refRecords, setREFRecords] = useState([])
@@ -123,7 +123,7 @@ const OGPoolkk = (props) => {
             <div className="col address">
                 {item.addr && (
                     <a href={develop.ethScan + "address/" + item.addr} target="_blank">
-                        {item.addr.substr(0, 6) + "..." + item.addr.substr(item.addr.length - 3, item.addr.length)}
+                        {formatAddress(item.addr)}
                     </a>
                 )}
             </div>
@@ -161,7 +161,7 @@ const OGPoolkk = (props) => {
             <div className="col address">
                 {
                     item.user && <a href={develop.ethScan + "address/" + item.user} target="_blank">
-                        {item.user.substr(0, 6) + "..." + item.user.substr(item.user.length - 6, item.user.length)}
+                        {formatAddress(item.user)}
                     </a>
                 }
 
@@ -183,7 +183,7 @@ const OGPoolkk = (props) => {
         setTotalDonate(res / 10 ** 18)
     }
     const getfdtAmount = async (value) => {
-        if (value > 0) {
+        if (value > 0 || value==0) {
             setInputValue(value)
             /* eslint-disable */
             let res = await handleViewMethod("getfdtAmount", [BigInt(value * 10 ** 18)])
@@ -223,7 +223,6 @@ const OGPoolkk = (props) => {
     const CoinBalance = async () => {
         let res = await handleCoinViewMethod("balanceOf", "WETH", [state.account])
         let res2 = await handleCoinViewMethod("balanceOf", "FDT", [state.account])
-        setEthBalance(res / 10 ** 18)
         setFdtBalance(res2 / 10 ** 18)
     }
 
@@ -461,12 +460,12 @@ const OGPoolkk = (props) => {
                                         </div>
                                     </div>
                                     {
-                                        BigNumber(ethBalance).lt(inputValue)&&<Button type="primary" className="donate">
+                                        BigNumber(state.ethBalance).lt(inputValue)&&<Button type="primary" className="donate">
                                             Balance not enough
                                         </Button>
                                     }
                                     {
-                                        !BigNumber(ethBalance).lt(inputValue) &&        <Button type="primary" className="donate" onClick={() => {
+                                        !BigNumber(state.ethBalance).lt(inputValue) &&        <Button type="primary" className="donate" onClick={() => {
                                             exchangeFdt()
                                         }}>
                                             Donate
@@ -503,7 +502,7 @@ const OGPoolkk = (props) => {
                                         }}>
                                             My recommendation
                                         </div>
-                                    )
+                                     )
                                     }
                                 </div>
                             </div>

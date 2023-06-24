@@ -5,10 +5,13 @@ export default   styled.div`
   }
   .header-nav{
     width: 90%;
-    margin: 0 auto;
+    margin-left: 5%;
+    display: flex;
+   
     .fire-nav-list{
-      width: 360px;
-      margin: 0;
+      .nav-item{
+        width: 180px;
+      }
     }
   }
   .panel-container {

@@ -2,9 +2,8 @@ import {createGlobalStyle} from "styled-components";
 
 const CommonStyle = createGlobalStyle`
   .fire-nav-list {
-    margin: 10px auto;
+    margin: 10px 0;
     display: flex;
-    width: 90%;
     height: 60px;
     background: #3F3535;
     border-radius: 10px;
@@ -15,11 +14,11 @@ const CommonStyle = createGlobalStyle`
     color: #999999;
     padding: 3px;
     .nav-item {
-      width: 50%;
       display: flex;
       align-items: center;
       text-align: center;
       justify-content: center;
+      flex-grow: 1;
       padding: 0 10px;
 
       &.active {
