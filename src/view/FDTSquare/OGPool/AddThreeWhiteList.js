@@ -1,5 +1,5 @@
 import React, {useEffect, useRef, useState} from 'react';
-
+import {formatAddress} from "../../../utils/publicJs";
 import {useConnect} from "../../../api/contracts";
 import {
     Button,
@@ -158,7 +158,7 @@ const AddWhiteList = ({allRecords}) => {
 
                         </h3>
                         <div className="fire-list-box">
-                            <div className="list-header3 flex-box">
+                            <div className="list-header3 list-header">
                                 <div className="col">
                                     No.
                                 </div>
@@ -191,14 +191,16 @@ const AddWhiteList = ({allRecords}) => {
                                         </div>
                                         <div className="col address">
                                             <a href={develop.ethScan + "address/" + item.user} target="_blank">
-                                                {item.user.substr(0, 6) + "..." + item.user.substr(item.user.length - 6, item.user.length)}
+                                                {formatAddress(item.user)}
                                             </a>
                                         </div>
-                                        <Button className="col" onClick={() => {
-                                            deleteWhite(item)
-                                        }}>
-                                            Delete
-                                        </Button>
+                                        <div className="col">
+                                            <Button className="del-button" onClick={() => {
+                                                deleteWhite(item)
+                                            }}>
+                                                Delete
+                                            </Button>
+                                        </div>
 
                                     </div>)
                                 )

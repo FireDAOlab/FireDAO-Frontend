@@ -24,12 +24,7 @@ import {getDonateRecord} from "../../../graph/donate";
 import OGPoolStyle from "./OGPoolStyle";
 const OGPoolkk = (props) => {
     let {state, dispatch} = useConnect();
-    const [isDelMolOpen, setDelOpen] = useState(false)
-    const [curWhiteUser, setCurWhiteUser] = useState(false)
-    const [addressValue, setAddressValue] = useState("")
-
     const [activeNav, setActiveNav] = useState(1)
-    const [MYPIDARR, setMYPIDARR] = useState([])
     const [total, setTotal] = useState(0)
     const [total2, setTotal2] = useState(0)
     const [recordNav, setRecordNav] = useState(1)

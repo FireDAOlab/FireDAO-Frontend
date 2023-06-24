@@ -420,28 +420,27 @@ export default   styled.div`
     text-align: center;
   }
 
-  .row3-list-item {
+  .list-header3,.row3-list-item {
     padding: 6px;
-
     .col {
       &:nth-child(1) {
-        width: 10% !important;
+        width: 10% ;
       }
 
       &:nth-child(2) {
-        width: 10% !important;
+        width: 10%;
       }
 
       &:nth-child(3) {
-        width: 16% !important;
+        width: 16%;
       }
 
       &:nth-child(4) {
-        width: 40% !important;
+        width: 40%;
       }
 
-      &:nth-child(4) {
-        width: 20% !important;
+      &:nth-child(5) {
+        width: 10%;
       }
     }
   }
