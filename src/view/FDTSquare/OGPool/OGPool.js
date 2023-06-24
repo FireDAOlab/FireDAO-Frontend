@@ -460,6 +460,11 @@ const OGPoolkk = (props) => {
                                             {fdtBalance} <span>FDT</span>
                                         </div>
                                     </div>
+                                    {
+                                        BigNumber(ethBalance).lt(inputValue)&&<Button type="primary" className="donate">
+                                            Balance not enough
+                                        </Button>
+                                    }
                                     <Button type="primary" className="donate" onClick={() => {
                                         exchangeFdt()
                                     }}>

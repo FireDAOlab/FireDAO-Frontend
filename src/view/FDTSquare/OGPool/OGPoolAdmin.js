@@ -280,6 +280,7 @@ const OGPool = (props) => {
 
     const setRate = async () => {
         await handleDealMethod("setRate", [form2.getFieldValue().assignId, form2.getFieldValue().assignRate])
+
         getRate()
     }
 
@@ -358,6 +359,11 @@ const OGPool = (props) => {
     }
     const handleShowSizeChange = async (page, count) => {
         setPageCount(count)
+    }
+    const delARRow = async (item)=>{
+        console.log(item)
+        await handleDealMethod("removeAssiginAddress", [item.assignId])
+        await handleDealMethod("removeRate  ", [item.assignId])
     }
     useEffect(() => {
         getData()
@@ -810,6 +816,9 @@ const OGPool = (props) => {
                                     <div className="col">
                                         Rate
                                     </div>
+                                    <div className="col">
+                                        Delete
+                                    </div>
                                 </div>
 
                                 {
@@ -820,7 +829,11 @@ const OGPool = (props) => {
                                             <div className="col">
                                                 {rateArr[index]}
                                             </div>
+                                            <div className="col">
+                                               <Button onClick={()=>{delARRow(item)}}>Del</Button>
+                                            </div>
                                         </div>
+
                                     ))
                                 }
 
