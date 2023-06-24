@@ -460,11 +460,19 @@ const OGPoolkk = (props) => {
                                             {fdtBalance} <span>FDT</span>
                                         </div>
                                     </div>
-                                    <Button type="primary" className="donate" onClick={() => {
-                                        exchangeFdt()
-                                    }}>
-                                        Donate
-                                    </Button>
+                                    {
+                                        BigNumber(ethBalance).lt(inputValue)&&<Button type="primary" className="donate">
+                                            Balance not enough
+                                        </Button>
+                                    }
+                                    {
+                                        !BigNumber(ethBalance).lt(inputValue) &&        <Button type="primary" className="donate" onClick={() => {
+                                            exchangeFdt()
+                                        }}>
+                                            Donate
+                                        </Button>
+                                    }
+
                                     <div className="tip">
                                         1FDT-OG = {salePrice} USD ，Donate up to 2ETH
                                     </div>
