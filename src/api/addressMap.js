@@ -68,7 +68,7 @@ if (develop.ENV === "production") {
         SBT001: {address: "0xa6096Fb5541396e38bC86A0E6e912EBE9cB6f65a", abi: erc20Abi},
         SBT003: {address: "0x058C32ff6e93fd5d58598f6540063d7c00a2c49B", abi: erc20Abi},
         airdrop: {address: "0xcB9F989490a2084944323C727d159A4D4baA07C9", abi: airdrop},
-        PrivateExchangePoolOG: {address: "0xDC7B5f481Fe2d53733c49586130082D04f2b3EAE", abi: PrivateExchangePoolOG},
+        PrivateExchangePoolOG: {address: "0x2317105a20C7702f7A57505d01300110C94438e6", abi: PrivateExchangePoolOG},
         TreasuryDistribution: {address: "0xA8FcF03CDEc12CF19767d12aC4c627FF6e5D1c21", abi: TreasuryDistribution},
         Guild: {address: "0xD75a1A6F27993571048C17FD1D346a36DD38E6Bd", abi: Guild},
         cityNode: {address: "0x0bb3fD1442Fd5d000Fa7c85A96df727CEa3491b9", abi: cityNode},

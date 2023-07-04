@@ -16,20 +16,23 @@ import judgeStatus from "../../../utils/judgeStatus";
 import {getDonateRecord} from "../../../graph/donate";
 import OGPoolAdminStyle from "./OGPoolAdminStyle";
 import AddAddressRate from "./AddAddressRate.js";
+import {formatAddress} from "../../../utils/publicJs";
+import {showNum} from "../../../utils/bigNumberUtil";
+import { getSecondDonateRecord, getThreeDonateRecord} from "../../../graph/donate";
 
 const OGPool = (props) => {
     const [form2] = Form.useForm();
     let {state, dispatch} = useConnect();
     const [activeNav, setActiveNav] = useState(1)
     const [form] = Form.useForm();
-    const [secondAdmins, setSecondAmdin] = useState([])
+    const [secondAdmins, setSecondAdmin] = useState([])
     const [assignAmin, setAssignAdmin] = useState([])
     const [rateArr, setRateArr] = useState([])
     const [total, setTotal] = useState(0)
     const [curPage, setCurPage] = useState(1)
     const [pageCount, setPageCount] = useState(20)
     const [inviteRate2, setInv2] = useState(0)
-    const [inviteRate3, setInv3] = useState(0)
+    const [inviteRate1, setInv1] = useState(0)
     const [FDTBalance, setFDTBalance] = useState(0)
     const [totalDonate, setTotalDonate] = useState(0)
     const [salePriceV, setSalePriceV] = useState(0)
@@ -43,8 +46,12 @@ const OGPool = (props) => {
     const [whiteList, setAllWhiteList] = useState([])
     const [status1, setStatus1] = useState()
     const [status2, setStatus2] = useState()
-    const [ownerAddress, setOwnerAddress] = useState("")
+    const [fdtAddr, setFDTAddressValue] = useState()
 
+
+    const [ownerAddress, setOwnerAddress] = useState("")
+    const [curAddr, setCurAddr] = useState("")
+    const [curId, setCurId] = useState("")
     const handleViewMethod = async (name, params) => {
         let contractTemp = await getContractByName("PrivateExchangePoolOG", state.api,)
         if (!contractTemp) {
@@ -74,6 +81,7 @@ const OGPool = (props) => {
     const getSummary = async () => {
         const allRecord = await getAllRecord()
         const secondAdmin = await getSecondAdmins()
+        console.log(secondAdmin)
         let sumArr = []
         for (let i = 0; i < secondAdmin.length; i++) {
             const addr = secondAdmin[i]
@@ -87,25 +95,6 @@ const OGPool = (props) => {
             })
         }
 
-        for (let i = 0; i < sumArr.length; i++) {
-            let admin = sumArr[i];
-            for (let k = 0; k < admin.thrArr.length; k++) {
-                let user = admin.thrArr[k];
-                user.fdtAmount = 0
-                user.ethAmount = 0
-                user.usdtAmount = 0
-                for (let j = 0; j < allRecord.length; j++) {
-                    let record = allRecord[j];
-                    if (user.user.toString().toLowerCase() == record.addr.toString().toLowerCase()) {
-                        user.addr = record.addr;
-                        user.fdtAmount = parseFloat(user.fdtAmount) + parseFloat(record.fdtAmount / 10 ** 18);
-                        user.ethAmount = parseFloat(user.ethAmount) + parseFloat(record.ethAmount / 10 ** 18)
-                        user.usdtAmount = parseFloat(user.usdtAmount) + parseFloat(record.usdtAmount / 10 ** 18)
-                    }
-
-                }
-            }
-        }
         //sum
         for (let i = 0; i < sumArr.length; i++) {
             let admin = sumArr[i];
@@ -113,36 +102,42 @@ const OGPool = (props) => {
             admin.tETH = 0
             admin.tUSDT = 0
             for (let j = 0; j < sumArr[i].thrArr.length; j++) {
-                let user = admin.thrArr[j];
-                if (parseFloat(user.fdtAmount) > 0) {
-                    admin.tAmount = parseFloat(admin.tAmount) + parseFloat(user.fdtAmount)
-                    admin.tETH = parseFloat(admin.tETH) + parseFloat(user.ethAmount)
-                    admin.tUSDT = parseFloat(admin.tUSDT) + parseFloat(user.usdtAmount)
+                let adminThree = admin.thrArr[j];
+                if (parseFloat(adminThree.user.fdtAmount) > 0) {
+                    admin.tAmount = parseFloat(admin.tAmount) + parseFloat(adminThree.user.fdtAmount / 10**18)
+                    admin.tETH = parseFloat(admin.tETH) + parseFloat(adminThree.user.ethAmount / 10**18)
+                    admin.tUSDT = parseFloat(admin.tUSDT) + parseFloat(adminThree.user.usdtAmount / 10**18)
                 }
-            }
-        }
-        setSumArr(sumArr)
-    }
-    const getAdminWhiteList = async (addr) => {
-        try {
-            let length = await handleDACCOUNTViewMethod("getAdminWhiteListLength", addr, [])
-            let adminWhiteList = []
-            for (let i = 0; i < length; i++) {
-                let res = await handleViewMethod("adminInviter", [addr, i])
-                let hasT = false
-                for (let i = 0; i < adminWhiteList.length; i++) {
-                    if (adminWhiteList[i].user == res.user) {
-                        hasT = true
+                for (let q = 0; q < adminThree.whitelist.length; q++) {
+                    const user = adminThree.whitelist[q]
+                    if (parseFloat(user.fdtAmount) > 0) {
+                        admin.tAmount = parseFloat(admin.tAmount) + parseFloat(user.fdtAmount)
+                        admin.tETH = parseFloat(admin.tETH) + parseFloat(user.ethAmount)
+                        admin.tUSDT = parseFloat(admin.tUSDT) + parseFloat(user.usdtAmount)
                     }
                 }
-                if (!hasT) {
-                    adminWhiteList.push(res)
-                }
             }
-            return adminWhiteList
-        } catch (e) {
-
         }
+        console.log(sumArr)
+        setSumArr(sumArr)
+    }
+    const getWhitelist = async (addr) => {
+        let res = await getThreeDonateRecord(addr)
+        return res.data.allRecords
+    }
+    const getAdminWhiteList = async (addr) => {
+        let res = await getSecondDonateRecord(addr)
+        let adminWhiteList = []
+        for(let i =0;i<  res.data.allRecords.length;i++){
+            const item = res.data.allRecords[i]
+            const whitelist = await getWhitelist(item. addr)
+            adminWhiteList.push({
+                user: item,
+                whitelist
+            })
+        }
+        return adminWhiteList
+
     }
     const getBalanceOfFDT = async () => {
         let balance = await handleViewMethod("getBalanceOfFDT", [])
@@ -194,44 +189,32 @@ const OGPool = (props) => {
         let res = await handleViewMethod("pidStatusForUser", [])
         setStatus2(res)
     }
-
+    const getFDTAddress = async () => {
+        let res = await handleViewMethod("fdt", [])
+        setFDTAddressValue(res)
+    }
     const getSecondAdmins = async () => {
+
         let length = await handleViewMethod("getAdminsLevelTwoLength", [])
         let arr = []
         for (let i = 0; i < length; i++) {
             let res = await handleViewMethod("adminsLevelTwo", [i])
             arr.push(res)
         }
-        setSecondAmdin(arr)
+        setSecondAdmin(arr)
         return arr
     }
-    const getRate = async () => {
-        let length = await handleViewMethod("getRateLength", [])
-        let arr = []
-        for (let i = 0; i < length; i++) {
-            let res = await handleViewMethod("rate", [i])
-            arr.push(res)
-        }
-        setRateArr(arr)
-    }
+
     const getInviteRate = async () => {
         const rate = await handleViewMethod("getRate", [])
         if (rate > 0) {
             let inviteRate2 = await handleViewMethod("inviteRate", [0])
-            let inviteRate3 = await handleViewMethod("inviteRate", [1])
+            let inviteRate1 = await handleViewMethod("inviteRate", [1])
             setInv2(inviteRate2)
-            setInv3(inviteRate3)
+            setInv1(inviteRate1)
         }
     }
-    const getAssignAddress = async () => {
-        let length = await handleViewMethod("getAssignAddresslength", [])
-        let arr = []
-        for (let i = 0; i < length; i++) {
-            let res = await handleViewMethod("assignAddress", [i])
-            arr.push(res)
-        }
-        setAssignAdmin(arr)
-    }
+
     const addInviteRate = async () => {
         await handleDealMethod("addInviteRate", [[form2.getFieldValue().inviteRate1, form2.getFieldValue().inviteRate2]])
         getInviteRate()
@@ -248,52 +231,18 @@ const OGPool = (props) => {
         await handleDealMethod("setPidStatusForUser", [])
         getpidStatusForUser()
     }
-    const setAssignAddress = async () => {
-        await handleDealMethod("setAssignAddress", [form2.getFieldValue().assignId, form2.getFieldValue().address])
-        getAssignAddress()
-    }
-    const addAssignAddress = async () => {
-        await handleDealMethod("addAssignAddress", [[form2.getFieldValue().addAssignAddr]])
-        getAssignAddress()
-    }
-    const removeAssiginAddress = async () => {
-        await handleDealMethod("removeAssiginAddress", [form2.getFieldValue().addAssignAddr])
-        getAssignAddress()
-    }
-    const addRate = async () => {
-        let TotalRate = form2.getFieldValue().addAssignRate
-        rateArr.forEach(rate => {
-            TotalRate = parseInt(TotalRate) + parseInt(rate)
-        })
-        TotalRate = parseFloat(TotalRate) + parseFloat(inviteRate2) + parseFloat(inviteRate3)
-        if (TotalRate > 100) {
-            message.warn("需要把上面rate设置一下，使其总和不超过100")
-            return
-        }
-        await handleDealMethod("addRate", [[form2.getFieldValue().addAssignRate]])
-        getRate()
-    }
-    const removeRate = async () => {
-        await handleDealMethod("removeRate  ", [form2.getFieldValue().assignId])
-        getRate()
-    }
 
-    const setRate = async () => {
-        await handleDealMethod("setRate", [form2.getFieldValue().assignId, form2.getFieldValue().assignRate])
 
-        getRate()
+    const setRateAndAddress = async () => {
+        await handleDealMethod("setAssignAddressAndRatio", [curId, curAddr, form2.getFieldValue().assignRate])
+
     }
 
     const transferOwnership = async () => {
         await handleDealMethod("transferOwnership", [form.getFieldValue().address])
         getOwner()
     }
-    const onChangeStatus1 = async () => {
-        setStatus1(form.getFieldValue().status1)
-    }
-    const onChangeStatus2 = async () => {
-        setStatus2(form.getFieldValue().status2)
-    }
+
     const handlePause = async () => {
         await handleDealMethod("pause", [])
     }
@@ -301,15 +250,15 @@ const OGPool = (props) => {
         await handleDealMethod("unpause", [])
     }
     const setInviteRate = async () => {
-        await handleDealMethod("setInviteRate", [form2.getFieldValue().inviteRate])
+        await handleDealMethod("setInviteRate", [form2.getFieldValue().inviteRateID, form2.getFieldValue().inviteRate])
         getInviteRate()
     }
     const setAdmins = async () => {
-        await handleDealMethod("setAdmin", [[form.getFieldValue().adminaddress]])
+        await handleDealMethod("setAdminLevelTwo", [[form.getFieldValue().adminaddress]])
         getSecondAdmins()
     }
     const removeAdmin = async () => {
-        await handleDealMethod("removeAdmin", [[form.getFieldValue().adminaddress]])
+        await handleDealMethod("removeAdminLevelTwo", [[form.getFieldValue().adminaddress]])
         getSecondAdmins()
     }
     const setWhiteMaxForTwo = async () => {
@@ -342,8 +291,6 @@ const OGPool = (props) => {
         getShowWhiteList()
         getOwner()
         getSecondAdmins()
-        getAssignAddress()
-        getRate()
         getInviteRate()
         getSalePrice()
         getMaxTwo()
@@ -352,6 +299,11 @@ const OGPool = (props) => {
         getPause()
         getpidStatusForAdmin()
         getpidStatusForAdmin()
+        getFDTAddress()
+    }
+    const chooseRow = (addr, id) => {
+        setCurAddr(addr)
+        setCurId(id)
     }
     const onChangePage = async (page) => {
         getData(page)
@@ -360,14 +312,38 @@ const OGPool = (props) => {
     const handleShowSizeChange = async (page, count) => {
         setPageCount(count)
     }
-    const delARRow = async (item)=>{
-        console.log(item)
-        await handleDealMethod("removeAssiginAddress", [item.assignId])
-        await handleDealMethod("removeRate  ", [item.assignId])
+    const delARRow = async (item) => {
+        await handleDealMethod("removeAssiginAddressAndRatio", [[item]])
     }
+
     useEffect(() => {
         getData()
     }, [state.account]);
+    const Row = (user,indexUser)=>{
+        return  <div className="sum-item" key={indexUser}>
+            <div className="col">
+                user {indexUser}
+            </div>
+            <div className="col">
+                {user.Pid}
+            </div>
+            <div className="col">
+                {user.name}
+            </div>
+            <div className="col">
+                {user.user}
+            </div>
+            <div className="col">
+                {showNum(user.fdtAmount / 10**18)}
+            </div>
+            <div className="col">
+                {showNum(user.ethAmount/10**18)}
+            </div>
+            <div className="col">
+                {showNum(user.usdtAmount / 10**18)}
+            </div>
+        </div>
+    }
     const Row2 = (item, index) => {
         return <div className="list-item " key={index}>
             <div className="col id">
@@ -394,7 +370,7 @@ const OGPool = (props) => {
 
     return (
         <OGPoolAdminStyle>
-            <div className="og-nav-list">
+            <div className="fire-nav-list">
                 <div className={"nav-item " + (activeNav == 1 ? "active" : "")} onClick={() => {
                     setActiveNav(1)
                 }}>
@@ -491,7 +467,7 @@ const OGPool = (props) => {
                     <div className="panel-box">
                         <div className="panel-container">
                             <div className="panel-title">
-                                Set FDT Address: {status2 ? "True" : "False"}
+                                Set FDT Address: {fdtAddr}
                             </div>
                             <Form form={form} name="control-hooks" className="form">
                                 <Form.Item
@@ -553,30 +529,7 @@ const OGPool = (props) => {
                                 </div>
                             </Form>
                         </div>
-                        <div className="panel-container">
-                            <div className="panel-title">
-                                Set Level 2 WhiteList Amount: {maxTwo}
-                            </div>
-                            <Form form={form2} name="control-hooks" className="form">
 
-                                <Form.Item
-                                    name="max"
-                                    label="Max"
-                                    validateTrigger="onBlur"
-                                    validateFirst={true}
-                                >
-                                    <div className="input-box">
-                                        <Input/>
-                                    </div>
-                                </Form.Item>
-
-                                <div className="btns">
-                                    <Button className="add-btn" type="primary" onClick={() => {
-                                        setWhiteMaxForTwo()
-                                    }}>setWhiteMaxForTwo</Button>
-                                </div>
-                            </Form>
-                        </div>
                         <div className="panel-container">
                             <div className="panel-title">
                                 Set Level 3 WhiteList Amount: {maxThree}
@@ -641,7 +594,7 @@ const OGPool = (props) => {
                                         <Input/>
                                     </div>
                                 </Form.Item>
-                                <h3> 3 Level Admin{inviteRate3}%</h3>
+                                <h3> 3 Level Admin{inviteRate1}%</h3>
                                 <Form.Item
                                     name="inviteRate2"
                                     label="Invite Rate 2"
@@ -662,10 +615,19 @@ const OGPool = (props) => {
                         <div className="panel-container">
                             <div className="panel-title">
                                 Invite Rate:<br/>
-                                2 Level Admin{inviteRate2}%, 3 Level Admin{inviteRate3}%
+                                2 Level Admin{inviteRate1}% ID 1, 3 Level Admin{inviteRate2}% ID 0
                             </div>
                             <Form form={form2} name="control-hooks" className="form">
-
+                                <Form.Item
+                                    name="inviteRateID"
+                                    label="Invite Rate ID"
+                                    validateTrigger="onBlur"
+                                    validateFirst={true}
+                                >
+                                    <div className="input-box">
+                                        <Input/>
+                                    </div>
+                                </Form.Item>
                                 <Form.Item
                                     name="inviteRate"
                                     label="Invite Rate"
@@ -684,119 +646,7 @@ const OGPool = (props) => {
                                 </div>
                             </Form>
                         </div>
-                        <div className="panel-container">
-                            <div className="panel-title">
-                                Fund Allocation
-                            </div>
 
-                            <div className="box">
-                                <div className="assign-row flex-box">
-                                    <div className="col">
-                                        Address
-                                    </div>
-
-                                    <div className="col">
-                                        Rate
-                                    </div>
-                                </div>
-
-                                {
-                                    assignAmin.map((item, index) => (
-                                        <div className="assign-row">
-                                            <div className="col">{item}
-                                            </div>
-                                            <div className="col">
-                                                {rateArr[index]}
-                                            </div>
-                                        </div>
-                                    ))
-                                }
-
-                            </div>
-                            <Form form={form2} name="control-hooks" className="form">
-                                <Form.Item
-                                    name="assignId"
-                                    label="assignId"
-                                    validateTrigger="onBlur"
-                                    validateFirst={true}
-                                >
-                                    <div className="input-box">
-                                        <Input/>
-                                    </div>
-                                </Form.Item>
-                                <Form.Item
-                                    name="assignAddress"
-                                    label="assignAddress"
-                                    validateTrigger="onBlur"
-                                    validateFirst={true}
-                                >
-                                    <div className="input-box">
-                                        <Input/>
-                                    </div>
-                                </Form.Item>
-                                <div className="btns">
-                                    <Button className="add-btn" type="primary" onClick={() => {
-                                        setAssignAddress()
-                                    }}>setAssignAddress</Button>
-                                </div>
-                                <Form.Item
-                                    name="assignRate"
-                                    label="assignRate"
-                                    validateTrigger="onBlur"
-                                    validateFirst={true}
-                                >
-                                    <div className="input-box">
-                                        <Input/>
-                                    </div>
-                                </Form.Item>
-
-                                <div className="btns">
-                                    <Button className="add-btn" type="primary" onClick={() => {
-                                        setRate()
-                                    }}>setRate</Button>
-                                    <Button className="add-btn" type="primary" onClick={() => {
-                                        removeRate()
-                                    }}>removeRate</Button>
-
-                                </div>
-                                <Form.Item
-                                    name="addAssignAddr"
-                                    label="addAssignAddr"
-                                    validateTrigger="onBlur"
-                                    validateFirst={true}
-                                >
-                                    <div className="input-box">
-                                        <Input/>
-                                    </div>
-                                </Form.Item>
-
-                                <div className="btns">
-                                    <Button className="add-btn" type="primary" onClick={() => {
-                                        addAssignAddress()
-                                    }}>addAssignAddress</Button>
-                                    <Button className="add-btn" type="primary" onClick={() => {
-                                        removeAssiginAddress()
-                                    }}>removeAssiginAddress</Button>
-                                </div>
-                                <Form.Item
-                                    name="addAssignRate"
-                                    label="addAssignRate"
-                                    validateTrigger="onBlur"
-                                    validateFirst={true}
-                                >
-                                    <div className="input-box">
-                                        <Input/>
-                                    </div>
-                                </Form.Item>
-
-                                <div className="btns">
-                                    <Button className="add-btn" type="primary" onClick={() => {
-                                        addRate()
-                                    }}>addRate</Button>
-
-                                </div>
-                            </Form>
-                        </div>
                         <div className="panel-container">
                             <div className="panel-title">
                                 Fund Allocation
@@ -823,14 +673,21 @@ const OGPool = (props) => {
 
                                 {
                                     assignAmin.map((item, index) => (
-                                        <div className="assign-row list-item">
+                                        <div className="assign-row list-item" key={index} onClick={() => {
+                                            chooseRow(item, index)
+                                        }}>
+                                            <div className="col">
+                                                {index + 1}
+                                            </div>
                                             <div className="col">{item}
                                             </div>
                                             <div className="col">
                                                 {rateArr[index]}
                                             </div>
                                             <div className="col">
-                                               <Button onClick={()=>{delARRow(item)}}>Del</Button>
+                                                <Button onClick={() => {
+                                                    delARRow(item)
+                                                }}>Del</Button>
                                             </div>
                                         </div>
 
@@ -843,6 +700,52 @@ const OGPool = (props) => {
                                     setShowAddRate(true)
                                 }}>ADD</Button>
                             </div>
+                            <h3 style={{marginTop: '20px'}}>UPDATE</h3>
+                            <Form form={form2} name="control-hooks" className="form">
+                                <Form.Item
+                                    name="assignId"
+                                    label="assignId"
+                                    validateTrigger="onBlur"
+                                    validateFirst={true}
+                                >
+                                    <div className="input-box">
+                                        {curId}
+                                    </div>
+                                </Form.Item>
+                                <Form.Item
+                                    name="assignAddress"
+                                    label="assignAddress"
+                                    validateTrigger="onBlur"
+                                    validateFirst={true}
+                                >
+                                    <div className="input-box">
+                                        <Input value={curAddr} onChange={(e) => {
+                                            setCurAddr(e.target.value)
+                                        }}/>
+
+                                    </div>
+                                </Form.Item>
+
+                                <Form.Item
+                                    name="assignRate"
+                                    label="assignRate"
+                                    validateTrigger="onBlur"
+                                    validateFirst={true}
+                                >
+                                    <div className="input-box">
+                                        <Input/>
+                                    </div>
+                                </Form.Item>
+
+                                <div className="btns">
+                                    <Button className="add-btn" type="primary" onClick={() => {
+                                        setRateAndAddress()
+                                    }}>setRateAndAddress</Button>
+
+                                </div>
+
+
+                            </Form>
                         </div>
                     </div>
                 </div>
@@ -909,9 +812,7 @@ const OGPool = (props) => {
                                     <Button onClick={claim} type="primary" className="operate-btn">
                                         Claim
                                     </Button>
-                                    {/*<Button type="primary" className="operate-btn">*/}
-                                    {/*    FDT-OG Deposit*/}
-                                    {/*</Button>*/}
+
                                     <Form form={form2} name="control-hooks" className="form">
                                         <Form.Item
                                             name="withdrawNum"
@@ -977,7 +878,7 @@ const OGPool = (props) => {
                                 <div className="sum-list">
                                     {
                                         sumArr.map((sumItem, index) => (
-                                            <div className="sum-item-box">
+                                            <div className="sum-item-box" key={index}>
                                                 <div className="sum-list-header">
                                                     <div className="index">
                                                         {index}、二级管理员
@@ -986,60 +887,56 @@ const OGPool = (props) => {
                                                         {sumItem.addr}
                                                     </div>
                                                 </div>
-                                                <div className="sum-item-header">
-                                                    <div className="col">
-                                                        idx
-                                                    </div>
-                                                    <div className="col">
-                                                        Pid
-                                                    </div>
-                                                    <div className="col">
-                                                        name
-                                                    </div>
-                                                    <div className="col">
-                                                        userAddr
-                                                    </div>
-                                                    <div className="col">
-                                                        fdtAmount
-                                                    </div>
-                                                    <div className="col">
-                                                        ethAmount
-                                                    </div>
-                                                    <div className="col">
-                                                        usdtAmount
-                                                    </div>
-                                                </div>
                                                 {
                                                     sumItem.thrArr.map((thrUser, index) => {
-                                                        if (thrUser.fdtAmount > 0) {
-                                                            return (
+                                                        return (
+                                                            <div className="sum-box">
+                                                                <div className="sum-item-header">
+                                                                    <div className="col">
+                                                                        idx
+                                                                    </div>
+                                                                    <div className="col">
+                                                                        userAddr
+                                                                    </div>
 
-                                                                <div className="sum-item">
+                                                                </div>
+
+                                                                {Row(thrUser.user,index)}
+                                                                <div className="sum-item-header">
                                                                     <div className="col">
-                                                                        {index}
+                                                                        idx
                                                                     </div>
                                                                     <div className="col">
-                                                                        {thrUser.Pid}
+                                                                        Pid
                                                                     </div>
                                                                     <div className="col">
-                                                                        {thrUser.name}
+                                                                        name
                                                                     </div>
                                                                     <div className="col">
-                                                                        {thrUser.user}
+                                                                        userAddr
                                                                     </div>
                                                                     <div className="col">
-                                                                        {thrUser.fdtAmount}
+                                                                        fdtAmount
                                                                     </div>
                                                                     <div className="col">
-                                                                        {thrUser.ethAmount}
+                                                                        ethAmount
                                                                     </div>
                                                                     <div className="col">
-                                                                        {thrUser.usdtAmount}
+                                                                        usdtAmount
                                                                     </div>
                                                                 </div>
-                                                            )
-                                                        }
 
+                                                                {
+                                                                    thrUser.whitelist.map((user,indexUser) => {
+                                                                        return (
+                                                                           Row(user,indexUser)
+                                                                        )
+                                                                    })
+                                                                }
+                                                            </div>
+
+
+                                                        )
                                                     })
                                                 }
                                                 <div className="sum-list-footer">
@@ -1059,7 +956,7 @@ const OGPool = (props) => {
                                                         USDT:
                                                     </div>
                                                     <div className="col">
-                                                        {sumItem.tUSDT}
+                                                        {showNum(sumItem.tUSDT)}
                                                     </div>
                                                 </div>
                                             </div>))
@@ -1070,10 +967,10 @@ const OGPool = (props) => {
                     </div>
                 )
             }
-            { showAddRate && (<AddAddressRate updateData={()=>{
-                getAssignAddress()
-                getRate()
-            }} closeDialog={()=>{setShowAddRate(false)}}/>)}
+            {showAddRate && (<AddAddressRate updateData={() => {
+            }} closeDialog={() => {
+                setShowAddRate(false)
+            }}/>)}
 
         </OGPoolAdminStyle>
     )

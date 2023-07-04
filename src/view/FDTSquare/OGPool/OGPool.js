@@ -5,6 +5,7 @@ import AddNomalWhiteList from "./AddNomalWhiteList";
 import AddThreeWhiteList from "./AddThreeWhiteList";
 import {showNum} from "../../../utils/bigNumberUtil";
 import {formatAddress} from "../../../utils/publicJs";
+import ConnectWallet from "../../../component/ConnectWallet/ConnectWallet";
 import {
     Button,
     message,
@@ -22,6 +23,7 @@ import {useNavigate} from "react-router-dom";
 import judgeStatus from "../../../utils/judgeStatus";
 import {getDonateRecord} from "../../../graph/donate";
 import OGPoolStyle from "./OGPoolStyle";
+
 const OGPoolkk = (props) => {
     let {state, dispatch} = useConnect();
     const [activeNav, setActiveNav] = useState(1)
@@ -46,10 +48,9 @@ const OGPoolkk = (props) => {
     const [isInWhiteList, setIsInWhiteList] = useState(false)
     const [adminWhiteList, setAdminWhiteList] = useState([])
     const [salePrice, setSalePriceV] = useState(0.01)
-    const [addWhiteArr, setAddWArr] = useState([{}])
+    const [status, setStatus] = useState(0)
     const history = useNavigate();
     const [form] = Form.useForm();
-    const [form2] = Form.useForm();
 
 
     const handleUserViewMethod = async (name, params) => {
@@ -88,13 +89,7 @@ const OGPoolkk = (props) => {
             dispatch({type: "SET_PID", payload: userInfo.PID})
         }
     }
-    const handleDealCoinMethod = async (name, coinName, params) => {
-        let contractTemp = await getContractByName(coinName, coinName, state.api,)
-        if (!contractTemp) {
-            message.warn("Please connect", 5)
-        }
-        return dealMethod(contractTemp, state.account, name, params)
-    }
+
     const handleCoinViewMethod = async (name, coinName, params) => {
         let contractTemp = await getContractByName(coinName, state.api,)
         if (!contractTemp) {
@@ -178,7 +173,7 @@ const OGPoolkk = (props) => {
         setTotalDonate(res / 10 ** 18)
     }
     const getfdtAmount = async (value) => {
-        if (value > 0 || value==0) {
+        if (value > 0 || value == 0) {
             setInputValue(value)
             /* eslint-disable */
             let res = await handleViewMethod("getfdtAmount", [BigInt(value * 10 ** 18)])
@@ -206,17 +201,20 @@ const OGPoolkk = (props) => {
     }
 
     const getIsAdmin = async () => {
-        let res1 = await handleViewMethod("IsAdminLevelTwo", [state.account])
-        let res2 = await handleViewMethod("IsAdminLevelThree", [state.account])
-        setIsSecondAdmin(res1)
-        setIsThreeAdmin(res2)
+
+        setIsSecondAdmin(false)
+        setIsThreeAdmin(false)
     }
     const getSalePrice = async () => {
         let res = await handleViewMethod("salePrice", [])
         setSalePriceV(res / 1000)
     }
+    const getValidNumbers = async () => {
+        let length = await handleViewMethod("getValidNumbers", [])
+        let res = await handleViewMethod("validNumbers", [length - 1])
+        console.log(res)
+    }
     const CoinBalance = async () => {
-        let res = await handleCoinViewMethod("balanceOf", "WETH", [state.account])
         let res2 = await handleCoinViewMethod("balanceOf", "FDT", [state.account])
         setFdtBalance(res2 / 10 ** 18)
     }
@@ -235,6 +233,8 @@ const OGPoolkk = (props) => {
             getShowWhiteList()
             getUserInfo()
             getSalePrice()
+            getValidNumbers()
+
             let res = await getDonateRecord()
             if (res.data) {
                 let arr = []
@@ -257,7 +257,6 @@ const OGPoolkk = (props) => {
         } catch (e) {
 
         }
-        // dispatch({type: "SET_PidArr", payload: tempArr})
     }
     const onChangePage = async (page) => {
         await setCurPage(page)
@@ -272,9 +271,36 @@ const OGPoolkk = (props) => {
     const handleShowSizeChange2 = async (page, count) => {
         setPageCount2(count)
     }
+    useEffect(async () => {
+       try{
+           let res = await getDonateRecord()
+           if (res.data) {
+               res.data.allRecords.forEach(item => {
+                   if (item.time) {
+                       item.time = new Date(item.time * 1000).toUTCString()
+                   }
+               })
+               if (res.data.allRecords && res.data.allRecords.length > 0) {
+                   setAllRecords(res.data.allRecords)
+                   setTotal(res.data.allRecords.length)
+               }
+
+           }
+       }catch (e) {
+           console.log(e)
+       }
+
+    }, []);
     useEffect(() => {
         getData()
     }, [state.account]);
+    useEffect(() => {
+        if (state.account && state.apiState == "READY") {
+            setStatus(1)
+        } else {
+            setStatus(0)
+        }
+    }, [state.account, state.networkId, state.apiState])
     const coinOptions = [
         {
             label: "0.25ETH",
@@ -313,6 +339,9 @@ const OGPoolkk = (props) => {
 
     return (
         <OGPoolStyle>
+            <div className="page-title">
+                OG Pool
+            </div>
             <div className="header-nav">
                 <div className="fire-nav-list ">
                     <div className={"nav-item " + (activeNav == 1 ? "active" : "")} onClick={() => {
@@ -327,7 +356,7 @@ const OGPoolkk = (props) => {
                     </div>
                     {
                         (isSAdmin) && (
-                            <div className={"nav-item " + (activeNav ==4 ? "active" : "")} onClick={() => {
+                            <div className={"nav-item " + (activeNav == 4 ? "active" : "")} onClick={() => {
                                 setActiveNav(4)
                             }}>
                                 Set Admin
@@ -335,7 +364,7 @@ const OGPoolkk = (props) => {
                         )
                     }
                     {
-                        (isTAdmin||isSAdmin) && (
+                        (isTAdmin) && (
                             <div className={"nav-item " + (activeNav == 3 ? "active" : "")} onClick={() => {
                                 setActiveNav(3)
                             }}>
@@ -369,7 +398,7 @@ const OGPoolkk = (props) => {
                                             Value
                                         </div>
                                         <div className="value">
-                                            {showNum(BigNumber(FDTBalance).multipliedBy(salePrice) )}
+                                            {showNum(BigNumber(FDTBalance).multipliedBy(salePrice))}
                                         </div>
                                     </div>
                                     <div className="info-item">
@@ -397,70 +426,84 @@ const OGPoolkk = (props) => {
                                 </div>
                             </div>
                             <div className="donation-box">
+                                <div className="title">
+                                    Donate
+                                </div>
                                 <Form form={form} name="control-hooks" className="form">
-                                    <div className="balance-box">
-                                        <div className="name">
-                                            Balance
+                                    <div className="donate-part">
+                                        <div className="balance-box">
+                                            <div className="name">
+                                                Balance
+                                            </div>
+                                            <div className="value">
+                                                {showNum(state.ethBalance)} <span>ETH</span>
+                                            </div>
                                         </div>
-                                        <div className="value">
-                                            {state.ethBalance} <span>ETH</span>
-                                        </div>
+                                        <Form.Item
+                                            name="amount"
+                                            validateTrigger="onBlur"
+                                            validateFirst={true}
+                                        >
+                                            <div className="input-box">
+                                                <AutoComplete
+                                                    allowClear
+                                                    value={inputValue}
+                                                    onChange={(e) => {
+                                                        getfdtAmount(e)
+                                                    }}
+                                                    style={{width: 200}}
+                                                    options={coinOptions}
+                                                    placeholder="0"
+                                                    filterOption={(inputValue, option) =>
+                                                        option.value.indexOf(inputValue) !== -1 &&
+                                                        /^-?(0|[1-9][0-9]*)(\.[0-9]*)?$/.test(inputValue)
+                                                    }
+                                                />
+                                                <div className="right-tip">
+                                                    <img className="coin-icon" src={ethIcon} alt=""/>
+                                                    ETH
+                                                </div>
+                                            </div>
+                                        </Form.Item>
                                     </div>
-                                    <Form.Item
-                                        name="amount"
-                                        validateTrigger="onBlur"
-                                        validateFirst={true}
-                                    >
-                                        <div className="input-box">
-                                            <img className="coin-icon" src={ethIcon} alt=""/>
-                                            <AutoComplete
-                                                allowClear
-                                                value={inputValue}
-                                                onChange={(e) => {
-                                                    getfdtAmount(e)
-                                                }}
-                                                style={{width: 200}}
-                                                options={coinOptions}
-                                                placeholder=""
-                                                filterOption={(inputValue, option) =>
-                                                    option.value.indexOf(inputValue) !== -1 &&
-                                                    /^-?(0|[1-9][0-9]*)(\.[0-9]*)?$/.test(inputValue)
-                                                }
-                                            />
-
-                                        </div>
-                                    </Form.Item>
                                     <img className="down-icon" src={downIcon} alt=""/>
-                                    <Form.Item
-                                        name="pid"
-                                        validateTrigger="onBlur"
-                                        validateFirst={true}
 
-                                    >
-                                        <div className="input-box">
-                                            <div className="exchangeAmount">
-                                                {exchangeAmount}
-                                            </div>
-                                            <div className="coin-name">
-                                                FDT-OG
-                                            </div>
-                                        </div>
-                                    </Form.Item>
-                                    <div className="balance-box">
-                                        <div className="name">
-                                            Balance
-                                        </div>
-                                        <div className="value">
-                                            {fdtBalance} <span>FDT</span>
-                                        </div>
-                                    </div>
+
+                                   <div className="donate-part">
+                                       <div className="balance-box">
+                                           <div className="name">
+                                               Balance
+                                           </div>
+                                           <div className="value">
+                                               {showNum(fdtBalance)} <span>FDT</span>
+                                           </div>
+                                       </div>
+                                       <Form.Item
+                                           name="pid"
+                                           validateTrigger="onBlur"
+                                           validateFirst={true}
+
+                                       >
+                                           <div className="input-box">
+                                               <div className="exchangeAmount">
+                                                   {exchangeAmount}
+                                               </div>
+                                               <div className="right-tip">
+                                                   FDT-OG
+                                               </div>
+                                           </div>
+                                       </Form.Item>
+                                   </div>
+                                    {status == 0 && <ConnectWallet className="connect-button"/>}
                                     {
-                                        BigNumber(state.ethBalance).lt(inputValue)&&<Button type="primary" className="donate">
+                                        status == 1 && BigNumber(state.ethBalance).lt(inputValue) &&
+                                        <Button type="primary" className="donate">
                                             Balance not enough
                                         </Button>
                                     }
                                     {
-                                        !BigNumber(state.ethBalance).lt(inputValue) &&        <Button type="primary" className="donate" onClick={() => {
+                                        status == 1 && !BigNumber(state.ethBalance).lt(inputValue) &&
+                                        <Button type="primary" className="donate" onClick={() => {
                                             exchangeFdt()
                                         }}>
                                             Donate
@@ -497,7 +540,7 @@ const OGPoolkk = (props) => {
                                         }}>
                                             My recommendation
                                         </div>
-                                     )
+                                    )
                                     }
                                 </div>
                             </div>
@@ -571,10 +614,10 @@ const OGPoolkk = (props) => {
                         <div className="panel-container">
                             <div className="isInW">
                                 <span>
-                                    My Pid:{state.pid}
+                                    My Pid: {state.pid}
                                 </span>
                                 <span>
-                                    Whiterlist:{isInWhiteList ? "Yes" : "False"}
+                                    Whiterlist: {isInWhiteList ? "Yes" : "False"}
                                 </span>
                             </div>
                             <div className="fire-list-box">
@@ -599,27 +642,28 @@ const OGPoolkk = (props) => {
                                         Row2(item, index)
                                     ))
                                 }
-                                <div className="pagination">
-                                    {
-                                        <Pagination current={curPage2} showSizeChanger
-                                                    onShowSizeChange={handleShowSizeChange2}
-                                                    onChange={onChangePage2} total={total2}
-                                                    defaultPageSize={pageCount2}/>
-                                    }
-                                </div>
 
+
+                            </div>
+                            <div className="pagination">
+                                {
+                                    <Pagination current={curPage2} showSizeChanger
+                                                onShowSizeChange={handleShowSizeChange2}
+                                                onChange={onChangePage2} total={total2}
+                                                defaultPageSize={pageCount2}/>
+                                }
                             </div>
                         </div>
                     </div>
                 </div>
             )}
-            {activeNav == 3 &&(
+            {activeNav == 3 && (
                 <div>
                     <AddThreeWhiteList allRecords={allRecords}></AddThreeWhiteList>
 
                 </div>
             )}
-            {activeNav == 4 &&(
+            {activeNav == 4 && (
                 <div>
                     <AddNomalWhiteList allRecords={allRecords}></AddNomalWhiteList>
                 </div>

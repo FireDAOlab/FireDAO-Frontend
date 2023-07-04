@@ -102,11 +102,11 @@ const AddWhiteList = ({allRecords}) => {
         setMaxThree(res)
     }
     const removeWhiteList = async () => {
-        await handleDealMethod("removeWhiteList", [form2.getFieldValue().address])
+        await handleDealMethod("removeWhiteListBatch", [[form2.getFieldValue().address]])
         getAdminWhiteList()
     }
     const removeWhiteListUser = async () => {
-        await handleDealMethod("removeWhiteList", [curWhiteUser.user])
+        await handleDealMethod("removeWhiteListBatch", [[curWhiteUser.user]])
         setDelOpen(false)
         getAdminWhiteList()
     }
@@ -249,9 +249,9 @@ const AddWhiteList = ({allRecords}) => {
                             <Button className="add-btn" type="primary" onClick={() => {
                                 addWhiteList()
                             }}>Add Whitelist</Button>
-                            <Button className="add-btn" type="primary" onClick={() => {
-                                removeWhiteList()
-                            }}>Remove</Button>
+                            {/*<Button className="add-btn" type="primary" onClick={() => {*/}
+                            {/*    removeWhiteList()*/}
+                            {/*}}>Remove</Button>*/}
                         </div>
 
                     </div>

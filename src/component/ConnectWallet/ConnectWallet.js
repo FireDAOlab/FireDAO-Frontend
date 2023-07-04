@@ -5,13 +5,16 @@ import {
     WalletOutlined
 } from '@ant-design/icons';
 import develop from "../../env";
+import {Network} from "../../config/constants";
 import ConnectWalletStyle from "./ConnectWalletStyle";
+
 const ConnectWallet = () => {
     let {state, dispatch} = useConnect();
     const location = useLocation()
     const connectWallet = async () => {
         try {
-            if (state.networkId != develop.chainId) {
+            let curChainId = await window.ethereum.request({method: "eth_chainId"})
+            if (curChainId != develop.chainId) {
                 const permissions = await window.ethereum.request({
                     method: 'wallet_getPermissions',
                 });
@@ -29,40 +32,25 @@ const ConnectWallet = () => {
                     });
 
                 } else {
-                    if (develop.chainId == "42161") {
+                    const chainId = "0x13881"
+                    try {
+                        let paramsArry = [
+                            {
+                                chainId: Network[chainId].chainId,
+                                chainName: Network[chainId].chainName,
+                                rpcUrls: Network[chainId].rpcUrls,
+                                nativeCurrency: Network[chainId].nativeCurrency,
+                                blockExplorerUrls: Network[chainId].blockExplorerUrls ? Network[chainId].blockExplorerUrls : null,
+                            },
+                        ];
                         await window.ethereum.request({
                             method: 'wallet_addEthereumChain',
-                            params: [
-                                {
-                                    chainId: "0xa4b1",
-                                    chainName: 'Arbitrum One',
-                                    nativeCurrency: {
-                                        name: 'Arbitrum Ether',
-                                        symbol: 'ETH',
-                                        decimals: 18,
-                                    },
-                                    rpcUrls: ['https://arb1.arbitrum.io/rpc', 'https://endpoints.omniatech.io/v1/arbitrum/one/public'],
-                                    blockExplorerUrls: ['https://arbiscan.io'],
-                                },
-                            ],
+                            params: paramsArry,
                         });
-                    } else {
-                        await window.ethereum.request({
-                            method: 'wallet_addEthereumChain',
-                            params: [
-                                {
-                                    chainId: "0x" + develop.chainId.toString(16),
-                                    chainName: 'Arbitrum Goerli',
-                                    rpcUrls: ['https://goerli-rollup.arbitrum.io/rpc'],
-                                    nativeCurrency: {
-                                        symbol: "AGOR",
-                                        name: "AGOR",
-                                        decimals: 18
-                                    },
-                                    blockExplorerUrls: ['https://goerli-rollup-explorer.arbitrum.io'],
-                                },
-                            ],
-                        });
+
+                        await this.$refs["wallet"].registerWeb3()
+                    } catch (addError) {
+                        console.log({addError});
                     }
                 }
                 const ChainId = (await window.ethereum.request({method: 'eth_chainId'}))

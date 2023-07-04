@@ -59,12 +59,11 @@ const AddWhiteList = ({allRecords}) => {
     }
 
 
-
     const getThreeAdminWhiteList = async () => {
         let arr = []
-        const length =  await handleViewMethod("getAdminsLevelThreeLength", [])
+        const length = await handleViewMethod("getUserSetAdminsLevelThree", [state.account])
         for (let i = 0; i < length; i++) {
-                let res = await handleViewMethod("adminsLevelThree", [ i])
+            let res = await handleViewMethod("userSetAdminsForThree", [state.account, i])
             arr.push(res)
         }
         setThreeAdminWhiteList(arr)
@@ -118,27 +117,19 @@ const AddWhiteList = ({allRecords}) => {
         let res = await handleViewMethod("maxTwo", [])
         setMaxTwo(res)
     }
-    const addWhiteList = async () => {
-        let arr = []
-        for (let i = 0; i < addWhiteArr.length; i++) {
-            arr.push(form2.getFieldValue()["address" + i])
-        }
-        await handleDealMethod("addWhiteList", [arr])
-        getAdminWhiteList()
-    }
+
     const removeWhiteList = async () => {
         await handleDealMethod("removeWhiteList", [form2.getFieldValue().address])
         getAdminWhiteList()
     }
-    const removeWhiteListUser = async () => {
-        await handleDealMethod("removeWhiteList", [curWhiteUser.user])
+    const removeAdminLevelThree = async () => {
+        await handleDealMethod("removeAdminLevelThree", [curWhiteUser])
+        await getThreeAdminWhiteList()
         setDelOpen(false)
-        getAdminWhiteList()
     }
 
     const deleteWhite = async (user) => {
         setCurWhiteUser(user)
-
         setDelOpen(true)
     }
 
@@ -153,27 +144,15 @@ const AddWhiteList = ({allRecords}) => {
 
     return (
         <AddWhiteListStyle>
-            <Modal className="model-dialog" title="Delete WhiteList User" open={isDelMolOpen} onOk={removeWhiteListUser}
+            <Modal className="model-dialog" title="Delete WhiteList User" open={isDelMolOpen} onOk={removeAdminLevelThree}
                    onCancel={() => {
                        setDelOpen(false)
                    }}>
                 <h3>
-                    PID
+                    Addr
                 </h3>
                 <div className="value">
-                    {curWhiteUser.Pid}
-                </div>
-                <h3>
-                    UserName
-                </h3>
-                <div className="value">
-                    {curWhiteUser.name}
-                </div>
-                <h3>
-                    Wallet Address
-                </h3>
-                <div className="value">
-                    {curWhiteUser.user}
+                    {curWhiteUser}
                 </div>
             </Modal>
             <div className="part3">
