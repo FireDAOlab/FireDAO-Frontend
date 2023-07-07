@@ -8,6 +8,16 @@ export default   styled.div`
 
   .panel-container {
     width: 100%;
+    .index-box{
+      width: 30px;
+      height: 30px;
+      background: #FF8D4D;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 15px;
+      margin-right: 10px;
+    }
     .step-box{
       margin-top: 30px;
     }

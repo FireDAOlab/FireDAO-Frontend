@@ -1,26 +1,48 @@
 import styled from "styled-components";
 const OGPoolStyle = styled.div`
-  .ant-btn{
+  .ant-btn {
     margin-right: 20px;
+    padding: 0 30px;
   }
-  .assign-row {
-    padding: 10px 0;
-    border-bottom: 1px solid #666;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
+  .flex-box{
+    align-items: center;
+  }
+  .panel-title {
+    margin: 1.5em 0;
+  }
+
+  .ant-form-item-control-input {
+    width: 450px;
+  }
+  .current-status{
+    font-size: 16px;
+    white-space: nowrap;
+    margin-right: 10px;
+  }
+  .tip-box {
+    padding: 1em 0;
+  }
+
+  .page-title {
+    padding: 2vh 0 2vh 13%;
+    font-size: 23px;
+    font-family: Roboto-Bold, Roboto;
+    font-weight: bold;
   }
 
   .panel-container {
     width: 90%;
     margin: 10px auto;
-    padding: 1em;
-    .operate-box{
+    padding: 1em 8%;
+
+    .operate-box {
       margin-top: 20px;
-      .add{
+
+      .add {
         width: 160px;
       }
     }
+
     .info {
       font-size: 20px;
       font-family: Roboto-Medium, Roboto;
@@ -80,11 +102,6 @@ const OGPoolStyle = styled.div`
     }
 
     .donate-pid {
-      .panel-title { {
-        margin-top: 1.5em;
-      }
-      }
-
       .flex-box {
         margin: 1.5em 0;
         justify-content: space-between;
@@ -211,10 +228,10 @@ const OGPoolStyle = styled.div`
     }
   }
 
-    .fire-nav-list{
-      width: 90%;
-      margin: 0 auto;
-    }
+  .fire-nav-list {
+    width: 74%;
+    margin: 0 auto;
+  }
 
   .part4 {
     .sum-list {

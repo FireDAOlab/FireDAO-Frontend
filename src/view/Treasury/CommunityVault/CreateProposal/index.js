@@ -10,14 +10,18 @@ import ConnectWallet from "../../../../component/ConnectWallet/ConnectWallet";
 import StyleBox from "./style"
 import develop from "../../../../env";
 import {LoadingOutlined, PlusOutlined, QuestionCircleOutlined} from "@ant-design/icons";
+import {Editor, EditorState} from 'draft-js';
 
 const Distribution = (props) => {
     const [form] = Form.useForm();
+
     let {state, dispatch} = useConnect();
     const history = useNavigate();
     const goPage = (url) => {
         history(url);
     }
+
+
     const [isConnected, setIsConnect] = useState(false)
     const [step, setStep] = useState(0)
     const [pageStep, setPageStep] = useState(0)
@@ -76,31 +80,77 @@ const Distribution = (props) => {
             </div>
         </div>
     );
+    function MyEditor() {
+        const [editorState, setEditorState] = React.useState(
+            () => EditorState.createEmpty(),
+        );
+
+        return <Editor
+            wrapperClassName="wrapper-class"
+            editorClassName="editor-class"
+            toolbarClassName="toolbar-class"
+            toolbar={{
+                inline: { inDropdown: true },
+                list: { inDropdown: true },
+                textAlign: { inDropdown: true },
+                link: { inDropdown: true },
+                history: { inDropdown: true },
+            }}
+            editorState={editorState} onChange={setEditorState} />;
+    }
+
     const handleUpload = () => {
         const formData = new FormData();
+        console.log(fileList)
+        const fr = new FileReader()
+        if(!fileList&&fileList.length==0){
+            return
+        }
         fileList.forEach((file) => {
-            formData.append('files[]', file);
-        });
-        setUploading(true);
-        // You can use any AJAX library you like
-        fetch('https://api.pinata.cloud/pinning/pinFileToIPFS', {
-            method: 'POST',
-            body: formData,
-            headers:{
-                "authorization": process.env.REACT_APP_PinataAPIJWT
+            console.log(file)
+            fr.readAsArrayBuffer(file)
+            fr.onload = () => {
+                // 读取到的 ArrayBuffer
+                console.log(fr.result)
+                const  res = fr.result
+                console.log(res)
+                formData.append('files[]',res );
+
+                const metadata = JSON.stringify({
+                    name: file.name,
+                });
+                formData.append('pinataMetadata', metadata);
+                const options = JSON.stringify({
+                    cidVersion: 0,
+                })
+                formData.append('pinataOptions', options);
+
+
+                // You can use any AJAX library you like
+                fetch('https://api.pinata.cloud/pinning/pinFileToIPFS', {
+                    method: 'POST',
+                    maxBodyLength: "Infinity",
+                    body: formData,
+                    headers:{
+                        "authorization": "Bearer "+process.env.REACT_APP_PinataAPIJWT
+                    }
+                })
+                    .then((res) => res.json())
+                    .then(() => {
+                        setFileList([]);
+                        message.success('upload successfully.');
+                    })
+                    .catch(() => {
+                        message.error('upload failed.');
+                    })
+                    .finally(() => {
+                        setUploading(false);
+                    });
             }
-        })
-            .then((res) => res.json())
-            .then(() => {
-                setFileList([]);
-                message.success('upload successfully.');
-            })
-            .catch(() => {
-                message.error('upload failed.');
-            })
-            .finally(() => {
-                setUploading(false);
-            });
+
+
+        });
+
     };
     const fileprops = {
         onRemove: (file) => {
@@ -136,100 +186,101 @@ const Distribution = (props) => {
                 <div className="panel-title">
                     Create Proposal
                 </div>
-               <div className="panel-container">
+                <div className="panel-container">
                     <div className="panel-title">
-                        Connect your wallet & sign in
+                        <div className="index-box">1</div>  Connect your wallet & sign in
                     </div>
-                {pageStep==0&&(<div>
-                    <Steps
-                        direction="vertical"
-                        className="step-box"
-                        current={step}
-                        items={[
-                            {
-                                title: '  You must connect your wallet.',
-                                description: (<div>{!isConnected && <ConnectWallet/>}</div>)
-                            },
-                            {
-                                title: 'Wallet is connected to arbiturm.',
-                            },
-                            {
-                                title: '    You must be a member of this group.',
-                            },
-                        ]}
-                    />
-                    <Button type="primary" className="continue-btn" onClick={() => {
-                        setPageStep(1)
-                    }}>
-                        Continue
-                    </Button>
-                    <Upload
-                        {...fileprops}
-                    >
-                        {imageUrl ? (
-                            <img
-                                src={imageUrl}
-                                alt="avatar"
-                                style={{
-                                    width: '100%',
-                                }}
-                            />
-                        ) : (
-                            uploadButton
-                        )}
-                    </Upload>
-                    <Button
-                        type="primary"
-                        onClick={handleUpload}
-                        disabled={fileList.length === 0}
-                        loading={uploading}
-                        style={{ marginTop: 16 }}
-                    >
-                        {uploading ? 'Uploading' : 'Start Upload'}
-                    </Button>
-                </div>)}
-                </div>
-                 <div className="panel-container">
-                    <div className="panel-title">
-                        Name your proposal
-                    </div>
-                     {pageStep==1&&(<div>
-                         <div className="tip-box">
-                             Give your proposal a title and a description. They will be public when your proposal goes live!
-                         </div>
-                         <Form form={form} name="control-hooks" className="form">
-
-                             <Form.Item
-                                 name="title"
-                                 validateTrigger="onBlur"
-                                 label="Title"
-                                 validateFirst={true}
-                             >
-                                 <Input type="text"></Input>
-                             </Form.Item>
-                             <Form.Item
-                                 name="description"
-                                 validateTrigger="onBlur"
-                                 label="Description"
-                                 validateFirst={true}
-                             >
-                                 <div className="tip">
-                                     Support for formatting with
-                                     <span>Markdown</span>
-                                 </div>
-                                 <textarea type="text" className="desc-box"></textarea>
-                             </Form.Item>
-                         </Form>
-                         <Button type="primary" className="continue-btn" onClick={() => {
-                             setPageStep(2)
-                         }}>
-                             Continue
-                         </Button>
-                     </div>)}
+                    {pageStep==0&&(<div>
+                        <Steps
+                            direction="vertical"
+                            className="step-box"
+                            current={step}
+                            items={[
+                                {
+                                    title: '  You must connect your wallet.',
+                                    description: (<div>{!isConnected && <ConnectWallet/>}</div>)
+                                },
+                                {
+                                    title: 'Wallet is connected to arbiturm.',
+                                },
+                                {
+                                    title: '    You must be a member of this group.',
+                                },
+                            ]}
+                        />
+                        <Button type="primary" className="continue-btn" onClick={() => {
+                            setPageStep(1)
+                        }}>
+                            Continue
+                        </Button>
+                        <Upload
+                            {...fileprops}
+                        >
+                            {imageUrl ? (
+                                <img
+                                    src={imageUrl}
+                                    alt="avatar"
+                                    style={{
+                                        width: '100%',
+                                    }}
+                                />
+                            ) : (
+                                uploadButton
+                            )}
+                        </Upload>
+                        <Button
+                            type="primary"
+                            onClick={handleUpload}
+                            disabled={fileList.length === 0}
+                            loading={uploading}
+                            style={{ marginTop: 16 }}
+                        >
+                            {uploading ? 'Uploading' : 'Start Upload'}
+                        </Button>
+                    </div>)}
                 </div>
                 <div className="panel-container">
                     <div className="panel-title">
-                        Add actions(optional)
+                        <div className="index-box">1</div> Name your proposal
+                    </div>
+                    {pageStep==1&&(<div>
+                        <div className="tip-box">
+                            Give your proposal a title and a description. They will be public when your proposal goes live!
+                        </div>
+                        <Form form={form} name="control-hooks" className="form">
+
+                            <Form.Item
+                                name="title"
+                                validateTrigger="onBlur"
+                                label="Title"
+                                validateFirst={true}
+                            >
+                                <Input type="text"></Input>
+                            </Form.Item>
+                            <Form.Item
+                                name="description"
+                                validateTrigger="onBlur"
+                                label="Description"
+                                validateFirst={true}
+                            >
+                                <div className="tip">
+                                    Support for formatting with
+                                    <span>Markdown</span>
+                                </div>
+                                <textarea type="text" className="desc-box"></textarea>
+                                <MyEditor/>
+                            </Form.Item>
+                        </Form>
+                        <Button type="primary" className="continue-btn" onClick={() => {
+                            setPageStep(2)
+                        }}>
+                            Continue
+                        </Button>
+                    </div>)}
+                </div>
+                <div className="panel-container">
+                    <div className="panel-title">
+                        <div className="index-box">3</div> Add actions(optional)
                         <Tooltip
                             title="Actions are on-chain calls that will execute after a proposal passes and then gets executed.If you choose to skip this step, a transfer of 0 ETH to you (the proposer) will be added, as Governor requires one executable action for the proposal to be submitted on-chain.">
                             <QuestionCircleOutlined className="toolTip"/>
@@ -345,6 +396,17 @@ const Distribution = (props) => {
                             </Button>
                         </div>
                     </div>)}
+                </div>
+                <div className="panel-container">
+                    <div className="panel-title">
+                        <div className="index-box">4</div> Preview your proposal
+                    </div>
+                    {pageStep==3&&<div>
+                        <div className="tip-box">
+                            Please review your proposal carefully！
+                        </div>
+                    </div>}
+
                 </div>
             </div>
         </StyleBox>

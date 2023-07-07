@@ -18,7 +18,7 @@ import OGPoolAdminStyle from "./OGPoolAdminStyle";
 import AddAddressRate from "./AddAddressRate.js";
 import {formatAddress} from "../../../utils/publicJs";
 import {showNum} from "../../../utils/bigNumberUtil";
-import { getSecondDonateRecord, getThreeDonateRecord} from "../../../graph/donate";
+import {getSecondDonateRecord, getThreeDonateRecord} from "../../../graph/donate";
 
 const OGPool = (props) => {
     const [form2] = Form.useForm();
@@ -79,9 +79,7 @@ const OGPool = (props) => {
         return res.data.allRecords
     }
     const getSummary = async () => {
-        const allRecord = await getAllRecord()
         const secondAdmin = await getSecondAdmins()
-        console.log(secondAdmin)
         let sumArr = []
         for (let i = 0; i < secondAdmin.length; i++) {
             const addr = secondAdmin[i]
@@ -104,9 +102,9 @@ const OGPool = (props) => {
             for (let j = 0; j < sumArr[i].thrArr.length; j++) {
                 let adminThree = admin.thrArr[j];
                 if (parseFloat(adminThree.user.fdtAmount) > 0) {
-                    admin.tAmount = parseFloat(admin.tAmount) + parseFloat(adminThree.user.fdtAmount / 10**18)
-                    admin.tETH = parseFloat(admin.tETH) + parseFloat(adminThree.user.ethAmount / 10**18)
-                    admin.tUSDT = parseFloat(admin.tUSDT) + parseFloat(adminThree.user.usdtAmount / 10**18)
+                    admin.tAmount = parseFloat(admin.tAmount) + parseFloat(adminThree.user.fdtAmount / 10 ** 18)
+                    admin.tETH = parseFloat(admin.tETH) + parseFloat(adminThree.user.ethAmount / 10 ** 18)
+                    admin.tUSDT = parseFloat(admin.tUSDT) + parseFloat(adminThree.user.usdtAmount / 10 ** 18)
                 }
                 for (let q = 0; q < adminThree.whitelist.length; q++) {
                     const user = adminThree.whitelist[q]
@@ -128,9 +126,9 @@ const OGPool = (props) => {
     const getAdminWhiteList = async (addr) => {
         let res = await getSecondDonateRecord(addr)
         let adminWhiteList = []
-        for(let i =0;i<  res.data.allRecords.length;i++){
+        for (let i = 0; i < res.data.allRecords.length; i++) {
             const item = res.data.allRecords[i]
-            const whitelist = await getWhitelist(item. addr)
+            const whitelist = await getWhitelist(item.addr)
             adminWhiteList.push({
                 user: item,
                 whitelist
@@ -194,13 +192,7 @@ const OGPool = (props) => {
         setFDTAddressValue(res)
     }
     const getSecondAdmins = async () => {
-
-        let length = await handleViewMethod("getAdminsLevelTwoLength", [])
-        let arr = []
-        for (let i = 0; i < length; i++) {
-            let res = await handleViewMethod("adminsLevelTwo", [i])
-            arr.push(res)
-        }
+        const arr = await handleViewMethod("getAdminsLevelTwoList", [])
         setSecondAdmin(arr)
         return arr
     }
@@ -319,8 +311,8 @@ const OGPool = (props) => {
     useEffect(() => {
         getData()
     }, [state.account]);
-    const Row = (user,indexUser)=>{
-        return  <div className="sum-item" key={indexUser}>
+    const Row = (user, indexUser) => {
+        return <div className="sum-item" key={indexUser}>
             <div className="col">
                 user {indexUser}
             </div>
@@ -334,13 +326,13 @@ const OGPool = (props) => {
                 {user.user}
             </div>
             <div className="col">
-                {showNum(user.fdtAmount / 10**18)}
+                {showNum(user.fdtAmount / 10 ** 18)}
             </div>
             <div className="col">
-                {showNum(user.ethAmount/10**18)}
+                {showNum(user.ethAmount / 10 ** 18)}
             </div>
             <div className="col">
-                {showNum(user.usdtAmount / 10**18)}
+                {showNum(user.usdtAmount / 10 ** 18)}
             </div>
         </div>
     }
@@ -370,6 +362,9 @@ const OGPool = (props) => {
 
     return (
         <OGPoolAdminStyle>
+            <div className="page-title">
+                OGPool Manage
+            </div>
             <div className="fire-nav-list">
                 <div className={"nav-item " + (activeNav == 1 ? "active" : "")} onClick={() => {
                     setActiveNav(1)
@@ -425,13 +420,13 @@ const OGPool = (props) => {
                     <div className="panel-box">
                         <div className="panel-container">
                             <div className="panel-title">
-                                Contract Status : {isPause ? "True" : "False"}
+                                Contract Status : {isPause ? "Paused" : "UnPaused"}
                             </div>
                             <Form form={form} name="control-hooks" className="form">
                                 <Button type="primary" onClick={handlePause}>Pause</Button>
                                 <Button type="primary" onClick={handleUnpause}>Unpause</Button>
                             </Form>
-                            <div className="info">
+                            <div className="info tip-box">
                                 This function is related to the running status of the contract, please use it with
                                 caution.
                             </div>
@@ -443,28 +438,28 @@ const OGPool = (props) => {
                             <div className="panel-title">
                                 Set Pid Status For Admin: {status1 ? "True" : "False"}
                             </div>
-                            <div>
-                                Set to {status1 ? "False" : "True"}
+                            <div className="flex-box">
+                                <div className="current-status">
+                                    Set to {status1 ? "False" : "True"}
+                                </div>
+                                <Form form={form} name="control-hooks" className="form">
+                                    <Button type="primary" onClick={setPidStatusForAdmin}>Submit</Button>
+                                </Form>
                             </div>
-                            <Form form={form} name="control-hooks" className="form">
-                                <Button type="primary" onClick={setPidStatusForAdmin}>Submit</Button>
-                            </Form>
-                        </div>
-                    </div>
-                    <div className="panel-box">
-                        <div className="panel-container">
+
                             <div className="panel-title">
                                 Set Pid Status For User: {status2 ? "True" : "False"}
                             </div>
-                            <div>
-                                Set to {status2 ? "False" : "True"}
+                            <div className="flex-box">
+                                <div className="current-status">
+                                    Set to {status2 ? "False" : "True"}
+                                </div>
+                                <Form form={form} name="control-hooks" className="form">
+                                    <Button type="primary" onClick={setPidStatusForUser}>Submit</Button>
+                                </Form>
                             </div>
-                            <Form form={form} name="control-hooks" className="form">
-                                <Button type="primary" onClick={setPidStatusForUser}>Submit</Button>
-                            </Form>
                         </div>
-                    </div>
-                    <div className="panel-box">
+
                         <div className="panel-container">
                             <div className="panel-title">
                                 Set FDT Address: {fdtAddr}
@@ -532,13 +527,12 @@ const OGPool = (props) => {
 
                         <div className="panel-container">
                             <div className="panel-title">
-                                Set Level 3 WhiteList Amount: {maxThree}
+                                Set Level 3 WhiteList Amount: ( {maxThree} )
                             </div>
                             <Form form={form2} name="control-hooks" className="form">
 
                                 <Form.Item
                                     name="max"
-                                    label="Max"
                                     validateTrigger="onBlur"
                                     validateFirst={true}
                                 >
@@ -553,32 +547,28 @@ const OGPool = (props) => {
                                     }}>setWhiteListAmount</Button>
                                 </div>
                             </Form>
-                        </div>
-                        <div className="panel-container">
                             <div className="panel-title">
-                                Exchange Rate :{salePriceV}
+                                Exchange Rate : ( {salePriceV} )
                             </div>
                             <Form form={form2} name="control-hooks" className="form">
+                                <div className="flex-box">
+                                    <Form.Item
+                                        name="exchangeRate"
+                                        validateTrigger="onBlur"
+                                        validateFirst={true}
+                                    >
+                                        <div className="input-box">
+                                            <Input/>
+                                        </div>
+                                    </Form.Item>
 
-                                <Form.Item
-                                    name="exchangeRate"
-                                    label="Exchange Rate"
-                                    validateTrigger="onBlur"
-                                    validateFirst={true}
-                                >
-                                    <div className="input-box">
-                                        <Input/>
+                                    <div className="btns">
+                                        <Button className="add-btn" type="primary" onClick={() => {
+                                            setSalePrice()
+                                        }}>setSalePrice</Button>
                                     </div>
-                                </Form.Item>
-
-                                <div className="btns">
-                                    <Button className="add-btn" type="primary" onClick={() => {
-                                        setSalePrice()
-                                    }}>setSalePrice</Button>
                                 </div>
                             </Form>
-                        </div>
-                        <div className="panel-container">
                             <div className="panel-title">
                                 Add Invite Rate
                             </div>
@@ -586,7 +576,6 @@ const OGPool = (props) => {
                                 <h3>2 Level Admin{inviteRate2}%</h3>
                                 <Form.Item
                                     name="inviteRate1"
-                                    label="Invite Rate 1"
                                     validateTrigger="onBlur"
                                     validateFirst={true}
                                 >
@@ -597,7 +586,6 @@ const OGPool = (props) => {
                                 <h3> 3 Level Admin{inviteRate1}%</h3>
                                 <Form.Item
                                     name="inviteRate2"
-                                    label="Invite Rate 2"
                                     validateTrigger="onBlur"
                                     validateFirst={true}
                                 >
@@ -651,11 +639,11 @@ const OGPool = (props) => {
                             <div className="panel-title">
                                 Fund Allocation
                             </div>
-                            <div className="tip">
+                            <div className="tip-box">
                                 Recommender Allocation Rate 15%
                             </div>
                             <div className=" fire-list-box">
-                                <div className="assign-row list-header flex-box">
+                                <div className=" list-header ">
                                     <div className="col">
                                         No.
                                     </div>
@@ -786,49 +774,49 @@ const OGPool = (props) => {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="operate-btns">
-                                    <Form form={form2} name="control-hooks" className="form">
-                                        <Form.Item
-                                            name="tokenAddress"
-                                            label="tokenAddress"
-                                            validateTrigger="onBlur"
-                                            validateFirst={true}
-                                        >
-                                            <div className="input-box">
-                                                <Input/>
-                                            </div>
-                                        </Form.Item>
-                                        <Form.Item
-                                            name="tokenNumber"
-                                            label="tokenNumber"
-                                            validateTrigger="onBlur"
-                                            validateFirst={true}
-                                        >
-                                            <div className="input-box">
-                                                <Input/>
-                                            </div>
-                                        </Form.Item>
-                                    </Form>
-                                    <Button onClick={claim} type="primary" className="operate-btn">
-                                        Claim
-                                    </Button>
-
-                                    <Form form={form2} name="control-hooks" className="form">
-                                        <Form.Item
-                                            name="withdrawNum"
-                                            label="withdrawNum"
-                                            validateTrigger="onBlur"
-                                            validateFirst={true}
-                                        >
-                                            <div className="input-box">
-                                                <Input/>
-                                            </div>
-                                        </Form.Item>
-                                    </Form>
-                                    <Button type="primary" className="operate-btn" onClick={withdraw}>
-                                        FDT-OG Withdraw
-                                    </Button>
-                                </div>
+                                <Form form={form2} name="control-hooks" className="form">
+                                    <Form.Item
+                                        name="tokenAddress"
+                                        label="tokenAddress"
+                                        validateTrigger="onBlur"
+                                        validateFirst={true}
+                                    >
+                                        <div className="input-box">
+                                            <Input/>
+                                        </div>
+                                    </Form.Item>
+                                    <Form.Item
+                                        name="tokenNumber"
+                                        label="tokenNumber"
+                                        validateTrigger="onBlur"
+                                        validateFirst={true}
+                                    >
+                                        <div className="input-box">
+                                            <Input/>
+                                        </div>
+                                    </Form.Item>
+                                </Form>
+                                <Button onClick={claim} type="primary" className="operate-btn">
+                                    Claim
+                                </Button>
+                                <h3 className="panel-title">
+                                    Withdraw FDT-OG
+                                </h3>
+                                <Form form={form2} name="control-hooks" className="form">
+                                    <Form.Item
+                                        name="withdrawNum"
+                                        label="withdrawNum"
+                                        validateTrigger="onBlur"
+                                        validateFirst={true}
+                                    >
+                                        <div className="input-box">
+                                            <Input/>
+                                        </div>
+                                    </Form.Item>
+                                </Form>
+                                <Button type="primary" className="operate-btn" onClick={withdraw}>
+                                    FDT-OG Withdraw
+                                </Button>
                             </div>
                         </div>
                         <div className="panel-box part2">
@@ -901,7 +889,7 @@ const OGPool = (props) => {
 
                                                                 </div>
 
-                                                                {Row(thrUser.user,index)}
+                                                                {Row(thrUser.user, index)}
                                                                 <div className="sum-item-header">
                                                                     <div className="col">
                                                                         idx
@@ -927,9 +915,9 @@ const OGPool = (props) => {
                                                                 </div>
 
                                                                 {
-                                                                    thrUser.whitelist.map((user,indexUser) => {
+                                                                    thrUser.whitelist.map((user, indexUser) => {
                                                                         return (
-                                                                           Row(user,indexUser)
+                                                                            Row(user, indexUser)
                                                                         )
                                                                     })
                                                                 }

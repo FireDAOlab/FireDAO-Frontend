@@ -381,7 +381,7 @@ const OGPoolkk = (props) => {
                     <div className="panel-box">
                         <div className="panel-container">
                             <div className="panel-title">
-                                OG Donate 1
+                                OG Round 1
                             </div>
                             <div className="donate-info">
                                 <div className="info-item">

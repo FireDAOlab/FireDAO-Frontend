@@ -50,7 +50,6 @@ export default   styled.div`
     .donate-info {
       margin-top: 2em;
       display: flex;
-
       .flex-box {
         justify-content: space-between;
 
@@ -516,7 +515,7 @@ export default   styled.div`
     .part1 {
       .donate-info {
         display: block;
-
+  
         .flex-box {
           .info-item {
             margin-left: 0;
