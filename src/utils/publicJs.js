@@ -49,11 +49,13 @@ export function numToDecimal2(num) {
     return parseInt(num * 100) / 100
 }
 
-export function formatAddress(addr) {
-    console.log(addr);
+
+export function  formatAddress(addr){
     if (!addr) {
         return ""
     }
     return addr.substring(0, 7) + "..." + addr.substring(addr.length - 4, addr.length)
 }
 export default { formatResult,formatAddress, dateFormat, formatvoteDateTime, dealSubAddr }
+
+

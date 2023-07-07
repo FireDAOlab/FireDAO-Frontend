@@ -10,7 +10,7 @@ const openSeaNFT = "https://opensea.io/zh-CN/collection/fireseed"
 export default {
     Name:"Arbitrum Goerli Testnet",
     ENV: "dev",
-    chainId:80001,
+    chainId: "0x13881",
     webside:"http://appdev.firedao.online",
     forum: "http://forum01.firedao.online",
     graphUrl:"https://api.thegraph.com/subgraphs/name/henry-maker-commits/",
