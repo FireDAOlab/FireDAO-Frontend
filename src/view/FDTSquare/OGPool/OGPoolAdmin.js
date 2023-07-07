@@ -15,7 +15,7 @@ import develop from "../../../env";
 import judgeStatus from "../../../utils/judgeStatus";
 import {getDonateRecord} from "../../../graph/donate";
 import OGPoolAdminStyle from "./OGPoolAdminStyle";
-
+import AddAddressRate from "./AddAddressRate.js";
 
 const OGPool = (props) => {
     const [form2] = Form.useForm();
@@ -38,7 +38,7 @@ const OGPool = (props) => {
     const [exchangeAmount, setExchangeAmount] = useState(0)
     const [sumArr, setSumArr] = useState([])
     const [inputValue, setInputValue] = useState(0)
-    const [isAdmin, setIsAdmin] = useState(false)
+    const [showAddRate, setShowAddRate] = useState(false)
     const [isPause, setIsPause] = useState(false)
     const [whiteList, setAllWhiteList] = useState([])
     const [status1, setStatus1] = useState()
@@ -130,12 +130,12 @@ const OGPool = (props) => {
             for (let i = 0; i < length; i++) {
                 let res = await handleViewMethod("adminInviter", [addr, i])
                 let hasT = false
-                for(let i=0;i<adminWhiteList.length;i++){
-                    if(adminWhiteList[i].user == res.user){
-                        hasT=true
+                for (let i = 0; i < adminWhiteList.length; i++) {
+                    if (adminWhiteList[i].user == res.user) {
+                        hasT = true
                     }
                 }
-                if(!hasT){
+                if (!hasT) {
                     adminWhiteList.push(res)
                 }
             }
@@ -186,7 +186,7 @@ const OGPool = (props) => {
         let res = await handleViewMethod("paused", [])
         setIsPause(res)
     }
-    const getpidStatusForAdmin= async () => {
+    const getpidStatusForAdmin = async () => {
         let res = await handleViewMethod("pidStatusForAdmin", [])
         setStatus1(res)
     }
@@ -216,7 +216,7 @@ const OGPool = (props) => {
     }
     const getInviteRate = async () => {
         const rate = await handleViewMethod("getRate", [])
-        if(rate>0){
+        if (rate > 0) {
             let inviteRate2 = await handleViewMethod("inviteRate", [0])
             let inviteRate3 = await handleViewMethod("inviteRate", [1])
             setInv2(inviteRate2)
@@ -232,7 +232,7 @@ const OGPool = (props) => {
         }
         setAssignAdmin(arr)
     }
-    const addInviteRate= async () => {
+    const addInviteRate = async () => {
         await handleDealMethod("addInviteRate", [[form2.getFieldValue().inviteRate1, form2.getFieldValue().inviteRate2]])
         getInviteRate()
     }
@@ -240,11 +240,11 @@ const OGPool = (props) => {
         await handleDealMethod("setPidStatusForAdmin", [])
         getpidStatusForAdmin()
     }
-    const setFDTAddress= async () => {
+    const setFDTAddress = async () => {
         await handleDealMethod("setFDTAddress", [form2.getFieldValue().fdtAddress])
         // getFDTAddress()
     }
-    const setPidStatusForUser= async () => {
+    const setPidStatusForUser = async () => {
         await handleDealMethod("setPidStatusForUser", [])
         getpidStatusForUser()
     }
@@ -265,7 +265,7 @@ const OGPool = (props) => {
         rateArr.forEach(rate => {
             TotalRate = parseInt(TotalRate) + parseInt(rate)
         })
-        TotalRate = parseFloat(TotalRate) + parseFloat(inviteRate2)+ parseFloat(inviteRate3)
+        TotalRate = parseFloat(TotalRate) + parseFloat(inviteRate2) + parseFloat(inviteRate3)
         if (TotalRate > 100) {
             message.warn("需要把上面rate设置一下，使其总和不超过100")
             return
@@ -311,7 +311,7 @@ const OGPool = (props) => {
         await handleDealMethod("removeAdmin", [[form.getFieldValue().adminaddress]])
         getSecondAdmins()
     }
-    const setWhiteMaxForTwo= async () => {
+    const setWhiteMaxForTwo = async () => {
         await handleDealMethod("setWhiteMaxForTwo", [(form2.getFieldValue().max)])
     }
     const setWhiteListAmount = async () => {
@@ -374,9 +374,9 @@ const OGPool = (props) => {
 
             <div className="col address">
                 {item.user &&
-                <a href={develop.ethScan + "address/" + item.user} target="_blank">
-                    {item.user.substr(0, 6) + "..." + item.user.substr(item.user.length - 3, item.user.length)}
-                </a>
+                    <a href={develop.ethScan + "address/" + item.user} target="_blank">
+                        {item.user.substr(0, 6) + "..." + item.user.substr(item.user.length - 3, item.user.length)}
+                    </a>
                 }
 
             </div>
@@ -443,7 +443,7 @@ const OGPool = (props) => {
                     <div className="panel-box">
                         <div className="panel-container">
                             <div className="panel-title">
-                                Contract Status : {isPause?"True":"False"}
+                                Contract Status : {isPause ? "True" : "False"}
                             </div>
                             <Form form={form} name="control-hooks" className="form">
                                 <Button type="primary" onClick={handlePause}>Pause</Button>
@@ -459,10 +459,10 @@ const OGPool = (props) => {
                     <div className="panel-box">
                         <div className="panel-container">
                             <div className="panel-title">
-                                Set Pid Status For Admin: {status1?"True":"False"}
+                                Set Pid Status For Admin: {status1 ? "True" : "False"}
                             </div>
                             <div>
-                                Set to {status1?"False":"True"}
+                                Set to {status1 ? "False" : "True"}
                             </div>
                             <Form form={form} name="control-hooks" className="form">
                                 <Button type="primary" onClick={setPidStatusForAdmin}>Submit</Button>
@@ -472,10 +472,10 @@ const OGPool = (props) => {
                     <div className="panel-box">
                         <div className="panel-container">
                             <div className="panel-title">
-                                Set Pid Status For User: {status2?"True":"False"}
+                                Set Pid Status For User: {status2 ? "True" : "False"}
                             </div>
                             <div>
-                                Set to {status2?"False":"True"}
+                                Set to {status2 ? "False" : "True"}
                             </div>
                             <Form form={form} name="control-hooks" className="form">
                                 <Button type="primary" onClick={setPidStatusForUser}>Submit</Button>
@@ -485,7 +485,7 @@ const OGPool = (props) => {
                     <div className="panel-box">
                         <div className="panel-container">
                             <div className="panel-title">
-                                Set FDT Address: {status2?"True":"False"}
+                                Set FDT Address: {status2 ? "True" : "False"}
                             </div>
                             <Form form={form} name="control-hooks" className="form">
                                 <Form.Item
@@ -517,7 +517,7 @@ const OGPool = (props) => {
                                 </div>
                                 {
                                     secondAdmins.map((item, index) => (
-                                        <div className="row">
+                                        <div className="row" key={index}>
                                             {item}
                                         </div>
                                     ))
@@ -635,7 +635,7 @@ const OGPool = (props) => {
                                         <Input/>
                                     </div>
                                 </Form.Item>
-                               <h3> 3 Level Admin{inviteRate3}%</h3>
+                                <h3> 3 Level Admin{inviteRate3}%</h3>
                                 <Form.Item
                                     name="inviteRate2"
                                     label="Invite Rate 2"
@@ -682,9 +682,9 @@ const OGPool = (props) => {
                             <div className="panel-title">
                                 Fund Allocation
                             </div>
+
                             <div className="box">
                                 <div className="assign-row flex-box">
-
                                     <div className="col">
                                         Address
                                     </div>
@@ -692,7 +692,6 @@ const OGPool = (props) => {
                                     <div className="col">
                                         Rate
                                     </div>
-
                                 </div>
 
                                 {
@@ -792,7 +791,46 @@ const OGPool = (props) => {
                                 </div>
                             </Form>
                         </div>
+                        <div className="panel-container">
+                            <div className="panel-title">
+                                Fund Allocation
+                            </div>
+                            <div className="tip">
+                                Recommender Allocation Rate 15%
+                            </div>
+                            <div className=" fire-list-box">
+                                <div className="assign-row list-header flex-box">
+                                    <div className="col">
+                                        No.
+                                    </div>
+                                    <div className="col">
+                                        Address
+                                    </div>
 
+                                    <div className="col">
+                                        Rate
+                                    </div>
+                                </div>
+
+                                {
+                                    assignAmin.map((item, index) => (
+                                        <div className="assign-row list-item">
+                                            <div className="col">{item}
+                                            </div>
+                                            <div className="col">
+                                                {rateArr[index]}
+                                            </div>
+                                        </div>
+                                    ))
+                                }
+
+                            </div>
+                            <div className="operate-box">
+                                <Button className="add" type="primary" onClick={() => {
+                                    setShowAddRate(true)
+                                }}>ADD</Button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             )}
@@ -1019,6 +1057,11 @@ const OGPool = (props) => {
                     </div>
                 )
             }
+            { showAddRate && (<AddAddressRate updateData={()=>{
+                getAssignAddress()
+                getRate()
+            }} closeDialog={()=>{setShowAddRate(false)}}/>)}
+
         </OGPoolAdminStyle>
     )
 }

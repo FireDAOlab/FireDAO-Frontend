@@ -63,6 +63,7 @@ const items = [
         getItem('FDT Mining', 'FDT Mining'),
         getItem('Soul Airdrop', 'Soul Airdrop'),
         getItem('FireLock', 'FireLock'),
+        getItem('FLM Airdrop', 'FLM Airdrop'),
     ]),
     getItem('Treasury', 'Treasury', <img className="fireIcon" src={fireIcon4} />,[
         getItem('Source', 'Source'),

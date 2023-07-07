@@ -19,7 +19,7 @@ const PidList = (props) => {
         .panel-box {
           min-width: 1000px;
           width: 90%;
-          margin: 0 auto;
+          margin: 0 auto; 
         }
 
         .panel-container {
@@ -575,7 +575,8 @@ const PidList = (props) => {
                             </div>
                             <div className="fireseed">
                                 <strong>
-                                    {judgePid(state.pid)}
+                                    {
+                                    (state.pid)}
                                 </strong>
                                 <span>
                                     FireSeed

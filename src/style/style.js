@@ -125,10 +125,7 @@ const GlobalStyle = createGlobalStyle`
       }
     }
   }
-  @media screen and (max-width: 1400px) {
-    .panel-container{
-    }
-  }
+
   .panel-box {
     display: flex;
     flex-direction: column;
@@ -238,7 +235,7 @@ const GlobalStyle = createGlobalStyle`
     border-radius: 5px;
   }
 
-  
+
   /* mobile style */
   @media screen and (max-width: 1000px) {
     .firebg{

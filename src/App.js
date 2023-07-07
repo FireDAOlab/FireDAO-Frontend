@@ -12,6 +12,7 @@ import MintFireSoul from "./view/HolyFireAltar/MintFireSoul"
 import AdminPage from "./view/passportAdmin"
 import MyPassport from "./view/HolyFireAltar/MyPassport"
 import GlobalStyle from "./style/style";
+import CommonStyle from "./style/commonStyle";
 import AntdOverride from "./style/antdOverride";
 import React from "react";
 import {ConnectProvider, useConnect} from "./api/contracts";
@@ -71,10 +72,17 @@ import GuildManage from "./view/Operation/GuildManage"
 import Guild from "./view/Operation/Guild"
 import CreateGuild from "./view/Operation/CreateGuild"
 import GuildDetail from "./view/Operation/GuildDetail"
+
+import FLMAirdrop from "./view/Operation/FLMAirdrop"
+import FLMAirdropLv1 from "./view/Operation/FLMAirdrop/component/FLMAirdropLv1"
+import FLMAirdropLv2 from "./view/Operation/FLMAirdrop/component/FLMAirdropLv2"
+
+
 import LPMining from "./view/Operation/LPMining"
 import LPMiningManage from "./view/Operation/LPMining/Manage"
 import FDTLockMining from "./view/Operation/FDTLockMining"
 import FDTLockMiningManage from "./view/Operation/FDTLockMining/Manage"
+
 function App() {
     const history = useNavigate();
     const location = useLocation()
@@ -82,6 +90,7 @@ function App() {
     return (
 
         <ConnectProvider>
+            <CommonStyle/>
             <GlobalStyle/>
             <AntdOverride/>
 
@@ -167,10 +176,17 @@ function App() {
                                 <Route path="/Guild" element={<Guild/>}/>
                                 <Route path="/CreateGuild" element={<CreateGuild/>}/>
                                 <Route path="/GuildDetail/:id" element={<GuildDetail/>}/>
+
+                                <Route path="/FLMAirdrop" element={<FLMAirdrop/>}/>
+                                
+                                <Route path="/FLMAirdropLv1" element={<FLMAirdropLv1/>}/>
+                                <Route path="/FLMAirdropLv2" element={<FLMAirdropLv2/>}/>
+
                                 <Route path="/LPMining" element={<LPMining/>}/>
                                 <Route path="/LPMiningManage" element={<LPMiningManage/>}/>
                                 <Route path="/FDTMining" element={<FDTLockMining/>}/>
                                 <Route path="/FDTMiningManage" element={<FDTLockMiningManage/>}/>
+
 
                             </Routes>
                         </div>
