@@ -78,6 +78,7 @@ import GuildDetail from "./view/Operation/GuildDetail"
 import ForumFLMAirdrop from "./view/Operation/ForumFLMAirdrop"
 import FLMAirdropLv1 from "./view/Operation/ForumFLMAirdrop/component/FLMAirdropLv1"
 import FLMAirdropLv2 from "./view/Operation/ForumFLMAirdrop/component/FLMAirdropLv2"
+import FLMAirdrop from "./view/Operation/FLMAirdrop"
 
 
 import LPMining from "./view/Operation/LPMining"
@@ -182,6 +183,7 @@ function App() {
                                 <Route path="/Guild" element={<Guild/>}/>
                                 <Route path="/CreateGuild" element={<CreateGuild/>}/>
                                 <Route path="/GuildDetail/:id" element={<GuildDetail/>}/>
+                                <Route path="/FLMAirdrop" element={<FLMAirdrop/>}/>
 
                                 <Route path="/ForumFLMAirdrop" element={<ForumFLMAirdrop/>}/>
                                 

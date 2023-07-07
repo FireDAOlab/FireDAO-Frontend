@@ -1,11 +1,58 @@
 import {createGlobalStyle} from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
-  @import "font.css";
+  @font-face {
+    font-family: "RoBoto-Medium";
+    src: url("./font/RobotoMedium.ttf");
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: "Russo One-Regular";
+    src: url("./font/RussoOne-Regular.ttf");
+    font-weight: normal;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: "Roboto-Bold";
+    src: url("./font/Roboto-Bold.ttf");
+    font-weight: normal;
+    font-style: normal;
+  }
+
   * {
     box-sizing: border-box;
   }
+  input::-webkit-validation-bubble {
+    display: none!important;
+  }
+  input::-webkit-inner-spin-button {
+    appearance: none !important;
+  }
 
+  input::-webkit-outer-spin-button {
+    appearance: none !important;
+  }
+
+  /* Firefox */
+  
+  input:-moz-validation-bubble {
+    display: none;
+  }
+
+  /* Edge and IE */
+  input::-ms-validation-bubble {
+    display: none;
+  }
+  input[type='number'] {
+    appearance: textfield;
+  }
+
+  input[type='number'] {
+    -moz-appearance: textfield;
+  }
+  
   body {
     background: linear-gradient(180deg, #1E0000 0%, #020000 100%);
     color: #fff;
@@ -77,7 +124,7 @@ const GlobalStyle = createGlobalStyle`
     background: #1A1414;
     border-radius: 15px;
     border: 1px solid rgba(255,255,255,0.1);
-    padding: 1em 0 1em;
+    padding: 0em 0 0em;
     min-width: 800px;
     .col{
       text-align: center;
@@ -88,7 +135,8 @@ const GlobalStyle = createGlobalStyle`
       justify-content: space-between;
       font-size: 18px;
       font-weight: bold;
-      padding: 0.5em 2em;
+      padding: 20px 2em;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
       color: #8A8080;
       .col {
         display: flex;

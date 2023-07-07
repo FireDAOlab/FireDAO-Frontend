@@ -104,7 +104,6 @@ const MyPassport = (props) => {
         const UserFID = await handleSoulViewMethod("UserFID", [state.account])
         await setUserToSoul(UserToSoul)
         dispatch({type: "SET_FID", payload: UserFID})
-
     }
 
 

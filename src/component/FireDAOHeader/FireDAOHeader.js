@@ -1,13 +1,16 @@
 import {useConnect, connect} from "../../api/contracts";
 import ConnectWallet from "../ConnectWallet/ConnectWallet";
 import {useEffect, useState} from "react";
-import {Button, Select} from 'antd';
+import {Button, notification, Select} from 'antd';
 import passportIcon from "../../imgs/passportIcon.webp"
 import {useLocation, useNavigate} from "react-router-dom";
 import NavList from "../NavList/MNavList";
 import develop from "../../env"
 
 import FireDAOHeaderStyle from "./FireDAOHeaderStyle";
+import {getContractByName} from "../../api/connectContract";
+import {viewMethod} from "../../utils/contractUtil";
+import judgeStatus from "../../utils/judgeStatus";
 
 const FireDAOHeader = () => {
     let {state, dispatch} = useConnect();
@@ -18,6 +21,33 @@ const FireDAOHeader = () => {
     }
     const location = useLocation()
 
+    const handleSoulViewMethod = async (name, params) => {
+        let contractTemp = await getContractByName("mintFireSoul", state.api,)
+        if (!contractTemp) {
+            return
+        }
+        return await viewMethod(contractTemp, state.account, name, params)
+    }
+    const handleUserViewMethod = async (name, params) => {
+        let contractTemp = await getContractByName("user", state.api,)
+        if (!contractTemp) {
+            return
+        }
+        return await viewMethod(contractTemp, state.account, name, params)
+    }
+    const handleViewMethod = async (name, params) => {
+        let contractTemp = await getContractByName("mintFireSoul", state.api,)
+        if (!contractTemp) {
+            return
+        }
+        return await viewMethod(contractTemp, state.account, name, params)
+    }
+    const getUserFIDAndAddr = async ()=>{
+        const UserFID = await handleSoulViewMethod("UserFID", [state.account])
+        const userInfo = await handleUserViewMethod("userInfo", [state.account])
+        dispatch({type: "SET_PID", payload: userInfo.PID})
+        dispatch({type: "SET_FID", payload: UserFID})
+    }
     const handleChange = (chain) => {
         if(chain == "0x66eed"){
             window.open("http://apptest.firedao.co" + location.pathname,"_self")
@@ -59,32 +89,13 @@ const FireDAOHeader = () => {
 
     }
     useEffect(async () => {
-        if (!window.ethereum) {
-            return false;
+        let judgeRes = await judgeStatus(state)
+        if (!judgeRes) {
+            return
         }
-        if(window.location.href.toString().indexOf("apptest")>=0){
-            setChain("0x66eed")
-        }else{
-            setChain("0xa4b1")
-        }
-        // const request = (window.ethereum).request;
-        // let chainId = await request({method: "eth_chainId"})
-        // if (chainId != "0x66eed" && chainId !="0xa4b1") {
-        //     setChain("Unsupported")
-        // }
-        // window.ethereum.on('chainChanged', (netWarkId) => {
-        //     if (netWarkId == "0x66eed" ) {
-        //         setChain(netWarkId)
-        //         dispatch({type: "SET_NETWORKID", payload: 421613})
-        //     }else if(netWarkId == "0xa4b1"){
-        //         setChain(netWarkId)
-        //         dispatch({type: "SET_NETWORKID", payload: 42161})
-        //     } else {
-        //         setChain("Unsupported")
-        //     }
-        //
-        // });
-    }, [])
+        getUserFIDAndAddr()
+
+    }, [state.account, state.networkId]);
     return (
         <FireDAOHeaderStyle>
             {state.isShowNav && <div className="m-nav">
