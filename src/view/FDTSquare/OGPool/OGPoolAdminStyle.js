@@ -211,36 +211,10 @@ const OGPoolStyle = styled.div`
     }
   }
 
-  .og-nav-list {
-    margin: 10px auto;
-    display: flex;
-    width: 90%;
-    height: 80px;
-    background: #3E2727;
-    border-radius: 10px;
-    border: 1px solid #333333;
-    font-size: 20px;
-    font-family: Roboto-Bold, Roboto;
-    font-weight: bold;
-    color: #999999;
-
-    .nav-item {
-      width: 33.3%;
-      display: flex;
-      align-items: center;
-      text-align: center;
-      justify-content: center;
-      padding: 0 10px;
-
-      &.active {
-        font-weight: bold;
-        color: #FFFFFF;
-        background: linear-gradient(320deg, #DD3642 0%, #FFC02C 100%);
-        box-shadow: 0px 3px 6px 0px rgba(128, 4, 149, 0.3);
-        border-radius: 10px;
-      }
+    .fire-nav-list{
+      width: 90%;
+      margin: 0 auto;
     }
-  }
 
   .part4 {
     .sum-list {

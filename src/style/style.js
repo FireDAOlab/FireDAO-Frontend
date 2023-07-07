@@ -1,7 +1,7 @@
 import {createGlobalStyle} from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
-
+  @import "font.css";
   * {
     box-sizing: border-box;
   }
@@ -74,7 +74,10 @@ const GlobalStyle = createGlobalStyle`
 
 
   .fire-list-box {
-    padding: 1em 0 2em;
+    background: #1A1414;
+    border-radius: 15px;
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: 1em 0 1em;
     min-width: 800px;
     .col{
       text-align: center;
@@ -85,11 +88,12 @@ const GlobalStyle = createGlobalStyle`
       justify-content: space-between;
       font-size: 18px;
       font-weight: bold;
-      padding: 0.5em 1em;
+      padding: 0.5em 2em;
+      color: #8A8080;
       .col {
         display: flex;
         white-space: nowrap;
-
+        
         .list-icon {
           width: 16px;
           height: 13px;
@@ -101,15 +105,20 @@ const GlobalStyle = createGlobalStyle`
     }
 
     .list-item {
-      padding: 0.5em 1em;
+      padding: 0.5em 2em;
       display: flex;
       justify-content: space-between;
-      background: #3F3535;
       border-radius: 10px;
       margin: 0.5em 0;
       font-family: Helvetica-Bold, Helvetica, sans-serif;
       align-items: center;
-
+      border-bottom:  1px solid rgba(255,255,255,0.1);
+      &:last-child{
+        border-bottom: none;
+      }
+      .no{
+        color: #E48686;
+      }
       .col {
         &.link {
           color: #84C0FF;
@@ -219,22 +228,13 @@ const GlobalStyle = createGlobalStyle`
       background: none !important;
     }
   }
-
-  .ant-input, .ant-form-item-control-input, .ant-select,.ant-select-selector , .ant-input-status-error, .ant-input-affix-wrapper-status-error, .ant-input-affix-wrapper {
-    border-radius: 10px;
+  textarea{
+    padding: 10px;
+    &:focus-visible {
+      outline: none;
+    }
   }
-
-  /* input */
-  .ant-input-number {
-    width: 100%;
-    border-radius: 10px;
-  }
-  /* reset  pagination */
-  .ant-pagination-item-link,.ant-pagination-item{
-    background: #3F3535!important;
-    border-radius: 5px;
-  }
-
+ 
 
   /* mobile style */
   @media screen and (max-width: 1000px) {

@@ -32,15 +32,12 @@ const AddAddressRate = (props) => {
 
     const  handleSetAddress = async ()=>{
         let  _to = [],_rates=[]
-        console.log(form.getFieldValue())
         for (let i = 0; i < ownerArr.length; i++) {
             _to.push(form.getFieldValue()["owner" + i])
             _rates.push(form.getFieldValue()["rate" + i])
         }
-        //
-        // await handleDealMethod("feewhiteList",[_to])
-        await handleDealMethod("addRate", [_rates])
-        await handleDealMethod("addAssignAddress", [_to])
+
+        await handleDealMethod("addAssignAddressAndRatio", [_to,_rates])
         updateData()
         closeDialog()
     }
@@ -82,7 +79,7 @@ const AddAddressRate = (props) => {
                                         </div>
                                     </Form.Item>
                                     <Form.Item
-                                        name={item}
+                                        name={"rate" + index}
                                         label="Rate"
                                         className="rate"
                                     >

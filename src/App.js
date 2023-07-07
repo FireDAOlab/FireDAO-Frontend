@@ -29,6 +29,7 @@ import ChangeUserInfo from "./view/HolyFireAltar/ChangeUserInfo";
 import Reputation from "./view/HolyFireAltar/Reputation";
 import ReputationManage from "./view/HolyFireAltar/ReputationManage";
 
+
 import firebg from "./imgs/firebg.mp4"
 import NavList from "./component/NavList";
 
@@ -46,7 +47,8 @@ import TreasurySource from "./view/Treasury/Source"
 import SourceDetail from "./view/Treasury/SourceDetail"
 import RepurchaseAndBurnManage from "./view/Treasury/RepurchaseAndBurnManage"
 import RepurchaseAndBurn from "./view/Treasury/RepurchaseAndBurn"
-
+import CommunityVault from "./view/Treasury/CommunityVault";
+import CreateProposal from "./view/Treasury/CommunityVault/CreateProposal";
 //FDTSquare
 import OGPool from "./view/FDTSquare/OGPool/OGPool";
 import OGPoolAdmin from "./view/FDTSquare/OGPool/OGPoolAdmin";
@@ -150,7 +152,11 @@ function App() {
                                 <Route path="/SourceDetail" element={<SourceDetail/>}/>
                                 <Route path="/RepurchaseAndBurnManage" element={<RepurchaseAndBurnManage/>}/>
                                 <Route path="/RepurchaseAndBurn" element={<RepurchaseAndBurn/>}/>
+                                <Route path="/CommunityVault" element={<CommunityVault/>}/>
+                                <Route path="/CreateProposal" element={<CreateProposal/>}/>
 
+
+                                
                                 {/* FDTSquare*/}
                                 <Route path="/OGPool" element={<OGPool/>}/>
                                 <Route path="/OGPoolAdmin" element={<OGPoolAdmin/>}/>
