@@ -15,12 +15,12 @@ import sc2 from '../../../../imgs/sc.png'
 import wxz from '../../../../imgs/wxz.png'
 import xz from '../../../../imgs/xz.png'
 import { isStyledComponent } from 'styled-components';
-
+const { TextArea } = Input;
 const columns = [
     {
         title: 'No.',
         dataIndex: 'no',
-        render: (index, text, record) => {parseInt(index + 1)},
+        render: (index, text, record) => { parseInt(index + 1) },
         key: 'no',
     },
     {
@@ -34,14 +34,14 @@ const columns = [
         dataIndex: 'username',
         key: 'username',
         render: (value, row, record) =>
-            <span>{}</span>
+            <span>{ }</span>
     },
 
     {
         title: 'Address',
         dataIndex: 'address',
         key: 'address',
-        render: (text, record) =><span>{formatAddress(record._user[0])}</span>,
+        render: (text, record) => <span>{formatAddress(record._user[0])}</span>,
     },
 ];
 
@@ -98,6 +98,8 @@ const FLMAirdropLv2 = (props) => {
     const [curPage, setCurPage] = useState(1)
     const [pageCount, setPageCount] = useState(10)
     const [lvaddress, setLvaddress] = useState([])
+    const [lvamount, setLvamount] = useState([])
+
     const [deletelv, setDeletelv] = useState([])
     const [exchan, setExchan] = useState([])
     const [searchData, setSearchData] = useState("")
@@ -137,17 +139,14 @@ const FLMAirdropLv2 = (props) => {
         return await viewMethod(contractTemp, state.account, name, params)
     }
 
-    const addWhiteList = async () => {
-        const res = await handleDealMethod("addWhiteList", [[state.account], [0]])
-        // console.log(res);
-    }
+ 
 
     useEffect(() => {
         if (!state.account) {
             return
         }
         // setTp(sc2)
-
+        // addWhiteList()
     }, [state.account])
 
 
@@ -204,12 +203,14 @@ const FLMAirdropLv2 = (props) => {
         console.log(arr)
         let myArr = []
         setFlmArr(arr)
+        
         for (let i = 0; i < arr.length; i++) {
             if (arr[i].admin == state.account) {
                 myArr.push(arr[i])
             }
         }
         setFlmAirdro(myArr)
+        console.log(FlmArr);
     }
 
     const getData = async (page) => {
@@ -231,6 +232,10 @@ const FLMAirdropLv2 = (props) => {
         getData()
     }, [state.account]);
 
+    const addWhiteList = async () => {
+        const res = await handleDealMethod("addWhiteList", [[lvaddress], [lvamount]])
+        console.log(res);
+    }
     <Table columns={columns} dataSource={data} />
     const [open, setOpen] = useState(false);
     const [confirmLoading, setConfirmLoading] = useState(false);
@@ -286,8 +291,10 @@ const FLMAirdropLv2 = (props) => {
 
                             <Modal
                                 style={{
-                                    marginTop: '120px',
-                                    textAlign: 'center'
+                                    width:  '520px',
+                                    marginTop: '30px',
+                                    textAlign: 'center',
+                                    
                                 }}
                                 title={
                                     <h3 style={{ fontWeight: 'bold', marginTop: '10px' }}>
@@ -297,7 +304,7 @@ const FLMAirdropLv2 = (props) => {
                                 onOk={handleOk}
                                 confirmLoading={confirmLoading}
                                 onCancel={handleCancel}
-                                width={420}
+                                width={500}
                                 footer={null}
 
                             >
@@ -306,8 +313,8 @@ const FLMAirdropLv2 = (props) => {
                                     name="nest-messages"
                                     onFinish={onFinish}
                                     style={{
-                                        maxWidth: 600,
-                                        height: '170px',
+                                        width: '450px',
+                                        height: '300px',
                                         background: 'rgb(31,31,31)',
 
                                     }}
@@ -315,14 +322,19 @@ const FLMAirdropLv2 = (props) => {
                                 >
                                     <p style={{ textAlign: 'left', fontSize: '14px' }}>Address</p>
                                     <Form.Item
-                                        name='Address'
+                                        name='_user'>
+                                        <TextArea name="lvaddress" style={{ padding: '10px' }} value={lvaddress} onChange={e => setLvaddress(e.target.value)} rows={3} />
+                                    </Form.Item>
+                                    <p style={{ textAlign: 'left', fontSize: '14px' }}>Amount</p>
+                                    <Form.Item
+                                        name='_amount'
                                     // rules={[
                                     //     {
                                     //         required: true,
                                     //     },
                                     // ]}
                                     >
-                                        <Input name="lvaddress" style={{ padding: '10px' }} value={lvaddress} onChange={e => setLvaddress(e.target.value)} />
+                                        <TextArea rows={1} name="lvamount" style={{ padding: '10px' }} value={lvamount} onChange={e => setLvamount(e.target.value)} />
                                     </Form.Item>
                                     {/* <Form.Item
                                         name='Username'
@@ -362,7 +374,8 @@ const FLMAirdropLv2 = (props) => {
                                     <Form.Item style={{ marginTop: '25px', width: '100%' }}>
                                         <Button type="primary" htmlType="submit" style={{ fontSize: '16px', width: '100%', height: '45px', fontWeight: 'bold' }}
 
-                                            onClick={() => { addWhiteList() }}>
+                                            onClick={() => { addWhiteList() }}
+                                            >
                                             Submit
                                         </Button>
 
