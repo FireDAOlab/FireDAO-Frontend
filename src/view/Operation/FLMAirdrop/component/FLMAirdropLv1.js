@@ -219,7 +219,7 @@ const FLMAirdropLv1 = (props) => {
         const sj=new Date()
         // console.log(date);
         const nyr=sj.getFullYear()+'-'+(sj.getMonth()+1)+'-'+sj.getDate()+' '+sj.getHours()+':'+sj.getMinutes()+':'+sj.getSeconds()
-        this.time=nyr
+        // this.time=nyr
         // console.log(nyr);
     }
     // const chooseItem = (item, index) => {
