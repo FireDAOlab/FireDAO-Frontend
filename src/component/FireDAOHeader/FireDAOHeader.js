@@ -4,7 +4,7 @@ import {useEffect, useState} from "react";
 import {Button, Select} from 'antd';
 import passportIcon from "../../imgs/passportIcon.webp"
 import {useLocation, useNavigate} from "react-router-dom";
-import NavList from "../MNavList";
+import NavList from "../NavList/MNavList";
 import develop from "../../env"
 
 import FireDAOHeaderStyle from "./FireDAOHeaderStyle";

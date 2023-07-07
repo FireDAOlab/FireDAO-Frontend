@@ -32,7 +32,6 @@ const MyPassport = (props) => {
     const [SBTARR, setSBTARR] = useState([{}])
     const [curSBTPage, setCurSBTPage] = useState(1)
     const [isAdmin, setIsAdmin] = useState(false)
-    const [UserFID, setUserFID] = useState(0)
     const [UserToSoul, setUserToSoul] = useState("")
     const openNotification = (message) => {
         notification.error({
@@ -104,7 +103,6 @@ const MyPassport = (props) => {
         const UserToSoul = await handleSoulViewMethod("UserToSoul", [state.account])
         const UserFID = await handleSoulViewMethod("UserFID", [state.account])
         await setUserToSoul(UserToSoul)
-        await setUserFID(UserFID)
         dispatch({type: "SET_FID", payload: UserFID})
 
     }

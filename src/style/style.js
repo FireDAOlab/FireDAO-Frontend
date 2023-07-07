@@ -143,7 +143,8 @@ const GlobalStyle = createGlobalStyle`
     
     .panel-container {
       overflow: auto;
-      background: #201414;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: #241B1B;
       padding: 3em 4em;
       margin: 3em auto;
       box-shadow: 0px 3px 15px 5px rgba(0, 0, 0, 0.05);

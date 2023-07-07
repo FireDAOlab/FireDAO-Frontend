@@ -31,7 +31,7 @@ import ReputationManage from "./view/HolyFireAltar/ReputationManage";
 
 
 import firebg from "./imgs/firebg.mp4"
-import NavList from "./component/NavList";
+import NavList from "./component/NavList/NavList";
 
 //Seed Manage
 import FireSeedManage from "./view/HolyFireAltar/FireSeedManage"
@@ -75,9 +75,9 @@ import Guild from "./view/Operation/Guild"
 import CreateGuild from "./view/Operation/CreateGuild"
 import GuildDetail from "./view/Operation/GuildDetail"
 
-import FLMAirdrop from "./view/Operation/FLMAirdrop"
-import FLMAirdropLv1 from "./view/Operation/FLMAirdrop/component/FLMAirdropLv1"
-import FLMAirdropLv2 from "./view/Operation/FLMAirdrop/component/FLMAirdropLv2"
+import ForumFLMAirdrop from "./view/Operation/ForumFLMAirdrop"
+import FLMAirdropLv1 from "./view/Operation/ForumFLMAirdrop/component/FLMAirdropLv1"
+import FLMAirdropLv2 from "./view/Operation/ForumFLMAirdrop/component/FLMAirdropLv2"
 
 
 import LPMining from "./view/Operation/LPMining"
@@ -183,7 +183,7 @@ function App() {
                                 <Route path="/CreateGuild" element={<CreateGuild/>}/>
                                 <Route path="/GuildDetail/:id" element={<GuildDetail/>}/>
 
-                                <Route path="/FLMAirdrop" element={<FLMAirdrop/>}/>
+                                <Route path="/ForumFLMAirdrop" element={<ForumFLMAirdrop/>}/>
                                 
                                 <Route path="/FLMAirdropLv1" element={<FLMAirdropLv1/>}/>
                                 <Route path="/FLMAirdropLv2" element={<FLMAirdropLv2/>}/>
