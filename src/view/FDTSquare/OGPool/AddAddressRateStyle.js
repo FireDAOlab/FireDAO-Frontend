@@ -19,6 +19,17 @@ export default   styled.div`
         }
       }
 
+      .rate{
+        margin-left: 20px;
+        .ant-form-item-label{
+          text-align: center;
+        }
+        .ant-form-item-control-input {
+          width: 100px;
+        }
+      }
+
+
       .number {
         .ant-form-item-label {
           text-align: center;

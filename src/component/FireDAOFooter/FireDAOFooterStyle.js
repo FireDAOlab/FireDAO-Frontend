@@ -4,6 +4,7 @@ export default  styled.div`
   overflow-x: auto;
   position: relative;
   z-index: 1;
+
   &::-webkit-scrollbar {
     width: 20px;
     height: 20px;
@@ -18,12 +19,13 @@ export default  styled.div`
   &::-webkit-scrollbar-thumb {
     min-height: 20px;
     background-clip: content-box;
-    box-shadow: 0 0 0 10px rgba(0,0,0,.8) inset;
+    box-shadow: 0 0 0 10px rgba(0, 0, 0, .8) inset;
   }
 
   &::-webkit-scrollbar-corner {
     background: transparent;
   }
+
   .footer {
     width: 100%;
     background: #150D0D;
@@ -52,7 +54,7 @@ export default  styled.div`
     flex-grow: 1;
     margin: 2em 0;
     flex-wrap: wrap;
-    width: 200px;
+    width: 220px;
 
     .link-item {
       margin-right: 1.5em;
@@ -71,24 +73,46 @@ export default  styled.div`
   }
 
   .right {
-    width: 75%;
-    flex-grow: 1;
+    width: 65%;
     flex-shrink: 0;
     display: flex;
-    justify-content: flex-end;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: flex-end;
+
+    .link-list {
+      display: flex;
+      width: 100%;
+      justify-content: flex-end;
+
+      .link {
+        width: 90px;
+        color: #FFFFFF;
+        margin-left: 10px;
+        height: 30px;
+        border-radius: 15px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 12px;
+        border: 1px solid #936540;
+      }
+    }
   }
 
   .link-box {
     display: flex;
     justify-content: space-around;
     width: 100%;
-    font-family: Helvetica-Bold, Helvetica,sans-serif;
+    font-family: Helvetica-Bold, Helvetica, sans-serif;
 
     .link-col {
-      margin-left: 4%;
-      &:first-child{
+      opacity: 0.5;
+
+      &:first-child {
         margin-left: 0%;
       }
+
       .link-row {
         font-weight: bold;
         color: #544545;

@@ -220,6 +220,7 @@ const FLMAirdropLv1 = (props) => {
         // console.log(date);
         const nyr=sj.getFullYear()+'-'+(sj.getMonth()+1)+'-'+sj.getDate()+' '+sj.getHours()+':'+sj.getMinutes()+':'+sj.getSeconds()
         // this.time=nyr
+        // this.ruleForm.pub_date=nyr
         // console.log(nyr);
     }
     // const chooseItem = (item, index) => {

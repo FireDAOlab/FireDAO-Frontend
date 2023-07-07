@@ -9,8 +9,10 @@ export function getFireLock(amount, skip) {
                     account
                     email
                    username
+
                    information
                 }
+
         }`
     }, "")
 }
