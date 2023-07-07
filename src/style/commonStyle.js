@@ -36,7 +36,6 @@ const CommonStyle = createGlobalStyle`
         color: #FFFFFF;
         background: linear-gradient(320deg, #DD3642 0%, #FFC02C 100%);
         box-shadow: 0px 3px 6px 0px rgba(128, 4, 149, 0.3);
-        border-radius: 10px;
 
       }
     }
