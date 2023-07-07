@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 export default styled.div`
 width: 100%;
+
 .form-value{
   padding: 0 10px;
 }
@@ -26,13 +27,13 @@ width: 100%;
         }
 
         .allrewz{
-        width: 30%;
+        width: 15%;
         height: 40px;
         display: flex;
         justify-content:space-between;
         
        .allwz{
-        width: 48%;
+        width: 100%;
         border-radius: 30px;
         border: 1px solid rgba(255, 255, 255, 0.10);
         background: rgba(255, 255, 255, 0.10);
@@ -68,10 +69,7 @@ width: 100%;
             line-height:20px;
             flex-direction:row;
             justify-content:space-around;
-            .xuhao{
-                color: rgba(228, 134, 134, 1);
-                font-size: 14px;
-            }
+            
             .pd{
                 width: 80px;
                 height: 30px;
@@ -80,9 +78,7 @@ width: 100%;
                 color:rgba(254, 109, 70, 1);
                 border-radius: 20px ;
                 border: 1px solid rgba(254, 109, 70, 0.50);
-                p{
-                    line-height:30px;
-                }
+                line-height:30px;
             }
 
 
@@ -94,22 +90,27 @@ width: 100%;
                 border-radius: 20px ;
                 background: rgba(254, 109, 70, 0.10);
                 border: 1px solid rgba(254, 109, 70, 0.50);
-                p{
-                    line-height:30px;
-                }
+                line-height:30px; 
+                
             }
             .address{
-                width:160px;
+                width:150px;
                 height: 30px;
                 border:1px solid rgba(205, 158, 87, 0.50);
                 border-radius:20px;
                 text-align:center;
                 background: rgba(205, 158, 87, 0.10);
-            p{
                 font-size:14px;
                 line-height:30px;
                 color: rgba(205, 158, 87, 1);
+           
             }
+            .sc{
+                border: none;
+            }
+            .sc img{
+                width: 25px;
+                height: 25px;
             }
         }
     }

@@ -39,13 +39,13 @@ width: 100%;
             .lvleft{
                 width: 46%;
                 background-color: rgba(36, 27, 27, 1);
-                border-radius:35px;
+                border-radius:10px;
                 
             }
             .lvright{
                 width: 46%;
                 background-color: rgba(36, 27, 27, 1);
-                border-radius:35px;
+                border-radius:10px;
                 margin-left:15px;
             }
         }
@@ -148,7 +148,7 @@ width: 100%;
             .withdraw{
                 width: 100%;
                 height: 50px;
-                border-radius:30px;
+                /* border-radius:30px; */
                 /* background-image:linear-gradient(320deg,#FFC02C  0%,#DD3642 100%);  */
             transition:0.5s; 
             margin-top:20px;
@@ -184,26 +184,9 @@ width: 100%;
             display: flex;
             width: 100%;
             
-            .nav-list{
-                display: flex;
-                border-radius: 40px;
-                border: 1px solid #333333;
-                padding: 3px;
-
-            .nav-item {
-                cursor: pointer;
-                padding: 10px 30px;
-                border-radius: 40px;
-                margin-right: 10px;
-                font-size: 16px;
-                font-weight: bold;
-            }
-
-            .nav-item.active {
-                background: linear-gradient(320deg,#DD3642 0%,#FFC02C 100%);
-                box-shadow: 0px 3px 6px 0px rgb(128 4 149 / 30%);
-                color: #fff;
-                }
+            .fire-nav-list{
+                width: 320px;
+                margin: 0;
             }
         }
     }
@@ -257,133 +240,69 @@ width: 100%;
             color: rgba(138, 128, 128, 1);
             text-align:left;
 
-            .xuhao{
-                width:50px;
-                color: rgba(138, 128, 128, 1);
-                font-size: 14px;
-            }
-            .pd{
-                
-                width: 80px;
-                height: 30px;
-                text-align:center;
-                color: rgba(138, 128, 128, 1);
-                p{
-                    line-height:30px;
-                }
-            }
-
-
-            .fd{
-                width: 80px;
-                height: 30px;
-                text-align:center;
-                p{
-                    line-height:30px;
-                }
-            }
-            .address{
-                width:180px;
-                height: 30px;
-                text-align:center;
-            p{
-                font-size:14px;
-                color: rgba(205, 158, 87, 1);
-                }
-            }
-            .zchang{
-                width:80px;
-                height: 30px;
-                text-align:center;
-            p{
-                font-size:14px;
-                color: rgba(205, 158, 87, 1);
-                }
-
-            }
-            .sj{
-                width:200px;
-                height: 30px;
-                text-align:center;
-            p{
-                font-size:14px;
-                color: rgba(205, 158, 87, 1);
-                }
-
-            }
         }
         .hh{
-            -webkit-box-pack: start;
-            justify-content: flex-start;
+            /* -webkit-box-pack: start; */
+            /* justify-content: flex-start; */
             padding-top: 15px;
             display: flex;
             line-height:20px;
-            flex-direction:row;
-            text-align:left;
+            flex-direction:row; 
+             justify-content:space-around;
             .xuhao{
-                width:80px;
+                width:0px;
                 color: rgba(228, 134, 134, 1);
                 font-size: 14px;
             }
             .pd{
                 width: 80px;
                 height: 30px;
-                text-align:left;
                 background: rgba(254, 109, 70, 0.10);
                 color:rgba(254, 109, 70, 1);
-                border-radius: 20px ;
+                line-height:30px;
+                border-radius: 20px;
                 border: 1px solid rgba(254, 109, 70, 0.50);
-                p{
-                    line-height:30px;
-                }
+            
             }
 
 
             .fd{
                 width: 80px;
                 height: 30px;
-                text-align:left;
+                /* text-align:left; */
                 color:rgba(254, 109, 70, 1);
                 border-radius: 20px ;
+                line-height:30px;
                 background: rgba(254, 109, 70, 0.10);
                 border: 1px solid rgba(254, 109, 70, 0.50);
-                p{
-                    line-height:30px;
-                }
+             
             }
             .address{
-                
-                width:180px;
+                font-size:14px;
+                width:150px;
+                color: rgba(205, 158, 87, 1);
                 height: 30px;
+                line-height:30px;
                 border:1px solid rgba(205, 158, 87, 0.50);
                 border-radius:20px;
-                text-align:left;
+                /* text-align:left; */
                 background: rgba(205, 158, 87, 0.10);
-            p{
-                font-size:14px;
-                line-height:30px;
-                color: rgba(205, 158, 87, 1);
-                }
+          
             }
             .zchang{
                 width:80px;
                 height: 30px;
-                text-align:left;
-            p{
                 font-size:14px;
+                line-height:30px;
                 color:white;
-                }
-
+                /* text-align:left; */
             }
             .sj{
                 width:200px;
                 height: 30px;
-                text-align:left;
-            p{
                 font-size:14px;
                 color: rgba(205, 158, 87, 1);
-                }
-
+     
             }
         }
        }
