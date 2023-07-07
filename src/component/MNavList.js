@@ -24,7 +24,9 @@ function getItem(label, key, icon, children, type) {
         type,
     };
 }
+
 const items =navMap;
+
 const NavList = () => {
     const NavListBox = styled.div`
   

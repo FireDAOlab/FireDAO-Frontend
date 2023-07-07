@@ -227,7 +227,7 @@ const PidList = (props) => {
 
             <div className="col address">
                 <a href={develop.ethScan + "address/" + item.account} target="_blank">
-                    {item.account.substr(0, 6) + "..." + item.account.substr(item.account.length - 3, item.account.length)}
+                    {item.account.substr(0, 7) + "..." + item.account.substr(item.account.length - 3, item.account.length)}
                 </a>
             </div>
             <div className="col link">

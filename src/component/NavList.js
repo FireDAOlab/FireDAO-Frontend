@@ -16,7 +16,9 @@ import develop from  "../env"
 import navMap from "../config/navMap";
 
 
+
 const items = navMap;
+
 const NavList = () => {
     const NavListBox = styled.div`
       position: fixed;

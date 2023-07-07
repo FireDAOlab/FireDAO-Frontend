@@ -8,7 +8,7 @@ export default   styled.div`
     .address-item {
       display: flex;
       align-items: center;
-    
+
       .ant-form-item-label {
         width: 150px !important;
       }
@@ -18,6 +18,7 @@ export default   styled.div`
           width: 300px;
         }
       }
+
       .rate{
         margin-left: 20px;
         .ant-form-item-label{
@@ -27,6 +28,7 @@ export default   styled.div`
           width: 100px;
         }
       }
+
 
       .number {
         .ant-form-item-label {

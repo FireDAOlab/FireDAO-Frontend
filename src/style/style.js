@@ -236,6 +236,7 @@ const GlobalStyle = createGlobalStyle`
   }
  
 
+
   /* mobile style */
   @media screen and (max-width: 1000px) {
     .firebg{

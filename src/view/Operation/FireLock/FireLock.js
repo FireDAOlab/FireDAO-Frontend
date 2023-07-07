@@ -157,8 +157,9 @@ const FireLock = (props) => {
     }
     const handleSearch = async () => {
         let data = await getSearchData(searchData)
+        console.log(getData);
         if(data.data&&data.data.allLockItems&&data.data.allLockItems.length>0){
-            setSearchArr(data.data.allLockItems)
+        setSearchArr(data.data.allLockItems)
         }else{
             setSearchArr([])
         }

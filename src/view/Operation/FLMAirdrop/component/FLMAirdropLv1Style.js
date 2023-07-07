@@ -30,7 +30,7 @@ width: 100%;
             margin: 0 auto;
             justify-content:space-between;
             .ant-form-item-control-input{
-                border-radius:40px;
+                /* border-radius:40px; */
                 border: 1px solid rgba(255, 255, 255, 0.10);
             }
             .ownerleft{
@@ -53,7 +53,7 @@ width: 100%;
             .ownerright{
                 width: 48%;
                 font-size:14px;
-                border-radius:40px ;
+                /* border-radius:40px ; */
                 .rightwz{
                     width: 100%;
                     height: 40px;
@@ -76,7 +76,7 @@ width: 100%;
             width: 35%;
             margin:30px auto;
             height:50px;
-            border-radius: 40px;
+            /* border-radius: 40px; */
             /* background-image:linear-gradient(300deg,#FFC02C  0%,#DD3642 100%);   */
             text-align:center;
             
@@ -105,7 +105,7 @@ width: 100%;
                     width: 48%;
                     background:rgba(36, 27, 27, 1);
                     border: 1px solid rgba(255, 255, 255, 0.10);
-                    border-radius:40px;
+                    /* border-radius:40px; */
                     padding-left: 20px;
                     p{
                         line-height:40px;
@@ -133,7 +133,7 @@ width: 100%;
                         line-height:40px;
                         border:1px solid rgba(255, 255, 255, 0.10);
                         background:rgba(36, 27, 27, 1);
-                        border-radius:40px;
+                        border-radius:10px;
                     }
                     }
                         
@@ -235,7 +235,7 @@ width: 80%;
             .withdraw{
                 width: 100%;
                 height: 50px;
-                border-radius:30px;
+                /* border-radius:30px; */
                 background-image:linear-gradient(320deg,#FFC02C  0%,#DD3642 100%); 
             transition:0.5s; 
             margin-top:20px;
@@ -293,6 +293,7 @@ width: 80%;
             flex-direction:row;
             justify-content:space-around;
             .xuhao{
+                width:50px;
                 color: rgba(228, 134, 134, 1);
                 font-size: 14px;
             }
@@ -300,13 +301,11 @@ width: 80%;
                 width: 80px;
                 height: 30px;
                 text-align:center;
+                line-height:30px;
                 background: rgba(254, 109, 70, 0.10);
                 color:rgba(254, 109, 70, 1);
                 border-radius: 20px ;
                 border: 1px solid rgba(254, 109, 70, 0.50);
-                p{
-                    line-height:30px;
-                }
             }
 
 
@@ -314,13 +313,12 @@ width: 80%;
                 width: 80px;
                 height: 30px;
                 text-align:center;
+                line-height:30px;
                 color:rgba(254, 109, 70, 1);
                 border-radius: 20px ;
                 background: rgba(254, 109, 70, 0.10);
                 border: 1px solid rgba(254, 109, 70, 0.50);
-                p{
-                    line-height:30px;
-                }
+              
             }
             .address{
                 width:160px;
@@ -328,13 +326,18 @@ width: 80%;
                 border:1px solid rgba(205, 158, 87, 0.50);
                 border-radius:20px;
                 text-align:center;
-                background: rgba(205, 158, 87, 0.10);
-            p{
                 font-size:14px;
                 line-height:30px;
                 color: rgba(205, 158, 87, 1);
+                background: rgba(205, 158, 87, 0.10);
             }
-            }
+            .time{
+                width:200px;
+                height: 30px;
+                text-align:center;
+                line-height:30px;
+                font-size:14px;
+                }
         }
     }
     
@@ -393,9 +396,7 @@ width: 80%;
                 color:rgba(254, 109, 70, 1);
                 border-radius: 20px ;
                 border: 1px solid rgba(254, 109, 70, 0.50);
-                p{
                     line-height:30px;
-                }
             }
 
 
@@ -407,9 +408,7 @@ width: 80%;
                 border-radius: 20px ;
                 background: rgba(254, 109, 70, 0.10);
                 border: 1px solid rgba(254, 109, 70, 0.50);
-                p{
                     line-height:30px;
-                }
             }
             .address{
                 width:160px;
@@ -418,11 +417,28 @@ width: 80%;
                 border-radius:20px;
                 text-align:center;
                 background: rgba(205, 158, 87, 0.10);
-            p{
                 font-size:14px;
                 line-height:30px;
                 color: rgba(205, 158, 87, 1);
             }
+            .tokeaddress{
+                width:160px;
+                height: 30px;
+                border:1px solid rgba(205, 158, 87, 0.50);
+                border-radius:20px;
+                text-align:center;
+                line-height:30px;
+                background: rgba(205, 158, 87, 0.10);
+                font-size:14px;
+                color: rgba(205, 158, 87, 1);
+                
+            }
+            .time{
+                width:200px;
+                height: 30px;
+                text-align:center;
+                line-height:30px;
+                font-size:14px;
             }
         }
     }
@@ -458,13 +474,13 @@ width: 80%;
         justify-content:space-between;
        .allwz{
             width: 48%;
-            border-radius: 30px;
+            border-radius: 10px;
             border: 1px solid rgba(255, 255, 255, 0.10);
             background: rgba(255, 255, 255, 0.10);
        }
        .rewz{
             width: 48%;
-            border-radius:30px;
+            border-radius:10px;
             border: 1px solid rgba(255, 255, 255, 0.10);
             background: rgba(255, 255, 255, 0.10);
             text-align:center;
@@ -505,9 +521,7 @@ width: 80%;
                 color:rgba(254, 109, 70, 1);
                 border-radius: 20px ;
                 border: 1px solid rgba(254, 109, 70, 0.50);
-                p{
                     line-height:30px;
-                }
             }
 
 
@@ -519,9 +533,7 @@ width: 80%;
                 border-radius: 20px ;
                 background: rgba(254, 109, 70, 0.10);
                 border: 1px solid rgba(254, 109, 70, 0.50);
-                p{
-                    line-height:30px;
-                }
+                line-height:30px;
             }
             .address{
                 width:160px;
@@ -529,12 +541,27 @@ width: 80%;
                 border:1px solid rgba(205, 158, 87, 0.50);
                 border-radius:20px;
                 text-align:center;
-                background: rgba(205, 158, 87, 0.10);
-            p{
-                font-size:14px;
                 line-height:30px;
+                background: rgba(205, 158, 87, 0.10);
+                font-size:14px;
                 color: rgba(205, 158, 87, 1);
-                }
+                
+            }
+            .username{
+                width:200px;
+                height: 30px;
+                text-align:center;
+                line-height:30px;
+                font-size:14px;
+                color: rgba(205, 158, 87, 1);
+            
+            }
+            .sc{
+                border: none;
+            }
+            .sc img{
+                width: 25px;
+                height: 25px;
             }
         }
     }

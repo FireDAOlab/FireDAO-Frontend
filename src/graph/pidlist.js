@@ -9,8 +9,10 @@ export function getFireLock(amount, skip) {
                     account
                     email
                    username
-                   information   
-                  }
+
+                   information
+                }
+
         }`
     }, "")
 }
@@ -47,20 +49,20 @@ export function getSearchData(searchData, web3) {
         return fetchQuery({
             text: `{
                   registers (first:1 where:{account:"${searchData}"} ) {
-                            id
+                    id
                     pid
                     account
                     email
                    username
                    information  
-                  }
+                }
             }`
         }, "")
     } else {
         return fetchQuery({
             text: `{
                   registers (first:1 where:{pid:${searchData}} ) {
-                           id
+                    id
                     pid
                     account
                     email

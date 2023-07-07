@@ -4,6 +4,7 @@ import BigNumber from "bignumber.js"
 import AddNomalWhiteList from "./AddNomalWhiteList";
 import AddThreeWhiteList from "./AddThreeWhiteList";
 import {showNum} from "../../../utils/bigNumberUtil";
+
 import {formatAddress} from "../../../utils/publicJs";
 import ConnectWallet from "../../../component/ConnectWallet/ConnectWallet";
 import {
@@ -23,6 +24,8 @@ import {useNavigate} from "react-router-dom";
 import judgeStatus from "../../../utils/judgeStatus";
 import {getDonateRecord} from "../../../graph/donate";
 import OGPoolStyle from "./OGPoolStyle";
+
+
 
 const OGPoolkk = (props) => {
     let {state, dispatch} = useConnect();
@@ -339,6 +342,7 @@ const OGPoolkk = (props) => {
 
     return (
         <OGPoolStyle>
+
             <div className="page-title">
                 OG Pool
             </div>
@@ -356,7 +360,9 @@ const OGPoolkk = (props) => {
                     </div>
                     {
                         (isSAdmin) && (
+
                             <div className={"nav-item " + (activeNav == 4 ? "active" : "")} onClick={() => {
+
                                 setActiveNav(4)
                             }}>
                                 Set Admin
@@ -364,7 +370,9 @@ const OGPoolkk = (props) => {
                         )
                     }
                     {
+
                         (isTAdmin) && (
+
                             <div className={"nav-item " + (activeNav == 3 ? "active" : "")} onClick={() => {
                                 setActiveNav(3)
                             }}>
@@ -398,7 +406,9 @@ const OGPoolkk = (props) => {
                                             Value
                                         </div>
                                         <div className="value">
+
                                             {showNum(BigNumber(FDTBalance).multipliedBy(salePrice))}
+
                                         </div>
                                     </div>
                                     <div className="info-item">
@@ -426,6 +436,7 @@ const OGPoolkk = (props) => {
                                 </div>
                             </div>
                             <div className="donation-box">
+
                                 <div className="title">
                                     Donate
                                 </div>

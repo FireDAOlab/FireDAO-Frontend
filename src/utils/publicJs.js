@@ -1,13 +1,13 @@
-const formatResult =  (result) =>{
+const formatResult = (result) => {
     let str;
     if (result && result.output) {
         str = result.output.toHuman();
     }
     return str;
 }
-const dealSubAddr = (addr)=>{
-    if(addr){
-        return addr.substr(0,5) + "..." + addr.substr(addr.length-3,addr.length)
+const dealSubAddr = (addr) => {
+    if (addr) {
+        return addr.substr(0, 5) + "..." + addr.substr(addr.length - 3, addr.length)
     }
     return ""
 }
@@ -22,32 +22,33 @@ const dateFormat = (dateTime) => {
     const seconds = t.getSeconds();
     const hash = {
         'Y': year,
-        'm': month>=10?month:`0${month}`,
-        'd': day>=10?day:`0${day}`,
-        'h': hours>=10?hours:`0${hours}`,
-        'i': minutes>=10?minutes:`0${minutes}`,
-        's': seconds>=10?seconds:`0${seconds}`
+        'm': month >= 10 ? month : `0${month}`,
+        'd': day >= 10 ? day : `0${day}`,
+        'h': hours >= 10 ? hours : `0${hours}`,
+        'i': minutes >= 10 ? minutes : `0${minutes}`,
+        's': seconds >= 10 ? seconds : `0${seconds}`
     };
     return format.replace(/\w/g, o => {
         return hash[o]
     })
 }
 
-const formatvoteDateTime = (dateTime,endTime) =>{
+const formatvoteDateTime = (dateTime, endTime) => {
     dateTime = parseInt(dateTime.replace(/,/g, ""));
     endTime = parseInt(endTime.replace(/,/g, ""));
 
     return dateFormat(dateTime + endTime)
 }
-export function numToDecimal2(num){
-    if(num<=0){
+export function numToDecimal2(num) {
+    if (num <= 0) {
         return 0
     }
-    if(num<0.001){
+    if (num < 0.001) {
         return "< 0.01"
     }
-    return parseInt(num*100)/100
+    return parseInt(num * 100) / 100
 }
+
 
 export function  formatAddress(addr){
     if (!addr) {
@@ -55,4 +56,6 @@ export function  formatAddress(addr){
     }
     return addr.substring(0, 7) + "..." + addr.substring(addr.length - 4, addr.length)
 }
-export default{ formatResult, dateFormat, formatvoteDateTime,dealSubAddr }
+export default { formatResult,formatAddress, dateFormat, formatvoteDateTime, dealSubAddr }
+
+
