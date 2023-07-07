@@ -76,7 +76,7 @@ width: 100%;
             width: 35%;
             margin:30px auto;
             height:50px;
-            /* border-radius: 40px; */
+            /* border-radius: 20px; */
             /* background-image:linear-gradient(300deg,#FFC02C  0%,#DD3642 100%);   */
             text-align:center;
             
