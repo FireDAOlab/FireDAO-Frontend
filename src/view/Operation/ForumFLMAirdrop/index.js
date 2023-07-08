@@ -31,6 +31,7 @@ const FlmAirdrop = (props) => {
   const [getin, setGetin] = useState(0)
   const [getmac, setGetmac] = useState(0)
   const [total, setTotal] = useState(0)
+  const [flmtotal, setflmTotal] = useState(0)
   const [searchArr, setSearchArr] = useState(false)
   const [isShowCreate, setShowCreate] = useState(false)
   const [isShowNotice, setShowNotice] = useState(false)
@@ -69,11 +70,11 @@ const FlmAirdrop = (props) => {
     const res = await handleViewMethod("userStores", [state.account])
     setBalance(res.storeAmount)
     setWithdraw(res.claimedAmount)
-    setTotal(Number(res.storeAmount) + Number(res.claimedAmount))
+    setflmTotal(Number(res.storeAmount) + Number(res.claimedAmount))
     // console.log(res);
   }
   const Claim = async () => {
-    const res = await handleDealMethod("claim", [state.api.utils.toWei(form.getFieldValue().flmw.toString())])
+    const res = await handleDealMethod("claim", [getin])
     // console.log();
   }
 
@@ -198,12 +199,12 @@ const FlmAirdrop = (props) => {
             <div className='flmleft'>
               <p className='pool-wz'>FLM Airdrop Pool</p>
               <div>
-                <span className='pool-zhi'>{total}</span>
+                <span className='pool-zhi'>{flmtotal-getin}</span>
               </div>
               <div className='pool-shu'>
                 <div >
                   <p className='pool-wz'>Total</p>
-                  <p className='pool-wz2'>{total}</p>
+                  <p className='pool-wz2'>{flmtotal}</p>
                 </div>
                 <div className='pool-wz3'>
                   <p className='pool-wz'>Withdrawn</p>

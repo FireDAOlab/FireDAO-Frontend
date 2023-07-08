@@ -84,9 +84,6 @@ const validateMessages = {
 };
 /* eslint-enable no-template-curly-in-string */
 
-const onFinish = (values) => {
-    console.log(values);
-};
 
 
 const FLMAirdropLv2 = (props) => {
@@ -97,11 +94,6 @@ const FLMAirdropLv2 = (props) => {
     const [FlmAirdro, setFlmAirdro] = useState([])
     const [curPage, setCurPage] = useState(1)
     const [pageCount, setPageCount] = useState(10)
-    const [lvaddress, setLvaddress] = useState([])
-    const [lvamount, setLvamount] = useState([])
-
-    const [deletelv, setDeletelv] = useState([])
-    const [exchan, setExchan] = useState([])
     const [searchData, setSearchData] = useState("")
     const [total, setTotal] = useState(0)
     const [checkedKeys, setCheckedKeys] = useState([]);
@@ -130,7 +122,7 @@ const FLMAirdropLv2 = (props) => {
         }
         return dealMethod(contractTemp, state.account, name, params)
     }
-
+    
     const handleViewMethod = async (name, params) => {
         let contractTemp = await getContractByName("FLMExchange", state.api,)
         if (!contractTemp) {
@@ -138,7 +130,16 @@ const FLMAirdropLv2 = (props) => {
         }
         return await viewMethod(contractTemp, state.account, name, params)
     }
-
+    
+    const onFinish =async  (values) => {
+        
+        const addressArr = values._user.split("\n")
+        const amountArr = values._amount.split("\n")
+        const res = await handleDealMethod("addWhiteList",[addressArr, amountArr])
+        if(res==undefined){
+            openNotification("Please use 'Enter Key' return to separate")
+        }
+    };
  
 
     useEffect(() => {
@@ -197,16 +198,19 @@ const FLMAirdropLv2 = (props) => {
         }
     }
 
-    const getList = async () => {
+    const getList = async (value) => {
         let data = await getFLMlist()
         let arr = data.data.addWhiteLists
         console.log(arr)
         let myArr = []
+        
         setFlmArr(arr)
         
         for (let i = 0; i < arr.length; i++) {
             if (arr[i].admin == state.account) {
                 myArr.push(arr[i])
+               
+                console.log(myArr);
             }
         }
         setFlmAirdro(myArr)
@@ -232,10 +236,7 @@ const FLMAirdropLv2 = (props) => {
         getData()
     }, [state.account]);
 
-    const addWhiteList = async () => {
-        const res = await handleDealMethod("addWhiteList", [[lvaddress], [lvamount]])
-        console.log(res);
-    }
+  
     <Table columns={columns} dataSource={data} />
     const [open, setOpen] = useState(false);
     const [confirmLoading, setConfirmLoading] = useState(false);
@@ -323,7 +324,7 @@ const FLMAirdropLv2 = (props) => {
                                     <p style={{ textAlign: 'left', fontSize: '14px' }}>Address</p>
                                     <Form.Item
                                         name='_user'>
-                                        <TextArea name="lvaddress" style={{ padding: '10px' }} value={lvaddress} onChange={e => setLvaddress(e.target.value)} rows={3} />
+                                        <TextArea name="lvaddress" style={{ padding: '10px' }} rows={3} />
                                     </Form.Item>
                                     <p style={{ textAlign: 'left', fontSize: '14px' }}>Amount</p>
                                     <Form.Item
@@ -334,7 +335,7 @@ const FLMAirdropLv2 = (props) => {
                                     //     },
                                     // ]}
                                     >
-                                        <TextArea rows={1} name="lvamount" style={{ padding: '10px' }} value={lvamount} onChange={e => setLvamount(e.target.value)} />
+                                        <TextArea rows={1} name="lvamount" style={{ padding: '10px' }}/>
                                     </Form.Item>
                                     {/* <Form.Item
                                         name='Username'
@@ -372,10 +373,7 @@ const FLMAirdropLv2 = (props) => {
 
 
                                     <Form.Item style={{ marginTop: '25px', width: '100%' }}>
-                                        <Button type="primary" htmlType="submit" style={{ fontSize: '16px', width: '100%', height: '45px', fontWeight: 'bold' }}
-
-                                            onClick={() => { addWhiteList() }}
-                                            >
+                                        <Button type="primary" htmlType="submit" style={{ fontSize: '16px', width: '100%', height: '45px', fontWeight: 'bold' }}>
                                             Submit
                                         </Button>
 
