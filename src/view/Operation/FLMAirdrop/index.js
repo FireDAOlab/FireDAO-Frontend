@@ -9,6 +9,7 @@ import judgeStatus from "../../../utils/judgeStatus";
 import DistributionStyle from "./style"
 import addressMap from "../../../api/addressMap";
 import {showNum} from "../../../utils/bigNumberUtil";
+import BigNumber from "bignumber.js";
 
 const Distribution = (props) => {
 
@@ -22,6 +23,7 @@ const Distribution = (props) => {
     const [curNav, setCurNav] = useState(1)
     const [withdrawNum, setWithdrawNum] = useState(undefined)
     const [canClaim, setCanClaim] = useState(0)
+    const [poolBalance, setPoolBalance] = useState(0)
 
     const openNotification = (message) => {
         notification.error({
@@ -33,7 +35,15 @@ const Distribution = (props) => {
             },
         });
     };
+    const getTokenBalance = async (value) => {
+        let contractTemp = await getContractByContract("erc20", addressMap["FLM"].address, state.api,)
+        const decimal = await viewMethod(contractTemp, state.account, "decimals", [])
+        let balance = await viewMethod(contractTemp, state.account, "balanceOf", [value])
+        balance = balance / (10 ** parseInt(decimal))
+        balance = parseInt(balance * 100) / 100
+        return balance
 
+    }
     const handleViewMethod = async (name, params) => {
         let contractTemp = await getContractByName("FLMAirdrop", state.api,)
         if (!contractTemp) {
@@ -54,7 +64,7 @@ const Distribution = (props) => {
     }
     const getCanClaim = async ()=>{
         const res = await handleViewMethod("checkUserCanClaim",[state.account])
-        setCanClaim(res)
+        setCanClaim(res/10**18)
     }
     useEffect(async () => {
         let judgeRes = await judgeStatus(state)
@@ -62,6 +72,8 @@ const Distribution = (props) => {
             return
         }
         getCanClaim()
+        const res = await getTokenBalance(addressMap["FLMAirdrop"].address)
+        setPoolBalance(res)
 
     }, [state.account, state.networkId]);
 
@@ -81,11 +93,14 @@ const Distribution = (props) => {
                                 FLM Airdrop Pool
                             </div>
                             <div className="num-box">
-                                {showNum(canClaim)}
+                                {poolBalance}
                             </div>
                         </div>
                         <div className="right-part">
-                            FID : {state.fid}
+                            <div className="info-box">
+                                <span>FID : {state.fid}</span>
+                                <span>can claim : {showNum(canClaim)}</span>
+                            </div>
                             <Form form={form}>
                                 {/* <p className='pool-wz'></p> */}
                                 <Form.Item label="Withdraw" name="flmw">
@@ -99,7 +114,9 @@ const Distribution = (props) => {
                                     </div>
                                 </Form.Item>
                             </Form>
-                            <Button type="primary" className="withdraw-btn" onClick={Claim}>Withdraw</Button>
+                            {!withdrawNum&&(<Button type="primary" className="withdraw-btn" >Input a number</Button>)}
+                            {withdrawNum>canClaim&&(<Button type="primary" className="withdraw-btn" >Overflow can claim</Button>)}
+                            {withdrawNum>0&&(BigNumber(withdrawNum).lt(canClaim)||withdrawNum==canClaim)&&(<Button type="primary" className="withdraw-btn" onClick={Claim}>Withdraw</Button>)}
                         </div>
                     </div>
                 </div>

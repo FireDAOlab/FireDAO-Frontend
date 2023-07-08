@@ -41,6 +41,10 @@ export default   styled.div`
     }
 
     .right-part {
+      .info-box{
+        display: flex;
+        justify-content: space-between;
+      }
       .input-box {
         position: relative;
         display: flex;

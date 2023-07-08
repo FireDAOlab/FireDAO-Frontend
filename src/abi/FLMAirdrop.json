@@ -2,8 +2,72 @@
 	{
 		"inputs": [
 			{
+				"internalType": "address[]",
+				"name": "_addr",
+				"type": "address[]"
+			},
+			{
+				"internalType": "uint256[]",
+				"name": "_amount",
+				"type": "uint256[]"
+			},
+			{
+				"internalType": "string[]",
+				"name": "_info",
+				"type": "string[]"
+			}
+		],
+		"name": "addWhiteList",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
 				"internalType": "address",
 				"name": "_token",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_amount",
+				"type": "uint256"
+			}
+		],
+		"name": "backToken",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_amount",
+				"type": "uint256"
+			}
+		],
+		"name": "Claim",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_token",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "_firePassport",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "_fireSoul",
 				"type": "address"
 			}
 		],
@@ -17,6 +81,24 @@
 				"indexed": false,
 				"internalType": "uint256",
 				"name": "id",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "pid",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "string",
+				"name": "username",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "fid",
 				"type": "uint256"
 			},
 			{
@@ -57,12 +139,12 @@
 	{
 		"inputs": [
 			{
-				"internalType": "uint256",
-				"name": "_amount",
-				"type": "uint256"
+				"internalType": "address[]",
+				"name": "_addr",
+				"type": "address[]"
 			}
 		],
-		"name": "Claim",
+		"name": "removeAdminsLevelTwo",
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
@@ -73,19 +155,29 @@
 				"internalType": "address[]",
 				"name": "_addr",
 				"type": "address[]"
-			},
-			{
-				"internalType": "uint256[]",
-				"name": "_amount",
-				"type": "uint256[]"
-			},
-			{
-				"internalType": "string[]",
-				"name": "_info",
-				"type": "string[]"
 			}
 		],
-		"name": "addWhiteList",
+		"name": "removeWhiteList",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "renounceOwnership",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address[]",
+				"name": "_addr",
+				"type": "address[]"
+			}
+		],
+		"name": "setAdminsLevelTwo",
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
@@ -94,16 +186,11 @@
 		"inputs": [
 			{
 				"internalType": "address",
-				"name": "_token",
+				"name": "newOwner",
 				"type": "address"
-			},
-			{
-				"internalType": "uint256",
-				"name": "_amount",
-				"type": "uint256"
 			}
 		],
-		"name": "backToken",
+		"name": "transferOwnership",
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
@@ -205,6 +292,63 @@
 		"type": "function"
 	},
 	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_user",
+				"type": "address"
+			}
+		],
+		"name": "getFid",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_user",
+				"type": "address"
+			}
+		],
+		"name": "getName",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_user",
+				"type": "address"
+			}
+		],
+		"name": "getPid",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
 		"inputs": [],
 		"name": "getWhiteList",
 		"outputs": [
@@ -265,65 +409,6 @@
 			}
 		],
 		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address[]",
-				"name": "_addr",
-				"type": "address[]"
-			}
-		],
-		"name": "removeAdminsLevelTwo",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address[]",
-				"name": "_addr",
-				"type": "address[]"
-			}
-		],
-		"name": "removeWhiteList",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "renounceOwnership",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address[]",
-				"name": "_addr",
-				"type": "address[]"
-			}
-		],
-		"name": "setAdminsLevelTwo",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "newOwner",
-				"type": "address"
-			}
-		],
-		"name": "transferOwnership",
-		"outputs": [],
-		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{

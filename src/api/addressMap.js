@@ -87,7 +87,7 @@ if (develop.ENV === "production") {
         FLMPoolLPAddress:{address:"0x6adf22540e77a100d136ca76a79a39af3b30484a"},
 
         FLM:{address:"0x926C1319AF0EBfb02e104d4940565940d2D0d0eC"},
-        FLMAirdrop:{address:"0x3426Fc83e0884cbaBE07ba79E0C5f9A7cbE794d5", abi:FLMAirdrop},
+        FLMAirdrop:{address:"0x1F6CA2ce127AA8685d0810C0f021B3005217F425", abi:FLMAirdrop},
         emergencyPool: {address: "0x251a7c07Ff5b71650DF9FEeB01184FC31a2bD57C", abi: emergencyPool},
         normalPool: {address: "0x44dBD7664A4F89C2598b93a04C3EF7c13FC859bC", abi: normalPool},
         poolManager : {address: "0x59eEeD4C641592a622d1Ee1F960D2e27376BC212", abi: poolManger},
