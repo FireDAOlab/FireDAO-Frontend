@@ -108,8 +108,8 @@ const FlmAirdrop = (props) => {
         <p>{ }</p>
       </div> */}
       <div className="address col">
-        {item._user?item._user.substr(0,7)+"..."+item._user.substr(item._user.length-4,item._user.length):""}
-        
+        {item._user ? item._user.substr(0, 7) + "..." + item._user.substr(item._user.length - 4, item._user.length) : ""}
+
       </div>
       <div className="zchang col">
         {item._amount}
@@ -118,7 +118,7 @@ const FlmAirdrop = (props) => {
 
       </div> */}
 
-      
+
     </div>
   }
 
@@ -160,7 +160,7 @@ const FlmAirdrop = (props) => {
 
 
   const getData = async (page) => {
-    
+
   }
 
   const createList = async () => {
@@ -220,20 +220,25 @@ const FlmAirdrop = (props) => {
               <div className='maxzhi'>
                 <Form form={form} >
                   {/* <p className='pool-wz'></p> */}
-                  <Form.Item label="Withdraw" name="flmw">
-                    <Input className='maxleft' name="getin" value={getin} onChange={e => setGetin(e.target.value)} />
-
-                  </Form.Item>
+                  <div className='input-box'>
+                    <Form.Item label="Withdraw" name="flmw">
+                      <Input className='maxleft' name="getin" placeholder="0" step="any" type="number" value={getin} onChange={e => setGetin(e.target.value)} />
+                      <div className="max-btn" onClick={() => getmax()}>
+                        MAX
+                      </div>
+                    </Form.Item>
+                  </div>
                 </Form>
-                <Button className='maxright' type="primary" onClick={() => getmax()}>
-                  <span className="maxwz">MAX</span>
+                <Button className='withdraw' type='primary' onClick={() => {
+                  Claim()
+                }}>
+                  <p className='withwz'>Withdraw</p>
                 </Button>
+                {/* <Button className='maxright' type="primary" >
+                  <span className="maxwz">MAX</span>
+                </Button> */}
               </div>
-              <Button className='withdraw' type='primary' onClick={() => {
-                Claim()
-              }}>
-                <p className='withwz'>Withdraw</p>
-              </Button>
+
             </div>
           </div>
         </div>
@@ -278,7 +283,7 @@ const FlmAirdrop = (props) => {
               ))
             }
             {
-               searchData.length>0 && activeNav == 1 && searchData.map((item, index) => (
+              searchData.length > 0 && activeNav == 1 && searchData.map((item, index) => (
                 Row(item, index)
               ))
             }
