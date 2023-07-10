@@ -27,9 +27,9 @@ const FlmAirdrop = (props) => {
   const [pageCount, setPageCount] = useState(10)
   const [searchData, setSearchData] = useState("")
   const [balance, setBalance] = useState(0)
+  const [poooltotal, setpoooltotal] = useState(0)
   const [withdraw, setWithdraw] = useState(0)
-  const [getin, setGetin] = useState(0)
-  const [getmac, setGetmac] = useState(0)
+  const [getin, setGetin] = useState([0])
   const [total, setTotal] = useState(0)
   const [flmtotal, setflmTotal] = useState(0)
   const [searchArr, setSearchArr] = useState(false)
@@ -68,18 +68,20 @@ const FlmAirdrop = (props) => {
 
   const userStores = async () => {
     const res = await handleViewMethod("userStores", [state.account])
-    setBalance(res.storeAmount)
-    setWithdraw(res.claimedAmount)
+    
+    setBalance(Number(res.storeAmount-getin))
+    setWithdraw(Number(res.claimedAmount+getin))
     setflmTotal(Number(res.storeAmount) + Number(res.claimedAmount))
-    // console.log(res);
+    setpoooltotal(Number(res.storeAmount) + Number(res.claimedAmount)-Number(getin))
+    console.log(res);
   }
   const Claim = async () => {
     const res = await handleDealMethod("claim", [getin])
-    // console.log();
+    console.log(res);
   }
 
   const getmax = () => {
-    form.setFieldsValue({ "flmw": getmac })
+    setGetin(withdraw)
   }
 
   useEffect(() => {
@@ -199,14 +201,14 @@ const FlmAirdrop = (props) => {
             <div className='flmleft'>
               <p className='pool-wz'>FLM Airdrop Pool</p>
               <div>
-                <span className='pool-zhi'>{flmtotal-getin}</span>
+                <span className='pool-zhi'>{poooltotal}</span>
               </div>
               <div className='pool-shu'>
                 <div >
                   <p className='pool-wz'>Total</p>
                   <p className='pool-wz2'>{flmtotal}</p>
                 </div>
-                <div className='pool-wz3'>
+                <div className='pool-wz3'>              
                   <p className='pool-wz'>Withdrawn</p>
                   <p className='pool-wz2'>{withdraw}</p>
                 </div>
@@ -221,10 +223,10 @@ const FlmAirdrop = (props) => {
               <div className='maxzhi'>
                 <Form form={form} >
                   {/* <p className='pool-wz'></p> */}
-                  <div className='input-box'>
+                  <div className='inputbox'>
                     <Form.Item label="Withdraw" name="flmw">
-                      <Input className='maxleft' name="getin" placeholder="0" step="any" type="number" value={getin} onChange={e => setGetin(e.target.value)} />
-                      <div className="max-btn" onClick={() => getmax()}>
+                      <Input className='maxleft' name="getin" placeholder="0" step="any"  value={getin} onChange={e => setGetin(e.target.value)} />
+                      <div className="max-btn" onClick={()=>{getmax()}}>
                         MAX
                       </div>
                     </Form.Item>

@@ -15,6 +15,7 @@ import sc2 from '../../../../imgs/sc.png'
 import wxz from '../../../../imgs/wxz.png'
 import xz from '../../../../imgs/xz.png'
 import { isStyledComponent } from 'styled-components';
+import { add } from 'highland';
 const { TextArea } = Input;
 const columns = [
     {

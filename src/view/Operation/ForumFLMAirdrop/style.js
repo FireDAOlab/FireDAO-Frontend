@@ -112,7 +112,7 @@ font-size:14px;
             .maxzhi{
                 width: 100%;
                 
-                .input-box {
+                .inputbox {
                     
                     position: relative;
                     display: flex;
