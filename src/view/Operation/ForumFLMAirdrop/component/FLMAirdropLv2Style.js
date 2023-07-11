@@ -58,7 +58,6 @@ width: 100%;
         .lb{
             padding-top: 15px;
             display: flex;
-            line-height:20px;
             flex-direction:row;
             justify-content:space-around;
             color: rgba(138, 128, 128, 1);
@@ -66,7 +65,6 @@ width: 100%;
         .hh{
             padding-top: 15px;
             display: flex;
-            line-height:20px;
             flex-direction:row;
             justify-content:space-around;
             
@@ -74,11 +72,7 @@ width: 100%;
                 width: 80px;
                 height: 30px;
                 text-align:center;
-                background: rgba(254, 109, 70, 0.10);
                 color:rgba(254, 109, 70, 1);
-                border-radius: 20px ;
-                border: 1px solid rgba(254, 109, 70, 0.50);
-                line-height:30px;
             }
 
 
@@ -88,20 +82,13 @@ width: 100%;
                 text-align:center;
                 color:rgba(254, 109, 70, 1);
                 border-radius: 20px ;
-                background: rgba(254, 109, 70, 0.10);
-                border: 1px solid rgba(254, 109, 70, 0.50);
-                line-height:30px; 
                 
             }
             .address{
                 width:150px;
                 height: 30px;
-                border:1px solid rgba(205, 158, 87, 0.50);
-                border-radius:20px;
                 text-align:center;
-                background: rgba(205, 158, 87, 0.10);
                 font-size:14px;
-                line-height:30px;
                 color: rgba(205, 158, 87, 1);
            
             }

@@ -281,7 +281,6 @@ width: 80%;
         .lb{
             padding-top: 15px;
             display: flex;
-            line-height:20px;
             flex-direction:row;
             justify-content:space-around;
             color: rgba(138, 128, 128, 1);
@@ -289,7 +288,6 @@ width: 80%;
         .hh{
             padding-top: 15px;
             display: flex;
-            line-height:20px;
             flex-direction:row;
             justify-content:space-around;
             .xuhao{
@@ -301,11 +299,7 @@ width: 80%;
                 width: 80px;
                 height: 30px;
                 text-align:center;
-                line-height:30px;
-                background: rgba(254, 109, 70, 0.10);
                 color:rgba(254, 109, 70, 1);
-                border-radius: 20px ;
-                border: 1px solid rgba(254, 109, 70, 0.50);
             }
 
 
@@ -313,29 +307,19 @@ width: 80%;
                 width: 80px;
                 height: 30px;
                 text-align:center;
-                line-height:30px;
                 color:rgba(254, 109, 70, 1);
-                border-radius: 20px ;
-                background: rgba(254, 109, 70, 0.10);
-                border: 1px solid rgba(254, 109, 70, 0.50);
-              
             }
             .address{
                 width:160px;
                 height: 30px;
-                border:1px solid rgba(205, 158, 87, 0.50);
-                border-radius:20px;
                 text-align:center;
                 font-size:14px;
-                line-height:30px;
                 color: rgba(205, 158, 87, 1);
-                background: rgba(205, 158, 87, 0.10);
             }
             .time{
                 width:200px;
                 height: 30px;
                 text-align:center;
-                line-height:30px;
                 font-size:14px;
                 }
         }
@@ -373,7 +357,6 @@ width: 80%;
         .lb{
             padding-top: 15px;
             display: flex;
-            line-height:20px;
             flex-direction:row;
             justify-content:space-around;
             color: rgba(138, 128, 128, 1);
@@ -381,7 +364,6 @@ width: 80%;
         .hh{
             padding-top: 15px;
             display: flex;
-            line-height:20px;
             flex-direction:row;
             justify-content:space-around;
             .xuhao{
@@ -392,11 +374,7 @@ width: 80%;
                 width: 80px;
                 height: 30px;
                 text-align:center;
-                background: rgba(254, 109, 70, 0.10);
                 color:rgba(254, 109, 70, 1);
-                border-radius: 20px ;
-                border: 1px solid rgba(254, 109, 70, 0.50);
-                    line-height:30px;
             }
 
 
@@ -405,30 +383,18 @@ width: 80%;
                 height: 30px;
                 text-align:center;
                 color:rgba(254, 109, 70, 1);
-                border-radius: 20px ;
-                background: rgba(254, 109, 70, 0.10);
-                border: 1px solid rgba(254, 109, 70, 0.50);
-                    line-height:30px;
             }
             .address{
                 width:160px;
                 height: 30px;
-                border:1px solid rgba(205, 158, 87, 0.50);
-                border-radius:20px;
                 text-align:center;
-                background: rgba(205, 158, 87, 0.10);
                 font-size:14px;
-                line-height:30px;
                 color: rgba(205, 158, 87, 1);
             }
             .tokeaddress{
                 width:160px;
                 height: 30px;
-                border:1px solid rgba(205, 158, 87, 0.50);
-                border-radius:20px;
                 text-align:center;
-                line-height:30px;
-                background: rgba(205, 158, 87, 0.10);
                 font-size:14px;
                 color: rgba(205, 158, 87, 1);
                 
@@ -437,7 +403,6 @@ width: 80%;
                 width:200px;
                 height: 30px;
                 text-align:center;
-                line-height:30px;
                 font-size:14px;
             }
         }
@@ -498,7 +463,6 @@ width: 80%;
         .lb{
             padding-top: 15px;
             display: flex;
-            line-height:20px;
             flex-direction:row;
             justify-content:space-around;
             color: rgba(138, 128, 128, 1);
@@ -506,7 +470,6 @@ width: 80%;
         .hh{
             padding-top: 15px;
             display: flex;
-            line-height:20px;
             flex-direction:row;
             justify-content:space-around;
             .xuhao{
@@ -517,11 +480,7 @@ width: 80%;
                 width: 80px;
                 height: 30px;
                 text-align:center;
-                background: rgba(254, 109, 70, 0.10);
                 color:rgba(254, 109, 70, 1);
-                border-radius: 20px ;
-                border: 1px solid rgba(254, 109, 70, 0.50);
-                    line-height:30px;
             }
 
 
@@ -530,19 +489,11 @@ width: 80%;
                 height: 30px;
                 text-align:center;
                 color:rgba(254, 109, 70, 1);
-                border-radius: 20px ;
-                background: rgba(254, 109, 70, 0.10);
-                border: 1px solid rgba(254, 109, 70, 0.50);
-                line-height:30px;
             }
             .address{
                 width:160px;
                 height: 30px;
-                border:1px solid rgba(205, 158, 87, 0.50);
-                border-radius:20px;
                 text-align:center;
-                line-height:30px;
-                background: rgba(205, 158, 87, 0.10);
                 font-size:14px;
                 color: rgba(205, 158, 87, 1);
                 
@@ -551,7 +502,6 @@ width: 80%;
                 width:200px;
                 height: 30px;
                 text-align:center;
-                line-height:30px;
                 font-size:14px;
                 color: rgba(205, 158, 87, 1);
             
