@@ -19,6 +19,7 @@ import AddAddressRate from "./AddAddressRate.js";
 import {formatAddress} from "../../../utils/publicJs";
 import {showNum} from "../../../utils/bigNumberUtil";
 import {getSecondDonateRecord, getThreeDonateRecord} from "../../../graph/donate";
+import addressMap from "../../../api/addressMap";
 
 const OGPool = (props) => {
     const [form2] = Form.useForm();
@@ -27,7 +28,6 @@ const OGPool = (props) => {
     const [form] = Form.useForm();
     const [secondAdmins, setSecondAdmin] = useState([])
     const [assignAmin, setAssignAdmin] = useState([])
-    const [rateArr, setRateArr] = useState([])
     const [total, setTotal] = useState(0)
     const [curPage, setCurPage] = useState(1)
     const [pageCount, setPageCount] = useState(20)
@@ -37,7 +37,8 @@ const OGPool = (props) => {
     const [totalDonate, setTotalDonate] = useState(0)
     const [salePriceV, setSalePriceV] = useState(0)
     const [maxThree, setMaxThree] = useState(0)
-    const [maxTwo, setMaxTwo] = useState(0)
+    const [maxThreeAdmin, setMaxThreeAdmin] = useState(0)
+
     const [exchangeAmount, setExchangeAmount] = useState(0)
     const [sumArr, setSumArr] = useState([])
     const [inputValue, setInputValue] = useState(0)
@@ -74,10 +75,7 @@ const OGPool = (props) => {
         await dealMethod(contractTemp, state.account, name, params)
     }
 
-    const getAllRecord = async () => {
-        let res = await getDonateRecord()
-        return res.data.allRecords
-    }
+
     const getSummary = async () => {
         const secondAdmin = await getSecondAdmins()
         let sumArr = []
@@ -137,6 +135,15 @@ const OGPool = (props) => {
         return adminWhiteList
 
     }
+    const getAssignAndRates = async () => {
+        const length = await handleViewMethod("getAssignAndRateslength", [])
+        const resArr = []
+        for (let i = 0; i < length; i++) {
+            const res = await handleViewMethod("assignAndRates", [i])
+            resArr.push(res)
+        }
+        setAssignAdmin(resArr)
+    }
     const getBalanceOfFDT = async () => {
         let balance = await handleViewMethod("getBalanceOfFDT", [])
         balance = parseInt(parseInt(balance) / 10 ** 18)
@@ -160,10 +167,11 @@ const OGPool = (props) => {
         let res = await handleViewMethod("maxThree", [])
         setMaxThree(res)
     }
-    const getMaxTwo = async () => {
-        let res = await handleViewMethod("maxTwo", [])
-        setMaxTwo(res)
+    const getMaxThreeAdmin = async () => {
+        let res = await handleViewMethod("adminLevelThreeMax", [])
+        setMaxThreeAdmin(res)
     }
+
     const getShowWhiteList = async () => {
         let length = await handleViewMethod("getWhiteListLength", [])
         let arr = []
@@ -216,7 +224,7 @@ const OGPool = (props) => {
         getpidStatusForAdmin()
     }
     const setFDTAddress = async () => {
-        await handleDealMethod("setFDTAddress", [form2.getFieldValue().fdtAddress])
+        await handleDealMethod("setFDTAddress", [form.getFieldValue().fdtAddress])
         // getFDTAddress()
     }
     const setPidStatusForUser = async () => {
@@ -227,7 +235,7 @@ const OGPool = (props) => {
 
     const setRateAndAddress = async () => {
         await handleDealMethod("setAssignAddressAndRatio", [curId, curAddr, form2.getFieldValue().assignRate])
-
+        getAssignAndRates()
     }
 
     const transferOwnership = async () => {
@@ -250,17 +258,21 @@ const OGPool = (props) => {
         getSecondAdmins()
     }
     const removeAdmin = async () => {
-        await handleDealMethod("removeAdminLevelTwo", [[form.getFieldValue().adminaddress]])
+        await handleDealMethod("removeAdminLevelTwo", [form.getFieldValue().adminaddress])
         getSecondAdmins()
-    }
-    const setWhiteMaxForTwo = async () => {
-        await handleDealMethod("setWhiteMaxForTwo", [(form2.getFieldValue().max)])
     }
     const setWhiteListAmount = async () => {
         await handleDealMethod("setWhiteMaxForThree", [(form2.getFieldValue().max)])
+        getMaxThree()
     }
+
+    const setAdminLevelThreeMax = async () => {
+        await handleDealMethod("setAdminLevelThreeMax", [(form2.getFieldValue().maxThree)])
+        getMaxThreeAdmin()
+    }
+
     const withdraw = async () => {
-        await handleDealMethod("withdraw", [state.api.utils.toWei(form2.getFieldValue().withdrawNum)])
+        await handleDealMethod("Claim", [fdtAddr, state.api.utils.toWei(form2.getFieldValue().withdrawNum)])
         this.getData()
     }
     const claim = async () => {
@@ -285,16 +297,17 @@ const OGPool = (props) => {
         getSecondAdmins()
         getInviteRate()
         getSalePrice()
-        getMaxTwo()
         getMaxThree()
+        getMaxThreeAdmin()
         getSummary()
         getPause()
         getpidStatusForAdmin()
         getpidStatusForAdmin()
         getFDTAddress()
+        getAssignAndRates()
     }
-    const chooseRow = (addr, id) => {
-        setCurAddr(addr)
+    const chooseRow = (item, id) => {
+        setCurAddr(item.assign)
         setCurId(id)
     }
     const onChangePage = async (page) => {
@@ -305,7 +318,7 @@ const OGPool = (props) => {
         setPageCount(count)
     }
     const delARRow = async (item) => {
-        await handleDealMethod("removeAssiginAddressAndRatio", [[item]])
+        await handleDealMethod("removeAssiginAddressAndRatio", [[item.assign]])
     }
 
     useEffect(() => {
@@ -494,7 +507,7 @@ const OGPool = (props) => {
                                 </div>
                                 {
                                     secondAdmins.map((item, index) => (
-                                        <div className="row" key={index}>
+                                        <div className="row list-item" key={index}>
                                             {item}
                                         </div>
                                     ))
@@ -527,7 +540,28 @@ const OGPool = (props) => {
 
                         <div className="panel-container">
                             <div className="panel-title">
-                                Set Level 3 WhiteList Amount: ( {maxThree} )
+                                Set Level3 admin Amount: ( {maxThreeAdmin} )
+                            </div>
+                            <Form form={form2} name="control-hooks" className="form">
+                                <Form.Item
+                                    name="maxThree"
+                                    validateTrigger="onBlur"
+                                    validateFirst={true}
+                                >
+                                    <div className="input-box">
+                                        <Input/>
+                                    </div>
+                                </Form.Item>
+
+                                <div className="btns">
+                                    <Button className="add-btn" type="primary" onClick={() => {
+                                        setAdminLevelThreeMax()
+                                    }}>setWhiteListAmount</Button>
+                                </div>
+                            </Form>
+
+                            <div className="panel-title">
+                                Set WhiteList Amount: ( {maxThree} )
                             </div>
                             <Form form={form2} name="control-hooks" className="form">
 
@@ -573,7 +607,7 @@ const OGPool = (props) => {
                                 Add Invite Rate
                             </div>
                             <Form form={form2} name="control-hooks" className="form">
-                                <h3>2 Level Admin{inviteRate2}%</h3>
+                                <h2>3 Level Admin <strong>{inviteRate2}%</strong></h2>
                                 <Form.Item
                                     name="inviteRate1"
                                     validateTrigger="onBlur"
@@ -583,7 +617,7 @@ const OGPool = (props) => {
                                         <Input/>
                                     </div>
                                 </Form.Item>
-                                <h3> 3 Level Admin{inviteRate1}%</h3>
+                                <h2> 2 Level Admin <strong>{inviteRate1}%</strong></h2>
                                 <Form.Item
                                     name="inviteRate2"
                                     validateTrigger="onBlur"
@@ -640,7 +674,7 @@ const OGPool = (props) => {
                                 Fund Allocation
                             </div>
                             <div className="tip-box">
-                                Recommender Allocation Rate 15%
+                                Recommender Allocation Rate
                             </div>
                             <div className=" fire-list-box">
                                 <div className=" list-header ">
@@ -667,10 +701,11 @@ const OGPool = (props) => {
                                             <div className="col">
                                                 {index + 1}
                                             </div>
-                                            <div className="col">{item}
+                                            <div className="col">
+                                                {item.assign}
                                             </div>
                                             <div className="col">
-                                                {rateArr[index]}
+                                                {item.rate}
                                             </div>
                                             <div className="col">
                                                 <Button onClick={() => {
@@ -821,7 +856,9 @@ const OGPool = (props) => {
                         </div>
                         <div className="panel-box part2">
                             <div className="panel-container">
-
+                                <div className="panel-title">
+                                    Whitelist
+                                </div>
                                 <div className="fire-list-box">
                                     <div className="list-header flex-box">
 
@@ -843,14 +880,6 @@ const OGPool = (props) => {
                                         ))
                                     }
 
-                                </div>
-                                <div className="pagination">
-                                    {
-                                        activeNav == 1 && <Pagination current={curPage} showSizeChanger
-                                                                      onShowSizeChange={handleShowSizeChange}
-                                                                      onChange={onChangePage} total={total}
-                                                                      defaultPageSize={pageCount}/>
-                                    }
                                 </div>
                             </div>
 

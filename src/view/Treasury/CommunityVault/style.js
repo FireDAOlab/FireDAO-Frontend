@@ -1,13 +1,72 @@
 import styled from "styled-components";
 import passportHeaderBg from "../../../imgs/passport_header_bg.webp";
+import communityBg from "../../../imgs/communuty_header_bg.png"
+
 export default   styled.div`
   display: flex;
   flex-direction: column;
   align-items: stretch;
   /* pc style */
+
+  .header-box {
+    display: flex;
+    justify-content: space-between;
+
+    .btn-box {
+      display: flex;
+
+      .ant-btn {
+        margin-left: 10px;
+      }
+    }
+  }
+
+  .header-content {
+    padding: 24px 0;
+    position: relative;
+
+    .banner {
+      width: 100%;
+      height: 120px;
+      background: url(${communityBg});
+      background-size: 100% 100%;
+    }
+
+    .header-icon {
+      position: absolute;
+      left: 38px;
+      top: 100px;
+      user-select: none;
+      img {
+        width: 80px;
+        height: 80px;
+      }
+    }
+    .community-info{
+      padding-left: 130px;
+      .title{
+        padding-top: 6px;
+        font-size: 15px;
+        font-family: Roboto-Bold, Roboto;
+        font-weight: bold;
+      }
+      .bio-box{
+        margin-top: 10px;
+        font-size: 12px;
+        font-family: Roboto-Bold, Roboto;
+        font-weight: bold;
+        color: #8A8080;
+        strong{
+          color: #fff;
+          margin-right: 6px;
+        }
+      }
+    }
+  }
+
   @media screen and (min-width: 1000px) {
-    .white-list{
-      .list-item{
+    .white-list {
+      .list-item {
         display: flex;
         justify-content: space-between;
         padding: 10px 6px;
@@ -15,16 +74,19 @@ export default   styled.div`
         border-radius: 10px;
         border: 1px solid #7F6868;
         margin-top: 6px;
-        .user{
+
+        .user {
           margin-left: 30px;
         }
       }
     }
-    .assets-box{
+
+    .assets-box {
       padding: 30px 0;
       align-items: center;
       display: flex;
-      .asset{
+
+      .asset {
         font-size: 30px;
         margin-right: 20px;
       }
@@ -97,10 +159,11 @@ export default   styled.div`
 
 
               .bio {
-                strong{
+                strong {
                   color: #fff;
                   margin-right: 10px;
                 }
+
                 color: #999;
                 font-family: Roboto-Bold, Roboto;
                 font-weight: bold;
@@ -126,9 +189,11 @@ export default   styled.div`
           align-items: center;
           margin: 2em 0 0;
           justify-content: space-between;
-          .recommender-info{
+
+          .recommender-info {
             display: flex;
           }
+
           .left {
             display: flex;
             align-items: center;
@@ -247,6 +312,7 @@ export default   styled.div`
             border-radius: 18px;
             border: 1px solid #7F6868;
             padding: 10px;
+
             img {
               width: 100%;
               height: auto;
@@ -478,13 +544,15 @@ export default   styled.div`
             .bio-box {
               font-size: 16px;
               font-family: Roboto-Bold, Roboto, sans-serif;
-              border-bottom: 1px solid rgba(255,255,255,0.2);
+              border-bottom: 1px solid rgba(255, 255, 255, 0.2);
               padding-bottom: 20px;
+
               .bio {
-                strong{
+                strong {
                   color: #fff;
                   margin-right: 10px;
                 }
+
                 color: #999;
                 font-family: Roboto-Bold, Roboto;
                 font-weight: bold;
@@ -509,9 +577,11 @@ export default   styled.div`
           align-items: center;
           margin: 2em 0 0;
           justify-content: space-between;
-          .recommender-info{
+
+          .recommender-info {
             display: flex;
           }
+
           .left {
             display: flex;
             flex-direction: column;
@@ -532,6 +602,7 @@ export default   styled.div`
               padding: 1px;
               background: linear-gradient(320deg, #DD3642 0%, #FFC02C 100%);
               width: 60vw;
+
               .reputation-data {
                 text-align: center;
                 padding: 3px 30px;
@@ -585,6 +656,7 @@ export default   styled.div`
         .link-box {
           align-items: center;
           flex-wrap: wrap;
+
           .flex-box {
             display: block;
           }
@@ -596,9 +668,11 @@ export default   styled.div`
             display: flex;
             justify-content: space-between;
             align-items: center;
-            svg{
+
+            svg {
               flex-shrink: 0;
             }
+
             .name {
               font-weight: bold;
               margin-left: 0.5em;

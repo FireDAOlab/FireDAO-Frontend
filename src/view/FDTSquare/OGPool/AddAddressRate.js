@@ -34,10 +34,10 @@ const AddAddressRate = (props) => {
         let  _to = [],_rates=[]
 
         for (let i = 0; i < ownerArr.length; i++) {
-            _to.push(form.getFieldValue()["owner" + i])
+            let address = form.getFieldValue()["owner" + i]
+            _to.push(address.trim())
             _rates.push(form.getFieldValue()["rate" + i])
         }
-
 
         await handleDealMethod("addAssignAddressAndRatio", [_to,_rates])
         updateData()

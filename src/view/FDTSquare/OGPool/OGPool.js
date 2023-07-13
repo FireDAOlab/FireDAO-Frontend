@@ -1,12 +1,13 @@
 import React, {useEffect, useRef, useState} from 'react';
 import {useConnect} from "../../../api/contracts";
 import BigNumber from "bignumber.js"
-import AddNomalWhiteList from "./AddNomalWhiteList";
-import AddThreeWhiteList from "./AddThreeWhiteList";
+import AddNomalWhiteList from "./ThreelWhiteList";
+import AddThreeWhiteList from "./WhiteList";
 import {showNum} from "../../../utils/bigNumberUtil";
 
 import {formatAddress} from "../../../utils/publicJs";
 import ConnectWallet from "../../../component/ConnectWallet/ConnectWallet";
+import manage from "../../../imgs/svg/manage.svg"
 import {
     Button,
     message,
@@ -52,6 +53,8 @@ const OGPoolkk = (props) => {
     const [adminWhiteList, setAdminWhiteList] = useState([])
     const [salePrice, setSalePriceV] = useState(0.01)
     const [status, setStatus] = useState(0)
+    const [isAdmin, setIsAdmin] = useState(false)
+
     const history = useNavigate();
     const [form] = Form.useForm();
 
@@ -92,7 +95,14 @@ const OGPoolkk = (props) => {
             dispatch({type: "SET_PID", payload: userInfo.PID})
         }
     }
-
+    const getAdmin = async () => {
+        let res = await handleViewMethod("owner", [])
+        if(state.account.toLowerCase() == res.toLowerCase()){
+            setIsAdmin(true)
+        }else{
+            setIsAdmin(false)
+        }
+    }
     const handleCoinViewMethod = async (name, coinName, params) => {
         let contractTemp = await getContractByName(coinName, state.api,)
         if (!contractTemp) {
@@ -203,10 +213,24 @@ const OGPoolkk = (props) => {
         setAllWhiteList(arr)
     }
 
-    const getIsAdmin = async () => {
 
-        setIsSecondAdmin(false)
-        setIsThreeAdmin(false)
+    const getIsAdmin = async () => {
+        const secondArr = await handleViewMethod("getAdminsLevelTwoList", [])
+        const threeArr = await handleViewMethod("getAdminsLevelThreeList", [])
+        let isS = false,isT=false
+        secondArr.forEach(item=>{
+            if(item.toLowerCase() === state.account.toLowerCase()){
+                isS=true
+            }
+        })
+        threeArr.forEach(item=>{
+            if(item.toLowerCase() === state.account.toLowerCase()){
+                isT=true
+            }
+        })
+
+        setIsSecondAdmin(isS)
+        setIsThreeAdmin(isT)
     }
     const getSalePrice = async () => {
         let res = await handleViewMethod("salePrice", [])
@@ -237,7 +261,7 @@ const OGPoolkk = (props) => {
             getUserInfo()
             getSalePrice()
             getValidNumbers()
-
+            getAdmin()
             let res = await getDonateRecord()
             if (res.data) {
                 let arr = []
@@ -345,6 +369,11 @@ const OGPoolkk = (props) => {
 
             <div className="page-title">
                 OG Pool
+                {isAdmin&&(
+                    <div className="admin-icon-box" onClick={()=>{history("/OGPoolAdmin")}}>
+                        <img className="admin-icon" src={manage} alt=""/>
+                    </div>
+                )}
             </div>
             <div className="header-nav">
                 <div className="fire-nav-list ">
@@ -359,7 +388,7 @@ const OGPoolkk = (props) => {
                         WhiteList
                     </div>
                     {
-                        (isSAdmin) && (
+                        isSAdmin && (
 
                             <div className={"nav-item " + (activeNav == 4 ? "active" : "")} onClick={() => {
 
@@ -632,7 +661,7 @@ const OGPoolkk = (props) => {
                                 </span>
                             </div>
                             <div className="fire-list-box">
-                                <div className=" list-header2 flex-box">
+                                <div className="list-header2 list-header">
                                     <div className="col">
                                         No.
                                     </div>

@@ -9,6 +9,7 @@ import {useNavigate} from "react-router-dom";
 import judgeStatus from "../../../utils/judgeStatus";
 import DistributionStyle from "./style"
 import addressMap from "../../../api/addressMap";
+import headerImg from "../../../imgs/header_icon.webp";
 const Distribution = (props) => {
 
     let {state, dispatch} = useConnect();
@@ -70,7 +71,7 @@ const Distribution = (props) => {
         for (let i = 0; i < length; i++) {
             const address = await handleViewMethod("AllocationFundAddress", [i])
             const rate = await handleViewMethod("distributionRatio", [address])
-                arr.push({address, rate, amount: assets * rate / 100, balance:await getTokenBalance(address)})
+            arr.push({address, rate, amount: assets * rate / 100, balance: await getTokenBalance(address)})
         }
         setAllocationFundAddress(arr)
     }
@@ -91,12 +92,39 @@ const Distribution = (props) => {
         <DistributionStyle>
 
             <div className="panel-box userinfo-box">
-                <div className="panel-title">
-                    Community Vault
-                </div>
+
                 <div className="panel-container">
-                    <div className="panel-title">
-                        <Button type="primary" onClick={()=>{history("/CreateProposal")}}>New Proposals</Button>
+                    <div className="header-box">
+                        <div className="panel-title ">
+                            Community Vault
+                        </div>
+                        <div className="btn-box">
+                            <Button type="primary" onClick={() => {
+                                history("/CreateProposal")
+                            }}>New Proposals</Button>
+                            <Button type="primary" onClick={() => {
+                                history("/")
+                            }}>My Draft</Button>
+                        </div>
+                    </div>
+                    <div className="header-content">
+                        <div className="banner">
+
+                        </div>
+                        <div className="header-icon">
+                            <img src={headerImg} alt=""/>
+                        </div>
+                        <div className="community-info">
+                            <div className="title">
+                                FireDAO
+                            </div>
+                            <div className="bio-box">
+                                <strong>BIO:</strong>
+                                <span>
+                                    Let's build the Bit Civilization together！
+                                </span>
+                            </div>
+                        </div>
                     </div>
 
                 </div>

@@ -330,6 +330,7 @@ const Register = (props) => {
         }
     }, [state.account,state.networkId,state.apiState,state.ethBalance]);
     const checkMintInfo = async ()=>{
+        console.log(state.networkId)
         if(state.networkId !== develop.chainId){
             openMessageError("The testnet is not available now, please connect to" + develop.Name)
             return

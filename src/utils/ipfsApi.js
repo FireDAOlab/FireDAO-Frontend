@@ -62,7 +62,6 @@ export async function uploadFile(file) {
 }
 
 export async function uploadJson(jsonData) {
-    console.log(process.env.REACT_APP_PinataAPIKey)
     let result = await $.ajax({
         type: "post",
         url: 'https://api.pinata.cloud/pinning/pinJSONToIPFS',

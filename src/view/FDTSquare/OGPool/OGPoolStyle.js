@@ -9,13 +9,14 @@ export default   styled.div`
     font-family: Roboto-Bold, Roboto;
     font-weight: bold;
     margin-left: 5%;
+    padding: 0 10%;
   }
 
   .header-nav {
     width: 90%;
     margin-left: 5%;
     display: flex;
-
+    padding: 0 10%;
     .fire-nav-list {
       .nav-item {
         width: 180px;
@@ -24,10 +25,10 @@ export default   styled.div`
   }
 
   .panel-container {
-    padding: 2em;
+    padding: 2em 10%;
     width: 90%;
     margin: 10px auto;
-
+    
     .isInW {
       display: flex;
       width: 100%;
@@ -272,7 +273,7 @@ export default   styled.div`
       .fire-nav-list {
         padding: 3px;
         margin-top: 1em;
-        width: 300px;
+        width: 500px;
         height: 50px;
       }
     }
