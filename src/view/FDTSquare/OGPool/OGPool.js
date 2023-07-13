@@ -27,7 +27,6 @@ import {getDonateRecord} from "../../../graph/donate";
 import OGPoolStyle from "./OGPoolStyle";
 
 
-
 const OGPoolkk = (props) => {
     let {state, dispatch} = useConnect();
     const [activeNav, setActiveNav] = useState(1)
@@ -97,9 +96,9 @@ const OGPoolkk = (props) => {
     }
     const getAdmin = async () => {
         let res = await handleViewMethod("owner", [])
-        if(state.account.toLowerCase() == res.toLowerCase()){
+        if (state.account.toLowerCase() == res.toLowerCase()) {
             setIsAdmin(true)
-        }else{
+        } else {
             setIsAdmin(false)
         }
     }
@@ -164,7 +163,7 @@ const OGPoolkk = (props) => {
             <div className="col address">
                 {
                     item.user && <a href={develop.ethScan + "address/" + item.user} target="_blank">
-                        {formatAddress(item.user)}
+                        {(item.user)}
                     </a>
                 }
 
@@ -217,15 +216,15 @@ const OGPoolkk = (props) => {
     const getIsAdmin = async () => {
         const secondArr = await handleViewMethod("getAdminsLevelTwoList", [])
         const threeArr = await handleViewMethod("getAdminsLevelThreeList", [])
-        let isS = false,isT=false
-        secondArr.forEach(item=>{
-            if(item.toLowerCase() === state.account.toLowerCase()){
-                isS=true
+        let isS = false, isT = false
+        secondArr.forEach(item => {
+            if (item.toLowerCase() === state.account.toLowerCase()) {
+                isS = true
             }
         })
-        threeArr.forEach(item=>{
-            if(item.toLowerCase() === state.account.toLowerCase()){
-                isT=true
+        threeArr.forEach(item => {
+            if (item.toLowerCase() === state.account.toLowerCase()) {
+                isT = true
             }
         })
 
@@ -239,7 +238,6 @@ const OGPoolkk = (props) => {
     const getValidNumbers = async () => {
         let length = await handleViewMethod("getValidNumbers", [])
         let res = await handleViewMethod("validNumbers", [length - 1])
-        console.log(res)
     }
     const CoinBalance = async () => {
         let res2 = await handleCoinViewMethod("balanceOf", "FDT", [state.account])
@@ -299,23 +297,24 @@ const OGPoolkk = (props) => {
         setPageCount2(count)
     }
     useEffect(async () => {
-       try{
-           let res = await getDonateRecord()
-           if (res.data) {
-               res.data.allRecords.forEach(item => {
-                   if (item.time) {
-                       item.time = new Date(item.time * 1000).toUTCString()
-                   }
-               })
-               if (res.data.allRecords && res.data.allRecords.length > 0) {
-                   setAllRecords(res.data.allRecords)
-                   setTotal(res.data.allRecords.length)
-               }
 
-           }
-       }catch (e) {
-           console.log(e)
-       }
+        try {
+            let res = await getDonateRecord()
+            if (res.data) {
+                res.data.allRecords.forEach(item => {
+                    if (item.time) {
+                        item.time = new Date(item.time * 1000).toUTCString()
+                    }
+                })
+                if (res.data.allRecords && res.data.allRecords.length > 0) {
+                    setAllRecords(res.data.allRecords)
+                    setTotal(res.data.allRecords.length)
+                }
+
+            }
+        } catch (e) {
+            console.log(e)
+        }
 
     }, []);
     useEffect(() => {
@@ -369,8 +368,10 @@ const OGPoolkk = (props) => {
 
             <div className="page-title">
                 OG Pool
-                {isAdmin&&(
-                    <div className="admin-icon-box" onClick={()=>{history("/OGPoolAdmin")}}>
+                {isAdmin && (
+                    <div className="admin-icon-box" onClick={() => {
+                        history("/OGPoolAdmin")
+                    }}>
                         <img className="admin-icon" src={manage} alt=""/>
                     </div>
                 )}
@@ -509,32 +510,38 @@ const OGPoolkk = (props) => {
                                     <img className="down-icon" src={downIcon} alt=""/>
 
 
-                                   <div className="donate-part">
-                                       <div className="balance-box">
-                                           <div className="name">
-                                               Balance
-                                           </div>
-                                           <div className="value">
-                                               {showNum(fdtBalance)} <span>FDT</span>
-                                           </div>
-                                       </div>
-                                       <Form.Item
-                                           name="pid"
-                                           validateTrigger="onBlur"
-                                           validateFirst={true}
+                                    <div className="donate-part">
+                                        <div className="balance-box">
+                                            <div className="name">
+                                                Balance
+                                            </div>
+                                            <div className="value">
+                                                {showNum(fdtBalance)} <span>FDT</span>
+                                            </div>
+                                        </div>
+                                        <Form.Item
+                                            name="pid"
+                                            validateTrigger="onBlur"
+                                            validateFirst={true}
 
-                                       >
-                                           <div className="input-box">
-                                               <div className="exchangeAmount">
-                                                   {exchangeAmount}
-                                               </div>
-                                               <div className="right-tip">
-                                                   FDT-OG
-                                               </div>
-                                           </div>
-                                       </Form.Item>
-                                   </div>
+                                        >
+                                            <div className="input-box">
+                                                <div className="exchangeAmount">
+                                                    {exchangeAmount}
+                                                </div>
+                                                <div className="right-tip">
+                                                    FDT-OG
+                                                </div>
+                                            </div>
+                                        </Form.Item>
+                                    </div>
                                     {status == 0 && <ConnectWallet className="connect-button"/>}
+                                    {
+                                        status == 1 && !inputValue &&
+                                        <Button type="primary" className="donate">
+                                            Enter an amount
+                                        </Button>
+                                    }
                                     {
                                         status == 1 && BigNumber(state.ethBalance).lt(inputValue) &&
                                         <Button type="primary" className="donate">
@@ -542,7 +549,7 @@ const OGPoolkk = (props) => {
                                         </Button>
                                     }
                                     {
-                                        status == 1 && !BigNumber(state.ethBalance).lt(inputValue) &&
+                                        status == 1 && inputValue > 0 && !BigNumber(state.ethBalance).lt(inputValue) &&
                                         <Button type="primary" className="donate" onClick={() => {
                                             exchangeFdt()
                                         }}>

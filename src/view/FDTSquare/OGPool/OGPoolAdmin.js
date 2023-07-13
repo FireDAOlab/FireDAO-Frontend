@@ -6,20 +6,15 @@ import {
     message,
     Form,
     Input,
-    Switch,
-    Pagination,
 } from 'antd';
 import {getContractByName, getContractByContract} from "../../../api/connectContract";
 import {dealMethod, dealPayMethod, viewMethod} from "../../../utils/contractUtil"
 import develop from "../../../env";
 import judgeStatus from "../../../utils/judgeStatus";
-import {getDonateRecord} from "../../../graph/donate";
 import OGPoolAdminStyle from "./OGPoolAdminStyle";
 import AddAddressRate from "./AddAddressRate.js";
-import {formatAddress} from "../../../utils/publicJs";
 import {showNum} from "../../../utils/bigNumberUtil";
 import {getSecondDonateRecord, getThreeDonateRecord} from "../../../graph/donate";
-import addressMap from "../../../api/addressMap";
 
 const OGPool = (props) => {
     const [form2] = Form.useForm();
@@ -189,10 +184,12 @@ const OGPool = (props) => {
     }
     const getpidStatusForAdmin = async () => {
         let res = await handleViewMethod("pidStatusForAdmin", [])
+        console.log(res)
         setStatus1(res)
     }
     const getpidStatusForUser = async () => {
         let res = await handleViewMethod("pidStatusForUser", [])
+        console.log(res)
         setStatus2(res)
     }
     const getFDTAddress = async () => {
@@ -305,6 +302,7 @@ const OGPool = (props) => {
         getpidStatusForAdmin()
         getFDTAddress()
         getAssignAndRates()
+        getpidStatusForUser()
     }
     const chooseRow = (item, id) => {
         setCurAddr(item.assign)
@@ -637,7 +635,8 @@ const OGPool = (props) => {
                         <div className="panel-container">
                             <div className="panel-title">
                                 Invite Rate:<br/>
-                                2 Level Admin{inviteRate1}% ID 1, 3 Level Admin{inviteRate2}% ID 0
+                                3 Level Admin{inviteRate2}% ID 0,
+                                2 Level Admin{inviteRate1}% ID 1
                             </div>
                             <Form form={form2} name="control-hooks" className="form">
                                 <Form.Item

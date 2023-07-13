@@ -22,42 +22,19 @@ export async function dealMethod(contract,account,methodName,params){
                     },
                 });
             }).catch(e => {
-                console.log(e)
-                message.warn(e.message)
                 setTimeout(hide3, 1000);
-                throw {
-                    code:1
-                }
+                dealError(e)
+
             })
         }).catch(e => {
             console.log(e)
             setTimeout(hide3, 1000);
-            if(e.code == 1 ){
-                throw {
-                    code:1
-                }
-            }else{
-                message.warn( dealError(e))
-                throw {
-                    code:2
-                }
-            }
+            dealError(e)
 
         })
     }catch (e){
-
-        console.log(e)
         setTimeout(hide3, 1000);
-        if(e.code == 1 ){
-            throw {
-                code:1
-            }
-        }else if(e.code==2){
-            throw {
-                code:2
-            }
-        }
-        message.warn( dealError(e))
+        dealError(e)
     }
 }
 export async function  dealPayMethod(contract,account,methodName,params,value){
@@ -84,7 +61,7 @@ export async function  dealPayMethod(contract,account,methodName,params,value){
                 });
             }).catch(e => {
                 console.log(e)
-                message.warn(dealError(e))
+                dealError(e)
                 setTimeout(hide3, 1000);
                 throw {
                     code:1
@@ -92,29 +69,14 @@ export async function  dealPayMethod(contract,account,methodName,params,value){
             })
         }).catch(e => {
             console.log(e)
+            dealError(e)
             setTimeout(hide3, 1000);
-            if(e.code == 1 ){
-                throw {
-                    code:1
-                }
-            }
-            message.warn( dealError(e))
-            throw {
-                code:2
-            }
         })
     }catch (e){
         console.log(e)
         setTimeout(hide3, 1000);
-        if(e.code == 1 || 2 ){
-            throw {
-                code:1
-            }
-        }
-        message.warn( dealError(e))
-        throw {
-            code:3
-        }
+        dealError(e)
+
 
     }
 }

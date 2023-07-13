@@ -348,10 +348,9 @@ export default   styled.div`
       display: flex;
       justify-content: space-between;
       font-weight: bold;
-
+      padding: 20px 0em;
       .col {
-        width: 33% !important;
-        text-align: center;
+        justify-content: center;
 
         &:nth-child(1) {
           width: 10% !important;
@@ -371,9 +370,34 @@ export default   styled.div`
       }
 
     }
+    .row2-list-item {
+      padding: 6px 0;
+
+      .col {
+        display: flex;
+        justify-content: center;
+      
+
+        &:nth-child(1) {
+          width: 10% !important;
+        }
+
+        &:nth-child(2) {
+          width: 10% !important;
+        }
+
+        &:nth-child(3) {
+          width: 20% !important;
+        }
+
+        &:nth-child(4) {
+          width: 60% !important;
+        }
+
+      }
+    }
 
     .col {
-      text-align: left;
 
       &:nth-child(1) {
         min-width: 30px;
@@ -421,8 +445,7 @@ export default   styled.div`
       .col {
         overflow: hidden;
         padding-left: 0.5%;
-        //text-overflow: ellipsis;
-
+   
       }
 
       .address {
@@ -434,32 +457,6 @@ export default   styled.div`
   }
 
 
-  .row2-list-item {
-    padding: 6px 0;
-
-    .col {
-      width: 30% !important;
-      text-align: center;
-
-
-      &:nth-child(1) {
-        width: 10% !important;
-      }
-
-      &:nth-child(2) {
-        width: 10% !important;
-      }
-
-      &:nth-child(3) {
-        width: 20% !important;
-      }
-
-      &:nth-child(4) {
-        width: 60% !important;
-      }
-
-    }
-  }
 
   .pagination {
     text-align: center;

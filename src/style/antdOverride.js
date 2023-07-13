@@ -40,9 +40,10 @@ const AntdOverride = createGlobalStyle`
   .ant-message-notice {
 
     .ant-message-notice-content {
-      background: rgba(0, 0, 0, 0.8);
+      background: rgba(0, 0, 0, 0.9);
       border-radius: 20px;
-      padding: 1em 1.5em;
+      max-width: 600px;
+      padding: 2em 3em;
 
       .ant-message-custom-content {
         display: flex;
