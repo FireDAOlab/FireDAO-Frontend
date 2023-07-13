@@ -10,6 +10,25 @@ export default   styled.div`
     font-weight: bold;
     margin-left: 5%;
     padding: 0 10%;
+
+
+  }
+
+  .pid {
+    width: 80px;
+    margin-left: 6px;
+    height: 23px;
+    background: rgba(254, 109, 70, 0.1);
+    border-radius: 38px 38px 38px 38px;
+    opacity: 1;
+    border: 1px solid rgba(254, 109, 70, 0.5);
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    font-family: Roboto-SemiBold, Roboto;
+    font-weight: 600;
+    color: #FE6D46;
+    justify-content: center;
   }
 
   .header-nav {
@@ -17,9 +36,40 @@ export default   styled.div`
     margin-left: 5%;
     display: flex;
     padding: 0 10%;
+
     .fire-nav-list {
       .nav-item {
         width: 180px;
+      }
+    }
+  }
+
+  .donate-header {
+    display: flex;
+    justify-content: space-between;
+
+    .isW {
+      font-family: Roboto-SemiBold, Roboto;
+      font-weight: 600;
+      color: #8A8080;
+      display: flex;
+      align-items: center;
+
+      .is {
+        width: 60px;
+        margin-left: 6px;
+        height: 23px;
+        background: rgba(254, 109, 70, 0.1);
+        border-radius: 38px 38px 38px 38px;
+        opacity: 1;
+        border: 1px solid rgba(254, 109, 70, 0.5);
+        display: flex;
+        align-items: center;
+        font-size: 14px;
+        font-family: Roboto-SemiBold, Roboto;
+        font-weight: 600;
+        color: #FE6D46;
+        justify-content: center;
       }
     }
   }
@@ -28,7 +78,7 @@ export default   styled.div`
     padding: 2em 10%;
     width: 90%;
     margin: 10px auto;
-    
+
     .isInW {
       display: flex;
       width: 100%;
@@ -47,12 +97,20 @@ export default   styled.div`
   }
 
   .part1 {
+    .panel-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
 
     .donate-info {
       margin-top: 2em;
       display: flex;
+      justify-content: space-between;
+
       .flex-box {
         justify-content: space-between;
+        width: 60%;
 
         .info-item {
           margin-left: 50px;
@@ -67,7 +125,7 @@ export default   styled.div`
       .info-item {
 
         .name {
-          font-size: 20px;
+          font-size: 18px;
           font-family: Roboto-Bold, Roboto;
           font-weight: bold;
           color: #8A8080;
@@ -90,28 +148,31 @@ export default   styled.div`
 
     .donation-box {
       width: 420px;
-    
+
       margin: 0 auto;
       background: #1E1212;
       border-radius: 10px;
       border: 1px solid #333333;
       padding: 20px;
-      .title{
+
+      .title {
         font-size: 18px;
         font-family: Roboto-Bold, Roboto;
         font-weight: bold;
         padding-bottom: 10px;
-        
+
       }
 
       .donate-part {
-        background: rgba(255,255,255,0.1);
-        padding: 15px;
+        background: rgba(255, 255, 255, 0.1);
+        padding: 6px 15px 0;
         border-radius: 15px;
-        border: 1px solid rgba(255,255,255,0.1);
-        .ant-form-item-control-input{
+        border: 1px solid rgba(255, 255, 255, 0.1);
+
+        .ant-form-item-control-input {
           background: none;
         }
+
         .balance-box {
           display: flex;
           justify-content: flex-end;
@@ -131,30 +192,36 @@ export default   styled.div`
             margin-left: 10px;
           }
         }
+
         .input-box {
           position: relative;
           display: flex;
           align-items: center;
-          .right-tip{
+
+          .right-tip {
             display: flex;
             align-items: center;
 
             font-size: 12px;
             font-family: Roboto-Black, Roboto;
             font-weight: 900;
+
             .coin-icon {
               width: 20px;
               height: 20px;
-              margin-right:6px;
+              margin-right: 6px;
             }
           }
+
           .exchangeAmount {
             height: 50px;
             display: flex;
             flex-grow: 1;
             align-items: center;
-            font-size: 18px;
-            padding: 0 20px;
+            font-size: 20px;
+            padding: 0 10px;
+            font-family: Roboto-Black, Roboto;
+            font-weight: 900;
           }
 
           .ant-input-number, .ant-select {
@@ -167,12 +234,13 @@ export default   styled.div`
             .ant-input-number-input-wrap, .ant-select-selector, input {
               height: 100%;
               width: 100% !important;
-              font-size: 20px;
+              font-size: 20px !important;
               font-family: Roboto-Black, Roboto;
               display: flex;
               align-items: center;
 
               font-weight: 900;
+
               &:focus-visible {
                 outline: none;
               }
@@ -189,10 +257,11 @@ export default   styled.div`
             right: 10px;
             top: 10px;
           }
-        
+
         }
 
       }
+
       .tip {
         margin-top: 2em;
         font-size: 12px;
@@ -201,42 +270,6 @@ export default   styled.div`
         color: #8A8080;
       }
     }
-
-    .donate-pid {
-      .panel-title {
-        margin-top: 1.5em;
-      }
-
-      .flex-box {
-        margin: 1.5em 0;
-        justify-content: space-between;
-        align-items: center;
-
-        .pid {
-          padding: 6px 10px;
-          border-radius: 10px;
-
-          border: 1px solid #DD3642;
-          font-size: 18px;
-          font-family: Roboto-Bold, Roboto;
-          font-weight: bold;
-          color: #FFA756;
-          background: linear-gradient(320deg, #DD3642 0%, #FFC02C 100%);
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-        }
-
-        .value {
-          font-size: 18px;
-          font-family: Roboto-Bold, Roboto;
-          font-weight: bold;
-          color: #796B6B;
-          line-height: 28px;
-        }
-      }
-    }
-
-
 
 
     .down-icon {
@@ -264,17 +297,19 @@ export default   styled.div`
       font-weight: bold;
     }
 
-  
+
   }
 
   .part2 {
     .list-top-part {
-
       .fire-nav-list {
         padding: 3px;
         margin-top: 1em;
-        width: 500px;
         height: 50px;
+        width: 380px;
+        .nav-item {
+          width: 180px;
+        }
       }
     }
 
@@ -349,6 +384,7 @@ export default   styled.div`
       justify-content: space-between;
       font-weight: bold;
       padding: 20px 0em;
+
       .col {
         justify-content: center;
 
@@ -370,13 +406,14 @@ export default   styled.div`
       }
 
     }
+
     .row2-list-item {
       padding: 6px 0;
 
       .col {
         display: flex;
         justify-content: center;
-      
+
 
         &:nth-child(1) {
           width: 10% !important;
@@ -445,7 +482,7 @@ export default   styled.div`
       .col {
         overflow: hidden;
         padding-left: 0.5%;
-   
+
       }
 
       .address {
@@ -455,7 +492,6 @@ export default   styled.div`
       }
     }
   }
-
 
 
   .pagination {
@@ -513,7 +549,7 @@ export default   styled.div`
     .part1 {
       .donate-info {
         display: block;
-  
+
         .flex-box {
           .info-item {
             margin-left: 0;

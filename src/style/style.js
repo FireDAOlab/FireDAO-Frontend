@@ -198,6 +198,22 @@ const GlobalStyle = createGlobalStyle`
       box-shadow: 0px 3px 15px 5px rgba(0, 0, 0, 0.05);
       border-radius: 10px;
       opacity: 0.95;
+      //scroll
+      &::-webkit-scrollbar-corner {
+        background-color: transparent;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+        background: #535353;
+      }
+
+      &::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+        border-radius: 10px;
+        background: #ededed;
+      }
       .nav-list {
         display: flex;
         background: #3F3535;
@@ -283,7 +299,8 @@ const GlobalStyle = createGlobalStyle`
       outline: none;
     }
   }
- 
+
+
 
 
   /* mobile style */

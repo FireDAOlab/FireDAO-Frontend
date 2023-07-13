@@ -420,6 +420,9 @@ const OGPoolkk = (props) => {
                         <div className="panel-container">
                             <div className="panel-title">
                                 OG Round 1
+                                <div className="pid">
+                                    PID：{state.pid}
+                                </div>
                             </div>
                             <div className="donate-info">
                                 <div className="info-item">
@@ -451,24 +454,18 @@ const OGPoolkk = (props) => {
                                     </div>
                                 </div>
                             </div>
-                            <div className="donate-pid">
-                                <div className="panel-title">
-                                    Donate
-                                </div>
-                                <div className="flex-box">
-                                    <div className="pid">
-                                        PID：{state.pid}
-                                    </div>
-                                    <div className="value">
-                                        {isInWhiteList == false && "Not a whitelist user"}
-                                        {isInWhiteList == true && "Whitelist user"}
-                                    </div>
-                                </div>
-                            </div>
+
                             <div className="donation-box">
 
-                                <div className="title">
+                                <div className="title donate-header">
                                     Donate
+                                    <div className="isW">
+                                        Whitelist
+                                        <div className="is">
+                                            {isInWhiteList == false && "No"}
+                                            {isInWhiteList == true && "Yes"}
+                                        </div>
+                                    </div>
                                 </div>
                                 <Form form={form} name="control-hooks" className="form">
                                     <div className="donate-part">

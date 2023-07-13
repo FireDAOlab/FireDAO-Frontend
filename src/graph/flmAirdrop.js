@@ -1,9 +1,10 @@
-import {fetchQuery} from "./index";
+import {fetchQuery, fetchQueryBase} from "./index";
 
-export function getPasslist() {
-    return fetchQuery("patton-sr/airdropflm",{
+export function getWhitelist() {
+    return fetchQueryBase("patton-sr/airdropflm", {
         text: `{
-  claimRecords(first: 5) {
+  claimRecords(first: 1000) {
+  id
     Contract_id
     pid
     username

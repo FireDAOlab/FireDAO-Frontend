@@ -79,6 +79,7 @@ import ForumFLMAirdrop from "./view/Operation/ForumFLMAirdrop"
 import FLMAirdropLv1 from "./view/Operation/ForumFLMAirdrop/component/FLMAirdropLv1"
 import FLMAirdropLv2 from "./view/Operation/ForumFLMAirdrop/component/FLMAirdropLv2"
 import FLMAirdrop from "./view/Operation/FLMAirdrop"
+import FLMAirdropManage from "./view/Operation/FLMAirdrop/Manage"
 
 
 import LPMining from "./view/Operation/LPMining"
@@ -184,6 +185,7 @@ function App() {
                                 <Route path="/CreateGuild" element={<CreateGuild/>}/>
                                 <Route path="/GuildDetail/:id" element={<GuildDetail/>}/>
                                 <Route path="/FLMAirdrop" element={<FLMAirdrop/>}/>
+                                <Route path="/FLMAirdropManage" element={<FLMAirdropManage/>}/>
 
                                 <Route path="/ForumFLMAirdrop" element={<ForumFLMAirdrop/>}/>
                                 
