@@ -420,7 +420,6 @@ export default   styled.div`
         }
 
         &:nth-child(2) {
-          width: 10% !important;
         }
 
         &:nth-child(3) {
@@ -507,7 +506,6 @@ export default   styled.div`
       }
 
       &:nth-child(2) {
-        width: 10%;
       }
 
       &:nth-child(3) {
