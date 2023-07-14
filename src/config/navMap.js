@@ -28,15 +28,7 @@ export default  [
         getItem('FID List', 'FIDList'),
         getItem('SBT List', 'SBTList'),
     ]),
-    getItem('SBB Square', 'SBBSquare', <img className="fireIcon" src={fireIcon2} />,[
-        getItem('General', 'General'),
-        getItem('DeFi', 'DeFi'),
-        getItem('DAOs', 'DAOs'),
-        getItem('NFT', 'NFT'),
-        getItem('Metaverse', 'Metaverse'),
-        getItem('SocilFi', 'SocilFi'),
-        getItem('GameFi', 'GameFi'),
-    ]),
+
 
 
     getItem('FDT Square', 'FDTSquare', <img className="fireIcon" src={fireIcon7} />, [
@@ -85,5 +77,14 @@ export default  [
         getItem('Communication', 'Communication'),
         getItem('Local', 'Local'),
         getItem('Management', 'Management'),
+    ]),
+    getItem('SBB Square', 'SBBSquare', <img className="fireIcon" src={fireIcon2} />,[
+        getItem('General', 'General'),
+        getItem('DeFi', 'DeFi'),
+        getItem('DAOs', 'DAOs'),
+        getItem('NFT', 'NFT'),
+        getItem('Metaverse', 'Metaverse'),
+        getItem('SocilFi', 'SocilFi'),
+        getItem('GameFi', 'GameFi'),
     ]),
 ]
