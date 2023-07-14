@@ -23,7 +23,7 @@ const FireLock = (props) => {
     }
 
     const handleDealMethod = async (name, params) => {
-        let contractTemp = await getContractByName("mintFireSoul", state.api,)
+        let contractTemp = await getContractByName("FLMAirdrop", state.api,)
         if (!contractTemp) {
         }
         return dealMethod(contractTemp, state.account, name, params)
@@ -35,7 +35,7 @@ const FireLock = (props) => {
         for (let i = 0; i < ownerArr.length; i++) {
             _to.push(form.getFieldValue()["owner" + i])
         }
-        await handleDealMethod("deleteWhiteList",[_to])
+        await handleDealMethod("removeAdminsLevelTwo",[_to])
         updateData()
         closeDialog()
     }

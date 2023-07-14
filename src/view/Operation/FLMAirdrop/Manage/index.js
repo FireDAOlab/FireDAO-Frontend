@@ -128,7 +128,7 @@ const FireLock = (props) => {
                 setShowAddLevel2(false)
             }}/>}
             {isShowRemove && <RemoveWhiteListAddr updateData={() => {
-                getWList()
+                getAdmins()
             }} closeDialog={() => {
                 setShowRemove(false)
             }}/>}
@@ -254,6 +254,7 @@ const FireLock = (props) => {
                         Set  Admin Level2
                         <div className="btn-box">
                             <Button className="btn" type="primary" onClick={()=>{setShowAddLevel2(true)}}>Add</Button>
+                            <Button className="btn" type="primary" onClick={()=>{setShowRemove(true)}}>Remove</Button>
                         </div>
                     </div>
 

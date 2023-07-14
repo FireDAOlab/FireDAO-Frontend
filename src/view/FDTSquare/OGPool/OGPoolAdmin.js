@@ -15,6 +15,7 @@ import OGPoolAdminStyle from "./OGPoolAdminStyle";
 import AddAddressRate from "./AddAddressRate.js";
 import {showNum} from "../../../utils/bigNumberUtil";
 import {getSecondDonateRecord, getThreeDonateRecord} from "../../../graph/donate";
+import BigNumber from "bignumber.js";
 
 const OGPool = (props) => {
     const [form2] = Form.useForm();
@@ -116,6 +117,7 @@ const OGPool = (props) => {
         let res = await getThreeDonateRecord(addr)
         return res.data.allRecords
     }
+
     const getAdminWhiteList = async (addr) => {
         let res = await getSecondDonateRecord(addr)
         let adminWhiteList = []
@@ -795,7 +797,7 @@ const OGPool = (props) => {
                                                 Value
                                             </div>
                                             <div className="value">
-                                                {FDTBalance * 0.01}
+                                                {showNum(BigNumber(FDTBalance).multipliedBy(salePriceV))}
                                             </div>
                                         </div>
                                         <div className="info-item">

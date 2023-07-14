@@ -133,11 +133,11 @@ export default   styled.div`
         }
 
         .value {
-          font-size: 32px;
+          font-size: 24px;
           font-family: Roboto-Bold, Roboto;
           font-weight: bold;
           color: #FFA756;
-          line-height: 70px;
+          line-height: 50px ;
           background: linear-gradient(320deg, #DD3642 0%, #FFC02C 100%);
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
@@ -526,9 +526,16 @@ export default   styled.div`
 
   /* mobile style */
   @media screen and (max-width: 1000px) {
+    .page-title{
+      padding: 0;
+    }
     .header-nav {
       width: 90%;
       margin: 0 auto;
+      padding: 0;
+     .nav-item{
+       height: 50px;
+     }
 
       .fire-nav-list {
         width: 100%;

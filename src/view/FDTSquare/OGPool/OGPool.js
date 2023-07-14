@@ -27,7 +27,7 @@ import {getDonateRecord} from "../../../graph/donate";
 import OGPoolStyle from "./OGPoolStyle";
 
 
-const OGPoolkk = (props) => {
+const OGPoolPublic = (props) => {
     let {state, dispatch} = useConnect();
     const [activeNav, setActiveNav] = useState(1)
     const [total, setTotal] = useState(0)
@@ -260,25 +260,7 @@ const OGPoolkk = (props) => {
             getSalePrice()
             getValidNumbers()
             getAdmin()
-            let res = await getDonateRecord()
-            if (res.data) {
-                let arr = []
-                res.data.allRecords.forEach(item => {
-                    if (item.time) {
-                        item.time = new Date(item.time * 1000).toUTCString()
-                    }
-                    if (item.addr.toString() == state.account.toLowerCase()) {
-                        arr.push(item)
-                    }
-                })
-
-                if (res.data.allRecords && res.data.allRecords.length > 0) {
-                    setAllRecords(res.data.allRecords)
-                    setTotal(res.data.allRecords.length)
-                    seMyRecords(arr)
-                }
-
-            }
+            getRecord()
         } catch (e) {
 
         }
@@ -296,25 +278,35 @@ const OGPoolkk = (props) => {
     const handleShowSizeChange2 = async (page, count) => {
         setPageCount2(count)
     }
-    useEffect(async () => {
-
+    const getRecord = async ()=>{
         try {
             let res = await getDonateRecord()
             if (res.data) {
+                let arr = []
                 res.data.allRecords.forEach(item => {
                     if (item.time) {
                         item.time = new Date(item.time * 1000).toUTCString()
                     }
+                    if (state.account && item.addr.toString() == state.account.toLowerCase()) {
+                        arr.push(item)
+                    }
                 })
+
                 if (res.data.allRecords && res.data.allRecords.length > 0) {
+                    res.data.allRecords.shift()
                     setAllRecords(res.data.allRecords)
                     setTotal(res.data.allRecords.length)
+                    seMyRecords(arr)
                 }
 
             }
         } catch (e) {
             console.log(e)
         }
+    }
+    useEffect(async () => {
+
+        getRecord()
 
     }, []);
     useEffect(() => {
@@ -370,7 +362,7 @@ const OGPoolkk = (props) => {
                 OG Pool
                 {isAdmin && (
                     <div className="admin-icon-box" onClick={() => {
-                        history("/OGPoolAdmin")
+                        history("/OGPoolAdmin01")
                     }}>
                         <img className="admin-icon" src={manage} alt=""/>
                     </div>
@@ -715,4 +707,4 @@ const OGPoolkk = (props) => {
         </OGPoolStyle>
     )
 }
-export default OGPoolkk
+export default OGPoolPublic
