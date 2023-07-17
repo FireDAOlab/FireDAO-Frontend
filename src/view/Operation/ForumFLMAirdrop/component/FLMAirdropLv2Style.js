@@ -1,7 +1,9 @@
 import styled from 'styled-components'
 export default styled.div`
 width: 100%;
-
+.fire-list-box{
+        min-width:0px;
+    }
 .form-value{
   padding: 0 10px;
 }
@@ -51,10 +53,10 @@ width: 100%;
     .records{
         width: 80%;
         margin: 0 auto;
-        height: 540px;
+        height: 240px;
         background: rgba(26, 20, 20, 1);
         border-radius:20px;
-        overflow: hidden;
+        overflow: auto;
         .lb{
             padding-top: 15px;
             display: flex;

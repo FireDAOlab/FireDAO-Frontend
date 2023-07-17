@@ -136,6 +136,7 @@ const FLMAirdropLv2 = (props) => {
         
         const addressArr = values._user.split("\n")
         const amountArr = values._amount.split("\n")
+        console.log(addressArr);
         const res = await handleDealMethod("addWhiteList",[addressArr, amountArr])
         if(res==undefined){
             openNotification("Please use 'Enter Key' return to separate")
@@ -156,13 +157,13 @@ const FLMAirdropLv2 = (props) => {
     const Row = (item, index) => {
         return <div className="hh list-item" key={index} >
 
-            <div className="pd col">
-                <p>1234</p>
+            {/* <div className="pd col">
+                
             </div>
-            <div className="zchang col">
+            <div className="zchang col"> */}
                 {/* {item.username} */}
-                <p>FireSeed</p>
-            </div>
+               
+            {/* </div> */}
             <div className="zchang col">
                 {item._amount}
             </div>
@@ -426,14 +427,15 @@ const FLMAirdropLv2 = (props) => {
 
                     <div className='records fire-list-box'>
                         <div className='lb list-header'>
-                            <div className='pd col'>PID</div>
-                            <div className='zchang col'>Username</div>
+                            {/* <div className='pd col'>PID</div>
+                            <div className='zchang col'>Username</div> */}
                             <div className='zchang col'>Amount(s)</div>
                             <div className='address col'>Address</div>
                             {/* <div className='zchang col'>Delete</div> */}
                         </div>
                         {
                             !searchData && activeNav == 1 && FlmArr.map((item, index) => (
+                                index >= pageCount * (curPage - 1) && index < pageCount * curPage &&
                                 Row(item, index)
                             ))
                         }

@@ -4,7 +4,9 @@ width: 100%;
 .form-value{
   padding: 0 10px;
 }
-
+.fire-list-box{
+        min-width:0px;
+    }
 .panel-box {
   width: 90%;
   margin: 0 auto;
@@ -79,9 +81,7 @@ width: 100%;
             .pool-shu{
                 margin-top: 10px;
                 display: flex;
-                .pool-wz3{
-                    margin-left:55px;
-                }
+                justify-content: space-between;
                 .pool-wz2{
                     font-size:20px;
                     font-weight:bold;
@@ -120,19 +120,20 @@ font-size:14px;
                     align-items: center;
                 .maxleft{
                     width: 100;
+                    height: 47px;
                     font-size: 23px;
           font-family: Russo One-Regular, Russo One;
           font-weight: 400px;
                 }
               
                 .max-btn {
-          width: 57px;
-          height: 30px;
+          width: 65px;
+          height: 40px;
           background: linear-gradient(32deg, #FF4E50 0%, #F9D423 100%);
           border-radius: 38px;
           position: absolute;
           top: 3px;
-          right: 0;
+          right: 3px;
           display: flex;
           justify-content: center;
           align-items: center;
@@ -232,7 +233,7 @@ font-size:14px;
         height: 530px;
         background: rgba(26, 20, 20, 1);
         border-radius:20px;
-        overflow: hidden;
+        overflow: auto;
         .lb{
             display: flex;
             justify-content: space-around;

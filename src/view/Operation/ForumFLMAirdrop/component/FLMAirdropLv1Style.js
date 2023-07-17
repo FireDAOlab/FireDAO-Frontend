@@ -1,6 +1,9 @@
 import styled from 'styled-components'
 export default styled.div`
 width: 100%;
+.fire-list-box{
+        min-width:0px;
+    }
 .form-value{
   padding: 0 10px;
 }
@@ -24,6 +27,7 @@ width: 100%;
         }
         
     }
+   
     .ownerwz{
             width: 80%;
             display: flex;
@@ -134,6 +138,7 @@ width: 100%;
                         border:1px solid rgba(255, 255, 255, 0.10);
                         background:rgba(36, 27, 27, 1);
                         border-radius:10px;
+                        
                     }
                     }
                         
@@ -187,42 +192,38 @@ width: 100%;
                 color: rgba(138, 128, 128, 1);
             }
             .maxzhi{
-                border-radius:30px;
-                display: flex;
-                width: 100%;
+                position: relative;
+                    display: flex;
+                    width: 100%;
+                    align-items: center;
                 .maxleft{
-                    height:47px;
-                    /* width: 75%; */
-                    /* background:rgba(104, 99, 99, 1); */
-                    border: 0px;
-                    /* border-radius:30px; */
-                    
-                    /* .zhong{
-                        width: 65%;
-                        height: 70%;
-                        margin:0 auto;
-                        margin-top:5px;
-                        background: rgba(26, 20, 20, 1);
-                        border-radius:6px;
-                    } */
-                    
+                   height: 47px;
+                    width: 100;
+                    font-size: 23px;
+          font-family: Russo One-Regular, Russo One;
+          font-weight: 400px;
                 }
               
-                .maxright{
-                    width: 20%;
-                    height: 47px;
-                    /* background-image:linear-gradient(320deg,#FFC02C  0%,#DD3642 100%);   */
-                    border-radius:10px;
-                    margin-top: 33px;
-            .maxwz{
-                        font-size:14px;
-                        font-weight:bold;
-                        color: white;
-                    }
-                }
+               
+                .max-btn {
+          width: 65px;
+          height: 40px;
+          background: linear-gradient(32deg, #FF4E50 0%, #F9D423 100%);
+          border-radius: 38px;
+          position: absolute;
+          top: 3px;
+          right: 3px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-size: 12px;
+          font-family: Roboto-SemiBold, Roboto;
+          font-weight: 600px;
+          cursor: pointer;
+        }
             }
 .firstk{
-width: 80%;
+width: 100%;
 }
             .useradd{
                 margin-top: 5px;
@@ -276,7 +277,7 @@ width: 80%;
         height: 490px;
         background: rgba(26, 20, 20, 1);
         border-radius:20px;
-        overflow: hidden;
+        overflow: auto;
   
         .lb{
             padding-top: 15px;
@@ -353,7 +354,7 @@ width: 80%;
         height: 490px;
         background: rgba(26, 20, 20, 1);
         border-radius:20px;
-        overflow: hidden;
+        overflow: auto;
         .lb{
             padding-top: 15px;
             display: flex;
@@ -452,14 +453,20 @@ width: 80%;
             }
         }
     }
-
+    .sc{
+                border: none;
+            }
+            .sc img{
+                width: 25px;
+                height: 25px;
+            }
     .records{
         width: 80%;
         margin: 0 auto;
         height: 490px;
         background: rgba(26, 20, 20, 1);
         border-radius:20px;
-        overflow: hidden;
+        overflow: auto;
         .lb{
             padding-top: 15px;
             display: flex;

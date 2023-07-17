@@ -14,7 +14,7 @@ import judgeStatus from "../../../../utils/judgeStatus";
 import { useNavigate } from "react-router-dom";
 import FLMAirdropLv1Style from './FLMAirdropLv1Style';
 import FormItem from 'antd/es/form/FormItem';
-import {dealTime} from "../../../../utils/timeUtil";
+import { dealTime } from "../../../../utils/timeUtil";
 import { LeftSquareFilled } from '@ant-design/icons';
 import wxz from '../../../../imgs/wxz.png'
 import xz from '../../../../imgs/xz.png'
@@ -85,8 +85,8 @@ const FLMAirdropLv1 = (props) => {
     const [form] = Form.useForm();
     let { state, dispatch } = useConnect();
     const [FlmArr, setFlmArr] = useState([])
-    const [FlmAirdro,setFlmAirdro ] = useState([])
-    
+    const [FlmAirdro, setFlmAirdro] = useState([])
+
     const [FlmArrc, setFlmArrc] = useState([])
     const [FlmAirdroc, setFlmAirdroc] = useState([])
 
@@ -104,7 +104,7 @@ const FLMAirdropLv1 = (props) => {
 
     const [searchData, setSearchData] = useState("")
     const [searchDatac, setSearchDatac] = useState("")
-   const [searchDataa, setSearchDataa] = useState("")
+    const [searchDataa, setSearchDataa] = useState("")
 
     const [current, setCurrent] = useState([])
     const [exchan, setExchan] = useState([])
@@ -120,7 +120,7 @@ const FLMAirdropLv1 = (props) => {
     const [gettoken, setGettoken] = useState([])
     const [getmac, setGetmac] = useState(0)
     const [lvaddress, setLvaddress] = useState([])
-    const [delData,setDelData]=useState([])
+    const [delData, setDelData] = useState([])
     const [deletelv, setDeletelv] = useState([])
     const [geta, setGeta] = useState([])
     const [searchArr, setSearchArr] = useState(false)
@@ -196,15 +196,15 @@ const FLMAirdropLv1 = (props) => {
         const res = await handleDealMethod("transferOwnership", [descri])
     }
     const getmax = () => {
-        form.setFieldsValue({ "flmlvw": getmac })
+        setGetin(morebalance)
     }
     let handleChange = async () => {
 
     };
 
     const withdraw = async (e) => {
-        const res = await handleDealMethod("withdraw", [gettoken, getuser, state.api.utils.toWei(form.getFieldValue().flmlvw.toString())])
-        
+        const res = await handleDealMethod("withdraw", [gettoken, getuser, getin])
+        console.log(res);
     }
 
     const setManager = async () => {
@@ -215,10 +215,10 @@ const FLMAirdropLv1 = (props) => {
         const res = await handleDealMethod("removeManager", [deletelv])
         setDeletelv(res)
     }
-    const Nowdate=()=>{
-        const sj=new Date()
+    const Nowdate = () => {
+        const sj = new Date()
         // console.log(date);
-        const nyr=sj.getFullYear()+'-'+(sj.getMonth()+1)+'-'+sj.getDate()+' '+sj.getHours()+':'+sj.getMinutes()+':'+sj.getSeconds()
+        const nyr = sj.getFullYear() + '-' + (sj.getMonth() + 1) + '-' + sj.getDate() + ' ' + sj.getHours() + ':' + sj.getMinutes() + ':' + sj.getSeconds()
         // this.time=nyr
         // this.ruleForm.pub_date=nyr
         // console.log(nyr);
@@ -229,7 +229,7 @@ const FLMAirdropLv1 = (props) => {
     //     console.log(tempArra);
     //     const tempItem = [tempArra].map((item,index)=>(
     //             item
-            
+
     //         ))
     //     tempItem.ischoosed = !tempItem.ischoosed
     //     tempArra.splice(index, 1, tempItem)
@@ -245,7 +245,7 @@ const FLMAirdropLv1 = (props) => {
 
     //     }
     //     setDelData(tempArra)
- 
+
 
     // }
     useEffect(() => {
@@ -264,7 +264,7 @@ const FLMAirdropLv1 = (props) => {
     const Row = (item, index) => {
         return <div className="hh list-item" key={index} >
             <div className="xuhao col">
-                {FlmArr.length - index}
+                {index+1}
             </div>
 
             <div className="address col">
@@ -284,8 +284,11 @@ const FLMAirdropLv1 = (props) => {
             </div>
         </div>
     }
+ const getData = async (page) => {
 
-    
+    }
+
+
     const handleSearchChange = async (e) => {
         setSearchData(e.target.value);
     }
@@ -299,7 +302,6 @@ const FLMAirdropLv1 = (props) => {
 
     const handleSearch = async () => {
         let data = await getSearchData(searchData)
-        console.log(getData);
         if (data.data && data.data.addWhiteLists && data.data.addWhiteLists.length > 0) {
             setSearchArr(data.data.addWhiteLists)
         } else {
@@ -310,7 +312,6 @@ const FLMAirdropLv1 = (props) => {
     const getList = async () => {
         let data = await getFLMlist()
         let arr = data.data.addWhiteLists
-        console.log(arr)
         let myArr = []
         setFlmArr(arr)
         for (let i = 0; i < arr.length; i++) {
@@ -322,10 +323,7 @@ const FLMAirdropLv1 = (props) => {
     }
 
 
-    const getData = async (page) => {
-
-    }
-
+   
     const createList = async () => {
         setShowNotice(true)
     }
@@ -343,13 +341,13 @@ const FLMAirdropLv1 = (props) => {
     const Row1 = (item, index) => {
         return <div className="hh list-item" key={index} >
             <div className="xuhao col">
-                {FlmArrc.length - index}
+                {index+1}
             </div>
-            <div className="tokeaddress col">
+            {/* <div className="tokeaddress col">
 
-            </div>
+            </div> */}
             <div className="address col">
-                {item._user?item._user.substr(0,7)+"..."+item._user.substr(item._user.length-4,item._user.length):""}
+                {item._user ? item._user.substr(0, 7) + "..." + item._user.substr(item._user.length - 4, item._user.length) : ""}
             </div>
             <div className="zchang col">
                 {item._amount}
@@ -383,7 +381,6 @@ const FLMAirdropLv1 = (props) => {
     const getListc = async () => {
         let data = await getFLMlistc()
         let arr = data.data.claims
-        console.log(arr)
         let myArrc = []
         setFlmArrc(arr)
         for (let i = 0; i < arr.length; i++) {
@@ -414,22 +411,21 @@ const FLMAirdropLv1 = (props) => {
     const Row2 = (item, index) => {
         return <div className="hh list-item" key={index} >
             <div className="xuhao col">
-                {FlmArra.length - index}
+                {index+1}
             </div>
-            <div className="pid col">
+            {/* <div className="pid col">
 
             </div>
             <div className='username col'>
 
-            </div>
-            <div className="zchang col">
-                {/* {item._amount} */}
-
-            </div>
+            </div> */}
+            {/* <div className="zchang col">
+               {item._amount}
+            </div> */}
             <div className="address col">
-                {item?item.substr(0,7)+"..."+item.substr(item.length-4,item.length):""}
+                {item ? item.substr(0, 7) + "..." + item.substr(item.length - 4, item.length) : ""}
             </div>
-            
+
             {/* <Button className="sc col" onClick={() => { 
                 chooseItem(item, index) 
                 }}>
@@ -461,10 +457,11 @@ const FLMAirdropLv1 = (props) => {
 
     const getLista = async () => {
         let data = await handleViewMethod("managerList", [])
-        let arr=data
+        let arr = data
         console.log(arr);
-        let myArr = []
+        let myArr = [FlmArra]
         setFlmArra(arr)
+        console.log(FlmArra);
         for (let i = 0; i < arr.length; i++) {
             if (arr[i].admin == state.account) {
                 myArr.push(arr[i])
@@ -592,17 +589,17 @@ const FLMAirdropLv1 = (props) => {
                                 <div className='maxzhi'>
                                     <Form.Item label="Amount(s)" name="flmlvw" className='firstk'>
                                         <Input className='maxleft' name="getin" value={getin} onChange={e => setGetin(e.target.value)} />
+                                        <div className="max-btn" onClick={() => { getmax() }}>
+                                            MAX
+                                        </div>
                                     </Form.Item>
-                                    <Button className='maxright' type='primary' onClick={() => getmax()}>
-                                        <span className='maxwz'>MAX</span>
-                                    </Button>
                                 </div>
                                 <Form.Item label="User address" className='useradd'>
                                     {/* <p className='pool-wz'>User address</p> */}
                                     <Input className='shuru' name="getuser" value={getuser} onChange={e => setGetuser(e.target.value)} />
                                 </Form.Item>
                             </Form>
-                            <Button  type='primary' className='withdraw' onClick={() => withdraw()}>
+                            <Button type='primary' className='withdraw' onClick={() => withdraw()}>
                                 <p className='withwz'>Withdraw</p>
                             </Button>
                         </div>
@@ -621,6 +618,7 @@ const FLMAirdropLv1 = (props) => {
                         </div>
                         {
                             !searchData && activeNav == 1 && FlmArr.map((item, index) => (
+                                index >= pageCount * (curPage - 1) && index < pageCount * curPage &&
                                 Row(item, index)
                             ))
                         }
@@ -648,13 +646,14 @@ const FLMAirdropLv1 = (props) => {
                     <div className='records fire-list-box'>
                         <div className='lb list-header'>
                             <div className='xuhao col'>No.</div>
-                            <div className='tokeaddress col'>Token Address</div>
+                            {/* <div className='tokeaddress col'>Token Address</div> */}
                             <div className='address col'>Address</div>
                             <div className='zchang col'>Amount(s)</div>
                             <div className='time col'>Time(UTC)</div>
                         </div>
                         {
                             !searchDatac && activeNav == 1 && FlmArrc.map((item, index) => (
+                                index >= pageCountc * (curPagec - 1) && index < pageCountc * curPagec &&
                                 Row1(item, index)
                             ))
                         }
@@ -684,7 +683,8 @@ const FLMAirdropLv1 = (props) => {
                             <Modal
                                 style={{
                                     marginTop: '120px',
-                                    textAlign: 'center'
+                                    textAlign: 'center',
+                                    width:'500px'
                                 }}
                                 title={
                                     <h3 style={{ fontWeight: 'bold', marginTop: '10px' }}>
@@ -694,7 +694,7 @@ const FLMAirdropLv1 = (props) => {
                                 onOk={handleOk}
                                 confirmLoading={confirmLoading}
                                 onCancel={handleCancel}
-                                width={420}
+                                width={480}
                                 footer={null}
 
                             >
@@ -712,7 +712,7 @@ const FLMAirdropLv1 = (props) => {
                                 >
                                     <p style={{ textAlign: 'left', fontSize: '14px' }}>Address</p>
                                     <Form.Item
-                                        name='Address'
+                                        name='address'
                                     // rules={[
                                     //     {
                                     //         required: true,
@@ -767,7 +767,7 @@ const FLMAirdropLv1 = (props) => {
                                 </Form>
                             </Modal>
                             <Button className='rewz' onClick={() => { showModal1() }}>
-                                <p>Mass Delete</p>
+                                <p>Delete</p>
                             </Button>
                             {/* <Modal
                                 style={{
@@ -803,7 +803,8 @@ const FLMAirdropLv1 = (props) => {
                             <Modal
                                 style={{
                                     marginTop: '120px',
-                                    textAlign: 'center'
+                                    textAlign: 'center',
+                                    width:'500px'
                                 }}
                                 title={
                                     <h3 style={{ fontWeight: 'bold', marginTop: '10px' }}>
@@ -813,7 +814,7 @@ const FLMAirdropLv1 = (props) => {
                                 onOk={handleOk1}
                                 confirmLoading1={confirmLoading1}
                                 onCancel={handleCancel1}
-                                width={420}
+                                width={480}
                                 footer={null}
 
                             >
@@ -830,7 +831,7 @@ const FLMAirdropLv1 = (props) => {
                                 >
                                     <p style={{ fontSize: '14px', textAlign: 'left' }}>Address</p>
                                     <Form.Item
-                                        name='Address'
+                                        name='address'
 
                                     // rules={[
                                     //     {
@@ -855,14 +856,15 @@ const FLMAirdropLv1 = (props) => {
                     <div className='records fire-list-box'>
                         <div className='lb list-header'>
                             <div className='xuhao col'>No.</div>
-                            <div className='pd col'>PID</div>
-                            <div className='username col'>Username</div>
-                            <div className='zchang col'>Amount(s)</div>
+                            {/* <div className='pd col'>PID</div>
+                            <div className='username col'>Username</div> */}
+                            {/* <div className='zchang col'>Amount(s)</div> */}
                             <div className='address col'>Address</div>
                             {/* <div className='sc col' >Delete</div> */}
                         </div>
                         {
                             !searchDataa && activeNav == 1 && FlmArra.map((item, index) => (
+                                index >= pageCounta * (curPagea - 1) && index < pageCounta * curPagea &&
                                 Row2(item, index)
                             ))
                         }
