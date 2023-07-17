@@ -14,6 +14,17 @@ export default   styled.div`
   .title{
     text-align: center;
   }
+  .fire-list-box{
+    margin-top: 20px;
+  }
+  .fire-list-box-admin{
+    .col:nth-child(1){
+      width: 10%;
+    }
+    .col:nth-child(2){
+      width: 80%;
+    }
+  }
   .list-item{
     padding: 10px 0;
     display: flex;

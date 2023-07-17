@@ -223,29 +223,30 @@ const FireLock = (props) => {
                            <div className="col">
                                Amount
                            </div>
-                           {whitelist.map((item,index)=>{
-                               return (<div className="list-item" key={index}>
-                                   <div className="col">
-                                       {index+1}
-                                   </div>
-                                   <div className="col">
-                                       {item.pid}
-                                   </div>
-                                   <div className="col">
-                                       {item.username}
-                                   </div>
-                                   <div className="col">
-                                       {item.fid}
-                                   </div>
-                                   <div className="col">
-                                       {item.user}
-                                   </div>
-                                   <div className="col">
-                                       {item.amount}
-                                   </div>
-                               </div>)
-                           })}
+
                        </div>
+                       {whitelist.map((item,index)=>{
+                           return (<div className="list-item" key={index}>
+                               <div className="col">
+                                   {index+1}
+                               </div>
+                               <div className="col">
+                                   {item.pid}
+                               </div>
+                               <div className="col">
+                                   {item.username}
+                               </div>
+                               <div className="col">
+                                   {item.fid}
+                               </div>
+                               <div className="col">
+                                   {item.user}
+                               </div>
+                               <div className="col">
+                                   {item.amount}
+                               </div>
+                           </div>)
+                       })}
                    </div>
 
                 </div>}
@@ -258,49 +259,29 @@ const FireLock = (props) => {
                         </div>
                     </div>
 
-                    <div className="fire-list-box">
+                    <div className="fire-list-box fire-list-box-admin">
                         <div className="list-header">
                             <div className="col">
                                 No.
                             </div>
-                            <div className="col">
-                                PID
-                            </div>
-                            <div className="col">
-                                Username
-                            </div>
-                            <div className="col">
-                                FID
-                            </div>
+
                             <div className="col">
                                 Address
                             </div>
-                            <div className="col">
-                                Amount
-                            </div>
-                            {whitelist.map((item,index)=>{
-                                return (<div className="list-item" key={index}>
-                                    <div className="col">
-                                        {index+1}
-                                    </div>
-                                    <div className="col">
-                                        {item.pid}
-                                    </div>
-                                    <div className="col">
-                                        {item.username}
-                                    </div>
-                                    <div className="col">
-                                        {item.fid}
-                                    </div>
-                                    <div className="col">
-                                        {item.user}
-                                    </div>
-                                    <div className="col">
-                                        {item.amount}
-                                    </div>
-                                </div>)
-                            })}
+
+
                         </div>
+                        {adminArr.map((item,index)=>{
+                            return (<div className="list-item list-item-admin" key={index}>
+                                <div className="col">
+                                    {index+1}
+                                </div>
+
+                                <div className="col">
+                                    {item}
+                                </div>
+                            </div>)
+                        })}
                     </div>
 
                 </div>}
