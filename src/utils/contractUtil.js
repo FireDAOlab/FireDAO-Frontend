@@ -21,19 +21,26 @@ export async function dealMethod(contract,account,methodName,params){
                         console.log('Notification Clicked!');
                     },
                 });
+                return res
             }).catch(e => {
                 setTimeout(hide3, 1000);
                 dealError(e)
-
+                throw {code:1,err:e}
             })
         }).catch(e => {
             console.log(e)
             setTimeout(hide3, 1000);
+            if(e.code==1){
+                throw {code:1,err:e}
+            }
             dealError(e)
 
         })
     }catch (e){
         setTimeout(hide3, 1000);
+        if(e.code==1){
+            throw {code:1,err:e}
+        }
         dealError(e)
     }
 }

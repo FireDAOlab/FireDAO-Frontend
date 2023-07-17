@@ -12,12 +12,12 @@
 				"type": "uint256[]"
 			},
 			{
-				"internalType": "string[]",
+				"internalType": "string",
 				"name": "_info",
-				"type": "string[]"
+				"type": "string"
 			}
 		],
-		"name": "addWhiteList",
+		"name": "addAirDropList",
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
@@ -61,7 +61,7 @@
 				"type": "address"
 			},
 			{
-				"internalType": "address",
+				"internalType": "address payable",
 				"name": "_firePassport",
 				"type": "address"
 			},
@@ -116,6 +116,61 @@
 		],
 		"name": "ClaimRecord",
 		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "pid",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "string",
+				"name": "username",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "fid",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "address",
+				"name": "user",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "amount",
+				"type": "uint256"
+			}
+		],
+		"name": "Claimed",
+		"type": "event"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_token",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_amount",
+				"type": "uint256"
+			}
+		],
+		"name": "deposit",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
 	},
 	{
 		"anonymous": false,
@@ -186,6 +241,45 @@
 		"inputs": [
 			{
 				"internalType": "address",
+				"name": "_fireSoul",
+				"type": "address"
+			}
+		],
+		"name": "setFireSoul",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_Flm",
+				"type": "address"
+			}
+		],
+		"name": "setFlm",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address payable",
+				"name": "_address",
+				"type": "address"
+			}
+		],
+		"name": "setFpAddr",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
 				"name": "newOwner",
 				"type": "address"
 			}
@@ -198,12 +292,54 @@
 	{
 		"inputs": [
 			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "airDropListInfos",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "user",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "amount",
+				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "introduction",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
 				"internalType": "address",
 				"name": "_addr",
 				"type": "address"
 			}
 		],
 		"name": "checkUserCanClaim",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "contractAmount",
 		"outputs": [
 			{
 				"internalType": "uint256",
@@ -425,35 +561,6 @@
 				"internalType": "uint256",
 				"name": "",
 				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"name": "whiteListInfos",
-		"outputs": [
-			{
-				"internalType": "address",
-				"name": "user",
-				"type": "address"
-			},
-			{
-				"internalType": "uint256",
-				"name": "amount",
-				"type": "uint256"
-			},
-			{
-				"internalType": "string",
-				"name": "introduction",
-				"type": "string"
 			}
 		],
 		"stateMutability": "view",

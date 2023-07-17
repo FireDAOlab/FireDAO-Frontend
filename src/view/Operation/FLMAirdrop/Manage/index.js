@@ -6,10 +6,14 @@ import {dealMethod, viewMethod} from "../../../../utils/contractUtil"
 import {useNavigate, useLocation} from "react-router-dom";
 import FireLockStyle from "./style";
 import judgeStatus from "../../../../utils/judgeStatus";
-import AddWhiteListAddr from "./component/AddWhiteListAddr";
+import AddWhiteListAddr from "./component/AddAirdropListAddr";
 import RemoveWhiteListAddr from "./component/RemoveWhiteListAddr";
 import {getWhitelist} from "../../../../graph/flmAirdrop";
-import AddWhiteListAddr2 from "./component/AddWhiteListAddr2";
+import AddWhiteListAddr2 from "./component/AddSecondAdminAddr";
+import addressMap from "../../../../api/addressMap";
+import {MaxUint256} from "../../../../config/constants";
+import {FireLockDecimal} from "../../../../utils/constants";
+import BigNumber from "bignumber.js";
 
 const FireLock = (props) => {
     let {state, dispatch} = useConnect();
@@ -28,8 +32,8 @@ const FireLock = (props) => {
 
     const [isShowAddLevel2, setShowAddLevel2] = useState(false)
 
-    const [feeReceiver, setReceiver] = useState("")
-    const [weightObj, setWeight] = useState({})
+    const [poolFLMBalance, setPoolFLMBalance] = useState(0)
+    const [coinAddr, setCoinAddr] = useState("0x5F564c3F5b373fb15Ca5DDB4a9bf110b49E82049")
 
     const [form] = Form.useForm();
 
@@ -60,21 +64,22 @@ const FireLock = (props) => {
         }
         return await viewMethod(contractTemp, state.account, name, params)
     }
-
+    const handleDealCoinMethod = async (name, address, params) => {
+        let contractTemp = await getContractByContract("erc20", address, state.api,)
+        return dealMethod(contractTemp, state.account, name, params)
+    }
 
     const getData = async (page) => {
         getOwner()
         getWList()
         getAdmins()
+        getTokenBalance()
     }
 
     const dealNum = (num) => {
         return parseInt(num * 100) / 100
     }
-    const getratioAmount = async () => {
-        const ratioAmount = await handleViewMethod("ratioAmount", [])
-        setratioAmount(ratioAmount)
-    }
+
     const getOwner = async () => {
         const ownerAddr = await handleViewMethod("owner", [])
         setOwner(ownerAddr)
@@ -82,15 +87,33 @@ const FireLock = (props) => {
 
 
 
+    const getTokenBalance = async () => {
+        let contractTemp = await getContractByContract("erc20",addressMap["FLM"].address, state.api,)
+        const decimal = await viewMethod(contractTemp, state.account, "decimals", [])
+        let balance = await viewMethod(contractTemp, state.account, "balanceOf", [addressMap["FLMAirdrop"].address])
+        balance = balance / (10 ** parseInt(decimal))
+        setPoolFLMBalance(balance)
+
+    }
 
     const getWList = async () => {
-        const res = await getWhitelist()
-        setWhitelistArr(res.data.claimRecords)
+        const record = await getWhitelist()
+        const res = await handleViewMethod("getWhiteList", [])
+        const recordArr = record.data.claimRecords
+        let resArr = []
+        res.forEach(addr=>{
+            recordArr.forEach(record=>{
+                if(record.user.toLowerCase() == addr.toString().toLowerCase()){
+                    resArr.push(record)
+                }
+            })
+
+        })
+        setWhitelistArr(resArr)
     }
 
     const getAdmins= async () => {
         const res = await handleViewMethod("getAdminsLevelTwoList", [])
-        console.log(res)
         setWAdminArr(res)
     }
 
@@ -98,13 +121,28 @@ const FireLock = (props) => {
         await handleDealMethod("transferOwnership", [form.getFieldValue().owner])
         getOwner()
     }
-
-
-    const handlesetratioAmount = async () => {
-        await handleDealMethod("setratioAmount", [form.getFieldValue().ratioAmount])
-        getratioAmount()
+    const setFpAddr= async () => {
+        await handleDealMethod("setFpAddr", [form.getFieldValue().fpAddr])
+        // getOwner()
     }
+    const removeWhiteList= async (addr) => {
+        await handleDealMethod("removeWhiteList", [[addr]])
+        getWhitelist()
+    }
+    const removeAdminsLevelTwo= async (addr) => {
+        await handleDealMethod("removeAdminsLevelTwo", [[addr]])
+        getAdmins()
+    }
+    const deposit = async () => {
+        let contractTemp = await getContractByContract("erc20", coinAddr, state.api,)
+        const decimals = await viewMethod(contractTemp, state.account, "decimals", [])
+        await handleDealMethod("deposit", [coinAddr, BigNumber(form.getFieldValue().coinAmount * BigNumber(10).pow(decimals))])
+        getTokenBalance()
+    }
+    const approve = async () => {
+        await handleDealCoinMethod("approve", coinAddr, [addressMap["FLMAirdrop"].address, MaxUint256])
 
+    }
 
     useEffect(async () => {
         let judgeRes = await judgeStatus(state)
@@ -117,7 +155,9 @@ const FireLock = (props) => {
     return (
         <FireLockStyle>
             {isShowAdd && <AddWhiteListAddr updateData={() => {
-                getWList()
+                setTimeout(()=>{
+                    getWList()
+                },3000)
             }} closeDialog={() => {
                 setShowAdd(false)
             }}/>}
@@ -152,13 +192,13 @@ const FireLock = (props) => {
                         <div className={"nav-item " + (curNav == 2 ? "active" : "")} onClick={() => {
                             setCurNav(2)
                         }}>
-                            Set Whitelist
+                            Set Airdrop List
                         </div>
 
                     </div>
                     {curNav == 1 && <div className="part1">
                         <div className="content-item">
-                            <h3>Owner Address</h3>
+                            <h2>Owner Address</h2>
                             <Form form={form} name="control-hooks">
                                 <div className="current">
                                     <div className="name">
@@ -186,6 +226,81 @@ const FireLock = (props) => {
                                 Submit
                             </Button>
                         </div>
+                        <div className="content-item">
+                            <h2>Coin Deposit</h2>
+
+                            <Form form={form} name="control-hooks">
+                                <div className="current">
+                                    <div className="name">
+                                        Pool FLM Balance:
+                                    </div>
+                                    <div className="value">
+                                        {dealNum(poolFLMBalance)}
+                                    </div>
+                                </div>
+                                <Form.Item
+                                    name="coinAddr"
+                                    label="Coin Address"
+                                    validateTrigger="onBlur"
+                                    validateFirst={true}
+                                    rules={[
+                                        {required: true, message: 'Please input owner Address!'},
+                                    ]}
+                                >
+                                    <Input value={coinAddr}  defaultValue={coinAddr} onChange={(e)=>{setCoinAddr(e.target.value)}}/>
+                                </Form.Item>
+                                <Form.Item
+                                    name="coinAmount"
+                                    label="Amount"
+                                    validateTrigger="onBlur"
+                                    validateFirst={true}
+                                    rules={[
+                                        {required: true, message: 'Please input owner Address!'},
+                                    ]}
+                                >
+                                    <Input/>
+                                </Form.Item>
+                            </Form>
+                            <Button type="primary" className="max-btn" onClick={() => {
+                                approve()
+                            }}>
+                                Approve
+                            </Button>
+                            <Button type="primary" className="max-btn" onClick={() => {
+                                deposit()
+                            }}>
+                                Deposit
+                            </Button>
+                        </div>
+                        <div className="content-item">
+                            <h3>setFpAddr</h3>
+                            <Form form={form} name="control-hooks">
+                                <div className="current">
+                                    <div className="name">
+                                        Current:
+                                    </div>
+                                    <div className="value">
+
+                                    </div>
+                                </div>
+                                <Form.Item
+                                    name="fpAddr"
+                                    label="fp address"
+                                    validateTrigger="onBlur"
+                                    validateFirst={true}
+                                    rules={[
+                                        {required: true, message: 'Please input fpAddr Address!'},
+                                    ]}
+                                >
+                                    <Input/>
+                                </Form.Item>
+                            </Form>
+                            <Button type="primary" className="max-btn" onClick={() => {
+                                setFpAddr()
+                            }}>
+                                Submit
+                            </Button>
+                        </div>
 
                     </div>}
 
@@ -197,13 +312,13 @@ const FireLock = (props) => {
                 </div>
                 {curNav == 2 && <div className="panel-container">
                     <div className="panel-title">
-                        Set  Whitelist
+                        Set  Airdrop List
                         <div className="btn-box">
                             <Button className="btn" type="primary" onClick={()=>{setShowAdd(true)}}>Add</Button>
                         </div>
                     </div>
 
-                   <div className="fire-list-box">
+                   <div className="fire-list-box fire-list-box-airdrop">
                        <div className="list-header">
                            <div className="col">
                                No.
@@ -222,6 +337,9 @@ const FireLock = (props) => {
                            </div>
                            <div className="col">
                                Amount
+                           </div>
+                           <div className="col">
+                               Remove
                            </div>
 
                        </div>
@@ -243,7 +361,10 @@ const FireLock = (props) => {
                                    {item.user}
                                </div>
                                <div className="col">
-                                   {item.amount}
+                                   {item.amount / 10**18}
+                               </div>
+                               <div className="col">
+                                   <Button onClick={()=>{removeWhiteList(item.user)}}>Delete</Button>
                                </div>
                            </div>)
                        })}
@@ -268,7 +389,9 @@ const FireLock = (props) => {
                             <div className="col">
                                 Address
                             </div>
-
+                            <div className="col">
+                                Delete
+                            </div>
 
                         </div>
                         {adminArr.map((item,index)=>{
@@ -279,6 +402,11 @@ const FireLock = (props) => {
 
                                 <div className="col">
                                     {item}
+                                </div>
+                                <div className="col">
+                                    <div className="col">
+                                        <Button onClick={()=>{removeAdminsLevelTwo(item)}}>Delete</Button>
+                                    </div>
                                 </div>
                             </div>)
                         })}

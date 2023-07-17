@@ -1,64 +1,101 @@
 import styled from "styled-components";
 export default   styled.div`
-  .panel-box{
+  .panel-box {
     width: 100%;
-    .panel-container{
+
+    .panel-container {
       width: 90%;
     }
-    .panel-title{
+
+    .panel-title {
       width: 100%;
       display: flex;
       justify-content: space-between;
     }
   }
-  .title{
+
+  .fire-list-box-airdrop {
+    .col:nth-child(1) {
+      width: 50px;
+    }
+    .col:nth-child(2) {
+      width: 50px;
+    }
+    .col:nth-child(3) {
+      width: 100px;
+    }
+    .col:nth-child(4) {
+      width: 50px;
+    }
+    .col:nth-child(5) {
+      width: 300px;
+    }
+    .col:nth-child(6) {
+      width: 100px;
+    }
+  }
+
+  .title {
     text-align: center;
   }
-  .fire-list-box{
+
+  .fire-list-box {
     margin-top: 20px;
   }
-  .fire-list-box-admin{
-    .col:nth-child(1){
+
+  .fire-list-box-admin {
+    .col:nth-child(1) {
       width: 10%;
     }
-    .col:nth-child(2){
+
+    .col:nth-child(2) {
       width: 80%;
     }
   }
-  .list-item{
+
+  .list-item {
     padding: 10px 0;
     display: flex;
-    .pid{
+
+    .pid {
       margin-right: 10px;
     }
   }
-  .discount-list{
-    .list-item{
+
+  .discount-list {
+    .list-item {
       padding: 10px 0;
       display: flex;
       align-items: center;
-      .end{
+
+      .end {
         margin: 0 10px;
       }
-      .discount{
+
+      .discount {
         margin: 0 10px;
       }
     }
   }
-  .content-item{
+
+  .content-item {
     margin-top: 2em;
   }
-  .current{
+
+  .current {
     display: flex;
     align-items: center;
-    .name{
+
+    .name {
       font-weight: bold;
       font-size: 18px;
     }
-    .value{
+
+    .value {
       margin-left: 10px;
     }
   }
+
   .nav-list {
 
     display: flex;

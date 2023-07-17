@@ -9,17 +9,50 @@ export default   styled.div`
     padding: 5em 8%;
     width: 90%;
   }
-
+  .claim-nav{
+    margin: 10px 0 0px;
+  }
+  .fire-list-box-userclaim{
+    .col{
+      a{
+        color: #d46b08;
+      }
+      &:nth-child(1){
+        width: 30px;
+      }
+      &:nth-child(2){
+        width: 30px;
+      }
+      &:nth-child(3){
+        width: 50px;
+      }
+      &:nth-child(4){
+        width: 30px;
+      }
+      &:nth-child(5){
+        width: 150px;
+      }
+      &:nth-child(6){
+        width: 100px;
+      }
+      
+    }
+  }
+  .pagination{
+    display: flex;
+    justify-content: center;
+  }
   .content-box {
     display: flex;
     justify-content: space-between;
-    padding: 30px 0;
+    margin-top: 30px;
+    padding: 20px 0 30px;
 
     .left-part, .right-part {
       background: #1A1414;
-      border-radius: 20px 20px 20px 20px;
+      border-radius: 20px;
       border: 1px solid rgba(255, 255, 255, 0.1);
-      padding: 30px 20px;
+      padding: 30px 40px;
     }
 
     .left-part {
@@ -38,14 +71,47 @@ export default   styled.div`
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
       }
+
+      .bottom-part {
+        display: flex;
+        margin-top: 10px;
+
+        .info-box {
+          margin-right: 50px;
+          &:last-child{
+            margin-right: 0;
+          }
+          .name {
+            font-size: 13px;
+            font-family: Roboto-Medium, Roboto;
+            font-weight: 500;
+            color: #8A8080;
+          }
+
+          .value {
+            font-size: 20px;
+            font-family: Russo One-Regular, Russo One;
+            font-weight: 600;
+            background: linear-gradient(32deg, #FF4E50 0%, #F9D423 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+          }
+        }
+      }
     }
 
     .right-part {
-      .info-box{
+      .info-box {
         display: flex;
         justify-content: space-between;
       }
+
+      .withdrawForm {
+        margin-top: 10px;
+      }
+
       .input-box {
+
         position: relative;
         display: flex;
         align-items: center;
@@ -75,15 +141,17 @@ export default   styled.div`
       }
 
       .withdraw-btn {
+        margin-top: 10px;
         width: 100%;
       }
     }
   }
 
   .panel-container {
-    .nav-box{
+    .nav-box {
       display: flex;
     }
+
     .fire-nav-list {
       .nav-item {
         width: 180px;

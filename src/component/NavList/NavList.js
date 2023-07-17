@@ -41,19 +41,19 @@ const NavList = () => {
     };
     useEffect(()=>{
 
-        // let keyPath= []
-        // const curKey = location.pathname.substring(1,location.pathname.length)
-        // navMap.forEach(navObj=>{
-        //     navObj.children.forEach(async nav=>{
-        //         if(nav.key==curKey){
-        //             await setSelectNav(navObj.key)
-        //             setOpenKeys(navObj.key)
-        //             keyPath.push(navObj.key)
-        //             keyPath.push(nav.key)
-        //             setSelectedKeys(keyPath)
-        //         }
-        //     })
-        // })
+        let keyPath= []
+        const curKey = location.pathname.substring(1,location.pathname.length)
+        navMap.forEach(navObj=>{
+            navObj.children.forEach(async nav=>{
+                if(nav.key==curKey){
+                    await setSelectNav(navObj.key)
+                    setOpenKeys([navObj.key])
+                    keyPath.push(navObj.key)
+                    keyPath.push(nav.key)
+                    setSelectedKeys(keyPath)
+                }
+            })
+        })
     },[])
     return (
         <NavListStyle>
