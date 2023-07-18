@@ -17,6 +17,9 @@ import BigNumber from "bignumber.js";
 
 const FireLock = (props) => {
     let {state, dispatch} = useConnect();
+    const [total, setTotal] = useState(0)
+    const [curPage, setCurPage] = useState(1)
+    const [pageCount, setPageCount] = useState(20)
     const [whitelist, setWhitelistArr] = useState([])
     const [adminArr, setWAdminArr] = useState([])
 
@@ -25,7 +28,9 @@ const FireLock = (props) => {
     const [curNav, setCurNav] = useState(1)
     const [ownerAddr, setOwner] = useState("")
 
-    const [ratioAmount, setratioAmount] = useState("")
+    const [searchContent, setSearchContent] = useState()
+    const [showSearch, setShowSearch] = useState(false)
+
 
     const [isShowAdd, setShowAdd] = useState(false)
     const [isShowRemove, setShowRemove] = useState(false)
@@ -55,7 +60,12 @@ const FireLock = (props) => {
         }
         return dealMethod(contractTemp, state.account, name, params)
     }
-
+    const handleShowSizeChange = async (page, count) => {
+        setPageCount(count)
+    }
+    const onChangePage = async (page) => {
+        await setCurPage(page)
+    }
 
     const handleViewMethod = async (name, params) => {
         let contractTemp = await getContractByName("FLMAirdrop", state.api,)
@@ -110,6 +120,7 @@ const FireLock = (props) => {
 
         })
         setWhitelistArr(resArr)
+        setTotal(resArr.length)
     }
 
     const getAdmins = async () => {
@@ -155,7 +166,9 @@ const FireLock = (props) => {
         await handleDealCoinMethod("approve", coinAddr, [addressMap["FLMAirdrop"].address, MaxUint256])
 
     }
-
+    const handleSearch = () => {
+        setShowSearch(true)
+    }
     useEffect(async () => {
         let judgeRes = await judgeStatus(state)
         if (!judgeRes) {
@@ -351,7 +364,17 @@ const FireLock = (props) => {
                 {curNav == 2 && <div className="panel-container">
                     <div className="panel-title">
                         Set Airdrop List
+                        <div className="search-box">
+                            <Input value={searchContent} onChange={(e) => {
+                                setSearchContent(e.target.value)
+                                if (!e.target.value) setShowSearch(false)
+                            }} allowClear/>
+                            <Button className="btn" type="primary" onClick={() => {
+                                handleSearch()
+                            }}>Search</Button>
+                        </div>
                         <div className="btn-box">
+
                             <Button className="btn" type="primary" onClick={() => {
                                 setShowAdd(true)
                             }}>Add</Button>
@@ -369,9 +392,7 @@ const FireLock = (props) => {
                             <div className="col">
                                 Username
                             </div>
-                            <div className="col">
-                                FID
-                            </div>
+                            <div className="col"></div>
                             <div className="col">
                                 Address
                             </div>
@@ -383,35 +404,76 @@ const FireLock = (props) => {
                             </div>
 
                         </div>
-                        {whitelist.map((item, index) => {
-                            return (<div className="list-item" key={index}>
-                                <div className="col">
-                                    {index + 1}
-                                </div>
-                                <div className="col">
-                                    {item.pid}
-                                </div>
-                                <div className="col">
-                                    {item.username}
-                                </div>
-                                <div className="col">
-                                    {item.fid}
-                                </div>
-                                <div className="col">
-                                    {item.user}
-                                </div>
-                                <div className="col">
-                                    {item.amount / 10 ** 18}
-                                </div>
-                                <div className="col">
-                                    <Button onClick={() => {
-                                        removeWhiteList(item.user)
-                                    }}>Delete</Button>
-                                </div>
-                            </div>)
-                        })}
-                    </div>
+                        {!showSearch&& curPage && whitelist.map((item, index) => {
+                            if( index >= pageCount * (curPage - 1) && index < pageCount * curPage){
+                                return (<div className="list-item" key={index}>
+                                    <div className="col">
+                                        {index + 1}
+                                    </div>
+                                    <div className="col">
+                                        {item.pid}
+                                    </div>
+                                    <div className="col">
+                                        {item.username}
+                                    </div>
+                                    <div className="col">
+                                        {item.fid}
+                                    </div>
+                                    <div className="col">
+                                        {item.user}
+                                    </div>
+                                    <div className="col">
+                                        {item.amount / 10 ** 18}
+                                    </div>
+                                    <div className="col">
+                                        <Button onClick={() => {
+                                            removeWhiteList(item.user)
+                                        }}>Delete</Button>
+                                    </div>
+                                </div>)
+                            }
 
+                        })}
+                        {showSearch && whitelist.map((item, index) => {
+                            if (item.user.toLowerCase() == searchContent) {
+                                return (<div className="list-item" key={index}>
+                                    <div className="col">
+                                        {index + 1}
+                                    </div>
+                                    <div className="col">
+                                        {item.pid}
+                                    </div>
+                                    <div className="col">
+                                        {item.username}
+                                    </div>
+                                    <div className="col">
+                                        {item.fid}
+                                    </div>
+                                    <div className="col">
+                                        {item.user}
+                                    </div>
+                                    <div className="col">
+                                        {item.amount / 10 ** 18}
+                                    </div>
+                                    <div className="col">
+                                        <Button onClick={() => {
+                                            removeWhiteList(item.user)
+                                        }}>Delete</Button>
+                                    </div>
+                                </div>)
+                            }
+
+                        })}
+
+                    </div>
+                    <div className="pagination">
+                        {
+                            <Pagination current={curPage} showSizeChanger
+                                        onShowSizeChange={handleShowSizeChange}
+                                        onChange={onChangePage} total={total}
+                                        defaultPageSize={pageCount}/>
+                        }
+                    </div>
                 </div>}
                 {curNav == 3 && <div className="panel-container">
                     <div className="panel-title">
