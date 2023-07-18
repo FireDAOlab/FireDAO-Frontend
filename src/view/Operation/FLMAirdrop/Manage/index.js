@@ -33,7 +33,7 @@ const FireLock = (props) => {
     const [isShowAddLevel2, setShowAddLevel2] = useState(false)
 
     const [poolFLMBalance, setPoolFLMBalance] = useState(0)
-    const [coinAddr, setCoinAddr] = useState("0x5F564c3F5b373fb15Ca5DDB4a9bf110b49E82049")
+    const [coinAddr, setCoinAddr] = useState(addressMap["FLM"].address)
 
     const [form] = Form.useForm();
 
@@ -74,6 +74,7 @@ const FireLock = (props) => {
         getWList()
         getAdmins()
         getTokenBalance()
+        getISPause()
     }
 
     const dealNum = (num) => {
@@ -86,9 +87,8 @@ const FireLock = (props) => {
     }
 
 
-
     const getTokenBalance = async () => {
-        let contractTemp = await getContractByContract("erc20",addressMap["FLM"].address, state.api,)
+        let contractTemp = await getContractByContract("erc20", addressMap["FLM"].address, state.api,)
         const decimal = await viewMethod(contractTemp, state.account, "decimals", [])
         let balance = await viewMethod(contractTemp, state.account, "balanceOf", [addressMap["FLMAirdrop"].address])
         balance = balance / (10 ** parseInt(decimal))
@@ -101,9 +101,9 @@ const FireLock = (props) => {
         const res = await handleViewMethod("getWhiteList", [])
         const recordArr = record.data.claimRecords
         let resArr = []
-        res.forEach(addr=>{
-            recordArr.forEach(record=>{
-                if(record.user.toLowerCase() == addr.toString().toLowerCase()){
+        res.forEach(addr => {
+            recordArr.forEach(record => {
+                if (record.user.toLowerCase() == addr.toString().toLowerCase()) {
                     resArr.push(record)
                 }
             })
@@ -112,31 +112,43 @@ const FireLock = (props) => {
         setWhitelistArr(resArr)
     }
 
-    const getAdmins= async () => {
+    const getAdmins = async () => {
         const res = await handleViewMethod("getAdminsLevelTwoList", [])
         setWAdminArr(res)
     }
+    const getISPause = async () => {
+        const res = await handleViewMethod("paused", [])
+        setIsPause(res)
+    }
 
+    const pause = async () => {
+        await handleDealMethod("pause", [])
+        getISPause()
+    }
+    const unPause = async () => {
+        await handleDealMethod("unpause", [])
+        getISPause()
+    }
     const transferOwnership = async () => {
         await handleDealMethod("transferOwnership", [form.getFieldValue().owner])
         getOwner()
     }
-    const setFpAddr= async () => {
+    const setFpAddr = async () => {
         await handleDealMethod("setFpAddr", [form.getFieldValue().fpAddr])
         // getOwner()
     }
-    const removeWhiteList= async (addr) => {
+    const removeWhiteList = async (addr) => {
         await handleDealMethod("removeWhiteList", [[addr]])
         getWhitelist()
     }
-    const removeAdminsLevelTwo= async (addr) => {
+    const removeAdminsLevelTwo = async (addr) => {
         await handleDealMethod("removeAdminsLevelTwo", [[addr]])
         getAdmins()
     }
     const deposit = async () => {
         let contractTemp = await getContractByContract("erc20", coinAddr, state.api,)
         const decimals = await viewMethod(contractTemp, state.account, "decimals", [])
-        await handleDealMethod("deposit", [coinAddr, BigNumber(form.getFieldValue().coinAmount * BigNumber(10).pow(decimals))])
+        await handleDealMethod("deposit", [coinAddr, BigNumber(form.getFieldValue().coinAmount * BigNumber(10).pow(decimals)).toFixed(0).toString()])
         getTokenBalance()
     }
     const approve = async () => {
@@ -155,9 +167,9 @@ const FireLock = (props) => {
     return (
         <FireLockStyle>
             {isShowAdd && <AddWhiteListAddr updateData={() => {
-                setTimeout(()=>{
+                setTimeout(() => {
                     getWList()
-                },3000)
+                }, 3000)
             }} closeDialog={() => {
                 setShowAdd(false)
             }}/>}
@@ -227,6 +239,30 @@ const FireLock = (props) => {
                             </Button>
                         </div>
                         <div className="content-item">
+                            <h2>Pause</h2>
+                            <Form form={form} name="control-hooks">
+                                <div className="current">
+                                    <div className="name">
+                                        Current:
+                                    </div>
+                                    <div className="value">
+                                        {isPause ? "Paused" : "UnPaused"}
+                                    </div>
+                                </div>
+
+                            </Form>
+                            {!isPause && <Button type="primary" className="max-btn" onClick={() => {
+                                pause()
+                            }}>
+                                Pause
+                            </Button>}
+                            {isPause && <Button type="primary" className="max-btn" onClick={() => {
+                                unPause()
+                            }}>
+                                unPause
+                            </Button>}
+                        </div>
+                        <div className="content-item">
                             <h2>Coin Deposit</h2>
 
                             <Form form={form} name="control-hooks">
@@ -247,7 +283,9 @@ const FireLock = (props) => {
                                         {required: true, message: 'Please input owner Address!'},
                                     ]}
                                 >
-                                    <Input value={coinAddr}  defaultValue={coinAddr} onChange={(e)=>{setCoinAddr(e.target.value)}}/>
+                                    <Input value={coinAddr} defaultValue={coinAddr} onChange={(e) => {
+                                        setCoinAddr(e.target.value)
+                                    }}/>
                                 </Form.Item>
                                 <Form.Item
                                     name="coinAmount"
@@ -312,71 +350,79 @@ const FireLock = (props) => {
                 </div>
                 {curNav == 2 && <div className="panel-container">
                     <div className="panel-title">
-                        Set  Airdrop List
+                        Set Airdrop List
                         <div className="btn-box">
-                            <Button className="btn" type="primary" onClick={()=>{setShowAdd(true)}}>Add</Button>
+                            <Button className="btn" type="primary" onClick={() => {
+                                setShowAdd(true)
+                            }}>Add</Button>
                         </div>
                     </div>
 
-                   <div className="fire-list-box fire-list-box-airdrop">
-                       <div className="list-header">
-                           <div className="col">
-                               No.
-                           </div>
-                           <div className="col">
-                               PID
-                           </div>
-                           <div className="col">
-                               Username
-                           </div>
-                           <div className="col">
-                               FID
-                           </div>
-                           <div className="col">
-                               Address
-                           </div>
-                           <div className="col">
-                               Amount
-                           </div>
-                           <div className="col">
-                               Remove
-                           </div>
+                    <div className="fire-list-box fire-list-box-airdrop">
+                        <div className="list-header">
+                            <div className="col">
+                                No.
+                            </div>
+                            <div className="col">
+                                PID
+                            </div>
+                            <div className="col">
+                                Username
+                            </div>
+                            <div className="col">
+                                FID
+                            </div>
+                            <div className="col">
+                                Address
+                            </div>
+                            <div className="col">
+                                Amount
+                            </div>
+                            <div className="col">
+                                Remove
+                            </div>
 
-                       </div>
-                       {whitelist.map((item,index)=>{
-                           return (<div className="list-item" key={index}>
-                               <div className="col">
-                                   {index+1}
-                               </div>
-                               <div className="col">
-                                   {item.pid}
-                               </div>
-                               <div className="col">
-                                   {item.username}
-                               </div>
-                               <div className="col">
-                                   {item.fid}
-                               </div>
-                               <div className="col">
-                                   {item.user}
-                               </div>
-                               <div className="col">
-                                   {item.amount / 10**18}
-                               </div>
-                               <div className="col">
-                                   <Button onClick={()=>{removeWhiteList(item.user)}}>Delete</Button>
-                               </div>
-                           </div>)
-                       })}
-                   </div>
+                        </div>
+                        {whitelist.map((item, index) => {
+                            return (<div className="list-item" key={index}>
+                                <div className="col">
+                                    {index + 1}
+                                </div>
+                                <div className="col">
+                                    {item.pid}
+                                </div>
+                                <div className="col">
+                                    {item.username}
+                                </div>
+                                <div className="col">
+                                    {item.fid}
+                                </div>
+                                <div className="col">
+                                    {item.user}
+                                </div>
+                                <div className="col">
+                                    {item.amount / 10 ** 18}
+                                </div>
+                                <div className="col">
+                                    <Button onClick={() => {
+                                        removeWhiteList(item.user)
+                                    }}>Delete</Button>
+                                </div>
+                            </div>)
+                        })}
+                    </div>
 
                 </div>}
                 {curNav == 3 && <div className="panel-container">
                     <div className="panel-title">
-                        Set  Admin Level2
+                        Set Admin Level2
                         <div className="btn-box">
-                            <Button className="btn" type="primary" onClick={()=>{setShowAddLevel2(true)}}>Add</Button>
-                            <Button className="btn" type="primary" onClick={()=>{setShowRemove(true)}}>Remove</Button>
+                            <Button className="btn" type="primary" onClick={() => {
+                                setShowAddLevel2(true)
+                            }}>Add</Button>
+                            <Button className="btn" type="primary" onClick={() => {
+                                setShowRemove(true)
+                            }}>Remove</Button>
                         </div>
                     </div>
 
@@ -394,10 +440,10 @@ const FireLock = (props) => {
                             </div>
 
                         </div>
-                        {adminArr.map((item,index)=>{
+                        {adminArr.map((item, index) => {
                             return (<div className="list-item list-item-admin" key={index}>
                                 <div className="col">
-                                    {index+1}
+                                    {index + 1}
                                 </div>
 
                                 <div className="col">
@@ -405,7 +451,9 @@ const FireLock = (props) => {
                                 </div>
                                 <div className="col">
                                     <div className="col">
-                                        <Button onClick={()=>{removeAdminsLevelTwo(item)}}>Delete</Button>
+                                        <Button onClick={() => {
+                                            removeAdminsLevelTwo(item)
+                                        }}>Delete</Button>
                                     </div>
                                 </div>
                             </div>)
