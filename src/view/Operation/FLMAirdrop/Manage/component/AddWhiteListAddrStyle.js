@@ -39,6 +39,9 @@ export default   styled.div`
       }
     }
   }
+  .address-box,.number-box{
+    width: 100%;
+  }
   .mask{
     position: fixed;
     left: 0;

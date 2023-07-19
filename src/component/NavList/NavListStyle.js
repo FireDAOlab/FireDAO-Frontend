@@ -6,20 +6,24 @@ export default  styled.div`
   height: 100vh;
   z-index: 1;
   font-weight: bold;
-  .ant-menu-submenu-title{
-    i{
+
+  .ant-menu-submenu-title {
+    i {
       display: none;
     }
   }
-  .ant-menu-sub{
-    .ant-menu-title-content{
+
+  .ant-menu-sub {
+    .ant-menu-title-content {
       padding-left: 0.8em;
     }
   }
-  .ant-menu-root{
-    >.ant-menu-item-selected{
+
+  .ant-menu-root {
+    > .ant-menu-item-selected {
       position: relative;
-      &:after{
+
+      &:after {
         content: '';
         position: absolute;
         right: 0;
@@ -31,11 +35,13 @@ export default  styled.div`
     }
   }
 
-  .ant-menu-submenu-selected{
+  .ant-menu-submenu-selected {
     background: #070000;
-    .ant-menu-submenu-title{
+
+    .ant-menu-submenu-title {
       position: relative;
-      &:after{
+
+      &:after {
         content: '';
         position: absolute;
         right: 0;
@@ -47,43 +53,51 @@ export default  styled.div`
     }
   }
 
-  .logo-box{
+  .logo-box {
     width: 100%;
     text-align: center;
     margin-bottom: 1em;
-    .logo{
+
+    .logo {
       width: 40%;
-      margin:  0.5em;
+      margin: 0.5em;
     }
   }
 
-  .nav-box-box{
+  .nav-box-box {
     height: 100%;
-    &::-webkit-scrollbar-thumb{
+
+    &::-webkit-scrollbar-thumb {
       width: 3px;
     }
-    &::-webkit-scrollbar{
+
+    &::-webkit-scrollbar {
       width: 3px;
     }
   }
-  .navBox{
+
+  .navBox {
     background: #201414;
     display: flex;
     padding-bottom: 2em;
     flex-direction: column;
-    &::-webkit-scrollbar-thumb{
+
+    &::-webkit-scrollbar-thumb {
       width: 3px;
     }
-    &::-webkit-scrollbar{
+
+    &::-webkit-scrollbar {
       width: 3px;
     }
+
     height: 100%;
     overflow-y: scroll;
 
-    .menu{
+    .menu {
       flex-grow: 1;
     }
-    .lng-choose{
+
+    .lng-choose {
       display: flex;
       align-items: center;
       background: #070000;
@@ -91,25 +105,36 @@ export default  styled.div`
       border: 1px solid #414141;
       width: 160px;
       height: 40px;
-      padding:0 1em;
+      padding: 0 1em;
       justify-content: space-between;
-      margin: 0 auto;
+      margin: 0.5em auto;
       flex-shrink: 0;
-      img{
+
+      a {
+        color: #fff;
+        width: 100%;
+        height: 100%;
+        line-height: 40px;
+        text-align: center;
+      }
+
+      img {
         width: 20px;
         height: 20px;
         border-radius: 50%;
       }
     }
   }
-  .fireIcon{
+
+  .fireIcon {
     width: 26px;
     height: 26px;
   }
-  .selectNav{
+
+  .selectNav {
     position: absolute;
     right: -10em;
-    top: calc(0.9em );
+    top: calc(0.9em);
     font-size: 18px;
   }
 `

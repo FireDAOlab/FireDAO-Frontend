@@ -82,12 +82,11 @@ if (develop.ENV === "production") {
         OGPool: {address: "0xf2b2575DEbb48FC225D2289ed77D246322a60dbF", abi: seedDonation},
         FLMExchange:{address:"0xC63595DBE3dC5B8727f69C64d93990c510cf5AB0",abi:FLMExchange},
 
-
         seedDonation: {address: "0xf2b2575DEbb48FC225D2289ed77D246322a60dbF", abi: seedDonation},
         FLMPoolLPAddress:{address:"0x6adf22540e77a100d136ca76a79a39af3b30484a"},
 
-        FLM:{address:"0x926C1319AF0EBfb02e104d4940565940d2D0d0eC"},
-        FLMAirdrop:{address:"0x1F6CA2ce127AA8685d0810C0f021B3005217F425", abi:FLMAirdrop},
+        FLM:{address:"0x3A04051b411912EdF2873e50246c95fba3a90951"},
+        FLMAirdrop:{address:"0x6e1d634d8c74dAa36140A006582Dd923949e6A46", abi:FLMAirdrop},
         emergencyPool: {address: "0x251a7c07Ff5b71650DF9FEeB01184FC31a2bD57C", abi: emergencyPool},
         normalPool: {address: "0x44dBD7664A4F89C2598b93a04C3EF7c13FC859bC", abi: normalPool},
         poolManager : {address: "0x59eEeD4C641592a622d1Ee1F960D2e27376BC212", abi: poolManger},

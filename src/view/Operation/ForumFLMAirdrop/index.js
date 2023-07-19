@@ -29,7 +29,7 @@ const FlmAirdrop = (props) => {
   const [balance, setBalance] = useState(0)
   const [poooltotal, setpoooltotal] = useState(0)
   const [withdraw, setWithdraw] = useState(0)
-  const [getin, setGetin] = useState([0])
+  const [getin, setGetin] = useState([])
   const [total, setTotal] = useState(0)
   const [flmtotal, setflmTotal] = useState(0)
   const [searchArr, setSearchArr] = useState(false)
@@ -76,6 +76,7 @@ const FlmAirdrop = (props) => {
     console.log(res);
   }
   const Claim = async () => {
+    console.log(state);
     const res = await handleDealMethod("claim", [getin])
     console.log(res);
   }
@@ -96,7 +97,7 @@ const FlmAirdrop = (props) => {
 
     return <div className="hh list-item" key={index} >
       <div className="xuhao col">
-        {FlmArr.length - index}
+        {index+1}
       </div>
       {/* <div className="pd col">
         {item.pid}
@@ -184,7 +185,7 @@ const FlmAirdrop = (props) => {
         <div className="panel-container">
           <div className="panel-title">
             <div className='title'>
-              <p>FLM Airdrop</p>
+              <p>Forum FLM Airdrop</p>
             </div>
             <div className='lv'>
               <Button className='lvleft' onClick={() => goPage("/FLMAirdropLv1")}>
@@ -199,7 +200,7 @@ const FlmAirdrop = (props) => {
           </div>
           <div className='FLMup'>
             <div className='flmleft'>
-              <p className='pool-wz'>FLM Airdrop Pool</p>
+              <p className='pool-wz'>Forum FLM Airdrop Pool</p>
               <div>
                 <span className='pool-zhi'>{poooltotal}</span>
               </div>
@@ -245,6 +246,7 @@ const FlmAirdrop = (props) => {
             </div>
           </div>
         </div>
+      
         <div className='panel-container2'>
           <div className='panel'>
             <p className='panelwz'>Withdraw Records</p>
@@ -276,12 +278,13 @@ const FlmAirdrop = (props) => {
             </div>
             {
               !searchData && activeNav == 1 && FlmArr.map((item, index) => (
-
+                index >= pageCount * (curPage - 1) && index < pageCount * curPage &&
                 Row(item, index)
               ))
             }
             {
               activeNav == 2 && FlmAirdro.map((item, index) => (
+                index >= pageCount * (curPage - 1) && index < pageCount * curPage &&
                 Row(item, index)
               ))
             }

@@ -21,11 +21,11 @@ import {dealTime} from "../../../utils/timeUtil";
 
 const ViewBox = (props) => {
     let {state, dispatch} = useConnect();
-    const [total, setTotal] = useState(0)
     const [total2, setTotal2] = useState(0)
     const [recordNav, setRecordNav] = useState(1)
     const [typeNav, setTypeNav] = useState(1)
 
+    const [total, setTotal] = useState(0)
     const [curPage, setCurPage] = useState(1)
     const [pageCount, setPageCount] = useState(20)
     const [allowance, setAllowance] = useState(0)
