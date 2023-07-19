@@ -8,7 +8,6 @@ export function getWhitelist() {
     Contract_id
     pid
     username
-    fid
     user
     amount
     blockTimestamp
@@ -17,6 +16,7 @@ export function getWhitelist() {
 }`
     }, "")
 }
+
 export function getClaimRecords() {
     return fetchQueryBase("patton-sr/airdropflmmumbai2", {
         text: `{
@@ -24,11 +24,25 @@ export function getClaimRecords() {
         id
         pid
         username
-        fid
         user
         amount
         blockTimestamp
       }
+      }`
+    }, "")
+}
+
+export function getDepositRecords() {
+    return fetchQueryBase("patton-sr/airdropflmmumbai2", {
+        text: `{
+depositRecords(first: 1000) {
+    id
+    pid
+    username
+    user
+    amount
+    blockTimestamp
+}
       }`
     }, "")
 }

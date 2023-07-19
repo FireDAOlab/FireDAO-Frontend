@@ -5,6 +5,10 @@ export default   styled.div`
 
     .panel-container {
       width: 90%;
+
+      .search-box {
+        display: flex;
+      }
     }
 
     .panel-title {
@@ -18,25 +22,56 @@ export default   styled.div`
     .col:nth-child(1) {
       width: 50px;
     }
+
     .col:nth-child(2) {
       width: 50px;
     }
+
     .col:nth-child(3) {
       width: 100px;
     }
+
     .col:nth-child(4) {
       width: 50px;
     }
+
     .col:nth-child(5) {
       width: 300px;
     }
+
     .col:nth-child(6) {
       width: 100px;
     }
   }
 
+  .del-content {
+    max-height: 60vh;
+    overflow-y: auto;
+  }
+
   .title {
     text-align: center;
+  }
+
+  .check-icon {
+    width: 26px;
+    height: 26px;
+  }
+
+  .remove-btn {
+    margin-left: 16px;
+  }
+
+  .ant-checkbox-inner {
+    border-color: #d46b08 !important;
+  }
+
+  .remove-check {
+    padding: 0 10px;
+
+    Button {
+      margin-left: 10px;
+    }
   }
 
   .fire-list-box {

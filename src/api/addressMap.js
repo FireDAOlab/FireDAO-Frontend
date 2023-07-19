@@ -85,7 +85,7 @@ if (develop.ENV === "production") {
         seedDonation: {address: "0xf2b2575DEbb48FC225D2289ed77D246322a60dbF", abi: seedDonation},
         FLMPoolLPAddress:{address:"0x6adf22540e77a100d136ca76a79a39af3b30484a"},
 
-        FLM:{address:"0x5F564c3F5b373fb15Ca5DDB4a9bf110b49E82049"},
+        FLM:{address:"0x3A04051b411912EdF2873e50246c95fba3a90951"},
         FLMAirdrop:{address:"0x6e1d634d8c74dAa36140A006582Dd923949e6A46", abi:FLMAirdrop},
         emergencyPool: {address: "0x251a7c07Ff5b71650DF9FEeB01184FC31a2bD57C", abi: emergencyPool},
         normalPool: {address: "0x44dBD7664A4F89C2598b93a04C3EF7c13FC859bC", abi: normalPool},
