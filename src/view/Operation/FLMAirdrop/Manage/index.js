@@ -226,7 +226,7 @@ const FireLock = (props) => {
         await getData()
     }, [state.account]);
     useEffect(async () => {
-        if(coinAddr){
+        if (coinAddr) {
             getTokenBalance()
         }
     }, [coinAddr]);
@@ -263,393 +263,395 @@ const FireLock = (props) => {
             }} closeDialog={() => {
                 setShowRemove(false)
             }}/>}
-            <h1 className="title">
-                FLM Airdrop Manage
-            </h1>
-            <div className="panel-box">
-                <Modal className="model-dialog" title="Delete List" open={isDelMolOpen} onOk={removeCheckWhiteList}
-                       onCancel={() => {
-                           setIsDelMolOpen(false)
-                       }}>
-                    <div className="del-content">
-                        {delList.map(item => {
-                            return (<div>
-                                {item}
-                            </div>)
-                        })}
-                    </div>
-                </Modal>
-                <div className="panel-container">
-                    <div className="nav-list">
-                        <div className={"nav-item " + (curNav == 1 ? "active" : "")} onClick={() => {
-                            setCurNav(1)
-                        }}>
-                            Owner
+            {ownerAddr && ((ownerAddr.toLowerCase() == state.account.toLowerCase()) || isSecAdmin) && <div>
+                <h1 className="title">
+                    FLM Airdrop Manage
+                </h1>
+                <div className="panel-box">
+                    <Modal className="model-dialog" title="Delete List" open={isDelMolOpen} onOk={removeCheckWhiteList}
+                           onCancel={() => {
+                               setIsDelMolOpen(false)
+                           }}>
+                        <div className="del-content">
+                            {delList.map(item => {
+                                return (<div>
+                                    {item}
+                                </div>)
+                            })}
                         </div>
-                        <div className={"nav-item " + (curNav == 3 ? "active" : "")} onClick={() => {
-                            setCurNav(3)
-                        }}>
-                            Set Admin Level2
-                        </div>
+                    </Modal>
+                    <div className="panel-container">
+                        <div className="nav-list">
+                            <div className={"nav-item " + (curNav == 1 ? "active" : "")} onClick={() => {
+                                setCurNav(1)
+                            }}>
+                                Owner
+                            </div>
+                            <div className={"nav-item " + (curNav == 3 ? "active" : "")} onClick={() => {
+                                setCurNav(3)
+                            }}>
+                                Set Admin Level2
+                            </div>
 
-                        <div className={"nav-item " + (curNav == 2 ? "active" : "")} onClick={() => {
-                            setCurNav(2)
-                        }}>
+                            <div className={"nav-item " + (curNav == 2 ? "active" : "")} onClick={() => {
+                                setCurNav(2)
+                            }}>
+                                Set Airdrop List
+                            </div>
+
+                        </div>
+                        {curNav == 1 && <div className="part1">
+                            <div className="content-item">
+                                <h2>Owner Address</h2>
+                                <Form form={form} name="control-hooks">
+                                    <div className="current">
+                                        <div className="name">
+                                            Current:
+                                        </div>
+                                        <div className="value">
+                                            {ownerAddr}
+                                        </div>
+                                    </div>
+                                    <Form.Item
+                                        name="owner"
+                                        label="owner address"
+                                        validateTrigger="onBlur"
+                                        validateFirst={true}
+                                        rules={[
+                                            {required: true, message: 'Please input owner Address!'},
+                                        ]}
+                                    >
+                                        <Input/>
+                                    </Form.Item>
+                                </Form>
+                                <Button type="primary" className="max-btn" onClick={() => {
+                                    transferOwnership()
+                                }}>
+                                    Submit
+                                </Button>
+                            </div>
+                            <div className="content-item">
+                                <h2>Pause</h2>
+                                <Form form={form} name="control-hooks">
+                                    <div className="current">
+                                        <div className="name">
+                                            Current:
+                                        </div>
+                                        <div className="value">
+                                            {isPause ? "Paused" : "UnPaused"}
+                                        </div>
+                                    </div>
+
+                                </Form>
+                                {!isPause && <Button type="primary" className="max-btn" onClick={() => {
+                                    pause()
+                                }}>
+                                    Pause
+                                </Button>}
+                                {isPause && <Button type="primary" className="max-btn" onClick={() => {
+                                    unPause()
+                                }}>
+                                    unPause
+                                </Button>}
+                            </div>
+                            <div className="content-item">
+                                <h2>Coin Deposit</h2>
+
+                                <Form form={form} name="control-hooks">
+                                    <div className="current">
+                                        <div className="name">
+                                            Pool FLM Balance:
+                                        </div>
+                                        <div className="value">
+                                            {dealNum(poolFLMBalance)}
+                                        </div>
+                                    </div>
+                                    <Form.Item
+                                        name="coinAddr"
+                                        label="Coin Address"
+                                        validateTrigger="onBlur"
+                                        validateFirst={true}
+                                        rules={[
+                                            {required: true, message: 'Please input coin Address!'},
+                                        ]}
+                                    >
+                                        <Input value={coinAddr} defaultValue={coinAddr} onChange={(e) => {
+                                            setCoinAddr(e.target.value)
+                                        }}/>
+                                    </Form.Item>
+                                    <Form.Item
+                                        name="coinAmount"
+                                        label="Amount"
+                                        validateTrigger="onBlur"
+                                        validateFirst={true}
+                                        rules={[
+                                            {required: true, message: 'Please input coin Amount!'},
+                                        ]}
+                                    >
+                                        <Input/>
+                                    </Form.Item>
+                                </Form>
+                                <Button type="primary" className="max-btn" onClick={() => {
+                                    approve()
+                                }}>
+                                    Approve
+                                </Button>
+                                <Button type="primary" className="max-btn" onClick={() => {
+                                    deposit()
+                                }}>
+                                    Deposit
+                                </Button>
+                            </div>
+                            <div className="content-item">
+                                <h3>setFpAddr</h3>
+                                <Form form={form} name="control-hooks">
+                                    <div className="current">
+                                        <div className="name">
+                                            Current:
+                                        </div>
+                                        <div className="value">
+
+                                        </div>
+                                    </div>
+                                    <Form.Item
+                                        name="fpAddr"
+                                        label="fp address"
+                                        validateTrigger="onBlur"
+                                        validateFirst={true}
+                                        rules={[
+                                            {required: true, message: 'Please input fp Address!'},
+                                        ]}
+                                    >
+                                        <Input/>
+                                    </Form.Item>
+                                </Form>
+                                <Button type="primary" className="max-btn" onClick={() => {
+                                    setFpAddr()
+                                }}>
+                                    Submit
+                                </Button>
+                            </div>
+                            <div className="content-item">
+                                <h3>Set FLM address</h3>
+                                <Form form={form} name="control-hooks">
+                                    <div className="current">
+                                        <div className="name">
+                                            Current:
+                                        </div>
+                                        <div className="value">
+                                            {flmAddr}
+                                        </div>
+                                    </div>
+                                    <Form.Item
+                                        name="flmAddr"
+                                        label="flm address"
+                                        validateTrigger="onBlur"
+                                        validateFirst={true}
+                                        rules={[
+                                            {required: true, message: 'Please input fpAddr Address!'},
+                                        ]}
+                                    >
+                                        <Input/>
+                                    </Form.Item>
+                                </Form>
+                                <Button type="primary" className="max-btn" onClick={() => {
+                                    setFlm()
+                                }}>
+                                    Submit
+                                </Button>
+                            </div>
+                        </div>}
+
+                    </div>
+                    {curNav == 2 && <div className="panel-container">
+                        <div className="panel-title">
                             Set Airdrop List
+                            <div className="search-box">
+                                <Input value={searchContent} onChange={(e) => {
+                                    setSearchContent(e.target.value)
+                                    if (!e.target.value) setShowSearch(false)
+                                }} allowClear/>
+                                <Button className="btn" type="primary" onClick={() => {
+                                    handleSearch()
+                                }}>Search</Button>
+                            </div>
+                            <div className="btn-box">
+
+                                <Button className="btn" type="primary" onClick={() => {
+                                    setShowAdd(true)
+                                }}>Add</Button>
+                            </div>
                         </div>
 
-                    </div>
-                    {curNav == 1 && <div className="part1">
-                        <div className="content-item">
-                            <h2>Owner Address</h2>
-                            <Form form={form} name="control-hooks">
-                                <div className="current">
-                                    <div className="name">
-                                        Current:
-                                    </div>
-                                    <div className="value">
-                                        {ownerAddr}
-                                    </div>
+                        <div className="fire-list-box fire-list-box-airdrop">
+                            <div className="list-header">
+                                <div className="col">
+                                    No.
                                 </div>
-                                <Form.Item
-                                    name="owner"
-                                    label="owner address"
-                                    validateTrigger="onBlur"
-                                    validateFirst={true}
-                                    rules={[
-                                        {required: true, message: 'Please input owner Address!'},
-                                    ]}
-                                >
-                                    <Input/>
-                                </Form.Item>
-                            </Form>
-                            <Button type="primary" className="max-btn" onClick={() => {
-                                transferOwnership()
-                            }}>
-                                Submit
-                            </Button>
-                        </div>
-                        <div className="content-item">
-                            <h2>Pause</h2>
-                            <Form form={form} name="control-hooks">
-                                <div className="current">
-                                    <div className="name">
-                                        Current:
-                                    </div>
-                                    <div className="value">
-                                        {isPause ? "Paused" : "UnPaused"}
+                                <div className="col">
+                                    PID
+                                </div>
+                                <div className="col">
+                                    Username
+                                </div>
+                                <div className="col"></div>
+                                <div className="col">
+                                    Address
+                                </div>
+                                <div className="col">
+                                    Amount
+                                </div>
+                                <div className="col">
+                                    Remove
+                                    <div className="remove-check">
+                                        {!isCheckAll && <img className="check-icon" onClick={() => {
+                                            setIsCheckAll(true);
+                                            handleCheckAll(true)
+                                        }} src={checkIcon} alt=""/>}
+                                        {isCheckAll && <img className="check-icon" onClick={() => {
+                                            setIsCheckAll(false);
+                                            handleCheckAll(false)
+                                        }} src={checkActiveIcon} alt=""/>}
+
+                                        <Button onClick={() => {
+                                            setIsDelMolOpen(true)
+                                            getDelList()
+                                        }}>Delete</Button>
                                     </div>
                                 </div>
 
-                            </Form>
-                            {!isPause && <Button type="primary" className="max-btn" onClick={() => {
-                                pause()
-                            }}>
-                                Pause
-                            </Button>}
-                            {isPause && <Button type="primary" className="max-btn" onClick={() => {
-                                unPause()
-                            }}>
-                                unPause
-                            </Button>}
-                        </div>
-                        <div className="content-item">
-                            <h2>Coin Deposit</h2>
+                            </div>
+                            {!showSearch && curPage && whitelist.map((item, index) => {
+                                if (index >= pageCount * (curPage - 1) && index < pageCount * curPage) {
+                                    return (<div className="list-item" key={index}>
+                                        <div className="col">
+                                            {index + 1}
+                                        </div>
+                                        <div className="col">
+                                            {item.pid}
+                                        </div>
+                                        <div className="col">
+                                            {item.username}
+                                        </div>
+                                        <div className="col">
+                                            {item.fid}
+                                        </div>
+                                        <div className="col">
+                                            {item.user}
+                                        </div>
+                                        <div className="col">
+                                            {item.amount / 10 ** 18}
+                                        </div>
+                                        <div className="col">
+                                            {/*<Checkbox value={item.checked} onChange={(e) => {*/}
+                                            {/*    handleCheck(item, index, e)*/}
+                                            {/*}}>*/}
+                                            {/*</Checkbox>*/}
+                                            {!item.checked && <img className="check-icon" onClick={() => {
+                                                handleCheck(item, index, true)
+                                            }} src={checkIcon} alt=""/>}
+                                            {item.checked && <img className="check-icon" onClick={() => {
+                                                handleCheck(item, index, false)
+                                            }} src={checkActiveIcon} alt=""/>}
+                                            <Button className="remove-btn" onClick={() => {
+                                                removeWhiteList(item.user)
+                                            }}>Delete</Button>
+                                        </div>
+                                    </div>)
+                                }
 
-                            <Form form={form} name="control-hooks">
-                                <div className="current">
-                                    <div className="name">
-                                        Pool FLM Balance:
-                                    </div>
-                                    <div className="value">
-                                        {dealNum(poolFLMBalance)}
-                                    </div>
-                                </div>
-                                <Form.Item
-                                    name="coinAddr"
-                                    label="Coin Address"
-                                    validateTrigger="onBlur"
-                                    validateFirst={true}
-                                    rules={[
-                                        {required: true, message: 'Please input coin Address!'},
-                                    ]}
-                                >
-                                    <Input value={coinAddr} defaultValue={coinAddr} onChange={(e) => {
-                                        setCoinAddr(e.target.value)
-                                    }}/>
-                                </Form.Item>
-                                <Form.Item
-                                    name="coinAmount"
-                                    label="Amount"
-                                    validateTrigger="onBlur"
-                                    validateFirst={true}
-                                    rules={[
-                                        {required: true, message: 'Please input coin Amount!'},
-                                    ]}
-                                >
-                                    <Input/>
-                                </Form.Item>
-                            </Form>
-                            <Button type="primary" className="max-btn" onClick={() => {
-                                approve()
-                            }}>
-                                Approve
-                            </Button>
-                            <Button type="primary" className="max-btn" onClick={() => {
-                                deposit()
-                            }}>
-                                Deposit
-                            </Button>
-                        </div>
-                        <div className="content-item">
-                            <h3>setFpAddr</h3>
-                            <Form form={form} name="control-hooks">
-                                <div className="current">
-                                    <div className="name">
-                                        Current:
-                                    </div>
-                                    <div className="value">
+                            })}
+                            {showSearch && whitelist.map((item, index) => {
+                                if (item.user.toLowerCase() == searchContent) {
+                                    return (<div className="list-item" key={index}>
+                                        <div className="col">
+                                            {index + 1}
+                                        </div>
+                                        <div className="col">
+                                            {item.pid}
+                                        </div>
+                                        <div className="col">
+                                            {item.username}
+                                        </div>
+                                        <div className="col">
+                                            {item.fid}
+                                        </div>
+                                        <div className="col">
+                                            {item.user}
+                                        </div>
+                                        <div className="col">
+                                            {item.amount / 10 ** 18}
+                                        </div>
+                                        <div className="col">
+                                            <Button onClick={() => {
+                                                removeWhiteList(item.user)
+                                            }}>Delete</Button>
+                                        </div>
+                                    </div>)
+                                }
 
-                                    </div>
-                                </div>
-                                <Form.Item
-                                    name="fpAddr"
-                                    label="fp address"
-                                    validateTrigger="onBlur"
-                                    validateFirst={true}
-                                    rules={[
-                                        {required: true, message: 'Please input fp Address!'},
-                                    ]}
-                                >
-                                    <Input/>
-                                </Form.Item>
-                            </Form>
-                            <Button type="primary" className="max-btn" onClick={() => {
-                                setFpAddr()
-                            }}>
-                                Submit
-                            </Button>
+                            })}
+
                         </div>
-                        <div className="content-item">
-                            <h3>Set FLM address</h3>
-                            <Form form={form} name="control-hooks">
-                                <div className="current">
-                                    <div className="name">
-                                        Current:
-                                    </div>
-                                    <div className="value">
-                                        {flmAddr}
-                                    </div>
-                                </div>
-                                <Form.Item
-                                    name="flmAddr"
-                                    label="flm address"
-                                    validateTrigger="onBlur"
-                                    validateFirst={true}
-                                    rules={[
-                                        {required: true, message: 'Please input fpAddr Address!'},
-                                    ]}
-                                >
-                                    <Input/>
-                                </Form.Item>
-                            </Form>
-                            <Button type="primary" className="max-btn" onClick={() => {
-                                setFlm()
-                            }}>
-                                Submit
-                            </Button>
+                        <div className="pagination">
+                            {
+                                <Pagination current={curPage} showSizeChanger
+                                            onShowSizeChange={handleShowSizeChange}
+                                            onChange={onChangePage} total={total}
+                                            defaultPageSize={pageCount}/>
+                            }
                         </div>
                     </div>}
+                    {curNav == 3 && <div className="panel-container">
+                        <div className="panel-title">
+                            Set Admin Level2
+                            <div className="btn-box">
+                                <Button className="btn" type="primary" onClick={() => {
+                                    setShowAddLevel2(true)
+                                }}>Add</Button>
+                                <Button className="btn" type="primary" onClick={() => {
+                                    setShowRemove(true)
+                                }}>Remove</Button>
+                            </div>
+                        </div>
 
+                        <div className="fire-list-box fire-list-box-admin">
+                            <div className="list-header">
+                                <div className="col">
+                                    No.
+                                </div>
+
+                                <div className="col">
+                                    Address
+                                </div>
+                                <div className="col">
+                                    Delete
+                                </div>
+
+                            </div>
+                            {adminArr.map((item, index) => {
+                                return (<div className="list-item list-item-admin" key={index}>
+                                    <div className="col">
+                                        {index + 1}
+                                    </div>
+
+                                    <div className="col">
+                                        {item}
+                                    </div>
+                                    <div className="col">
+                                        <div className="col">
+                                            <Button onClick={() => {
+                                                removeAdminsLevelTwo(item)
+                                            }}>Delete</Button>
+                                        </div>
+                                    </div>
+                                </div>)
+                            })}
+                        </div>
+
+                    </div>}
                 </div>
-                {curNav == 2 && <div className="panel-container">
-                    <div className="panel-title">
-                        Set Airdrop List
-                        <div className="search-box">
-                            <Input value={searchContent} onChange={(e) => {
-                                setSearchContent(e.target.value)
-                                if (!e.target.value) setShowSearch(false)
-                            }} allowClear/>
-                            <Button className="btn" type="primary" onClick={() => {
-                                handleSearch()
-                            }}>Search</Button>
-                        </div>
-                        <div className="btn-box">
-
-                            <Button className="btn" type="primary" onClick={() => {
-                                setShowAdd(true)
-                            }}>Add</Button>
-                        </div>
-                    </div>
-
-                    <div className="fire-list-box fire-list-box-airdrop">
-                        <div className="list-header">
-                            <div className="col">
-                                No.
-                            </div>
-                            <div className="col">
-                                PID
-                            </div>
-                            <div className="col">
-                                Username
-                            </div>
-                            <div className="col"></div>
-                            <div className="col">
-                                Address
-                            </div>
-                            <div className="col">
-                                Amount
-                            </div>
-                            <div className="col">
-                                Remove
-                                <div className="remove-check">
-                                    {!isCheckAll && <img className="check-icon" onClick={() => {
-                                        setIsCheckAll(true);
-                                        handleCheckAll(true)
-                                    }} src={checkIcon} alt=""/>}
-                                    {isCheckAll && <img className="check-icon" onClick={() => {
-                                        setIsCheckAll(false);
-                                        handleCheckAll(false)
-                                    }} src={checkActiveIcon} alt=""/>}
-
-                                    <Button onClick={() => {
-                                        setIsDelMolOpen(true)
-                                        getDelList()
-                                    }}>Delete</Button>
-                                </div>
-                            </div>
-
-                        </div>
-                        {!showSearch && curPage && whitelist.map((item, index) => {
-                            if (index >= pageCount * (curPage - 1) && index < pageCount * curPage) {
-                                return (<div className="list-item" key={index}>
-                                    <div className="col">
-                                        {index + 1}
-                                    </div>
-                                    <div className="col">
-                                        {item.pid}
-                                    </div>
-                                    <div className="col">
-                                        {item.username}
-                                    </div>
-                                    <div className="col">
-                                        {item.fid}
-                                    </div>
-                                    <div className="col">
-                                        {item.user}
-                                    </div>
-                                    <div className="col">
-                                        {item.amount / 10 ** 18}
-                                    </div>
-                                    <div className="col">
-                                        {/*<Checkbox value={item.checked} onChange={(e) => {*/}
-                                        {/*    handleCheck(item, index, e)*/}
-                                        {/*}}>*/}
-                                        {/*</Checkbox>*/}
-                                        {!item.checked && <img className="check-icon" onClick={() => {
-                                            handleCheck(item, index, true)
-                                        }} src={checkIcon} alt=""/>}
-                                        {item.checked && <img className="check-icon" onClick={() => {
-                                            handleCheck(item, index, false)
-                                        }} src={checkActiveIcon} alt=""/>}
-                                        <Button className="remove-btn" onClick={() => {
-                                            removeWhiteList(item.user)
-                                        }}>Delete</Button>
-                                    </div>
-                                </div>)
-                            }
-
-                        })}
-                        {showSearch && whitelist.map((item, index) => {
-                            if (item.user.toLowerCase() == searchContent) {
-                                return (<div className="list-item" key={index}>
-                                    <div className="col">
-                                        {index + 1}
-                                    </div>
-                                    <div className="col">
-                                        {item.pid}
-                                    </div>
-                                    <div className="col">
-                                        {item.username}
-                                    </div>
-                                    <div className="col">
-                                        {item.fid}
-                                    </div>
-                                    <div className="col">
-                                        {item.user}
-                                    </div>
-                                    <div className="col">
-                                        {item.amount / 10 ** 18}
-                                    </div>
-                                    <div className="col">
-                                        <Button onClick={() => {
-                                            removeWhiteList(item.user)
-                                        }}>Delete</Button>
-                                    </div>
-                                </div>)
-                            }
-
-                        })}
-
-                    </div>
-                    <div className="pagination">
-                        {
-                            <Pagination current={curPage} showSizeChanger
-                                        onShowSizeChange={handleShowSizeChange}
-                                        onChange={onChangePage} total={total}
-                                        defaultPageSize={pageCount}/>
-                        }
-                    </div>
-                </div>}
-                {curNav == 3 && <div className="panel-container">
-                    <div className="panel-title">
-                        Set Admin Level2
-                        <div className="btn-box">
-                            <Button className="btn" type="primary" onClick={() => {
-                                setShowAddLevel2(true)
-                            }}>Add</Button>
-                            <Button className="btn" type="primary" onClick={() => {
-                                setShowRemove(true)
-                            }}>Remove</Button>
-                        </div>
-                    </div>
-
-                    <div className="fire-list-box fire-list-box-admin">
-                        <div className="list-header">
-                            <div className="col">
-                                No.
-                            </div>
-
-                            <div className="col">
-                                Address
-                            </div>
-                            <div className="col">
-                                Delete
-                            </div>
-
-                        </div>
-                        {adminArr.map((item, index) => {
-                            return (<div className="list-item list-item-admin" key={index}>
-                                <div className="col">
-                                    {index + 1}
-                                </div>
-
-                                <div className="col">
-                                    {item}
-                                </div>
-                                <div className="col">
-                                    <div className="col">
-                                        <Button onClick={() => {
-                                            removeAdminsLevelTwo(item)
-                                        }}>Delete</Button>
-                                    </div>
-                                </div>
-                            </div>)
-                        })}
-                    </div>
-
-                </div>}
-            </div>
+            </div>}
 
         </FireLockStyle>
     )
