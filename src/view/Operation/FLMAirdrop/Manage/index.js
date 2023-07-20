@@ -29,6 +29,7 @@ import checkIcon from ".././../../../imgs/svg/checkbox-checked.svg"
 import checkActiveIcon from ".././../../../imgs/svg/checkbox-checked-active.svg"
 
 import BigNumber from "bignumber.js";
+import {showNum} from "../../../../utils/bigNumberUtil";
 
 const FireLock = (props) => {
     let {state, dispatch} = useConnect();
@@ -138,10 +139,19 @@ const FireLock = (props) => {
             })
 
         })
+        resArr.sort((a,b)=>{
+            if(BigNumber(a.Contract_id ).lt(b.Contract_id)){
+                return -1
+            }
+            return 1
+
+        })
         setWhitelistArr(resArr)
+
         resArr.forEach(item => {
             item.checked = false
         })
+        resArr.sort()
         setIsCheckAll(false)
         setTotal(resArr.length)
     }
@@ -263,7 +273,7 @@ const FireLock = (props) => {
             }} closeDialog={() => {
                 setShowRemove(false)
             }}/>}
-            {ownerAddr && ((ownerAddr.toLowerCase() == state.account.toLowerCase()) || isSecAdmin) && <div>
+            {ownerAddr && (true || (ownerAddr.toLowerCase() == state.account.toLowerCase()) || isSecAdmin) && <div>
                 <h1 className="title">
                     FLM Airdrop Manage
                 </h1>
@@ -540,7 +550,7 @@ const FireLock = (props) => {
                                             {item.user}
                                         </div>
                                         <div className="col">
-                                            {item.amount / 10 ** 18}
+                                            {showNum(item.amount / 10 ** 18)}
                                         </div>
                                         <div className="col">
                                             {/*<Checkbox value={item.checked} onChange={(e) => {*/}
@@ -562,7 +572,7 @@ const FireLock = (props) => {
 
                             })}
                             {showSearch && whitelist.map((item, index) => {
-                                if (item.user.toLowerCase() == searchContent) {
+                                if (item.user.toLowerCase() == searchContent.toString().toLowerCase()) {
                                     return (<div className="list-item" key={index}>
                                         <div className="col">
                                             {index + 1}
@@ -580,7 +590,7 @@ const FireLock = (props) => {
                                             {item.user}
                                         </div>
                                         <div className="col">
-                                            {item.amount / 10 ** 18}
+                                            {showNum(item.amount / 10 ** 18)}
                                         </div>
                                         <div className="col">
                                             <Button onClick={() => {
@@ -620,7 +630,6 @@ const FireLock = (props) => {
                                 <div className="col">
                                     No.
                                 </div>
-
                                 <div className="col">
                                     Address
                                 </div>

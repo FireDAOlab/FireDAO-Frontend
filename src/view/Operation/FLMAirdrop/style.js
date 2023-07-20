@@ -1,16 +1,20 @@
 import styled from "styled-components";
 import passportHeaderBg from "../../../imgs/passport_header_bg.webp";
-export default   styled.div`
+
+export default styled.div`
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  .panel-title.flex-box{
+
+  .panel-title.flex-box {
     justify-content: space-between;
-    .search-box{
+
+    .search-box {
       display: flex;
     }
   }
-  .add-coin{
+
+  .add-coin {
     background: rgba(254, 109, 70, 0.1);
     border-radius: 38px 38px 38px 38px;
     color: #FE6D46;
@@ -18,102 +22,129 @@ export default   styled.div`
     border: 1px solid rgba(254, 109, 70, 0.5);
     padding: 3px 10px;
     cursor: pointer;
+    white-space: nowrap;
   }
-  .address{
+
+  .address {
     padding: 6px 15px;
-    background: rgba(205,158,87,0.1);
+    background: rgba(205, 158, 87, 0.1);
     border-radius: 38px 38px 38px 38px;
-    border: 1px solid rgba(205,158,87,0.5);
+    border: 1px solid rgba(205, 158, 87, 0.5);
   }
-  .fire-list-box-deposit{
+
+  .fire-list-box-deposit {
     .col:nth-child(1) {
       width: 50px;
     }
+
     .col:nth-child(2) {
       width: 50px;
     }
+
     .col:nth-child(3) {
       width: 50px;
     }
+
     .col:nth-child(4) {
       width: 100px;
     }
+
     .col:nth-child(5) {
       width: 50px;
     }
+
     .col:nth-child(6) {
       width: 150px;
     }
   }
+
   .fire-list-box-airdrop {
     .col:nth-child(1) {
       width: 50px;
     }
+
     .col:nth-child(2) {
       width: 300px;
     }
+
     .col:nth-child(3) {
       width: 50px;
     }
+
     .col:nth-child(4) {
       width: 50px;
     }
+
     .col:nth-child(5) {
       width: 50px;
     }
 
   }
-  .fire-list-box-airdroplist{
+
+  .fire-list-box-airdroplist {
     .col:nth-child(5) {
       width: 100px;
     }
+
     .col:nth-child(6) {
       width: 100px;
     }
   }
+
   .panel-container {
     padding: 3em 8%;
     margin: 1em 5%;
     width: 90%;
   }
-  .claim-nav{
+
+  .claim-nav {
     margin: 10px 0 0px;
   }
-  .fire-list-box{
+
+  .fire-list-box {
     margin-top: 20px;
-    a{
+
+    a {
       color: #d46b08;
     }
   }
-  .fire-list-box-userclaim{
-    .col{
-      &:nth-child(1){
+
+  .fire-list-box-userclaim {
+    .col {
+      &:nth-child(1) {
         width: 50px;
       }
-      &:nth-child(2){
+
+      &:nth-child(2) {
         width: 50px;
       }
-      &:nth-child(3){
+
+      &:nth-child(3) {
         width: 100px;
       }
-      &:nth-child(4){
+
+      &:nth-child(4) {
         width: 100px;
       }
-      &:nth-child(5){
+
+      &:nth-child(5) {
         width: 100px;
       }
-    
-      
+
+
     }
   }
-  .can-claim{
+
+  .can-claim {
     color: #8A8080;
-    strong{
+
+    strong {
       font-family: Roboto-Bold, Roboto;
       font-weight: bold;
       color: #FFFFFF;
     }
   }
+
   .pid-box {
     font-family: Roboto-SemiBold, Roboto;
     font-weight: 600;
@@ -138,10 +169,12 @@ export default   styled.div`
       justify-content: center;
     }
   }
-  .pagination{
+
+  .pagination {
     display: flex;
     justify-content: center;
   }
+
   .content-box {
     display: flex;
     justify-content: space-between;
@@ -177,10 +210,13 @@ export default   styled.div`
         display: flex;
         margin-top: 20px;
         justify-content: space-between;
+        flex-wrap: wrap;
         .info-box {
-          &:last-child{
+          padding-right: 10px;
+          &:last-child {
             margin-right: 0;
           }
+
           .name {
             font-size: 13px;
             font-family: Roboto-Medium, Roboto;
@@ -256,21 +292,42 @@ export default   styled.div`
       }
     }
   }
+
   @media screen and (max-width: 1000px) {
+    .panel-title {
+      font-size: 20px;
+    }
+
+    .add-coin {
+      font-size: 12px;
+    }
+
     .content-box {
       flex-direction: column;
 
       .left-part, .right-part {
-        width: 100%;        
+        width: 100%;
+        padding: 2vh 5vw;
+
+        .bottom-part {
+          .name{
+            font-size: 12px;
+          }
+          .value {
+            font-size: 14px;
+          }
+        }
       }
-      .right-part{
+
+      .right-part {
         margin-top: 20px;
       }
     }
-    .fire-nav-list{
+
+    .fire-nav-list {
       width: 70vw;
       height: 50px;
     }
   }
-`
+`;
 

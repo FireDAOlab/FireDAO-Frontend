@@ -258,7 +258,7 @@ const Distribution = (props) => {
                     <div className="panel-title flex-box">
                         FLM Airdrop
                         <div className="add-coin" onClick={addToken}>
-                            Add FLM to MateMask
+                            Add FLM Address
                         </div>
                         {isAdmin && (
                             <div className="admin-icon-box" onClick={() => {
@@ -272,7 +272,7 @@ const Distribution = (props) => {
                         <div className="left-part">
                             <div className="info-box">
                                 <div className="title">
-                                    FLM Airdrop Pool
+                                    FLM Claim Pool
                                 </div>
                                 <div className="num-box">
                                     {showNum(poolBalance)}
@@ -281,15 +281,15 @@ const Distribution = (props) => {
                             <div className="bottom-part">
                                 <div className="info-box">
                                     <div className="name">
-                                        Total
+                                        Total Reward
                                     </div>
                                     <div className="value">
-                                        {showNum(BigNumber(claimedAmount).plus(userBalance).toString())}
+                                        {showNum(BigNumber(claimedAmount).plus(canClaim).toString())}
                                     </div>
                                 </div>
                                 <div className="info-box">
                                     <div className="name">
-                                        Withdrawn
+                                        Total Claimed
                                     </div>
                                     <div className="value">
                                         {showNum(claimedAmount)}
@@ -297,18 +297,18 @@ const Distribution = (props) => {
                                 </div>
                                 <div className="info-box">
                                     <div className="name">
-                                        Balance
+                                        Unclaimed Balance
                                     </div>
                                     <div className="value">
-                                        {showNum(userBalance)}
+                                        {showNum(canClaim)}
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div className="right-part">
                             <div className="info-box">
-                                <div className="pid-box">FID : <div className="pid">{state.fid}</div></div>
-                                <div className="can-claim">Can claim : <strong>{canClaim}</strong></div>
+                                <div className="pid-box">PID : <div className="pid">{state.pid?state.pid:0}</div></div>
+                                <div className="can-claim"> Unclaimed Balance: <strong>{canClaim}</strong></div>
                             </div>
                             <Form form={form} className="withdrawForm">
                                 <Form.Item label="Withdraw">
@@ -326,9 +326,9 @@ const Distribution = (props) => {
                             </Form>
                             {!withdrawNum && (<Button type="primary" className="withdraw-btn">Input a number</Button>)}
                             {withdrawNum > canClaim && (
-                                <Button type="primary" className="withdraw-btn">Overflow can claim</Button>)}
+                                <Button type="primary" className="withdraw-btn">Overflow Amount Available</Button>)}
                             {withdrawNum > 0 && (BigNumber(withdrawNum).lt(canClaim) || withdrawNum == canClaim) && (
-                                <Button type="primary" className="withdraw-btn" onClick={Claim}>Withdraw</Button>)}
+                                <Button type="primary" className="withdraw-btn" onClick={Claim}>Claim</Button>)}
                         </div>
                     </div>
                 </div>
@@ -387,26 +387,23 @@ const Distribution = (props) => {
 
                         })}
                         {showSearch && whitelist.map((item, index) => {
-                            if (item.user.toLowerCase() == searchContent) {
+                            if (item.user.toLowerCase() == searchContent.toString().toLowerCase()) {
                                 return (<div className="list-item" key={index}>
                                     <div className="col">
                                         {index + 1}
                                     </div>
                                     <div className="col">
-                                        {item.pid}
-                                    </div>
-                                    <div className="col">
-                                        {item.username}
-                                    </div>
-                                    <div className="col">
-                                        {item.fid}
-                                    </div>
-                                    <div className="col">
-                                        <a href={develop.ethScan + "/address/" + item.user}
+                                        <a className="address" href={develop.ethScan + "/address/" + item.user}
                                            target="_blank">{(item.user)}</a>
                                     </div>
                                     <div className="col">
                                         {showNum(item.amount / 10 ** 18)}
+                                    </div>
+                                    <div className="col">
+                                        {showNum(item.claimed > 0 ? item.claimed / 10 ** 18 : 0)}
+                                    </div>
+                                    <div className="col">
+                                        {showNum(item.claiming > 0 ? item.claiming / 10 ** 18 : 0)}
                                     </div>
                                 </div>)
                             }
@@ -581,10 +578,10 @@ const Distribution = (props) => {
                     </div>
                     <div className="pagination">
                         {
-                            <Pagination current={curPage3} showSizeChanger
-                                        onShowSizeChange={handleShowSizeChange3}
-                                        onChange={onChangePage3} total={total3}
-                                        defaultPageSize={pageCount3}/>
+                             <Pagination current={curPage3} showSizeChanger
+                                                       onShowSizeChange={handleShowSizeChange3}
+                                                       onChange={onChangePage3} total={total3}
+                                                       defaultPageSize={pageCount3}/>
                         }
                     </div>
                 </div>
@@ -657,9 +654,9 @@ const Distribution = (props) => {
                     <div className="pagination">
                         {
                             <Pagination current={curPage4} showSizeChanger
-                                        onShowSizeChange={handleShowSizeChange4}
-                                        onChange={onChangePage4} total={total4}
-                                        defaultPageSize={pageCount4}/>
+                                                       onShowSizeChange={handleShowSizeChange4}
+                                                       onChange={onChangePage4} total={total4}
+                                                       defaultPageSize={pageCount4}/>
                         }
                     </div>
                 </div>

@@ -19,6 +19,10 @@ const FireLock = (props) => {
     const [addressString, setCurAddrString] = useState()
     const [amountString, setAmountString] = useState()
     const [infoString, setInfoString] = useState()
+    const [addCount, setAddCount] = useState(0)
+    const [errAccountArr, setErrAccountArr] = useState([])
+
+
     const removeOwner = () => {
         let tempArr = Object.assign([], ownerArr)
         tempArr.shift()
@@ -53,7 +57,6 @@ const FireLock = (props) => {
         for (let i=0;i<_amount.length;i++){
             _amount[i] =  BigNumber(_amount[i]).multipliedBy(10**18).toFixed(0).toString()
         }
-        console.log({_to, _amount, infoString})
         await handleDealMethod("addAirDropList", [_to, _amount, infoString])
         updateData()
     }
@@ -77,10 +80,13 @@ const FireLock = (props) => {
                 })
                 const wsname = workbook.SheetNames[0]
                 const ws = XLSX.utils.sheet_to_json(workbook.Sheets[wsname])
+                let count = 0
+                let errAccountArrT = []
                 ws.forEach((item, index) => {
                     let address = item.address.trim()
 
                     if (state.api.utils.isAddress(address)) {
+                        count++
                         if (index == ws.length - 1) {
                             addressString += address
                             amountString += item.amount
@@ -90,12 +96,19 @@ const FireLock = (props) => {
                             amountString += item.amount + "\n"
                         }
 
+                    }else{
+                        errAccountArrT.push({
+                            address: address,
+                            amount:item.amount
+                        })
                     }
+
                     if (item.info) {
                         infoString += item.info
                     }
                 })
-
+                setErrAccountArr(errAccountArrT)
+                setAddCount(count)
                 setCurAddrString(addressString)
                 setAmountString(amountString)
                 setInfoString(infoString)
@@ -112,10 +125,8 @@ const FireLock = (props) => {
     return (
         <AddWhiteListAddrStyle>
             <div className="mask">
-
             </div>
             <div className="dialog-content">
-
                 <div className="header">
                     <div className="title">
                         Add Wallet
@@ -141,6 +152,7 @@ const FireLock = (props) => {
                 </div>
 
                 <div className="address-list">
+                    <h2>Add number:{addCount}</h2>
                     <Form form={form} name="control-hooks">
                         <div className="address-item">
                             <Form.Item
@@ -178,7 +190,27 @@ const FireLock = (props) => {
                                 }}/>
                             </div>
                         </Form.Item>
-
+                        <h2>ERR Address</h2>
+                        <div className="fire-list-box" style={{ minWidth:'100%'}}>
+                            <div className="list-header">
+                                <div className="col">
+                                    Address
+                                </div>
+                                <div className="col">
+                                    Amount
+                                </div>
+                            </div>
+                            {errAccountArr.map(item=>{
+                                return (<div className="list-item">
+                                    <div className="col">
+                                        {item.address}
+                                    </div>
+                                    <div className="col">
+                                        {item.amount}
+                                    </div>
+                                </div>)
+                            })}
+                        </div>
                     </Form>
                 </div>
                 <Button className="sub-btn" onClick={handleSetAddress} type="primary">
