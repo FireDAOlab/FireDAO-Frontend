@@ -13,7 +13,9 @@ export default styled.div`
       display: flex;
     }
   }
-
+  .select-box{
+    width: 160px;
+  }
   .add-coin {
     background: rgba(254, 109, 70, 0.1);
     border-radius: 38px 38px 38px 38px;
@@ -82,12 +84,26 @@ export default styled.div`
   }
 
   .fire-list-box-airdroplist {
-    .col:nth-child(5) {
-      width: 100px;
+    .list-header{
+      .col{
+        padding-left: 10px;
+      }
+    }
+    .col {
+      width: 50px;
     }
 
-    .col:nth-child(6) {
-      width: 100px;
+
+    .col:nth-child(5) {
+      width: 150px;
+    }
+    .col:nth-child(4) {
+      width: 130px;
+      overflow: hidden;
+    }
+    .col:nth-child(7) {
+      width: 130px;
+      overflow: hidden;
     }
   }
 
@@ -151,9 +167,10 @@ export default styled.div`
     color: #8A8080;
     display: flex;
     align-items: center;
-
+    white-space: nowrap;
     .pid {
-      width: 60px;
+      width: auto;
+      padding: 0 10px;
       margin-left: 6px;
       height: 23px;
       background: rgba(254, 109, 70, 0.1);
@@ -167,6 +184,11 @@ export default styled.div`
       font-weight: 600;
       color: #FE6D46;
       justify-content: center;
+    }
+    @media screen and (max-width: 1000px) {
+      .pid{
+        width: 40px;
+      }
     }
   }
 
@@ -297,7 +319,9 @@ export default styled.div`
     .panel-title {
       font-size: 20px;
     }
-
+    .can-claim {
+      font-size: 12px;
+    }
     .add-coin {
       font-size: 12px;
     }

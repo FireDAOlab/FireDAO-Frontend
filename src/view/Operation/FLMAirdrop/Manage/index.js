@@ -56,9 +56,11 @@ const FireLock = (props) => {
 
     const [isShowAddLevel2, setShowAddLevel2] = useState(false)
     const [isCheckAll, setIsCheckAll] = useState(false)
-
+    const [coinInfo, setCoinInfo] = useState({})
     const [poolFLMBalance, setPoolFLMBalance] = useState(0)
     const [coinAddr, setCoinAddr] = useState()
+    const [withdrawCoinAddr, setWithdrawCoinAddr] = useState()
+
     const [flmAddr, setFLMAddr] = useState()
     const [form] = Form.useForm();
 
@@ -125,7 +127,22 @@ const FireLock = (props) => {
         setPoolFLMBalance(balance)
 
     }
+    const getCoinInfo = async (coinAddr) => {
+        if (!state.api.utils.isAddress(coinAddr)) {
+            return
+        }
+        let contractTemp = await getContractByContract("erc20", coinAddr, state.api,)
+        const decimal = await viewMethod(contractTemp, state.account, "decimals", [])
+        let balance = await viewMethod(contractTemp, state.account, "balanceOf", [addressMap["FLMAirdrop"].address])
+        let name =  await viewMethod(contractTemp, state.account, "name", [])
 
+        balance = balance / (10 ** parseInt(decimal))
+        setCoinInfo({
+            balance,
+            name
+        })
+
+    }
     const getWList = async () => {
         const record = await getWhitelist()
         const res = await handleViewMethod("getWhiteList", [])
@@ -222,6 +239,12 @@ const FireLock = (props) => {
         await handleDealMethod("deposit", [coinAddr, BigNumber(form.getFieldValue().coinAmount * BigNumber(10).pow(decimals)).toFixed(0).toString()])
         getTokenBalance()
     }
+    const backToken = async () => {
+        let contractTemp = await getContractByContract("erc20", withdrawCoinAddr, state.api,)
+        const decimals = await viewMethod(contractTemp, state.account, "decimals", [])
+        await handleDealMethod("backToken", [withdrawCoinAddr, BigNumber(form.getFieldValue().withdrawAmount * BigNumber(10).pow(decimals)).toFixed(0).toString()])
+        getTokenBalance()
+    }
     const approve = async () => {
         await handleDealCoinMethod("approve", coinAddr, [addressMap["FLMAirdrop"].address, MaxUint256])
     }
@@ -273,7 +296,7 @@ const FireLock = (props) => {
             }} closeDialog={() => {
                 setShowRemove(false)
             }}/>}
-            {ownerAddr && (true || (ownerAddr.toLowerCase() == state.account.toLowerCase()) || isSecAdmin) && <div>
+            {ownerAddr && ((ownerAddr.toLowerCase() == state.account.toLowerCase()) || isSecAdmin) && <div>
                 <h1 className="title">
                     FLM Airdrop Manage
                 </h1>
@@ -373,7 +396,7 @@ const FireLock = (props) => {
                                             Pool FLM Balance:
                                         </div>
                                         <div className="value">
-                                            {dealNum(poolFLMBalance)}
+                                            {showNum(poolFLMBalance)}
                                         </div>
                                     </div>
                                     <Form.Item
@@ -410,6 +433,51 @@ const FireLock = (props) => {
                                     deposit()
                                 }}>
                                     Deposit
+                                </Button>
+                            </div>
+                            <div className="content-item">
+                                <h2>Coin Withdraw</h2>
+
+                                <Form form={form} name="control-hooks">
+                                    <div className="current">
+                                        <div className="name">
+                                            Pool {coinInfo.name} Balance:
+                                        </div>
+                                        <div className="value">
+                                            {showNum(coinInfo.balance)}
+                                        </div>
+                                    </div>
+                                    <Form.Item
+                                        name="withdrawCoinAddr"
+                                        label="Coin Address"
+                                        validateTrigger="onBlur"
+                                        validateFirst={true}
+                                        rules={[
+                                            {required: true, message: 'Please input coin Address!'},
+                                        ]}
+                                    >
+                                        <Input value={withdrawCoinAddr} onChange={(e) => {
+                                            setWithdrawCoinAddr(e.target.value)
+                                            getCoinInfo(e.target.value)
+                                        }}/>
+                                    </Form.Item>
+                                    <Form.Item
+                                        name="withdrawAmount"
+                                        label="Amount"
+                                        validateTrigger="onBlur"
+                                        validateFirst={true}
+                                        rules={[
+                                            {required: true, message: 'Please input coin Amount!'},
+                                        ]}
+                                    >
+                                        <Input/>
+                                    </Form.Item>
+                                </Form>
+
+                                <Button type="primary" className="max-btn" onClick={() => {
+                                    backToken()
+                                }}>
+                                    Withdraw
                                 </Button>
                             </div>
                             <div className="content-item">

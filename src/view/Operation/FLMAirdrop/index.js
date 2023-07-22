@@ -1,6 +1,6 @@
 import React, {useEffect, useRef, useState} from 'react';
 import {useConnect} from "../../../api/contracts";
-import {Card, Button, Descriptions, message, Form, List, Input, notification, Pagination} from 'antd';
+import {Card, Button, Descriptions, message, Form, List, Input, notification, Pagination, Select} from 'antd';
 import {getContractByName, getContractByContract} from "../../../api/connectContract";
 import {dealMethod, viewMethod} from "../../../utils/contractUtil"
 import manage from "../../../imgs/svg/manage.svg"
@@ -14,6 +14,8 @@ import {getClaimRecords, getDepositRecords, getWhitelist} from "../../../graph/f
 import {dealTime} from "../../../utils/timeUtil";
 import {formatAddress} from "../../../utils/publicJs";
 import develop from "../../../env"
+
+const FLMDecimal = 18
 
 const Distribution = (props) => {
 
@@ -35,6 +37,8 @@ const Distribution = (props) => {
     const [myRecords, setMyRecords] = useState([])
 
     const [airdropList, setAirdropList] = useState([])
+
+    const [curAirdropList, setCurAirdropList] = useState([])
     const [whitelist, setWhitelistArr] = useState([])
     const [total1, setTotal1] = useState(0)
     const [curPage1, setCurPage1] = useState(1)
@@ -53,6 +57,8 @@ const Distribution = (props) => {
     const [curPage4, setCurPage4] = useState(1)
     const [pageCount4, setPageCount4] = useState(20)
     const [coinAddr, setCoinAddr] = useState("")
+    const [selectArr, setSelectArr] = useState([])
+    const [curBetchId, setCurBetchId] = useState("All")
 
 
     const [searchContent, setSearchContent] = useState()
@@ -76,8 +82,7 @@ const Distribution = (props) => {
         }
     }
     const getTokenBalance = async (value) => {
-        console.log(coinAddr)
-        if(!coinAddr){
+        if (!coinAddr) {
             return
         }
         let contractTemp = await getContractByContract("erc20", coinAddr, state.api,)
@@ -127,21 +132,21 @@ const Distribution = (props) => {
         await setCurPage4(page)
     }
     const Claim = async () => {
-        await handleDealMethod("Claim", [BigNumber(withdrawNum).multipliedBy(10 ** 18).toFixed(0).toString()])
+        await handleDealMethod("Claim", [BigNumber(withdrawNum).multipliedBy(10 ** FLMDecimal).toFixed(0).toString()])
         getCanClaim()
         getTableData()
     }
-    const getCoinAddr = async ()=>{
+    const getCoinAddr = async () => {
         const res = await handleViewMethod("flm", [])
         await setCoinAddr(res)
     }
     const getCanClaim = async () => {
         const res = await handleViewMethod("checkUserCanClaim", [state.account])
         const isClaimAmount = await handleViewMethod("userTotalClaim", [state.account])
-        setCanClaim(res / 10 ** 18)
+        setCanClaim(res / 10 ** FLMDecimal)
 
 
-        setClaimedAmount(isClaimAmount / 10 ** 18)
+        setClaimedAmount(isClaimAmount / 10 ** FLMDecimal)
         const userBalance = await getTokenBalance(state.account)
         setUserBalance(userBalance)
 
@@ -152,7 +157,31 @@ const Distribution = (props) => {
         const recordArr = record.data.claimRecords
         let resArr = []
         setAirdropList(record.data.claimRecords)
+        setCurAirdropList(record.data.claimRecords)
         setTotal4(record.data.claimRecords.length)
+
+        let selectArr = []
+        record.data.claimRecords.forEach(item => {
+            let hasValue = false
+                for (let i=0;i< selectArr.length;i++){
+                if (selectArr[i].value == item.batch) {
+                    hasValue = true
+                }
+            }
+            if (!hasValue) {
+                selectArr.push({
+                    label: "#" + item.batch,
+                    value: item.batch
+                })
+            }
+        })
+        selectArr.sort((a,b)=>{
+            if(a.value - b.value > 0){
+                return 1
+            }
+            return -1
+        })
+        setSelectArr(selectArr)
         res.forEach(addr => {
             recordArr.forEach(record => {
                 if (record.user.toLowerCase() == addr.toString().toLowerCase()) {
@@ -170,6 +199,8 @@ const Distribution = (props) => {
             })
 
         })
+        const recordRes = await getClaimRecords()
+        const allRecords = recordRes.data.claimeds
         resArr.forEach(item => {
             allRecords.forEach(record => {
                 if (item.user.toLowerCase() == record.user.toLowerCase()) {
@@ -223,7 +254,7 @@ const Distribution = (props) => {
                 options: {
                     address: coinAddr,
                     symbol: "FLM",
-                    decimals: 18,
+                    decimals: FLMDecimal,
                     image: "https://app.firedao.co/FLM.png",
                 },
             },
@@ -243,12 +274,23 @@ const Distribution = (props) => {
     }, [state.account, state.networkId]);
 
     useEffect(async () => {
-        if(coinAddr){
+        if (coinAddr) {
             getCanClaim()
             const res = await getTokenBalance(addressMap["FLMAirdrop"].address)
             setPoolBalance(res)
         }
     }, [coinAddr]);
+
+    useEffect(async () => {
+        let tempArr = []
+        airdropList.forEach(item => {
+            if (item.batch == curBetchId) {
+                tempArr.push(item)
+            }
+        })
+        setCurAirdropList(tempArr)
+        setTotal4(tempArr.length)
+    }, [curBetchId]);
     return (
         <DistributionStyle>
 
@@ -307,7 +349,8 @@ const Distribution = (props) => {
                         </div>
                         <div className="right-part">
                             <div className="info-box">
-                                <div className="pid-box">PID : <div className="pid">{state.pid?state.pid:0}</div></div>
+                                <div className="pid-box">PID : <div className="pid">{state.pid ? state.pid : 0}</div>
+                                </div>
                                 <div className="can-claim"> Unclaimed Balance: <strong>{canClaim}</strong></div>
                             </div>
                             <Form form={form} className="withdrawForm">
@@ -326,7 +369,7 @@ const Distribution = (props) => {
                             </Form>
                             {!withdrawNum && (<Button type="primary" className="withdraw-btn">Input a number</Button>)}
                             {withdrawNum > canClaim && (
-                                <Button type="primary" className="withdraw-btn">Overflow Amount Available</Button>)}
+                                <Button type="primary" className="withdraw-btn">Exceeded Amount Available</Button>)}
                             {withdrawNum > 0 && (BigNumber(withdrawNum).lt(canClaim) || withdrawNum == canClaim) && (
                                 <Button type="primary" className="withdraw-btn" onClick={Claim}>Claim</Button>)}
                         </div>
@@ -374,13 +417,13 @@ const Distribution = (props) => {
                                            target="_blank">{(item.user)}</a>
                                     </div>
                                     <div className="col">
-                                        {showNum(item.amount / 10 ** 18)}
+                                        {showNum(item.amount / 10 ** FLMDecimal)}
                                     </div>
                                     <div className="col">
-                                        {showNum(item.claimed > 0 ? item.claimed / 10 ** 18 : 0)}
+                                        {showNum(item.claimed > 0 ? item.claimed / 10 ** FLMDecimal : 0)}
                                     </div>
                                     <div className="col">
-                                        {showNum(item.claiming > 0 ? item.claiming / 10 ** 18 : 0)}
+                                        {showNum(item.claiming > 0 ? item.claiming / 10 ** FLMDecimal : 0)}
                                     </div>
                                 </div>)
                             }
@@ -397,13 +440,13 @@ const Distribution = (props) => {
                                            target="_blank">{(item.user)}</a>
                                     </div>
                                     <div className="col">
-                                        {showNum(item.amount / 10 ** 18)}
+                                        {showNum(item.amount / 10 ** FLMDecimal)}
                                     </div>
                                     <div className="col">
-                                        {showNum(item.claimed > 0 ? item.claimed / 10 ** 18 : 0)}
+                                        {showNum(item.claimed > 0 ? item.claimed / 10 ** FLMDecimal : 0)}
                                     </div>
                                     <div className="col">
-                                        {showNum(item.claiming > 0 ? item.claiming / 10 ** 18 : 0)}
+                                        {showNum(item.claiming > 0 ? item.claiming / 10 ** FLMDecimal : 0)}
                                     </div>
                                 </div>)
                             }
@@ -463,7 +506,7 @@ const Distribution = (props) => {
                             if (index >= pageCount1 * (curPage1 - 1) && index < pageCount1 * curPage1) {
                                 return (<div className="list-item" key={index}>
                                     <div className="col">
-                                        {index + 1}
+                                        {allRecords.length - index}
                                     </div>
                                     <div className="col">
                                         {item.pid}
@@ -476,7 +519,7 @@ const Distribution = (props) => {
                                            target="_blank">{formatAddress(item.user)}</a>
                                     </div>
                                     <div className="col">
-                                        {item.amount / 10 ** 18}
+                                        {showNum(item.amount / 10 ** FLMDecimal)}
                                     </div>
                                     <div className="col">
                                         {dealTime(item.blockTimestamp)}
@@ -504,7 +547,7 @@ const Distribution = (props) => {
                                        target="_blank">{formatAddress(item.user)}</a>
                                 </div>
                                 <div className="col">
-                                    {item.amount / 10 ** 18}
+                                    {item.amount / 10 ** FLMDecimal}
                                 </div>
                                 <div className="col">
                                     {dealTime(item.blockTimestamp)}
@@ -565,7 +608,7 @@ const Distribution = (props) => {
                                            target="_blank">{formatAddress(item.user)}</a>
                                     </div>
                                     <div className="col">
-                                        {showNum(item.amount / 10 ** 18)}
+                                        {showNum(item.amount / 10 ** FLMDecimal)}
                                     </div>
                                     <div className="col">
                                         {dealTime(item.blockTimestamp)}
@@ -578,22 +621,30 @@ const Distribution = (props) => {
                     </div>
                     <div className="pagination">
                         {
-                             <Pagination current={curPage3} showSizeChanger
-                                                       onShowSizeChange={handleShowSizeChange3}
-                                                       onChange={onChangePage3} total={total3}
-                                                       defaultPageSize={pageCount3}/>
+                            <Pagination current={curPage3} showSizeChanger
+                                        onShowSizeChange={handleShowSizeChange3}
+                                        onChange={onChangePage3} total={total3}
+                                        defaultPageSize={pageCount3}/>
                         }
                     </div>
                 </div>
                 <div className="panel-container">
-                    <div className="panel-title">
+                    <div className="panel-title flex-box">
                         Airdrop List
+                        <Select
+                            className="select-box"
+                            defaultValue="Goerli network"
+                            onChange={(e) => {
+                                setCurBetchId(e)
+                            }}
+                            value={curBetchId}
+                            options={selectArr}
+                        />
                     </div>
 
                     <div className="fire-list-box fire-list-box-airdroplist">
                         <div className="list-header">
-                            <div className="col">
-                            </div>
+
                             <div className="col">
                                 Title
                             </div>
@@ -617,12 +668,9 @@ const Distribution = (props) => {
                                 Time(UTC)
                             </div>
                         </div>
-                        {airdropList.map((item, index) => {
+                        {curAirdropList.map((item, index) => {
                             if (index >= pageCount4 * (curPage4 - 1) && index < pageCount4 * curPage4) {
                                 return (<div className="list-item" key={index}>
-                                    <div className="col">
-                                        {item.batch}
-                                    </div>
                                     <div className="col">
                                         {item.info ? item.info : "--"}
                                     </div>
@@ -640,7 +688,7 @@ const Distribution = (props) => {
                                            target="_blank">{formatAddress(item.user)}</a>
                                     </div>
                                     <div className="col">
-                                        {item.amount / 10 ** 18}
+                                        {showNum(item.amount / 10 ** FLMDecimal)}
                                     </div>
                                     <div className="col">
                                         {dealTime(item.blockTimestamp)}
@@ -654,9 +702,9 @@ const Distribution = (props) => {
                     <div className="pagination">
                         {
                             <Pagination current={curPage4} showSizeChanger
-                                                       onShowSizeChange={handleShowSizeChange4}
-                                                       onChange={onChangePage4} total={total4}
-                                                       defaultPageSize={pageCount4}/>
+                                        onShowSizeChange={handleShowSizeChange4}
+                                        onChange={onChangePage4} total={total4}
+                                        defaultPageSize={pageCount4}/>
                         }
                     </div>
                 </div>

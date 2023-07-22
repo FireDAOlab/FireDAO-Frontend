@@ -54,8 +54,11 @@ const FireLock = (props) => {
             }
 
         })
-        for (let i=0;i<_amount.length;i++){
-            _amount[i] =  BigNumber(_amount[i]).multipliedBy(10**18).toFixed(0).toString()
+        for (let i = 0; i < _amount.length; i++) {
+            _amount[i] = BigNumber(_amount[i]).multipliedBy(10 ** 18).toFixed(0).toString()
+        }
+        if (!(BigNumber(_amount[_amount.length])>=0)) {
+            _amount.pop()
         }
         await handleDealMethod("addAirDropList", [_to, _amount, infoString])
         updateData()
@@ -82,7 +85,21 @@ const FireLock = (props) => {
                 const ws = XLSX.utils.sheet_to_json(workbook.Sheets[wsname])
                 let count = 0
                 let errAccountArrT = []
-                ws.forEach((item, index) => {
+
+                const tempArr = []
+                ws.forEach(item => {
+                    let hasVal = false
+                    for (let i = 0; i < tempArr.length; i++) {
+                        if (tempArr[i].address.toLowerCase() == item.address.toLowerCase()) {
+                            tempArr[i].amount = BigNumber(tempArr[i].amount).plus(item.amount)
+                            hasVal = true
+                        }
+                    }
+                    if (!hasVal) {
+                        tempArr.push(item)
+                    }
+                })
+                tempArr.forEach((item, index) => {
                     let address = item.address.trim()
 
                     if (state.api.utils.isAddress(address)) {
@@ -96,10 +113,10 @@ const FireLock = (props) => {
                             amountString += item.amount + "\n"
                         }
 
-                    }else{
+                    } else {
                         errAccountArrT.push({
                             address: address,
-                            amount:item.amount
+                            amount: item.amount
                         })
                     }
 
@@ -161,9 +178,10 @@ const FireLock = (props) => {
                                 className="address-box"
                             >
                                 <div className="flex-box">
-                                    <TextArea placeholder="one address perline" rows={10} value={addressString} onChange={(e) => {
-                                        setCurAddrString(e.target.value)
-                                    }}/>
+                                    <TextArea placeholder="one address perline" rows={10} value={addressString}
+                                              onChange={(e) => {
+                                                  setCurAddrString(e.target.value)
+                                              }}/>
                                 </div>
                             </Form.Item>
                         </div>
@@ -174,9 +192,10 @@ const FireLock = (props) => {
                                 className="number-box"
                             >
                                 <div className="flex-box">
-                                    <TextArea placeholder="one amount perline" rows={10} value={amountString} onChange={(e) => {
-                                        setAmountString(e.target.value)
-                                    }}/>
+                                    <TextArea placeholder="one amount perline" rows={10} value={amountString}
+                                              onChange={(e) => {
+                                                  setAmountString(e.target.value)
+                                              }}/>
                                 </div>
                             </Form.Item>
                         </div>
@@ -191,7 +210,7 @@ const FireLock = (props) => {
                             </div>
                         </Form.Item>
                         <h2>ERR Address</h2>
-                        <div className="fire-list-box" style={{ minWidth:'100%'}}>
+                        <div className="fire-list-box" style={{minWidth: '100%'}}>
                             <div className="list-header">
                                 <div className="col">
                                     Address
@@ -200,7 +219,7 @@ const FireLock = (props) => {
                                     Amount
                                 </div>
                             </div>
-                            {errAccountArr.map(item=>{
+                            {errAccountArr.map(item => {
                                 return (<div className="list-item">
                                     <div className="col">
                                         {item.address}
