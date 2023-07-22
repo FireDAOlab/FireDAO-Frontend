@@ -73,6 +73,7 @@ const NavList = () => {
                     className="navBox"
                     style={{
                         width: 256,
+                        
                     }}
                 >
 

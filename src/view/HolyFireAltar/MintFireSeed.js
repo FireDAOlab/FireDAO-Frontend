@@ -18,6 +18,7 @@ const MintFireSeed = (props) => {
     const [form] = Form.useForm();
 
     const MintFireSeed = styled.div`
+ 
       width: 100%;
       overflow: hidden;
       flex-shrink: 0;
@@ -240,7 +241,7 @@ const MintFireSeed = (props) => {
     return (
         <MintFireSeed>
             <div className="panel-box">
-                <div className="panel-container">
+                <div className="panel-container"  >
                     <h2 className="panel-title">
                         Create FireSeed
                     </h2>

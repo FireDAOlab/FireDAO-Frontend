@@ -1,19 +1,20 @@
-import {useLocation, useNavigate} from "react-router-dom";
-import {Button} from "antd"
-import {useConnect, connect} from "../../api/contracts";
-import {
-    WalletOutlined
-} from '@ant-design/icons';
-import develop from "../../env";
-import {Network} from "../../config/constants";
-import ConnectWalletStyle from "./ConnectWalletStyle";
+import { useLocation, useNavigate } from "react-router-dom";
+import { Button } from "antd"
+import { useConnect, connect } from "../../api/contracts";
 
+import WalletOutlined from "../../imgs/connect.png"
+import develop from "../../env";
+import { Network } from "../../config/constants";
+import ConnectWalletStyle from "./ConnectWalletStyle";
+import Ethereum from "../Ethereum/Ethereum";
+import group1 from '../../imgs/Group.png'
+// import connect2 from './demo.css'
 const ConnectWallet = () => {
-    let {state, dispatch} = useConnect();
+    let { state, dispatch } = useConnect();
     const location = useLocation()
     const connectWallet = async () => {
         try {
-            let curChainId = await window.ethereum.request({method: "eth_chainId"})
+            let curChainId = await window.ethereum.request({ method: "eth_chainId" })
             if (curChainId != develop.chainId) {
                 const permissions = await window.ethereum.request({
                     method: 'wallet_getPermissions',
@@ -28,7 +29,7 @@ const ConnectWallet = () => {
                 if (hasPermission) {
                     await window.ethereum.request({
                         method: 'wallet_switchEthereumChain',
-                        params: [{chainId: '0x' + develop.chainId.toString(16)}],
+                        params: [{ chainId: '0x' + develop.chainId.toString(16) }],
                     });
 
                 } else {
@@ -50,14 +51,14 @@ const ConnectWallet = () => {
 
                         await this.$refs["wallet"].registerWeb3()
                     } catch (addError) {
-                        console.log({addError});
+                        console.log({ addError });
                     }
                 }
-                const ChainId = (await window.ethereum.request({method: 'eth_chainId'}))
+                const ChainId = (await window.ethereum.request({ method: 'eth_chainId' }))
                 if (ChainId == "0x66eed") {
-                    dispatch({type: "SET_NETWORKID", payload: 421613})
+                    dispatch({ type: "SET_NETWORKID", payload: 421613 })
                 } else if (ChainId == "0xa4b1") {
-                    dispatch({type: "SET_NETWORKID", payload: 42161})
+                    dispatch({ type: "SET_NETWORKID", payload: 42161 })
                 }
                 console.log(state.networkId)
             }
@@ -70,23 +71,27 @@ const ConnectWallet = () => {
         <ConnectWalletStyle>
             {
                 location.pathname === "/" && (
-                    <Button type="normal" onClick={() => connectWallet()} className="connect-button"
-                            icon={<WalletOutlined/>}>
+                    <Button type="normal" onClick={() => connectWallet()} className="connect-button">
+                        <img src={WalletOutlined} alt="" style={{ marginRight: '10px', verticalAlign: 'middle', }} />
                         {
                             state.account ? state.account.substr(0, 5) + "..." + state.account.substr(state.account.length - 5, state.account.length) : " Connect Wallet"
                         }
+
                     </Button>
                 )
             }
             {
                 location.pathname !== "/" && (
-                    <Button type="primary" onClick={() => connectWallet()} className="" icon={<WalletOutlined/>}>
+                    <Button type="primary" onClick={() => connectWallet()} className="" >
+                        <img src={WalletOutlined} alt="" style={{ marginRight: '10px', verticalAlign: 'middle', }} />
                         {
                             state.account ? state.account.substr(0, 5) + "..." + state.account.substr(state.account.length - 5, state.account.length) : " Connect Wallet"
                         }
                     </Button>
                 )
             }
+            
+
         </ConnectWalletStyle>
     )
 

@@ -84,7 +84,7 @@ const FireLock = (props) => {
                 </div>
                 <div className="btn-box">
                     <Button className="sub-btn"  onClick={()=>{history("/MyPassport")}} type="primary">
-                        Complete
+                        Continue
                     </Button>
 
                 </div>

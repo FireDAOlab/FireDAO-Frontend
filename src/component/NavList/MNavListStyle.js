@@ -1,6 +1,8 @@
 import styled from "styled-components";
 export default  styled.div`
-
+.ant-menu-dark.ant-menu-dark:not(.ant-menu-horizontal) .ant-menu-item-selected{
+    background: linear-gradient(320deg, #FF4E50 0%, #F9D423 100%);
+  }
   height: 100vh;
   font-weight: bold;
   .ant-menu-submenu-title{
@@ -11,10 +13,20 @@ export default  styled.div`
   .ant-menu-sub{
     .ant-menu-title-content{
       padding-left: 0.8em;
+      border-radius:50px;
+      width: 100px;
+      height: 35px;
     }
+  }
+  .ant-menu-title-content-selectd{
+    width:'180px';
+    height:'30px';
+    border-radius:'50px';
+    background-color:'rgba(47, 35, 35, 1)';
   }
   .ant-menu-root{
     >.ant-menu-item-selected{
+      
       position: relative;
       &:after{
         content: '';
@@ -23,13 +35,15 @@ export default  styled.div`
         top: 0;
         width: 2px;
         height: 50px;
-        background: linear-gradient(320deg, #DD3642 0%, #FFC02C 100%);
+        
+background: linear-gradient(32deg, #FF4E50 0%, #F9D423 100%);
       }
     }
   }
-
+  
   .ant-menu-submenu-selected{
     background: #070000;
+    
     .ant-menu-submenu-title{
       position: relative;
       &:after{
@@ -39,7 +53,7 @@ export default  styled.div`
         top: 0;
         width: 2px;
         height: 50px;
-        background: linear-gradient(320deg, #DD3642 0%, #FFC02C 100%);
+        background: linear-gradient(320deg, #FF4E50 0%, #F9D423 100%);
       }
     }
   }

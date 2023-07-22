@@ -200,9 +200,13 @@ function App() {
 
                             </Routes>
                         </div>
+                        <div className='twindow'>
+                            
+                        </div>
                     </div>
                     <FireDAOFooter/>
                 </div>
+
             }
         </ConnectProvider>
 

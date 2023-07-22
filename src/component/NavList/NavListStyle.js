@@ -1,13 +1,21 @@
 import styled from "styled-components";
-export default  styled.div`
+export default styled.div`
   position: fixed;
   left: 0;
   top: 0;
   height: 100vh;
   z-index: 1;
   font-weight: bold;
-
+  .ant-menu-dark.ant-menu-dark:not(.ant-menu-horizontal) .ant-menu-item-selected{
+     background: linear-gradient(320deg, #F9D423 0%, #FF4E50 100%);
+    /*-webkit-background-clip: text; */
+    /* background:-webkit-gradient(linear, left top, left bottom, color-stop(0, #fb7f87), color-stop(1, #bc0404));  */
+    -webkit-background-clip: text;
+    color: transparent;
+    
+  }
   .ant-menu-submenu-title {
+    
     i {
       display: none;
     }
@@ -22,7 +30,7 @@ export default  styled.div`
   .ant-menu-root {
     > .ant-menu-item-selected {
       position: relative;
-
+      background: linear-gradient(32deg, #FF4E50 0%, #F9D423 100%);
       &:after {
         content: '';
         position: absolute;
@@ -30,14 +38,16 @@ export default  styled.div`
         top: 0;
         width: 2px;
         height: 50px;
-        background: linear-gradient(320deg, #DD3642 0%, #FFC02C 100%);
+        
+background: linear-gradient(-92deg, #FF4E50 0%, #F9D423 100%);
       }
     }
   }
 
   .ant-menu-submenu-selected {
-    background: #070000;
-
+    /* background: radial-gradient(rgba(205, 144, 51, 0.5), rgba(97, 54, 144, 0.4)); */
+    background-image: radial-gradient( rgba(205, 144, 51, 0.4),rgba(97, 54, 144, 0.3));
+    /* background: linear-gradient(32deg, #FF4E50 0%, #F9D423 100%); */
     .ant-menu-submenu-title {
       position: relative;
 
@@ -48,7 +58,8 @@ export default  styled.div`
         top: 0;
         width: 2px;
         height: 50px;
-        background: linear-gradient(320deg, #DD3642 0%, #FFC02C 100%);
+        background: linear-gradient(320deg,  #FF4E50 0%, #F9D423 100%);
+        border-radius:50px;
       }
     }
   }

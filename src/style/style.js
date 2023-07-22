@@ -319,6 +319,14 @@ const GlobalStyle = createGlobalStyle`
       .nav-list{
         display: none!important;
       }
+     
+      .member{
+        border: 1px solid white;
+        width: 100%;
+        height: 100%;
+        background: #1E0000;
+        border-radius:50%;
+      }
     }
   }
   

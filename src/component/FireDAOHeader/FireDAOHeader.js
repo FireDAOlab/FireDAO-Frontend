@@ -1,12 +1,13 @@
 import {useConnect, connect} from "../../api/contracts";
 import ConnectWallet from "../ConnectWallet/ConnectWallet";
+
 import {useEffect, useState} from "react";
 import {Button, notification, Select} from 'antd';
-import passportIcon from "../../imgs/passportIcon.webp"
+import passportIcon from "../../imgs/ethereum.png"
 import {useLocation, useNavigate} from "react-router-dom";
 import NavList from "../NavList/MNavList";
 import develop from "../../env"
-
+import user from "../../imgs/user.png";
 import FireDAOHeaderStyle from "./FireDAOHeaderStyle";
 import {getContractByName} from "../../api/connectContract";
 import {viewMethod} from "../../utils/contractUtil";
@@ -120,25 +121,29 @@ const FireDAOHeader = () => {
                 </div>
                 <div className="nav-list">
                     <div className="nav-item">
-                        <a href="http://firedao.co/" target="_blank">
-                            Home
+                        <a href="https://docs.firedao.co/" target="_blank">
+                           DOCS
                         </a>
                     </div>
                     <div className="nav-item">
                         <a href={develop.webside} target="_blank">
-                            APP
+                            White Paper
                         </a>
                     </div>
                     <div className="nav-item">
-                        <a href={develop.forum} target="_blank">
-                            Forum
+                        <a href={develop.github} target="_blank">
+                            Github
                         </a>
                     </div>
                 </div>
                 <Button onClick={() => {
                     goPage('/MyPassport')
                 }} className="passport-icon" type="primary">
-                    <img src={passportIcon} alt=""/>
+                    <div style={{display:'flex'}}>
+                        <img src={passportIcon} alt="" />
+                        <span style={{margin:'0px 10px',verticalAlign:'middle',fontSize:'13px'}}>Ethereum</span>
+                        <div style={{width:'6px',height:'6px',borderRadius:'50%',backgroundColor:'rgba(216, 216, 216, 1)',margin:'auto'}}></div>
+                    </div>
                 </Button>
                 <Select
                     className="select-chain"
@@ -156,7 +161,7 @@ const FireDAOHeader = () => {
                         },
                     ]}
                 />
-                <ConnectWallet/>
+                <ConnectWallet />
                 <svg onClick={() => {
                     dispatch({type: "SET_IsShowNav", payload: true})
                 }} className="menu" t="1675153518613" viewBox="0 0 1024 1024" version="1.1"
@@ -171,6 +176,9 @@ const FireDAOHeader = () => {
                         d="M128 256m40.533333 0l686.933334 0q40.533333 0 40.533333 40.533333l0 4.266667q0 40.533333-40.533333 40.533333l-686.933334 0q-40.533333 0-40.533333-40.533333l0-4.266667q0-40.533333 40.533333-40.533333Z"
                         p-id="2670" fill="#ffffff"></path>
                 </svg>
+                <Button style={{background:'#373232',margin:'0px 13px',textAlign:'center',lineHeight:'28px',width:"32px",height:'32px',border:'1px solid rgba(255, 255, 255, 0.15)',borderRadius:'50%'}}>
+                    <img src={user} style={{width:'22px',marginLeft:'-10px',marginTop:'-10px'}} />
+                </Button>
             </div>
 
         </FireDAOHeaderStyle>

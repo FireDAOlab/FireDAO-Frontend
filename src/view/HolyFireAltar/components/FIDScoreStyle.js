@@ -37,13 +37,27 @@ export default styled.div`
     }
   }
   .total-score{
+
+    margin: 20px 50px;
     display: flex;
+    align-items: center;
     .name{
-      font-size: 16px;
+      font-family: Roboto-Bold, Roboto;
+font-weight: bold;
+color: #8A8080;
+line-height: 21px;
     }
     .score{
+      text-align:center;
       margin-left: 20px;
-      font-size: 17px;
+      font-size: 15px;
+      line-height:30px;
+      width: 160px;
+height: 30px;
+background: rgba(254,109,70,0.1);
+border-radius: 50px 50px 50px 50px;
+opacity: 1;
+border: 1px solid rgba(254,109,70,0.5);
     }
   }
   .my-soul{
@@ -51,11 +65,21 @@ export default styled.div`
     display: flex;
     align-items: center;
     .name{
-      font-size: 16px;
+      font-family: Roboto-Bold, Roboto;
+font-weight: bold;
+color: #8A8080;
+line-height: 21px;
     }
     .value{
+      text-align:center;
       margin-left: 20px;
-      
+      line-height:30px;
+      width: 160px;
+height: 30px;
+background: rgba(205,158,87,0.1);
+border-radius: 50px 50px 50px 50px;
+opacity: 1;
+border: 1px solid rgba(205,158,87,0.5);
     }
   }
   /* mobile style */

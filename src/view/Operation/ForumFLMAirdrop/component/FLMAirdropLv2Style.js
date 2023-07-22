@@ -53,7 +53,7 @@ width: 100%;
     .records{
         width: 80%;
         margin: 0 auto;
-        height: 240px;
+        height: 490px;
         background: rgba(26, 20, 20, 1);
         border-radius:20px;
         overflow: auto;

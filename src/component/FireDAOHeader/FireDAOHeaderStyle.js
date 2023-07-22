@@ -1,5 +1,8 @@
 import styled from "styled-components";
 export default styled.div`
+.ant-btn-primary{
+  background: #373232;
+}
   .firedao-header {
     position: fixed;
     top: 0;
@@ -32,7 +35,7 @@ export default styled.div`
   .passport-icon {
     margin-right: 1em;
     padding: 4px 10px;
-
+    border:1px solid rgba(255, 255, 255, 0.15);
     img {
       width: 20px;
     }
