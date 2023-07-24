@@ -1,5 +1,6 @@
 import styled from "styled-components";
 export default styled.div`
+
 .ant-btn-primary{
   background: #373232;
 }

@@ -194,10 +194,10 @@ const GlobalStyle = createGlobalStyle`
       border: 1px solid rgba(255,255,255,0.1);
       background: #241B1B;
       padding: 3em 4em;
-      margin: 3em auto;
+      margin: 0.5em auto;
       box-shadow: 0px 3px 15px 5px rgba(0, 0, 0, 0.05);
       border-radius: 10px;
-      opacity: 0.95;
+      opacity: 1;
       //scroll
       &::-webkit-scrollbar-corner {
         background-color: transparent;
@@ -245,7 +245,7 @@ const GlobalStyle = createGlobalStyle`
     .panel-title {
       text-align: left;
       width: 100%;
-      font-size: 24px;
+      font-size: 30px;
       font-family: Helvetica-Bold, Helvetica, sans-serif;
       font-weight: bold;
       color: #FFFFFF;

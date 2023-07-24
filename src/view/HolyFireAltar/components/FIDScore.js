@@ -92,12 +92,12 @@ const FIDScore = (props) => {
     }, [state.account])
     return (
         <FIDScoreStyle>
-            <div className="panel-box">
-                <div className="panel-container" style={{ border: 'none' }}>
-                    <div className="panel-title">
+            <div style={{marginBottom:'5em'}} className="panel-box">
+                <div className="panel-container" style={{ border: 'none',paddingTop: "3em" }}>
+                    <div className="panel-title" style={{fontSize:'30px'}}>
                         FID Score
                     </div>
-                    <div style={{display:'flex'}}>
+                    <div style={{display:'flex',marginTop:'25px'}}>
                         <div className="my-soul">
                             <div className="name">
                                 My SoulAccount
@@ -117,18 +117,18 @@ const FIDScore = (props) => {
                     </div>
                     <div className="content1">
 
-                        <div className="list">
-                            <div className="list-item header">
-                                <div className="item">
+                        <div className="fire-list-box">
+                            <div className="list-header flex-box">
+                                <div className="col" style={{paddingLeft:'100px',width:'32%'}}>
                                     SBT
                                 </div>
-                                <div className="item">
+                                <div className="col" style={{width:'28%'}}>
                                     Amount(s)
                                 </div>
-                                <div className="item">
+                                <div className="col">
                                     Weight
                                 </div>
-                                <div className="item">
+                                <div className="col">
                                     Score
                                 </div>
                             </div>

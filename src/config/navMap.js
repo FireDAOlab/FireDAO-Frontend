@@ -19,14 +19,15 @@ function getItem(label, key, icon, children, type) {
 export default  [
     getItem('Holy Fire Altar', 'Holy Fire Altar',<img className="fireIcon" src={fireIcon1} />, [
         getItem('Mint Passport', 'MintPassport'),
-        getItem('PID Airdrop', 'PidAirdrop'),
         getItem('Mint FireSeed', 'MintFireSeed'),
         getItem('Mint FireSoul', 'MintFireSoul'),
-        getItem('Pass FireSeed', 'PassFireSeed'),
+        getItem('My FireSeed', 'PassFireSeed'),
         getItem('My Passport', 'MyPassport'),
+        getItem('PID Airdrop', 'PidAirdrop'),
         getItem('PID List', 'PIDList'),
         getItem('FID List', 'FIDList'),
         getItem('SBT List', 'SBTList'),
+        // getItem('Reputation', 'Reputation'),
     ]),
 
 

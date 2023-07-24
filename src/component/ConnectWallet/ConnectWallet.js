@@ -7,8 +7,13 @@ import develop from "../../env";
 import { Network } from "../../config/constants";
 import ConnectWalletStyle from "./ConnectWalletStyle";
 import Ethereum from "../Ethereum/Ethereum";
+import right from "../../imgs/right.png"
+import ethereum from "../../imgs/ethereum.png"
+import sz from "../../imgs/sz.png"
 import group1 from '../../imgs/Group.png'
+import { Dropdown, Space } from 'antd';
 // import connect2 from './demo.css'
+
 const ConnectWallet = () => {
     let { state, dispatch } = useConnect();
     const location = useLocation()
@@ -67,30 +72,106 @@ const ConnectWallet = () => {
         }
         await connect(state, dispatch)
     }
+    const items = [
+        {
+            label: <div style={{width:'230px',marginLeft:'-3px',display:'flex',height: '65px',
+            background: '#241B1B',
+    borderRadius: '20px',padding:'0px 5px',border: '1px solid rgba(234,234,234,0.1)'}} onClick={()=>{connectWallet()}}>
+        <img style={{ width: '50px',height:'50px',marginTop:'13px' }} src={sz} /><span style={{width:'50%',fontSize:'16px',lineHeight:'63px',marginLeft:'10px'}}>MetaMask</span><img style={{width:'20px',height:'15px',marginTop:'23px',marginLeft:'25px'}} src={right}/></div>
+            // key: '0',
+        },
+        {
+            label: <div style={{width:'230px',marginLeft:'-3px',display:'flex',height: '65px',background: '#241B1B',
+            borderRadius: '20px',padding:'0px 5px',border: '1px solid rgba(234,234,234,0.1)'}}>
+                <img style={{ width: '50px',height:'50px',marginTop:'8px' }} src={sz} /><span style={{width:'50%',fontSize:'16px',lineHeight:'63px',marginLeft:'10px'}}>Coinbase Wallet</span><img style={{width:'20px',height:'15px',marginTop:'23px',marginLeft:'25px',display:'none'}} src={right}/></div>
+            // key: '1',
+        },
+        {
+            label: <div style={{width:'230px',marginLeft:'-3px',display:'flex',height: '65px',
+            background: '#241B1B',
+    borderRadius: '20px',padding:'0px 5px',border: '1px solid rgba(234,234,234,0.1)'}}>
+        <img style={{ width: '50px',height:'50px',marginTop:'8px' }} src={sz} /><span style={{width:'50%',fontSize:'16px',lineHeight:'63px',marginLeft:'10px'}}>WalletConnect</span><img style={{width:'20px',height:'15px',display:'none',marginTop:'23px',marginLeft:'25px'}} src={right}/></div>
+            // key: '0',
+        },
+        {
+            label:<p style={{fontSize: '16px',
+                fontFamily:'Roboto-Medium, Roboto',
+                fontWeight: '500',
+                color: '#8A8080',
+                margin:'10px',
+                textAlign:'center'}}>
+                    Log Out</p>
+        },
+        {
+            label:<p style={{fontSize: '16px',
+                fontFamily:'Roboto-Medium, Roboto',
+                fontWeight: '500',
+                color: '#8A8080',
+                lineHeight: '19px',
+                textAlign:'left'}}>
+                    Balances</p>
+        },{
+            label:
+                <div ><img src={ethereum} style={{width:"25px",margin:'0px 10px 5px 0px'}}/><span>ETH</span><span style={{float:'right'}}></span></div>
+    
+        },
+        {
+            label:<div><img src={ethereum} style={{width:"25px",margin:'0px 10px 5px 0px'}}/><span>USDT</span><span style={{float:'right'}}></span></div>
+        }
+    
+    ];
     return (
         <ConnectWalletStyle>
             {
                 location.pathname === "/" && (
-                    <Button type="normal" onClick={() => connectWallet()} className="connect-button">
-                        <img src={WalletOutlined} alt="" style={{ marginRight: '10px', verticalAlign: 'middle', }} />
-                        {
-                            state.account ? state.account.substr(0, 5) + "..." + state.account.substr(state.account.length - 5, state.account.length) : " Connect Wallet"
-                        }
+                    <Dropdown
 
-                    </Button>
+                        menu={{
+                            items,
+                        }}
+                        trigger={['click']}
+
+                    >
+                        <Button type="normal" onClick={(e) => e.preventDefault() } className="connect-button">
+                            <img src={WalletOutlined} alt="" style={{ marginRight: '10px', verticalAlign: 'middle', }} />
+                            {
+                                state.account ? state.account.substr(0, 5) + "..." + state.account.substr(state.account.length - 5, state.account.length) : " Connect Wallet"
+                            }
+
+                        </Button>
+                    </Dropdown>
                 )
             }
             {
                 location.pathname !== "/" && (
-                    <Button type="primary" onClick={() => connectWallet()} className="" >
-                        <img src={WalletOutlined} alt="" style={{ marginRight: '10px', verticalAlign: 'middle', }} />
-                        {
-                            state.account ? state.account.substr(0, 5) + "..." + state.account.substr(state.account.length - 5, state.account.length) : " Connect Wallet"
-                        }
-                    </Button>
+                    <Dropdown 
+                    placement='bottomRight'
+                        menu={{
+                            items,
+                        }}
+                        overlayStyle={{
+                            width: '250px',
+                            height: '360px',
+                            background: '#241B1B',
+                            boxShadow: '0px 20px 20px 10px rgba(0,0,0,0.2)',
+                            borderRadius: '20px',
+                            opacity: '1',
+                            border: '1px solid rgba(226,226,226,0.1)',
+                            // marginLeft:'-180px'
+                        }}
+                        trigger={['click']}
+                    >
+                        <Button type="primary" onClick={(e) => e.preventDefault()
+                        } className="" >
+                            <img src={WalletOutlined} alt="" style={{ marginRight: '10px', verticalAlign: 'middle', }} />
+                            {
+                                state.account ? state.account.substr(0, 5) + "..." + state.account.substr(state.account.length - 5, state.account.length) : " Connect Wallet"
+                            }
+                        </Button>
+                    </Dropdown>
                 )
             }
-            
+
 
         </ConnectWalletStyle>
     )

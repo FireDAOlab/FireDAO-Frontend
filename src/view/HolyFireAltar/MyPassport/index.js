@@ -6,6 +6,7 @@ import { getContractByName, getContractByContract } from "../../../api/connectCo
 import { dealMethod, viewMethod } from "../../../utils/contractUtil"
 import { getIpfs } from "../../../utils/ipfsApi";
 import passport from "../../../imgs/long.png"
+import kg from "../../../imgs/kg.png"
 import passport1 from "../../../imgs/FireSoul.png"
 import FireSoul from "../../../imgs/FireSoul@2x.webp"
 import passportHeaderBg from "../../../imgs/passport_header_bg.webp"
@@ -19,6 +20,7 @@ import MyPassportStyle from "./style"
 import user3 from "../../../imgs/user3.png";
 import FireSeedList from "../components/FireSeedList";
 import FIDScore from "../components/FIDScore";
+import Destorytc from "../components/Destorytc";
 
 const MyPassport = (props) => {
 
@@ -34,6 +36,7 @@ const MyPassport = (props) => {
     const [myPassport, setPassport] = useState("")
     const [SBTARR, setSBTARR] = useState([{}])
     const [curSBTPage, setCurSBTPage] = useState(1)
+    const [showTip, setShowTip] = useState(false)
     const [isAdmin, setIsAdmin] = useState(false)
     const [UserToSoul, setUserToSoul] = useState("")
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -128,6 +131,15 @@ const MyPassport = (props) => {
             setIsAdmin(false)
         }
     }
+
+    const Dest = async () => {
+        // handleDealMethod("burnToMint", [chooseId]).then(async () => {
+        //     await getUserFIDAndAddr()
+        setShowTip(true)
+        // }).catch(err => {
+        //     console.log(err)
+        // })
+    }
     useEffect(async () => {
         let judgeRes = await judgeStatus(state)
         if (!judgeRes) {
@@ -148,17 +160,20 @@ const MyPassport = (props) => {
 
     return (
         <MyPassportStyle>
-            <div className="panel-box ">
+            {showTip && <Destorytc closeDialog={() => { setShowTip(false) }} />}
+            <div style={{ paddingTop: '3em' }} className="panel-box">
                 <div className="panel-box userinfo-box" >
                     <div className="panel-title" style={{ display: 'flex' }}>
-                        <span style={{ fontSize: '30px', width: '95%' }}>My Passport</span>
+                        <span style={{ width: '95%' }}>My Passport</span>
                         <Button style={{ background: '#373232', margin: '0px 13px', textAlign: 'center', lineHeight: '28px', width: "32px", height: '32px', border: '1px solid rgba(255, 255, 255, 0.15)', borderRadius: '50%', }}>
                             <img src={user3} style={{ width: '22px', marginLeft: '-10px', marginTop: '-10px' }} />
                         </Button>
                     </div>
                     <div className="panel-container user-info" style={{ border: 'none' }}>
-                        <div className="passport-header-bg">
-
+                        <div className="passport-header-bg" style={{paddingTop:'230px',paddingRight:'13px'}}>
+                            <Button style={{ float:'right',background: '#373232', textAlign: 'center', lineHeight: '28px', width: "32px", height: '32px', border: '1px solid rgba(255, 255, 255, 0.15)', borderRadius: '50%', }}>
+                                <img src={kg} style={{ width: '22px', marginLeft: '-10px', marginTop: '-10px' }} />
+                            </Button>
                         </div>
 
                         <div className="userinfo-header">
@@ -174,20 +189,23 @@ const MyPassport = (props) => {
                                     </div>
                                     <div className="reputation">
                                         FID-Reputation
-                                        <div className="reputation-data-box">
+                                        <div className="reputation-data-box" >
                                             <div className="reputation-data">
                                                 0
                                             </div>
                                         </div>
 
                                     </div>
+
                                 </h2>
+
                                 <div className="bio-box flex-box">
 
                                     <div className="bio">
                                         <strong>BIO:</strong>
                                         {userData.BIO ? userData.BIO : "Let's build the Bit Civilization together!"}
                                     </div>
+
                                 </div>
                             </div>
 
@@ -304,7 +322,7 @@ const MyPassport = (props) => {
                 </div>
             </div>
             <div className="panel-box web3id-box">
-                <div className="panel-container" style={{ border: 'none' }}>
+                <div className="panel-container" style={{ border: 'none' ,paddingTop: "3em"}}>
                     <div className="panel-title" style={{ fontSize: '30px' }}>
                         My Web3 ID
                     </div>
@@ -347,18 +365,9 @@ const MyPassport = (props) => {
                                 </div>
                                 <div className="notr">
                                     <span>Fire Soul </span>
-                                    <Button className='destory' onClick={showModal}>Destory</Button>
-                                    <Modal title="Destroy" open={isModalOpen} onOk={handleOk} onCancel={handleCancel} 
-                                    style={{
-                                        width: '460px',height: '361px',background: '#241B1B',borderRadius: '20px',border: '1px solid rgba(255,255,255,0.1)',
-                                    }}>
-                                    
-                                        <p>Canceling FireSoul will cancel FireSoul's NFT, destroy the soul account, 
-                                            destroy the generated FID, and destroy various SBTs in the soul account. 
-                                            Are you sure you want to destroy?
-                                        </p>
-                                        <Button type='primary'>Destroy</Button>
-                                    </Modal>
+                                    <Button className='destory' htmlType="submit" type="primary"
+                                        onClick={Dest}>Destory</Button>
+
                                     <span className='val'>#{state.fid}</span>
 
                                     <p ><span>ERC721 Non-transferable</span>

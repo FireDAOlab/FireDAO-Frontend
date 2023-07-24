@@ -37,7 +37,7 @@ const CommonStyle = createGlobalStyle`
       &.active {
         font-weight: bold;
         color: #FFFFFF;
-        background: linear-gradient(320deg, #DD3642 0%, #FFC02C 100%);
+        background: linear-gradient(32deg, #FF4E50 0%, #F9D423 100%);
         box-shadow: 0px 3px 6px 0px rgba(128, 4, 149, 0.3);
 
       }

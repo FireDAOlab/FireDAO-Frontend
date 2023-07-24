@@ -2,6 +2,9 @@ import styled from "styled-components";
 
 export default styled.div`
 @media screen and (min-width: 1000px) {
+  .panel-title{
+  font-size:30px;
+}
 .panel-container1{
   border: none;
   padding: 3em 0em;
@@ -14,7 +17,7 @@ width: 100%;
     justify-content: space-between;
     .tpitem{
       
-height: 320px;
+height: 300px;
       /* text-align:center; */
       width: 24%;
 background: #140E0E;
@@ -102,6 +105,7 @@ width: 100%;
 background: rgba(36, 27, 27, 1);
 width: 100%;
 position: relative;
+
   .tp{
     width: 100%;
     display: flex;
