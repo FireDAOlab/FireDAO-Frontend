@@ -33,7 +33,11 @@ const MintFireSoul = (props) => {
       flex-shrink: 0;
       flex-grow: 0;
       display: flex;
-      
+ 
+      .subBtn{
+        width: 130px;
+        
+      }
       .pid{
         padding-left: 10px;
       }
@@ -43,6 +47,7 @@ const MintFireSoul = (props) => {
       }
 
       .left-content {
+      
         width: 50%;
         padding-right: 5%;
         position: relative;
@@ -50,8 +55,8 @@ const MintFireSoul = (props) => {
         display: inline-block;
     
         border: 1px solid rgba(255,255,255,0.4);
-        background: linear-gradient(136deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
           border-radius: 5%;
+          background: linear-gradient(136deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
           box-shadow: 0 0 10px rgba(255, 255, 255, 0), 0 0 5px rgba(0, 0, 0, 1);
           padding: 10px;
           font-family: Squada One-Regular, Squada One;
@@ -80,7 +85,8 @@ const MintFireSoul = (props) => {
           }
           .subBtn {
             margin-top: 1em;
-            padding: 0 3em;
+            padding: 0 0em;
+            margin-right:1em;
             background: linear-gradient(32deg, #FF4E50 0%, #F9D423 100%);
           }
           .choose-id{
@@ -91,6 +97,9 @@ const MintFireSoul = (props) => {
           .flex-box{
             position: relative;;
             align-items: flex-end;
+            .ant-form-item-control-input{
+    border-radius: 25px;
+ }
             .ant-form-item{
               flex-grow: 1;
             }
@@ -314,7 +323,7 @@ background: linear-gradient(32deg, #FF4E50 0%, #F9D423 100%);
             <div className="panel-box">
                 <div className="panel-container">
                     <div style={{ display: 'flex' }}>
-                        <h2 className="panel-title">
+                        <h2 className="panel-title" >
                             Mint FireSoul
                         </h2>
                         <Button style={{ float: 'right', background: '#373232', margin: '0px 13px', textAlign: 'center', lineHeight: '28px', width: "32px", height: '32px', border: '1px solid rgba(255, 255, 255, 0.15)', borderRadius: '50%', }}>
@@ -392,9 +401,9 @@ background: linear-gradient(32deg, #FF4E50 0%, #F9D423 100%);
                                     <img src={passportIcon} />
                                 </div>
                                 <Form.Item className="button-box" >
-                                    {!allowance && <Button style={{ marginRight: "10px" }} className="subBtn" htmlType="submit" type="primary"
+                                    {!allowance && <Button className="subBtn" htmlType="submit" type="primary"
                                         size="large"
-                                        onClick={() => approve()}>approve</Button>}
+                                        onClick={() => approve()}>Approve</Button>}
 
                                     <Button className="subBtn" htmlType="submit" type="primary"
                                         size="large"

@@ -1,29 +1,36 @@
 import styled from "styled-components";
-export default   styled.div`
+export default styled.div`
   .ant-select-selector {
     border: none !important;
   }
 
   .page-title {
-    font-size: 23px;
+    font-size: 30px;
     font-family: Roboto-Bold, Roboto;
     font-weight: bold;
     margin-left: 5%;
-    padding: 0 10%;
-
-
+    padding: 0 8%;
   }
 
+  .ant-form{
+    position: relative;
+    .down-icon {
+      width: 40px;
+      height: 40px;
+      position: absolute;
+    top:27%;
+      left:45%;
+    }
+
+  }
   .pid {
     width: 80px;
-    margin-left: 6px;
     height: 23px;
     background: rgba(254, 109, 70, 0.1);
     border-radius: 38px 38px 38px 38px;
     opacity: 1;
     border: 1px solid rgba(254, 109, 70, 0.5);
     display: flex;
-    align-items: center;
     font-size: 14px;
     font-family: Roboto-SemiBold, Roboto;
     font-weight: 600;
@@ -35,7 +42,7 @@ export default   styled.div`
     width: 90%;
     margin-left: 5%;
     display: flex;
-    padding: 0 10%;
+    padding: 0 8%;
 
     .fire-nav-list {
       .nav-item {
@@ -47,7 +54,7 @@ export default   styled.div`
   .donate-header {
     display: flex;
     justify-content: space-between;
-
+font-size:16px;
     .isW {
       font-family: Roboto-SemiBold, Roboto;
       font-weight: 600;
@@ -56,9 +63,9 @@ export default   styled.div`
       align-items: center;
 
       .is {
-        width: 60px;
+        width: 80px;
         margin-left: 6px;
-        height: 23px;
+        height: 30px;
         background: rgba(254, 109, 70, 0.1);
         border-radius: 38px 38px 38px 38px;
         opacity: 1;
@@ -75,16 +82,30 @@ export default   styled.div`
   }
 
   .panel-container {
-    padding: 2em 10%;
+    padding: 2em 8%;
     width: 90%;
     margin: 10px auto;
 
     .isInW {
       display: flex;
       width: 100%;
-      justify-content: space-between;
-      font-size: 18px;
-      padding-bottom: 10px;
+      font-size: 16px;
+      font-family: Roboto-SemiBold, Roboto;
+font-weight: 600;
+color: #8A8080;
+      padding-bottom: 30px;
+      .kk{
+        width: 80px;
+        color:rgba(254, 109, 70, 1);
+height: 30px;
+line-height:30px;
+background: rgba(254,109,70,0.1);
+border-radius: 50px 50px 50px 50px;
+opacity: 1;
+border: 1px solid rgba(254,109,70,0.5);
+margin: 0px 10px;
+text-align:center;
+      }
     }
 
     .info {
@@ -125,7 +146,7 @@ export default   styled.div`
       .info-item {
 
         .name {
-          font-size: 18px;
+          font-size: 16px;
           font-family: Roboto-Bold, Roboto;
           font-weight: bold;
           color: #8A8080;
@@ -138,7 +159,7 @@ export default   styled.div`
           font-weight: bold;
           color: #FFA756;
           line-height: 50px ;
-          background: linear-gradient(320deg, #DD3642 0%, #FFC02C 100%);
+          background: white;
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
         }
@@ -150,13 +171,13 @@ export default   styled.div`
       width: 420px;
 
       margin: 0 auto;
-      background: #1E1212;
-      border-radius: 10px;
-      border: 1px solid #333333;
+background: rgba(26, 20, 20, 1);
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,0.1);
       padding: 20px;
 
       .title {
-        font-size: 18px;
+        font-size: 24px;
         font-family: Roboto-Bold, Roboto;
         font-weight: bold;
         padding-bottom: 10px;
@@ -166,6 +187,7 @@ export default   styled.div`
       .donate-part {
         background: rgba(255, 255, 255, 0.1);
         padding: 6px 15px 0;
+       margin-top: 6px;
         border-radius: 15px;
         border: 1px solid rgba(255, 255, 255, 0.1);
 
@@ -176,10 +198,17 @@ export default   styled.div`
         .balance-box {
           display: flex;
           justify-content: flex-end;
-          font-size: 20px;
+          font-size: 16px;
+          padding-top:8px;
           font-family: Roboto-Bold, Roboto;
-
+p{
+ width:61%;
+ text-align:left;
+ font-size:16px;color:white;
+ font-weight: bold;
+}
           .name {
+            
             font-weight: bold;
             color: #796B6B;
             line-height: 30px;
@@ -202,13 +231,13 @@ export default   styled.div`
             display: flex;
             align-items: center;
 
-            font-size: 12px;
+            font-size: 16px;
             font-family: Roboto-Black, Roboto;
             font-weight: 900;
 
             .coin-icon {
-              width: 20px;
-              height: 20px;
+              width: 30px;
+              height: 30px;
               margin-right: 6px;
             }
           }
@@ -264,7 +293,7 @@ export default   styled.div`
 
       .tip {
         margin-top: 2em;
-        font-size: 12px;
+        font-size: 14px;
         font-family: Roboto-SemiBold, Roboto;
         font-weight: 600;
         color: #8A8080;
@@ -272,12 +301,6 @@ export default   styled.div`
     }
 
 
-    .down-icon {
-      width: 40px;
-      height: 40px;
-      margin: 0.5em 0 1em calc(50% - 20px);
-
-    }
 
     .donate {
       margin-top: 1em;
@@ -286,6 +309,8 @@ export default   styled.div`
       font-size: 20px;
       font-family: Helvetica-Bold, Helvetica;
       font-weight: bold;
+      
+background: linear-gradient(32deg, #FF4E50 0%, #F9D423 100%);
     }
 
     .ant-btn-primary {
@@ -343,154 +368,151 @@ export default   styled.div`
     }
   }
 
-
   .fire-list-box {
-    .list-item, .list-header {
-      justify-content: space-between;
-      text-align: center;
-
-    }
-
-    .list-header3 {
-      text-align: center;
-
-      .col {
-        text-align: center;
-
-        &:nth-child(1) {
-          width: 10% !important;
+        .list-header {
+            padding: 20px 1em;
         }
-
-        &:nth-child(2) {
-          width: 16% !important;
+        .list-item, .list-header {
+          justify-content: flex-start;
+          /* padding: 0.5em 2.5em 0.5em 2em; */
+          
         }
-
-        &:nth-child(3) {
-          width: 20% !important;
-        }
-
-        &:nth-child(4) {
-          width: 40% !important;
-        }
-
-        &:nth-child(5) {
-          width: 10% !important;
-        }
-      }
-    }
-
-    .list-header2 {
-      display: flex;
-      justify-content: space-between;
-      font-weight: bold;
-      padding: 20px 0em;
-
-      .col {
-        justify-content: center;
-
-        &:nth-child(1) {
-          width: 10% !important;
-        }
-
-        &:nth-child(2) {
-          width: 10% !important;
-        }
-
-        &:nth-child(3) {
-          width: 20% !important;
-        }
-
-        &:nth-child(4) {
-          width: 60% !important;
-        }
-      }
-
-    }
-
-    .row2-list-item {
-      padding: 6px 0;
-
-      .col {
-        display: flex;
-        justify-content: center;
-
-
-        &:nth-child(1) {
-          width: 10% !important;
-        }
-
-        &:nth-child(2) {
-        }
-
-        &:nth-child(3) {
-          width: 20% !important;
-        }
-
-        &:nth-child(4) {
-          width: 60% !important;
-        }
-
-      }
-    }
-
+  
     .col {
-
+      text-align:left;
+      padding-left: 0.5%;
       &:nth-child(1) {
-        min-width: 30px;
+        width: 7%;
       }
 
       &:nth-child(2) {
-        min-width: 50px;
+        width: 10%;
       }
 
       &:nth-child(3) {
-        width: 80px;
+        width: 13%;
       }
 
       &:nth-child(4) {
-        width: 80px;
+        width: 17.5%;
       }
 
       &:nth-child(5) {
-        width: 60px;
-        padding-right: 5px;
+        width: 8%;
+        /* padding-right: 5px; */
       }
 
       &:nth-child(6) {
-        width: 80px;
+        width: 9%;
       }
 
       &:nth-child(7) {
-        width: 80px;
-        text-align: center;
+        width: 8%;
       }
 
       &:nth-child(8) {
-        width: 86px;
+        width: 11%;
       }
 
       &:nth-child(9) {
-        width: 220px;
-        text-align: center;
+        width: 16%;
 
       }
 
     }
+ 
 
     .list-item {
       .col {
         overflow: hidden;
-        padding-left: 0.5%;
-
+       
       }
-
-      .address {
-        a {
-          color: #FF9260;
-        }
-      }
+      .id{
+            color: #FE6D46;
+          }
+          .pid{
+            color: #FE6D46;
+            border: 1px solid #FE6D46;
+            background: rgba(254, 109, 70, 0.20);
+            border-radius:25px;
+          }
+          .address {
+            a{
+                color: rgba(205, 158, 87, 1);
+                
+            }
+               
+            border: 1px solid rgba(205, 158, 87, 1);
+            background: rgba(205, 158, 87, 0.20);
+            border-radius:25px;
+            text-align:center;
+          }
     }
-  }
+   }
+
+   .list-header2{
+    padding: 20px 1em;
+    justify-content: flex-start;
+/*        
+        .list-item, .list-header {
+          
+          /* padding: 0.5em 2.5em 0.5em 2em; */
+          
+        } */
+  
+    .col {
+      text-align:left;
+      padding-left: 0.5%;
+      &:nth-child(1) {
+        width: 22%;
+      }
+
+      &:nth-child(2) {
+        width: 22%;
+      }
+
+      &:nth-child(3) {
+        width: 22%;
+      }
+
+      &:nth-child(4) {
+        width: 22%;
+      }
+
+      
+
+    }
+ 
+
+    .list-item {
+      .col {
+        overflow: hidden;
+       
+      }
+      .id{
+            color: #FE6D46;
+          }
+          .pid{
+            color: #FE6D46;
+            border: 1px solid #FE6D46;
+            background: rgba(254, 109, 70, 0.20);
+            border-radius:25px;
+          }
+          .address {
+            a{
+                color: rgba(205, 158, 87, 1);
+                
+            }
+               
+            border: 1px solid rgba(205, 158, 87, 1);
+            background: rgba(205, 158, 87, 0.20);
+            border-radius:25px;
+            text-align:center;
+          }
+    }
+  } 
+
+
 
 
   .pagination {
@@ -524,6 +546,20 @@ export default   styled.div`
 
   /* mobile style */
   @media screen and (max-width: 1000px) {
+    .balance-box {
+          display: flex;
+          justify-content: flex-end;
+          font-size: 16px;
+          padding-top:8px;
+          font-family: Roboto-Bold, Roboto;
+p{
+ width:75%;
+ text-align:left;
+ font-size:16px;color:white;
+ font-weight: bold;
+}
+}
+
     .page-title{
       padding: 0;
     }

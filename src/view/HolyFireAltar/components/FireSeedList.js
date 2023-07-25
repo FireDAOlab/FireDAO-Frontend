@@ -49,7 +49,7 @@ const FireSeedList = (props) => {
         <FireSeedListStyle>
             <div className="panel-box">
                 <div className="panel-container" style={{ border: 'none' }}>
-                    <div className="panel-title">
+                    <div className="panel-title" style={{fontSize:'30px'}}>
                         My FireSeed
                     </div>
 
@@ -58,6 +58,7 @@ const FireSeedList = (props) => {
                         <div className="list">
                             {
                                 state.fireSeedList.map(item => (
+                                    
                                     <div className="list-item" onClick={() => {
                                     }}>
                                         <img className="img" src={fireseed} alt="" />

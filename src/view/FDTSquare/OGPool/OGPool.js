@@ -1,12 +1,14 @@
-import React, {useEffect, useRef, useState} from 'react';
-import {useConnect} from "../../../api/contracts";
+import React, { useEffect, useRef, useState } from 'react';
+import { useConnect } from "../../../api/contracts";
 import BigNumber from "bignumber.js"
 import AddNomalWhiteList from "./ThreelWhiteList";
 import AddThreeWhiteList from "./WhiteList";
-import {showNum} from "../../../utils/bigNumberUtil";
-
-import {formatAddress} from "../../../utils/publicJs";
+import { showNum } from "../../../utils/bigNumberUtil";
+import ethereum from "../../../imgs/ethereum.png";
+import { formatAddress } from "../../../utils/publicJs";
 import ConnectWallet from "../../../component/ConnectWallet/ConnectWallet";
+import user3 from "../../../imgs/user3.png"
+import download from "../../../imgs/download.png"
 import manage from "../../../imgs/svg/manage.svg"
 import {
     Button,
@@ -15,20 +17,20 @@ import {
     Form,
     Pagination
 } from 'antd';
-import {getContractByName, getContractByContract} from "../../../api/connectContract";
-import {dealMethod, dealPayMethod, viewMethod} from "../../../utils/contractUtil"
+import { getContractByName, getContractByContract } from "../../../api/connectContract";
+import { dealMethod, dealPayMethod, viewMethod } from "../../../utils/contractUtil"
 import ethIcon from "../../../imgs/eth_icon.webp";
 import downIcon from "../../../imgs/down_icon.webp";
 import listIcon from "../../../imgs/list-icon.webp";
 import develop from "../../../env";
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import judgeStatus from "../../../utils/judgeStatus";
-import {getDonateRecord} from "../../../graph/donate";
+import { getDonateRecord } from "../../../graph/donate";
 import OGPoolStyle from "./OGPoolStyle";
 
 
 const OGPoolPublic = (props) => {
-    let {state, dispatch} = useConnect();
+    let { state, dispatch } = useConnect();
     const [activeNav, setActiveNav] = useState(1)
     const [total, setTotal] = useState(0)
     const [total2, setTotal2] = useState(0)
@@ -91,7 +93,7 @@ const OGPoolPublic = (props) => {
     const getUserInfo = async () => {
         if (!state.pid) {
             const userInfo = await handleUserViewMethod("userInfo", [state.account])
-            dispatch({type: "SET_PID", payload: userInfo.PID})
+            dispatch({ type: "SET_PID", payload: userInfo.PID })
         }
     }
     const getAdmin = async () => {
@@ -115,10 +117,10 @@ const OGPoolPublic = (props) => {
             <div className="col id">
                 {item.no}
             </div>
-            <div className="col">
+            <div className="col pid">
                 {item.pid}
             </div>
-            <div className="col">
+            <div className="col ">
                 {item.name}
             </div>
 
@@ -132,16 +134,17 @@ const OGPoolPublic = (props) => {
             <div className="col ">
                 {item.ethAmount / 10 ** 18}
             </div>
-            <div className="col ">
-                {BigNumber(item.fdtAmount / 10 ** 18).toFixed(2)}
+            <div className="col">
+                {BigNumber(item.usdtAmount / 10 ** 18).toFixed(2)}
             </div>
 
             <div className="col">
                 {item.rate}%
             </div>
-            <div className="col">
-                {BigNumber(item.usdtAmount / 10 ** 18).toFixed(2)}
+            <div className="col ">
+                {BigNumber(item.fdtAmount / 10 ** 18).toFixed(2)}
             </div>
+            
             <div className="col">
                 {item.time}
             </div>
@@ -278,7 +281,7 @@ const OGPoolPublic = (props) => {
     const handleShowSizeChange2 = async (page, count) => {
         setPageCount2(count)
     }
-    const getRecord = async ()=>{
+    const getRecord = async () => {
         try {
             let res = await getDonateRecord()
             if (res.data) {
@@ -364,9 +367,12 @@ const OGPoolPublic = (props) => {
                     <div className="admin-icon-box" onClick={() => {
                         history("/OGPoolAdmin01")
                     }}>
-                        <img className="admin-icon" src={manage} alt=""/>
+                        <img className="admin-icon" src={manage} alt="" />
                     </div>
                 )}
+                <Button style={{ float: 'right', background: '#373232', margin: '0px 13px', textAlign: 'center', lineHeight: '28px', width: "32px", height: '32px', border: '1px solid rgba(255, 255, 255, 0.15)', borderRadius: '50%', }}>
+                    <img src={user3} style={{ width: '22px', marginLeft: '-10px', marginTop: '-10px' }} />
+                </Button>
             </div>
             <div className="header-nav">
                 <div className="fire-nav-list ">
@@ -412,9 +418,9 @@ const OGPoolPublic = (props) => {
                         <div className="panel-container">
                             <div className="panel-title">
                                 OG Round 1
-                                <div className="pid">
+                                {/* <div className="pid">
                                     PID：{state.pid}
-                                </div>
+                                </div> */}
                             </div>
                             <div className="donate-info">
                                 <div className="info-item">
@@ -441,7 +447,7 @@ const OGPoolPublic = (props) => {
                                             Total Donate
                                         </div>
                                         <div className="value">
-                                            {totalDonate} ETH
+                                           <p><img src={ethereum} style={{marginTop:'-5px',marginRight:'10px'}}/>{totalDonate} ETH</p> 
                                         </div>
                                     </div>
                                 </div>
@@ -462,10 +468,13 @@ const OGPoolPublic = (props) => {
                                 <Form form={form} name="control-hooks" className="form">
                                     <div className="donate-part">
                                         <div className="balance-box">
-                                            <div className="name">
-                                                Balance
+                                           
+                                                <p>Value: $ </p>
+                                            
+                                            <div className="name" style={{fontSize:'16px'}}>
+                                                Balance:
                                             </div>
-                                            <div className="value">
+                                            <div className="value" style={{fontSize:'16px'}}>
                                                 {showNum(state.ethBalance)} <span>ETH</span>
                                             </div>
                                         </div>
@@ -481,7 +490,7 @@ const OGPoolPublic = (props) => {
                                                     onChange={(e) => {
                                                         getfdtAmount(e)
                                                     }}
-                                                    style={{width: 200}}
+                                                    style={{ width: 200 }}
                                                     options={coinOptions}
                                                     placeholder="0"
                                                     filterOption={(inputValue, option) =>
@@ -490,21 +499,21 @@ const OGPoolPublic = (props) => {
                                                     }
                                                 />
                                                 <div className="right-tip">
-                                                    <img className="coin-icon" src={ethIcon} alt=""/>
+                                                    <img className="coin-icon" src={ethereum} alt="" />
                                                     ETH
                                                 </div>
                                             </div>
                                         </Form.Item>
                                     </div>
-                                    <img className="down-icon" src={downIcon} alt=""/>
+                                    <img className="down-icon" src={download} alt="" />
 
 
-                                    <div className="donate-part">
+                                    <div className="donate-part" style={{marginTop:'8px'}}>
                                         <div className="balance-box">
-                                            <div className="name">
-                                                Balance
+                                            <div className="name" style={{fontSize:'16px'}}>
+                                                Balance:
                                             </div>
-                                            <div className="value">
+                                            <div className="value" style={{fontSize:'16px'}}>
                                                 {showNum(fdtBalance)} <span>FDT</span>
                                             </div>
                                         </div>
@@ -519,12 +528,13 @@ const OGPoolPublic = (props) => {
                                                     {exchangeAmount}
                                                 </div>
                                                 <div className="right-tip">
+                                                <img className="coin-icon" src={ethereum} alt="" />
                                                     FDT-OG
                                                 </div>
                                             </div>
                                         </Form.Item>
                                     </div>
-                                    {status == 0 && <ConnectWallet className="connect-button"/>}
+                                    {status == 0 && <ConnectWallet className="connect-button" />}
                                     {
                                         status == 1 && !inputValue &&
                                         <Button type="primary" className="donate">
@@ -547,7 +557,8 @@ const OGPoolPublic = (props) => {
                                     }
 
                                     <div className="tip">
-                                        1FDT-OG = {salePrice} USD ，Donate up to 2ETH
+                                    I have already donated  { } ETH, I can donate up to {} ETH, I can continue donating {showNum(state.ethBalance)} ETH.
+                                        {/* 1FDT-OG = {salePrice} USD ，Donate up to 2ETH */}
                                     </div>
                                 </Form>
                             </div>
@@ -580,31 +591,32 @@ const OGPoolPublic = (props) => {
                                     }
                                 </div>
                             </div>
-                            <div className="fire-list-box">
+                            <div className="fire-list-box" style={{minWidth:'100%'}}>
                                 <div className="list-header flex-box">
                                     <div className="col">
                                         No.
                                     </div>
                                     <div className="col">
-                                        PID<img src={listIcon} alt="" className="list-icon"/>
+                                        PID<img src={listIcon} alt="" className="list-icon" />
                                     </div>
                                     <div className="col">
                                         Username
                                     </div>
                                     <div className="col">
-                                        Address
+                                    Wallet Address
                                     </div>
                                     <div className="col">
                                         ETH
                                     </div>
                                     <div className="col">
-                                        Amount
+                                    Value
                                     </div>
+                                    
                                     <div className="col">
                                         Rate
                                     </div>
                                     <div className="col">
-                                        USDT Cost
+                                        Amount
                                     </div>
                                     <div className="col">
                                         Time(UTC)
@@ -634,9 +646,9 @@ const OGPoolPublic = (props) => {
                             <div className="pagination">
                                 {
                                     recordNav == 1 && <Pagination current={curPage} showSizeChanger
-                                                                  onShowSizeChange={handleShowSizeChange}
-                                                                  onChange={onChangePage} total={total}
-                                                                  defaultPageSize={pageCount}/>
+                                        onShowSizeChange={handleShowSizeChange}
+                                        onChange={onChangePage} total={total}
+                                        defaultPageSize={pageCount} />
                                 }
                             </div>
                         </div>
@@ -649,15 +661,21 @@ const OGPoolPublic = (props) => {
                     <div className="panel-box">
                         <div className="panel-container">
                             <div className="isInW">
-                                <span>
-                                    My Pid: {state.pid}
+                                <span style={{display:'flex'}}>
+                                    PID
+                                    <div className='kk'>
+                                    {state.pid}
+                                    </div>
                                 </span>
-                                <span>
-                                    Whiterlist: {isInWhiteList ? "Yes" : "False"}
+                                <span style={{display:'flex',marginLeft:'10px'}}>
+                                    Whiterlist
+                                    <div className='kk'>
+                                        {isInWhiteList ? "Yes" : "False"}
+                                    </div>
                                 </span>
                             </div>
                             <div className="fire-list-box">
-                                <div className="list-header2 list-header">
+                                <div className="list-header2  flex-box">
                                     <div className="col">
                                         No.
                                     </div>
@@ -684,9 +702,9 @@ const OGPoolPublic = (props) => {
                             <div className="pagination">
                                 {
                                     <Pagination current={curPage2} showSizeChanger
-                                                onShowSizeChange={handleShowSizeChange2}
-                                                onChange={onChangePage2} total={total2}
-                                                defaultPageSize={pageCount2}/>
+                                        onShowSizeChange={handleShowSizeChange2}
+                                        onChange={onChangePage2} total={total2}
+                                        defaultPageSize={pageCount2} />
                                 }
                             </div>
                         </div>

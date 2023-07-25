@@ -6,6 +6,7 @@ import {getContractByName, getContractByContract} from "../../api/connectContrac
 import {dealMethod, viewMethod} from "../../utils/contractUtil"
 import listIcon from "../../imgs/list-icon.webp"
 import {SearchOutlined} from "@ant-design/icons";
+import search from '../../imgs/search.png'
 import {getIpfs} from "../../utils/ipfsApi";
 import {getPidList, getPidCount,getSearchData} from "../../graph/pidlist";
 import develop from "../../env"
@@ -17,6 +18,8 @@ const PidList = (props) => {
     const PidList = styled.div`
 
       .panel-container {
+        padding: 3em 2em;
+        width: 90%;
         .header-box {
           display: flex;
           width: 100%;
@@ -42,6 +45,11 @@ const PidList = (props) => {
             margin: 2em 0;
             display: flex;
             width: 100%;
+            .fire-nav-list{
+                
+                width: 320px;
+                margin: 0;
+            }
           }
 
           .search-container {
@@ -49,7 +57,7 @@ const PidList = (props) => {
               display: flex;
               align-items: center;
               background: #3F3535;
-              border-radius: 10px;
+              border-radius: 50px;
               border: 1px solid #333333;
               padding: 2px;
 
@@ -64,76 +72,102 @@ const PidList = (props) => {
 
 
       .fire-list-box {
+        
         .list-item, .list-header {
           justify-content: flex-start;
+          /* padding: 0.5em 2.5em 0.5em 2em; */
+          
         }
 
         .col {
           text-align: left;
 
           &:nth-child(1) {
-            min-width: 60px;
+            min-width: 8%;
+            
           }
 
           &:nth-child(2) {
             width: 8%;
-            min-width: 60px;
+           
           }
 
           &:nth-child(3) {
-            width: 80px;
+            width: 11%;
           }
 
           &:nth-child(4) {
-            width: 110px;
+            width: 9%;
           }
 
           &:nth-child(5) {
-            width: 90px;
-            padding-right: 5px;
+            width: 8%;
           }
 
           &:nth-child(6) {
-            width: 90px;
+            width: 10%;
           }
 
           &:nth-child(7) {
-            width: 80px;
+            width: 10%;
             text-align: center;
           }
 
           &:nth-child(8) {
-            width: 86px;
+            width: 9.5%;
           }
 
           &:nth-child(9) {
-            width: 80px;
+            width: 9.5%;
             text-align: center;
 
           }
 
           &:nth-child(10) {
-            width: 80px;
+            width: 10%;
             text-align: center;
           }
 
           &:nth-child(11) {
-            width: 80px;
+            width: 9%;
           }
         }
 
         .list-item {
+            padding: 0.5em 1em;
           .col {
             overflow: hidden;
             padding-left: 0.5%;
+            
             //text-overflow: ellipsis;
 
           }
-
+          .id{
+            color: #FE6D46;
+            border: 1px solid #FE6D46;
+            background: rgba(254, 109, 70, 0.20);
+            text-align:center;
+            border-radius:25px;
+            padding-left:-3px;
+          }
+          .fid{
+            color: #FE6D46;
+            border: 1px solid #FE6D46;
+            background: rgba(254, 109, 70, 0.20);
+            text-align:center;
+            border-radius:25px;
+            margin-left:3px;
+          }
           .address {
-            a {
-              color: #FF9260;
+            a{
+                color: rgba(205, 158, 87, 1);
             }
+               
+            border: 1px solid rgba(205, 158, 87, 1);
+            background: rgba(205, 158, 87, 0.20);
+            text-align:center;
+            border-radius:25px;
+           
           }
         }
       }
@@ -218,15 +252,15 @@ const PidList = (props) => {
             <div className="col id">
                 {item.pid}
             </div>
-            <div className="col">
+            <div className="col fid">
                 0
-            </div>
+            </div> 
             <div className="col">
                 {item.username}
             </div>
 
             <div className="col address">
-                <a href={develop.ethScan + "address/" + item.account} target="_blank">
+                <a  href={develop.ethScan + "address/" + item.account} target="_blank">
                     {item.account.substr(0, 7) + "..." + item.account.substr(item.account.length - 3, item.account.length)}
                 </a>
             </div>
@@ -334,7 +368,7 @@ const PidList = (props) => {
                     </div>
                     <div className="header-box">
                         <div className="nav-list-box">
-                            <div className="nav-list">
+                            <div className=" fire-nav-list">
                                 <div className={"nav-item " + (activeNav == 1 ? "active" : "")} onClick={() => {
                                     setNav(1)
                                 }}>
@@ -347,11 +381,11 @@ const PidList = (props) => {
                                 </div>
                             </div>
                         </div>
-                        <img className="fresh-icon" onClick={getData} src={fresh} alt=""/>
+                        {/* <img className="fresh-icon" onClick={getData} src={fresh} alt=""/> */}
 
                         <div className="search-container">
                              <form className="search-box">
-                                    <Select
+                                    {/* <Select
                                         defaultValue="PID"
                                         style={{width: 120}}
                                         options={[
@@ -365,10 +399,10 @@ const PidList = (props) => {
                                             },
 
                                         ]}
-                                    />
-                                    <Input allowClear value={searchData} onChange={handleSearchChange}/>
-                                    <Button className="search-btn"  onClick={handleSearch} type="primary">
-                                        <SearchOutlined/>
+                                    /> */}
+                                    <Input style={{borderRadius:'50px'}} allowClear value={searchData} onChange={handleSearchChange}  placeholder="Search"/>
+                                    <Button className="search-btn" style={{ width:'35px',borderRadius:'35px'}}  onClick={handleSearch} type="primary">
+                                        <img src={search}  style={{width:'25px',margin:'0px -10px'}}/>
                                     </Button>
                                 </form>
                         </div>

@@ -8,7 +8,7 @@ export default styled.div`
   @media screen and (min-width: 1000px) {
     .panel-box {
       background: #241B1B;
-      margin:3em auto;
+      margin:1em auto;
       border-radius:20px;
     }
     .userinfo-box {
@@ -25,7 +25,7 @@ export default styled.div`
 
         .userinfo-header {
           display: flex;
-
+margin-top:50px;
           .header-icon {
             position: relative;
 
@@ -140,7 +140,7 @@ text-align:center;
 
         .passport-header-bg {
           position: absolute;
-          z-index: -1;
+          z-index: 1;
           top: 0;
           left: 0;
           width: 100%;
@@ -231,7 +231,7 @@ text-align:center;
         }
 
         .link-box {
-          padding:0em 1em;
+          padding:1em 1em;
           align-items: center;
           display: flex;
           width: 100%;
@@ -280,6 +280,7 @@ border: 1px solid rgba(87,141,205,0.5);
         justify-content: center;
 width: 100%;
 margin-top: 3em;
+margin-bottom: 1em;
 .boxshadow{
   
   margin-top: 3em;
@@ -331,8 +332,9 @@ font-family: Roboto-Bold, Roboto;
 height: 30px;
 border-radius: 50px 50px 50px 50px;
 opacity: 1;
+background: #140E0E;
 border: 1px solid rgba(255,255,255,0.2);
-color: rgba(138, 128, 128, 1);
+color:#8A8080;
 text-align:center;
             }
             .val{
@@ -440,10 +442,10 @@ border: 1px solid rgba(254,109,70,0.5);
 
     .panel-box {
       width: 90%;
-      margin: 3em auto;
+      margin: 0.5em auto;
 
       .panel-container {
-        padding: 3em 5em;
+        padding: 0em 5em;
         position: relative;
         width: 100%;
 
@@ -527,7 +529,7 @@ border: 1px solid rgba(254,109,70,0.5);
         }
 
         .userinfo-header {
-
+margin-top:50px;
           .header-icon {
             position: relative;
             top: 30px;
