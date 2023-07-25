@@ -65,19 +65,40 @@ const FIDList = (props) => {
           text-align: left;
 
           &:nth-child(1) {
-            min-width: 30px;
+            min-width: 5%;
           }
           &:nth-child(2) {
-            min-width: 30px;
+            min-width: 5%;
           }
           &:nth-child(3) {
-            min-width: 80px;
+            min-width: 9%;
           }
           &:nth-child(4) {
-            min-width: 120px;
+            min-width: 13%;
           }
           &:nth-child(5) {
-            min-width: 30px;
+            min-width: 12%;
+          }
+          &:nth-child(6) {
+            min-width: 8%;
+          }
+          &:nth-child(7) {
+            min-width: 8%;
+          }
+          &:nth-child(8) {
+            min-width: 8%;
+          }
+          &:nth-child(9) {
+            min-width: 8%;
+          }
+          &:nth-child(10) {
+            min-width: 8%;
+          }
+          &:nth-child(11) {
+            min-width: 8%;
+          }
+          &:nth-child(12) {
+            min-width: 10%;
           }
         }
     }

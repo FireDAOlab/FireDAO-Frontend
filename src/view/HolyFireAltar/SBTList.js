@@ -17,7 +17,7 @@ const SBTList = (props) => {
        
 
 .fire-list-box{
-    .list-header {
+    .list-header{
             padding: 20px 1em;
         }
         .list-item, .list-header {
@@ -27,25 +27,25 @@ const SBTList = (props) => {
         margin: 2em 0em;
         .col{
           &:nth-child(1){
-            width:9%;
+            width:10%;
           }
           &:nth-child(2){
-            width: 14%;
+            width: 16%;
           }
           &:nth-child(3){
-            width: 14%;
+            width: 17%;
           }
           &:nth-child(4){
-            width: 15%;
+            width: 18%;
           }
           &:nth-child(5){
-            width:13%;
+            width:15%;
           }
           &:nth-child(6){
-            width:13%;
+            width:15%;
           }
           &:nth-child(7){
-            width: 8%;
+            width: 9%;
           }
         }
         .list-header{
@@ -66,25 +66,34 @@ const SBTList = (props) => {
       }
     }
 
-    .fire-list-box1{
-    
-    margin: 2em 0em;
+    .fire-list-box{
+        margin: 2em 0em;
+        .list-header1 {
+            font-size: 18px;
+    font-weight: bold;
+    color: #8A8080;
+            padding: 20px 1em;
     .col{
       &:nth-child(1){
-        width:9%;
+        width:23%;
       }
       &:nth-child(2){
-        width: 14%;
+        width: 23%;
       }
       &:nth-child(3){
-        width: 14%;
+        width: 23%;
       }
       &:nth-child(4){
-        width: 15%;
+        width: 23%;
       }
      
     }
-    .list-header{
+}  
+        .list-item, .list-header1 {
+          justify-content: flex-start;
+          /* padding: 0.5em 2.5em 0.5em 2em; */
+        }
+    /* .list-header{
       display: flex;
       justify-content: flex-start;
       font-size: 18px;
@@ -98,8 +107,8 @@ const SBTList = (props) => {
       background: #3F3535;
       border-radius: 10px;
       margin: 0.5em 0;
-    }
-  }
+    } */
+}
     .soulaccount{
     margin: 20px 0;
     display: flex;
@@ -239,7 +248,7 @@ border: 1px solid rgba(254,109,70,0.5);
                         {
                             PIDARR.map(item => (
                                 <div className="list-item ">
-                                    <div className="col">
+                                    <div className="col"  style={{color:'#E48686'}}>
                                         1
                                     </div>
                                     <div className="col">
@@ -286,7 +295,7 @@ border: 1px solid rgba(254,109,70,0.5);
                     </div>
                     <div className="fire-list-box">
                         {/* <div className="list-box"> */}
-                        <div className="list-header flex-box1">
+                        <div className="list-header1 flex-box">
                             <div className="col">
                                 SBT
                             </div>
@@ -304,8 +313,8 @@ border: 1px solid rgba(254,109,70,0.5);
                         {
                             PIDARR.map(item => (
                                 <div className="list-item ">
-                                    <div className="col">
-                                        1
+                                    <div className="col" style={{color:'#E48686'}}>
+                                        1 
                                     </div>
                                     <div className="col">
                                         {item.blockNumber}

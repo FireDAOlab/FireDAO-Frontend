@@ -9,7 +9,11 @@ import ConnectWalletStyle from "./ConnectWalletStyle";
 import Ethereum from "../Ethereum/Ethereum";
 import right from "../../imgs/right.png"
 import ethereum from "../../imgs/ethereum.png"
+import usdt from "../../imgs/usdt.png"
 import sz from "../../imgs/sz.png"
+import fz from "../../imgs/fz.png"
+import coinbase from "../../imgs/coinbase.png"
+import walletc from "../../imgs/walletc.png"
 import group1 from '../../imgs/Group.png'
 import { Dropdown, Space } from 'antd';
 // import connect2 from './demo.css'
@@ -74,51 +78,83 @@ const ConnectWallet = () => {
     }
     const items = [
         {
-            label: <div style={{width:'230px',marginLeft:'-3px',display:'flex',height: '65px',
-            background: '#241B1B',
-    borderRadius: '20px',padding:'0px 5px',border: '1px solid rgba(234,234,234,0.1)'}} onClick={()=>{connectWallet()}}>
-        <img style={{ width: '50px',height:'50px',marginTop:'13px' }} src={sz} /><span style={{width:'50%',fontSize:'16px',lineHeight:'63px',marginLeft:'10px'}}>MetaMask</span><img style={{width:'20px',height:'15px',marginTop:'23px',marginLeft:'25px'}} src={right}/></div>
+            label: <div style={{
+                width: '230px', marginLeft: '-3px', display: 'flex', height: '65px',
+                background: '#241B1B',
+                borderRadius: '20px', padding: '0px 5px', border: '1px solid rgba(234,234,234,0.1)'
+            }} onClick={() => { connectWallet() }}>
+                <img style={{ width: '50px', height: '50px', marginTop: '10px' }} src={sz} />
+                <span style={{ width: '50%', fontSize: '15px', lineHeight: '63px', marginLeft: '10px',marginTop: '-12px' }}>MetaMask
+                <span style={{ dontSize:'14px',color:'#999999',display:'block',marginTop: '-40px' }}> {
+                                state.account ? state.account.substr(0, 5) + "..." + state.account.substr(state.account.length - 5, state.account.length) : " "
+                            }
+                    </span>
+                    <img style={{width:'15px',margin: '-132px 0px 0px 100px'}} src={fz} />
+                </span>
+                <img style={{ width: '20px', height: '15px', marginTop: '23px', marginLeft: '20px' }} src={right} />
+                
+                </div>
             // key: '0',
         },
         {
-            label: <div style={{width:'230px',marginLeft:'-3px',display:'flex',height: '65px',background: '#241B1B',
-            borderRadius: '20px',padding:'0px 5px',border: '1px solid rgba(234,234,234,0.1)'}}>
-                <img style={{ width: '50px',height:'50px',marginTop:'8px' }} src={sz} /><span style={{width:'50%',fontSize:'16px',lineHeight:'63px',marginLeft:'10px'}}>Coinbase Wallet</span><img style={{width:'20px',height:'15px',marginTop:'23px',marginLeft:'25px',display:'none'}} src={right}/></div>
+            label: <div style={{
+                width: '230px', marginLeft: '-3px', display: 'flex', height: '65px', background: '#241B1B',
+                borderRadius: '20px', padding: '0px 5px', border: '1px solid rgba(234,234,234,0.1)'
+            }}>
+                <div style={{ marginLeft:'10px',marginTop: '18px',textAlign:'center', width: '30px', height: '30px', padding: '2px',backgroundColor:'rgba(255,255,255,0.1)',border: '1px solid rgba(255,255,255,0.1)' ,borderRadius:'50%'}}>
+                    <img style={{ width: '80%', }} src={coinbase} />
+                </div>
+                <span style={{ width: '50%', fontSize: '15px', lineHeight: '63px', marginLeft: '20px' }}>Coinbase Wallet</span>
+                <img style={{ width: '20px', height: '15px', marginTop: '23px', marginLeft: '20px', display: 'none' }} src={right} />
+            </div>
             // key: '1',
         },
         {
-            label: <div style={{width:'230px',marginLeft:'-3px',display:'flex',height: '65px',
-            background: '#241B1B',
-    borderRadius: '20px',padding:'0px 5px',border: '1px solid rgba(234,234,234,0.1)'}}>
-        <img style={{ width: '50px',height:'50px',marginTop:'8px' }} src={sz} /><span style={{width:'50%',fontSize:'16px',lineHeight:'63px',marginLeft:'10px'}}>WalletConnect</span><img style={{width:'20px',height:'15px',display:'none',marginTop:'23px',marginLeft:'25px'}} src={right}/></div>
+            label: <div style={{
+                width: '230px', marginLeft: '-3px', display: 'flex', height: '65px',
+                background: '#241B1B',
+                borderRadius: '20px', padding: '0px 5px', border: '1px solid rgba(234,234,234,0.1)'
+            }}>
+                <div style={{ marginLeft:'10px',marginTop: '18px',textAlign:'center', width: '30px', height: '30px', padding: '2px',backgroundColor:'rgba(255,255,255,0.1)',border: '1px solid rgba(255,255,255,0.1)',borderRadius:'50%' }}>
+                    <img style={{ width: '80%', }} src={walletc} />
+                </div>
+                <span style={{ width: '50%', fontSize: '15px', lineHeight: '63px', marginLeft: '20px' }}>WalletConnect</span>
+                <img style={{ width: '20px', height: '15px', display: 'none', marginTop: '23px', marginLeft: '20px' }} src={right} />
+            </div>
             // key: '0',
         },
         {
-            label:<p style={{fontSize: '16px',
-                fontFamily:'Roboto-Medium, Roboto',
+            label: <p style={{
+                fontSize: '16px',
+                fontFamily: 'Roboto-Medium, Roboto',
                 fontWeight: '500',
                 color: '#8A8080',
-                margin:'10px',
-                textAlign:'center'}}>
-                    Log Out</p>
+                margin: '10px',
+                textAlign: 'center',
+                fontSize: '15px'
+            }}>
+                Log Out</p>
         },
         {
-            label:<p style={{fontSize: '16px',
-                fontFamily:'Roboto-Medium, Roboto',
+            label: <p style={{
+                fontSize: '16px',
+                fontFamily: 'Roboto-Medium, Roboto',
                 fontWeight: '500',
                 color: '#8A8080',
                 lineHeight: '19px',
-                textAlign:'left'}}>
-                    Balances</p>
-        },{
+                textAlign: 'left',
+                fontSize: '15px'
+            }}>
+                Balances</p>
+        }, {
             label:
-                <div ><img src={ethereum} style={{width:"25px",margin:'0px 10px 5px 0px'}}/><span>ETH</span><span style={{float:'right'}}></span></div>
-    
+                <div ><img src={ethereum} style={{ width: "25px", margin: '0px 10px 5px 0px' }} /><span style={{ fontSize: '15px' }}>ETH</span><span style={{ float: 'right' }}></span></div>
+
         },
         {
-            label:<div><img src={ethereum} style={{width:"25px",margin:'0px 10px 5px 0px'}}/><span>USDT</span><span style={{float:'right'}}></span></div>
+            label: <div><img src={usdt} style={{ width: "25px", margin: '0px 10px 5px 0px' }} /><span style={{ fontSize: '15px' }}>USDT</span><span style={{ float: 'right' }}></span></div>
         }
-    
+
     ];
     return (
         <ConnectWalletStyle>
@@ -132,8 +168,8 @@ const ConnectWallet = () => {
                         trigger={['click']}
 
                     >
-                        <Button type="normal" onClick={(e) => e.preventDefault() } className="connect-button">
-                            <img src={WalletOutlined} alt="" style={{ marginRight: '10px', verticalAlign: 'middle', }} />
+                        <Button type="normal" onClick={(e) => e.preventDefault()} className="connect-button">
+                            <img src={WalletOutlined} alt="" style={{ width: '20px', marginRight: '10px', verticalAlign: 'middle', }} />
                             {
                                 state.account ? state.account.substr(0, 5) + "..." + state.account.substr(state.account.length - 5, state.account.length) : " Connect Wallet"
                             }
@@ -144,8 +180,8 @@ const ConnectWallet = () => {
             }
             {
                 location.pathname !== "/" && (
-                    <Dropdown 
-                    placement='bottomRight'
+                    <Dropdown
+                        placement='bottomRight'
                         menu={{
                             items,
                         }}

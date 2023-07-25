@@ -114,8 +114,12 @@ position: relative;
     .tpitem{
       width: 24%;
       background: rgba(36, 27, 27, 1);
-      border-radius: 50px 50px 50px 50px;
-border: 1px solid rgba(254,109,70,0.5);
+      border-radius: 20px ;
+      border: 1px solid rgba(255,255,255,0.1);
+      padding: 10px;
+img{
+  width: 100%;
+}
     }
   }
 }

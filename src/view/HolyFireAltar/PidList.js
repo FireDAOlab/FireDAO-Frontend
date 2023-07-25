@@ -72,12 +72,11 @@ const PidList = (props) => {
 
 
       .fire-list-box {
-        .list-header {
-            padding: 20px 1em;
-        }
+        
         .list-item, .list-header {
           justify-content: flex-start;
           /* padding: 0.5em 2.5em 0.5em 2em; */
+          
         }
 
         .col {
@@ -85,10 +84,12 @@ const PidList = (props) => {
 
           &:nth-child(1) {
             min-width: 8%;
+            
           }
 
           &:nth-child(2) {
             width: 8%;
+           
           }
 
           &:nth-child(3) {
@@ -137,14 +138,36 @@ const PidList = (props) => {
           .col {
             overflow: hidden;
             padding-left: 0.5%;
+            
             //text-overflow: ellipsis;
 
           }
-
+          .id{
+            color: #FE6D46;
+            border: 1px solid #FE6D46;
+            background: rgba(254, 109, 70, 0.20);
+            text-align:center;
+            border-radius:25px;
+            padding-left:-3px;
+          }
+          .fid{
+            color: #FE6D46;
+            border: 1px solid #FE6D46;
+            background: rgba(254, 109, 70, 0.20);
+            text-align:center;
+            border-radius:25px;
+            margin-left:3px;
+          }
           .address {
-            a {
-              color: #FF9260;
+            a{
+                color: rgba(205, 158, 87, 1);
             }
+               
+            border: 1px solid rgba(205, 158, 87, 1);
+            background: rgba(205, 158, 87, 0.20);
+            text-align:center;
+            border-radius:25px;
+           
           }
         }
       }
@@ -229,15 +252,15 @@ const PidList = (props) => {
             <div className="col id">
                 {item.pid}
             </div>
-            <div className="col">
+            <div className="col fid">
                 0
-            </div>
+            </div> 
             <div className="col">
                 {item.username}
             </div>
 
             <div className="col address">
-                <a href={develop.ethScan + "address/" + item.account} target="_blank">
+                <a  href={develop.ethScan + "address/" + item.account} target="_blank">
                     {item.account.substr(0, 7) + "..." + item.account.substr(item.account.length - 3, item.account.length)}
                 </a>
             </div>

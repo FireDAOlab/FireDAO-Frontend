@@ -48,7 +48,7 @@ const FireSeedList = (props) => {
     return (
         <FireSeedListStyle>
             <div className="panel-box">
-                <div className="panel-container" style={{ border: 'none',paddingTop: "3em" }}>
+                <div className="panel-container" style={{ border: 'none' }}>
                     <div className="panel-title" style={{fontSize:'30px'}}>
                         My FireSeed
                     </div>

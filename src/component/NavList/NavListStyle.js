@@ -50,7 +50,8 @@ background: linear-gradient(-92deg, #FF4E50 0%, #F9D423 100%);
     /* background: linear-gradient(32deg, #FF4E50 0%, #F9D423 100%); */
     .ant-menu-submenu-title {
       position: relative;
-
+      /* background: rgba(47, 35, 35, 0.2);
+      border-radius:25px; */
       &:after {
         content: '';
         position: absolute;

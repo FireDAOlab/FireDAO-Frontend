@@ -34,17 +34,17 @@ export default  [
 
     getItem('FDT Square', 'FDTSquare', <img className="fireIcon" src={fireIcon7} />, [
         getItem('OG Pool', 'OGPool'),
-        getItem('Seed Donation', 'SeedDonation'),
-
         getItem('Seed Pool', 'SeedPool'),
         getItem('Consensus Pool', 'ConsensusPool'),
         getItem('FLM Pool', 'FLMPool'),
+        
         getItem('Uniswap Pool', 'UniswapPool'),
         getItem('FDT Release', 'FDTRelease'),
         getItem('FLM Release', 'FLMRelease'),
         getItem('FDT Holder', 'FDTHolder'),
         getItem('FDT-OG', 'FDTOgToFdt'),
         getItem('Auto Reflow LP', 'AutoReflowLP'),
+        getItem('Seed Donation', 'SeedDonation'),
     ]),
     getItem('Operation', 'Operation', <img className="fireIcon" src={fireIcon3} />, [
         getItem('Guild', 'Guild'),

@@ -92,7 +92,7 @@ const FIDScore = (props) => {
     }, [state.account])
     return (
         <FIDScoreStyle>
-            <div style={{marginBottom:'5em'}} className="panel-box">
+            <div  className="panel-box">
                 <div className="panel-container" style={{ border: 'none',paddingTop: "3em" }}>
                     <div className="panel-title" style={{fontSize:'30px'}}>
                         FID Score
