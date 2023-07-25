@@ -1,41 +1,37 @@
-import React, {useEffect, useRef, useState} from 'react';
-import {useConnect} from "../../../api/contracts";
+import React, { useEffect, useRef, useState } from 'react';
+import { useConnect } from "../../../api/contracts";
 import BigNumber from "bignumber.js"
-import AddNomalWhiteList from "./AddNomalWhiteList";
-import AddThreeWhiteList from "./AddThreeWhiteList";
+import AddNomalWhiteList from "./ThreelWhiteList";
+import AddThreeWhiteList from "./WhiteList";
+import { showNum } from "../../../utils/bigNumberUtil";
+import ethereum from "../../../imgs/ethereum.png";
+import { formatAddress } from "../../../utils/publicJs";
+import ConnectWallet from "../../../component/ConnectWallet/ConnectWallet";
+import user3 from "../../../imgs/user3.png"
+import download from "../../../imgs/download.png"
+import manage from "../../../imgs/svg/manage.svg"
 import {
-    Card,
     Button,
-    Modal,
     message,
     AutoComplete,
     Form,
-    List,
-    Input,
-    notification,
-    InputNumber,
-    Switch,
     Pagination
 } from 'antd';
-import {getContractByName, getContractByContract} from "../../../api/connectContract";
-import {dealMethod, dealPayMethod, viewMethod} from "../../../utils/contractUtil"
+import { getContractByName, getContractByContract } from "../../../api/connectContract";
+import { dealMethod, dealPayMethod, viewMethod } from "../../../utils/contractUtil"
 import ethIcon from "../../../imgs/eth_icon.webp";
 import downIcon from "../../../imgs/down_icon.webp";
 import listIcon from "../../../imgs/list-icon.webp";
 import develop from "../../../env";
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import judgeStatus from "../../../utils/judgeStatus";
-import {getDonateRecord} from "../../../graph/donate";
+import { getDonateRecord } from "../../../graph/donate";
 import OGPoolStyle from "./OGPoolStyle";
-import AddNormalWhiteListStyle from "./AddNormalWhiteListStyle";
-const OGPoolkk = (props) => {
-    let {state, dispatch} = useConnect();
-    const [isDelMolOpen, setDelOpen] = useState(false)
-    const [curWhiteUser, setCurWhiteUser] = useState(false)
-    const [addressValue, setAddressValue] = useState("")
 
+
+const OGPoolPublic = (props) => {
+    let { state, dispatch } = useConnect();
     const [activeNav, setActiveNav] = useState(1)
-    const [MYPIDARR, setMYPIDARR] = useState([])
     const [total, setTotal] = useState(0)
     const [total2, setTotal2] = useState(0)
     const [recordNav, setRecordNav] = useState(1)
@@ -49,7 +45,6 @@ const OGPoolkk = (props) => {
     const [inputValue, setInputValue] = useState(0)
     const [isSAdmin, setIsSecondAdmin] = useState(false)
     const [isTAdmin, setIsThreeAdmin] = useState(false)
-    const [ethBalance, setEthBalance] = useState(0)
     const [fdtBalance, setFdtBalance] = useState(0)
     const [allRecords, setAllRecords] = useState([])
     const [refRecords, setREFRecords] = useState([])
@@ -58,10 +53,11 @@ const OGPoolkk = (props) => {
     const [isInWhiteList, setIsInWhiteList] = useState(false)
     const [adminWhiteList, setAdminWhiteList] = useState([])
     const [salePrice, setSalePriceV] = useState(0.01)
-    const [addWhiteArr, setAddWArr] = useState([{}])
+    const [status, setStatus] = useState(0)
+    const [isAdmin, setIsAdmin] = useState(false)
+
     const history = useNavigate();
     const [form] = Form.useForm();
-    const [form2] = Form.useForm();
 
 
     const handleUserViewMethod = async (name, params) => {
@@ -97,15 +93,16 @@ const OGPoolkk = (props) => {
     const getUserInfo = async () => {
         if (!state.pid) {
             const userInfo = await handleUserViewMethod("userInfo", [state.account])
-            dispatch({type: "SET_PID", payload: userInfo.PID})
+            dispatch({ type: "SET_PID", payload: userInfo.PID })
         }
     }
-    const handleDealCoinMethod = async (name, coinName, params) => {
-        let contractTemp = await getContractByName(coinName, coinName, state.api,)
-        if (!contractTemp) {
-            message.warn("Please connect", 5)
+    const getAdmin = async () => {
+        let res = await handleViewMethod("owner", [])
+        if (state.account.toLowerCase() == res.toLowerCase()) {
+            setIsAdmin(true)
+        } else {
+            setIsAdmin(false)
         }
-        return dealMethod(contractTemp, state.account, name, params)
     }
     const handleCoinViewMethod = async (name, coinName, params) => {
         let contractTemp = await getContractByName(coinName, state.api,)
@@ -120,33 +117,34 @@ const OGPoolkk = (props) => {
             <div className="col id">
                 {item.no}
             </div>
-            <div className="col">
+            <div className="col pid">
                 {item.pid}
             </div>
-            <div className="col">
+            <div className="col ">
                 {item.name}
             </div>
 
             <div className="col address">
                 {item.addr && (
                     <a href={develop.ethScan + "address/" + item.addr} target="_blank">
-                        {item.addr.substr(0, 6) + "..." + item.addr.substr(item.addr.length - 3, item.addr.length)}
+                        {formatAddress(item.addr)}
                     </a>
                 )}
             </div>
             <div className="col ">
                 {item.ethAmount / 10 ** 18}
             </div>
-            <div className="col ">
-                {BigNumber(item.fdtAmount / 10 ** 18).toFixed(2)}
+            <div className="col">
+                {BigNumber(item.usdtAmount / 10 ** 18).toFixed(2)}
             </div>
 
             <div className="col">
                 {item.rate}%
             </div>
-            <div className="col">
-                {BigNumber(item.usdtAmount / 10 ** 18).toFixed(2)}
+            <div className="col ">
+                {BigNumber(item.fdtAmount / 10 ** 18).toFixed(2)}
             </div>
+            
             <div className="col">
                 {item.time}
             </div>
@@ -168,7 +166,7 @@ const OGPoolkk = (props) => {
             <div className="col address">
                 {
                     item.user && <a href={develop.ethScan + "address/" + item.user} target="_blank">
-                        {item.user.substr(0, 6) + "..." + item.user.substr(item.user.length - 6, item.user.length)}
+                        {(item.user)}
                     </a>
                 }
 
@@ -190,7 +188,7 @@ const OGPoolkk = (props) => {
         setTotalDonate(res / 10 ** 18)
     }
     const getfdtAmount = async (value) => {
-        if (value > 0) {
+        if (value > 0 || value == 0) {
             setInputValue(value)
             /* eslint-disable */
             let res = await handleViewMethod("getfdtAmount", [BigInt(value * 10 ** 18)])
@@ -217,20 +215,35 @@ const OGPoolkk = (props) => {
         setAllWhiteList(arr)
     }
 
+
     const getIsAdmin = async () => {
-        let res1 = await handleViewMethod("IsAdminLevelTwo", [state.account])
-        let res2 = await handleViewMethod("IsAdminLevelThree", [state.account])
-        setIsSecondAdmin(res1)
-        setIsThreeAdmin(res2)
+        const secondArr = await handleViewMethod("getAdminsLevelTwoList", [])
+        const threeArr = await handleViewMethod("getAdminsLevelThreeList", [])
+        let isS = false, isT = false
+        secondArr.forEach(item => {
+            if (item.toLowerCase() === state.account.toLowerCase()) {
+                isS = true
+            }
+        })
+        threeArr.forEach(item => {
+            if (item.toLowerCase() === state.account.toLowerCase()) {
+                isT = true
+            }
+        })
+
+        setIsSecondAdmin(isS)
+        setIsThreeAdmin(isT)
     }
     const getSalePrice = async () => {
         let res = await handleViewMethod("salePrice", [])
         setSalePriceV(res / 1000)
     }
+    const getValidNumbers = async () => {
+        let length = await handleViewMethod("getValidNumbers", [])
+        let res = await handleViewMethod("validNumbers", [length - 1])
+    }
     const CoinBalance = async () => {
-        let res = await handleCoinViewMethod("balanceOf", "WETH", [state.account])
         let res2 = await handleCoinViewMethod("balanceOf", "FDT", [state.account])
-        setEthBalance(res / 10 ** 18)
         setFdtBalance(res2 / 10 ** 18)
     }
 
@@ -248,29 +261,12 @@ const OGPoolkk = (props) => {
             getShowWhiteList()
             getUserInfo()
             getSalePrice()
-            let res = await getDonateRecord()
-            if (res.data) {
-                let arr = []
-                res.data.allRecords.forEach(item => {
-                    if (item.time) {
-                        item.time = new Date(item.time * 1000).toUTCString()
-                    }
-                    if (item.addr.toString() == state.account.toLowerCase()) {
-                        arr.push(item)
-                    }
-                })
-
-                if (res.data.allRecords && res.data.allRecords.length > 0) {
-                    setAllRecords(res.data.allRecords)
-                    setTotal(res.data.allRecords.length)
-                    seMyRecords(arr)
-                }
-
-            }
+            getValidNumbers()
+            getAdmin()
+            getRecord()
         } catch (e) {
 
         }
-        // dispatch({type: "SET_PidArr", payload: tempArr})
     }
     const onChangePage = async (page) => {
         await setCurPage(page)
@@ -285,9 +281,47 @@ const OGPoolkk = (props) => {
     const handleShowSizeChange2 = async (page, count) => {
         setPageCount2(count)
     }
+    const getRecord = async () => {
+        try {
+            let res = await getDonateRecord()
+            if (res.data) {
+                let arr = []
+                res.data.allRecords.forEach(item => {
+                    if (item.time) {
+                        item.time = new Date(item.time * 1000).toUTCString()
+                    }
+                    if (state.account && item.addr.toString() == state.account.toLowerCase()) {
+                        arr.push(item)
+                    }
+                })
+
+                if (res.data.allRecords && res.data.allRecords.length > 0) {
+                    res.data.allRecords.shift()
+                    setAllRecords(res.data.allRecords)
+                    setTotal(res.data.allRecords.length)
+                    seMyRecords(arr)
+                }
+
+            }
+        } catch (e) {
+            console.log(e)
+        }
+    }
+    useEffect(async () => {
+
+        getRecord()
+
+    }, []);
     useEffect(() => {
         getData()
     }, [state.account]);
+    useEffect(() => {
+        if (state.account && state.apiState == "READY") {
+            setStatus(1)
+        } else {
+            setStatus(0)
+        }
+    }, [state.account, state.networkId, state.apiState])
     const coinOptions = [
         {
             label: "0.25ETH",
@@ -327,35 +361,55 @@ const OGPoolkk = (props) => {
     return (
         <OGPoolStyle>
 
-            <div className="og-nav-list">
-                <div className={"nav-item " + (activeNav == 1 ? "active" : "")} onClick={() => {
-                    setActiveNav(1)
-                }}>
-                    OG Donate Pool
+            <div className="page-title">
+                OG Pool
+                {isAdmin && (
+                    <div className="admin-icon-box" onClick={() => {
+                        history("/OGPoolAdmin01")
+                    }}>
+                        <img className="admin-icon" src={manage} alt="" />
+                    </div>
+                )}
+                <Button style={{ float: 'right', background: '#373232', margin: '0px 13px', textAlign: 'center', lineHeight: '28px', width: "32px", height: '32px', border: '1px solid rgba(255, 255, 255, 0.15)', borderRadius: '50%', }}>
+                    <img src={user3} style={{ width: '22px', marginLeft: '-10px', marginTop: '-10px' }} />
+                </Button>
+            </div>
+            <div className="header-nav">
+                <div className="fire-nav-list ">
+                    <div className={"nav-item " + (activeNav == 1 ? "active" : "")} onClick={() => {
+                        setActiveNav(1)
+                    }}>
+                        OG Donate Pool
+                    </div>
+                    <div className={"nav-item " + (activeNav == 2 ? "active" : "")} onClick={() => {
+                        setActiveNav(2)
+                    }}>
+                        WhiteList
+                    </div>
+                    {
+                        isSAdmin && (
+
+                            <div className={"nav-item " + (activeNav == 4 ? "active" : "")} onClick={() => {
+
+                                setActiveNav(4)
+                            }}>
+                                Set Admin
+                            </div>
+                        )
+                    }
+                    {
+
+                        (isTAdmin) && (
+
+                            <div className={"nav-item " + (activeNav == 3 ? "active" : "")} onClick={() => {
+                                setActiveNav(3)
+                            }}>
+                                Set WhiteList
+                            </div>
+                        )
+                    }
+
                 </div>
-                <div className={"nav-item " + (activeNav == 2 ? "active" : "")} onClick={() => {
-                    setActiveNav(2)
-                }}>
-                    WhiteList
-                </div>
-                {
-                    (isSAdmin) && (
-                        <div className={"nav-item " + (activeNav ==4 ? "active" : "")} onClick={() => {
-                            setActiveNav(4)
-                        }}>
-                            Set Admin
-                        </div>
-                    )
-                }
-                {
-                    (isTAdmin||isSAdmin) && (
-                        <div className={"nav-item " + (activeNav == 3 ? "active" : "")} onClick={() => {
-                            setActiveNav(3)
-                        }}>
-                            Set WhiteList
-                        </div>
-                    )
-                }
 
             </div>
             {activeNav == 1 && (
@@ -363,7 +417,10 @@ const OGPoolkk = (props) => {
                     <div className="panel-box">
                         <div className="panel-container">
                             <div className="panel-title">
-                                OG Donate 1
+                                OG Round 1
+                                {/* <div className="pid">
+                                    PID：{state.pid}
+                                </div> */}
                             </div>
                             <div className="donate-info">
                                 <div className="info-item">
@@ -371,7 +428,7 @@ const OGPoolkk = (props) => {
                                         FDT-OG Donate Pool Amount
                                     </div>
                                     <div className="value">
-                                        {FDTBalance}
+                                        {showNum(FDTBalance)}
                                     </div>
                                 </div>
                                 <div className="flex-box">
@@ -380,7 +437,9 @@ const OGPoolkk = (props) => {
                                             Value
                                         </div>
                                         <div className="value">
-                                            {(FDTBalance * salePrice).toFixed(1)}
+
+                                            {showNum(BigNumber(FDTBalance).multipliedBy(salePrice))}
+
                                         </div>
                                     </div>
                                     <div className="info-item">
@@ -388,144 +447,176 @@ const OGPoolkk = (props) => {
                                             Total Donate
                                         </div>
                                         <div className="value">
-                                            {totalDonate} ETH
+                                           <p><img src={ethereum} style={{marginTop:'-5px',marginRight:'10px'}}/>{totalDonate} ETH</p> 
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div className="donate-pid">
-                                <div className="panel-title">
+
+                            <div className="donation-box">
+
+                                <div className="title donate-header">
                                     Donate
-                                </div>
-                                <div className="flex-box">
-                                    <div className="pid">
-                                        PID：{state.pid}
-                                    </div>
-                                    <div className="value">
-                                        {isInWhiteList == false && "Not a whitelist user"}
-                                        {isInWhiteList == true && "Whitelist user"}
+                                    <div className="isW">
+                                        Whitelist
+                                        <div className="is">
+                                            {isInWhiteList == false && "No"}
+                                            {isInWhiteList == true && "Yes"}
+                                        </div>
                                     </div>
                                 </div>
+                                <Form form={form} name="control-hooks" className="form">
+                                    <div className="donate-part">
+                                        <div className="balance-box">
+                                           
+                                                <p>Value: $ </p>
+                                            
+                                            <div className="name" style={{fontSize:'16px'}}>
+                                                Balance:
+                                            </div>
+                                            <div className="value" style={{fontSize:'16px'}}>
+                                                {showNum(state.ethBalance)} <span>ETH</span>
+                                            </div>
+                                        </div>
+                                        <Form.Item
+                                            name="amount"
+                                            validateTrigger="onBlur"
+                                            validateFirst={true}
+                                        >
+                                            <div className="input-box">
+                                                <AutoComplete
+                                                    allowClear
+                                                    value={inputValue}
+                                                    onChange={(e) => {
+                                                        getfdtAmount(e)
+                                                    }}
+                                                    style={{ width: 200 }}
+                                                    options={coinOptions}
+                                                    placeholder="0"
+                                                    filterOption={(inputValue, option) =>
+                                                        option.value.indexOf(inputValue) !== -1 &&
+                                                        /^-?(0|[1-9][0-9]*)(\.[0-9]*)?$/.test(inputValue)
+                                                    }
+                                                />
+                                                <div className="right-tip">
+                                                    <img className="coin-icon" src={ethereum} alt="" />
+                                                    ETH
+                                                </div>
+                                            </div>
+                                        </Form.Item>
+                                    </div>
+                                    <img className="down-icon" src={download} alt="" />
+
+
+                                    <div className="donate-part" style={{marginTop:'8px'}}>
+                                        <div className="balance-box">
+                                            <div className="name" style={{fontSize:'16px'}}>
+                                                Balance:
+                                            </div>
+                                            <div className="value" style={{fontSize:'16px'}}>
+                                                {showNum(fdtBalance)} <span>FDT</span>
+                                            </div>
+                                        </div>
+                                        <Form.Item
+                                            name="pid"
+                                            validateTrigger="onBlur"
+                                            validateFirst={true}
+
+                                        >
+                                            <div className="input-box">
+                                                <div className="exchangeAmount">
+                                                    {exchangeAmount}
+                                                </div>
+                                                <div className="right-tip">
+                                                <img className="coin-icon" src={ethereum} alt="" />
+                                                    FDT-OG
+                                                </div>
+                                            </div>
+                                        </Form.Item>
+                                    </div>
+                                    {status == 0 && <ConnectWallet className="connect-button" />}
+                                    {
+                                        status == 1 && !inputValue &&
+                                        <Button type="primary" className="donate">
+                                            Enter an amount
+                                        </Button>
+                                    }
+                                    {
+                                        status == 1 && BigNumber(state.ethBalance).lt(inputValue) &&
+                                        <Button type="primary" className="donate">
+                                            Balance not enough
+                                        </Button>
+                                    }
+                                    {
+                                        status == 1 && inputValue > 0 && !BigNumber(state.ethBalance).lt(inputValue) &&
+                                        <Button type="primary" className="donate" onClick={() => {
+                                            exchangeFdt()
+                                        }}>
+                                            Donate
+                                        </Button>
+                                    }
+
+                                    <div className="tip">
+                                    I have already donated  { } ETH, I can donate up to {} ETH, I can continue donating {showNum(state.ethBalance)} ETH.
+                                        {/* 1FDT-OG = {salePrice} USD ，Donate up to 2ETH */}
+                                    </div>
+                                </Form>
                             </div>
-                            <Form form={form} name="control-hooks" className="form">
-                                <div className="balance-box">
-                                    <div className="name">
-                                        Balance
-                                    </div>
-                                    <div className="value">
-                                        {state.ethBalance} <span>ETH</span>
-                                    </div>
-                                </div>
-                                <Form.Item
-                                    name="amount"
-                                    validateTrigger="onBlur"
-                                    validateFirst={true}
-                                >
-                                    <div className="input-box">
-                                        <img className="coin-icon" src={ethIcon} alt=""/>
-                                        <AutoComplete
-                                            allowClear
-                                            value={inputValue}
-                                            onChange={(e) => {
-                                                getfdtAmount(e)
-                                            }}
-                                            style={{width: 200}}
-                                            options={coinOptions}
-                                            placeholder=""
-                                            filterOption={(inputValue, option) =>
-                                                option.value.indexOf(inputValue) !== -1 &&
-                                                /^-?(0|[1-9][0-9]*)(\.[0-9]*)?$/.test(inputValue)
-                                            }
-                                        />
-
-                                    </div>
-                                </Form.Item>
-                                <img className="down-icon" src={downIcon} alt=""/>
-                                <Form.Item
-                                    name="pid"
-                                    validateTrigger="onBlur"
-                                    validateFirst={true}
-
-                                >
-                                    <div className="input-box">
-                                        <div className="exchangeAmount">
-                                            {exchangeAmount}
-                                        </div>
-                                        <div className="coin-name">
-                                            FDT-OG
-                                        </div>
-                                    </div>
-                                </Form.Item>
-                                <div className="balance-box">
-                                    <div className="name">
-                                        Balance
-                                    </div>
-                                    <div className="value">
-                                        {fdtBalance} <span>FDT</span>
-                                    </div>
-                                </div>
-                                <Button type="primary" className="donate" onClick={() => {
-                                    exchangeFdt()
-                                }}>
-                                    Donate
-                                </Button>
-                                <div className="tip">
-                                    1FDT-OG = {salePrice} USD ，Donate up to 2ETH
-                                </div>
-                            </Form>
                         </div>
                     </div>
                     <div className="panel-box part2">
                         <div className="panel-container">
-                            <div className="panel-title">
-                                Donate Records
-                            </div>
-                            <div className="og-nav-list">
-                                <div className={"nav-item " + (recordNav == 1 ? "active" : "")} onClick={() => {
-                                    setRecordNav(1)
-                                }}>
-                                    All Records
+                            <div className="list-top-part">
+                                <div className="panel-title">
+                                    Donate Records
                                 </div>
-                                <div className={"nav-item " + (recordNav == 2 ? "active" : "")} onClick={() => {
-                                    setRecordNav(2)
-                                }}>
-                                    My Records
-                                </div>
-                                {(isTAdmin) && (
-                                    <div className={"nav-item " + (recordNav == 3 ? "active" : "")} onClick={() => {
-                                        setRecordNav(3)
+                                <div className="fire-nav-list">
+                                    <div className={"nav-item " + (recordNav == 1 ? "active" : "")} onClick={() => {
+                                        setRecordNav(1)
                                     }}>
-                                        My recommendation
+                                        All Records
                                     </div>
-                                )
-                                }
-
+                                    <div className={"nav-item " + (recordNav == 2 ? "active" : "")} onClick={() => {
+                                        setRecordNav(2)
+                                    }}>
+                                        My Records
+                                    </div>
+                                    {(isTAdmin) && (
+                                        <div className={"nav-item " + (recordNav == 3 ? "active" : "")} onClick={() => {
+                                            setRecordNav(3)
+                                        }}>
+                                            My recommendation
+                                        </div>
+                                    )
+                                    }
+                                </div>
                             </div>
-                            <div className="fire-list-box">
+                            <div className="fire-list-box" style={{minWidth:'100%'}}>
                                 <div className="list-header flex-box">
                                     <div className="col">
                                         No.
                                     </div>
                                     <div className="col">
-                                        PID<img src={listIcon} alt="" className="list-icon"/>
+                                        PID<img src={listIcon} alt="" className="list-icon" />
                                     </div>
                                     <div className="col">
                                         Username
                                     </div>
                                     <div className="col">
-                                        Address
+                                    Wallet Address
                                     </div>
                                     <div className="col">
                                         ETH
                                     </div>
                                     <div className="col">
-                                        Amount
+                                    Value
                                     </div>
+                                    
                                     <div className="col">
                                         Rate
                                     </div>
                                     <div className="col">
-                                        USDT Cost
+                                        Amount
                                     </div>
                                     <div className="col">
                                         Time(UTC)
@@ -555,9 +646,9 @@ const OGPoolkk = (props) => {
                             <div className="pagination">
                                 {
                                     recordNav == 1 && <Pagination current={curPage} showSizeChanger
-                                                                  onShowSizeChange={handleShowSizeChange}
-                                                                  onChange={onChangePage} total={total}
-                                                                  defaultPageSize={pageCount}/>
+                                        onShowSizeChange={handleShowSizeChange}
+                                        onChange={onChangePage} total={total}
+                                        defaultPageSize={pageCount} />
                                 }
                             </div>
                         </div>
@@ -570,15 +661,21 @@ const OGPoolkk = (props) => {
                     <div className="panel-box">
                         <div className="panel-container">
                             <div className="isInW">
-                                <span>
-                                    My Pid:{state.pid}
+                                <span style={{display:'flex'}}>
+                                    PID
+                                    <div className='kk'>
+                                    {state.pid}
+                                    </div>
                                 </span>
-                                <span>
-                                    Whiterlist:{isInWhiteList ? "Yes" : "False"}
+                                <span style={{display:'flex',marginLeft:'10px'}}>
+                                    Whiterlist
+                                    <div className='kk'>
+                                        {isInWhiteList ? "Yes" : "False"}
+                                    </div>
                                 </span>
                             </div>
                             <div className="fire-list-box">
-                                <div className=" list-header2 flex-box">
+                                <div className="list-header2  flex-box">
                                     <div className="col">
                                         No.
                                     </div>
@@ -599,27 +696,28 @@ const OGPoolkk = (props) => {
                                         Row2(item, index)
                                     ))
                                 }
-                                <div className="pagination">
-                                    {
-                                        <Pagination current={curPage2} showSizeChanger
-                                                    onShowSizeChange={handleShowSizeChange2}
-                                                    onChange={onChangePage2} total={total2}
-                                                    defaultPageSize={pageCount2}/>
-                                    }
-                                </div>
 
+
+                            </div>
+                            <div className="pagination">
+                                {
+                                    <Pagination current={curPage2} showSizeChanger
+                                        onShowSizeChange={handleShowSizeChange2}
+                                        onChange={onChangePage2} total={total2}
+                                        defaultPageSize={pageCount2} />
+                                }
                             </div>
                         </div>
                     </div>
                 </div>
             )}
-            {activeNav == 3 &&(
+            {activeNav == 3 && (
                 <div>
                     <AddThreeWhiteList allRecords={allRecords}></AddThreeWhiteList>
 
                 </div>
             )}
-            {activeNav == 4 &&(
+            {activeNav == 4 && (
                 <div>
                     <AddNomalWhiteList allRecords={allRecords}></AddNomalWhiteList>
                 </div>
@@ -627,4 +725,4 @@ const OGPoolkk = (props) => {
         </OGPoolStyle>
     )
 }
-export default OGPoolkk
+export default OGPoolPublic

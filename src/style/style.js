@@ -1,11 +1,58 @@
 import {createGlobalStyle} from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
+  @font-face {
+    font-family: "RoBoto-Medium";
+    src: url("./font/RobotoMedium.ttf");
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: "Russo One-Regular";
+    src: url("./font/RussoOne-Regular.ttf");
+    font-weight: normal;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: "Roboto-Bold";
+    src: url("./font/Roboto-Bold.ttf");
+    font-weight: normal;
+    font-style: normal;
+  }
 
   * {
     box-sizing: border-box;
   }
+  input::-webkit-validation-bubble {
+    display: none!important;
+  }
+  input::-webkit-inner-spin-button {
+    appearance: none !important;
+  }
 
+  input::-webkit-outer-spin-button {
+    appearance: none !important;
+  }
+
+  /* Firefox */
+  
+  input:-moz-validation-bubble {
+    display: none;
+  }
+
+  /* Edge and IE */
+  input::-ms-validation-bubble {
+    display: none;
+  }
+  input[type='number'] {
+    appearance: textfield;
+  }
+
+  input[type='number'] {
+    -moz-appearance: textfield;
+  }
+  
   body {
     background: linear-gradient(180deg, #1E0000 0%, #020000 100%);
     color: #fff;
@@ -74,7 +121,10 @@ const GlobalStyle = createGlobalStyle`
 
 
   .fire-list-box {
-    padding: 1em 0 2em;
+    background: #1A1414;
+    border-radius: 15px;
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: 0em 0 0em;
     min-width: 800px;
     .col{
       text-align: center;
@@ -85,11 +135,13 @@ const GlobalStyle = createGlobalStyle`
       justify-content: space-between;
       font-size: 18px;
       font-weight: bold;
-      padding: 0.5em 1em;
+      padding: 20px 2em;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      color: #8A8080;
       .col {
         display: flex;
         white-space: nowrap;
-
+        
         .list-icon {
           width: 16px;
           height: 13px;
@@ -101,15 +153,20 @@ const GlobalStyle = createGlobalStyle`
     }
 
     .list-item {
-      padding: 0.5em 1em;
+      padding: 0.5em 2em;
       display: flex;
       justify-content: space-between;
-      background: #3F3535;
       border-radius: 10px;
       margin: 0.5em 0;
       font-family: Helvetica-Bold, Helvetica, sans-serif;
       align-items: center;
-
+      border-bottom:  1px solid rgba(255,255,255,0.1);
+      &:last-child{
+        border-bottom: none;
+      }
+      .no{
+        color: #E48686;
+      }
       .col {
         &.link {
           color: #84C0FF;
@@ -125,10 +182,7 @@ const GlobalStyle = createGlobalStyle`
       }
     }
   }
-  @media screen and (max-width: 1400px) {
-    .panel-container{
-    }
-  }
+
   .panel-box {
     display: flex;
     flex-direction: column;
@@ -137,12 +191,29 @@ const GlobalStyle = createGlobalStyle`
     
     .panel-container {
       overflow: auto;
-      background: #201414;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: #241B1B;
       padding: 3em 4em;
-      margin: 3em auto;
+      margin: 0.5em auto;
       box-shadow: 0px 3px 15px 5px rgba(0, 0, 0, 0.05);
       border-radius: 10px;
-      opacity: 0.95;
+      opacity: 1;
+      //scroll
+      &::-webkit-scrollbar-corner {
+        background-color: transparent;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+        background: #535353;
+      }
+
+      &::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+        border-radius: 10px;
+        background: #ededed;
+      }
       .nav-list {
         display: flex;
         background: #3F3535;
@@ -174,7 +245,7 @@ const GlobalStyle = createGlobalStyle`
     .panel-title {
       text-align: left;
       width: 100%;
-      font-size: 24px;
+      font-size: 30px;
       font-family: Helvetica-Bold, Helvetica, sans-serif;
       font-weight: bold;
       color: #FFFFFF;
@@ -222,23 +293,16 @@ const GlobalStyle = createGlobalStyle`
       background: none !important;
     }
   }
-
-  .ant-input, .ant-form-item-control-input, .ant-select,.ant-select-selector , .ant-input-status-error, .ant-input-affix-wrapper-status-error, .ant-input-affix-wrapper {
-    border-radius: 10px;
+  textarea{
+    padding: 10px;
+    &:focus-visible {
+      outline: none;
+    }
   }
 
-  /* input */
-  .ant-input-number {
-    width: 100%;
-    border-radius: 10px;
-  }
-  /* reset  pagination */
-  .ant-pagination-item-link,.ant-pagination-item{
-    background: #3F3535!important;
-    border-radius: 5px;
-  }
 
-  
+
+
   /* mobile style */
   @media screen and (max-width: 1000px) {
     .firebg{
@@ -254,6 +318,14 @@ const GlobalStyle = createGlobalStyle`
       width: 100%!important;
       .nav-list{
         display: none!important;
+      }
+     
+      .member{
+        border: 1px solid white;
+        width: 100%;
+        height: 100%;
+        background: #1E0000;
+        border-radius:50%;
       }
     }
   }

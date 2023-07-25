@@ -2,45 +2,57 @@ import React, {useEffect, useRef, useState} from 'react';
 import styled from "styled-components";
 import {useConnect} from "../../api/contracts";
 import {
-    Card,
-    Select,
     Button,
-    InputNumber,
-    Descriptions,
     message,
     Form,
-    List,
-    Input,
     notification,
-    Switch,
-    Radio,
     AutoComplete
 } from 'antd';
+
+
 import {getContractByName, getContractByContract} from "../../api/connectContract";
 import {dealPayMethod,dealMethod, viewMethod} from "../../utils/contractUtil"
 import {useNavigate} from "react-router-dom";
-import FireSeed from "../../imgs/FireSeed@2x.webp"
+import FireSeed from "../../imgs/long.png"
+import ethereum from "../../imgs/ethereum.png"
+import judgeStatus from "../../utils/judgeStatus";
 
 const MintFireSeed = (props) => {
     const [form] = Form.useForm();
 
     const MintFireSeed = styled.div`
+ .ant-form-item-control-input{
+    border-radius: 50px;
+ }
       width: 100%;
       overflow: hidden;
       flex-shrink: 0;
       flex-grow: 0;
       display: flex;
-      .flex-box{
-        padding:2em 0;
+      .content-box {
+        display: flex;
+        padding: 2em 0;
       }
+
       .left-content {
         width: 50%;
         padding-right: 5%;
-        .img-box{
+        position: relative;
+        .img-box {
+        display: inline-block;
+    
+        border: 1px solid rgba(255,255,255,0.4);
           border-radius: 5%;
-          box-shadow: 0px 0 10px 1px #d84a1b;
-          padding: 2px;
+          background: linear-gradient(136deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+          box-shadow: 0 0 10px rgba(255, 255, 255, 0), 0 0 5px rgba(0, 0, 0, 1);
+          padding: 10px;
+          font-family: Squada One-Regular, Squada One;
+          font-weight: 600;
+          text-align:center;
           img {
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0), 0 0 5px rgba(0, 0, 0, 1);
+            display: inline-block;
+            border: 1px solid rgba(255,255,255,0.5);
             border-radius: 20px;
             width: 100%;
             margin: 0 auto;
@@ -54,21 +66,22 @@ const MintFireSeed = (props) => {
         display: flex;
       }
       .form {
-        margin-top: 3em;
+        margin-top: 0em;
         .mint-fee{
           padding: 0 1em;
         }
         .subBtn {
           padding: 0 3em;
-          border-radius: 10px;
+          border-radius: 50px;
+          background: linear-gradient(32deg, #FF4E50 0%, #F9D423 100%);
         }
         .tip{
           margin-top: 2em;
-          font-size: 16px;
+          font-size: 14px;
           font-family: PingFangSCSemibold-, PingFangSCSemibold,sans-serif;
           font-weight: normal;
           color: #AC8989;
-          line-height: 25px;
+          line-height: 18px;
         }
       }
 
@@ -143,6 +156,7 @@ const MintFireSeed = (props) => {
         return await viewMethod(contractTemp, state.account, name, params)
     }
     const onChooseAmount = (value) =>{
+        value = parseFloat(value)
         setInputValue(value)
         setFee(0.08*value)
         if(value>=10){
@@ -235,21 +249,29 @@ const MintFireSeed = (props) => {
         }
 
     }
-    useEffect(() => {
-        FeeStatus()
+    useEffect(async () => {
+        let judgeRes = await judgeStatus(state)
+        if (!judgeRes) {
+            return
+        }
+        // FeeStatus()
         getWhitelist()
     }, [state.account]);
     return (
         <MintFireSeed>
             <div className="panel-box">
-                <div className="panel-container">
-                    <h2 className="panel-title">
-                        Create FireSeed
+                <div className="panel-container" >
+                    <h2 className="panel-title" >
+                            Mint FireSeed
                     </h2>
-                    <div className="flex-box">
-                        <div className="left-content">
+                    <div className="content-box">
+                    <div className="left-content">
                             <div className="img-box">
-                                <img className="img" src={FireSeed} alt=""/>
+                                <img className="img" src={FireSeed} alt="" />
+                                <p style={{ fontSize: '23px', lineHeight: '60px' }}>Pass FireSeed,Cast FireSoul</p>
+                                <div style={{ display: 'flex', marginTop: '-20px', height: '30px' }} ><hr style={{ width: '25%', opacity: ' 0.15' }} />
+                                <p style={{ fontSize: '13px' }}>&nbsp;FireDAO Ecosystem&nbsp;</p><hr style={{ width: '25%', opacity: ' 0.15' }} />
+                                </div>
                             </div>
                         </div>
                         <div className="right">
@@ -257,7 +279,7 @@ const MintFireSeed = (props) => {
 
                                 <Form.Item
                                     name="mintAmount"
-                                    label="Mint Amount "
+                                    label="Mint Amount(s) "
                                     validateTrigger="onBlur"
                                     validateFirst={true}
                                 >
@@ -275,26 +297,31 @@ const MintFireSeed = (props) => {
                                 <Form.Item
                                     label="Minting Fee"
                                 >
-                                    <div className="mint-fee">
+                                    <div className="mint-fee" >
                                         {fee}
+                                        <div style={{float:'right'}}>
+                                        <img src={ethereum} /><span style={{marginLeft:'10px'}}>ETH</span>
+                                        </div>
                                     </div>
+                                </Form.Item>
+                                <Form.Item className="button-box" style={{marginTop:'12em '}}>
+                                    <Button className="subBtn" htmlType="submit" type="primary"
+                                            size="large"
+                                            onClick={() => Mint()}>Mint FireSeed</Button>
                                 </Form.Item>
                                 <div className="tip">
                                     <p>
-                                        1.Every time you cast a FireSeed, you need todonate 0.08ETH.Ordinary users can cast up to 100pieces
-                                        at a time and the official white list can castup to 1.000 pieces at a time:
+                                    1.Every time you cast a FireSeed, you need to donate 0.1ETH. Ordinary users can cast up 
+                                    to 100 pieces at a time, and the official white list can cast up to 1,000 pieces at a time; 
                                     </p>
                                     <p>
-                                        2.lt has a casting
-                                        discount function, a single castingz10 pieces will get 10% off,z20 pieces will get 20%off, z30
-                                        pieces will get 30% off, z40 pieces will get40% off.z50 pieces will get 50% off.
+                                    2.It has a casting discount function, a single casting ≥10 pieces will get 10% off, 
+                                    ≥20 pieces will get 20% off, ≥30 pieces will get 30% off, ≥40 pieces will get 40% off, 
+                                    ≥50 pieces will get 50% off.
+
                                     </p>
                                 </div>
-                                <Form.Item className="button-box" >
-                                    <Button className="subBtn" htmlType="submit" type="primary"
-                                            size="large"
-                                            onClick={() => Mint()}>Mint</Button>
-                                </Form.Item>
+                                
                             </Form>
                         </div>
                     </div>

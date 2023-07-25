@@ -1,13 +1,14 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styled from "styled-components";
-import {useConnect} from "../../api/contracts";
-import {Card, Button, Select, Descriptions, message, Form, List, Input, notification} from 'antd';
-import {SendOutlined, TwitterOutlined, UserOutlined} from "@ant-design/icons";
-import {getContractByName, getContractByContract} from "../../api/connectContract";
-import {dealMethod, viewMethod} from "../../utils/contractUtil"
-import {useNavigate} from "react-router-dom";
+import { useConnect } from "../../api/contracts";
+import { Pagination,Card, Button, Select, Descriptions, message, Form, List, Input, notification } from 'antd';
+import { SendOutlined, TwitterOutlined, UserOutlined } from "@ant-design/icons";
+import { getContractByName, getContractByContract } from "../../api/connectContract";
+import { dealMethod, viewMethod } from "../../utils/contractUtil"
+import passport from "../../imgs/long.png"
+import { useNavigate } from "react-router-dom";
 import fireseed from "../../imgs/FireSeed@2x.webp"
-import {getPasslist} from "../../graph/myFireseed";
+import { getPasslist } from "../../graph/myFireseed";
 
 let logs = []
 
@@ -15,6 +16,61 @@ const LockList = (props) => {
     const [form] = Form.useForm();
     const LockList = styled.div`
       width: 100%;
+      .ant-form-item-control-input{
+    border-radius: 25px;
+ }
+ .ant-form-item-label>label{
+    color: white;
+    font-size:15px;
+ }
+ .flex-box{
+    border-radius: 25px;
+    width: 100%;
+ }
+      .panel-title{
+  font-size:30px;
+}
+.panel-container1{
+  border: none;
+  padding: 3em 0em;
+  position: relative;
+background: rgba(36, 27, 27, 1);
+width: 100%;
+  .tp{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    .tpitem{
+      
+height: 300px;
+      /* text-align:center; */
+      width: 24%;
+background: #140E0E;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.1);
+      img{
+        margin:10px;
+        width: 90%;
+      }
+      p{
+        margin: 10px;
+        font-size: 20px;
+font-family: Roboto-Bold, Roboto;
+font-weight: bold;
+      }
+    }
+  }
+}
+.describe{
+    width: 43%;
+    text-align:center;
+    background-color: #1A1414;
+border-radius: 20px;
+border: 1px solid rgba(255,255,255,0.1);
+margin: 4em auto;
+margin-bottom: 0em;
+}
+
       .form-value{
         padding: 0 10px;
       }
@@ -28,41 +84,35 @@ const LockList = (props) => {
       }
 
       .send-fireseed {
-        margin-top: 20px;
+        margin: 20px 0px;
 
         .ant-form-item {
-          margin: 0 auto;
-          width: 60% !important;
+          margin: 0em auto;
+          width: 92% !important;
+          display: flex;
+
         }
 
         .send-button {
-          width: 200px;
-          margin-top: 20px;
-          margin-left: calc(50% - 100px);
+          width: 92%;
+          background: linear-gradient(32deg, #FF4E50 0%, #F9D423 100%);
+          margin-top: 1em ;
+          height: 40px;
+          /* margin-left: calc(50% - 100px); */
         }
 
       }
 
-      .more-btn {
-        width: 300px;
-        height: 40px;
-        background: #3F3535;
-        border-radius: 5px;
-        line-height: 40px;
-        text-align: center;
-        font-size: 16px;
-        font-family: PingFangSC-Semibold, PingFang SC;
-        font-weight: 600;
-        color: #FFFFFF;
-        margin: 2em auto 0;
-        cursor: pointer;
-      }
 
       .nav-list-box {
         margin: 2em 0;
         display: flex;
+        width: 100%;
       }
 
+      .fire-nav-list{
+        width: 60%;
+      }
       .nav-list {
 
         display: flex;
@@ -78,7 +128,6 @@ const LockList = (props) => {
           margin-right: 10px;
           font-size: 16px;
           font-weight: bold;
-
           &.active {
             background: linear-gradient(320deg, #DD3642 0%, #FFC02C 100%);
             box-shadow: 0px 3px 6px 0px rgba(128, 4, 149, 0.3);
@@ -89,7 +138,13 @@ const LockList = (props) => {
           }
         }
       }
-
+      .ant-form-item-row {
+    width: 100%;
+      }
+      .ant-form-horizontal .ant-form-item-label{
+       width: 100%; 
+        text-align:left; 
+      }
       .list {
         display: flex;
         flex-wrap: wrap;
@@ -146,118 +201,189 @@ const LockList = (props) => {
 
       .content2 {
         margin: 2em auto;
+display: flex;
+justify-content:space-between;
+width: 100%;
 
         .myrecommend {
-          display: flex;
+            height: 150px;
+            background: #1A1414;
+            width: 48%;
           align-items: center;
-
+border-radius: 20px;
+border: 1px solid rgba(255,255,255,0.1);
+padding: 2em;
           .name {
             font-size: 16px;
             font-family: Helvetica-Bold, Helvetica;
             font-weight: bold;
-            color: #FFFFFF;
-            line-height: 19px;
-            margin-right: 10px;
+            color: #8A8080;
+            line-height: 26px;
           }
 
           .value {
+            margin: 1.5em 0em;
             line-height: 40px;
             padding: 0 20px;
-            width: 600px;
-            height: 40px;
-            background: #3F3535;
-            border-radius: 10px;
-            border: 1px solid #342727;
+            width: 100%;
+            justify-content:space-between;
+            background: rgba(205,158,87,0.1);
+            color: #CD9E57;
+border-radius: 50px 50px 50px 50px;
+opacity: 1;
+border: 1px solid rgba(205,158,87,0.5);
           }
         }
-
+.myteamsize{
+    padding: 2em;
+    height: 150px;
+    background: #1A1414;
+    width: 48%;
+    border-radius: 20px;
+border: 1px solid rgba(255,255,255,0.1);
         .box-title {
-          margin-top: 2em;
-          font-size: 16px;
-          font-family: Helvetica-Bold, Helvetica;
-          font-weight: bold;
+            font-size: 16px;
+            font-family: Helvetica-Bold, Helvetica;
+            font-weight: bold;
+            color: #8A8080;
+            line-height: 26px;
         }
 
         .refer-list {
           display: flex;
-
+justify-content: space-between;
           .refer-item {
             margin-right: 10px;
             text-align: center;
-            margin-top: 1em;
-            justify-content: space-between;
-            width: 325px;
-            height: 120px;
-            background: #3F3535;
-            border-radius: 10px;
-            border: 1px solid #7F6868;
-            padding: 20px;
-
-            .value {
-              font-size: 40px;
-              font-family: Krungthep;
-              line-height: 50px;
-              color: #fff;
-            }
-
+            margin-top: 0.2em;
+            
             .name {
               line-height: 40px;
               margin-top: 10px;
               font-family: Helvetica-Bold, Helvetica;
               font-weight: bold;
-              color: #FFFFFF;
+              color: #8A8080;
               line-height: 22px;
             }
+
+            .value {
+              font-size: 14px;
+              font-family: Krungthep;
+              line-height: 50px;
+              color: #fff;
+            }
+
+            
           }
 
         }
-
+    }
 
       }
 
-      .content2-part2 {
-        .list-box {
-          margin: 2em 0 1em;
+     
 
+      .fire-list-box {
+        .list-header {
+            padding: 20px 1em;
+        }
+        .list-item, .list-header {
+          justify-content: flex-start;
+        }
+
+        .col {
+          text-align: left;
+          align-items: center;
+          &:nth-child(1) {
+            min-width: 5%;
+          }
+
+          &:nth-child(2) {
+            width: 9%;
+          }
+
+          &:nth-child(3) {
+            width: 5%;
+          }
+
+          &:nth-child(4) {
+            width: 5%;
+          }
+
+          &:nth-child(5) {
+            width: 10%;
+          }
+
+          &:nth-child(6) {
+            width: 16%;
+          }
+
+          &:nth-child(7) {
+            width: 14%;
+          }
+
+          &:nth-child(8) {
+            width: 14%;
+          }
+
+          &:nth-child(9) {
+            width: 13%;
+            text-align: center;
+
+          }
+
+          &:nth-child(10) {
+            width: 8%;
+            text-align: center;
+          }
+
+          &:nth-child(11) {
+            width: 8%;
+          }
+        }
+        .list-item {
+            padding: 0.5em 1em;
           .col {
-            &:nth-child(1) {
-              width: 5%;
-            }
+            overflow: hidden;
+            padding-left: 0.5%;
+            //text-overflow: ellipsis;
 
-            &:nth-child(2) {
-              width: 5%;
-            }
+          }
+        }
+    }
+    .pagination {
+        text-align: center;
+      }
 
-            &:nth-child(3) {
-              width: 30%;
-            }
+      @media screen and (max-width: 1000px) {
+        .panel-container {
+          width: 90vw;
+          padding: 3em 1em;
 
-            &:nth-child(4) {
-              width: 30%;
+          .header-box {
+            display: block;
+
+            .fresh-icon {
+              top: 15px;
             }
           }
 
-          .list-header {
-            display: flex;
-            justify-content: space-between;
-            font-size: 18px;
-            font-weight: bold;
-            padding: 0.5em 1em;
-          }
+          .fire-list-box {
+            width: 100%;
+            overflow-x: scroll;
+            min-width: 100%;
 
-          .list-item {
-            padding: 0.5em 1em;
-            display: flex;
-            justify-content: space-between;
-            background: #3F3535;
-            border-radius: 10px;
-            margin: 0.5em 0;
+            .list-item {
+              background: none;
+            }
           }
         }
       }
-    `
-    let {state, dispatch} = useConnect();
 
+    `
+    let { state, dispatch } = useConnect();
+    const [curPage, setCurPage] = useState(1)
+    const [pageCount, setPageCount] = useState(20)
     const [curId, setID] = useState([])
     const [logArr, setLogArr] = useState([])
     const [level2Arr, setLevel2Arr] = useState([])
@@ -292,7 +418,17 @@ const LockList = (props) => {
         }
         return await viewMethod(contractTemp, state.account, name, params)
     }
+    const getData = async (page) => {
 
+    }
+
+    const onChangePage = async (page) => {
+        getData(page)
+        await setCurPage(page)
+    }
+    const handleShowSizeChange = async (page, count) => {
+        setPageCount(count)
+    }
     const myClass = async () => {
         const address = await handleViewMethod("upclass", [state.account])
         const recommenderLength = await handleViewMethod("recommenderNumber", [state.account])
@@ -313,7 +449,7 @@ const LockList = (props) => {
 
             }
         }
-        dispatch({type: "SET_MyRecommender", payload: address})
+        dispatch({ type: "SET_MyRecommender", payload: address })
         setLevel1(recommenderInfoArr.length)
         setLevel2(level2TotalLength)
         setLevel3(level3TotalLength)
@@ -332,16 +468,16 @@ const LockList = (props) => {
             list.push({
                 id,
                 balance,
-                value:id,
-                label:id
+                value: id,
+                label: id
             })
         }
 
-        dispatch({type: "SET_FIREDSEEDLIST", payload: list})
+        dispatch({ type: "SET_FIREDSEEDLIST", payload: list })
     }
 
     const transfer = async () => {
-        const {toAddress, amount} = form.getFieldValue()
+        const { toAddress, amount } = form.getFieldValue()
         // params _token
         handleDealMethod("safeTransferFrom", [state.account, toAddress, curId, amount, "0x00"])
     }
@@ -429,7 +565,9 @@ const LockList = (props) => {
         getMyFireSeed()
         myClass()
         logs = await getPasslist()
-        logs = logs.data.passFireSeeds
+        if (logs.data) {
+            logs = logs.data.passFireSeeds
+        }
         getTransfer()
     }, [state.account]);
     return (
@@ -448,7 +586,7 @@ const LockList = (props) => {
                                     <div className="list-item" onClick={() => {
                                         setID(item.id)
                                     }}>
-                                        <img className="img" src={fireseed} alt=""/>
+                                        <img className="img" src={fireseed} alt="" />
                                         <div className="item-info">
                                             <div className="id">
                                                 FireSeed # {item.id}
@@ -464,8 +602,25 @@ const LockList = (props) => {
                                 ))
                             }
                         </div>
-                        <div className="more-btn">
-                            MORE
+                        <div className="panel-container1">
+                            <div className='tp'>
+                                <div className='tpitem'>
+                                    <img src={passport} />
+                                    <p>FireSeed</p>
+                                </div>
+                                <div className='tpitem'>
+                                    <img src={passport} />
+                                    <p>FireSeed</p>
+                                </div>
+                                <div className='tpitem'>
+                                    <img src={passport} />
+                                    <p>FireSeed</p>
+                                </div>
+                                <div className='tpitem'>
+                                    <img src={passport} />
+                                    <p>FireSeed</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -477,140 +632,192 @@ const LockList = (props) => {
                     <div className="panel-title">
                         Pass FireSeed
                     </div>
-                    <Descriptions.Item label="transfer">
-                        <Form form={form} className="send-fireseed">
-                            <Form.Item
-                                name="FireSeed ID:"
-                                label="FireSeed ID:"
+                    <div className='describe'>
+                        <Descriptions.Item label="transfer" >
+                            <Form form={form} className="send-fireseed">
+                                <Form.Item
+                                    name="FireSeed ID"
+                                    label="FireSeed ID"
+                                >
+                                    <Select
+                                        className="select-chain"
+                                        defaultValue={curId}
+                                        onChange={handleChooseId}
+                                        value={curId}
+                                        options={state.fireSeedList}
+                                    />
+                                </Form.Item>
+                                <Form.Item
+                                    name="toAddress"
+                                    label="From"
+                                    validateTrigger="onBlur"
+                                    validateFirst={true}
+                                    rules={[
+                                        // { required: true, message: 'Please input Title!' },
+                                    ]}
+                                    style={{
+                                        width:'100%'
+                                    }}
+                                >
+                                    <div className="flex-box">
+                                        <Input style={{width:'100%', border:'1px solid rgba(205,158,87,0.5)',backgroundColor:'rgba(205,158,87,0.1)',borderRadius: '50px',color:'#CD9E57'}}/>
 
-                            >
-                                <Select
-                                    className="select-chain"
-                                    defaultValue={curId}
-                                    onChange={handleChooseId}
-                                    value={curId}
-                                    options={state.fireSeedList}
-                                />
-                            </Form.Item>
-                            <Form.Item
-                                name="toAddress"
-                                label="Transfer Address"
-                                validateTrigger="onBlur"
-                                validateFirst={true}
-                                rules={[
-                                    {required: true, message: 'Please input Title!'},
-                                ]}
-                            >
-                                <div className="flex-box">
-                                    <Input/>
-                                    <Button type="primary" onClick={() => {
-                                        check()
-                                    }}>
-                                        Check
-                                    </Button>
-                                </div>
-                            </Form.Item>
-                            <Form.Item
-                                label="hasTransfer"
-                                validateTrigger="onBlur"
-                            >
-                                <div className="flex-box form-value">
-                                    {hasTransfer ? "Yes" : "No"}
-                                </div>
-                            </Form.Item>
-                            <Form.Item
-                                name="amount"
-                                label="Transfer Amount"
-                                validateTrigger="onBlur"
-                                validateFirst={true}
-                                rules={[
-                                    {required: true, message: 'Please input Title!'},
-                                ]}
+                                    </div>
+                                </Form.Item>
+                                <Form.Item
+                                    label="To"
+                                    validateTrigger="onBlur"
+                                >
+                                    <div className="flex-box form-value">
+                                        {hasTransfer ? "Yes" : "No"}
+                                    </div>
+                                </Form.Item>
+                                <a style={{ textDecoration: 'underline', color: '#CD9E57' }} onClick={() => {
+                                    check()
+                                }}>
+                                    Check
+                                </a>
+                                <Form.Item
+                                    name="amount"
+                                    label="Amount"
+                                    validateTrigger="onBlur"
+                                    validateFirst={true}
+                                    rules={[
+                                        // { required: true, message: 'Please input Title!' },
+                                    ]}
 
-                            >
-                                <div className="flex-box">
-                                    <Input/>
-                                </div>
-                            </Form.Item>
-                            <Button className="send-button" type="primary" htmlType="submit" onClick={() => {
-                                transfer()
-                            }}>
-                                Send
-                            </Button>
-                        </Form>
-                    </Descriptions.Item>
+                                >
+                                    <div className="flex-box">
+                                        <Input placeholder='Enter Amounts'/>
+                                    </div>
+                                </Form.Item>
+                                <Button className="send-button" type="primary" htmlType="submit" onClick={() => {
+                                    transfer()
+                                }}>
+                                    Send
+                                </Button>
+                            </Form>
+                        </Descriptions.Item>
+                    </div>
                 </div>
             </div>
             <div className="panel-box content2-part2">
                 <div className="panel-container">
                     <div className="panel-title">
-                        My PassList
+                        My Team
                     </div>
                     <div className="content2">
                         <div className="myrecommend">
                             <div className="name">
-                                My Recommender:
+                                Contract Address
                             </div>
                             <div className="value">
                                 {state.myRecommender}
                             </div>
                         </div>
-
-                        <div className="box-title">
-                            My Team Size:
-                        </div>
-                        <div className="refer-list">
-                            <div className="refer-item">
-                                <div className="value">
-                                    {level1}
-                                </div>
-                                <div className="name">
-                                    Level 1
-                                </div>
-
+                        <div className="myteamsize">
+                            <div className="box-title">
+                                My Team Size
                             </div>
-                            <div className="refer-item">
-                                <div className="value">
-                                    {level2}
-                                </div>
-                                <div className="name">
-                                    Level 2:
-                                </div>
+                            <div className="refer-list">
+                                <div className="refer-item">
+                                    <div className="name">
+                                        Level 1
+                                    </div>
+                                    <div className="value">
+                                        {level1}
+                                    </div>
 
-                            </div>
-                            <div className="refer-item">
-                                <div className="value">
-                                    {level3}
-                                </div>
-                                <div className="name">
-                                    Level 3:
-                                </div>
 
-                            </div>
-                            <div className="refer-item">
-                                <div className="value">
-                                    {total}
                                 </div>
-                                <div className="name">
-                                    Total:
-                                </div>
+                                <div className="refer-item">
+                                    <div className="name">
+                                        Level 2
+                                    </div>
+                                    <div className="value">
+                                        {level2}
+                                    </div>
 
+
+                                </div>
+                                <div className="refer-item">
+                                    <div className="name">
+                                        Level 3
+                                    </div>
+                                    <div className="value">
+                                        {level3}
+                                    </div>
+
+
+                                </div>
+                                <div className="refer-item">
+                                    <div className="name">
+                                        Total
+                                    </div>
+                                    <div className="value">
+                                        {total}
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div className="list-box">
+                    <div className="header-box">
+                        <div className="nav-list-box">
+                            <div className="fire-nav-list">
+                                <div style={{width:'90px'}} className={"nav-item " + (activeNav == 1 ? "active" : "")} onClick={() => {
+                                    setNav(1)
+                                }}>
+                                    All
+                                </div>
+                                <div style={{width:'90px'}} className={"nav-item " + (activeNav == 2 ? "active" : "")} onClick={() => {
+                                    setNav(2)
+                                }}>
+                                    Level 2
+                                </div>
+                                <div style={{width:'90px'}} className={"nav-item " + (activeNav == 3 ? "active" : "")} onClick={() => {
+                                    setNav(3)
+                                }}>
+                                    Level 3
+                                </div>
+                                <div style={{width:'90px'}} className={"nav-item " + (activeNav == 4 ? "active" : "")} onClick={() => {
+                                    setNav(4)
+                                }}>
+                                    Level 4
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="fire-list-box">
                         <div className="list-header flex-box">
                             <div className="col">
-                                Level
+                                No.
                             </div>
                             <div className="col">
-                                transferTime
+                                Address
                             </div>
                             <div className="col">
-                                From
+                                PID
                             </div>
                             <div className="col">
-                                To
+                                FID
+                            </div>
+                            <div className="col">
+                            Forum ID
+                            </div>
+                            <div className="col">
+                            <span >FDT Transaction <br />Tax</span>
+                            </div>
+                            <div className="col">
+                            Mint FireSeed  <br />Fees
+                            </div>
+                            <div className="col">
+                            Seed Donation <br /> Fees
+                            </div>
+                            <div className="col">
+                            Consensus <br /> Donation Fees
+                            </div>
+                            <div className="col">
+                            Time(UTC)
                             </div>
                         </div>
                         {
@@ -669,6 +876,13 @@ const LockList = (props) => {
                                 </div>
                             ))
 
+                        }
+                    </div>
+                    <div className="pagination">
+                        {
+                            activeNav==1&& <Pagination current={curPage} showSizeChanger onShowSizeChange={handleShowSizeChange}
+                                                       onChange={onChangePage} total={total}
+                                                       defaultPageSize={pageCount}/>
                         }
                     </div>
                 </div>

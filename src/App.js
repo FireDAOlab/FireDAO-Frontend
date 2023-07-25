@@ -12,6 +12,7 @@ import MintFireSoul from "./view/HolyFireAltar/MintFireSoul"
 import AdminPage from "./view/passportAdmin"
 import MyPassport from "./view/HolyFireAltar/MyPassport"
 import GlobalStyle from "./style/style";
+import CommonStyle from "./style/commonStyle";
 import AntdOverride from "./style/antdOverride";
 import React from "react";
 import {ConnectProvider, useConnect} from "./api/contracts";
@@ -28,8 +29,9 @@ import ChangeUserInfo from "./view/HolyFireAltar/ChangeUserInfo";
 import Reputation from "./view/HolyFireAltar/Reputation";
 import ReputationManage from "./view/HolyFireAltar/ReputationManage";
 
+
 import firebg from "./imgs/firebg.mp4"
-import NavList from "./component/NavList";
+import NavList from "./component/NavList/NavList";
 
 //Seed Manage
 import FireSeedManage from "./view/HolyFireAltar/FireSeedManage"
@@ -45,7 +47,8 @@ import TreasurySource from "./view/Treasury/Source"
 import SourceDetail from "./view/Treasury/SourceDetail"
 import RepurchaseAndBurnManage from "./view/Treasury/RepurchaseAndBurnManage"
 import RepurchaseAndBurn from "./view/Treasury/RepurchaseAndBurn"
-
+import CommunityVault from "./view/Treasury/CommunityVault";
+import CreateProposal from "./view/Treasury/CommunityVault/CreateProposal";
 //FDTSquare
 import OGPool from "./view/FDTSquare/OGPool/OGPool";
 import OGPoolAdmin from "./view/FDTSquare/OGPool/OGPoolAdmin";
@@ -71,10 +74,19 @@ import GuildManage from "./view/Operation/GuildManage"
 import Guild from "./view/Operation/Guild"
 import CreateGuild from "./view/Operation/CreateGuild"
 import GuildDetail from "./view/Operation/GuildDetail"
+
+import ForumFLMAirdrop from "./view/Operation/ForumFLMAirdrop"
+import FLMAirdropLv1 from "./view/Operation/ForumFLMAirdrop/component/FLMAirdropLv1"
+import FLMAirdropLv2 from "./view/Operation/ForumFLMAirdrop/component/FLMAirdropLv2"
+import FLMAirdrop from "./view/Operation/FLMAirdrop"
+import FLMAirdropManage from "./view/Operation/FLMAirdrop/Manage"
+
+
 import LPMining from "./view/Operation/LPMining"
 import LPMiningManage from "./view/Operation/LPMining/Manage"
 import FDTLockMining from "./view/Operation/FDTLockMining"
 import FDTLockMiningManage from "./view/Operation/FDTLockMining/Manage"
+
 function App() {
     const history = useNavigate();
     const location = useLocation()
@@ -82,6 +94,7 @@ function App() {
     return (
 
         <ConnectProvider>
+            <CommonStyle/>
             <GlobalStyle/>
             <AntdOverride/>
 
@@ -141,7 +154,11 @@ function App() {
                                 <Route path="/SourceDetail" element={<SourceDetail/>}/>
                                 <Route path="/RepurchaseAndBurnManage" element={<RepurchaseAndBurnManage/>}/>
                                 <Route path="/RepurchaseAndBurn" element={<RepurchaseAndBurn/>}/>
+                                <Route path="/CommunityVault" element={<CommunityVault/>}/>
+                                <Route path="/CreateProposal" element={<CreateProposal/>}/>
 
+
+                                
                                 {/* FDTSquare*/}
                                 <Route path="/OGPool" element={<OGPool/>}/>
                                 <Route path="/OGPoolAdmin" element={<OGPoolAdmin/>}/>
@@ -167,16 +184,29 @@ function App() {
                                 <Route path="/Guild" element={<Guild/>}/>
                                 <Route path="/CreateGuild" element={<CreateGuild/>}/>
                                 <Route path="/GuildDetail/:id" element={<GuildDetail/>}/>
+                                <Route path="/FLMAirdrop" element={<FLMAirdrop/>}/>
+                                <Route path="/FLMAirdropManage" element={<FLMAirdropManage/>}/>
+
+                                <Route path="/ForumFLMAirdrop" element={<ForumFLMAirdrop/>}/>
+                                
+                                <Route path="/FLMAirdropLv1" element={<FLMAirdropLv1/>}/>
+                                <Route path="/FLMAirdropLv2" element={<FLMAirdropLv2/>}/>
+
                                 <Route path="/LPMining" element={<LPMining/>}/>
                                 <Route path="/LPMiningManage" element={<LPMiningManage/>}/>
                                 <Route path="/FDTMining" element={<FDTLockMining/>}/>
                                 <Route path="/FDTMiningManage" element={<FDTLockMiningManage/>}/>
 
+
                             </Routes>
+                        </div>
+                        <div className='twindow'>
+                            
                         </div>
                     </div>
                     <FireDAOFooter/>
                 </div>
+
             }
         </ConnectProvider>
 

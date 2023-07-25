@@ -276,7 +276,7 @@ const Register = (props) => {
           if (paytype == 1) {
               const isOpenFeeOn = await feeOn()
               let feeValue = 0
-
+              console.log([userName, Email, jsonUrl.IpfsHash])
               if (isOpenFeeOn) {
                   feeValue = await getFee()
                   await handleDealPayMethod("register",
@@ -330,6 +330,7 @@ const Register = (props) => {
         }
     }, [state.account,state.networkId,state.apiState,state.ethBalance]);
     const checkMintInfo = async ()=>{
+        console.log(state.networkId)
         if(state.networkId !== develop.chainId){
             openMessageError("The testnet is not available now, please connect to" + develop.Name)
             return

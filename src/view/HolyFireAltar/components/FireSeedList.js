@@ -1,15 +1,16 @@
-import React, {useEffect, useRef, useState} from 'react';
-import {useConnect} from "../../../api/contracts";
-import {Button, Card, Form, Input, Radio, Switch,message} from "antd";
-import {getContractByName} from "../../../api/connectContract";
-import {dealMethod, viewMethod} from "../../../utils/contractUtil";
-import {useNavigate} from "react-router-dom";
+import React, { useEffect, useRef, useState } from 'react';
+import { useConnect } from "../../../api/contracts";
+import { Button, Card, Form, Input, Radio, Switch, message } from "antd";
+import { getContractByName } from "../../../api/connectContract";
+import { dealMethod, viewMethod } from "../../../utils/contractUtil";
+import { useNavigate } from "react-router-dom";
+import passport from "../../../imgs/long.png"
 import FireSeedListStyle from "./FireSeedListStyle";
 import fireseed from "../../../imgs/FireSeed@2x.webp"
 const FireSeedList = (props) => {
-    const {list} = props
-    let {state, dispatch} = useConnect();
-    const [length,setLength] = useState(0)
+    const { list } = props
+    let { state, dispatch } = useConnect();
+    const [length, setLength] = useState(0)
 
     const history = useNavigate();
     const [form] = Form.useForm();
@@ -33,22 +34,22 @@ const FireSeedList = (props) => {
             list.push({
                 id,
                 balance,
-                value:id,
-                label:id
+                value: id,
+                label: id
             })
         }
-        dispatch({type: "SET_FIREDSEEDLIST", payload: list})
+        dispatch({ type: "SET_FIREDSEEDLIST", payload: list })
     }
 
 
-    useEffect(()=>{
+    useEffect(() => {
         getMyFireSeed()
-    },[state.account])
+    }, [state.account])
     return (
         <FireSeedListStyle>
             <div className="panel-box">
-                <div className="panel-container">
-                    <div className="panel-title">
+                <div className="panel-container" style={{ border: 'none' }}>
+                    <div className="panel-title" style={{fontSize:'30px'}}>
                         My FireSeed
                     </div>
 
@@ -57,15 +58,17 @@ const FireSeedList = (props) => {
                         <div className="list">
                             {
                                 state.fireSeedList.map(item => (
+                                    
                                     <div className="list-item" onClick={() => {
                                     }}>
-                                        <img className="img" src={fireseed} alt=""/>
+                                        <img className="img" src={fireseed} alt="" />
                                         <div className="item-info">
                                             <div className="id">
-                                                FireSeed # {item.id}
+                                            <p>FireSeed</p> 
                                             </div>
                                             <div className="number-box">
                                                 <div className="number">
+                                                    <span># {item.id}</span>
                                                     ×{item.balance}
                                                 </div>
                                             </div>
@@ -75,10 +78,28 @@ const FireSeedList = (props) => {
                                 ))
                             }
                         </div>
-                        <div className="more-btn">
-                            MORE
-                        </div>
+                       
                     </div>
+                    <div className="panel-container1">
+                            <div className='tp'>
+                                <div className='tpitem'>
+                                    <img src={passport} />
+                                    <p>FireSeed</p>
+                                </div>
+                                <div className='tpitem'>
+                                    <img src={passport} />
+                                    <p>FireSeed</p>
+                                </div>
+                                <div className='tpitem'>
+                                    <img src={passport} />
+                                    <p>FireSeed</p>
+                                </div>
+                                <div className='tpitem'>
+                                    <img src={passport} />
+                                    <p>FireSeed</p>
+                                </div>
+                            </div>
+                        </div>
                 </div>
             </div>
         </FireSeedListStyle>

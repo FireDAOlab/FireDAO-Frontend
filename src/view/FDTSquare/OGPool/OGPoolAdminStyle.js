@@ -1,20 +1,47 @@
 import styled from "styled-components";
 const OGPoolStyle = styled.div`
-  .ant-btn{
+  .ant-btn {
     margin-right: 20px;
+    padding: 0 30px;
   }
-  .assign-row {
-    padding: 10px 0;
-    border-bottom: 1px solid #666;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
+  .flex-box{
+    align-items: center;
+  }
+  .panel-title {
+    margin: 1.5em 0;
+  }
+
+  .ant-form-item-control-input {
+    width: 450px;
+  }
+  .current-status{
+    font-size: 16px;
+    white-space: nowrap;
+    margin-right: 10px;
+  }
+  .tip-box {
+    padding: 1em 0;
+  }
+
+  .page-title {
+    padding: 2vh 0 2vh 13%;
+    font-size: 23px;
+    font-family: Roboto-Bold, Roboto;
+    font-weight: bold;
   }
 
   .panel-container {
     width: 90%;
     margin: 10px auto;
-    padding: 1em;
+    padding: 1em 8%;
+
+    .operate-box {
+      margin-top: 20px;
+
+      .add {
+        width: 160px;
+      }
+    }
 
     .info {
       font-size: 20px;
@@ -75,11 +102,6 @@ const OGPoolStyle = styled.div`
     }
 
     .donate-pid {
-      .panel-title { {
-        margin-top: 1.5em;
-      }
-      }
-
       .flex-box {
         margin: 1.5em 0;
         justify-content: space-between;
@@ -206,35 +228,9 @@ const OGPoolStyle = styled.div`
     }
   }
 
-  .og-nav-list {
-    margin: 10px auto;
-    display: flex;
-    width: 90%;
-    height: 80px;
-    background: #3E2727;
-    border-radius: 10px;
-    border: 1px solid #333333;
-    font-size: 20px;
-    font-family: Roboto-Bold, Roboto;
-    font-weight: bold;
-    color: #999999;
-
-    .nav-item {
-      width: 33.3%;
-      display: flex;
-      align-items: center;
-      text-align: center;
-      justify-content: center;
-      padding: 0 10px;
-
-      &.active {
-        font-weight: bold;
-        color: #FFFFFF;
-        background: linear-gradient(320deg, #DD3642 0%, #FFC02C 100%);
-        box-shadow: 0px 3px 6px 0px rgba(128, 4, 149, 0.3);
-        border-radius: 10px;
-      }
-    }
+  .fire-nav-list {
+    width: 74%;
+    margin: 0 auto;
   }
 
   .part4 {

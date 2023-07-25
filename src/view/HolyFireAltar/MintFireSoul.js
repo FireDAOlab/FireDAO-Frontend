@@ -1,6 +1,6 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styled from "styled-components";
-import {useConnect} from "../../api/contracts";
+import { useConnect } from "../../api/contracts";
 import {
     Card,
     Select,
@@ -15,13 +15,15 @@ import {
     Switch,
     Radio
 } from 'antd';
-import {getContractByName, getContractByContract} from "../../api/connectContract";
-import {dealPayMethod, dealMethod, viewMethod} from "../../utils/contractUtil"
-import {useNavigate} from "react-router-dom";
-import FireSoul from "../../imgs/FireSoul@2x.webp"
+import user3 from "../../imgs/user3.png";
+import passportIcon from "../../imgs/ethereum.png"
+import { getContractByName, getContractByContract } from "../../api/connectContract";
+import { dealPayMethod, dealMethod, viewMethod } from "../../utils/contractUtil"
+import { useNavigate } from "react-router-dom";
+import FireSoul from "../../imgs/FireSoul.png"
 import MintSoulTip from "./components/MintSoulTip";
 import judgeStatus from "../../utils/judgeStatus";
-import {FireLockDecimal} from "../../utils/constants";
+import { FireLockDecimal } from "../../utils/constants";
 import addressMap from "../../api/addressMap";
 const MintFireSoul = (props) => {
 
@@ -31,6 +33,11 @@ const MintFireSoul = (props) => {
       flex-shrink: 0;
       flex-grow: 0;
       display: flex;
+ 
+      .subBtn{
+        width: 130px;
+        
+      }
       .pid{
         padding-left: 10px;
       }
@@ -40,15 +47,25 @@ const MintFireSoul = (props) => {
       }
 
       .left-content {
+      
         width: 50%;
         padding-right: 5%;
-
+        position: relative;
         .img-box {
+        display: inline-block;
+    
+        border: 1px solid rgba(255,255,255,0.4);
           border-radius: 5%;
-          box-shadow: 0px 0 10px 1px #d84a1b;
-          padding: 2px;
-
+          background: linear-gradient(136deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+          box-shadow: 0 0 10px rgba(255, 255, 255, 0), 0 0 5px rgba(0, 0, 0, 1);
+          padding: 10px;
+          font-family: Squada One-Regular, Squada One;
+          font-weight: 600;
+          text-align:center;
           img {
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0), 0 0 5px rgba(0, 0, 0, 1);
+            display: inline-block;
+            border: 1px solid rgba(255,255,255,0.5);
             border-radius: 20px;
             width: 100%;
             margin: 0 auto;
@@ -61,13 +78,16 @@ const MintFireSoul = (props) => {
         display: flex;
         max-width: 500px;
         .form { 
-          margin-top: 3em;
+          margin-top: 0em;
+          
           .balance{
             padding: 0 1em;
           }
           .subBtn {
             margin-top: 1em;
-            padding: 0 3em;
+            padding: 0 0em;
+            margin-right:1em;
+            background: linear-gradient(32deg, #FF4E50 0%, #F9D423 100%);
           }
           .choose-id{
             display: flex;
@@ -77,21 +97,36 @@ const MintFireSoul = (props) => {
           .flex-box{
             position: relative;;
             align-items: flex-end;
+            .ant-form-item-control-input{
+    border-radius: 25px;
+ }
             .ant-form-item{
               flex-grow: 1;
             }
             .go-btn{
               margin-bottom: 10px;
               margin-left: 10px;
+              
+background: linear-gradient(32deg, #FF4E50 0%, #F9D423 100%);
+            }
+          }
+          .fee{
+            width: 100%;
+            font-size:16px;
+            margin-top: 21px; 
+            margin-bottom:10px;
+            line-height:21px;    
+            img{
+                margin-left:180px;
             }
           }
           .tip{
             margin-top: 2em;
-            font-size: 16px;
+            font-size: 14px;
             font-family: PingFangSCSemibold-, PingFangSCSemibold,sans-serif;
             font-weight: normal;
             color: #AC8989;
-            line-height: 25px;
+            line-height: 18px;
           }
         }
       }
@@ -135,7 +170,7 @@ const MintFireSoul = (props) => {
     const history = useNavigate();
     const [form] = Form.useForm();
 
-    let {state, dispatch} = useConnect();
+    let { state, dispatch } = useConnect();
     const [fee, setFee] = useState(0.1)
     const [status, setStatus] = useState(false)
 
@@ -170,10 +205,10 @@ const MintFireSoul = (props) => {
         if (!contractTemp) {
             notification.error("Please connect")
         }
-        if(!status){
+        if (!status) {
             return dealMethod(contractTemp, state.account, name, params)
-        }else{
-            return dealPayMethod(contractTemp, state.account, name, params,state.api.utils.toWei(fee.toString()))
+        } else {
+            return dealPayMethod(contractTemp, state.account, name, params, state.api.utils.toWei(fee.toString()))
         }
     }
     const handleDealSeedMethod = async (name, params) => {
@@ -198,7 +233,7 @@ const MintFireSoul = (props) => {
         }
         return await viewMethod(contractTemp, state.account, name, params)
     }
-    const getUserFIDAndAddr = async ()=>{
+    const getUserFIDAndAddr = async () => {
         const UserToSoul = await handleSoulViewMethod("UserToSoul", [state.account])
         const UserFID = await handleSoulViewMethod("UserFID", [state.account])
         await setUserToSoul(UserToSoul)
@@ -208,7 +243,7 @@ const MintFireSoul = (props) => {
     const getUserInfo = async () => {
         if (!state.pid) {
             const userInfo = await handleUserViewMethod("userInfo", [state.account])
-            dispatch({type: "SET_PID", payload: userInfo.PID})
+            dispatch({ type: "SET_PID", payload: userInfo.PID })
         }
     }
     const goPath = (url) => {
@@ -218,29 +253,29 @@ const MintFireSoul = (props) => {
         let contractTemp = await getContractByContract("erc20", address, state.api,)
         return dealMethod(contractTemp, state.account, name, params)
     }
-    const getFee = async ()=>{
+    const getFee = async () => {
         const feeOn = await handleSoulViewMethod("feeOn", [])
         const fee = await handleSoulViewMethod("fee", [])
-        console.log(feeOn,fee)
-        setFee(fee/10**18)
+        console.log(feeOn, fee)
+        setFee(fee / 10 ** 18)
         setStatus(feeOn)
     }
     const approve = async () => {
-        const contractAddr =  addressMap["mintFireSoul"].address
-        handleDealSeedMethod("setApprovalForAll",[contractAddr,true])
+        const contractAddr = addressMap["mintFireSoul"].address
+        handleDealSeedMethod("setApprovalForAll", [contractAddr, true])
         allowance1155(true)
     }
     const Mint = async () => {
-        handleDealMethod("burnToMint", [chooseId]).then(async ()=>{
+        handleDealMethod("burnToMint", [chooseId]).then(async () => {
             await getUserFIDAndAddr()
             setShowTip(true)
-        }).catch(err=>{
+        }).catch(err => {
             console.log(err)
         })
     }
-    const allowance1155 =async ()=>{
-        const contractAddr =  addressMap["mintFireSoul"].address
-        const isApproved = await handleSeedViewMethod("isApprovedForAll", [state.account,contractAddr])
+    const allowance1155 = async () => {
+        const contractAddr = addressMap["mintFireSoul"].address
+        const isApproved = await handleSeedViewMethod("isApprovedForAll", [state.account, contractAddr])
         setAllowance(isApproved)
     }
     const ownerNFT = async () => {
@@ -284,16 +319,25 @@ const MintFireSoul = (props) => {
     }
     return (
         <MintFireSoul>
-            {showTip&&<MintSoulTip closeDialog={()=>{setShowTip(false)}} UserToSoul={UserToSoul} UserFID={UserFID} />}
-            <div className="panel-box ">
+            {showTip && <MintSoulTip closeDialog={() => { setShowTip(false) }} UserToSoul={UserToSoul} UserFID={UserFID} />}
+            <div className="panel-box">
                 <div className="panel-container">
-                    <h2 className="panel-title">
-                        Mint FireSoul
-                    </h2>
+                    <div style={{ display: 'flex' }}>
+                        <h2 className="panel-title" >
+                            Mint FireSoul
+                        </h2>
+                        <Button style={{ float: 'right', background: '#373232', margin: '0px 13px', textAlign: 'center', lineHeight: '28px', width: "32px", height: '32px', border: '1px solid rgba(255, 255, 255, 0.15)', borderRadius: '50%', }}>
+                            <img src={user3} style={{ width: '22px', marginLeft: '-10px', marginTop: '-10px' }} />
+                        </Button>
+                    </div>
                     <div className="content-box">
                         <div className="left-content">
                             <div className="img-box">
-                                <img className="img" src={FireSoul} alt=""/>
+                                <img className="img" src={FireSoul} alt="" />
+                                <p style={{ fontSize: '23px', lineHeight: '60px' }}>Pass FireSeed,Cast FireSoul</p>
+                                <div style={{ display: 'flex', marginTop: '-20px', height: '30px' }} ><hr style={{ width: '25%', opacity: ' 0.15' }} />
+                                <p style={{ fontSize: '13px' }}>&nbsp;FireDAO Ecosystem&nbsp;</p><hr style={{ width: '25%', opacity: ' 0.15' }} />
+                                </div>
                             </div>
                         </div>
                         <div className="right">
@@ -307,9 +351,9 @@ const MintFireSoul = (props) => {
                                         validateFirst={true}
 
                                     >
-                                       <div className="pid">
-                                           {state.pid}
-                                       </div>
+                                        <div className="pid">
+                                            {state.pid}
+                                        </div>
                                     </Form.Item>
                                     <Button type="primary" className="go-btn" onClick={() => {
                                         goPath('/MintPassport')
@@ -352,6 +396,19 @@ const MintFireSoul = (props) => {
                                         Mint FireSeed
                                     </Button>
                                 </div>
+                                <div className='fee'>
+                                    <span>Fee : </span>
+                                    <img src={passportIcon} />
+                                </div>
+                                <Form.Item className="button-box" >
+                                    {!allowance && <Button className="subBtn" htmlType="submit" type="primary"
+                                        size="large"
+                                        onClick={() => approve()}>Approve</Button>}
+
+                                    <Button className="subBtn" htmlType="submit" type="primary"
+                                        size="large"
+                                        onClick={() => Mint()}>Mint</Button>
+                                </Form.Item>
 
                                 <div className="tip">
                                     <p>
@@ -366,16 +423,13 @@ const MintFireSoul = (props) => {
                                         If you
                                         don't have one, please mint a FirePassport and FireSeed first.
                                     </p>
-                                </div>
-                                <Form.Item className="button-box">
-                                    {!allowance&&     <Button style={{marginRight:"10px"}} className="subBtn" htmlType="submit" type="primary"
-                                                             size="large"
-                                                             onClick={() => approve()}>approve</Button>}
+                                    <p>
 
-                                    <Button className="subBtn"  htmlType="submit" type="primary"
-                                            size="large"
-                                            onClick={() => Mint()}>Mint</Button>
-                                </Form.Item>
+                                        3.FireSoul can be destroyed, and the corresponding soul account, FID,
+                                        NFT and various SBTs will also be canceled after destruction.
+                                        You can burn a FireSeed again to generate a brand new SoulAccount.
+                                    </p>
+                                </div>
 
                             </Form>
                         </div>
@@ -383,6 +437,7 @@ const MintFireSoul = (props) => {
                 </div>
 
             </div>
+
         </MintFireSoul>
     )
 }

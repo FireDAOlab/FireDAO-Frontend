@@ -1,48 +1,162 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styled from "styled-components";
-import {useConnect} from "../../api/contracts";
-import {Card, Button, Descriptions, message, Form, List, Input, notification} from 'antd';
-import {getContractByName, getContractByContract} from "../../api/connectContract";
-import {dealMethod, viewMethod} from "../../utils/contractUtil"
-import {getIpfs} from "../../utils/ipfsApi";
+import { useConnect } from "../../api/contracts";
+import { Card, Button, Descriptions, message, Form, List, Input, notification } from 'antd';
+import { getContractByName, getContractByContract } from "../../api/connectContract";
+import { dealMethod, viewMethod } from "../../utils/contractUtil"
+import user3 from "../../imgs/user3.png";
+import { getIpfs } from "../../utils/ipfsApi";
 
 const SBTList = (props) => {
     const [form] = Form.useForm();
     const SBTList = styled.div`
-      .list-box{
-        margin: 2em 0 1em;
+
+.panel-container {
+        padding: 3em 2em;
+        width: 90%;
+       
+
+.fire-list-box{
+    .list-header{
+            padding: 20px 1em;
+        }
+        .list-item, .list-header {
+          justify-content: flex-start;
+          /* padding: 0.5em 2.5em 0.5em 2em; */
+        }
+        margin: 2em 0em;
         .col{
           &:nth-child(1){
-            width: 5%;
+            width:10%;
           }
           &:nth-child(2){
-            width: 5%;
+            width: 16%;
           }
           &:nth-child(3){
-            width: 30%;
+            width: 17%;
           }
           &:nth-child(4){
-            width: 30%;
+            width: 18%;
+          }
+          &:nth-child(5){
+            width:15%;
+          }
+          &:nth-child(6){
+            width:15%;
+          }
+          &:nth-child(7){
+            width: 9%;
           }
         }
         .list-header{
           display: flex;
-          justify-content: space-between;
+          justify-content: flex-start;
           font-size: 18px;
           font-weight: bold;
-          padding: 0.5em 1em;
+          padding: 20px 1.5em;
         }
         .list-item{
           padding: 0.5em 1em;
           display: flex;
-          justify-content: space-between;
+          justify-content: flex-start;
           background: #3F3535;
           border-radius: 10px;
           margin: 0.5em 0;
         }
       }
+    }
+
+    .fire-list-box{
+        margin: 2em 0em;
+        .list-header1 {
+            font-size: 18px;
+    font-weight: bold;
+    color: #8A8080;
+            padding: 20px 1em;
+    .col{
+      &:nth-child(1){
+        width:23%;
+      }
+      &:nth-child(2){
+        width: 23%;
+      }
+      &:nth-child(3){
+        width: 23%;
+      }
+      &:nth-child(4){
+        width: 23%;
+      }
+     
+    }
+}  
+        .list-item, .list-header1 {
+          justify-content: flex-start;
+          /* padding: 0.5em 2.5em 0.5em 2em; */
+        }
+    /* .list-header{
+      display: flex;
+      justify-content: flex-start;
+      font-size: 18px;
+      font-weight: bold;
+      padding: 20px 1.5em;
+    }
+    .list-item{
+      padding: 0.5em 1em;
+      display: flex;
+      justify-content: flex-start;
+      background: #3F3535;
+      border-radius: 10px;
+      margin: 0.5em 0;
+    } */
+}
+    .soulaccount{
+    margin: 20px 0;
+    display: flex;
+    align-items: center;
+    .name{
+      font-family: Roboto-Bold, Roboto;
+font-weight: bold;
+color: #8A8080;
+line-height: 21px;
+    }
+    .value{
+      text-align:center;
+      margin-left: 20px;
+      line-height:30px;
+      width: 160px;
+height: 30px;
+background: rgba(205,158,87,0.1);
+border-radius: 50px 50px 50px 50px;
+opacity: 1;
+border: 1px solid rgba(205,158,87,0.5);
+    }
+  }
+  .fidscore{
+
+margin: 20px 50px;
+display: flex;
+align-items: center;
+.name{
+  font-family: Roboto-Bold, Roboto;
+font-weight: bold;
+color: #8A8080;
+line-height: 21px;
+}
+.score{
+  text-align:center;
+  margin-left: 20px;
+  font-size: 15px;
+  line-height:30px;
+  width: 160px;
+height: 30px;
+background: rgba(254,109,70,0.1);
+border-radius: 50px 50px 50px 50px;
+opacity: 1;
+border: 1px solid rgba(254,109,70,0.5);
+}
+}
     `
-    let {state, dispatch} = useConnect();
+    let { state, dispatch } = useConnect();
     const [PIDARR, setPIDARR] = useState([])
 
     const openNotification = (message) => {
@@ -98,43 +212,127 @@ const SBTList = (props) => {
         <SBTList>
             <div className="panel-box">
                 <div className="panel-container">
+                    <div style={{ display: 'flex' }}>
+                        <h2 className="panel-title">
+                            SBT List
+                        </h2>
+                        <Button style={{ float: 'right', background: '#373232', margin: '0px 13px', textAlign: 'center', lineHeight: '28px', width: "32px", height: '32px', border: '1px solid rgba(255, 255, 255, 0.15)', borderRadius: '50%', }}>
+                            <img src={user3} style={{ width: '22px', marginLeft: '-10px', marginTop: '-10px' }} />
+                        </Button>
+                    </div>
                     <div className="fire-list-box">
-                        <div className="list-box">
-                            <div className="list-header flex-box">
-                                <div className="col">
-                                    Level
-                                </div>
-                                <div className="col">
-                                    blockNumber
-                                </div>
-                                <div className="col">
-                                    From
-                                </div>
-                                <div className="col">
-                                    To
-                                </div>
+                        {/* <div className="list-box"> */}
+                        <div className="list-header flex-box">
+                            <div className="col">
+                                Token
                             </div>
-                            {
-                                PIDARR.map(item=>(
-                                    <div className="list-item ">
-                                        <div className="col">
-                                            1
-                                        </div>
-                                        <div className="col">
-                                            {item.blockNumber}
-                                        </div>
-                                        <div className="col">
-                                            {item.from}
-                                        </div>
-                                        <div className="col">
-                                            {item.to}
-                                        </div>
+                            <div className="col">
+                                Issued Today
+                            </div>
+                            <div className="col">
+                                Issued Weekly
+                            </div>
+                            <div className="col">
+                                Issued Monthly
+                            </div>
+                            <div className="col">
+                                Issued Year
+                            </div>
+                            <div className="col">
+                                Issued Year
+                            </div>
+                            <div className="col">
+                                Other
+                            </div>
+                        </div>
+                        {
+                            PIDARR.map(item => (
+                                <div className="list-item ">
+                                    <div className="col"  style={{color:'#E48686'}}>
+                                        1
                                     </div>
-                                ))
+                                    <div className="col">
+                                        {item.blockNumber}
+                                    </div>
+                                    <div className="col">
+                                        {item.from}
+                                    </div>
+                                    <div className="col">
+                                        {item.to}
+                                    </div>
+                                </div>
+                            ))
 
-                            }
+                        }
+                        {/* </div> */}
+                    </div>
+
+
+                </div>
+
+
+                <div className="panel-container">
+                    <h2 className="panel-title">
+                        My SBTs
+                    </h2>
+                    <div style={{ display: 'flex' }}>
+                        <div className="soulaccount">
+                            <div className="name">
+                                My SoulAccount
+                            </div>
+                            <div className="value">
+                                {/* {UserToSoul} */}
+                            </div>
+                        </div>
+                        <div className="fidscore">
+                            <div className="name">
+                                FID ReputationScore
+                            </div>
+                            <div className="score">
+                                {/* {score} */}
+                            </div>
                         </div>
                     </div>
+                    <div className="fire-list-box">
+                        {/* <div className="list-box"> */}
+                        <div className="list-header1 flex-box">
+                            <div className="col">
+                                SBT
+                            </div>
+                            <div className="col">
+                                Amount(s)
+                            </div>
+                            <div className="col">
+                                Weight
+                            </div>
+                            <div className="col">
+                                Score
+                            </div>
+
+                        </div>
+                        {
+                            PIDARR.map(item => (
+                                <div className="list-item ">
+                                    <div className="col" style={{color:'#E48686'}}>
+                                        1 
+                                    </div>
+                                    <div className="col">
+                                        {item.blockNumber}
+                                    </div>
+                                    <div className="col">
+                                        {item.from}
+                                    </div>
+                                    <div className="col">
+                                        {item.to}
+                                    </div>
+                                </div>
+                            ))
+
+                        }
+                        {/* </div> */}
+                    </div>
+
+
                 </div>
             </div>
         </SBTList>

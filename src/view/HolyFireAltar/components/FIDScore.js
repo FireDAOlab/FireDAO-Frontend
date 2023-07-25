@@ -1,21 +1,21 @@
-import React, {useEffect, useRef, useState} from 'react';
-import {useConnect} from "../../../api/contracts";
-import {Button, Card, Form, Input, Radio, Switch, message, notification} from "antd";
-import {getContractByContract, getContractByName} from "../../../api/connectContract";
-import {dealMethod, viewMethod} from "../../../utils/contractUtil";
-import {useNavigate} from "react-router-dom";
+import React, { useEffect, useRef, useState } from 'react';
+import { useConnect } from "../../../api/contracts";
+import { Button, Card, Form, Input, Radio, Switch, message, notification } from "antd";
+import { getContractByContract, getContractByName } from "../../../api/connectContract";
+import { dealMethod, viewMethod } from "../../../utils/contractUtil";
+import { useNavigate } from "react-router-dom";
 import FIDScoreStyle from "./FIDScoreStyle";
 import fireseed from "../../../imgs/FireSeed@2x.webp"
 import judgeStatus from "../../../utils/judgeStatus";
 const FIDScore = (props) => {
-    const {list} = props
-    let {state, dispatch} = useConnect();
-    const [length,setLength] = useState(0)
-    const [arr,setTokens] = useState([])
-    const [UserFID,setUserFID] = useState(0)
+    const { list } = props
+    let { state, dispatch } = useConnect();
+    const [length, setLength] = useState(0)
+    const [arr, setTokens] = useState([])
+    const [UserFID, setUserFID] = useState(0)
 
-    const [UserToSoul,setUserToSoul] = useState("")
-    const [score,setCheckReputation] = useState(0)
+    const [UserToSoul, setUserToSoul] = useState("")
+    const [score, setCheckReputation] = useState(0)
 
 
 
@@ -56,7 +56,7 @@ const FIDScore = (props) => {
         }
         return await viewMethod(contractTemp, state.account, name, params)
     }
-    const getUserFIDAndAddr = async ()=>{
+    const getUserFIDAndAddr = async () => {
         const UserToSoul = await handleSoulViewMethod("UserToSoul", [state.account])
         const UserFID = await handleSoulViewMethod("UserFID", [state.account])
         await setUserToSoul(UserToSoul)
@@ -65,68 +65,70 @@ const FIDScore = (props) => {
         setCheckReputation(checkReputation)
     }
 
-    const getTokens = async ()=>{
-        const length = await  handleViewMethod("getTokensLength",[])
+    const getTokens = async () => {
+        const length = await handleViewMethod("getTokensLength", [])
         let arr = []
-        for(let i = 0;i<length;i++){
-            const item = await  handleViewMethod("tokens",[i])
-            const coefficients = await  handleViewMethod("coefficients",[item])
+        for (let i = 0; i < length; i++) {
+            const item = await handleViewMethod("tokens", [i])
+            const coefficients = await handleViewMethod("coefficients", [item])
             const coin = await getToken(item)
             console.log(coin)
             arr.push({
-                address:item,
-                coefficients:coefficients,
-                name:coin.name,
-                balance:coin.balance
+                address: item,
+                coefficients: coefficients,
+                name: coin.name,
+                balance: coin.balance
             })
         }
         setTokens(arr)
     }
 
-    useEffect(async ()=>{
+    useEffect(async () => {
         if (!state.account) {
             return
         }
         getTokens()
         getUserFIDAndAddr()
-    },[state.account])
+    }, [state.account])
     return (
         <FIDScoreStyle>
-            <div className="panel-box">
-                <div className="panel-container">
-                    <div className="panel-title">
+            <div  className="panel-box">
+                <div className="panel-container" style={{ border: 'none',paddingTop: "3em" }}>
+                    <div className="panel-title" style={{fontSize:'30px'}}>
                         FID Score
                     </div>
-                    <div className="my-soul">
-                        <div className="name">
-                            My SoulAccount
+                    <div style={{display:'flex',marginTop:'25px'}}>
+                        <div className="my-soul">
+                            <div className="name">
+                                My SoulAccount
+                            </div>
+                            <div className="value">
+                                {UserToSoul}
+                            </div>
                         </div>
-                        <div className="value">
-                            {UserToSoul}
-                        </div>
-                    </div>
-                    <div className="total-score">
-                        <div className="name">
-                            FID ReputationScore
-                        </div>
-                        <div className="score">
-                            {score}
+                        <div className="total-score">
+                            <div className="name">
+                                FID ReputationScore
+                            </div>
+                            <div className="score">
+                                {score}
+                            </div>
                         </div>
                     </div>
                     <div className="content1">
 
-                        <div className="list">
-                            <div className="list-item header">
-                                <div className="item">
+                        <div className="fire-list-box">
+                            <div className="list-header flex-box">
+                                <div className="col" style={{paddingLeft:'100px',width:'32%'}}>
                                     SBT
                                 </div>
-                                <div className="item">
+                                <div className="col" style={{width:'28%'}}>
                                     Amount(s)
                                 </div>
-                                <div className="item">
+                                <div className="col">
                                     Weight
                                 </div>
-                                <div className="item">
+                                <div className="col">
                                     Score
                                 </div>
                             </div>

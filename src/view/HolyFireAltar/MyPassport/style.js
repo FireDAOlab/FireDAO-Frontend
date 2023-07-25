@@ -1,12 +1,16 @@
 import styled from "styled-components";
-import passportHeaderBg from "../../../imgs/passport_header_bg.webp";
-export default   styled.div`
+import passportHeaderBg from "../../../imgs/passport.png";
+export default styled.div`
   display: flex;
   flex-direction: column;
   align-items: stretch;
   /* pc style */
   @media screen and (min-width: 1000px) {
-
+    .panel-box {
+      background: #241B1B;
+      margin:1em auto;
+      border-radius:20px;
+    }
     .userinfo-box {
       width: 90%;
       margin: 0 auto;
@@ -21,17 +25,25 @@ export default   styled.div`
 
         .userinfo-header {
           display: flex;
-
+margin-top:50px;
           .header-icon {
             position: relative;
 
+            top: 25px;
             img {
               width: 150px;
               height: 150px;
               position: relative;
               z-index: 1;
             }
-
+p{
+  font-size: 20px;
+font-family: Roboto-Bold, Roboto;
+font-weight: bold;
+color: #FFFFFF;
+margin-top:20px;
+text-align:center;
+}
             &::after {
               content: '';
               width: 104px;
@@ -59,16 +71,56 @@ export default   styled.div`
               align-items: center;
 
               .id {
+                text-align:center;
+                line-height:30px;
+                font-size:16px;
+                align-items: center;
+                display: flex;
                 padding: 6px 30px;
                 margin-top: 1em;
-                background: #3F3535;
-                border-radius: 10px;
-                border: 1px solid #342727;
-                margin-left: 3em;
+                color: rgba(138, 128, 128, 1);
+                /* background: #3F3535; */
+                
+                div{
+                 background: rgba(254, 109, 70, 0.20);
+              margin-left: 1em;
+                  width: 80px;
+                  height: 30px;
+                  border-radius: 50px;
+                  border: 1px solid rgba(254, 109, 70, 0.50);
+                  color: rgba(254, 109, 70, 1);
+                }
+              }
+              .reputation {
+                font-size:16px;
+                align-items: center;
+                display: flex;
+                padding: 6px 30px;
+                margin-top: 1em;
+                color: rgba(138, 128, 128, 1);
+
+            .reputation-data-box {
+              margin-left: 1em;
+            
+
+              .reputation-data {
+                text-align:center;
+                line-height:30px;
+                background: rgba(254, 109, 70, 0.20);
+                margin-left:20px;
+                  width: 80px;
+                  height: 30px;
+                  border-radius: 50px;
+                  border: 1px solid rgba(254, 109, 70, 0.50);
+                  color: rgba(254, 109, 70, 1);
               }
             }
 
+          }
+            }
+
             .bio-box {
+              margin-left: 1.5em;
               font-size: 20px;
               font-family: Roboto-Bold, Roboto, sans-serif;
 
@@ -88,13 +140,15 @@ export default   styled.div`
 
         .passport-header-bg {
           position: absolute;
-          z-index: -1;
+          z-index: 1;
           top: 0;
           left: 0;
           width: 100%;
           background: url(${passportHeaderBg});
+          background-repeat:no-repeat;
           background-size: 100%;
-          height: 100px;
+          height: 160px;
+          
         }
 
 
@@ -102,6 +156,7 @@ export default   styled.div`
           display: flex;
           align-items: center;
           margin: 2em 0 0;
+          padding:0em 1em;
           justify-content: space-between;
           .recommender-info{
             display: flex;
@@ -111,29 +166,7 @@ export default   styled.div`
             align-items: center;
           }
 
-          .reputation {
-            display: flex;
-            align-items: center;
-
-            .reputation-data-box {
-              margin-left: 1em;
-              border-radius: 10px;
-              padding: 1px;
-              background: linear-gradient(320deg, #DD3642 0%, #FFC02C 100%);
-
-              .reputation-data {
-                padding: 3px 30px;
-                background: linear-gradient(320deg, #483019 0%, #44201b 100%);
-                border-radius: 10px;
-                font-size: 18px;
-                font-family: Helvetica-Bold, Helvetica, sans-serif;
-                font-weight: bold;
-                color: #FFFFFF;
-                line-height: 31px;
-              }
-            }
-
-          }
+          
 
           .name {
             font-size: 16px;
@@ -145,11 +178,24 @@ export default   styled.div`
 
           .address {
             margin-left: 1em;
-            padding: 6px 10px;
-            background: #3F3535;
-            border-radius: 10px;
-            border: 1px solid #342727;
-
+            text-align:center;
+                line-height:30px;
+                font-size:16px;
+                align-items: center;
+                display: flex;
+                padding: 6px 30px;
+                color: rgba(138, 128, 128, 1);
+            .address-data {
+                text-align:center;
+                line-height:30px;
+                background: rgba(205, 158, 87, 0.20);
+                margin-left:20px;
+                  width: 120px;
+                  height: 30px;
+                  border-radius: 50px;
+                  border: 1px solid rgba(205, 158, 87, 0.20);
+                  color: rgba(205, 158, 87, 1);
+              }
             img {
               cursor: pointer;
               margin-left: 3em;
@@ -161,10 +207,23 @@ export default   styled.div`
           .pid {
             padding: 6px 30px;
             margin-left: 1em;
-            background: #3F3535;
-            border-radius: 10px;
-            border: 1px solid #342727;
-
+            text-align:center;
+                line-height:30px;
+                font-size:16px;
+                align-items: center;
+                display: flex;
+                color: rgba(138, 128, 128, 1);
+                .reputation-data {
+                text-align:center;
+                line-height:30px;
+                background: rgba(254, 109, 70, 0.20);
+                margin-left:20px;
+                  width: 80px;
+                  height: 30px;
+                  border-radius: 50px;
+                  border: 1px solid rgba(254, 109, 70, 0.50);
+                  color: rgba(254, 109, 70, 1);
+              }
             span {
               margin-left: 0.5em;
             }
@@ -172,26 +231,34 @@ export default   styled.div`
         }
 
         .link-box {
+          padding:1em 1em;
           align-items: center;
-          flex-wrap: wrap;
-
+          display: flex;
+          width: 100%;
           .link-item {
-            min-width: 36%;
             padding-top: 1.5em;
-            margin-right: 3em;
             font-size: 18px;
-            display: flex;
+            display: block;
             align-items: center;
 
             .name {
+              font-size:16px;
               font-weight: bold;
-              margin-left: 0.5em;
-              color: #fff;
+              margin-right: 15px;
+              color: #8A8080;
             }
 
             .value {
+              margin-top:10px;
+              text-align:center;
               color: #84C0FF;
-              margin-left: 0.5em;
+              margin-right: 15px;
+              width: 170px;
+              line-height:30px;
+height: 30px;
+background: rgba(87,141,205,0.1);
+border-radius: 50px 50px 50px 50px;
+border: 1px solid rgba(87,141,205,0.5);
             }
 
             a {
@@ -206,19 +273,30 @@ export default   styled.div`
 
     .web3id-box {
       .panel-title {
-        text-align: center;
-        font-size: 40px;
+        font-size: 30px;
       }
 
       .nft-list {
         justify-content: center;
+width: 100%;
+margin-top: 3em;
+margin-bottom: 1em;
+.boxshadow{
+  
+  margin-top: 3em;
+width: 48%;
+margin: 0 auto;
+background: #140E0E;
+border-radius: 20px;
+opacity: 1;
+border: 1px solid rgba(255,255,255,0.1);
 
+}
         .nft-info-box {
           text-align: center;
-          margin-top: 3em;
           margin-right: 1em;
-          width: 33%;
-
+          width: 93%;
+margin: 1em;
           .nft-box {
             background: #3F3535;
             border-radius: 18px;
@@ -237,18 +315,54 @@ export default   styled.div`
           }
 
           .notr {
-            margin: 0.5em 0;
-            font-size: 18px;
-            font-family: Helvetica-Bold, Helvetica, sans-serif;
+            
+            text-align:left;
+            margin: 1em 0;
+            font-size: 16px;
+font-family: Roboto-Bold, Roboto;
             font-weight: bold;
             color: #FFFFFF;
-            line-height: 29px;
+            line-height: 40px;
+            .destory{
+              margin-top:5px;
+              font-size:14px;
+              margin-left:10px;
+              float: right;
+              width: 80px;
+height: 30px;
+border-radius: 50px 50px 50px 50px;
+opacity: 1;
+background: #140E0E;
+border: 1px solid rgba(255,255,255,0.2);
+color:#8A8080;
+text-align:center;
+            }
+            .val{
+              float: right;
+            }
+            .id {
+              align-item:center;
+            text-align:left;
+            font-size: 16px;
+font-family: Roboto-SemiBold, Roboto;
+            font-weight: bold;
+            float: right;
+            display: flex;
+            text-align:center;
+            .bor{
+              margin-top:5px;
+              margin-left:10px;
+              width: 80px;
+              line-height:30px;
+height: 30px;
+              background: rgba(254,109,70,0.1);
+border-radius: 50px 50px 50px 50px;
+border: 1px solid rgba(254,109,70,0.5);
+            }
+          }
           }
 
-          .id {
-            font-size: 22px;
-            font-weight: bold;
-          }
+          
         }
       }
 
@@ -328,10 +442,10 @@ export default   styled.div`
 
     .panel-box {
       width: 90%;
-      margin: 0 auto;
+      margin: 0.5em auto;
 
       .panel-container {
-        padding: 3em 5em;
+        padding: 0em 5em;
         position: relative;
         width: 100%;
 
@@ -364,14 +478,14 @@ export default   styled.div`
 
         .nft-list {
           flex-direction: column;
-
+          width: 100%;
           .nft-info-box {
             margin-top: 2em;
             background: #3F3535;
             border-radius: 18px;
             border: 1px solid #7F6868;
             padding: 1em;
-
+            width: 50%;
             .nft-box {
               img {
                 width: 100%;
@@ -415,14 +529,15 @@ export default   styled.div`
         }
 
         .userinfo-header {
-
+margin-top:50px;
           .header-icon {
             position: relative;
-
+            top: 30px;
             img {
               width: 100px;
               height: 100px;
               position: relative;
+              
               z-index: 1;
               left: calc(50% - 50px);
             }
@@ -485,6 +600,7 @@ export default   styled.div`
         .recommender {
           align-items: center;
           margin: 2em 0 0;
+          padding: 1em;
           justify-content: space-between;
           .recommender-info{
             display: flex;
@@ -500,29 +616,7 @@ export default   styled.div`
             }
           }
 
-          .reputation {
-            margin: 10px 0;
-
-            .reputation-data-box {
-              margin-top: 10px;
-              border-radius: 10px;
-              padding: 1px;
-              background: linear-gradient(320deg, #DD3642 0%, #FFC02C 100%);
-              width: 60vw;
-              .reputation-data {
-                text-align: center;
-                padding: 3px 30px;
-                background: linear-gradient(320deg, #483019 0%, #44201b 100%);
-                border-radius: 10px;
-                font-size: 18px;
-                font-family: Helvetica-Bold, Helvetica, sans-serif;
-                font-weight: bold;
-                color: #FFFFFF;
-                line-height: 31px;
-              }
-            }
-
-          }
+          
 
           .name {
             font-size: 16px;
@@ -561,15 +655,17 @@ export default   styled.div`
 
         .link-box {
           align-items: center;
-          flex-wrap: wrap;
+          /* display: block; */
+          /* flex-wrap: wrap; */
           .flex-box {
             display: block;
+            width: 50%;
           }
 
           .link-item {
             padding-top: 1.5em;
             font-size: 16px;
-
+            
             display: flex;
             justify-content: space-between;
             align-items: center;
