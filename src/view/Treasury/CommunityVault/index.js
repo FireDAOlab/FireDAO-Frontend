@@ -126,7 +126,111 @@ const Distribution = (props) => {
                             </div>
                         </div>
                     </div>
+                </div>
+                <div className="panel-container">
+                    <div className="panel-title">
+                        Contract Parameters
+                    </div>
+                    <div className="content-box">
+                        <div className="content-item">
+                            <div className="header">
+                                Contract address
+                            </div>
+                            <div className="content-list">
+                                <div className="in-line">
+                                    <div className="name">Governor</div>
+                                    <div className="value">
+                                        0x21641….B60d
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="content-item">
+                            <div className="header">
+                                Parameters
+                            </div>
+                            <div className="content-list">
+                                <div className="in-line">
+                                    <div className="name">Governor</div>
+                                    <div className="value">
+                                        0x21641….B60d
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div className="panel-container">
+                    <div className="info-list">
+                        <div className="info-item">
+                            <div className="value">
+                                40
+                            </div>
+                            <div className="name">
+                                Proposals
+                            </div>
+                        </div>
+                        <div className="info-item">
+                            <div className="value">
+                                40
+                            </div>
+                            <div className="name">
+                                FDT Holders
+                            </div>
+                        </div>
+                        <div className="info-item">
+                            <div className="value">
+                                40
+                            </div>
+                            <div className="name">
+                                PID Holders
+                            </div>
+                        </div>
+                        <div className="info-item">
+                            <div className="value">
+                                40
+                            </div>
+                            <div className="name">
+                                FID Holders
+                            </div>
+                        </div>
+                        <div className="info-item">
+                            <div className="value">
+                                40
+                            </div>
+                            <div className="name">
+                                Voters
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div className="panel-container">
+                    <div className="panel-title">
+                        Proposals
+                    </div>
+                    <div className="fire-list-box">
+                        <div className="list-header">
+                            <div className="col">
+                                Proposal
+                            </div>
+                            <div className="col">
+                                Proposer
+                            </div>
+                            <div className="col">
+                                Votes YAE
+                            </div>
+                            <div className="col">
+                                Votes NAY
+                            </div>
+                            <div className="col">
+                                Votes ABSTAIN
+                            </div>
+                            <div className="col">
+                                Total votes
+                            </div>
+                        </div>
 
+                    </div>
                 </div>
             </div>
 
