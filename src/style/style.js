@@ -64,6 +64,10 @@ const GlobalStyle = createGlobalStyle`
     position: relative;
     z-index: 2;
   }
+  .flex-container{
+    width: 100%;
+    padding: 0 10%;
+  }
 
   @media screen and (max-width: 1500px) {
     .App {
@@ -91,6 +95,9 @@ const GlobalStyle = createGlobalStyle`
         background: transparent;
       }
     }
+
+
+
   }
 
   .content {
@@ -125,7 +132,7 @@ const GlobalStyle = createGlobalStyle`
     border-radius: 15px;
     border: 1px solid rgba(255,255,255,0.1);
     padding: 0em 0 0em;
-    min-width: 800px;
+    /* min-width: 800px; */
     .col{
       text-align: center;
       flex-shrink: 0;
@@ -190,10 +197,11 @@ const GlobalStyle = createGlobalStyle`
     width: 100%;
     
     .panel-container {
+      width: 100%;
       overflow: auto;
       border: 1px solid rgba(255,255,255,0.1);
       background: #241B1B;
-      padding: 3em 4em;
+      padding: 30px 11.7%;
       margin: 0.5em auto;
       box-shadow: 0px 3px 15px 5px rgba(0, 0, 0, 0.05);
       border-radius: 10px;

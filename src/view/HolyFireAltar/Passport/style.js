@@ -23,8 +23,6 @@ export default   styled.div`
           display: flex;
 
           .header-icon {
-            position: relative;
-
             img {
               width: 150px;
               height: 150px;
@@ -55,6 +53,10 @@ export default   styled.div`
               font-weight: bold;
               font-size: 30px;
               color: #fff;
+              
+                padding: 6px 6px 6px 30px;
+             
+              
             }
 
             .bio-box {
@@ -130,7 +132,7 @@ export default   styled.div`
 
           .address {
             margin-left: 1em;
-            padding: 6px 10px;
+            padding: 6px 6px 6px 30px;
             background: #3F3535;
             border-radius: 10px;
             border: 1px solid #342727;
@@ -144,7 +146,7 @@ export default   styled.div`
           }
 
           .pid {
-            padding: 6px 30px;
+            padding: 6px 6px 6px 30px;
             margin-left: 1em;
             background: #3F3535;
             border-radius: 10px;
@@ -341,7 +343,6 @@ export default   styled.div`
       width: 90vw;
       margin: 0 auto;
       .panel-container {
-        padding: 3em 1em;
         position: relative;
         width: 100%;
         .nft-list{
@@ -426,6 +427,7 @@ export default   styled.div`
               font-weight: bold;
               font-size: 30px;
               color: #fff;
+              padding: 6px 6px 6px 30px;
             }
 
             .bio-box {
@@ -463,6 +465,7 @@ export default   styled.div`
             display: flex;
             flex-direction: column;
             align-items: flex-start;
+            
           }
 
           .reputation {
@@ -511,7 +514,7 @@ export default   styled.div`
           }
 
           .pid {
-            padding: 6px 30px;
+            padding: 6px 6px 6px 30px;
             margin-top: 1em;
             background: #3F3535;
             border-radius: 10px;

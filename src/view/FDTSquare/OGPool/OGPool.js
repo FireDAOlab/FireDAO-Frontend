@@ -363,14 +363,11 @@ const OGPoolPublic = (props) => {
 
             <div className="page-title">
                 OG Pool
-                {isAdmin && (
-                    <div className="admin-icon-box" onClick={() => {
-                        history("/OGPoolAdmin01")
-                    }}>
-                        <img className="admin-icon" src={manage} alt="" />
-                    </div>
-                )}
-                <Button style={{ float: 'right', background: '#373232', margin: '0px 13px', textAlign: 'center', lineHeight: '28px', width: "32px", height: '32px', border: '1px solid rgba(255, 255, 255, 0.15)', borderRadius: '50%', }}>
+                
+                <Button style={{ float: 'right', background: '#373232', margin: '0px 13px', textAlign: 'center', lineHeight: '28px', width: "32px", height: '32px', border: '1px solid rgba(255, 255, 255, 0.15)', borderRadius: '50%', }}
+                onClick={() => {
+                    history("/OGPoolAdmin")
+                }}>
                     <img src={user3} style={{ width: '22px', marginLeft: '-10px', marginTop: '-10px' }} />
                 </Button>
             </div>
