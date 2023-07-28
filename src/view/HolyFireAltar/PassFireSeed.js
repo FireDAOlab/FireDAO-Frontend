@@ -888,7 +888,7 @@ justify-content: space-between;
     setIsadmain(isAdmin)
   }
   const getMyFireSeed = async () => {
-    const listLength = await handleViewMethod(" getIsadmainIdlength", [])
+    const listLength = await handleViewMethod("getOwnerIdlength", [])
     let list = []
     if (listLength <= 0) {
       return

@@ -316,7 +316,8 @@ const MintFireSeed = (props) => {
     }
 
     const getWhitelist = async () => {
-        const length = await handleViewMethod("wListLength", [])
+        const length = await handleViewMethod("getAirDropList", [])
+        console.log(length)
         for (let i = 0; i < length; i++) {
             const item = await handleViewMethod("whiteList", [i])
             if (item.toString().toLowerCase() == state.account.toLowerCase()) {
