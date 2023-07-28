@@ -1094,18 +1094,26 @@ justify-content: space-between;
                 </Form.Item>
                 <Form.Item
                   
-                  label="From"
+                  label="Form"
                   validateTrigger="onBlur"
                   validateFirst={true}
                   rules={[
                     // { required: true, message: 'Please input Title!' },
                   ]}
                   style={{
-                    width: '100%',border: '1px solid rgba(205,158,87,0.5)', backgroundColor: 'rgba(205,158,87,0.1)', borderRadius: '50px', color: '#CD9E57'
                     
+                    width:'100%'
                   }}
                 >
-                  <div className="flex-box" style={{paddingLeft:'10px'}}>
+                  <div className="flex-box" style={{
+                    paddingLeft:'10px',
+                    border: '1px solid rgba(205,158,87,0.5)', 
+                    backgroundColor: 'rgba(205,158,87,0.1)', 
+                    borderRadius: '25px', 
+                    height:'35px',
+                    lineHeight:'35px',
+                    width:'100%',
+                    color: '#CD9E57'}}>
                    {state.account}
 
                   </div>
@@ -1123,7 +1131,7 @@ justify-content: space-between;
                   }}
                 >
                   <div className="flex-box">
-                    <Input style={{ width: '100%', border: '1px solid rgba(205,158,87,0.5)', backgroundColor: 'rgba(205,158,87,0.1)', borderRadius: '50px', color: '#CD9E57' }} />
+                    <Input  />
 
                   </div>
                 </Form.Item>
