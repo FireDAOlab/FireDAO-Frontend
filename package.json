@@ -4,7 +4,6 @@
   "private": true,
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
-    "@web3modal/react": "2.0.0-beta.1",
     "animate.css": "^4.1.1",
     "antd": "^4.24.0",
     "axios": "^1.1.0",

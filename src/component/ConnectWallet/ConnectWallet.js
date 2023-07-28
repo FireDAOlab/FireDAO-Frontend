@@ -86,7 +86,7 @@ const ConnectWallet = () => {
                 <img style={{ width: '50px', height: '50px', marginTop: '10px' }} src={sz} />
                 <span style={{ width: '50%', fontSize: '15px', lineHeight: '63px', marginLeft: '10px',marginTop: '-12px' }}>MetaMask
                 <span style={{ dontSize:'14px',color:'#999999',display:'block',marginTop: '-40px' }}> {
-                                state.account ? state.account.substr(0, 5) + "..." + state.account.substr(state.account.length - 5, state.account.length) : " "
+                                state.account ? state.account.substr(0, 5) + "..." + state.account.substr(state.account.length - 5, state.account.length) : ""
                             }
                     </span>
                     <img style={{width:'15px',margin: '-132px 0px 0px 100px'}} src={fz} />

@@ -161,11 +161,9 @@ const Passport = (props) => {
                             <div className="name">
                                 My Recommender
                             </div>
-
-
                             <div className="address">
                                 {
-                                    myClassAddress?myClassAddress.substr(0,5) + "..." + myClassAddress.substr(myClassAddress.length-3,myClassAddress.length):"0x000...000"
+                                    myClassAddress ? myClassAddress.substr(0,5) + "..." + myClassAddress.substr(myClassAddress.length-3,myClassAddress.length):"0x000...000"
                                 }
                                 <img src={copyIcon} alt=""/>
                             </div>

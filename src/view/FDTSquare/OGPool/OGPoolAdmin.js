@@ -6,6 +6,7 @@ import {
     message,
     Form,
     Input,
+    Switch 
 } from 'antd';
 import {getContractByName, getContractByContract} from "../../../api/connectContract";
 import {dealMethod, dealPayMethod, viewMethod} from "../../../utils/contractUtil"
@@ -49,6 +50,9 @@ const OGPool = (props) => {
     const [ownerAddress, setOwnerAddress] = useState("")
     const [curAddr, setCurAddr] = useState("")
     const [curId, setCurId] = useState("")
+    const onChange = (checked) => {
+        console.log(`switch to ${checked}`);
+      };
     const handleViewMethod = async (name, params) => {
         let contractTemp = await getContractByName("PrivateExchangePoolOG", state.api,)
         if (!contractTemp) {
@@ -376,8 +380,9 @@ const OGPool = (props) => {
     return (
         <OGPoolAdminStyle>
             <div className="page-title">
-                OGPool Manage
+                OG Pool
             </div>
+            <div className="header-nav">
             <div className="fire-nav-list">
                 <div className={"nav-item " + (activeNav == 1 ? "active" : "")} onClick={() => {
                     setActiveNav(1)
@@ -395,12 +400,13 @@ const OGPool = (props) => {
                 }}>
                     OG Donate Pool
                 </div>
-                <div className={"nav-item " + (activeNav == 4 ? "active" : "")} onClick={() => {
+                {/* <div className={"nav-item " + (activeNav == 4 ? "active" : "")} onClick={() => {
                     setActiveNav(4)
                 }}>
                     Summary
-                </div>
+                </div> */}
             </div>
+        </div>
             {activeNav == 1 && (
                 <div className="part1">
                     <div className="panel-box">
@@ -436,6 +442,10 @@ const OGPool = (props) => {
                                 Contract Status : {isPause ? "Paused" : "UnPaused"}
                             </div>
                             <Form form={form} name="control-hooks" className="form">
+                                <div className='switchh'>
+                                    <p><span>Running</span><Switch defaultChecked onChange={onChange} /></p>
+                                    <p><span>Pause</span><Switch onChange={onChange} /></p>
+                                </div>
                                 <Button type="primary" onClick={handlePause}>Pause</Button>
                                 <Button type="primary" onClick={handleUnpause}>Unpause</Button>
                             </Form>

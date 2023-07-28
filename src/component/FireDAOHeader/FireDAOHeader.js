@@ -160,6 +160,7 @@ const FireDAOHeader = () => {
                     menu={{
                         items,
                     }}
+                    placement='bottom'
                     trigger={['click']}
                     overlayStyle={{
                         width: '250px',
@@ -183,7 +184,7 @@ const FireDAOHeader = () => {
                         </div>
                     </Button>
                 </Dropdown>
-                <Select
+                {/* <Select
                     className="select-chain"
                     defaultValue="Goerli network"
                     onChange={handleChange}
@@ -198,7 +199,7 @@ const FireDAOHeader = () => {
                             label: 'Arbitrum One',
                         },
                     ]}
-                />
+                /> */}
                 <ConnectWallet />
                 <svg onClick={() => {
                     dispatch({ type: "SET_IsShowNav", payload: true })

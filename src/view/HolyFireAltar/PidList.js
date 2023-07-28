@@ -16,10 +16,11 @@ import fresh from "../../imgs/fresh_icon.webp";
 const PidList = (props) => {
     const [activeNav, setNav] = useState(1)
     const PidList = styled.div`
+ @media screen and (min-width: 1500px) {
 
-      .panel-container {
-        padding: 3em 2em;
-        width: 90%;
+
+    .panel-container {
+       padding:30px 4.6%;
         .header-box {
           display: flex;
           width: 100%;
@@ -44,10 +45,10 @@ const PidList = (props) => {
           .nav-list-box {
             margin: 2em 0;
             display: flex;
-            width: 100%;
+            width: 90%;
             .fire-nav-list{
-                
-                width: 320px;
+                height: 45px;
+                width: 260px;
                 margin: 0;
             }
           }
@@ -57,10 +58,13 @@ const PidList = (props) => {
               display: flex;
               align-items: center;
               background: #3F3535;
-              border-radius: 50px;
+              border-radius: 45px;
               border: 1px solid #333333;
               padding: 2px;
-
+                height: 45px;
+                .ant-input-affix-wrapper{
+                    line-height:2;
+                }
               .ant-select-selector {
                 background: #1F1212;
                 border-radius: 8px;
@@ -83,41 +87,48 @@ const PidList = (props) => {
           text-align: left;
 
           &:nth-child(1) {
-            min-width: 8%;
+            min-width: 7%;
+            margin-right:10px;
             
           }
 
           &:nth-child(2) {
-            width: 8%;
+            width: 7%;
+            margin-right:10px;
            
           }
 
           &:nth-child(3) {
-            width: 11%;
+            width: 12%;
+            margin-right:10px;
           }
 
           &:nth-child(4) {
-            width: 9%;
+            width: 15%;
+            margin-right:10px;
           }
 
           &:nth-child(5) {
-            width: 8%;
+            width: 15%;
+            margin-right:10px;
           }
 
           &:nth-child(6) {
-            width: 10%;
+            width: 16%;
+            margin-right:10px;
           }
 
           &:nth-child(7) {
-            width: 10%;
-            text-align: center;
+            width: 14%;
+            margin-right:10px;
           }
 
           &:nth-child(8) {
-            width: 9.5%;
+            width: 13%;
+            margin-right:10px;
           }
 
-          &:nth-child(9) {
+          /* &:nth-child(9) {
             width: 9.5%;
             text-align: center;
 
@@ -130,7 +141,7 @@ const PidList = (props) => {
 
           &:nth-child(11) {
             width: 9%;
-          }
+          } */
         }
 
         .list-item {
@@ -148,7 +159,6 @@ const PidList = (props) => {
             background: rgba(254, 109, 70, 0.20);
             text-align:center;
             border-radius:25px;
-            padding-left:-3px;
           }
           .fid{
             color: #FE6D46;
@@ -156,7 +166,7 @@ const PidList = (props) => {
             background: rgba(254, 109, 70, 0.20);
             text-align:center;
             border-radius:25px;
-            margin-left:3px;
+            margin-right:20px;
           }
           .address {
             a{
@@ -167,40 +177,186 @@ const PidList = (props) => {
             background: rgba(205, 158, 87, 0.20);
             text-align:center;
             border-radius:25px;
+            width: 130px;
+            margin-right:40px;
            
           }
         }
       }
+ }
+      
 
       .pagination {
         text-align: center;
       }
 
       /* mobile style */
-      @media screen and (max-width: 1000px) {
+      @media screen and (max-width: 1500px) {
         .panel-container {
-          width: 90vw;
-          padding: 3em 1em;
+       padding:30px 4.6%;
+        .header-box {
+          display: flex;
+          width: 100%;
+          align-items: center;
+          justify-content: space-between;
+          position: relative;
 
-          .header-box {
-            display: block;
+          .fresh-icon {
+            position: absolute;
+            left: 260px;
+            top: 40px;
+            width: 26px;
+            height: 26px;
+            cursor: pointer;
+            transition: 0.5s;
 
-            .fresh-icon {
-              top: 15px;
+            &:hover {
+              transform: rotate(180deg);
             }
           }
 
-          .fire-list-box {
-            width: 100%;
-            overflow-x: scroll;
-            min-width: 100%;
+          .nav-list-box {
+            margin: 2em 0;
+            display: flex;
+            width: 90%;
+            .fire-nav-list{
+                height: 45px;
+                width: 260px;
+                margin: 0;
+            }
+          }
 
-            .list-item {
-              background: none;
+          .search-container {
+            .search-box {
+              display: flex;
+              align-items: center;
+              background: #3F3535;
+              border-radius: 45px;
+              border: 1px solid #333333;
+              padding: 2px;
+                height: 45px;
+                .ant-input-affix-wrapper{
+                    line-height:2;
+                }
+              .ant-select-selector {
+                background: #1F1212;
+                border-radius: 8px;
+              }
             }
           }
         }
       }
+
+
+      .fire-list-box {
+        
+        .list-item, .list-header {
+          justify-content: flex-start;
+          /* padding: 0.5em 2.5em 0.5em 2em; */
+          
+        }
+
+        .col {
+          text-align: left;
+          font-size:13px;
+          &:nth-child(1) {
+            min-width: 5%;
+            margin-right:10px;
+            
+          }
+
+          &:nth-child(2) {
+            width: 5%;
+            margin-right:10px;
+           
+          }
+
+          &:nth-child(3) {
+            width: 12%;
+            margin-right:10px;
+          }
+
+          &:nth-child(4) {
+            width: 15%;
+            margin-right:10px;
+          }
+
+          &:nth-child(5) {
+            width: 15%;
+            margin-right:8px;
+          }
+
+          &:nth-child(6) {
+            width: 16%;
+            margin-right:10px;
+          }
+
+          &:nth-child(7) {
+            width: 14%;
+            margin-right:10px;
+          }
+
+          &:nth-child(8) {
+            width: 13%;
+            margin-right:10px;
+          }
+
+          /* &:nth-child(9) {
+            width: 9.5%;
+            text-align: center;
+
+          }
+
+          &:nth-child(10) {
+            width: 10%;
+            text-align: center;
+          }
+
+          &:nth-child(11) {
+            width: 9%;
+          } */
+        }
+
+        .list-item {
+            padding: 0.5em 1.5em;
+          .col {
+            overflow: hidden;
+           
+            //text-overflow: ellipsis;
+
+          }
+          .id{
+            color: #FE6D46;
+            border: 1px solid #FE6D46;
+            background: rgba(254, 109, 70, 0.20);
+            text-align:center;
+            border-radius:25px;
+            margin-left: 10px;
+          }
+          .fid{
+            color: #FE6D46;
+            border: 1px solid #FE6D46;
+            background: rgba(254, 109, 70, 0.20);
+            text-align:center;
+            border-radius:25px;
+            margin-right:10px;
+          }
+          .address {
+            a{
+                color: rgba(205, 158, 87, 1);
+            }
+               
+            border: 1px solid rgba(205, 158, 87, 1);
+            background: rgba(205, 158, 87, 0.20);
+            text-align:center;
+            border-radius:25px;
+            width: 110px;
+            margin-right:10px;
+           
+          }
+        }
+      }
+    }
     `
     let {state, dispatch} = useConnect();
     const [MYPIDARR, setMYPIDARR] = useState([])
@@ -264,7 +420,7 @@ const PidList = (props) => {
                     {item.account.substr(0, 7) + "..." + item.account.substr(item.account.length - 3, item.account.length)}
                 </a>
             </div>
-            <div className="col link">
+            {/* <div className="col link">
 
                 <a href={"https://twitter.com/" + (item.Twitter ? item.Twitter : "")}
                    target="_blank">
@@ -276,13 +432,16 @@ const PidList = (props) => {
                    target="_blank">
                     {item.telegram ? item.telegram : "——"}
                 </a>
-            </div>
+            </div> */}
 
-            <div className="col">
+            {/* <div className="col">
                 <a href={develop.forum + "/index.php?action=profile;u=" + (item.pid ? item.pid : "0")}
                    target="_blank">
                     {item.pid}
                 </a>
+            </div> */}
+            <div className="col">
+            BTC Sector
             </div>
             <div className="col">
                 Only discuss
@@ -293,13 +452,13 @@ const PidList = (props) => {
             <div className="col">
                 0
             </div>
-            <div className="col">
+            {/* <div className="col">
                 <Button type="primary" onClick={() => {
                     history("/Passport", {state: item.account})
                 }}>
                     View
                 </Button>
-            </div>
+            </div> */}
         </div>
     }
     const getData = async (page) => {
@@ -361,8 +520,8 @@ const PidList = (props) => {
 
     return (
         <PidList>
-            <div className="panel-box">
-                <div className="panel-container">
+            <div className="panel-box" >
+                <div className="panel-container" >
                     <div className="panel-title">
                         PID List
                     </div>
@@ -401,7 +560,7 @@ const PidList = (props) => {
                                         ]}
                                     /> */}
                                     <Input style={{borderRadius:'50px'}} allowClear value={searchData} onChange={handleSearchChange}  placeholder="Search"/>
-                                    <Button className="search-btn" style={{ width:'35px',borderRadius:'35px'}}  onClick={handleSearch} type="primary">
+                                    <Button className="search-btn" style={{ width:'45px',borderRadius:'45px',height:'40px'}}  onClick={handleSearch} type="primary">
                                         <img src={search}  style={{width:'25px',margin:'0px -10px'}}/>
                                     </Button>
                                 </form>
@@ -412,19 +571,19 @@ const PidList = (props) => {
                         <div className="list-header flex-box">
                             <div className="col">
                                 PID
-                                <img src={listIcon} alt="" className="list-icon"/>
+                                {/* <img src={listIcon} alt="" className="list-icon"/> */}
                             </div>
                             <div className="col">
                                 FID
-                                <img src={listIcon} alt="" className="list-icon"/>
+                                {/* <img src={listIcon} alt="" className="list-icon"/> */}
                             </div>
                             <div className="col">
                                 Username
                             </div>
                             <div className="col">
-                                Address
+                            Wallet Address
                             </div>
-                            <div className="col">
+                            {/* <div className="col">
                                 Twitter
                             </div>
                             <div className="col">
@@ -432,21 +591,24 @@ const PidList = (props) => {
                             </div>
                             <div className="col">
                                 Forum ID
+                            </div>*/}
+                            <div className="col">
+                            Forum Profile
+                            </div> 
+                            <div className="col">
+                            Forum Position
+                            </div> 
+                            <div className="col">
+                               Forum Posts
+                                {/* <img src={listIcon} alt="" className="list-icon"/> */}
                             </div>
                             <div className="col">
-                                Position
+                               Forum Merits
+                                {/* <img src={listIcon} alt="" className="list-icon"/> */}
                             </div>
-                            <div className="col">
-                                Posts
-                                <img src={listIcon} alt="" className="list-icon"/>
-                            </div>
-                            <div className="col">
-                                Merits
-                                <img src={listIcon} alt="" className="list-icon"/>
-                            </div>
-                            <div className="col">
+                            {/* <div className="col">
                                 More
-                            </div>
+                            </div> */}
                         </div>
                         {
                             !searchData && activeNav == 1 && state.PidArr.map((item, index) => (
@@ -476,5 +638,6 @@ const PidList = (props) => {
             </div>
         </PidList>
     )
+    
 }
 export default PidList

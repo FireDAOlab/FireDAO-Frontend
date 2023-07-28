@@ -18,7 +18,6 @@ const PidList = (props) => {
       @media screen and (min-width: 1000px) {
         .panel-box {
           min-width: 1000px;
-          width: 90%;
           margin: 0 auto; 
         }
 
