@@ -150,6 +150,7 @@ const MyPassport = (props) => {
         getUserInfo()
         getPassportAdmin()
         getUserFIDAndAddr()
+
         // getFid()
         // myClass()
         // getSoulAccount()
