@@ -10,6 +10,7 @@ import judgeStatus from "../../../utils/judgeStatus";
 import DistributionStyle from "./style"
 import addressMap from "../../../api/addressMap";
 import headerImg from "../../../imgs/header_icon.webp";
+import twitterIcon from "../../../imgs/twitter.webp"
 const Distribution = (props) => {
 
     let {state, dispatch} = useConnect();
@@ -102,6 +103,10 @@ const Distribution = (props) => {
                             <Button type="primary" onClick={() => {
                                 history("/CreateProposal")
                             }}>New Proposals</Button>
+                            <Button type="primary" onClick={() => {
+                                history("/CommunityMyDraft")
+                            }}>My Draft</Button>
+
                             <Button type="primary" onClick={() => {
                                 history("/")
                             }}>My Draft</Button>
@@ -208,7 +213,7 @@ const Distribution = (props) => {
                     <div className="panel-title">
                         Proposals
                     </div>
-                    <div className="fire-list-box">
+                    <div className="fire-list-box proposal-list">
                         <div className="list-header">
                             <div className="col">
                                 Proposal
@@ -230,6 +235,44 @@ const Distribution = (props) => {
                             </div>
                         </div>
 
+                    </div>
+                </div>
+
+                <div className="panel-container">
+                    <div className="panel-title">
+                        Trendding Delegates
+                    </div>
+                    <div className="delegate-list">
+                        <div className="delegate-item">
+                            <div className="header">
+                                <div className="left">
+                                    <img src={headerImg} className="headerIcon" alt=""/>
+                                    <div className="left-content">
+                                        <div className="name">
+                                            Username
+                                        </div>
+                                        <div className="value">
+                                            FRT：50K
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="right">
+                                    <Button type="primary">Delegate</Button>
+                                </div>
+                            </div>
+                            <div className="delegate-content">
+                                <div className="intro">
+                                    Introduction
+                                </div>
+                                <div className="twitter">
+                                    <img className="icon" src={twitterIcon} alt=""/>
+                                    @FireDAO
+                                </div>
+                                <div className="">
+                                    Trusted by 34 accounts
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

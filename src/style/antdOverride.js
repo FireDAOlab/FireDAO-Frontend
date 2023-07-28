@@ -5,6 +5,8 @@ const AntdOverride = createGlobalStyle`
     border: none;
     transition: 0.5s;
     border-radius: 25px;
+    position: relative;
+
     &:hover {
       background: linear-gradient(320deg, #FFC02C 0%, #DD3642 100%);
     }
@@ -18,7 +20,14 @@ const AntdOverride = createGlobalStyle`
     }
 
     ::after {
-      display: none;
+      content: '';
+      position: absolute;
+      background: linear-gradient(32deg, #FF4E50 0%, #F9D423 100%);
+      width: 80%;
+      left: 10%;
+      height: 10%;
+      bottom: -10%;
+      filter: blur(10px);
     }
   }
 
@@ -78,7 +87,8 @@ const AntdOverride = createGlobalStyle`
   .ant-switch-checked {
     background: #c29322;;
   }
-  .ant-input, .ant-form-item-control-input, .ant-select,.ant-select-selector , .ant-input-status-error, .ant-input-affix-wrapper-status-error, .ant-input-affix-wrapper {
+
+  .ant-input, .ant-form-item-control-input, .ant-select, .ant-select-selector, .ant-input-status-error, .ant-input-affix-wrapper-status-error, .ant-input-affix-wrapper {
     border-radius: 10px;
   }
 
@@ -88,46 +98,53 @@ const AntdOverride = createGlobalStyle`
     width: 100%;
     border-radius: 10px;
   }
+
   /* reset  pagination */
-  .ant-pagination{
+  .ant-pagination {
     margin-top: 20px;
+
     .ant-pagination-item-active:hover a {
       color: #FF8D4D;
     }
+
     .ant-pagination-item-active {
       border-color: #FF8D4D;
-      a{
+
+      a {
         color: #FF8D4D;
       }
     }
+
     .ant-pagination-item-link {
-      color: hsla(0,0%,100%,.3);
+      color: hsla(0, 0%, 100%, .3);
       border-color: #434343;
       cursor: not-allowed;
       border-radius: 10px;
     }
   }
-  .ant-pagination-item-link,.ant-pagination-item{
-    background: #3F3535!important;
+
+  .ant-pagination-item-link, .ant-pagination-item {
+    background: #3F3535 !important;
     border-radius: 5px;
   }
-  
+
   //ant step
   .ant-steps-item-process > .ant-steps-item-container > .ant-steps-item-icon {
     background: #FF8D4D;
     border-color: #FF8D4D;
-    
+
   }
 
   .ant-steps-item-finish .ant-steps-item-icon {
     border-color: #FF8D4D;
-    
+
 
     svg {
       fill: #FF8D4D;
     }
   }
-  .ant-steps-item-finish>.ant-steps-item-container>.ant-steps-item-tail:after {
+
+  .ant-steps-item-finish > .ant-steps-item-container > .ant-steps-item-tail:after {
     background-color: #FF8D4D;
   }
 `
