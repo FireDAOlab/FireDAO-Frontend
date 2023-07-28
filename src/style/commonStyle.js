@@ -2,10 +2,10 @@ import {createGlobalStyle} from "styled-components";
 
 const CommonStyle = createGlobalStyle`
   .fire-nav-list {
-
+   
     margin: 10px 0;
     display: flex;
-    height: 60px;
+    height: 50px;
     border-radius: 10px;
     user-select: none;
     font-size: 24px;

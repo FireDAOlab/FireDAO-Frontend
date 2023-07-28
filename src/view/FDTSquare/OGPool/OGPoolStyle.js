@@ -197,7 +197,7 @@ background: rgba(26, 20, 20, 1);
 
         .balance-box {
           display: flex;
-          justify-content: flex-end;
+          justify-content: space-between;
           font-size: 16px;
           padding-top:8px;
           font-family: Roboto-Bold, Roboto;
@@ -217,6 +217,7 @@ p{
           .value {
             font-weight: bold;
             color: #796B6B;
+            display: flex;
             line-height: 30px;
             margin-left: 10px;
           }
@@ -450,41 +451,59 @@ background: linear-gradient(32deg, #FF4E50 0%, #F9D423 100%);
     }
    }
 
-   .list-header2{
-    padding: 20px 1em;
-    justify-content: flex-start;
-/*        
-        .list-item, .list-header {
-          
+
+        .row2-list-item, .list-header2 {
+          justify-content: flex-start;
           /* padding: 0.5em 2.5em 0.5em 2em; */
-          
-        } */
-  
+     
+    /* .list-header{
+      display: flex;
+      justify-content: flex-start;
+      font-size: 18px;
+      font-weight: bold;
+      padding: 20px 1.5em;
+    }
+    .list-item{
+      padding: 0.5em 1em;
+      display: flex;
+      justify-content: flex-start;
+      background: #3F3535;
+      border-radius: 10px;
+      margin: 0.5em 0;
+    } */
+
+    padding: 20px 2em;
+    font-size: 18px;
+    font-weight: bold;
+    color: #8A8080;
+   
+
     .col {
       text-align:left;
-      padding-left: 0.5%;
+      padding-left: 3.5em;
+      overflow: hidden;
       &:nth-child(1) {
-        width: 22%;
+        width: 23%;
       }
 
       &:nth-child(2) {
-        width: 22%;
+        width: 23%;
       }
 
       &:nth-child(3) {
-        width: 22%;
+        width: 23%;
       }
 
       &:nth-child(4) {
-        width: 22%;
+        width: 23%;
       }
 
       
 
     }
- 
+ }  
 
-    .list-item {
+    .row2-list-item {
       .col {
         overflow: hidden;
        
@@ -501,19 +520,16 @@ background: linear-gradient(32deg, #FF4E50 0%, #F9D423 100%);
           .address {
             a{
                 color: rgba(205, 158, 87, 1);
-                
+                text-align:center;
             }
                
             border: 1px solid rgba(205, 158, 87, 1);
             background: rgba(205, 158, 87, 0.20);
             border-radius:25px;
-            text-align:center;
+            
           }
     }
-  } 
-
-
-
+ 
 
   .pagination {
     text-align: center;

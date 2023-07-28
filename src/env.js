@@ -5,7 +5,7 @@ const ethScan = "https://goerli-rollup-explorer.arbitrum.io/"
 const openSeaNFT = "https://opensea.io/zh-CN/collection/fireseed"
 
 export default {
-    Name:"Arbitrum Goerli Testnet",
+    Name:"Ethereum",
     ENV: "dev",
     chainId: "80001",
     webside:"https://www.firedao.co/fdpaperen.pdf",

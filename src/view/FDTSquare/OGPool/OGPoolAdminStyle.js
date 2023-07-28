@@ -1,18 +1,34 @@
 import styled from "styled-components";
 const OGPoolStyle = styled.div`
+.ant-form-item-label>label{
+  color: rgba(138, 128, 128, 1);
+  font-size:16px;
+}
   .ant-btn {
     margin-right: 20px;
     padding: 0 30px;
+    font-size: 18px;
+background: linear-gradient(32deg, #FF4E50 0%, #F9D423 100%);
+    height: 40px;
   }
   .flex-box{
     align-items: center;
   }
   .panel-title {
-    margin: 1.5em 0;
+    margin: 1em 0;
+    font-size: 18px;
+    font-weight: 500;
+  }
+  .ant-form {
+    margin-bottom: 1.8em;
+    .ant-form-item{
+      margin-bottom:20px;
+    }
   }
 
   .ant-form-item-control-input {
     width: 450px;
+    border-radius:25px;
   }
   .current-status{
     font-size: 16px;
@@ -20,12 +36,37 @@ const OGPoolStyle = styled.div`
     margin-right: 10px;
   }
   .tip-box {
-    padding: 1em 0;
+    padding: 1.6em 0;
   }
-
+  .ant-switch-checked{
+    /* margin-left: 50px; */
+background: linear-gradient(32deg, #FF4E50 0%, #F9D423 100%);
+  }
+  .switchh{
+    width: 25%;
+   p{
+    font-size:16px;
+    color: white;
+    display: flex;
+    font-weight: 500;
+    justify-content:space-between;
+   }
+    
+  }
+  .ant-switch-handle{
+    width: 24px;
+    height:24px;
+    top:0px;
+  }
+  .ant-switch{
+    margin-left: 55px;
+    min-width: 45px;
+    height: 25px;
+  }
   .page-title {
-    padding: 2vh 0 2vh 13%;
-    font-size: 23px;
+    margin-left: 5%;
+    padding: 0 8%;
+    font-size: 30px;
     font-family: Roboto-Bold, Roboto;
     font-weight: bold;
   }
@@ -44,11 +85,12 @@ const OGPoolStyle = styled.div`
     }
 
     .info {
-      font-size: 20px;
+      font-size: 14px;
       font-family: Roboto-Medium, Roboto;
       font-weight: 500;
       color: #AC8989;
-      line-height: 34px;
+      line-height: 18px;
+    max-width: 420px;
     }
   }
 
@@ -227,12 +269,26 @@ const OGPoolStyle = styled.div`
       color: #FFFFFF;
     }
   }
+  .header-nav {
+    width: 90%;
+    margin-left: 5%;
+    display: flex;
+    padding: 0 8%;
 
   .fire-nav-list {
-    width: 74%;
-    margin: 0 auto;
+    .nav-item{
+      width: 150px;
+      height: 55px;
+      font-size:18px;
+      color:rgba(138, 128, 128, 1);
+      line-height:20px;
+      /* background: rgba(255, 255, 255, 0.10); */
+    }
+    .nav-item.active{
+color: white;
+    }
   }
-
+  }
   .part4 {
     .sum-list {
       .sum-item-box {

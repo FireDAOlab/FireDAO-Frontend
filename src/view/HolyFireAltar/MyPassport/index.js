@@ -161,17 +161,17 @@ const MyPassport = (props) => {
     return (
         <MyPassportStyle>
             {showTip && <Destorytc closeDialog={() => { setShowTip(false) }} />}
-            <div style={{ paddingTop: '3em' }} className="panel-box">
-                <div className="panel-box userinfo-box" >
-                    <div className="panel-title" style={{ display: 'flex' }}>
-                        <span style={{ width: '95%' }}>My Passport</span>
-                        <Button style={{ background: '#373232', margin: '0px 13px', textAlign: 'center', lineHeight: '28px', width: "32px", height: '32px', border: '1px solid rgba(255, 255, 255, 0.15)', borderRadius: '50%', }}>
+            {/* <div className="panel-box"> */}
+                <div className="panel-box userinfo-box" style={{width:'100%',padding:'30px 11.7%'}}>
+                    <div className="panel-title" style={{ display: 'flex',marginBottom: '0.7em' }}>
+                        <span>My Passport</span>
+                        <Button style={{ background: '#373232', textAlign: 'center', lineHeight: '28px', width: "32px", height: '32px', border: '1px solid rgba(255, 255, 255, 0.15)', borderRadius: '50%', }}>
                             <img src={user3} style={{ width: '22px', marginLeft: '-10px', marginTop: '-10px' }} />
                         </Button>
                     </div>
-                    <div className="panel-container user-info" style={{ border: 'none' }}>
-                        <div className="passport-header-bg" style={{paddingTop:'230px',paddingRight:'13px'}}>
-                            <Button style={{ float:'right',background: '#373232', textAlign: 'center', lineHeight: '28px', width: "32px", height: '32px', border: '1px solid rgba(255, 255, 255, 0.15)', borderRadius: '50%', }}>
+                    <div className="panel-container user-info" style={{ border: 'none',width:'100%',padding:'0em' }}>
+                        <div className="passport-header-bg">
+                            <Button style={{ marginTop:'200px',float:'right',background: '#373232', textAlign: 'center', lineHeight: '28px', width: "32px", height: '32px', border: '1px solid rgba(255, 255, 255, 0.15)', borderRadius: '50%', }}>
                                 <img src={kg} style={{ width: '22px', marginLeft: '-10px', marginTop: '-10px' }} />
                             </Button>
                         </div>
@@ -217,7 +217,7 @@ const MyPassport = (props) => {
                             }
                             <img src={editIcon} onClick={() => goPage("/ChangeUserInfo")} alt="" />
                         </div>
-                        <hr style={{ opacity: '0.2', marginTop: '40px', width: '96%', display: 'flex', alignItems: 'center' }} />
+                        <hr style={{ opacity: '0.2', marginTop: '40px',  display: 'flex', alignItems: 'center' }} />
                         <div className="recommender">
                             <div className="left">
                                 <div className="name">
@@ -242,8 +242,8 @@ const MyPassport = (props) => {
                             </div>
 
                         </div>
-                        <div className="link-box">
-                            <div className="flex-box" style={{ width: '50%' }}>
+                        <div className="link-box" style={{overflow: 'hidden'}}>
+                            <div className="flex-box" >
                                 <div className="telegram link-item">
                                     {/* <a href={"https://t.me/" + userData.telegram}> */}
                                     {/* <svg t="1670917511236" className="icon" viewBox="0 0 1024 1024" version="1.1"
@@ -320,9 +320,9 @@ const MyPassport = (props) => {
                         </div>
                     </div>
                 </div>
-            </div>
+            {/* </div> */}
             <div className="panel-box web3id-box">
-                <div className="panel-container" style={{ border: 'none' ,paddingTop: "3em"}}>
+                <div className="panel-container" style={{ border: 'none' }}>
                     <div className="panel-title" style={{ fontSize: '30px' }}>
                         My Web3 ID
                     </div>
@@ -332,10 +332,10 @@ const MyPassport = (props) => {
                                 <div className="nft-box">
                                     <img className="img" src={passport} alt="" />
                                     <div className="name">
-                                        <p style={{ fontSize: '23px', lineHeight: '60px' }}>Pass FireSeed,Cast FireSoul</p>
+                                        <p >Pass FireSeed,Cast FireSoul</p>
                                         <div style={{ display: 'flex', marginTop: '-20px', height: '30px' }} >
                                             <hr style={{ width: '25%', opacity: ' 0.15' }} />
-                                            <p style={{ fontSize: '13px', fontFamily: 'Squada One-Regular, Squada One', }}>&nbsp;FireDAO Ecosystem&nbsp;</p><hr style={{ width: '25%', opacity: ' 0.15' }} />
+                                            <span style={{  fontFamily: 'Squada One-Regular, Squada One', }}>&nbsp;FireDAO Ecosystem&nbsp;</span><hr style={{ width: '25%', opacity: ' 0.15' }} />
                                         </div>
 
                                     </div>
@@ -354,10 +354,10 @@ const MyPassport = (props) => {
                                 <div className="nft-box">
                                     <img src={passport1} alt="" />
                                     <div className="name">
-                                        <p style={{ fontSize: '23px', lineHeight: '60px' }}>Pass FireSeed,Cast FireSoul</p>
+                                        <p>Pass FireSeed,Cast FireSoul</p>
                                         <div style={{ display: 'flex', marginTop: '-20px', height: '30px' }} >
                                             <hr style={{ width: '25%', opacity: ' 0.15' }} />
-                                            <p style={{ fontSize: '13px', fontFamily: 'Squada One-Regular, Squada One', }}>&nbsp;FireDAO Ecosystem&nbsp;</p><hr style={{ width: '25%', opacity: ' 0.15' }} />
+                                            <span style={{  fontFamily: 'Squada One-Regular, Squada One', }}>&nbsp;FireDAO Ecosystem&nbsp;</span><hr style={{ width: '25%', opacity: ' 0.15' }} />
                                         </div>
 
                                     </div>
