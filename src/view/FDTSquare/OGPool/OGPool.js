@@ -468,10 +468,10 @@ const OGPoolPublic = (props) => {
                                            
                                                 <p>Value: $ </p>
                                             
-                                            <div className="name" style={{fontSize:'16px'}}>
+                                            <div className="name">
                                                 Balance:
                                             </div>
-                                            <div className="value" style={{fontSize:'16px'}}>
+                                            <div className="value">
                                                 {showNum(state.ethBalance)} <span>ETH</span>
                                             </div>
                                         </div>

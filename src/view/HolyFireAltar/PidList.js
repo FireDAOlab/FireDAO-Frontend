@@ -48,7 +48,7 @@ const PidList = (props) => {
             width: 90%;
             .fire-nav-list{
                 height: 45px;
-                width: 260px;
+                width: 30%;
                 margin: 0;
             }
           }
@@ -221,7 +221,7 @@ const PidList = (props) => {
             width: 90%;
             .fire-nav-list{
                 height: 45px;
-                width: 260px;
+                width: 50%;
                 margin: 0;
             }
           }

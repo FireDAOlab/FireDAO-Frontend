@@ -673,16 +673,16 @@ fontFamily: 'Roboto-SemiBold, Roboto',fontWeight:'600',verticalAlign:'text-top',
                     </Form.Item>
                 </div>
                 <Form.Item className="button-box">
-                    {!isLoading && status == 3 && <Button style={{}} className="subBtn" htmlType="submit" type="primary"
+                    {!isLoading && status == 3 && <Button  style={{}} className="ant-btn ant-btn-primary ant-btn-lg subBtn" htmlType="submit" type="primary"
                         onClick={() => handlePost()}>Mint Passport</Button>
                     }
-                    {!isLoading && status == 2 && <Button className="subBtn" >Insufficient ETH(WETH) balance</Button>
+                    {!isLoading && status == 2 && <Button  className="ant-btn ant-btn-primary ant-btn-lg subBtn" >Insufficient ETH(WETH) balance</Button>
                     }
                     {!isLoading && status == 0 && <ConnectWallet />}
-                    {!isLoading && status == 1 && <Button className="subBtn"
+                    {!isLoading && status == 1 && <Button  className="ant-btn ant-btn-primary ant-btn-lg subBtn"
                         onClick={() => checkMintInfo()}>Mint Passport</Button>}
 
-                    {isLoading && <Button className="subBtn" >Minting Passport<LoadingOutlined /></Button>
+                    {isLoading && <Button className="ant-btn ant-btn-primary ant-btn-lg subBtn" >Minting Passport<LoadingOutlined /></Button>
                     }
                 </Form.Item>
 

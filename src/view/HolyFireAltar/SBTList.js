@@ -376,7 +376,7 @@ border: 1px solid rgba(254,109,70,0.5);
                         {
                             PIDARR.map(item => (
                                 <div className="list-item ">
-                                    <div className="col"  style={{color:'#E48686'}}>
+                                    <div className="col no"  style={{color:'#E48686'}}>
                                         1
                                     </div>
                                     <div className="col">
@@ -424,7 +424,7 @@ border: 1px solid rgba(254,109,70,0.5);
                     <div className="fire-list-box">
                         {/* <div className="list-box"> */}
                         <div className="list-header1 flex-box">
-                            <div className="col">
+                            <div className="col" >
                                 SBT
                             </div>
                             <div className="col">
@@ -441,7 +441,7 @@ border: 1px solid rgba(254,109,70,0.5);
                         {
                             PIDARR.map(item => (
                                 <div className="list-item ">
-                                    <div className="col" style={{color:'#E48686'}}>
+                                    <div className="col no" style={{color:'#E48686'}}>
                                         1 
                                     </div>
                                     <div className="col">
