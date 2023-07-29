@@ -259,6 +259,17 @@ text-align:center;
 font-weight:400;
 margin-right:10px;
 }
+
+.discount{
+  width:100%;
+
+margin: 2em auto;
+
+display: flex;
+justify-content:space-between;
+
+.
+}
 .pagination {
         text-align: center;
       }
