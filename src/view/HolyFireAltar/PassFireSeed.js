@@ -372,7 +372,7 @@ justify-content: space-between;
           }
         }
 
-        .list-item {
+        /* .list-item {
             padding: 0.5em 1em;
           .col {
             overflow: hidden;
@@ -380,7 +380,7 @@ justify-content: space-between;
             
             //text-overflow: ellipsis;
 
-          }
+          } */
           .no{
             color: #FE6D46;
           }
@@ -1013,13 +1013,14 @@ justify-content: space-between;
           <div className="panel-title">
             My FireSeed
             {
-              isAdmin && (
+              // isAdmin && (
                 <Button style={{ float: 'right', background: '#373232', margin: '0px 13px', textAlign: 'center', lineHeight: '28px', width: "32px", height: '32px', border: '1px solid rgba(255, 255, 255, 0.15)', borderRadius: '50%', }}
                   onClick={() => {
                     history("/FireSeedManage")
                   }}>
                   <img src={user3} style={{ width: '22px', marginLeft: '-10px', marginTop: '-10px' }} />
-                </Button>)
+                </Button>
+                // )
             }
           </div>
 

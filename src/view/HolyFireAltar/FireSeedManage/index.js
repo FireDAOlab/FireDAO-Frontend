@@ -19,7 +19,10 @@ const FireLock = (props) => {
     const [whiteMaxMint, setWhiteMaxMint] = useState(0)
     const [isShowAdd, setShowAdd] = useState(false)
     const [isShowRemove, setShowRemove] = useState(false)
-
+    const [activeNav, setNav] = useState(1)
+    const [curPage, setCurPage] = useState(1)
+    const [pageCount, setPageCount] = useState(20)
+    const [total, setTotal] = useState(0)
     const [fee, setFee] = useState(0)
     const [whitelistDiscount, setWhitelistDiscount] = useState(0)
     const [referObj, setReferObj] = useState({})
@@ -73,7 +76,13 @@ const FireLock = (props) => {
         getReferRate()
         getRate()
     }
-
+    const onChangePage = async (page) => {
+        getData(page)
+        await setCurPage(page)
+      }
+      const handleShowSizeChange = async (page, count) => {
+        setPageCount(count)
+      }
     const dealNum = (num) => {
         return parseInt(num * 100) / 100
     }
@@ -256,186 +265,319 @@ const FireLock = (props) => {
                                     Owner Address
                                 </div>
                                 <div className="current-box">
-                                <Form form={form} name="control-hooks" className="form">
-                                
-                                    <div className="current">
-                                        <div className="name">
-                                            Current
+                                    <Form form={form} name="control-hooks" className="form">
+
+                                        <div className="current">
+                                            <div className="name">
+                                                Current
+                                            </div>
+                                            <div className="value">
+                                                {ownerAddr}
+                                            </div>
                                         </div>
-                                        <div className="value">
-                                            {ownerAddr}
-                                        </div>
-                                    </div>
-                                    <Form.Item
-                                        name="predefined"
-                                        label="Predefined"
-                                        validateTrigger="onBlur"
-                                        validateFirst={true}
-                                        rules={[
-                                            { required: true, message: 'Please input predefined!' },
-                                        ]}
-                                    >
-                                        <Input />
-                                    </Form.Item>
-                                
-                                </Form>
-                                <Button type="primary" className="max-btn" onClick={() => {
-                                    transferOwnership()
-                                }}>
-                                    Submit
-                                </Button>
+
+
+                                        <Form.Item
+                                            name="predefined"
+                                            label="Predefined"
+                                            validateTrigger="onBlur"
+                                            validateFirst={true}
+                                            rules={[
+                                                { required: true, message: 'Please input predefined!' },
+                                            ]}
+                                            style={{
+                                                borderRadius: '25px'
+                                            }}
+                                        >
+                                            <Input />
+                                        </Form.Item>
+
+                                    </Form>
+                                    <Button type="primary" className="max-btn" onClick={() => {
+                                        transferOwnership()
+                                    }}>
+                                        Submit
+                                    </Button>
                                 </div>
                             </div>
                         </div>
                         <div className="panel-container">
                             <div className="content-item">
                                 <div className='panel-title'>Revenue Address</div>
-                                <Form form={form} name="control-hooks">
-                                    <div className="current">
-                                        <div className="name">
-                                            Current:
+                                <div className="current-box">
+                                    <Form form={form} name="control-hooks">
+                                        <div className="current">
+                                            <div className="name">
+                                                Current
+                                            </div>
+                                            <div className="value">
+                                                {feeRec}
+                                            </div>
                                         </div>
-                                        <div className="value">
-                                            {feeRec}
-                                        </div>
-                                    </div>
-                                    <Form.Item
-                                        name="FeeReceiver"
-                                        label="FeeReceiver"
-                                        validateTrigger="onBlur"
-                                        validateFirst={true}
-                                        rules={[
-                                            { required: true, message: 'Please input owner Address!' },
-                                        ]}
-                                    >
-                                        <Input />
-                                    </Form.Item>
-                                </Form>
-                                <Button type="primary" className="max-btn" onClick={() => {
-                                    changeFeeReceiver()
-                                }}>
-                                    Submit
-                                </Button>
+                                        <Form.Item
+                                            label="Predefined"
+                                            name="Predefined"
+                                            validateTrigger="onBlur"
+                                            validateFirst={true}
+                                            rules={[
+                                                { required: true, message: 'Please input owner Address!' },
+                                            ]}
+                                        >
+                                            <Input />
+                                        </Form.Item>
+                                    </Form>
+                                    <Button type="primary" className="max-btn" onClick={() => {
+                                        changeFeeReceiver()
+                                    }}>
+                                        Submit
+                                    </Button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>}
             {curNav == 2 &&
                 <div className="part2">
-                    <div className="content-item">
-                        <h1>Mint Amount(s)</h1>
-                        <h3>
-                            General user Min
-                        </h3>
-                        <Form form={form} name="control-hooks">
-                            <div className="current">
-                                <div className="name">
-                                    Current:
-                                </div>
-                                <div className="value">
-                                    {lowestMint}
+                    <div className="panel-box">
+                        <div className='panel-container'>
+                            <div className="content-item">
+                                <div className="panel-title">Mint Amount(s)</div>
+                                <div className='amountbox'>
+                                    <div className='general'>
+                                        <p>General user</p>
+                                        {/* </h3> */}
+                                        <Form form={form} name="control-hooks">
+                                            <div className="current">
+                                                <div className="name">
+                                                    Min
+                                                </div>
+                                                <div className="value">
+                                                    {lowestMint}
+                                                </div>
+                                            </div>
+                                            {/* <Form.Item
+                                                name="GeneralUserMin"
+                                                label="GeneralUserMin"
+                                                validateTrigger="onBlur"
+                                                validateFirst={true}
+                                                rules={[
+                                                    { required: true, message: 'Please input GeneralUserMin!' },
+                                                ]}
+                                            >
+                                                <Input /> 
+                                            </Form.Item>*/}
+                                            <div className="current">
+                                                <div className="name">
+                                                    Max
+                                                </div>
+                                                <div className="value">
+                                                    {userMaxMint}
+                                                </div>
+                                            </div>
+                                            {/* <Form.Item
+                                                name="UserMintMax"
+                                                label="UserMintMax"
+                                                validateTrigger="onBlur"
+                                                validateFirst={true}
+                                                rules={[
+                                                    { required: true, message: 'Please input UserMintMax!' },
+                                                ]}
+                                            >
+                                                <Input />
+                                            </Form.Item> */}
+                                            <Button type="primary" className="max-btn" onClick={() => {
+                                                handleSetMaxMint()
+                                            }}>
+                                                Submit
+                                            </Button>
+
+                                            {/* <Button type="primary" className="max-btn" onClick={() => {
+                                            handleSetLowestMint()
+                                        }}>
+                                            Submit
+                                        </Button> */}
+                                        </Form>
+                                    </div>
+                                    <div className="whitelist">
+                                        <p>
+                                            Whitelist user Max
+                                        </p>
+                                        <Form form={form} name="control-hooks">
+                                            <div className="current">
+                                                <div className="name">
+                                                    Min
+                                                </div>
+                                                <div className="value">
+                                                    {/* {whiteMaxMint} */}
+                                                </div>
+                                            </div>
+                                            {/* <Form.Item
+                                                name="WhitelistUserMintMax"
+                                                label="WhitelistUserMintMax"
+                                                validateTrigger="onBlur"
+                                                validateFirst={true}
+                                                rules={[
+                                                    { required: true, message: 'Please input WhitelistUserMintMax!' },
+                                                ]}
+                                            >
+                                                <Input />
+                                            </Form.Item> */}
+                                            <div className="current">
+                                                <div className="name">
+                                                    Max
+                                                </div>
+                                                <div className="value">
+                                                    {whiteMaxMint}
+                                                </div>
+                                            </div>
+                                            {/* <Form.Item
+                                    name="WhitelistUserMintMax"
+                                    label="WhitelistUserMintMax"
+                                    validateTrigger="onBlur"
+                                    validateFirst={true}
+                                    rules={[
+                                        { required: true, message: 'Please input WhitelistUserMintMax!' },
+                                    ]}
+                                >
+                                    <Input />
+                                </Form.Item> */}
+                                            <Button type="primary" className="max-btn" onClick={() => {
+                                                handleSetWhitelistMaxMint()
+                                            }}>
+                                                Submit
+                                            </Button>
+                                            {/* <Button type="primary" className="max-btn" onClick={() => {
+                                                handleSetWhitelistMaxMint()
+                                            }}>
+                                                Submit
+                                            </Button> */}
+                                        </Form>
+                                    </div>
+
+
                                 </div>
                             </div>
-                            <Form.Item
-                                name="GeneralUserMin"
-                                label="GeneralUserMin"
-                                validateTrigger="onBlur"
-                                validateFirst={true}
-                                rules={[
-                                    { required: true, message: 'Please input GeneralUserMin!' },
-                                ]}
-                            >
-                                <Input />
-                            </Form.Item>
-                            <Button type="primary" className="max-btn" onClick={() => {
-                                handleSetLowestMint()
-                            }}>
-                                Submit
-                            </Button>
-                        </Form>
-                    </div>
-                    <div className="content-item">
-                        <h3>
-                            General user Max
-                        </h3>
-                        <Form form={form} name="control-hooks">
-                            <div className="current">
-                                <div className="name">
-                                    Current:
+                        </div>
+                        {/* <div className='panel-container'> */}
+                        {/* <div className="content-item">
+                                <h3>
+                                    General user Max
+                                </h3>
+                                <Form form={form} name="control-hooks">
+                                    <div className="current">
+                                        <div className="name">
+                                            Current:
+                                        </div>
+                                        <div className="value">
+                                            {userMaxMint}
+                                        </div>
+                                    </div>
+                                    <Form.Item
+                                        name="UserMintMax"
+                                        label="UserMintMax"
+                                        validateTrigger="onBlur"
+                                        validateFirst={true}
+                                        rules={[
+                                            { required: true, message: 'Please input UserMintMax!' },
+                                        ]}
+                                    >
+                                        <Input />
+                                    </Form.Item>
+                                    <Button type="primary" className="max-btn" onClick={() => {
+                                        handleSetMaxMint()
+                                    }}>
+                                        Submit
+                                    </Button>
+                                </Form>
+                            </div> */}
+
+                        {/* <div className="content-item">
+                            <h3>
+                                Whitelist user Max
+                            </h3>
+                            <Form form={form} name="control-hooks">
+                                <div className="current">
+                                    <div className="name">
+                                        Current:
+                                    </div>
+                                    <div className="value">
+                                        {whiteMaxMint}
+                                    </div>
                                 </div>
-                                <div className="value">
-                                    {userMaxMint}
-                                </div>
-                            </div>
-                            <Form.Item
-                                name="UserMintMax"
-                                label="UserMintMax"
-                                validateTrigger="onBlur"
-                                validateFirst={true}
-                                rules={[
-                                    { required: true, message: 'Please input UserMintMax!' },
-                                ]}
-                            >
-                                <Input />
-                            </Form.Item>
-                            <Button type="primary" className="max-btn" onClick={() => {
-                                handleSetMaxMint()
-                            }}>
-                                Submit
-                            </Button>
-                        </Form>
-                    </div>
-                    <div className="content-item">
-                        <h3>
-                            Whitelist user Max
-                        </h3>
-                        <Form form={form} name="control-hooks">
-                            <div className="current">
-                                <div className="name">
-                                    Current:
-                                </div>
-                                <div className="value">
-                                    {whiteMaxMint}
-                                </div>
-                            </div>
-                            <Form.Item
-                                name="WhitelistUserMintMax"
-                                label="WhitelistUserMintMax"
-                                validateTrigger="onBlur"
-                                validateFirst={true}
-                                rules={[
-                                    { required: true, message: 'Please input WhitelistUserMintMax!' },
-                                ]}
-                            >
-                                <Input />
-                            </Form.Item>
-                            <Button type="primary" className="max-btn" onClick={() => {
-                                handleSetWhitelistMaxMint()
-                            }}>
-                                Submit
-                            </Button>
-                        </Form>
+                                <Form.Item
+                                    name="WhitelistUserMintMax"
+                                    label="WhitelistUserMintMax"
+                                    validateTrigger="onBlur"
+                                    validateFirst={true}
+                                    rules={[
+                                        { required: true, message: 'Please input WhitelistUserMintMax!' },
+                                    ]}
+                                >
+                                    <Input />
+                                </Form.Item>
+                                <Button type="primary" className="max-btn" onClick={() => {
+                                    handleSetWhitelistMaxMint()
+                                }}>
+                                    Submit
+                                </Button>
+                            </Form>
+                        </div> */}
+                        {/* </div> */}
                     </div>
                 </div>}
             {curNav == 2 &&
-                <div className="panel-container">
-                    
-                    <div className="panel-title">
-                        White List
-                        <Button type="primary" onClick={() => { setShowAdd(true) }}>Add</Button>
-                        <Button type="primary" onClick={() => { setShowRemove(true) }}>Remove</Button>
-                    </div>
+                <div className='panel-box'>
+                    <div className="panel-container">
 
-                    <div className="white-list">
-                        {whitelist.map(item => {
-                            return (
-                                <div>
-                                    {item}
+                        <div className="panel-title" style={{ display: 'flex', justifyContent: 'space-between' }}>
+                            <p style={{ width: '80%' }}>White List</p>
+                            <div style={{ display: 'flex', width: '20%' }}>
+                                <div type="primary" className='kk' onClick={() => { setShowAdd(true) }}>Add</div>
+                                <div type="primary" className='kk' onClick={() => { setShowRemove(true) }}>Remove</div>
+                            </div>
+                        </div>
+                        <div className="fire-list-box">
+                            <div className="list-header flex-box">
+                                <div className="col">
+                                    No.
+                                </div>
+                                <div className="col">
+                                    PID
+                                </div>
+                                <div className="col">
+                                    Wallet Address
+                                </div>
+
+                            </div>
+
+
+                            {whitelist.map(item =>
+                            (
+                                <div className="list-item ">
+                                    <div className="col no">
+                                        {item}
+                                    </div>
+                                    <div className="col pid">
+                                        {item.pid}
+                                    </div>
+                                    <div className="col address">
+                                        {item}
+                                    </div>
+
                                 </div>
                             )
-                        })}
+                            )}
+                        </div>
+                        <div className="pagination">
+                            {
+                                activeNav == 1 && <Pagination current={curPage} showSizeChanger onShowSizeChange={handleShowSizeChange}
+                                    onChange={onChangePage} total={total}
+                                    defaultPageSize={pageCount} />
+                            }
+                        </div>
                     </div>
-                </div>}
+                </div>
+            }
             {curNav == 3 &&
                 <div className="panel-box">
                     <div className="panel-container">
@@ -445,14 +587,32 @@ const FireLock = (props) => {
                                 Mint Fee
                             </h3>
                             <Form form={form} name="control-hooks">
-                                <div className="current">
-                                    <div className="name">
-                                        Current:
-                                    </div>
-                                    <div className="value">
+                                <Form.Item
+                                    // label="Current"
+                                    validateTrigger="onBlur"
+                                    validateFirst={true}
+                                    rules={[
+                                        // { required: true, message: 'Please input Title!' },
+                                    ]}
+                                    style={{
+
+                                        width: '100%'
+                                    }}>
+
+                                    <div className="flex-box" style={{
+                                        paddingLeft: '10px',
+                                        border: '1px solid rgba(205,158,87,0.5)',
+                                        backgroundColor: 'rgba(205,158,87,0.1)',
+                                        borderRadius: '25px',
+                                        height: '35px',
+                                        lineHeight: '35px',
+                                        width: '100%',
+                                        color: '#CD9E57'
+                                    }}>
                                         {fee}
+
                                     </div>
-                                </div>
+                                </Form.Item>
                                 <Form.Item
                                     name="MintFee"
                                     label="MintFee"
