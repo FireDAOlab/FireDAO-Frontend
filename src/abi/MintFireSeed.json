@@ -16,68 +16,6 @@
 		"inputs": [
 			{
 				"internalType": "address",
-				"name": "_treasuryDistributionContract",
-				"type": "address"
-			},
-			{
-				"internalType": "address",
-				"name": "_cityNode",
-				"type": "address"
-			},
-			{
-				"internalType": "address",
-				"name": "_rainbowTreasury",
-				"type": "address"
-			},
-			{
-				"internalType": "address",
-				"name": "_weth",
-				"type": "address"
-			}
-		],
-		"stateMutability": "nonpayable",
-		"type": "constructor"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "operator",
-				"type": "address"
-			}
-		],
-		"name": "OperatorNotAllowed",
-		"type": "error"
-	},
-	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": true,
-				"internalType": "address",
-				"name": "account",
-				"type": "address"
-			},
-			{
-				"indexed": true,
-				"internalType": "address",
-				"name": "operator",
-				"type": "address"
-			},
-			{
-				"indexed": false,
-				"internalType": "bool",
-				"name": "approved",
-				"type": "bool"
-			}
-		],
-		"name": "ApprovalForAll",
-		"type": "event"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
 				"name": "_account",
 				"type": "address"
 			},
@@ -165,6 +103,68 @@
 		"type": "function"
 	},
 	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_firePassport",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "_cityNode",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "_rainbowTreasury",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "_weth",
+				"type": "address"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "operator",
+				"type": "address"
+			}
+		],
+		"name": "OperatorNotAllowed",
+		"type": "error"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "account",
+				"type": "address"
+			},
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "operator",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "bool",
+				"name": "approved",
+				"type": "bool"
+			}
+		],
+		"name": "ApprovalForAll",
+		"type": "event"
+	},
+	{
 		"anonymous": false,
 		"inputs": [
 			{
@@ -182,13 +182,6 @@
 		],
 		"name": "OwnershipTransferred",
 		"type": "event"
-	},
-	{
-		"inputs": [],
-		"name": "pauseContract",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
 	},
 	{
 		"anonymous": false,
@@ -347,10 +340,17 @@
 		"type": "event"
 	},
 	{
+		"inputs": [],
+		"name": "pauseContract",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
 		"inputs": [
 			{
 				"internalType": "address[]",
-				"name": "users",
+				"name": "_users",
 				"type": "address[]"
 			}
 		],
@@ -528,6 +528,19 @@
 	{
 		"inputs": [
 			{
+				"internalType": "address",
+				"name": "_firePassport",
+				"type": "address"
+			}
+		],
+		"name": "setFirePassport",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
 				"internalType": "uint256",
 				"name": "_fireSeedDiscount",
 				"type": "uint256"
@@ -547,19 +560,6 @@
 			}
 		],
 		"name": "setFireSoul",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address payable",
-				"name": "_address",
-				"type": "address"
-			}
-		],
-		"name": "setFpAddr",
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
@@ -595,7 +595,7 @@
 				"type": "uint256"
 			}
 		],
-		"name": "setInviteFeeRatio",
+		"name": "setInviteRewardRatio",
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
@@ -609,6 +609,19 @@
 			}
 		],
 		"name": "setLowestMint",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_amount",
+				"type": "uint256"
+			}
+		],
+		"name": "setMaxMintId",
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
@@ -630,34 +643,21 @@
 		"inputs": [
 			{
 				"internalType": "uint256",
-				"name": "_one",
+				"name": "_inviteRatio",
 				"type": "uint256"
 			},
 			{
 				"internalType": "uint256",
-				"name": "_two",
+				"name": "_cityNodeRatio",
 				"type": "uint256"
 			},
 			{
 				"internalType": "uint256",
-				"name": "_rainbowTreasury",
+				"name": "_rainbowTreasuryRatio",
 				"type": "uint256"
 			}
 		],
-		"name": "setTotalRewardRatioOne",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "_treasuryDistributionContract",
-				"type": "address"
-			}
-		],
-		"name": "setTreasuryDistributionContract",
+		"name": "setRewardRatio",
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
@@ -670,20 +670,7 @@
 				"type": "uint256"
 			}
 		],
-		"name": "setUserMintMax",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "bool",
-				"name": "_set",
-				"type": "bool"
-			}
-		],
-		"name": "setUseTreasuryDistributionContract",
+		"name": "setUserPerMintMax",
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
@@ -709,7 +696,7 @@
 				"type": "uint256"
 			}
 		],
-		"name": "setWListMax",
+		"name": "setWListPerMintMax",
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
@@ -717,12 +704,6 @@
 	{
 		"anonymous": false,
 		"inputs": [
-			{
-				"indexed": false,
-				"internalType": "uint256",
-				"name": "transferTime",
-				"type": "uint256"
-			},
 			{
 				"indexed": false,
 				"internalType": "address",
@@ -774,19 +755,6 @@
 	{
 		"stateMutability": "payable",
 		"type": "receive"
-	},
-	{
-		"inputs": [],
-		"name": "amountOfSbt007",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
 	},
 	{
 		"inputs": [
@@ -844,25 +812,6 @@
 				"internalType": "string",
 				"name": "",
 				"type": "string"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "_user",
-				"type": "address"
-			}
-		],
-		"name": "checkPid",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
 			}
 		],
 		"stateMutability": "view",
@@ -967,7 +916,71 @@
 	},
 	{
 		"inputs": [],
+		"name": "getAirDropList",
+		"outputs": [
+			{
+				"internalType": "address[]",
+				"name": "",
+				"type": "address[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getAirDropListLength",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_user",
+				"type": "address"
+			}
+		],
+		"name": "getFid",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
 		"name": "getOwnerIdlength",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_user",
+				"type": "address"
+			}
+		],
+		"name": "getPid",
 		"outputs": [
 			{
 				"internalType": "uint256",
@@ -992,25 +1005,6 @@
 			}
 		],
 		"name": "isApprovedForAll",
-		"outputs": [
-			{
-				"internalType": "bool",
-				"name": "",
-				"type": "bool"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "",
-				"type": "address"
-			}
-		],
-		"name": "isNotWhiteListUser",
 		"outputs": [
 			{
 				"internalType": "bool",
@@ -1055,7 +1049,7 @@
 	},
 	{
 		"inputs": [],
-		"name": "maxMint",
+		"name": "maxMintId",
 		"outputs": [
 			{
 				"internalType": "uint256",
@@ -1171,48 +1165,6 @@
 	{
 		"inputs": [
 			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"name": "ratioDetails",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "lower",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "upper",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "rate",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "ratioDetailsLength",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
 				"internalType": "address",
 				"name": "",
 				"type": "address"
@@ -1319,51 +1271,38 @@
 	},
 	{
 		"inputs": [],
+		"name": "TOTAL_CITYNODE_REWARD_RATIO",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "TOTAL_INVITE_REWARD_RATIO",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
 		"name": "TOTAL_MAIN_RATIO",
 		"outputs": [
 			{
 				"internalType": "uint256",
 				"name": "",
 				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "TOTAL_REWARD_RATIO_ONE",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "TOTAL_REWARD_RATIO_TWO",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "treasuryDistributionContract",
-		"outputs": [
-			{
-				"internalType": "address",
-				"name": "",
-				"type": "address"
 			}
 		],
 		"stateMutability": "view",
@@ -1409,20 +1348,7 @@
 	},
 	{
 		"inputs": [],
-		"name": "useITreasuryDistributionContract",
-		"outputs": [
-			{
-				"internalType": "bool",
-				"name": "",
-				"type": "bool"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "userMintMax",
+		"name": "userPerMintMax",
 		"outputs": [
 			{
 				"internalType": "uint256",
@@ -1436,25 +1362,6 @@
 	{
 		"inputs": [],
 		"name": "weth",
-		"outputs": [
-			{
-				"internalType": "address",
-				"name": "",
-				"type": "address"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"name": "whiteList",
 		"outputs": [
 			{
 				"internalType": "address",
@@ -1480,20 +1387,7 @@
 	},
 	{
 		"inputs": [],
-		"name": "wListLength",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "wListMintMax",
+		"name": "whiteListPerMintMax",
 		"outputs": [
 			{
 				"internalType": "uint256",

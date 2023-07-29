@@ -11,7 +11,7 @@ import user3 from "../../imgs/user3.png";
 import fireseed from "../../imgs/FireSeed@2x.webp"
 import judgeStatus from "../../utils/judgeStatus.js"
 import { getPasslist } from "../../graph/myFireseed";
-
+import coinInfo from "../../config/coinInfo";
 let logs = []
 
 const LockList = (props) => {
@@ -911,7 +911,7 @@ justify-content: space-between;
     setIsadmain(isAdmin)
   }
   const getMyFireSeed = async () => {
-    const listLength = await handleViewMethod(" getIsadmainIdlength", [])
+    const listLength = await handleViewMethod("getOwnerIdlength", [])
     let list = []
     if (listLength <= 0) {
       return
@@ -1029,6 +1029,20 @@ justify-content: space-between;
     }
     getTransfer()
   }, [state.account]);
+  const addToken = async (tokenId) => {
+    await window.ethereum.request({
+      method: 'wallet_watchAsset',
+      params: {
+        type: coinInfo.fireSeed.type,
+        options: {
+          address: coinInfo.fireSeed.address,
+          symbol: "FLM",
+          tokenId: tokenId,
+          image: coinInfo.fireSeed.image,
+        },
+      },
+    });
+  }
   return (
     <LockList>
       <div className="panel-box">

@@ -62,7 +62,7 @@ if (develop.ENV === "production") {
         fireLockFactory: {address: "0x1853B8d43B9500F60cc68b672642A02eC26667B6", abi: firelockFactory},
         fireLock: {address: "0x87f76e152889e487f07aA737581d3D7522AA65CE", abi: fireLock},
         firelockFee: {address: "0x0bd13018556f643BC0c53ee119087dC4393FF7c8", abi: firelockFee},
-        MintFireSeed: {address: "0x32057937d322341b96cbD769C81FA1E451358453", abi: MintFireSeed},
+        MintFireSeed: {address: "0x947dA85763B784897B85F43567A5B1f743dd0fe0", abi: MintFireSeed},
         mintFireSoul: {address: "0xEFb981c48870Fe757850e993B77810A887c37b14", abi: MintFireSoul},
         Reputation: {address: "0x87a0941bBdE86Cf5C5b3DC68da4A2018a49BFaaB", abi: Reputation},
         SBT001: {address: "0xa6096Fb5541396e38bC86A0E6e912EBE9cB6f65a", abi: erc20Abi},
