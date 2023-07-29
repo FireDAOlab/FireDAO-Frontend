@@ -91,18 +91,9 @@ const FireLock = (props) => {
         setWhitelistDiscount(discount)
     }
     const getDiscountFactors = async () => {
-        const length = await handleViewMethod("ratioDetailsLength", [])
-        let arr = []
-        for (let i = 0; i < length; i++) {
-            const item = await handleViewMethod("ratioDetails", [i])
-            // const   discount= await  handleViewMethod("discountFactors",[item.lower])
-            arr.push({
-                start: item.lower,
-                end: item.upper,
-                discount: item.rate
-            })
-        }
-        setDiscountArr(arr)
+        // const arr = await handleViewMethod("discountFactors", [])
+
+        // setDiscountArr(arr)
     }
     const getFeeReceiver = async () => {
         const feeReceiver = await handleViewMethod("rainbowTreasury", [])
@@ -122,8 +113,8 @@ const FireLock = (props) => {
     }
 
     const getRate = async () => {
-        const rate1 = await handleViewMethod("TOTAL_REWARD_RATIO_ONE", [])
-        const rate2 = await handleViewMethod("TOTAL_REWARD_RATIO_TWO", [])
+        const rate1 = await handleViewMethod("TOTAL_INVITE_REWARD_RATIO", [])
+        const rate2 = await handleViewMethod("TOTAL_CITYNODE_REWARD_RATIO", [])
         const rate3 = await handleViewMethod("TOTAL_MAIN_RATIO", [])
 
         setRate({
@@ -137,20 +128,15 @@ const FireLock = (props) => {
         setLowestMint(lowestMint)
     }
     const getUserMintMax = async () => {
-        const maxM = await handleViewMethod("userMintMax", [])
+        const maxM = await handleViewMethod("userPerMintMax", [])
         setUserMintMax(maxM)
     }
     const getWhitelist = async () => {
-        const length = await handleViewMethod("wListLength", [])
-        let arr = []
-        for (let i = 0; i < length; i++) {
-            const item = await handleViewMethod("whiteList", [i])
-            arr.push(item)
-        }
+        const arr = await handleViewMethod("getAirDropList", [])
         setWhitelistArr(arr)
     }
     const getWhiteMaxMint = async () => {
-        const maxM = await handleViewMethod("wListMintMax", [])
+        const maxM = await handleViewMethod("whiteListPerMintMax", [])
         setWhiteMaxMint(maxM)
     }
 

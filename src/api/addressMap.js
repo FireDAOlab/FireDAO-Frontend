@@ -71,7 +71,7 @@ if (develop.ENV === "production") {
         PrivateExchangePoolOG: {address: "0x2317105a20C7702f7A57505d01300110C94438e6", abi: PrivateExchangePoolOG},
         TreasuryDistribution: {address: "0xA8FcF03CDEc12CF19767d12aC4c627FF6e5D1c21", abi: TreasuryDistribution},
         Guild: {address: "0xD75a1A6F27993571048C17FD1D346a36DD38E6Bd", abi: Guild},
-        cityNode: {address: "0x0bb3fD1442Fd5d000Fa7c85A96df727CEa3491b9", abi: cityNode},
+        cityNode: {address: "0x054dd609360c254b21E39AFDa333317486761D3d", abi: cityNode},
         WETH: {address: "0x7313A220a6220bF83245058a29Eb6187e9964927", abi: erc20Abi},
         FDT: {address: "0xd1ad4a44f65141edcac9a23838f1bc6ed6dfeaef", abi: FDT},
         fdtOgToFdt: {address: "0x21212FC679C23bbAa8ae3dDAE43127590331ccA1", abi: fdtOgToFdt},
