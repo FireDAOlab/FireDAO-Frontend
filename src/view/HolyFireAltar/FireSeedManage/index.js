@@ -331,57 +331,47 @@ const FireLock = (props) => {
                                 <div className='amountbox'>
                                     <div className='general'>
                                         <p>General user</p>
-                                        {/* </h3> */}
                                         <Form form={form} name="control-hooks">
-                                            <div className="current">
+                                            <div className="user">
                                                 <div className="name">
                                                     Min
                                                 </div>
-                                                <div className="value">
-                                                    {lowestMint}
-                                                </div>
+                                                <Form.Item className="value"
+                                                    name="GeneralUserMin"
+                                                    validateTrigger="onBlur"
+                                                    validateFirst={true}
+                                                    rules={[
+                                                        { required: true, message: 'Please input GeneralUserMin!' },
+                                                    ]}
+                                                >
+                                                    <Input placeholder={lowestMint} style={{ textAlign: 'center' }} />
+                                                </Form.Item>
                                             </div>
-                                            {/* <Form.Item
-                                                name="GeneralUserMin"
-                                                label="GeneralUserMin"
-                                                validateTrigger="onBlur"
-                                                validateFirst={true}
-                                                rules={[
-                                                    { required: true, message: 'Please input GeneralUserMin!' },
-                                                ]}
-                                            >
-                                                <Input /> 
-                                            </Form.Item>*/}
-                                            <div className="current">
+                                            <Button type="primary" className="max-btn" onClick={() => {
+                                                handleSetLowestMint()
+                                            }}>
+                                                Submit
+                                            </Button>
+                                            <div className="user">
                                                 <div className="name">
                                                     Max
                                                 </div>
-                                                <div className="value">
-                                                    {userMaxMint}
-                                                </div>
+                                                <Form.Item className="value"
+                                                    name="UserMintMax"
+                                                    validateTrigger="onBlur"
+                                                    validateFirst={true}
+                                                    rules={[
+                                                        { required: true, message: 'Please input UserMintMax!' },
+                                                    ]}
+                                                >
+                                                    <Input placeholder={userMaxMint} style={{ textAlign: 'center' }} />
+                                                </Form.Item>
                                             </div>
-                                            {/* <Form.Item
-                                                name="UserMintMax"
-                                                label="UserMintMax"
-                                                validateTrigger="onBlur"
-                                                validateFirst={true}
-                                                rules={[
-                                                    { required: true, message: 'Please input UserMintMax!' },
-                                                ]}
-                                            >
-                                                <Input />
-                                            </Form.Item> */}
                                             <Button type="primary" className="max-btn" onClick={() => {
                                                 handleSetMaxMint()
                                             }}>
                                                 Submit
                                             </Button>
-
-                                            {/* <Button type="primary" className="max-btn" onClick={() => {
-                                            handleSetLowestMint()
-                                        }}>
-                                            Submit
-                                        </Button> */}
                                         </Form>
                                     </div>
                                     <div className="whitelist">
@@ -389,54 +379,30 @@ const FireLock = (props) => {
                                             Whitelist user Max
                                         </p>
                                         <Form form={form} name="control-hooks">
-                                            <div className="current">
-                                                <div className="name">
-                                                    Min
-                                                </div>
-                                                <div className="value">
-                                                    {/* {whiteMaxMint} */}
-                                                </div>
-                                            </div>
-                                            {/* <Form.Item
-                                                name="WhitelistUserMintMax"
-                                                label="WhitelistUserMintMax"
-                                                validateTrigger="onBlur"
-                                                validateFirst={true}
-                                                rules={[
-                                                    { required: true, message: 'Please input WhitelistUserMintMax!' },
-                                                ]}
-                                            >
-                                                <Input />
-                                            </Form.Item> */}
-                                            <div className="current">
+                                            <div className="user">
                                                 <div className="name">
                                                     Max
                                                 </div>
-                                                <div className="value">
+                                                {/* <div className="value">
                                                     {whiteMaxMint}
-                                                </div>
+                                                </div> */}
+
+                                                <Form.Item className="value"
+                                                    validateTrigger="onBlur"
+                                                    validateFirst={true}
+                                                    rules={[
+                                                        { required: true, message: 'Please input WhitelistUserMintMax!' },
+                                                    ]}
+                                                >
+                                                    <Input placeholder={whiteMaxMint} style={{ textAlign: 'center' }} />
+                                                </Form.Item>
                                             </div>
-                                            {/* <Form.Item
-                                    name="WhitelistUserMintMax"
-                                    label="WhitelistUserMintMax"
-                                    validateTrigger="onBlur"
-                                    validateFirst={true}
-                                    rules={[
-                                        { required: true, message: 'Please input WhitelistUserMintMax!' },
-                                    ]}
-                                >
-                                    <Input />
-                                </Form.Item> */}
+
                                             <Button type="primary" className="max-btn" onClick={() => {
                                                 handleSetWhitelistMaxMint()
                                             }}>
                                                 Submit
                                             </Button>
-                                            {/* <Button type="primary" className="max-btn" onClick={() => {
-                                                handleSetWhitelistMaxMint()
-                                            }}>
-                                                Submit
-                                            </Button> */}
                                         </Form>
                                     </div>
 
@@ -444,71 +410,7 @@ const FireLock = (props) => {
                                 </div>
                             </div>
                         </div>
-                        {/* <div className='panel-container'> */}
-                        {/* <div className="content-item">
-                                <h3>
-                                    General user Max
-                                </h3>
-                                <Form form={form} name="control-hooks">
-                                    <div className="current">
-                                        <div className="name">
-                                            Current:
-                                        </div>
-                                        <div className="value">
-                                            {userMaxMint}
-                                        </div>
-                                    </div>
-                                    <Form.Item
-                                        name="UserMintMax"
-                                        label="UserMintMax"
-                                        validateTrigger="onBlur"
-                                        validateFirst={true}
-                                        rules={[
-                                            { required: true, message: 'Please input UserMintMax!' },
-                                        ]}
-                                    >
-                                        <Input />
-                                    </Form.Item>
-                                    <Button type="primary" className="max-btn" onClick={() => {
-                                        handleSetMaxMint()
-                                    }}>
-                                        Submit
-                                    </Button>
-                                </Form>
-                            </div> */}
 
-                        {/* <div className="content-item">
-                            <h3>
-                                Whitelist user Max
-                            </h3>
-                            <Form form={form} name="control-hooks">
-                                <div className="current">
-                                    <div className="name">
-                                        Current:
-                                    </div>
-                                    <div className="value">
-                                        {whiteMaxMint}
-                                    </div>
-                                </div>
-                                <Form.Item
-                                    name="WhitelistUserMintMax"
-                                    label="WhitelistUserMintMax"
-                                    validateTrigger="onBlur"
-                                    validateFirst={true}
-                                    rules={[
-                                        { required: true, message: 'Please input WhitelistUserMintMax!' },
-                                    ]}
-                                >
-                                    <Input />
-                                </Form.Item>
-                                <Button type="primary" className="max-btn" onClick={() => {
-                                    handleSetWhitelistMaxMint()
-                                }}>
-                                    Submit
-                                </Button>
-                            </Form>
-                        </div> */}
-                        {/* </div> */}
                     </div>
                 </div>}
             {curNav == 2 &&
@@ -517,7 +419,7 @@ const FireLock = (props) => {
 
                         <div className="panel-title" style={{ display: 'flex', justifyContent: 'space-between' }}>
                             <p style={{ width: '80%' }}>White List</p>
-                            <div style={{ display: 'flex', width: '20%' }}>
+                            <div className='tj' >
                                 <div type="primary" className='kk' onClick={() => { setShowAdd(true) }}>Add</div>
                                 <div type="primary" className='kk' onClick={() => { setShowRemove(true) }}>Remove</div>
                             </div>
@@ -573,43 +475,42 @@ const FireLock = (props) => {
                                 <div className='mintfee'>
                                     <p>Mint Fee</p>
                                     <Form form={form} name="control-hooks">
-                                        <Form.Item
-                                            // label="Current"
-                                            validateTrigger="onBlur"
-                                            validateFirst={true}
-                                            rules={[
-                                                // { required: true, message: 'Please input Title!' },
-                                            ]}
-                                            style={{
-
-                                                width: '100%'
-                                            }}>
-
-                                            <div className="flex-box" style={{
-                                                paddingLeft: '10px',
-                                                border: '1px solid rgba(205,158,87,0.5)',
-                                                backgroundColor: 'rgba(205,158,87,0.1)',
-                                                borderRadius: '25px',
-                                                height: '35px',
-                                                lineHeight: '35px',
-                                                width: '100%',
-                                                color: '#CD9E57'
-                                            }}>
-                                                {fee}
-
+                                        <div className="fee1">
+                                            <div className="name">
+                                                Current
                                             </div>
-                                        </Form.Item>
-                                        <Form.Item
-                                            name="MintFee"
-                                            label="MintFee"
-                                            validateTrigger="onBlur"
-                                            validateFirst={true}
-                                            rules={[
-                                                { required: true, message: 'Please input MintFee!' },
-                                            ]}
-                                        >
-                                            <Input />
-                                        </Form.Item>
+
+                                            <Form.Item
+                                                className='value'
+                                                validateTrigger="onBlur"
+                                                validateFirst={true}
+                                                rules={[
+                                                    // { required: true, message: 'Please input Title!' },
+                                                ]}
+                                            >
+
+                                                <div className="too" >
+                                                    {fee}
+
+                                                </div>
+                                            </Form.Item>
+                                        </div>
+                                        <div className='fee1'>
+                                            <div className="name">
+                                                Predefined
+                                            </div>
+                                            <Form.Item
+                                                className='value'
+                                                name="MintFee"
+                                                validateTrigger="onBlur"
+                                                validateFirst={true}
+                                                rules={[
+                                                    { required: true, message: 'Please input MintFee!' },
+                                                ]}
+                                            >
+                                                <Input />
+                                            </Form.Item>
+                                        </div>
                                         <Button type="primary" className="max-btn" onClick={() => {
                                             handleSetFee()
                                         }}>
@@ -619,26 +520,41 @@ const FireLock = (props) => {
                                 </div>
                                 <div className='mintdis'>
                                     <p>Mint Discount</p>
+
                                     <Form form={form} name="control-hooks">
-                                        <div className="current">
+                                        <div className='fee1'>
                                             <div className="name">
-                                                Current:
+                                                Current
                                             </div>
-                                            <div className="value">
-                                                {userMaxMint}
-                                            </div>
+                                            <Form.Item
+                                                className='value'
+                                                validateTrigger="onBlur"
+                                                validateFirst={true}
+                                                rules={[
+                                                    // { required: true, message: 'Please input Title!' },
+                                                ]}
+                                            >
+
+                                                <div className="too" >
+                                                    {userMaxMint}
+                                                </div>
+                                            </Form.Item>
                                         </div>
-                                        <Form.Item
-                                            name="MintDiscount"
-                                            label="MintDiscount"
-                                            validateTrigger="onBlur"
-                                            validateFirst={true}
-                                            rules={[
-                                                { required: true, message: 'Please input UserMintMax!' },
-                                            ]}
-                                        >
-                                            <Input />
-                                        </Form.Item>
+                                        <div className='fee1'>
+                                            <div className="name">
+                                                Predefined
+                                            </div>
+                                            <Form.Item
+                                                className='value'
+                                                validateTrigger="onBlur"
+                                                validateFirst={true}
+                                                rules={[
+                                                    { required: true, message: 'Please input UserMintMax!' },
+                                                ]}
+                                            >
+                                                <Input />
+                                            </Form.Item>
+                                        </div>
                                         <Button type="primary" className="max-btn" onClick={() => {
                                             handleSetMaxMint()
                                         }}>
@@ -648,285 +564,287 @@ const FireLock = (props) => {
                                 </div>
                             </div>
                         </div>
-                        <div className="panel-container">
-                            <h1>
-                                Mint Amount Discount
-                            </h1>
-                            <div className="content-item">
-                                <div className="discount-list">
-                                    {discountArr.map(item => {
-                                        return (<div className="list-item">
-                                            <div className="start">
-                                                {item.start}~
-                                            </div>
-                                            <div className="end">
-                                                {item.end}
-                                            </div>
-                                            <div className="discount">
-                                                {item.discount}
-                                            </div>
-                                            <div className="operate">
-                                                <Button type="primary" onClick={() => { deleteDiscountFactor(item) }}>
-                                                    Delete
-                                                </Button>
-                                            </div>
-                                        </div>)
-                                    })}
+                    </div>
+
+                    <div className="panel-container">
+                        <h1>
+                            Mint Amount Discount
+                        </h1>
+                        <div className="content-item">
+                            <div className="discount-list">
+                                {discountArr.map(item => {
+                                    return (<div className="list-item">
+                                        <div className="start">
+                                            {item.start}~
+                                        </div>
+                                        <div className="end">
+                                            {item.end}
+                                        </div>
+                                        <div className="discount">
+                                            {item.discount}
+                                        </div>
+                                        <div className="operate">
+                                            <Button type="primary" onClick={() => { deleteDiscountFactor(item) }}>
+                                                Delete
+                                            </Button>
+                                        </div>
+                                    </div>)
+                                })}
+                            </div>
+                            <Form form={form} name="control-hooks">
+                                <Form.Item
+                                    name="start"
+                                    label="start"
+                                    validateTrigger="onBlur"
+                                    validateFirst={true}
+                                    rules={[
+                                        { required: true, message: 'Please input start!' },
+                                    ]}
+                                >
+                                    <Input />
+                                </Form.Item>
+                                <Form.Item
+                                    name="end"
+                                    label="end"
+                                    validateTrigger="onBlur"
+                                    validateFirst={true}
+                                    rules={[
+                                        { required: true, message: 'Please input end!' },
+                                    ]}
+                                >
+                                    <Input />
+                                </Form.Item>
+                                <Form.Item
+                                    name="discount"
+                                    label="discount"
+                                    validateTrigger="onBlur"
+                                    validateFirst={true}
+                                    rules={[
+                                        { required: true, message: 'Please input discount!' },
+                                    ]}
+                                >
+                                    <Input />
+                                </Form.Item>
+                                <Button type="primary" className="max-btn" onClick={() => {
+                                    setDiscountFactor()
+                                }}>
+                                    Submit
+                                </Button>
+                            </Form>
+                        </div>
+                    </div>
+                    <div className="panel-container">
+                        <h1>
+                            Whitelist Discount
+                        </h1>
+                        <div className="content-item">
+                            <h3>
+                                Whitelist Discount
+                            </h3>
+                            <Form form={form} name="control-hooks">
+                                <div className="current">
+                                    <div className="name">
+                                        Current:
+                                    </div>
+                                    <div className="value">
+                                        {whitelistDiscount}
+                                    </div>
                                 </div>
-                                <Form form={form} name="control-hooks">
-                                    <Form.Item
-                                        name="start"
-                                        label="start"
-                                        validateTrigger="onBlur"
-                                        validateFirst={true}
-                                        rules={[
-                                            { required: true, message: 'Please input start!' },
-                                        ]}
-                                    >
-                                        <Input />
-                                    </Form.Item>
-                                    <Form.Item
-                                        name="end"
-                                        label="end"
-                                        validateTrigger="onBlur"
-                                        validateFirst={true}
-                                        rules={[
-                                            { required: true, message: 'Please input end!' },
-                                        ]}
-                                    >
-                                        <Input />
-                                    </Form.Item>
-                                    <Form.Item
-                                        name="discount"
-                                        label="discount"
-                                        validateTrigger="onBlur"
-                                        validateFirst={true}
-                                        rules={[
-                                            { required: true, message: 'Please input discount!' },
-                                        ]}
-                                    >
-                                        <Input />
-                                    </Form.Item>
-                                    <Button type="primary" className="max-btn" onClick={() => {
-                                        setDiscountFactor()
-                                    }}>
-                                        Submit
-                                    </Button>
-                                </Form>
+                                <Form.Item
+                                    name="WhitelistDiscount"
+                                    label="WhitelistDiscount"
+                                    validateTrigger="onBlur"
+                                    validateFirst={true}
+                                    rules={[
+                                        { required: true, message: 'Please input WhitelistDiscount!' },
+                                    ]}
+                                >
+                                    <Input />
+                                </Form.Item>
+                                <Button type="primary" className="max-btn" onClick={() => {
+                                    hanleSetWhitelistDiscount()
+                                }}>
+                                    Submit
+                                </Button>
+                            </Form>
+                        </div>
+                    </div>
+
+                </div>}
+            {curNav == 4 &&
+                <div className="panel-box">
+                    <div className="panel-container">
+                        <div className="content-item">
+                            <h1>Mint Revenue Allocation</h1>
+                            <h3>
+                                Referrer
+                            </h3>
+                            <div className="current">
+                                <div className="name">
+                                    Current:
+                                </div>
+                                <div className="value">
+                                    {rateObj.rate1}
+                                </div>
+                            </div>
+                            <h3>
+                                City Node
+                            </h3>
+                            <div className="current">
+                                <div className="name">
+                                    Current:
+                                </div>
+                                <div className="value">
+                                    {rateObj.rate2}
+                                </div>
+                            </div>
+                            <h3>
+                                RainbowCity Treasury
+                            </h3>
+                            <div className="current">
+                                <div className="name">
+                                    Current:
+                                </div>
+                                <div className="value">
+                                    {rateObj.rate3}
+                                </div>
                             </div>
                         </div>
-                        <div className="panel-container">
-                            <h1>
-                                Whitelist Discount
-                            </h1>
-                            <div className="content-item">
-                                <h3>
-                                    Whitelist Discount
-                                </h3>
-                                <Form form={form} name="control-hooks">
-                                    <div className="current">
-                                        <div className="name">
-                                            Current:
-                                        </div>
-                                        <div className="value">
-                                            {whitelistDiscount}
-                                        </div>
+                        <div className="content-item">
+                            <Form form={form} name="control-hooks">
+                                <Form.Item
+                                    name="rate1"
+                                    label="rate1"
+                                    validateTrigger="onBlur"
+                                    validateFirst={true}
+                                    rules={[
+                                        { required: true, message: 'Please input rate1!' },
+                                    ]}
+                                >
+                                    <Input />
+                                </Form.Item>
+                                <Form.Item
+                                    name="rate2"
+                                    label="rate2"
+                                    validateTrigger="onBlur"
+                                    validateFirst={true}
+                                    rules={[
+                                        { required: true, message: 'Please input rate2!' },
+                                    ]}
+                                >
+                                    <Input />
+                                </Form.Item>
+                                <Form.Item
+                                    name="rate3"
+                                    label="rate3"
+                                    validateTrigger="onBlur"
+                                    validateFirst={true}
+                                    rules={[
+                                        { required: true, message: 'Please input rate3!' },
+                                    ]}
+                                >
+                                    <Input />
+                                </Form.Item>
+                                <Button type="primary" className="max-btn" onClick={() => {
+                                    setTotalRewardRatioOne()
+                                }}>
+                                    Submit
+                                </Button>
+                            </Form>
+                        </div>
+                    </div>
+                    <div className="panel-container">
+                        <h1>
+                            Category: Referrer
+                        </h1>
+                        <div className="content-item">
+                            <h3>
+                                Lv1
+                            </h3>
+                            <Form form={form} name="control-hooks">
+                                <div className="current">
+                                    <div className="name">
+                                        Current:
                                     </div>
-                                    <Form.Item
-                                        name="WhitelistDiscount"
-                                        label="WhitelistDiscount"
-                                        validateTrigger="onBlur"
-                                        validateFirst={true}
-                                        rules={[
-                                            { required: true, message: 'Please input WhitelistDiscount!' },
-                                        ]}
-                                    >
-                                        <Input />
-                                    </Form.Item>
-                                    <Button type="primary" className="max-btn" onClick={() => {
-                                        hanleSetWhitelistDiscount()
-                                    }}>
-                                        Submit
-                                    </Button>
-                                </Form>
-                            </div>
+                                    <div className="value">
+                                        {referObj.lever1}
+                                    </div>
+                                </div>
+
+                            </Form>
+                        </div>
+                        <div className="content-item">
+                            <h3>
+                                Lv2
+                            </h3>
+                            <Form form={form} name="control-hooks">
+                                <div className="current">
+                                    <div className="name">
+                                        Current:
+                                    </div>
+                                    <div className="value">
+                                        {referObj.lever2}
+                                    </div>
+                                </div>
+                            </Form>
+                        </div>
+                        <div className="content-item">
+                            <h3>
+                                Lv3
+                            </h3>
+                            <Form form={form} name="control-hooks">
+                                <div className="current">
+                                    <div className="name">
+                                        Current:
+                                    </div>
+                                    <div className="value">
+                                        {referObj.lever3}
+                                    </div>
+                                </div>
+                                <Form.Item
+                                    name="lever1"
+                                    label="lever1"
+                                    validateTrigger="onBlur"
+                                    validateFirst={true}
+                                    rules={[
+                                        { required: true, message: 'Please input lever1!' },
+                                    ]}
+                                >
+                                    <Input />
+                                </Form.Item>
+                                <Form.Item
+                                    name="lever2"
+                                    label="lever2"
+                                    validateTrigger="onBlur"
+                                    validateFirst={true}
+                                    rules={[
+                                        { required: true, message: 'Please input lever2!' },
+                                    ]}
+                                >
+                                    <Input />
+                                </Form.Item>
+                                <Form.Item
+                                    name="lever3"
+                                    label="lever3"
+                                    validateTrigger="onBlur"
+                                    validateFirst={true}
+                                    rules={[
+                                        { required: true, message: 'Please input lever3!' },
+                                    ]}
+                                >
+                                    <Input />
+                                </Form.Item>
+                                <Button type="primary" className="max-btn" onClick={() => {
+                                    setInviteFeeRatio()
+                                }}>
+                                    Submit
+                                </Button>
+                            </Form>
                         </div>
                     </div>
                 </div>}
-                    {curNav == 4 &&
-                        <div className="panel-box">
-                            <div className="panel-container">
-                                <div className="content-item">
-                                    <h1>Mint Revenue Allocation</h1>
-                                    <h3>
-                                        Referrer
-                                    </h3>
-                                    <div className="current">
-                                        <div className="name">
-                                            Current:
-                                        </div>
-                                        <div className="value">
-                                            {rateObj.rate1}
-                                        </div>
-                                    </div>
-                                    <h3>
-                                        City Node
-                                    </h3>
-                                    <div className="current">
-                                        <div className="name">
-                                            Current:
-                                        </div>
-                                        <div className="value">
-                                            {rateObj.rate2}
-                                        </div>
-                                    </div>
-                                    <h3>
-                                        RainbowCity Treasury
-                                    </h3>
-                                    <div className="current">
-                                        <div className="name">
-                                            Current:
-                                        </div>
-                                        <div className="value">
-                                            {rateObj.rate3}
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="content-item">
-                                    <Form form={form} name="control-hooks">
-                                        <Form.Item
-                                            name="rate1"
-                                            label="rate1"
-                                            validateTrigger="onBlur"
-                                            validateFirst={true}
-                                            rules={[
-                                                { required: true, message: 'Please input rate1!' },
-                                            ]}
-                                        >
-                                            <Input />
-                                        </Form.Item>
-                                        <Form.Item
-                                            name="rate2"
-                                            label="rate2"
-                                            validateTrigger="onBlur"
-                                            validateFirst={true}
-                                            rules={[
-                                                { required: true, message: 'Please input rate2!' },
-                                            ]}
-                                        >
-                                            <Input />
-                                        </Form.Item>
-                                        <Form.Item
-                                            name="rate3"
-                                            label="rate3"
-                                            validateTrigger="onBlur"
-                                            validateFirst={true}
-                                            rules={[
-                                                { required: true, message: 'Please input rate3!' },
-                                            ]}
-                                        >
-                                            <Input />
-                                        </Form.Item>
-                                        <Button type="primary" className="max-btn" onClick={() => {
-                                            setTotalRewardRatioOne()
-                                        }}>
-                                            Submit
-                                        </Button>
-                                    </Form>
-                                </div>
-                            </div>
-                            <div className="panel-container">
-                                <h1>
-                                    Category: Referrer
-                                </h1>
-                                <div className="content-item">
-                                    <h3>
-                                        Lv1
-                                    </h3>
-                                    <Form form={form} name="control-hooks">
-                                        <div className="current">
-                                            <div className="name">
-                                                Current:
-                                            </div>
-                                            <div className="value">
-                                                {referObj.lever1}
-                                            </div>
-                                        </div>
-
-                                    </Form>
-                                </div>
-                                <div className="content-item">
-                                    <h3>
-                                        Lv2
-                                    </h3>
-                                    <Form form={form} name="control-hooks">
-                                        <div className="current">
-                                            <div className="name">
-                                                Current:
-                                            </div>
-                                            <div className="value">
-                                                {referObj.lever2}
-                                            </div>
-                                        </div>
-                                    </Form>
-                                </div>
-                                <div className="content-item">
-                                    <h3>
-                                        Lv3
-                                    </h3>
-                                    <Form form={form} name="control-hooks">
-                                        <div className="current">
-                                            <div className="name">
-                                                Current:
-                                            </div>
-                                            <div className="value">
-                                                {referObj.lever3}
-                                            </div>
-                                        </div>
-                                        <Form.Item
-                                            name="lever1"
-                                            label="lever1"
-                                            validateTrigger="onBlur"
-                                            validateFirst={true}
-                                            rules={[
-                                                { required: true, message: 'Please input lever1!' },
-                                            ]}
-                                        >
-                                            <Input />
-                                        </Form.Item>
-                                        <Form.Item
-                                            name="lever2"
-                                            label="lever2"
-                                            validateTrigger="onBlur"
-                                            validateFirst={true}
-                                            rules={[
-                                                { required: true, message: 'Please input lever2!' },
-                                            ]}
-                                        >
-                                            <Input />
-                                        </Form.Item>
-                                        <Form.Item
-                                            name="lever3"
-                                            label="lever3"
-                                            validateTrigger="onBlur"
-                                            validateFirst={true}
-                                            rules={[
-                                                { required: true, message: 'Please input lever3!' },
-                                            ]}
-                                        >
-                                            <Input />
-                                        </Form.Item>
-                                        <Button type="primary" className="max-btn" onClick={() => {
-                                            setInviteFeeRatio()
-                                        }}>
-                                            Submit
-                                        </Button>
-                                    </Form>
-                                </div>
-                            </div>
-                        </div>}
-                </FireLockStyle>
+        </FireLockStyle>
     )
 }
 
-            export default FireLock
+export default FireLock
