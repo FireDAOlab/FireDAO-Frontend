@@ -1,5 +1,5 @@
 import React, {useEffect, useRef, useState} from 'react';
-import {useConnect} from "../../api/contracts";
+import {useConnect} from "../../../api/contracts";
 import {
     Button,
     message,
@@ -7,14 +7,14 @@ import {
     notification,
     AutoComplete
 } from 'antd';
-import coinInfo from "../../config/coinInfo"
+import coinInfo from "../../../config/coinInfo"
 
-import {getContractByName, getContractByContract} from "../../api/connectContract";
-import {dealPayMethod, dealMethod, viewMethod} from "../../utils/contractUtil"
+import {getContractByName, getContractByContract} from "../../../api/connectContract";
+import {dealPayMethod, dealMethod, viewMethod} from "../../../utils/contractUtil"
 import {useNavigate} from "react-router-dom";
-import FireSeed from "../../imgs/long.png"
-import ethereum from "../../imgs/ethereum.png"
-import judgeStatus from "../../utils/judgeStatus";
+import FireSeed from "../../../imgs/long.png"
+import ethereum from "../../../imgs/ethereum.png"
+import judgeStatus from "../../../utils/judgeStatus";
 import StyleBox from "./style"
 
 const MintFireSeed = (props) => {
