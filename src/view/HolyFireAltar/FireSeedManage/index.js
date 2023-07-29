@@ -176,11 +176,11 @@ const FireLock = (props) => {
         getDiscountFactors()
     }
     const handleSetMaxMint = async () => {
-        await handleDealMethod("setUserMintMax", [form.getFieldValue().UserMintMax])
+        await handleDealMethod("setUserPerMintMax", [form.getFieldValue().UserMintMax])
         getUserMintMax()
     }
     const handleSetWhitelistMaxMint = async () => {
-        await handleDealMethod("setWListMax", [form.getFieldValue().WhitelistUserMintMax])
+        await handleDealMethod("setWListPerMintMax", [form.getFieldValue().WhitelistUserMintMax])
         getWhiteMaxMint()
     }
     const transferOwnership = async () => {
@@ -341,7 +341,7 @@ const FireLock = (props) => {
                                                     validateTrigger="onBlur"
                                                     validateFirst={true}
                                                     rules={[
-                                                        { required: true, message: 'Please input GeneralUserMin!' },
+                                                        { required: true, message: ' input !' },
                                                     ]}
                                                 >
                                                     <Input placeholder={lowestMint} style={{ textAlign: 'center' }} />
@@ -361,7 +361,7 @@ const FireLock = (props) => {
                                                     validateTrigger="onBlur"
                                                     validateFirst={true}
                                                     rules={[
-                                                        { required: true, message: 'Please input UserMintMax!' },
+                                                        { required: true, message: ' input' },
                                                     ]}
                                                 >
                                                     <Input placeholder={userMaxMint} style={{ textAlign: 'center' }} />
@@ -388,10 +388,11 @@ const FireLock = (props) => {
                                                 </div> */}
 
                                                 <Form.Item className="value"
+                                                           name="WhitelistUserMintMax"
                                                     validateTrigger="onBlur"
                                                     validateFirst={true}
                                                     rules={[
-                                                        { required: true, message: 'Please input WhitelistUserMintMax!' },
+                                                        { required: true, message: ' input !' },
                                                     ]}
                                                 >
                                                     <Input placeholder={whiteMaxMint} style={{ textAlign: 'center' }} />

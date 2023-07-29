@@ -419,7 +419,7 @@ const LockList = (props) => {
                     <div className="content2">
                         <div className="myrecommend">
                             <div className="name">
-                                My Recommender
+                                My Referrer
                             </div>
                             <div className="value">
                                 {state.myRecommender}
@@ -515,19 +515,16 @@ const LockList = (props) => {
                                 Forum ID
                             </div>
                             <div className="col">
-                                <span>FDT Transaction <br/>Tax</span>
+                                Mint FireSeed Fees($)
                             </div>
                             <div className="col">
                                 Mint FireSeed <br/>Fees
                             </div>
                             <div className="col">
-                                Seed Donation <br/> Fees
-                            </div>
-                            <div className="col">
-                                Consensus <br/> Donation Fees
-                            </div>
-                            <div className="col">
                                 Time(UTC)
+                            </div>
+                            <div className="col">
+                                View
                             </div>
                         </div>
                         {
