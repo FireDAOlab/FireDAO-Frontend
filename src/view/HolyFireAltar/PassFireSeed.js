@@ -34,6 +34,29 @@ const LockList = (props) => {
         font-weight: 600;
         font-size:16px;
       }
+      .yes{
+        background: rgba(89,170,121,0.1);
+border-radius: 35px;
+border: 1px solid rgba(89,170,121,0.5);
+color: rgba(89, 170, 121, 1);
+width: 18%;
+margin-right:10px;
+      }
+      .check{
+        background: rgba(205,158,87,0.1);
+border-radius: 35px ;
+border: 1px solid rgba(205,158,87,0.5);
+color: rgba(205, 158, 87, 1);
+width:18%;
+margin-right:10px;
+      }
+      .too{
+        background: rgba(205,87,87,0.1);
+border-radius: 35px ;
+color: rgba(205, 87, 87, 1);
+border: 1px solid rgba(205,87,87,0.5);
+width:18%;
+      }
         .ant-form-item-label>label{
     color: white;
     font-size:16px;
@@ -1014,13 +1037,13 @@ justify-content: space-between;
             My FireSeed
             {
               // isAdmin && (
-                <Button style={{ float: 'right', background: '#373232', margin: '0px 13px', textAlign: 'center', lineHeight: '28px', width: "32px", height: '32px', border: '1px solid rgba(255, 255, 255, 0.15)', borderRadius: '50%', }}
-                  onClick={() => {
-                    history("/FireSeedManage")
-                  }}>
-                  <img src={user3} style={{ width: '22px', marginLeft: '-10px', marginTop: '-10px' }} />
-                </Button>
-                // )
+              <Button style={{ float: 'right', background: '#373232', margin: '0px 13px', textAlign: 'center', lineHeight: '28px', width: "32px", height: '32px', border: '1px solid rgba(255, 255, 255, 0.15)', borderRadius: '50%', }}
+                onClick={() => {
+                  history("/FireSeedManage")
+                }}>
+                <img src={user3} style={{ width: '22px', marginLeft: '-10px', marginTop: '-10px' }} />
+              </Button>
+              // )
             }
           </div>
 
@@ -1086,6 +1109,7 @@ justify-content: space-between;
                   label="FireSeed ID"
                 >
                   <Select
+                    showSearch
                     className="select-chain"
                     defaultValue={curId}
                     onChange={handleChooseId}
@@ -1094,28 +1118,24 @@ justify-content: space-between;
                   />
                 </Form.Item>
                 <Form.Item
-                  
+
                   label="Form"
                   validateTrigger="onBlur"
                   validateFirst={true}
                   rules={[
                     // { required: true, message: 'Please input Title!' },
-                  ]}
-                  style={{
-                    
-                    width:'100%'
-                  }}
-                >
+                  ]} >
                   <div className="flex-box" style={{
-                    paddingLeft:'10px',
-                    border: '1px solid rgba(205,158,87,0.5)', 
-                    backgroundColor: 'rgba(205,158,87,0.1)', 
-                    borderRadius: '25px', 
-                    height:'35px',
-                    lineHeight:'35px',
-                    width:'100%',
-                    color: '#CD9E57'}}>
-                   {state.account}
+                    paddingLeft: '10px',
+                    border: '1px solid rgba(205,158,87,0.5)',
+                    backgroundColor: 'rgba(205,158,87,0.1)',
+                    borderRadius: '25px',
+                    height: '35px',
+                    lineHeight: '35px',
+                    width: '100%',
+                    color: '#CD9E57'
+                  }}>
+                    {state.account}
 
                   </div>
                 </Form.Item>
@@ -1132,18 +1152,20 @@ justify-content: space-between;
                   }}
                 >
                   <div className="flex-box">
-                    <Input  />
+                    <Input />
 
                   </div>
                 </Form.Item>
-                <div style={{display:'flex'}}>
-                <a style={{ textDecoration: 'underline', color: '#CD9E57',paddingLeft:'130px' }} onClick={() => {
-                  check()
-                }}>
-                  Check
-                </a>
-                  <div className="flex-box form-value" style={{paddingLeft:'50px'}}>
-                    <p>To:</p>
+                <div style={{ display: 'flex',justifyContent:'center',marginTop:'5px' }}>
+                  <div className='yes'>
+                    Yes
+                  </div>
+                  <div className='check' style={{  color: '#CD9E57' }} onClick={() => {
+                    check()
+                  }}>
+                    Check
+                  </div>
+                  <div className="too" >
                     {hasTransfer ? "Yes" : "No"}
                   </div>
                 </div>

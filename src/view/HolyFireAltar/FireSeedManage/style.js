@@ -24,6 +24,20 @@ export default styled.div`
     font-size:16px;
     font-weight:600;
 }
+.header-nav {
+    padding: 10px 11.7%;
+    display: flex;
+    width: 100%;
+
+    .fire-nav-list {
+      height: 45px;
+    width: 57%;
+    line-height:15px;
+      .nav-item {
+        width:42%;
+      }
+    }
+  }
   .panel-box{
     width: 100%;
     .panel-container{
@@ -105,6 +119,7 @@ padding: 20px;
           align-items: center;
           &:nth-child(1) {
             width: 30%;
+            margin-left:100px;
           }
 
           &:nth-child(2) {
@@ -124,8 +139,10 @@ padding: 20px;
 
           }
   }
+}
   .no{
             color: #FE6D46;
+            
           }
           .pid{
             color: #FE6D46;
@@ -242,21 +259,10 @@ text-align:center;
 font-weight:400;
 margin-right:10px;
 }
-
-  .header-nav {
-    padding: 10px 11.7%;
-    display: flex;
-    width: 100%;
-
-    .fire-nav-list {
-      height: 45px;
-    width: 57%;
-    line-height:15px;
-      .nav-item {
-        width:42%;
+.pagination {
+        text-align: center;
       }
-    }
-  }
+
 
   
 `
