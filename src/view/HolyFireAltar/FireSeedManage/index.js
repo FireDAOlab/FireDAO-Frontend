@@ -331,13 +331,11 @@ const FireLock = (props) => {
                                 <div className='amountbox'>
                                     <div className='general'>
                                         <p>General user</p>
-                                        {/* </h3> */}
                                         <Form form={form} name="control-hooks">
                                             <div className="user">
                                                 <div className="name">
                                                     Min
                                                 </div>
-                                                {/* <div className="value"> */}
                                                 <Form.Item className="value"
                                                     name="GeneralUserMin"
                                                     validateTrigger="onBlur"
@@ -348,8 +346,12 @@ const FireLock = (props) => {
                                                 >
                                                     <Input placeholder={lowestMint} style={{ textAlign: 'center' }} />
                                                 </Form.Item>
-                                                {/* </div> */}
                                             </div>
+                                            <Button type="primary" className="max-btn" onClick={() => {
+                                                handleSetLowestMint()
+                                            }}>
+                                                Submit
+                                            </Button>
                                             <div className="user">
                                                 <div className="name">
                                                     Max
@@ -370,12 +372,6 @@ const FireLock = (props) => {
                                             }}>
                                                 Submit
                                             </Button>
-
-                                            {/* <Button type="primary" className="max-btn" onClick={() => {
-                                            handleSetLowestMint()
-                                        }}>
-                                            Submit
-                                        </Button> */}
                                         </Form>
                                     </div>
                                     <div className="whitelist">
@@ -383,24 +379,6 @@ const FireLock = (props) => {
                                             Whitelist user Max
                                         </p>
                                         <Form form={form} name="control-hooks">
-                                            <div className="user">
-                                                <div className="name">
-                                                    Min
-                                                </div>
-                                                {/* <div className="value">
-                                                     {whiteMaxMint} 
-                                                </div> */}
-
-                                                <Form.Item className="value"
-                                                    validateTrigger="onBlur"
-                                                    validateFirst={true}
-                                                    rules={[
-                                                        { required: true, message: 'Please input WhitelistUserMintMax!' },
-                                                    ]}
-                                                >
-                                                    <Input placeholder='' style={{ textAlign: 'cneter' }} />
-                                                </Form.Item>
-                                            </div>
                                             <div className="user">
                                                 <div className="name">
                                                     Max
@@ -416,14 +394,10 @@ const FireLock = (props) => {
                                                         { required: true, message: 'Please input WhitelistUserMintMax!' },
                                                     ]}
                                                 >
-                                                    <Input placeholder={whiteMaxMint} style={{ textAlign: 'cneter' }} />
+                                                    <Input placeholder={whiteMaxMint} style={{ textAlign: 'center' }} />
                                                 </Form.Item>
                                             </div>
-                                            <Button type="primary" className="max-btn" onClick={() => {
-                                                handleSetWhitelistMaxMint()
-                                            }}>
-                                                Submit
-                                            </Button>
+
                                             <Button type="primary" className="max-btn" onClick={() => {
                                                 handleSetWhitelistMaxMint()
                                             }}>
@@ -436,71 +410,7 @@ const FireLock = (props) => {
                                 </div>
                             </div>
                         </div>
-                        {/* <div className='panel-container'> */}
-                        {/* <div className="content-item">
-                                <h3>
-                                    General user Max
-                                </h3>
-                                <Form form={form} name="control-hooks">
-                                    <div className="current">
-                                        <div className="name">
-                                            Current:
-                                        </div>
-                                        <div className="value">
-                                            {userMaxMint}
-                                        </div>
-                                    </div>
-                                    <Form.Item
-                                        name="UserMintMax"
-                                        label="UserMintMax"
-                                        validateTrigger="onBlur"
-                                        validateFirst={true}
-                                        rules={[
-                                            { required: true, message: 'Please input UserMintMax!' },
-                                        ]}
-                                    >
-                                        <Input />
-                                    </Form.Item>
-                                    <Button type="primary" className="max-btn" onClick={() => {
-                                        handleSetMaxMint()
-                                    }}>
-                                        Submit
-                                    </Button>
-                                </Form>
-                            </div> */}
 
-                        {/* <div className="content-item">
-                            <h3>
-                                Whitelist user Max
-                            </h3>
-                            <Form form={form} name="control-hooks">
-                                <div className="current">
-                                    <div className="name">
-                                        Current:
-                                    </div>
-                                    <div className="value">
-                                        {whiteMaxMint}
-                                    </div>
-                                </div>
-                                <Form.Item
-                                    name="WhitelistUserMintMax"
-                                    label="WhitelistUserMintMax"
-                                    validateTrigger="onBlur"
-                                    validateFirst={true}
-                                    rules={[
-                                        { required: true, message: 'Please input WhitelistUserMintMax!' },
-                                    ]}
-                                >
-                                    <Input />
-                                </Form.Item>
-                                <Button type="primary" className="max-btn" onClick={() => {
-                                    handleSetWhitelistMaxMint()
-                                }}>
-                                    Submit
-                                </Button>
-                            </Form>
-                        </div> */}
-                        {/* </div> */}
                     </div>
                 </div>}
             {curNav == 2 &&
@@ -571,19 +481,15 @@ const FireLock = (props) => {
                                             </div>
 
                                             <Form.Item
-                                                // label="Current"
                                                 className='value'
                                                 validateTrigger="onBlur"
                                                 validateFirst={true}
                                                 rules={[
                                                     // { required: true, message: 'Please input Title!' },
                                                 ]}
-                                                style={{
-                                                    textAlign: 'center',
-                                                    width: '100%'
-                                                }}>
+                                            >
 
-                                                <div className="flex-box" >
+                                                <div className="too" >
                                                     {fee}
 
                                                 </div>
@@ -614,26 +520,41 @@ const FireLock = (props) => {
                                 </div>
                                 <div className='mintdis'>
                                     <p>Mint Discount</p>
+
                                     <Form form={form} name="control-hooks">
-                                        <div className="current">
+                                        <div className='fee1'>
                                             <div className="name">
-                                                Current:
+                                                Current
                                             </div>
-                                            <div className="value">
-                                                {userMaxMint}
-                                            </div>
+                                            <Form.Item
+                                                className='value'
+                                                validateTrigger="onBlur"
+                                                validateFirst={true}
+                                                rules={[
+                                                    // { required: true, message: 'Please input Title!' },
+                                                ]}
+                                            >
+
+                                                <div className="too" >
+                                                    {userMaxMint}
+                                                </div>
+                                            </Form.Item>
                                         </div>
-                                        <Form.Item
-                                            name="MintDiscount"
-                                            label="MintDiscount"
-                                            validateTrigger="onBlur"
-                                            validateFirst={true}
-                                            rules={[
-                                                { required: true, message: 'Please input UserMintMax!' },
-                                            ]}
-                                        >
-                                            <Input />
-                                        </Form.Item>
+                                        <div className='fee1'>
+                                            <div className="name">
+                                                Predefined
+                                            </div>
+                                            <Form.Item
+                                                className='value'
+                                                validateTrigger="onBlur"
+                                                validateFirst={true}
+                                                rules={[
+                                                    { required: true, message: 'Please input UserMintMax!' },
+                                                ]}
+                                            >
+                                                <Input />
+                                            </Form.Item>
+                                        </div>
                                         <Button type="primary" className="max-btn" onClick={() => {
                                             handleSetMaxMint()
                                         }}>

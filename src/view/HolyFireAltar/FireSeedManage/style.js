@@ -297,6 +297,38 @@ width: 25%;
   }
 }
 }
+.mintdis{
+  background: rgba(26, 20, 20, 1);
+border-radius: 20px;
+border: 1px solid rgba(255,255,255,0.1);
+width: 47%;
+padding: 20px;
+font-size:16px;
+line-height:25px;
+p{
+  font-family: Roboto-SemiBold, Roboto;
+font-weight: 600;
+
+}
+.fee1{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  width: 100%;
+  .name{
+    font-family: Roboto-SemiBold, Roboto;
+font-weight: 600;
+color: #8A8080;
+width: 75%;
+
+  }
+  .value{
+color: white;
+text-align:center;
+width: 25%;
+  }
+}
+}
 }
 
 
