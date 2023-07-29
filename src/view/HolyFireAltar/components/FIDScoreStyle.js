@@ -97,8 +97,8 @@ font-size:15px;
     .fire-list-box {
 
       min-width:100%;
-        .list-header {
-            padding: 20px 1em;
+      .list-header {
+            padding: 20px 1.5em;
         }
         .list-item, .list-header {
           justify-content: flex-start;
@@ -106,20 +106,22 @@ font-size:15px;
           /* padding: 0.5em 2.5em 0.5em 2em; */
         }
 
+
         .col {
-          font-size:15px;
           text-align: left;
           align-items: center;
+          font-size:14px;
           &:nth-child(1) {
-            min-width: 22%;
+            width: 25%;
+            padding-left: 50px;
           }
 
           &:nth-child(2) {
-            width: 22%;
+            width: 24%;
           }
 
           &:nth-child(3) {
-            width: 22%;
+            width: 23%;
           }
 
           &:nth-child(4) {
@@ -238,7 +240,7 @@ border: 1px solid rgba(205,158,87,0.5);
 
       min-width:100%;
         .list-header {
-            padding: 20px 1em;
+            padding: 20px 1.5em;
         }
         .list-item, .list-header {
           justify-content: flex-start;
@@ -246,20 +248,22 @@ border: 1px solid rgba(205,158,87,0.5);
           /* padding: 0.5em 2.5em 0.5em 2em; */
         }
 
+
         .col {
           text-align: left;
           align-items: center;
           font-size:14px;
           &:nth-child(1) {
-            min-width: 22%;
+            width: 25%;
+            padding-left: 50px;
           }
 
           &:nth-child(2) {
-            width: 22%;
+            width: 24%;
           }
 
           &:nth-child(3) {
-            width: 22%;
+            width: 23%;
           }
 
           &:nth-child(4) {

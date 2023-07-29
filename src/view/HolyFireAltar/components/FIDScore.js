@@ -119,10 +119,10 @@ const FIDScore = (props) => {
 
                         <div className="fire-list-box">
                             <div className="list-header flex-box">
-                                <div className="col" style={{paddingLeft:'100px',width:'32%'}}>
+                                <div className="col" >
                                     SBT
                                 </div>
-                                <div className="col" style={{width:'28%'}}>
+                                <div className="col" >
                                     Amount(s)
                                 </div>
                                 <div className="col">
@@ -136,16 +136,16 @@ const FIDScore = (props) => {
                                 arr.map(item => (
                                     <div className="list-item" onClick={() => {
                                     }}>
-                                        <div className="name">
+                                        <div className="col name">
                                             {item.name}
                                         </div>
-                                        <div className="balance">
+                                        <div className="col balance">
                                             {item.balance}
                                         </div>
-                                        <div className="coefficients">
+                                        <div className="col coefficients">
                                             {item.coefficients}
                                         </div>
-                                        <div className="balance">
+                                        <div className="col balance">
                                             {item.balance * item.coefficients}
                                         </div>
                                     </div>

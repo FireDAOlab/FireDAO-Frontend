@@ -21,7 +21,6 @@ import user3 from "../../../imgs/user3.png";
 import FireSeedList from "../components/FireSeedList";
 import FIDScore from "../components/FIDScore";
 import Destorytc from "../components/Destorytc";
-
 const MyPassport = (props) => {
 
     let { state, dispatch } = useConnect();
@@ -150,6 +149,7 @@ const MyPassport = (props) => {
         getUserInfo()
         getPassportAdmin()
         getUserFIDAndAddr()
+
         // getFid()
         // myClass()
         // getSoulAccount()
