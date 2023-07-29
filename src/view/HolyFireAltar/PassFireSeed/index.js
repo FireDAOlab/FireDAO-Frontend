@@ -121,7 +121,8 @@ const LockList = (props) => {
     const transfer = async () => {
         const {toAddress, amount} = form.getFieldValue()
         // params _token
-        handleDealMethod("safeTransferFrom", [state.account, toAddress, curId, amount, "0x00"])
+        await handleDealMethod("safeTransferFrom", [state.account, toAddress, curId, amount, "0x00"])
+        getData()
     }
     const check = async () => {
         let address = form.getFieldValue().toAddress
