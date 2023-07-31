@@ -179,7 +179,8 @@ const MintFireSoul = (props) => {
     }
     return (
         <StyleBox>
-            {showTip && <MintSoulTip closeDialog={() => { setShowTip(false) }} UserToSoul={UserToSoul} UserFID={UserFID} />}
+            {showTip && 
+            <MintSoulTip closeDialog={() => { setShowTip(false) }} UserToSoul={UserToSoul} UserFID={UserFID} />}
             <div className="panel-box">
                 <div className="panel-container">
                     <div style={{ display: 'flex' }}>

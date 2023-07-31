@@ -238,7 +238,7 @@ const LockList = (props) => {
                     <div className="panel-title">
                         My FireSeed
                         {
-                            isAdmin && (
+                            // isAdmin && (
                                 <Button style={{
                                     float: 'right',
                                     background: '#373232',
@@ -254,7 +254,8 @@ const LockList = (props) => {
                                             history("/FireSeedManage")
                                         }}>
                                     <img src={user3} style={{width: '22px', marginLeft: '-10px', marginTop: '-10px'}}/>
-                                </Button>)
+                                </Button>
+                                // )
                         }
                     </div>
 

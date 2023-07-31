@@ -732,14 +732,14 @@ text-align:center;
           /* flex-wrap: wrap; */
           .flex-box {
             
-          width: 85%;
+          width: 95%;
           }
           .link-item {
             padding-top: 1.2em;
             font-size: 18px;
             display: block;
             align-items: center;
-width: 22%;
+width: 24%;
 margin-right:10px;
             .name {
               font-size:14px;

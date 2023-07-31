@@ -6,17 +6,20 @@ export default   styled.div`
   z-index: 1;
   .address-list {
     .address-item {
-      display: flex;
+      display: block;
       align-items: center;
-
+text-align:center;
       .ant-form-item-label {
         width: 150px !important;
       }
 
       .address {
-        .ant-form-item-control-input {
+        /* .ant-form-item-control-input { */
           width: 300px;
-        }
+          border: none;
+          background:none;
+          border-radius:0px;
+        /* } */
       }
 
       .number {
@@ -33,7 +36,8 @@ export default   styled.div`
       cursor: pointer;
 
       .icon {
-        width: 50px;
+        margin-top:10px;
+        width: 25px;
         line-height: 30px;
         font-size: 26px;
       }
@@ -48,28 +52,98 @@ export default   styled.div`
     background: #000000;
     opacity: 0.5;
   }
+  .fire-list-box1 {
+    padding: 0em 0 0em;
+    /* min-width: 800px; */
+    .col{
+      text-align: center;
+      flex-shrink: 0;
+      width: 30%;
+      margin-top:10px;
+    }
+    .list-header {
+      display: flex;
+      justify-content: space-between;
+      font-size: 18px;
+      font-weight: bold;
+      padding: 20px 2em;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      color: #8A8080;
+      .col {
+        display: flex;
+        white-space: nowrap;
+        
+        .list-icon {
+          width: 16px;
+          height: 13px;
+          cursor: pointer;
+          margin-top: 4px;
+          margin-left: 6px;
+        }
+      }
+    }
+    .list-item {
+      padding: 0.5em 2em;
+      display: flex;
+      justify-content: space-between;
+      border-radius: 10px;
+      margin: 0.5em 0;
+      font-family: Helvetica-Bold, Helvetica, sans-serif;
+      align-items: center;
+      border-bottom:  1px solid rgba(255,255,255,0.1);
+  
+         
+    }
+  }
+  .flex-box{
+  width: 100%;
+  .col{
+      text-align: left;
+      flex-shrink: 0;
+      width: 30%;
+      margin-top:10px;
+    }
+  
+    .pid{
+            color: white;
+
+            border: 1px solid rgba(255,255,255,0.1);            
+background: rgba(255,255,255,0.1);
+            text-align:center;
+            border-radius:25px;
+            width: 80px;
+          }
+        
+}
+
   .dialog-content{
     position: fixed;
     z-index: 1;
-    top: calc(10vh);
+    top: calc(20vh);
     left: calc(50vw - 250px);
-    width: 550px;
-    background: #1D1212;
+    width: 520px;
+    background: #241B1B;
     border-radius: 13px;
+
+
     border: 1px solid #3E3737;
     padding: 30px;
+
     .header{
-      display: flex;
-      justify-content: space-between;
-      .title{
-        font-size: 25px;
-        font-family: Roboto-Bold, Roboto;
-        font-weight: bold;
-      }
+      text-align: right;      
       .close{
         cursor: pointer;
       }
     }
+    .title{
+      font-size: 23px;
+      text-align: center;
+      font-family: Roboto-Bold, Roboto;
+      font-weight: bold;
+      color: #FFFFFF;
+      /* margin-top: 1em; */
+      line-height: 29px;
+      }
     .dialog-value{
       height: 24px;
       font-size: 20px;
@@ -109,6 +183,9 @@ export default   styled.div`
     .dialog-content{
       width: 90vw;
       left: calc(5vw);
+    }
+    .ant-form-item address{
+      
     }
 
   }
