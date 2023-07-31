@@ -98,6 +98,9 @@ padding: 0px 10px;
       }16px;
     }
   }
+  .sc{
+    width: 25px;
+  }
   .current-box{
     width:42%;
 
@@ -132,6 +135,7 @@ padding: 20px;
                     color: #CD9E57;    
                   }
   }
+
   .fire-list-box {
         .list-header {
             padding: 20px 1em;
@@ -144,16 +148,24 @@ padding: 20px;
           text-align: left;
           align-items: center;
           &:nth-child(1) {
-            width: 30%;
-            margin-left:100px;
+            width: 15%;
+            margin-left:50px;
           }
 
           &:nth-child(2) {
-            width: 30%;
+            width: 20%;
+            text-align: center;
           }
 
           &:nth-child(3) {
-            width: 30%;
+            width:22%;
+            text-align: center;
+           
+            margin-left:50px;
+          }
+          &:nth-child(4) {
+            width: 22%;
+            margin-left:80px;
           }
         }
         .list-item {
@@ -179,16 +191,13 @@ padding: 20px;
           }
 
           .address {
-            
                 color: rgba(205, 158, 87, 1);
-           
-               
             border: 1px solid rgba(205, 158, 87, 1);
             background: rgba(205, 158, 87, 0.20);
             text-align:center;
             border-radius:25px;
-            width: 130px;
-            margin-right:40px;
+            width: 100px;
+            margin-right:0px;
            
           }
 
@@ -270,7 +279,7 @@ width: 25%;
 
   .tj{
   display: flex;
-  width: 20%;
+  width: 27%;
 }
 .kk{
   width: 45%;
@@ -515,16 +524,24 @@ padding: 20px;
           text-align: left;
           align-items: center;
           &:nth-child(1) {
-            width: 30%;
-            margin-left:100px;
+            width: 18%;
+            margin-left:50px;
           }
 
           &:nth-child(2) {
-            width: 30%;
+            width: 20%;
+            text-align: center;
           }
 
           &:nth-child(3) {
-            width: 30%;
+            width: 22%;
+            text-align: center;
+            margin-left:30px;
+            margin-right: 0px;
+          }
+          &:nth-child(4) {
+            width: 22%;
+            margin-left:50px;
           }
         }
         .list-item {
@@ -539,7 +556,7 @@ padding: 20px;
 }
   .no{
             color: #FE6D46;
-            
+            text-align:center
           }
           .pid{
             color: #FE6D46;
@@ -547,20 +564,24 @@ padding: 20px;
             background: rgba(254, 109, 70, 0.20);
             text-align:center;
             border-radius:25px;
+
           }
 
           .address {
             
                 color: rgba(205, 158, 87, 1);
            
-               
+               width: 120px;
             border: 1px solid rgba(205, 158, 87, 1);
             background: rgba(205, 158, 87, 0.20);
             text-align:center;
             border-radius:25px;
-            width: 130px;
+            /* width: 130px; */
             margin-right:40px;
            
+          }
+          .sc{
+
           }
 
 
@@ -641,7 +662,7 @@ width: 25%;
 
 .tj{
   display: flex;
-  width: 42%;
+  width: 43%;
 }
 .kk{
   width: 45%;

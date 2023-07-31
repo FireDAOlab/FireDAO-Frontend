@@ -7,8 +7,10 @@ import { useNavigate, useLocation } from "react-router-dom";
 import FireLockStyle from "./style";
 import judgeStatus from "../../../utils/judgeStatus";
 import AddWhiteListAddr from "./component/AddWhiteListAddr";
+import sc from "../../../imgs/sc.png"
 import RemoveWhiteListAddr from "./component/RemoveWhiteListAddr";
 const FireLock = (props) => {
+    const {closeDialog,updateData} = props
     let { state, dispatch } = useConnect();
     const [whitelist, setWhitelistArr] = useState([])
     const [curNav, setCurNav] = useState(1)
@@ -23,6 +25,7 @@ const FireLock = (props) => {
     const [curPage, setCurPage] = useState(1)
     const [pageCount, setPageCount] = useState(20)
     const [total, setTotal] = useState(0)
+    const [ownerArr, setOwnerArr] = useState(['owner0'])
     const [fee, setFee] = useState(0)
     const [whitelistDiscount, setWhitelistDiscount] = useState(0)
     const [referObj, setReferObj] = useState({})
@@ -75,6 +78,13 @@ const FireLock = (props) => {
         getWhitelistDiscount()
         getReferRate()
         getRate()
+    }
+   
+
+    const removeOwner = () => {
+        let tempArr = Object.assign([], ownerArr)
+        tempArr.shift()
+        setOwnerArr(tempArr)
     }
     const onChangePage = async (page) => {
         getData(page)
@@ -200,13 +210,21 @@ const FireLock = (props) => {
         await handleDealMethod("addWhiteListUser", [])
         // getWhitelist()
     }
-
+    const  handleSetAddress = async ()=>{
+        let  _to = []
+        for (let i = 0; i < ownerArr.length; i++) {
+            _to.push(form.getFieldValue()["owner" + i])
+        }
+        await handleDealMethod("removeFromWhiteList",[_to])
+        updateData()
+    }
     useEffect(async () => {
         let judgeRes = await judgeStatus(state)
         if (!judgeRes) {
             return
         }
         await getData()
+        
 
     }, [state.account]);
 
@@ -388,7 +406,7 @@ const FireLock = (props) => {
                                                 </div> */}
 
                                                 <Form.Item className="value"
-                                                           name="WhitelistUserMintMax"
+                                                    name="WhitelistUserMintMax"
                                                     validateTrigger="onBlur"
                                                     validateFirst={true}
                                                     rules={[
@@ -422,7 +440,7 @@ const FireLock = (props) => {
                             <p style={{ width: '80%' }}>White List</p>
                             <div className='tj' >
                                 <div type="primary" className='kk' onClick={() => { setShowAdd(true) }}>Add</div>
-                                <div type="primary" className='kk' onClick={() => { setShowRemove(true) }}>Delete</div>
+                                <div type="primary" className='kk' onClick={() => { setShowRemove(true) }}>Mass Delete</div>
                             </div>
                         </div>
                         <div className="fire-list-box">
@@ -436,26 +454,32 @@ const FireLock = (props) => {
                                 <div className="col">
                                     Wallet Address
                                 </div>
-
+                                <div className="col">
+                                    Delete
+                                </div>
                             </div>
 
 
-                            {whitelist.map(item =>
-                            (
+                            {/* {whitelist.map((item, index) => ( */}
+                            
                                 <div className="list-item ">
                                     <div className="col no">
-                                        {item}
+                                      忽然回复
                                     </div>
                                     <div className="col pid">
-                                        {item.pid}
+                                       忽然回复
                                     </div>
                                     <div className="col address">
-                                        {item}
+                                        忽然回复
                                     </div>
-
+                                    {(ownerArr.length =1) && (
+                                    <div className="col sc" onClick={()=>{removeOwner()}}>
+                                        <img src={sc}  className="sc" />
+                                    </div>
+                                    )}
                                 </div>
-                            )
-                            )}
+                            
+                            {/* ))} */}
                         </div>
                         <div className="pagination">
                             {
@@ -490,7 +514,7 @@ const FireLock = (props) => {
                                                 ]}
                                             >
 
-                                                <div className="too" style={{ textAlign: 'center',margin:'0 45%' }} >
+                                                <div className="too" style={{ textAlign: 'center', margin: '0 45%' }} >
                                                     {fee}
 
                                                 </div>
@@ -509,7 +533,7 @@ const FireLock = (props) => {
                                                     { required: true, message: 'Please input MintFee!' },
                                                 ]}
                                             >
-                                                <Input style={{ textAlign: 'center',outline:'none' }} />
+                                                <Input style={{ textAlign: 'center', outline: 'none' }} />
                                             </Form.Item>
                                         </div>
                                         <Button type="primary" className="max-btn" onClick={() => {
@@ -536,7 +560,7 @@ const FireLock = (props) => {
                                                 ]}
                                             >
 
-                                                <div className="too" style={{textAlign: 'center',margin:'0 45%'}} >
+                                                <div className="too" style={{ textAlign: 'center', margin: '0 45%' }} >
                                                     {userMaxMint}
                                                 </div>
                                             </Form.Item>
@@ -553,7 +577,7 @@ const FireLock = (props) => {
                                                     { required: true, message: 'Please input UserMintMax!' },
                                                 ]}
                                             >
-                                                <Input style={{ textAlign: 'center',outline:'none' }}/>
+                                                <Input style={{ textAlign: 'center', outline: 'none' }} />
                                             </Form.Item>
                                         </div>
                                         <Button type="primary" className="max-btn" onClick={() => {
@@ -654,7 +678,7 @@ const FireLock = (props) => {
                                             ]}
                                         >
 
-                                            <div className="too" style={{ textAlign: 'center',margin:'0 45%' }}>
+                                            <div className="too" style={{ textAlign: 'center', margin: '0 45%' }}>
                                                 {whitelistDiscount}
                                             </div>
                                         </Form.Item>
@@ -672,7 +696,7 @@ const FireLock = (props) => {
                                                 { required: true, message: 'Please input WhitelistDiscount!' },
                                             ]}
                                         >
-                                            <Input style={{ textAlign: 'center',outline:'none'}}  />%
+                                            <Input style={{ textAlign: 'center', outline: 'none' }} />%
                                         </Form.Item>
                                     </div>
                                     <Button type="primary" className="max-btn" onClick={() => {
@@ -720,7 +744,7 @@ const FireLock = (props) => {
                                                 { required: true, message: 'Please input rate1!' },
                                             ]}>
                                             {/* <div className='col'> */}
-                                            <Input placeholder={rateObj.rate1} style={{ textAlign: 'center',outline:'none' }}  />
+                                            <Input placeholder={rateObj.rate1} style={{ textAlign: 'center', outline: 'none' }} />
                                             {/* </div> */}%
                                         </Form.Item>
                                     </div>
@@ -737,7 +761,7 @@ const FireLock = (props) => {
                                                 { required: true, message: 'Please input rate2!' },
                                             ]}>
                                             {/* <div className='col'> */}
-                                            <Input placeholder={rateObj.rate2} style={{ textAlign: 'center',outline:'none' }}  />
+                                            <Input placeholder={rateObj.rate2} style={{ textAlign: 'center', outline: 'none' }} />
                                             {/* </div> */}%
                                         </Form.Item>
                                     </div>
@@ -748,20 +772,20 @@ const FireLock = (props) => {
                                         <div className='col ref'>
                                             RainbowCity Treasury
                                         </div>
-                                        <Form.Item className='value' 
+                                        <Form.Item className='value'
                                             validateFirst={true}
                                             rules={[
                                                 { required: true, message: 'Please input rate3!' },
                                             ]}>
                                             {/* <div className='col'> */}
-                                            <Input placeholder={rateObj.rate3} style={{ textAlign: 'center',outline:'none' }} />
+                                            <Input placeholder={rateObj.rate3} style={{ textAlign: 'center', outline: 'none' }} />
                                             {/* </div> */}%
                                         </Form.Item>
                                     </div>
 
                                 </Form>
                             </div>
-                            <Button type="primary" style={{width:'45%',margin:'1em 25%'}} className="max-btn" onClick={() => {
+                            <Button type="primary" style={{ width: '45%', margin: '1em 25%' }} className="max-btn" onClick={() => {
                                 setTotalRewardRatioOne()
                             }}>
                                 Submit
@@ -839,7 +863,7 @@ const FireLock = (props) => {
                                 </div>
                             </Form>
                         </div>
-                        <Button type="primary" className="max-btn" style={{width:'45%',margin:'1em 25%'}} onClick={() => {
+                        <Button type="primary" className="max-btn" style={{ width: '45%', margin: '1em 25%' }} onClick={() => {
                             setInviteFeeRatio()
                         }}>
                             Submit
