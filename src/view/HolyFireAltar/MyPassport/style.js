@@ -5,7 +5,14 @@ export default styled.div`
   flex-direction: column;
   align-items: stretch;
   /* pc style */
-  @media screen and (min-width: 1500px) {
+
+@media screen and (max-width: 400px) {
+  
+  }
+  @media screen and (max-width: 1500px) {
+  .panel-box web3id-box {
+    
+}
     .flex-container{
       width: 100%;
     }
@@ -288,10 +295,6 @@ border: 1px solid rgba(87,141,205,0.5);
     }
 
     .web3id-box {
-     
-      .panel-title {
-        font-size: 30px;
-      }
 
       .nft-list {
         justify-content: center;
@@ -490,7 +493,7 @@ border: 1px solid rgba(254,109,70,0.5);
 
 
   /* mobile style */
-  @media screen and (max-width: 1500px) {
+  @media screen and (max-width: 1950px) {
     .flex-container{
       width: 100%;
     }
@@ -772,11 +775,6 @@ border: 1px solid rgba(87,141,205,0.5);
     }
 
     .web3id-box {
-     
-      .panel-title {
-        font-size: 30px;
-      }
-
       .nft-list {
         justify-content: center;
 width: 100%;

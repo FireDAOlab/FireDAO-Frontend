@@ -3,7 +3,6 @@ import styled from "styled-components";
 export default styled.div`
       .ant-form-item-control-input {
         border-radius: 50px;
-        padding: 0 10px;
       }
 
       .ant-select:not(.ant-select-customize-input) {
@@ -21,7 +20,9 @@ export default styled.div`
         display: flex;
         justify-content: space-between;
       }
-      @media screen and (min-width: 1500px) {
+
+
+      @media screen and (max-width: 1950px) {
         .content-box {
           display: flex;
           padding: 2em 0;
@@ -92,6 +93,7 @@ export default styled.div`
             }
 
             .tip {
+              text-align:justify;
               margin-top: 3em;
               font-size: 16px;
               font-family: PingFangSCSemibold-, PingFangSCSemibold, sans-serif;
@@ -102,6 +104,7 @@ export default styled.div`
           }
         }
       }
+     
 
 
       @media screen and (max-width: 1500px) {
@@ -175,6 +178,7 @@ export default styled.div`
             }
 
             .tip {
+              text-align:justify;
               margin-top: 1em;
               font-size: 13px;
               font-family: PingFangSCSemibold-, PingFangSCSemibold, sans-serif;
@@ -185,7 +189,11 @@ export default styled.div`
           }
         }
       }
+      @media screen and (max-width: 400px) {
+        
+      }
 
+    
 
 
     `

@@ -87,7 +87,7 @@ export default styled.div`
             .go-btn{
               margin-bottom: 10px;
               margin-left: 10px;
-              
+              height: 35px;
 background: linear-gradient(32deg, #FF4E50 0%, #F9D423 100%);
             }
           }
@@ -102,6 +102,7 @@ background: linear-gradient(32deg, #FF4E50 0%, #F9D423 100%);
             }
           }
           .tip{
+            text-align:justify;
             margin-top: 2.5em;
           font-size: 15px;
           font-family: PingFangSCSemibold-, PingFangSCSemibold,sans-serif;
@@ -233,7 +234,7 @@ background: linear-gradient(32deg, #FF4E50 0%, #F9D423 100%);
             .go-btn{
               margin-bottom: 10px;
               margin-left: 10px;
-              
+              height: 35px;
 background: linear-gradient(32deg, #FF4E50 0%, #F9D423 100%);
             }
           }
@@ -248,6 +249,7 @@ background: linear-gradient(32deg, #FF4E50 0%, #F9D423 100%);
             }
           }
           .tip{
+            text-align:justify;
             margin-top:0.5em;
           font-size: 9px;
           font-family: PingFangSCSemibold-, PingFangSCSemibold,sans-serif;

@@ -1,8 +1,6 @@
 import styled from "styled-components";
 export default  styled.div`
-.ant-menu-dark.ant-menu-dark:not(.ant-menu-horizontal) .ant-menu-item-selected{
-    background: linear-gradient(320deg, #FF4E50 0%, #F9D423 100%);
-  }
+
   height: 100vh;
   font-weight: bold;
   .ant-menu-submenu-title{

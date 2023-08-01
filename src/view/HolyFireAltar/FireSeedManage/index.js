@@ -32,9 +32,6 @@ const FireLock = (props) => {
     const [rateObj, setRate] = useState({})
 
     const [discountArr, setDiscountArr] = useState([])
-
-
-
     const [form] = Form.useForm();
 
     const location = useLocation()
@@ -152,6 +149,7 @@ const FireLock = (props) => {
     }
     const getWhitelist = async () => {
         const arr = await handleViewMethod("getAirDropList", [])
+        console.log(arr);
         setWhitelistArr(arr)
     }
     const getWhiteMaxMint = async () => {
@@ -437,7 +435,7 @@ const FireLock = (props) => {
                     <div className="panel-container">
 
                         <div className="panel-title" style={{ display: 'flex', justifyContent: 'space-between' }}>
-                            <p style={{ width: '80%' }}>White List</p>
+                            <p >White List</p>
                             <div className='tj' >
                                 <div type="primary" className='kk' onClick={() => { setShowAdd(true) }}>Add</div>
                                 <div type="primary" className='kk' onClick={() => { setShowRemove(true) }}>Mass Delete</div>
@@ -664,6 +662,7 @@ const FireLock = (props) => {
                                 Whitelist Discount
                             </div>
                             <div className='discount1'>
+                                <p className='nnn'>Whitelist Discount</p>
                                 <Form form={form} name="control-hooks">
                                     <div className="disac">
                                         <div className="name">

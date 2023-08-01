@@ -69,36 +69,6 @@ const GlobalStyle = createGlobalStyle`
     padding: 0 10%;
   }
 
-  @media screen and (max-width: 1500px) {
-    .App {
-      align-items: flex-start;
-      overflow-x: auto;
-      padding-bottom: 6em;
-      &::-webkit-scrollbar {
-        width: 20px;
-        height: 20px;
-      }
-
-      &::-webkit-scrollbar-track,
-      &::-webkit-scrollbar-thumb {
-        border-radius: 999px;
-        border: 5px solid transparent;
-      }
-
-      &::-webkit-scrollbar-thumb {
-        min-height: 20px;
-        background-clip: content-box;
-        box-shadow: 0 0 0 10px rgba(0,0,0,.8) inset;
-      }
-
-      &::-webkit-scrollbar-corner {
-        background: transparent;
-      }
-    }
-
-
-
-  }
 
   .content {
     position: relative;
@@ -140,7 +110,6 @@ const GlobalStyle = createGlobalStyle`
     .list-header {
       display: flex;
       justify-content: space-between;
-      font-size: 18px;
       font-weight: bold;
       padding: 20px 2em;
       border-bottom: 1px solid rgba(255,255,255,0.1);
@@ -307,16 +276,101 @@ const GlobalStyle = createGlobalStyle`
       outline: none;
     }
   }
+  .logo-box1{
+      display: none;
+    }
 
+   
 
+  @media screen and (max-width: 1950px) {
+    .App {
+      align-items: flex-start;
+      overflow-x: auto;
+      padding-bottom: 6em;
+      &::-webkit-scrollbar {
+        width: 20px;
+        height: 20px;
+      }
 
+      &::-webkit-scrollbar-track,
+      &::-webkit-scrollbar-thumb {
+        border-radius: 999px;
+        border: 5px solid transparent;
+      }
 
-  /* mobile style */
-  @media screen and (max-width: 1000px) {
+      &::-webkit-scrollbar-thumb {
+        min-height: 20px;
+        background-clip: content-box;
+        box-shadow: 0 0 0 10px rgba(0,0,0,.8) inset;
+      }
+
+      &::-webkit-scrollbar-corner {
+        background: transparent;
+      }
+    }
+    .fire-list-box {
+      .list-header{
+        font-size:16px;
+      }
+    }
+
+  }
+
+  @media screen and (max-width: 1500px) {
+    .App {
+      align-items: flex-start;
+      overflow-x: auto;
+      padding-bottom: 6em;
+      &::-webkit-scrollbar {
+        width: 20px;
+        height: 20px;
+      }
+
+      &::-webkit-scrollbar-track,
+      &::-webkit-scrollbar-thumb {
+        border-radius: 999px;
+        border: 5px solid transparent;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        min-height: 20px;
+        background-clip: content-box;
+        box-shadow: 0 0 0 10px rgba(0,0,0,.8) inset;
+      }
+
+      &::-webkit-scrollbar-corner {
+        background: transparent;
+      }
+    }
+
+    .panel-box{
+      .panel-title {
+        font-size:21px;
+        margin: 0px;
+      }
+    }
+    .fire-list-box {
+      .col {
+        font-size:11px;
+    }}
+    .fire-list-box {
+      .list-header{
+        font-size:11px;
+      }
+    }
+ 
+  }
+
+  
+  @media screen and (max-width: 700px) {
     .firebg{
       display: none;
     }
+    .logo-box1{
+      display: block;
+    }
     .nav-box-box{
+      
       display: none;
     }
     .content {
@@ -334,6 +388,57 @@ const GlobalStyle = createGlobalStyle`
         height: 100%;
         background: #1E0000;
         border-radius:50%;
+      }
+    }
+  }
+  @media screen and (max-width: 400px) {
+
+    .App{
+      background:rgba(20, 14, 14, 1);
+      padding-bottom: 2em;
+    }
+      .flex-container{
+    width: 100%;
+    padding: 0 4%;
+    .logo{
+      width: 40%;
+    }
+  }
+
+    .firebg{
+      display: none;
+    }
+    .logo-box1{
+      display: block;
+    }
+    .nav-box-box{
+      
+      display: none;
+    }
+    .content {
+      padding-left: 0px;
+    }
+    .firedao-header{
+      width: 100%!important;
+      .nav-list{
+        display: none!important;
+      }
+     
+      .member{
+        border: 1px solid white;
+        width: 100%;
+        height: 100%;
+        background: #1E0000;
+        border-radius:50%;
+      }
+    }
+    .fire-list-box {
+      .col {
+        font-size:12px;
+    }}
+    .fire-list-box {
+      .list-header{
+        font-size:12px;
       }
     }
   }

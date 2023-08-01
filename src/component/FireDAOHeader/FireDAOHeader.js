@@ -9,6 +9,7 @@ import eth from "../../imgs/eth.png"
 import polygon from "../../imgs/polygon.png"
 import { useLocation, useNavigate } from "react-router-dom";
 import NavList from "../NavList/MNavList";
+import logo from "../../imgs/logo.png"
 import develop from "../../env"
 import user from "../../imgs/user.png";
 import FireDAOHeaderStyle from "./FireDAOHeaderStyle";
@@ -18,16 +19,20 @@ import { Dropdown, Space } from 'antd';
 import judgeStatus from "../../utils/judgeStatus";
 const items = [
     {
-        label: <div style={{width:'230px',marginLeft:'-3px',display:'flex',height: '65px',
-        background: '#241B1B',
-borderRadius: '20px',padding:'0px 5px',border: '1px solid rgba(234,234,234,0.1)'}}>
-    <img style={{ width: '50px',height:'50px',marginTop:'8px' }} src={eth} /><span style={{width:'50%',fontSize:'16px',lineHeight:'63px',marginLeft:'5px'}}>Ethereum</span><img style={{width:'20px',height:'15px',marginTop:'23px',marginLeft:'25px'}} src={right}/></div>
+        label: <div style={{
+            width: '230px', marginLeft: '-3px', display: 'flex', height: '65px',
+            background: '#241B1B',
+            borderRadius: '20px', padding: '0px 5px', border: '1px solid rgba(234,234,234,0.1)'
+        }}>
+            <img style={{ width: '50px', height: '50px', marginTop: '8px' }} src={eth} /><span style={{ width: '50%', fontSize: '16px', lineHeight: '63px', marginLeft: '5px' }}>Ethereum</span><img style={{ width: '20px', height: '15px', marginTop: '23px', marginLeft: '25px' }} src={right} /></div>
         // key: '0',
     },
     {
-        label: <div style={{width:'230px',marginLeft:'-3px',display:'flex',height: '65px',background: '#241B1B',
-        borderRadius: '20px',padding:'0px 5px',border: '1px solid rgba(234,234,234,0.1)'}}>
-            <img style={{ width: '50px',height:'50px',marginTop:'8px' }} src={polygon} /><span style={{width:'50%',fontSize:'16px',lineHeight:'63px',marginLeft:'5px'}}>Polygon</span><img style={{width:'20px',height:'15px',marginTop:'23px',marginLeft:'25px',display:'none'}} src={right}/></div>
+        label: <div style={{
+            width: '230px', marginLeft: '-3px', display: 'flex', height: '65px', background: '#241B1B',
+            borderRadius: '20px', padding: '0px 5px', border: '1px solid rgba(234,234,234,0.1)'
+        }}>
+            <img style={{ width: '50px', height: '50px', marginTop: '8px' }} src={polygon} /><span style={{ width: '50%', fontSize: '16px', lineHeight: '63px', marginLeft: '5px' }}>Polygon</span><img style={{ width: '20px', height: '15px', marginTop: '23px', marginLeft: '25px', display: 'none' }} src={right} /></div>
         // key: '1',
     },
 
@@ -138,8 +143,12 @@ const FireDAOHeader = () => {
             <div className="firedao-header">
 
                 <div className="currentTitle">
+                <div className="logo-box1">
+                        <a href="https://firedao.co/" target="_blank"> <img className="logo" src={logo} alt="" /></a>
+                    </div>
                 </div>
                 <div className="nav-list">
+
                     <div className="nav-item">
                         <a href="https://docs.firedao.co/" target="_blank">
                             DOCS
@@ -215,9 +224,9 @@ const FireDAOHeader = () => {
                         d="M128 256m40.533333 0l686.933334 0q40.533333 0 40.533333 40.533333l0 4.266667q0 40.533333-40.533333 40.533333l-686.933334 0q-40.533333 0-40.533333-40.533333l0-4.266667q0-40.533333 40.533333-40.533333Z"
                         p-id="2670" fill="#ffffff"></path>
                 </svg>
-                <Button style={{ background: '#373232', margin: '0px 13px', textAlign: 'center', lineHeight: '28px', width: "32px", height: '32px', border: '1px solid rgba(255, 255, 255, 0.15)', borderRadius: '50%' }}>
+                {/* <Button style={{ background: '#373232', margin: '0px 13px', textAlign: 'center', lineHeight: '28px', width: "32px", height: '32px', border: '1px solid rgba(255, 255, 255, 0.15)', borderRadius: '50%' }}>
                     <img src={user} style={{ width: '22px', marginLeft: '-10px', marginTop: '-10px' }} />
-                </Button>
+                </Button> */}
             </div>
 
         </FireDAOHeaderStyle>
