@@ -1,4 +1,6 @@
-import logo from "../../imgs/logo.webp"
+import React, { useState } from 'react';
+import { Component, useEffect, useReducer } from "react";
+import logo from "../../imgs/logo.png"
 import icon1 from "../../imgs/github.webp"
 import icon2 from "../../imgs/twitter.webp"
 import icon3 from "../../imgs/telegram.webp"
@@ -8,45 +10,120 @@ import icon6 from "../../imgs/youtube.webp"
 import icon7 from "../../imgs/reddit@2x.webp"
 import icon8 from "../../imgs/medium.webp"
 import icon9 from "../../imgs/discord.webp"
+import { useLocation, useNavigate } from "react-router-dom";
+import footerMap from "../../config/footerMap";
+import { Menu } from 'antd';
 import FireDAOFooterStyle from "./FireDAOFooterStyle";
+const items = footerMap;
 const FireDAOFooter = () => {
+    const [collapsed, setCollapsed] = useState(false);
+    const [selectedKeys, setSelectedKeys] = useState(["Holy Fire Altar", "MintPassport"]);
+    const [selectNav, setSelectNav] = useState("Holy Fire Altar");
+    const [openKeys, setOpenKeys] = useState(['Holy Fire Altar']);
+    const rootSubmenuKeys = footerMap.map(items => {
+        return items.key
+    });
+    console.log(footerMap)
+    const toggleCollapsed = () => {
+        setCollapsed(!collapsed);
+    };
+    const history = useNavigate();
+    const location = useLocation()
+    const goPage = (obj) => {
+        setSelectedKeys(obj.keyPath)
+        history("/" + obj.key);
+        setSelectNav(obj.keyPath[1])
+    }
+    const onOpenChange = (keys) => {
+        console.log(keys)
+        const latestOpenKey = keys.find((key) => openKeys.indexOf(key) === -1);
+        if (rootSubmenuKeys.indexOf(latestOpenKey) === -1) {
+            setOpenKeys(keys);
+        } else {
+            setOpenKeys(latestOpenKey ? [latestOpenKey] : []);
+        }
+    };
+    useEffect(() => {
+
+        let keyPath = []
+        const curKey = location.pathname.substring(1, location.pathname.length)
+        footerMap.forEach(navObj => {
+            navObj.children.forEach(async nav => {
+                if (nav.key == curKey) {
+                    await setSelectNav(navObj.key)
+                    setOpenKeys([navObj.key])
+                    keyPath.push(navObj.key)
+                    keyPath.push(nav.key)
+                    setSelectedKeys(keyPath)
+                }
+            })
+        })
+    }, [])
 
     return (
         <FireDAOFooterStyle>
             <div className="footer">
+                <div className="lb">
+                    <div className="bottom-box-box">
+                        <div
+                            className="navBox"
+                            style={{
+                                width: '100%'
+                            }}
+                        >
+                           
+                            <Menu
+                                className="menu"
+                                mode="inline"
+                                defaultSelectedKeys={[]}
+                                defaultOpenKeys={[selectNav]}
+                                selectedKeys={selectedKeys}
+                                openKeys={openKeys}
+                                onOpenChange={onOpenChange}
+                                theme="dark"
+                                // inlineCollapsed={collapsed}
+                                items={items}
+                                onClick={(e) => goPage(e)}
+                            />
+                          
+                        </div>
+                    </div>
+                </div>
                 <div className="left">
-                    <img className="logo" src={logo} alt=""/>
+                    <img className="logo" src={logo} alt="" />
                     <div className="link-list">
                         <div className="link-item">
-                            <img className="icon" src={icon1} alt=""/>
+                            <img className="icon" src={icon1} alt="" />
                         </div>
                         <div className="link-item">
-                            <img className="icon" src={icon2} alt=""/>
+                            <img className="icon" src={icon2} alt="" />
                         </div>
                         <div className="link-item">
-                            <img className="icon" src={icon3} alt=""/>
+                            <img className="icon" src={icon3} alt="" />
                         </div>
                         <div className="link-item">
-                            <img className="icon" src={icon4} alt=""/>
+                            <img className="icon" src={icon4} alt="" />
                         </div>
                         <div className="link-item">
-                            <img className="icon" src={icon5} alt=""/>
+                            <img className="icon" src={icon5} alt="" />
                         </div>
                         <div className="link-item">
-                            <img className="icon" src={icon6} alt=""/>
+                            <img className="icon" src={icon6} alt="" />
                         </div>
                         <div className="link-item">
-                            <img className="icon" src={icon7} alt=""/>
+                            <img className="icon" src={icon7} alt="" />
                         </div>
                         <div className="link-item">
-                            <img className="icon" src={icon8} alt=""/>
+                            <img className="icon" src={icon8} alt="" />
                         </div>
                         <div className="link-item">
-                            <img className="icon" src={icon9} alt=""/>
+                            <img className="icon" src={icon9} alt="" />
                         </div>
 
                     </div>
-
+                    <div className="copyrightphone">
+                        Copyright ©FireDAO
+                    </div>
                 </div>
                 <div className="right">
                     <div className="link-box">

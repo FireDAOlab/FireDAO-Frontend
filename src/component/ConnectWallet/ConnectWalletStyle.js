@@ -8,6 +8,11 @@ export default   styled.div`
   
 
 }
+.ant-dropdown-menu-item.{
+  .ant-dropdown-menu-item-active{
+background-color:rgb(31,31,31);
+}
+}
   .connect-button {
     border-radius: 5px;
     border: 1px solid rgba(255, 255, 255, 0.15);

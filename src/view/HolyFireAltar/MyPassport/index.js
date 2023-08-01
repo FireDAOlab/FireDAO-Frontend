@@ -169,7 +169,7 @@ const MyPassport = (props) => {
                             <img src={user3} style={{ width: '22px', marginLeft: '-10px', marginTop: '-10px' }} />
                         </Button>
                     </div>
-                    <div className="panel-container user-info" style={{ border: 'none',width:'100%',padding:'0em' }}>
+                    <div className="panel-container user-info" style={{ border: 'none',width:'100%',padding:'0em',boxShadow:'none' }}>
                         <div className="passport-header-bg">
                             <Button style={{ marginTop:'200px',float:'right',background: '#373232', textAlign: 'center', lineHeight: '28px', width: "32px", height: '32px', border: '1px solid rgba(255, 255, 255, 0.15)', borderRadius: '50%', }}>
                                 <img src={kg} style={{ width: '22px', marginLeft: '-10px', marginTop: '-10px' }} />
@@ -323,7 +323,7 @@ const MyPassport = (props) => {
             {/* </div> */}
             <div className="panel-box web3id-box">
                 <div className="panel-container" style={{ border: 'none' }}>
-                    <div className="panel-title" style={{ fontSize: '30px' }}>
+                    <div className="panel-title" >
                         My Web3 ID
                     </div>
                     <div className="flex-box nft-list">

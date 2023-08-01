@@ -68,11 +68,11 @@ background: linear-gradient(-92deg, #FF4E50 0%, #F9D423 100%);
   .logo-box {
     width: 100%;
     text-align: center;
-    margin-bottom: 1em;
+    /* margin-bottom: 0.5em; */
 
     .logo {
-      width: 40%;
-      margin: 0.5em;
+      width: 55%;
+      margin: 1em;
     }
   }
 

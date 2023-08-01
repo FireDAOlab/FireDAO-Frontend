@@ -8,6 +8,7 @@ export default styled.div`
 .ant-form-item-control-input-content{
   display: flex;
   text-align:center;
+  
 }
 .ant-input{
   width: 100%;
@@ -21,7 +22,12 @@ padding: 0px 10px;
   border:none;
 }
 
-.fire-list-box{
+
+  @media screen and (max-width: 1950px) {
+    .max-btn{
+          font-size:20px;
+        }
+    .fire-list-box{
   margin: 2em auto;
   .list-item{
     .value{
@@ -32,8 +38,8 @@ padding: 0px 10px;
 }
 
 .ant-form-item-label>label{
-  font-size:15px;
-  
+  font-size:20px;
+  color: white;
 }
 
 .ant-form .ant-form-item{
@@ -47,7 +53,7 @@ padding: 0px 10px;
   width: 100%;
   margin: 0.5em 0em;
     height: 40px;
-    font-size:16px;
+    font-size:20px;
     font-weight:600;
 }
 .header-nav {
@@ -57,14 +63,15 @@ padding: 0px 10px;
 
     .fire-nav-list {
       height: 45px;
-    width: 57%;
+    width: 60%;
     line-height:15px;
       .nav-item {
         width:42%;
+        font-size:18px;
       }
     }
   }
-  .panel-box{
+    .panel-box{
     width: 100%;
     .panel-container{
       width: 100%;
@@ -95,7 +102,7 @@ padding: 0px 10px;
       }
       .discount{
         margin: 0 10px;
-      }16px;
+      }
     }
   }
   .sc{
@@ -117,13 +124,14 @@ padding: 20px;
           padding-top:8px;
           font-family: Roboto-Bold, Roboto;
     .name{
+  color: white;
      
-      font-size: 16px;
+      font-size: 20px;
       margin-bottom:5px;
     }
     .value{
       width: 100%;
-      font-size: 15px;
+      font-size: 16px;
       height: 35px;
       border-radius: 25px;
       padding-left:5px;
@@ -222,7 +230,7 @@ line-height:25px;
 p{
   font-family: Roboto-SemiBold, Roboto;
 font-weight: 600;
-
+font-size:20px;
 }
 .user{
   display:flex;
@@ -230,6 +238,7 @@ font-weight: 600;
   justify-content:space-between;
   width: 100%;
   .name{
+    font-size:20px;
     font-family: Roboto-SemiBold, Roboto;
 font-weight: 600;
 color: #8A8080;
@@ -245,7 +254,7 @@ width: 25%;
 
 }
 .whitelist{
-  font-size:16px;
+  
   background: rgba(26, 20, 20, 1);
 border-radius: 20px;
 border: 1px solid rgba(255,255,255,0.1);
@@ -254,7 +263,7 @@ border: 1px solid rgba(255,255,255,0.1);
   p{
   font-family: Roboto-SemiBold, Roboto;
 font-weight: 600;
-
+font-size:20px;
 }
 .user{
   display:flex;
@@ -266,6 +275,7 @@ font-weight: 600;
 font-weight: 600;
 color: #8A8080;
 width: 75%;
+font-size:20px;
 
   }
   .value{
@@ -307,7 +317,7 @@ border-radius: 20px;
 border: 1px solid rgba(255,255,255,0.1);
 width: 47%;
 padding: 20px;
-font-size:16px;
+font-size:20px;
 p{
   font-family: Roboto-SemiBold, Roboto;
 font-weight: 600;
@@ -319,6 +329,7 @@ font-weight: 600;
   justify-content:space-between;
   width: 100%;
   .name{
+    font-size:20px;
     font-family: Roboto-SemiBold, Roboto;
 font-weight: 600;
 color: #8A8080;
@@ -326,6 +337,7 @@ width: 75%;
 
   }
   .value{
+    font-size:16px;
 color: white;
 text-align:center;
 width: 25%;
@@ -338,7 +350,7 @@ border-radius: 20px;
 border: 1px solid rgba(255,255,255,0.1);
 width: 47%;
 padding: 20px;
-font-size:16px;
+font-size:20px;
 line-height:25px;
 p{
   font-family: Roboto-SemiBold, Roboto;
@@ -355,34 +367,35 @@ font-weight: 600;
 font-weight: 600;
 color: #8A8080;
 width: 75%;
-
+font-size:20px;
   }
   .value{
 color: white;
 text-align:center;
 width: 25%;
+font-size:16px;
   }
 }
 }
 }
-
-
 .discount1{
-  width:45%;
-
-margin: 2em auto;
-background: rgba(26, 20, 20, 1);
-border-radius: 20px;
-border: 1px solid rgba(255,255,255,0.1);
-padding: 20px;
-font-size:16px;
-p{
-  font-family: Roboto-SemiBold, Roboto;
+  width: 42%;
+    margin: 4em auto;
+    background: rgba(26,20,20,1);
+    border-radius: 20px;
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: 20px;
+    .nnn{
+      font-size:20px;
+      font-family: Roboto-SemiBold, Roboto;
 font-weight: 600;
+color: #FFFFFF;
+line-height: 18px;
+    }
 
-}
-.disac{
-  display:flex;
+    
+            .disac{
+              display:flex;
   align-items:center;
   justify-content:space-between;
   width: 100%;
@@ -391,22 +404,28 @@ font-weight: 600;
 font-weight: 600;
 color: #8A8080;
 width: 75%;
+font-size:20px;
 
   }
   .value{
 color: white;
 text-align:center;
+font-size:20px;
 width: 25%;
   }
-}
-}
+            }
+          }
 
+  }
 
 
 
 
 
 @media screen and (max-width: 1500px) {
+  .max-btn{
+          font-size:15px;
+        }
 .ant-input{
   border-radius:25px;
   font-size:14px;
@@ -439,9 +458,11 @@ width: 25%;
     .fire-nav-list {
       height: 45px;
     width: 86%;
+    
     line-height:15px;
       .nav-item {
         width:42%;
+        
       }
     }
   }
@@ -453,7 +474,7 @@ width: 25%;
  
   }
   .page-title{
-    font-size: 30px;
+    font-size: 21px;
     font-family: Roboto-Bold, Roboto;
     font-weight: bold;
     padding: 0px 11.7%;
@@ -675,7 +696,6 @@ text-align:center;
 font-weight:400;
 margin-right:10px;
 }
-}
 
 
 .discount{
@@ -692,8 +712,7 @@ border-radius: 20px;
 border: 1px solid rgba(255,255,255,0.1);
 width: 47%;
 padding: 20px;
-font-size:15px;
-line-height:25px;
+font-size:16px;
 p{
   font-family: Roboto-SemiBold, Roboto;
 font-weight: 600;
@@ -724,8 +743,8 @@ border-radius: 20px;
 border: 1px solid rgba(255,255,255,0.1);
 width: 47%;
 padding: 20px;
-font-size:15px;
-/* line-height:25px; */
+font-size:16px;
+line-height:25px;
 p{
   font-family: Roboto-SemiBold, Roboto;
 font-weight: 600;
@@ -751,6 +770,254 @@ width: 25%;
 }
 }
 }
+.discount1{
+  width: 60%;
+    margin: 4em auto;
+    background: rgba(26,20,20,1);
+    border-radius: 20px;
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: 20px;
+    .nnn{
+      font-size:14px;
+      font-family: Roboto-SemiBold, Roboto;
+font-weight: 600;
+color: #FFFFFF;
+line-height: 18px;
+    }
+            .disac{
+              .name{
+              width: 100%;
+              font-size:14px;
+            }
+            .value{
+              width:100%;
+              text-align:left;
+              font-size:14px;
+            }
+            }
+          }
+}
+
+@media screen and (max-width: 400px) {
+  .ant-form-item-label>label{
+  font-size:12px;
+}
+.ant-input{
+  font-size:12px;
+}
+  .page-title{
+    font-size:16px;
+    padding: 0;
+  }
+  .header-nav{
+    padding: 0;
+    width: 100%;
+    .fire-nav-list{
+      width: 100%;
+    height: 35px;
+    .nav-item{
+      font-size:12px;
+    }
+    }
+  }
+  .panel-box{
+    .panel-container{
+      padding: 16px 5.9%;
+      .panel-title{
+        font-size:16px;
+      }
+      .current-box{
+        width: 100%;
+        margin: 10px 0;
+        .current{
+          .name{
+            font-size:12px;
+          }
+          .value{
+            font-size:12px;
+          }
+        }
+        
+      
+      }
+  .max-btn{
+          font-size:15px;
+        }
+      .amountbox{
+        display: block;
+        margin: 10px 0;
+        .general{
+          width: 100%;
+          font-size:12px;
+          .user{
+            display: block;
+            .name{
+              width: 100%;
+              font-size:12px;
+            }
+            .value{
+              width:100%;
+              font-size:12px;
+            }
+          }
+        }
+      }
+      .whitelist{
+        margin: 10px 0;
+          width: 100%;
+          font-size:12px;
+          .user{
+            display: block;
+            .name{
+              width: 100%;
+              font-size:12px;
+            }
+            .value{
+              width:100%;
+              font-size:12px;
+            }
+          }
+          
+      }
+      .panel-title{
+            .tj{
+            display: flex;
+            width: 58%;
+            .kk{
+              font-size:10px;
+            }
+            }
+          }
+
+          .fire-list-box {
+            margin: 0.5em 0;
+        .list-header {
+            padding: 20px 1em;
+        }
+        .list-item, .list-header {
+          justify-content: flex-start;
+        }
+
+        .col {
+          text-align: left;
+          align-items: center;
+          &:nth-child(1) {
+            width: 15%;
+            margin-left:0px;
+          }
+
+          &:nth-child(2) {
+            width: 18%;
+            text-align: center;
+          }
+
+          &:nth-child(3) {
+            width:35%;
+            text-align: center;
+           
+            margin-left:20px;
+          }
+          &:nth-child(4) {
+            width: 22%;
+            margin-left:20px;
+          }
+        }
+        .list-item {
+            padding: 0.5em 1em;
+          .col {
+            overflow: hidden;
+            padding-left: 0.5%;
+            //text-overflow: ellipsis;
+
+          }
+  }
+}
+  .no{
+            color: #FE6D46;
+            
+          }
+          .pid{
+            color: #FE6D46;
+            border: 1px solid #FE6D46;
+            background: rgba(254, 109, 70, 0.20);
+            text-align:center;
+            border-radius:25px;
+          }
+
+          .address {
+                color: rgba(205, 158, 87, 1);
+            border: 1px solid rgba(205, 158, 87, 1);
+            background: rgba(205, 158, 87, 0.20);
+            text-align:center;
+            border-radius:25px;
+            width: 50px;
+            margin-right:0px;
+           
+          }
+
+          .discount{
+            margin: 10px auto;
+            display: block;
+            .mintfee{
+              width: 100%;
+          font-size:12px;
+          .fee1{
+            display: block;
+            .name{
+              width: 100%;
+              font-size:12px;
+            }
+            .value{
+              width:100%;
+              text-align:left;
+              font-size:12px;
+            }
+          }
+            }
+            .mintdis{
+              margin: 10px 0;
+              width: 100%;
+          font-size:12px;
+          .fee1{
+            display: block;
+            .name{
+              width: 100%;
+              font-size:12px;
+            }
+            .value{
+              width:100%;
+              text-align:left;
+              font-size:12px;
+            }
+          }
+            }
+          }
+          .discount1{
+            margin: 10px auto;
+            display: block;
+            .disac{
+              .name{
+              width: 100%;
+              font-size:12px;
+            }
+            .value{
+              width:100%;
+              text-align:left;
+              font-size:12px;
+            }
+            }
+          }
+
+        .content-item{
+          .fire-list-box{
+
+          }
+        }  
+
+    }
+  }
+}
+
 .pagination {
         text-align: center;
       }

@@ -1,5 +1,5 @@
 import {Routes, Route, Link, useNavigate, useLocation} from "react-router-dom";
-import Register from "./view/HolyFireAltar/Register";
+import Register from "./view/HolyFireAltar/MintPassport/Register";
 import UserInfo from "./view/UserInfo"
 import CreateLock from "./view/createLock"
 import LockList from "./view/LockList"
