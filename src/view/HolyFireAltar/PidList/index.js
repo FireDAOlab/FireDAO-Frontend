@@ -14,6 +14,7 @@ import fresh from "../../../imgs/fresh_icon.webp";
 import StyleBox from "./style"
 const PidList = (props) => {
     const [activeNav, setNav] = useState(1)
+    
     let {state, dispatch} = useConnect();
     const [MYPIDARR, setMYPIDARR] = useState([])
     const [curPage, setCurPage] = useState(1)
