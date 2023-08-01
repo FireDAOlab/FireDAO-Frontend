@@ -14,6 +14,8 @@ import {getClaimRecords, getDepositRecords, getWhitelist} from "../../../graph/f
 import {dealTime} from "../../../utils/timeUtil";
 import {formatAddress} from "../../../utils/publicJs";
 import develop from "../../../env"
+import checkIcon from "../../../imgs/svg/checkbox-checked.svg";
+import checkActiveIcon from "../../../imgs/svg/checkbox-checked-active.svg";
 
 const FLMDecimal = 18
 
@@ -153,17 +155,24 @@ const Distribution = (props) => {
     }
     const getWList = async () => {
         const record = await getWhitelist()
-        const res = await handleViewMethod("getWhiteList", [])
+        const res = await handleViewMethod("getAirDropList", [])
         const recordArr = record.data.claimRecords
         let resArr = []
         setAirdropList(record.data.claimRecords)
-        setCurAirdropList(record.data.claimRecords)
-        setTotal4(record.data.claimRecords.length)
+        const airdropList = record.data.claimRecords
+        airdropList.sort((a, b) => {
+            if (a.batch > b.batch) {
+                return -1
+            }
+            return 1
+        })
+        setCurAirdropList(airdropList)
+        setTotal4(airdropList.length)
 
         let selectArr = []
         record.data.claimRecords.forEach(item => {
             let hasValue = false
-                for (let i=0;i< selectArr.length;i++){
+            for (let i = 0; i < selectArr.length; i++) {
                 if (selectArr[i].value == item.batch) {
                     hasValue = true
                 }
@@ -175,8 +184,8 @@ const Distribution = (props) => {
                 })
             }
         })
-        selectArr.sort((a,b)=>{
-            if(a.value - b.value > 0){
+        selectArr.sort((a, b) => {
+            if (a.value - b.value > 0) {
                 return 1
             }
             return -1
@@ -288,6 +297,7 @@ const Distribution = (props) => {
                 tempArr.push(item)
             }
         })
+
         setCurAirdropList(tempArr)
         setTotal4(tempArr.length)
     }, [curBetchId]);
@@ -397,13 +407,13 @@ const Distribution = (props) => {
                                 Address
                             </div>
                             <div className="col">
-                                Total
+                                Total Available
                             </div>
                             <div className="col">
                                 Claimed
                             </div>
                             <div className="col">
-                                Claiming
+                                Pending
                             </div>
                         </div>
                         {!showSearch && curPage2 && whitelist.map((item, index) => {
@@ -641,48 +651,64 @@ const Distribution = (props) => {
                             options={selectArr}
                         />
                     </div>
-
                     <div className="fire-list-box fire-list-box-airdroplist">
-                        <div className="list-header">
-
-                            <div className="col">
-                                Title
-                            </div>
-                            <div className="col">
-                                No.
-                            </div>
-                            <div className="col">
-                                PID
-                            </div>
-                            <div className="col">
-                                Username
-                            </div>
-
-                            <div className="col">
-                                Address
-                            </div>
-                            <div className="col">
-                                Amount(s)
-                            </div>
-                            <div className="col">
-                                Time(UTC)
-                            </div>
-                        </div>
                         {curAirdropList.map((item, index) => {
                             if (index >= pageCount4 * (curPage4 - 1) && index < pageCount4 * curPage4) {
+                                if (index == 0 || item.batch != curAirdropList[index - 1].batch) {
+                                    return (
+                                        <div>
+                                            <div className="batch-box">
+                                                <div className="col">
+                                                    #{item.batch}
+                                                </div>
+                                                <div className="col">
+                                                    {item.info ? item.info : "--"}
+                                                </div>
+                                            </div>
+                                            <div className="list-header">
+                                                <div className="col">
+                                                    No.
+                                                </div>
+
+                                                <div className="col">
+                                                    Address
+                                                </div>
+                                                <div className="col">
+                                                    Amount(s)
+                                                </div>
+                                                <div className="col">
+                                                    Time(UTC)
+                                                </div>
+                                            </div>
+                                            <div className="list-item" key={index}>
+
+                                                <div className="col">
+                                                    {index + 1}
+                                                </div>
+
+                                                <div className="col  ">
+                                                    <a className="address"
+                                                       href={develop.ethScan + "/address/" + item.user}
+                                                       target="_blank">{formatAddress(item.user)}</a>
+                                                </div>
+                                                <div className="col">
+                                                    {showNum(item.amount / 10 ** FLMDecimal)}
+                                                </div>
+                                                <div className="col">
+                                                    {dealTime(item.blockTimestamp)}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    )
+
+                                }
                                 return (<div className="list-item" key={index}>
-                                    <div className="col">
-                                        {item.info ? item.info : "--"}
-                                    </div>
+
                                     <div className="col">
                                         {index + 1}
                                     </div>
-                                    <div className="col">
-                                        {item.pid}
-                                    </div>
-                                    <div className="col">
-                                        {item.username}
-                                    </div>
+
+
                                     <div className="col  ">
                                         <a className="address" href={develop.ethScan + "/address/" + item.user}
                                            target="_blank">{formatAddress(item.user)}</a>
@@ -695,9 +721,8 @@ const Distribution = (props) => {
                                     </div>
                                 </div>)
                             }
-
-                        })}
-
+                        })
+                        }
                     </div>
                     <div className="pagination">
                         {

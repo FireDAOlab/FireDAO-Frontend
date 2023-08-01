@@ -3,6 +3,7 @@ import styled from "styled-components";
 export default styled.div`
       .ant-form-item-control-input {
         border-radius: 50px;
+        padding: 0 10px;
       }
 
       .ant-select:not(.ant-select-customize-input) {

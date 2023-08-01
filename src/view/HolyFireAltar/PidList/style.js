@@ -154,9 +154,8 @@ export default styled.div`
             margin-right:20px;
           }
           .address {
-            a{
+            
                 color: rgba(205, 158, 87, 1);
-            }
                
             border: 1px solid rgba(205, 158, 87, 1);
             background: rgba(205, 158, 87, 0.20);

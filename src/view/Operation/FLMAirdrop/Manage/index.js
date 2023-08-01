@@ -30,6 +30,7 @@ import checkActiveIcon from ".././../../../imgs/svg/checkbox-checked-active.svg"
 
 import BigNumber from "bignumber.js";
 import {showNum} from "../../../../utils/bigNumberUtil";
+import TextArea from "antd/es/input/TextArea";
 
 const FireLock = (props) => {
     let {state, dispatch} = useConnect();
@@ -37,16 +38,20 @@ const FireLock = (props) => {
     const [curPage, setCurPage] = useState(1)
     const [pageCount, setPageCount] = useState(20)
     const [whitelist, setWhitelistArr] = useState([])
+    const [flmDecimal, setFLMDecimal] = useState(0)
     const [adminArr, setWAdminArr] = useState([])
     const [isSecAdmin, setISSecAdmin] = useState(false)
     const [isPause, setIsPause] = useState(false)
-    const [isDelMolOpen, setIsDelMolOpen] = useState(false)
-    const [delList, setDelList] = useState([])
+    const [isModifyMolOpen, setIsModifyMolOpen] = useState(false)
+    const [modifyList, setModifyList] = useState([])
 
 
     const [curNav, setCurNav] = useState(1)
     const [ownerAddr, setOwner] = useState("")
 
+    const [isAdmin, setIsAdmin] = useState(false)
+
+    const [isSurAdmin, setSuperAdmin] = useState(false)
     const [searchContent, setSearchContent] = useState()
     const [showSearch, setShowSearch] = useState(false)
 
@@ -63,7 +68,9 @@ const FireLock = (props) => {
 
     const [flmAddr, setFLMAddr] = useState()
     const [form] = Form.useForm();
-
+    const [addressString, setCurAddrString] = useState()
+    const [amountString, setAmountString] = useState()
+    const [infoString, setInfoString] = useState("")
     const location = useLocation()
 
     const openNotification = (message) => {
@@ -109,19 +116,19 @@ const FireLock = (props) => {
         getFLMAddr()
     }
 
-    const dealNum = (num) => {
-        return parseInt(num * 100) / 100
-    }
 
     const getOwner = async () => {
         const ownerAddr = await handleViewMethod("owner", [])
         setOwner(ownerAddr)
+        setIsAdmin(ownerAddr.toLowerCase() == state.account.toLowerCase())
     }
 
 
     const getTokenBalance = async () => {
         let contractTemp = await getContractByContract("erc20", flmAddr, state.api,)
         const decimal = await viewMethod(contractTemp, state.account, "decimals", [])
+        setFLMDecimal(decimal)
+
         let balance = await viewMethod(contractTemp, state.account, "balanceOf", [addressMap["FLMAirdrop"].address])
         balance = balance / (10 ** parseInt(decimal))
         setPoolFLMBalance(balance)
@@ -145,7 +152,7 @@ const FireLock = (props) => {
     }
     const getWList = async () => {
         const record = await getWhitelist()
-        const res = await handleViewMethod("getWhiteList", [])
+        const res = await handleViewMethod("getAirDropList", [])
         const recordArr = record.data.claimRecords
         let resArr = []
         res.forEach(addr => {
@@ -179,6 +186,7 @@ const FireLock = (props) => {
         res.forEach(addr => {
             if (addr.toString().toLowerCase() == state.account.toLowerCase()) {
                 setISSecAdmin(true)
+                setCurNav(3)
             }
         })
     }
@@ -208,21 +216,53 @@ const FireLock = (props) => {
         await handleDealMethod("setFpAddr", [form.getFieldValue().fpAddr])
         // getOwner()
     }
-    const removeWhiteList = async (addr) => {
-        await handleDealMethod("removeWhiteList", [[addr]])
-        getWList()
-    }
-    const getDelList = async (addr) => {
+
+    const getModifList = async (addr) => {
         let checkArr = []
         whitelist.forEach(item => {
             if (item.checked && checkArr.indexOf(item.user) == -1) {
-                checkArr.push(item.user)
+                checkArr.push(item)
             }
         })
-        setDelList(checkArr)
+        let addressString="",amountString=""
+        checkArr.forEach((item,index)=>{
+            if (index == item.length - 1) {
+                addressString += item.user
+                amountString += item.amount
+
+            } else {
+                addressString += item.user  + "\n"
+                amountString += item.amount / 10**flmDecimal + "\n"
+            }
+        })
+        setCurAddrString(addressString)
+        setAmountString(amountString)
+        setModifyList(checkArr)
     }
-    const removeCheckWhiteList = async (addr) => {
-        await handleDealMethod("removeWhiteList", [delList])
+    const getSingleModifList = async (item) => {
+        setCurAddrString(item.user)
+        setAmountString(item.amount / 10**flmDecimal)
+        setModifyList([item])
+    }
+    const subAirDropAmount = async (addr) => {
+        let _to = [], _amount = []
+        _to = addressString.toString().split('\n')
+        _amount = amountString.toString().split('\n')
+        _to.forEach((address, index) => {
+            address = address.trim()
+            if (!state.api.utils.isAddress(address)) {
+                _to.splice(index, 1)
+            }
+
+        })
+        for (let i = 0; i < _amount.length; i++) {
+            _amount[i] = BigNumber(_amount[i]).multipliedBy(10 ** flmDecimal).toFixed(0).toString()
+        }
+        if (!(BigNumber(_amount[_amount.length-1])>=0)) {
+            _amount.pop()
+        }
+        console.log({_to,_amount,infoString})
+        await handleDealMethod("subAirDropAmount", [_to,_amount,infoString])
         getWList()
     }
     const setFlm = async (addr) => {
@@ -296,41 +336,80 @@ const FireLock = (props) => {
             }} closeDialog={() => {
                 setShowRemove(false)
             }}/>}
-            {ownerAddr && ((ownerAddr.toLowerCase() == state.account.toLowerCase()) || isSecAdmin) && <div>
+            {ownerAddr && (isSurAdmin||isAdmin || isSecAdmin) && <div>
                 <h1 className="title">
                     FLM Airdrop Manage
                 </h1>
                 <div className="panel-box">
-                    <Modal className="model-dialog" title="Delete List" open={isDelMolOpen} onOk={removeCheckWhiteList}
+                    <Modal className="model-dialog" title="Modify List" open={isModifyMolOpen} onOk={subAirDropAmount}
                            onCancel={() => {
-                               setIsDelMolOpen(false)
+                               setIsModifyMolOpen(false)
                            }}>
                         <div className="del-content">
-                            {delList.map(item => {
-                                return (<div>
-                                    {item}
-                                </div>)
-                            })}
+                            <Form form={form} name="control-hooks">
+                                <Form.Item
+                                    name="address"
+                                    label="Wallet Address"
+                                    className="address-box"
+                                >
+                                    <div className="flex-box">
+                                        <TextArea placeholder="one address perline" rows={10} value={addressString}
+                                                  onChange={(e) => {
+                                                      setCurAddrString(e.target.value)
+                                                  }}/>
+                                    </div>
+                                </Form.Item>
+                                <Form.Item
+                                    name="amount"
+                                    label="Amount"
+                                    className="number-box"
+                                >
+                                    <div className="flex-box">
+                                        <TextArea placeholder="one amount perline" rows={10} value={amountString}
+                                                  onChange={(e) => {
+                                                      setAmountString(e.target.value)
+                                                  }}/>
+                                    </div>
+                                </Form.Item>
+                                <Form.Item
+                                    name="info"
+                                    label="Info"
+                                >
+                                    <div className="flex-box">
+                                        <TextArea value={infoString} onChange={(e) => {
+                                            setInfoString(e.target.value)
+                                        }}/>
+                                    </div>
+                                </Form.Item>
+                            </Form>
+
                         </div>
                     </Modal>
                     <div className="panel-container">
                         <div className="nav-list">
-                            <div className={"nav-item " + (curNav == 1 ? "active" : "")} onClick={() => {
-                                setCurNav(1)
-                            }}>
-                                Owner
-                            </div>
-                            <div className={"nav-item " + (curNav == 3 ? "active" : "")} onClick={() => {
-                                setCurNav(3)
-                            }}>
-                                Set Admin Level2
+                            {
+                                (isSurAdmin||isAdmin)&&( <div className="nav-list">
+                                    <div className={"nav-item " + (curNav == 1 ? "active" : "")} onClick={() => {
+                                        setCurNav(1)
+                                    }}>
+                                        Owner
+                                    </div>
+                                    <div className={"nav-item " + (curNav == 3 ? "active" : "")} onClick={() => {
+                                        setCurNav(3)
+                                    }}>
+                                        Set Admin Level2
+                                    </div>
+                                </div>)
+                            }
+
+                            <div className="nav-list">
+                                <div className={"nav-item " + (curNav == 2 ? "active" : "")} onClick={() => {
+                                    setCurNav(2)
+                                }}>
+                                    Set Airdrop List
+                                </div>
                             </div>
 
-                            <div className={"nav-item " + (curNav == 2 ? "active" : "")} onClick={() => {
-                                setCurNav(2)
-                            }}>
-                                Set Airdrop List
-                            </div>
 
                         </div>
                         {curNav == 1 && <div className="part1">
@@ -566,13 +645,12 @@ const FireLock = (props) => {
                                 <div className="col">
                                     No.
                                 </div>
-                                <div className="col">
-                                    PID
-                                </div>
-                                <div className="col">
-                                    Username
-                                </div>
-                                <div className="col"></div>
+                                {/*<div className="col">*/}
+                                {/*    PID*/}
+                                {/*</div>*/}
+                                {/*<div className="col">*/}
+                                {/*    Username*/}
+                                {/*</div>*/}
                                 <div className="col">
                                     Address
                                 </div>
@@ -580,7 +658,7 @@ const FireLock = (props) => {
                                     Amount
                                 </div>
                                 <div className="col">
-                                    Remove
+                                    Modify
                                     <div className="remove-check">
                                         {!isCheckAll && <img className="check-icon" onClick={() => {
                                             setIsCheckAll(true);
@@ -592,9 +670,9 @@ const FireLock = (props) => {
                                         }} src={checkActiveIcon} alt=""/>}
 
                                         <Button onClick={() => {
-                                            setIsDelMolOpen(true)
-                                            getDelList()
-                                        }}>Delete</Button>
+                                            setIsModifyMolOpen(true)
+                                            getModifList()
+                                        }}>Modify</Button>
                                     </div>
                                 </div>
 
@@ -605,15 +683,15 @@ const FireLock = (props) => {
                                         <div className="col">
                                             {index + 1}
                                         </div>
-                                        <div className="col">
-                                            {item.pid}
-                                        </div>
-                                        <div className="col">
-                                            {item.username}
-                                        </div>
-                                        <div className="col">
-                                            {item.fid}
-                                        </div>
+                                        {/*<div className="col">*/}
+                                        {/*    {item.pid}*/}
+                                        {/*</div>*/}
+                                        {/*<div className="col">*/}
+                                        {/*    {item.username}*/}
+                                        {/*</div>*/}
+                                        {/*<div className="col">*/}
+                                        {/*    {item.fid}*/}
+                                        {/*</div>*/}
                                         <div className="col">
                                             {item.user}
                                         </div>
@@ -632,8 +710,10 @@ const FireLock = (props) => {
                                                 handleCheck(item, index, false)
                                             }} src={checkActiveIcon} alt=""/>}
                                             <Button className="remove-btn" onClick={() => {
-                                                removeWhiteList(item.user)
-                                            }}>Delete</Button>
+                                                // removeWhiteList(item.user)
+                                                setIsModifyMolOpen(true)
+                                                getSingleModifList(item)
+                                            }}>Modify</Button>
                                         </div>
                                     </div>)
                                 }
@@ -662,8 +742,10 @@ const FireLock = (props) => {
                                         </div>
                                         <div className="col">
                                             <Button onClick={() => {
-                                                removeWhiteList(item.user)
-                                            }}>Delete</Button>
+                                                // removeWhiteList(item.user)
+                                                setIsModifyMolOpen(true)
+                                                getSingleModifList(item)
+                                            }}>Modify</Button>
                                         </div>
                                     </div>)
                                 }
