@@ -24,7 +24,6 @@ const Network = {
     chainType: '2',
     chainName: 'Mumbai',
     shortName: 'MATIC',
-
     rpcUrls: ['https://polygon-mumbai.blockpi.network/v1/rpc/public'],
     blockExplorerUrls: ['https://mumbai.polygonscan.com'],
     nativeCurrency: {
