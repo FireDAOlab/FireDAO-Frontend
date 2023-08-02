@@ -129,9 +129,9 @@ const ConnectWallet = () => {
                 fontFamily: 'Roboto-Medium, Roboto',
                 fontWeight: '500',
                 color: '#8A8080',
-                margin: '10px',
                 textAlign: 'center',
                 fontSize: '15px'
+                
             }}>
                 Log Out</p>
         },
@@ -161,7 +161,7 @@ const ConnectWallet = () => {
             {
                 location.pathname === "/" && (
                     <Dropdown
-
+                        
                         menu={{
                             items,
                         }}
