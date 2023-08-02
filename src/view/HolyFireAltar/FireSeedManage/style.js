@@ -2,7 +2,7 @@ import styled from "styled-components";
 export default styled.div`
 .ant-form-item-control-input{
   border-radius:25px;
-  line-height:47px;
+  line-height:40px;
   
 }
 .ant-form-item-control-input-content{
@@ -13,7 +13,6 @@ export default styled.div`
 .ant-input{
   width: 100%;
   border-radius:25px;
-  font-size:15px;
   border:none;
 padding: 0px 10px;
 }
@@ -29,16 +28,14 @@ padding: 0px 10px;
         }
     .fire-list-box{
   margin: 2em auto;
-  .list-item{
-    .value{
-      width: 12%;
-      color: rgba(228, 134, 134, 1);
-    }
+  .list-header{
+    font-size:16px;
   }
+
 }
 
 .ant-form-item-label>label{
-  font-size:20px;
+  font-size:16px;
   color: white;
 }
 
@@ -145,42 +142,52 @@ padding: 20px;
   }
 
   .fire-list-box {
-        .list-header {
-            padding: 20px 1em;
-        }
-        .list-item, .list-header {
-          justify-content: flex-start;
-        }
+      
+        .list-item{
+          font-size:16px;
+          .ant-form-item-row{
+  margin: 0em ;
 
-        .col {
+
+}
+        }
+        .flex-box2,  .list-item{
+          justify-content: flex-start;
+          font-size:16px;
+          font-family: Roboto-Medium, Roboto;
+font-weight: bold;
+color: #8A8080;
+        .col1 {
+          font-size:16px;
           text-align: left;
-          align-items: center;
+          justify-content: flex-start;
           &:nth-child(1) {
-            width: 15%;
+            width: 10%;
             margin-left:50px;
           }
 
           &:nth-child(2) {
-            width: 20%;
-            text-align: center;
+            width: 15%;
+            margin-left:50px;
           }
 
           &:nth-child(3) {
-            width:22%;
-            text-align: center;
-           
+            width:28%;
             margin-left:50px;
           }
           &:nth-child(4) {
             width: 22%;
-            margin-left:80px;
+            margin-left:50px;
+            text-align:left;
           }
         }
+      }
         .list-item {
             padding: 0.5em 1em;
-          .col {
+          .col1 {
             overflow: hidden;
             padding-left: 0.5%;
+            text-align:center;
             //text-overflow: ellipsis;
 
           }
@@ -188,7 +195,7 @@ padding: 20px;
 }
   .no{
             color: #FE6D46;
-            
+
           }
           .pid{
             color: #FE6D46;
@@ -204,13 +211,143 @@ padding: 20px;
             background: rgba(205, 158, 87, 0.20);
             text-align:center;
             border-radius:25px;
-            width: 100px;
-            margin-right:0px;
            
           }
 
+          .fire-list-box{
+        margin: 2em 0em;
+        text-align:left;
+
+        .flex-box3,.dis {
+            font-size: 16px;
+            justify-content: flex-start;
+            font-family: Roboto-Medium, Roboto;
+font-weight: bold;
+color: #8A8080;
+            
+    .col{
+        text-align:left;
+font-size:16px;
+      &:nth-child(1){
+        margin-left:70px;
+        width:30%;
+      }
+      &:nth-child(2){
+        width: 30%;
+      }
+      &:nth-child(3){
+        width: 30%;
+      }
+     
+     
+    }
+}  
+        .flex-box3 {
+          font-size:16px;
+          padding: 20px 1em;
+          font-family: Roboto-Medium, Roboto;
+font-weight: bold;
+color: #8A8080;
+        }
+        .dis{
+          padding: 0.5em 0em;
+            .start{
+              width: 35%;
+              text-align:center;
+              float: left;
+              .dtoo1{
+  width: 100%;
+  text-align:center;        
+  color:rgba(228, 134, 134, 1);
+}
+
+            }
+            .space{
+              float:left;
+              padding:5px ;
+            }
+            .end{
+              text-align:center;
+              float: left;
+              width: 35%;
+              .dtoo1{
+  width: 100%;
+  text-align:center;        
+  color:rgba(228, 134, 134, 1);
+} 
+}
+.dis1{
+  float: left;
+  text-align:center;
+  .dtoo1{
+  width: 100%;
+  text-align:center;        
+  color:rgba(228, 134, 134, 1);
+}
+}     
+        }
+
+}
+.ant-form-item-control-input-content{
+          height: 40px;
+        }
+          .fire-list-box{
+        margin: 2em 0em;
+        text-align:left;
+        
+
+        .flex-box1,.lever {
+            font-size: 16px;
+            justify-content: flex-start;
+            font-family: Roboto-Medium, Roboto;
+font-weight: bold;
+color: #8A8080;
+            
+    .col{
+        text-align:left;
+        font-size:16px;
+      &:nth-child(1){
+        margin-left:70px;
+        width:30%;
+      }
+      &:nth-child(2){
+        width: 30%;
+      }
+      &:nth-child(3){
+        width: 30%;
+      }
+      
+     
+    }
+}  
+
+       .flex-box1 {
+          font-size:16px;
+          padding: 20px 1em;
+          font-family: Roboto-Medium, Roboto;
+font-weight: bold;
+color: #8A8080;
+        }
+        .lever{
+          padding: 0.5em 0em;
+          
+            .value{
+              
+              .dtoo1{
+  width: 85%;
+  text-align:center;        
+  color:rgba(228, 134, 134, 1);
+}
+.dtoo1dw{
+                    float:right;
+                    font-weight:600;
+                    color:rgba(228, 134, 134, 1);
+                  }
+            }
+        }
 
 
+}
   .amountbox{
     width:100%;
 
@@ -248,7 +385,7 @@ width: 75%;
   .value{
 color: white;
 text-align:center;
-width: 25%;
+width: 52%;
   }
 }
 
@@ -281,7 +418,7 @@ font-size:20px;
   .value{
 color: white;
 text-align:center;
-width: 25%;
+width: 52%;
   }
 }
 }
@@ -340,7 +477,25 @@ width: 75%;
     font-size:16px;
 color: white;
 text-align:center;
-width: 25%;
+width: 52%;
+.too1{
+  width: 58%;
+  text-align:center;        
+}
+.too1dw{
+                    float:right;
+                    font-weight:600;
+                    color:rgba(138, 128, 128, 1);
+                  }
+.too{
+                  width: 85%;
+                  text-align:center;
+                  .toodw{
+                    float:right;
+                    font-weight:600;
+                    color:rgba(138, 128, 128, 1);
+                  }
+                }
   }
 }
 }
@@ -372,8 +527,26 @@ font-size:20px;
   .value{
 color: white;
 text-align:center;
-width: 25%;
+width: 52%;
 font-size:16px;
+.dtoo1{
+  width: 78%;
+  text-align:center;        
+}
+.dtoo1dw{
+                    float:right;
+                    font-weight:600;
+                    color:rgba(138, 128, 128, 1);
+                  }
+.too{
+                  width: 85%;
+                  text-align:center;
+                  .toodw{
+                    float:right;
+                    font-weight:600;
+                    color:rgba(138, 128, 128, 1);
+                  }
+                }
   }
 }
 }
@@ -411,7 +584,25 @@ font-size:20px;
 color: white;
 text-align:center;
 font-size:20px;
-width: 25%;
+width: 52%;
+.dtoo1{
+  width: 78%;
+  text-align:center;        
+}
+.dtoo1dw{
+                    float:right;
+                    font-weight:600;
+                    color:rgba(138, 128, 128, 1);
+                  }
+.too{
+                  width: 85%;
+                  text-align:center;
+                  .toodw{
+                    float:right;
+                    font-weight:600;
+                    color:rgba(138, 128, 128, 1);
+                  }
+                }
   }
             }
           }
@@ -462,7 +653,7 @@ width: 25%;
     line-height:15px;
       .nav-item {
         width:42%;
-        
+        font-size:14px;
       }
     }
   }
@@ -533,17 +724,32 @@ padding: 20px;
                     color: #CD9E57;    
                   }
   }
+  .ant-form-item-control-input-content{
+          height: 40px;
+        }
   .fire-list-box {
-        .list-header {
+        .list-header{
             padding: 20px 1em;
         }
-        .list-item, .list-header {
+        .flex-box2, .list-header {
           justify-content: flex-start;
+          font-size:14px;
+          font-family: Roboto-Medium, Roboto;
+font-weight: bold;
+color: #8A8080;
+        }
+        .list-item{
+          .ant-form-item-row{
+  margin: 0em ;
+  font-size:14px;
+
+}
         }
 
         .col {
           text-align: left;
           align-items: center;
+          font-size:14px;
           &:nth-child(1) {
             width: 18%;
             margin-left:50px;
@@ -565,15 +771,19 @@ padding: 20px;
             margin-left:50px;
           }
         }
-        .list-item {
+        .flex-box2 {
             padding: 0.5em 1em;
-          .col {
+            font-family: Roboto-Medium, Roboto;
+font-weight: bold;
+color: #8A8080;
+font-size:14px;
+          .col1 {
             overflow: hidden;
             padding-left: 0.5%;
             //text-overflow: ellipsis;
 
           }
-  }
+        }
 }
   .no{
             color: #FE6D46;
@@ -605,7 +815,140 @@ padding: 20px;
 
           }
 
+          .fire-list-box{
+        margin: 2em 0em;
+        text-align:left;
 
+        .flex-box3,.dis {
+            font-size: 14px;
+            justify-content: flex-start;
+            font-family: Roboto-Medium, Roboto;
+font-weight: bold;
+color: #8A8080;
+            
+    .col{
+      font-size:14px;
+        text-align:left;
+
+      &:nth-child(1){
+        margin-left:70px;
+        width:30%;
+      }
+      &:nth-child(2){
+        width: 30%;
+      }
+      &:nth-child(3){
+        width: 30%;
+      }
+     
+     
+    }
+}  
+        .flex-box3 {
+          font-size:14px;
+          padding: 20px 1em;
+          font-family: Roboto-Medium, Roboto;
+font-weight: bold;
+color: #8A8080;
+        }
+        .dis{
+          padding: 0.5em 0em;
+            .start{
+              width: 35%;
+              text-align:center;
+              float: left;
+              .dtoo1{
+  width: 100%;
+  text-align:center;        
+  color:rgba(228, 134, 134, 1);
+}
+
+            }
+            .space{
+              float:left;
+              padding:5px ;
+            }
+            .end{
+              text-align:center;
+              float: left;
+              width: 35%;
+              .dtoo1{
+  width: 100%;
+  text-align:center;        
+  color:rgba(228, 134, 134, 1);
+} 
+}
+.dis1{
+  float: left;
+  text-align:center;
+  .dtoo1{
+  width: 100%;
+  text-align:center;        
+  color:rgba(228, 134, 134, 1);
+}
+}     
+        }
+
+}
+
+
+          .fire-list-box{
+        margin: 2em 0em;
+        text-align:left;
+
+        .flex-box1,.list-item {
+            font-size: 14px;
+            font-family: Roboto-Medium, Roboto;
+font-weight: bold;
+color: #8A8080;
+            padding: 20px 1em;
+    .col{
+        text-align:left;
+        font-size:14px;
+      &:nth-child(1){
+        margin-left:70px;
+        width:25%;
+      }
+      &:nth-child(2){
+        width: 25%;
+      }
+      &:nth-child(3){
+        width: 25%;
+      }
+     
+     
+    }
+    
+}  
+
+.flex-box1 {
+          font-size:14px;
+          padding: 20px 1em;
+          font-family: Roboto-Medium, Roboto;
+font-weight: bold;
+color: #8A8080;
+        }
+        .list-item, .flex-box1 {
+          justify-content: flex-start;
+        }
+        .lever{
+          padding: 0.5em 0em;
+            .value{
+              
+              .dtoo1{
+  width: 85%;
+  text-align:center;        
+  color:rgba(228, 134, 134, 1);
+}
+.dtoo1dw{
+                    float:right;
+                    font-weight:600;
+                    color:rgba(228, 134, 134, 1);
+                  }
+            }
+        }
+
+}
 
   .amountbox{
     width:100%;
@@ -623,7 +966,9 @@ width: 47%;
 padding: 20px;
 font-size:15px;
 line-height:25px;
+font-size:14px;
 p{
+  font-size:14px;
   font-family: Roboto-SemiBold, Roboto;
 font-weight: 600;
 
@@ -634,6 +979,7 @@ font-weight: 600;
   justify-content:space-between;
   width: 100%;
   .name{
+    font-size:14px;
     font-family: Roboto-SemiBold, Roboto;
 font-weight: 600;
 color: #8A8080;
@@ -641,9 +987,12 @@ width: 75%;
 
   }
   .value{
+    font-size:14px;
+    font-weight:600;
 color: white;
 text-align:center;
-width: 25%;
+width: 62%;
+
   }
 }
 
@@ -654,11 +1003,11 @@ border-radius: 20px;
 border: 1px solid rgba(255,255,255,0.1);
   width: 47%;
   padding: 20px;
-  font-size:15px;
+  font-size:14px;
   p{
   font-family: Roboto-SemiBold, Roboto;
 font-weight: 600;
-
+font-size:14px;
 }
 .user{
   display:flex;
@@ -666,6 +1015,7 @@ font-weight: 600;
   justify-content:space-between;
   width: 100%;
   .name{
+    font-size:14px;
     font-family: Roboto-SemiBold, Roboto;
 font-weight: 600;
 color: #8A8080;
@@ -674,8 +1024,10 @@ width: 75%;
   }
   .value{
 color: white;
+font-weight:600;
 text-align:center;
-width: 25%;
+width: 62%;
+font-size:14px;
   }
 }
 }
@@ -683,14 +1035,14 @@ width: 25%;
 
 .tj{
   display: flex;
-  width: 43%;
+  width: 29%;
 }
 .kk{
   width: 45%;
   height: 30px;
   background: rgba(255,255,255,0.15);
 border-radius: 34px 34px 34px 34px;
-font-size:15px;
+font-size:14px;
 border: 1px solid rgba(255,255,255,0.15);
 text-align:center;
 font-weight:400;
@@ -712,7 +1064,7 @@ border-radius: 20px;
 border: 1px solid rgba(255,255,255,0.1);
 width: 47%;
 padding: 20px;
-font-size:16px;
+font-size:14px;
 p{
   font-family: Roboto-SemiBold, Roboto;
 font-weight: 600;
@@ -724,16 +1076,38 @@ font-weight: 600;
   justify-content:space-between;
   width: 100%;
   .name{
+    font-size:14px;
     font-family: Roboto-SemiBold, Roboto;
 font-weight: 600;
 color: #8A8080;
 width: 75%;
 
   }
+
   .value{
 color: white;
+font-weight:600;
 text-align:center;
-width: 25%;
+width: 62%;
+font-size:14px;
+.too1{
+  width: 46%;
+  text-align:center;        
+}
+.too1dw{
+                    float:right;
+                    font-weight:600;
+                    color:rgba(138, 128, 128, 1);
+                  }
+.too{
+                  width: 85%;
+                  text-align:center;
+                  .toodw{
+                    float:right;
+                    font-weight:600;
+                    color:rgba(138, 128, 128, 1);
+                  }
+                }
   }
 }
 }
@@ -743,7 +1117,7 @@ border-radius: 20px;
 border: 1px solid rgba(255,255,255,0.1);
 width: 47%;
 padding: 20px;
-font-size:16px;
+font-size:14px;
 line-height:25px;
 p{
   font-family: Roboto-SemiBold, Roboto;
@@ -759,13 +1133,35 @@ font-weight: 600;
     font-family: Roboto-SemiBold, Roboto;
 font-weight: 600;
 color: #8A8080;
+font-size:14px;
+
 width: 75%;
 
   }
   .value{
 color: white;
+font-weight: 600;
 text-align:center;
-width: 25%;
+width: 62%;
+font-size:14px;
+.dtoo1{
+  width: 78%;
+  text-align:center;        
+}
+.dtoo1dw{
+                    float:right;
+                    font-weight:600;
+                    color:rgba(138, 128, 128, 1);
+                  }
+.too{
+                  width: 85%;
+                  text-align:center;
+                  .toodw{
+                    float:right;
+                    font-weight:600;
+                    color:rgba(138, 128, 128, 1);
+                  }
+                }
   }
 }
 }
@@ -786,13 +1182,31 @@ line-height: 18px;
     }
             .disac{
               .name{
-              width: 100%;
+                width: 34.5%;
               font-size:14px;
             }
             .value{
-              width:100%;
+              width: 34.5%;
               text-align:left;
               font-size:14px;
+              .dtoo1{
+  width: 78%;
+  text-align:center;        
+}
+.dtoo1dw{
+                    float:right;
+                    font-weight:600;
+                    color:rgba(138, 128, 128, 1);
+                  }
+.too{
+                  width: 85%;
+                  text-align:center;
+                  .toodw{
+                    float:right;
+                    font-weight:600;
+                    color:rgba(138, 128, 128, 1);
+                  }
+                }
             }
             }
           }
@@ -857,6 +1271,8 @@ line-height: 18px;
             }
             .value{
               width:100%;
+              font-weight: 600;
+
               font-size:12px;
             }
           }
@@ -874,6 +1290,8 @@ line-height: 18px;
             }
             .value{
               width:100%;
+              font-weight: 600;
+
               font-size:12px;
             }
           }
@@ -897,7 +1315,11 @@ line-height: 18px;
         .list-item, .list-header {
           justify-content: flex-start;
         }
-
+        .list-item{
+          .ant-form-item-row{
+  margin: 0em ;
+}
+        }
         .col {
           text-align: left;
           align-items: center;
@@ -954,6 +1376,52 @@ line-height: 18px;
             margin-right:0px;
            
           }
+          .fire-list-box{
+        margin: 2em 0em;
+        text-align:left;
+
+        .flex-box1,.list-item {
+            font-size: 18px;
+    font-weight: bold;
+    color: #8A8080;
+            padding: 20px 1em;
+    .col{
+        text-align:left;
+
+      &:nth-child(1){
+        margin-left:70px;
+        width:30%;
+      }
+      &:nth-child(2){
+        width: 30%;
+      }
+      &:nth-child(3){
+        width: 30%;
+      }
+     
+     
+    }
+}  
+        .list-item, .flex-box1 {
+          justify-content: flex-start;
+        }
+        .list-item{
+            .value{
+              
+              .dtoo1{
+  width: 85%;
+  text-align:center;        
+  color:rgba(228, 134, 134, 1);
+}
+.dtoo1dw{
+                    float:right;
+                    font-weight:600;
+                    color:rgba(228, 134, 134, 1);
+                  }
+            }
+        }
+
+}
 
           .discount{
             margin: 10px auto;
@@ -969,8 +1437,28 @@ line-height: 18px;
             }
             .value{
               width:100%;
+              font-weight: 600;
+
               text-align:left;
               font-size:12px;
+              .too1{
+  width: 67%;
+  text-align:center;        
+}
+.too1dw{
+                    float:right;
+                    font-weight:600;
+                    color:rgba(138, 128, 128, 1);
+                  }
+.too{
+                  width: 85%;
+                  text-align:center;
+                  .toodw{
+                    float:right;
+                    font-weight:600;
+                    color:rgba(138, 128, 128, 1);
+                  }
+                }
             }
           }
             }
@@ -986,8 +1474,28 @@ line-height: 18px;
             }
             .value{
               width:100%;
+              font-weight: 600;
+
               text-align:left;
               font-size:12px;
+              .dtoo1{
+  width: 80%;
+  text-align:center;        
+}
+.dtoo1dw{
+                    float:right;
+                    font-weight:600;
+                    color:rgba(138, 128, 128, 1);
+                  }
+.too{
+                  width: 85%;
+                  text-align:center;
+                  .toodw{
+                    float:right;
+                    font-weight:600;
+                    color:rgba(138, 128, 128, 1);
+                  }
+                }
             }
           }
             }
@@ -995,6 +1503,7 @@ line-height: 18px;
           .discount1{
             margin: 10px auto;
             display: block;
+            width: 100%;
             .disac{
               .name{
               width: 100%;
@@ -1004,6 +1513,24 @@ line-height: 18px;
               width:100%;
               text-align:left;
               font-size:12px;
+              .dtoo1{
+  width: 80%;
+  text-align:center;        
+}
+.dtoo1dw{
+                    float:right;
+                    font-weight:600;
+                    color:rgba(138, 128, 128, 1);
+                  }
+.too{
+                  width: 85%;
+                  text-align:center;
+                  .toodw{
+                    float:right;
+                    font-weight:600;
+                    color:rgba(138, 128, 128, 1);
+                  }
+                }
             }
             }
           }

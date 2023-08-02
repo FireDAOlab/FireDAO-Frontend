@@ -11,7 +11,6 @@ const Network = {
     chainType: '2',
     chainName: 'ETH sepolia',
     shortName: 'ETH',
-
     rpcUrls: ['https://rpc.sepolia.org'],
     blockExplorerUrls: ['https://sepolia.etherscan.io'],
     nativeCurrency: {
@@ -25,7 +24,6 @@ const Network = {
     chainType: '2',
     chainName: 'Mumbai',
     shortName: 'MATIC',
-
     rpcUrls: ['https://polygon-mumbai.blockpi.network/v1/rpc/public'],
     blockExplorerUrls: ['https://mumbai.polygonscan.com'],
     nativeCurrency: {
