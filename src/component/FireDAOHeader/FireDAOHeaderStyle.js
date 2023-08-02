@@ -13,7 +13,7 @@ export default styled.div`
     padding: 1em 3em;
     display: flex;
     justify-content: space-between;
-
+    
     .nav-list {
       display: flex;
       flex-grow: 1;
@@ -91,11 +91,30 @@ export default styled.div`
       }
     }
   }
+  @media screen and (max-width: 400px) {
+      .firedao-header {
+        padding: 1em 4%;
+        .logo{
+          width: 65%;
+    margin: 0.5em;
+      }
+      }
+      
+      
+    }
+
+@media screen and (min-width: 650px)  {
+
+
+}
+      @media screen and (max-width: 800px)  {
+
+}
 
   /* mobile style */
   @media screen and (max-width: 1000px) {
     .firedao-header {
-      padding: 1em 0.5em 1em 0;
+      /* padding: 1em 0.5em 1em 0; */
     }
 
     .menu {
@@ -113,5 +132,6 @@ export default styled.div`
     }
 
   }
+   
 `
 

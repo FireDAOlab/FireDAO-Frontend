@@ -240,21 +240,11 @@ const LockList = (props) => {
                         My FireSeed
                         {
                             // isAdmin && (
-                                <Button style={{
-                                    float: 'right',
-                                    background: '#373232',
-                                    margin: '0px 13px',
-                                    textAlign: 'center',
-                                    lineHeight: '28px',
-                                    width: "32px",
-                                    height: '32px',
-                                    border: '1px solid rgba(255, 255, 255, 0.15)',
-                                    borderRadius: '50%',
-                                }}
+                                <Button className='conuser'
                                         onClick={() => {
                                             history("/FireSeedManage")
                                         }}>
-                                    <img src={user3} style={{width: '22px', marginLeft: '-10px', marginTop: '-10px'}}/>
+                                    <img src={user3} className="conimg"/>
                                 </Button>
                                 // )
                         }
@@ -413,14 +403,14 @@ const LockList = (props) => {
                 </div>
             </div>
             <div className="panel-box content2-part2">
-                <div className="panel-container" style={{padding: '30px 4.6%'}}>
+                <div className="panel-container" >
                     <div className="panel-title">
                         My Team
                     </div>
                     <div className="content2">
                         <div className="myrecommend">
                             <div className="name">
-                                My Referrer
+                            Contract Address
                             </div>
                             <div className="value">
                                 {state.myRecommender}
@@ -516,17 +506,21 @@ const LockList = (props) => {
                                 Forum ID
                             </div>
                             <div className="col">
-                                Mint FireSeed Fees($)
+                            FDT Transaction <br />Tax
                             </div>
                             <div className="col">
-                                Mint FireSeed <br/>Fees
+                                Mint FireSeed <br />Fees
+                            </div>
+                            <div className='col'>
+                            Seed Donation <br />Fees
+                            </div>
+                            <div className="col">
+                            Consensus<br /> Donation Fees
                             </div>
                             <div className="col">
                                 Time(UTC)
                             </div>
-                            <div className="col">
-                                View
-                            </div>
+                            
                         </div>
                         {
                             logArr.map(item => (

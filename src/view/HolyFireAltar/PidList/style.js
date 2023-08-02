@@ -154,10 +154,13 @@ export default styled.div`
             margin-right:20px;
           }
           .address {
-            
-                color: rgba(205, 158, 87, 1);
+            a{
+              color:rgba(205, 158, 87, 1);
+            }
+                
                
-            border: 1px solid rgba(205, 158, 87, 1);
+           
+border: 1px solid rgba(205,158,87,0.5);
             background: rgba(205, 158, 87, 0.20);
             text-align:center;
             border-radius:25px;
@@ -327,10 +330,12 @@ export default styled.div`
           }
           .address {
             a{
-                color: rgba(205, 158, 87, 1);
+               color: rgba(205, 158, 87, 1);
             }
+           
                
-            border: 1px solid rgba(205, 158, 87, 1);
+            
+border: 1px solid rgba(205,158,87,0.5);
             background: rgba(205, 158, 87, 0.20);
             text-align:center;
             border-radius:25px;

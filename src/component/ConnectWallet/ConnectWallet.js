@@ -129,9 +129,9 @@ const ConnectWallet = () => {
                 fontFamily: 'Roboto-Medium, Roboto',
                 fontWeight: '500',
                 color: '#8A8080',
-                margin: '10px',
                 textAlign: 'center',
                 fontSize: '15px'
+                
             }}>
                 Log Out</p>
         },
@@ -161,7 +161,7 @@ const ConnectWallet = () => {
             {
                 location.pathname === "/" && (
                     <Dropdown
-
+                        
                         menu={{
                             items,
                         }}
@@ -188,7 +188,7 @@ const ConnectWallet = () => {
                         overlayStyle={{
                             width: '250px',
                             height: '360px',
-                            background: '#241B1B',
+                            backgroundColor: '#241B1B',
                             boxShadow: '0px 20px 20px 10px rgba(0,0,0,0.2)',
                             borderRadius: '20px',
                             opacity: '1',

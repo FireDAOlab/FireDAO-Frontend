@@ -1,11 +1,11 @@
 import styled from "styled-components";
-import {Component, useEffect, useReducer} from "react";
-import React, {useState} from 'react';
-import logo from "../../imgs/logo.webp"
+import { Component, useEffect, useReducer } from "react";
+import React, { useState } from 'react';
+import logo from "../../imgs/logo.png"
 
 import english from "../../imgs/english.webp"
-import {Button, Menu} from 'antd';
-import {useLocation, useNavigate} from "react-router-dom";
+import { Button, Menu } from 'antd';
+import { useLocation, useNavigate } from "react-router-dom";
 import develop from "../../env"
 import navMap from "../../config/navMap";
 import NavListStyle from "./NavListStyle";
@@ -16,7 +16,7 @@ const NavList = () => {
     const [selectedKeys, setSelectedKeys] = useState(["Holy Fire Altar", "MintPassport"]);
     const [selectNav, setSelectNav] = useState("Holy Fire Altar");
     const [openKeys, setOpenKeys] = useState(['Holy Fire Altar']);
-    const rootSubmenuKeys = navMap.map(items=>{
+    const rootSubmenuKeys = navMap.map(items => {
         return items.key
     });
     console.log(navMap)
@@ -39,13 +39,13 @@ const NavList = () => {
             setOpenKeys(latestOpenKey ? [latestOpenKey] : []);
         }
     };
-    useEffect(()=>{
+    useEffect(() => {
 
-        let keyPath= []
-        const curKey = location.pathname.substring(1,location.pathname.length)
-        navMap.forEach(navObj=>{
-            navObj.children.forEach(async nav=>{
-                if(nav.key==curKey){
+        let keyPath = []
+        const curKey = location.pathname.substring(1, location.pathname.length)
+        navMap.forEach(navObj => {
+            navObj.children.forEach(async nav => {
+                if (nav.key == curKey) {
                     await setSelectNav(navObj.key)
                     setOpenKeys([navObj.key])
                     keyPath.push(navObj.key)
@@ -54,9 +54,10 @@ const NavList = () => {
                 }
             })
         })
-    },[])
+    }, [])
     return (
         <NavListStyle>
+            
             <div className="nav-box-box">
                 <div
                     className="navBox"
@@ -74,11 +75,11 @@ const NavList = () => {
                     {/*    {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}*/}
                     {/*</Button>*/}
                     <div className="logo-box">
-                        <a href="https://firedao.co/" target="_blank"> <img className="logo" src={logo} alt=""/></a>
+                        <a href="https://firedao.co/" target="_blank"> <img className="logo" src={logo} alt="" /></a>
                     </div>
-                    <div className="selectNav">
+                    {/* <div className="selectNav">
                         {selectNav}
-                    </div>
+                    </div> */}
                     <Menu
                         className="menu"
                         mode="inline"
@@ -92,7 +93,7 @@ const NavList = () => {
                         items={items}
                         onClick={(e) => goPage(e)}
                     />
-                    <div className="lng-choose">
+                    {/* <div className="lng-choose">
                         <a href="https://apptest.firedao.co/MintPassport" target="_blank">
                             <span>Arbitrum Goerli</span>
                         </a>
@@ -100,7 +101,7 @@ const NavList = () => {
                     <div className="lng-choose">
                         <img src={english} alt=""/>
                         <span>English</span>
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </NavListStyle>

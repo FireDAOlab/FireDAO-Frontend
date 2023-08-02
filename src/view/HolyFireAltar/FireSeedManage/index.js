@@ -10,7 +10,7 @@ import AddWhiteListAddr from "./component/AddWhiteListAddr";
 import sc from "../../../imgs/sc.png"
 import RemoveWhiteListAddr from "./component/RemoveWhiteListAddr";
 const FireLock = (props) => {
-    const {closeDialog,updateData} = props
+    const { closeDialog, updateData } = props
     let { state, dispatch } = useConnect();
     const [whitelist, setWhitelistArr] = useState([])
     const [curNav, setCurNav] = useState(1)
@@ -32,9 +32,6 @@ const FireLock = (props) => {
     const [rateObj, setRate] = useState({})
 
     const [discountArr, setDiscountArr] = useState([])
-
-
-
     const [form] = Form.useForm();
 
     const location = useLocation()
@@ -79,7 +76,7 @@ const FireLock = (props) => {
         getReferRate()
         getRate()
     }
-   
+
 
     const removeOwner = () => {
         let tempArr = Object.assign([], ownerArr)
@@ -152,6 +149,7 @@ const FireLock = (props) => {
     }
     const getWhitelist = async () => {
         const arr = await handleViewMethod("getAirDropList", [])
+        console.log(arr);
         setWhitelistArr(arr)
     }
     const getWhiteMaxMint = async () => {
@@ -210,12 +208,12 @@ const FireLock = (props) => {
         await handleDealMethod("addWhiteListUser", [])
         // getWhitelist()
     }
-    const  handleSetAddress = async ()=>{
-        let  _to = []
+    const handleSetAddress = async () => {
+        let _to = []
         for (let i = 0; i < ownerArr.length; i++) {
             _to.push(form.getFieldValue()["owner" + i])
         }
-        await handleDealMethod("removeFromWhiteList",[_to])
+        await handleDealMethod("removeFromWhiteList", [_to])
         updateData()
     }
     useEffect(async () => {
@@ -224,7 +222,7 @@ const FireLock = (props) => {
             return
         }
         await getData()
-        
+
 
     }, [state.account]);
 
@@ -437,48 +435,48 @@ const FireLock = (props) => {
                     <div className="panel-container">
 
                         <div className="panel-title" style={{ display: 'flex', justifyContent: 'space-between' }}>
-                            <p style={{ width: '80%' }}>White List</p>
+                            <p >White List</p>
                             <div className='tj' >
                                 <div type="primary" className='kk' onClick={() => { setShowAdd(true) }}>Add</div>
                                 <div type="primary" className='kk' onClick={() => { setShowRemove(true) }}>Mass Delete</div>
                             </div>
                         </div>
                         <div className="fire-list-box">
-                            <div className="list-header flex-box">
-                                <div className="col">
+                            <div className="list-header flex-box2">
+                                <div className="col1">
                                     No.
                                 </div>
-                                <div className="col">
+                                <div className="col1">
                                     PID
                                 </div>
-                                <div className="col">
+                                <div className="col1">
                                     Wallet Address
                                 </div>
-                                <div className="col">
+                                <div className="col1">
                                     Delete
                                 </div>
                             </div>
 
 
                             {/* {whitelist.map((item, index) => ( */}
-                            
-                                <div className="list-item ">
-                                    <div className="col no">
-                                      忽然回复
-                                    </div>
-                                    <div className="col pid">
-                                       忽然回复
-                                    </div>
-                                    <div className="col address">
-                                        忽然回复
-                                    </div>
-                                    {(ownerArr.length =1) && (
-                                    <div className="col sc" onClick={()=>{removeOwner()}}>
-                                        <img src={sc}  className="sc" />
-                                    </div>
-                                    )}
+
+                            <div className="list-item">
+                                <div className="col1 no">
+                                    忽然回复
                                 </div>
-                            
+                                <div className="col1 pid">
+                                    忽然回复
+                                </div>
+                                <div className="col1 address">
+                                    忽然回复
+                                </div>
+                                {(ownerArr.length = 1) && (
+                                    <div className="col1 sc1" onClick={() => { removeOwner() }}>
+                                        <img src={sc} className="sc" />
+                                    </div>
+                                )}
+                            </div>
+
                             {/* ))} */}
                         </div>
                         <div className="pagination">
@@ -514,9 +512,9 @@ const FireLock = (props) => {
                                                 ]}
                                             >
 
-                                                <div className="too" style={{ textAlign: 'center', margin: '0 45%' }} >
+                                                <div className="too" >
                                                     {fee}
-
+                                                    <span className='toodw' >(W)ETH</span>
                                                 </div>
                                             </Form.Item>
                                         </div>
@@ -533,7 +531,8 @@ const FireLock = (props) => {
                                                     { required: true, message: 'Please input MintFee!' },
                                                 ]}
                                             >
-                                                <Input style={{ textAlign: 'center', outline: 'none' }} />
+                                                <Input className='too1' />
+                                                <span className='too1dw'>(W)ETH</span>
                                             </Form.Item>
                                         </div>
                                         <Button type="primary" className="max-btn" onClick={() => {
@@ -560,8 +559,9 @@ const FireLock = (props) => {
                                                 ]}
                                             >
 
-                                                <div className="too" style={{ textAlign: 'center', margin: '0 45%' }} >
+                                                <div className="too" >
                                                     {userMaxMint}
+                                                    <span className='toodw'>%</span>
                                                 </div>
                                             </Form.Item>
                                         </div>
@@ -577,7 +577,8 @@ const FireLock = (props) => {
                                                     { required: true, message: 'Please input UserMintMax!' },
                                                 ]}
                                             >
-                                                <Input style={{ textAlign: 'center', outline: 'none' }} />
+                                                <Input className='dtoo1' />
+                                                <span className='dtoo1dw'>%</span>
                                             </Form.Item>
                                         </div>
                                         <Button type="primary" className="max-btn" onClick={() => {
@@ -592,70 +593,73 @@ const FireLock = (props) => {
                     </div>
 
                     <div className="panel-container">
-                        <h1>
-                            Mint Amount Discount
-                        </h1>
                         <div className="content-item">
-                            <div className="discount-list">
-                                {discountArr.map(item => {
-                                    return (<div className="list-item">
-                                        <div className="start">
-                                            {item.start}~
-                                        </div>
-                                        <div className="end">
-                                            {item.end}
-                                        </div>
-                                        <div className="discount">
-                                            {item.discount}
-                                        </div>
-                                        <div className="operate">
-                                            <Button type="primary" onClick={() => { deleteDiscountFactor(item) }}>
-                                                Delete
-                                            </Button>
-                                        </div>
-                                    </div>)
-                                })}
+                            <div className="panel-title" style={{ display: 'flex', justifyContent: 'space-between' }}>
+                                <span>Mint Amount Discount</span>
+                                <div className='tj' style={{width:'12%'}}>
+                                    <div type="primary" className='kk' style={{width:'100%',marginRight:'0px'}} onClick={() => {  }}>Add</div>
+                                </div>
                             </div>
-                            <Form form={form} name="control-hooks">
-                                <Form.Item
-                                    name="start"
-                                    label="start"
-                                    validateTrigger="onBlur"
-                                    validateFirst={true}
-                                    rules={[
-                                        { required: true, message: 'Please input start!' },
-                                    ]}
-                                >
-                                    <Input />
-                                </Form.Item>
-                                <Form.Item
-                                    name="end"
-                                    label="end"
-                                    validateTrigger="onBlur"
-                                    validateFirst={true}
-                                    rules={[
-                                        { required: true, message: 'Please input end!' },
-                                    ]}
-                                >
-                                    <Input />
-                                </Form.Item>
-                                <Form.Item
-                                    name="discount"
-                                    label="discount"
-                                    validateTrigger="onBlur"
-                                    validateFirst={true}
-                                    rules={[
-                                        { required: true, message: 'Please input discount!' },
-                                    ]}
-                                >
-                                    <Input />
-                                </Form.Item>
-                                <Button type="primary" className="max-btn" onClick={() => {
-                                    setDiscountFactor()
-                                }}>
-                                    Submit
-                                </Button>
-                            </Form>
+                            <div className="fire-list-box">
+                                <div className="list-header flex-box3">
+                                    <div className="col">
+                                        Range
+                                    </div>
+                                    <div className="col">
+                                        Amount Discount
+                                    </div>
+                                    <div className="col">
+                                        Price/unit
+                                    </div>
+                                </div>
+                                <Form form={form} name="control-hooks">
+                                    {discountArr.map(item => {
+                                            return (
+                                    <div className="list-item dis">
+                                        <div className='col range'>
+                                            <Form.Item className='start'
+                                                validateFirst={true}
+                                                rules={[
+                                                    { required: true, message: 'Please input start!' },
+                                                ]}>
+                                                <Input placeholder={item.start} className="dtoo1" />
+                                              
+
+                                            </Form.Item>
+                                            <span className='space'>-</span>
+                                            <Form.Item className='end'
+                                                validateFirst={true}
+                                                rules={[
+                                                    { required: true, message: 'Please input end!' },
+                                                ]}>
+                                                <Input placeholder={item.end} className="dtoo1" />
+                                                
+                                            </Form.Item>
+                                        </div>
+                                        <div className='col disamount'>
+                                            <Form.Item className='dis1'
+                                                validateFirst={true}
+                                                rules={[
+                                                    { required: true, message: 'Please input discount!' },
+                                                ]}>
+                                                <Input placeholder={item.discount} className="dtoo1" />
+                                                {/* {item.discount} */}
+                                            </Form.Item>
+                                            
+                                        </div>
+                                        <div className='col price'>
+                                            {/* {item.discount} */}115141
+                                        </div>
+                                    </div>
+                                    ) })} 
+                                    
+                                </Form>
+                            </div>
+                            <Button type="primary" className="max-btn" style={{width: '45%', margin: '1em 25%'}} onClick={() => {
+                                        setDiscountFactor()
+                                    }}>
+                                        Submit
+                                    </Button>
                         </div>
                     </div>
                     <div className="panel-container">
@@ -664,6 +668,7 @@ const FireLock = (props) => {
                                 Whitelist Discount
                             </div>
                             <div className='discount1'>
+                                <p className='nnn'>Whitelist Discount</p>
                                 <Form form={form} name="control-hooks">
                                     <div className="disac">
                                         <div className="name">
@@ -678,8 +683,9 @@ const FireLock = (props) => {
                                             ]}
                                         >
 
-                                            <div className="too" style={{ textAlign: 'center', margin: '0 45%' }}>
+                                            <div className="too" >
                                                 {whitelistDiscount}
+                                                <span className='toodw'>%</span>
                                             </div>
                                         </Form.Item>
                                     </div>
@@ -696,7 +702,9 @@ const FireLock = (props) => {
                                                 { required: true, message: 'Please input WhitelistDiscount!' },
                                             ]}
                                         >
-                                            <Input style={{ textAlign: 'center', outline: 'none' }} />%
+                                            <Input className='dtoo1' />
+                                            <span className='dtoo1dw'>%</span>
+
                                         </Form.Item>
                                     </div>
                                     <Button type="primary" className="max-btn" onClick={() => {
@@ -710,167 +718,172 @@ const FireLock = (props) => {
                     </div>
 
                 </div>}
-            {curNav == 4 &&
-                <div className="panel-box">
-                    <div className="panel-container">
-                        <div className="content-item">
-                            <div className="panel-title">
-                                Mint Revenue Allocation
-                            </div>
-                            <div className="fire-list-box">
-                                <div className="list-header flex-box">
-                                    <div className="col">
-                                        No.
-                                    </div>
-                                    <div className="col">
-                                        Category
-                                    </div>
-                                    <div className="col">
-                                        Percentage
-                                    </div>
-                                </div>
-                                <Form>
-                                    <div className="list-item ">
-
-                                        <div className='col no'>
-                                            1
-                                        </div>
-                                        <div className='col ref'>
-                                            Referrer
-                                        </div>
-                                        <Form.Item className='value'
-                                            validateFirst={true}
-                                            rules={[
-                                                { required: true, message: 'Please input rate1!' },
-                                            ]}>
-                                            {/* <div className='col'> */}
-                                            <Input placeholder={rateObj.rate1} style={{ textAlign: 'center', outline: 'none' }} />
-                                            {/* </div> */}%
-                                        </Form.Item>
-                                    </div>
-                                    <div className="list-item ">
-                                        <div className='col no'>
-                                            2
-                                        </div>
-                                        <div className='col ref'>
-                                            City Node
-                                        </div>
-                                        <Form.Item className='value'
-                                            validateFirst={true}
-                                            rules={[
-                                                { required: true, message: 'Please input rate2!' },
-                                            ]}>
-                                            {/* <div className='col'> */}
-                                            <Input placeholder={rateObj.rate2} style={{ textAlign: 'center', outline: 'none' }} />
-                                            {/* </div> */}%
-                                        </Form.Item>
-                                    </div>
-                                    <div className="list-item ">
-                                        <div className='col no'>
-                                            3
-                                        </div>
-                                        <div className='col ref'>
-                                            RainbowCity Treasury
-                                        </div>
-                                        <Form.Item className='value'
-                                            validateFirst={true}
-                                            rules={[
-                                                { required: true, message: 'Please input rate3!' },
-                                            ]}>
-                                            {/* <div className='col'> */}
-                                            <Input placeholder={rateObj.rate3} style={{ textAlign: 'center', outline: 'none' }} />
-                                            {/* </div> */}%
-                                        </Form.Item>
-                                    </div>
-
-                                </Form>
-                            </div>
-                            <Button type="primary" style={{ width: '45%', margin: '1em 25%' }} className="max-btn" onClick={() => {
-                                setTotalRewardRatioOne()
-                            }}>
-                                Submit
-                            </Button>
+{
+    curNav == 4 &&
+    <div className="panel-box">
+        <div className="panel-container">
+            <div className="content-item">
+                <div className="panel-title">
+                    Mint Revenue Allocation
+                </div>
+                <div className="fire-list-box">
+                    <div className="list-header flex-box1">
+                        <div className="col">
+                            No.
+                        </div>
+                        <div className="col">
+                            Category
+                        </div>
+                        <div className="col">
+                            Percentage
                         </div>
                     </div>
-                    <div className="panel-container">
-                        <div className="panel-title">
-                            Category: Referrer
-                        </div>
-                        <div className="fire-list-box">
-                            <div className="list-header flex-box">
-                                <div className="col">
-                                    No.
-                                </div>
-                                <div className="col">
-                                    Referrer
-                                </div>
-                                <div className="col">
-                                    Percentage
-                                </div>
-                            </div>
-                            <Form>
-                                <div className="list-item ">
+                    <Form form={form} name="control-hooks">
+                        <div className="list-item lever">
 
-                                    <div className='col no'>
-                                        1
-                                    </div>
-                                    <div className='col ref'>
-                                        Lv1
-                                    </div>
-                                    <Form.Item className='value'
-                                        validateFirst={true}
-                                        rules={[
-                                            { required: true, message: 'Please input lever1!' },
-                                        ]}>
-                                        {/* <div className='col'> */}
-                                        <Input placeholder={referObj.lever1} style={{ textAlign: 'center' }} />
-                                        {/* </div> */}%
-                                    </Form.Item>
-                                </div>
-                                <div className="list-item ">
-                                    <div className='col no'>
-                                        2
-                                    </div>
-                                    <div className='col ref'>
-                                        Lv2
-                                    </div>
-                                    <Form.Item className='value'
-                                        validateFirst={true}
-                                        rules={[
-                                            { required: true, message: 'Please input lever2!' },
-                                        ]}>
-                                        {/* <div className='col'> */}
-                                        <Input placeholder={rateObj.lever2} style={{ textAlign: 'center' }} />%
-                                        {/* </div> */}
-                                    </Form.Item>
-                                </div>
-                                <div className="list-item ">
-                                    <div className='col no'>
-                                        3
-                                    </div>
-                                    <div className='col ref'>
-                                        Lv3
-                                    </div>
-                                    <Form.Item className='value'
-                                        validateFirst={true}
-                                        rules={[
-                                            { required: true, message: 'Please input lever3!' },
-                                        ]}>
-                                        {/* <div className='col'> */}
-                                        <Input placeholder={rateObj.lever3} style={{ textAlign: 'center' }} />%
-                                        {/* </div> */}
-                                    </Form.Item>
-                                </div>
-                            </Form>
+                            <div className='col no'>
+                                1
+                            </div>
+                            <div className='col ref'>
+                                Referrer
+                            </div>
+                            <Form.Item className='value'
+                                validateFirst={true}
+                                rules={[
+                                    { required: true, message: 'Please input rate1!' },
+                                ]}>
+                                {/* <div className='col'> */}
+                                <Input placeholder={rateObj.rate1} className="dtoo1" />
+                                {/* </div> */}
+                                <span className='dtoo1dw'>%</span>
+                            </Form.Item>
                         </div>
-                        <Button type="primary" className="max-btn" style={{ width: '45%', margin: '1em 25%' }} onClick={() => {
-                            setInviteFeeRatio()
-                        }}>
-                            Submit
-                        </Button>
+                        <div className="list-item lever">
+                            <div className='col no'>
+                                2
+                            </div>
+                            <div className='col ref'>
+                                City Node
+                            </div>
+                            <Form.Item className='value'
+                                validateFirst={true}
+                                rules={[
+                                    { required: true, message: 'Please input rate2!' },
+                                ]}>
+                                {/* <div className='col'> */}
+                                <Input placeholder={rateObj.rate2} className="dtoo1" />
+                                {/* </div> */}
+                                <span className="dtoo1dw">%</span>
+                            </Form.Item>
+                        </div>
+                        <div className="list-item lever">
+                            <div className='col no'>
+                                3
+                            </div>
+                            <div className='col ref'>
+                                RainbowCity Treasury
+                            </div>
+                            <Form.Item className='value'
+                                validateFirst={true}
+                                rules={[
+                                    { required: true, message: 'Please input rate3!' },
+                                ]}>
+                                {/* <div className='col'> */}
+                                <Input placeholder={rateObj.rate3} className="dtoo1" />
+                                {/* </div> */}
+                                <span className="dtoo1dw">%</span>
+                            </Form.Item>
+                        </div>
+
+                    </Form>
+                </div>
+                <Button type="primary" style={{ width: '45%', margin: '1em 25%' }} className="max-btn" onClick={() => {
+                    setTotalRewardRatioOne()
+                }}>
+                    Submit
+                </Button>
+            </div>
+        </div>
+        <div className="panel-container">
+            <div className="panel-title">
+                Category: Referrer
+            </div>
+            <div className="fire-list-box">
+                <div className="list-header flex-box1">
+                    <div className="col">
+                        No.
                     </div>
-                </div>}
-        </FireLockStyle>
+                    <div className="col">
+                        Referrer
+                    </div>
+                    <div className="col">
+                        Percentage
+                    </div>
+                </div>
+                <Form>
+                    <div className="list-item lever">
+
+                        <div className='col no'>
+                            1
+                        </div>
+                        <div className='col ref'>
+                            Lv1
+                        </div>
+                        <Form.Item className='value'
+                            validateFirst={true}
+                            rules={[
+                                { required: true, message: 'Please input lever1!' },
+                            ]}>
+                            {/* <div className='col'> */}
+                            <Input placeholder={referObj.lever1} className="dtoo1" />
+                            {/* </div> */}<span className="dtoo1dw">%</span>
+                        </Form.Item>
+                    </div>
+                    <div className="list-item lever">
+                        <div className='col no'>
+                            2
+                        </div>
+                        <div className='col ref'>
+                            Lv2
+                        </div>
+                        <Form.Item className='value'
+                            validateFirst={true}
+                            rules={[
+                                { required: true, message: 'Please input lever2!' },
+                            ]}>
+                            {/* <div className='col'> */}
+                            <Input placeholder={rateObj.lever2} className="dtoo1" />
+                            {/* </div> */}<sapn className="dtoo1dw">%</sapn>
+                        </Form.Item>
+                    </div>
+                    <div className="list-item lever">
+                        <div className='col no'>
+                            3
+                        </div>
+                        <div className='col ref'>
+                            Lv3
+                        </div>
+                        <Form.Item className='value'
+                            validateFirst={true}
+                            rules={[
+                                { required: true, message: 'Please input lever3!' },
+                            ]}>
+                            {/* <div className='col'> */}
+                            <Input placeholder={rateObj.lever3} className='dtoo1' />
+                            {/* </div> */}<span className='dtoo1dw'>%</span>
+                        </Form.Item>
+                    </div>
+                </Form>
+            </div>
+            <Button type="primary" className="max-btn" style={{ width: '45%', margin: '1em 25%' }} onClick={() => {
+                setInviteFeeRatio()
+            }}>
+                Submit
+            </Button>
+        </div>
+    </div>
+}
+        </FireLockStyle >
     )
 }
 
