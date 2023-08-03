@@ -18,12 +18,13 @@ export function getDonateRecord() {
 }`
     }, "")
 }
+
 export function getSecondDonateRecord(addr) {
     return fetchQueryBase("patton-sr/privateexchangepoolog2", {
         text: ` {
   allRecords(where: {addrTow: "${addr}"}, first: 10) {
     id
-no
+       no
 pid
 name
     addr
@@ -36,6 +37,7 @@ fdtAmount
 }`
     }, "")
 }
+
 export function getThreeDonateRecord(addr) {
     return fetchQueryBase("patton-sr/privateexchangepoolog2", {
         text: `{
