@@ -78,47 +78,37 @@ const FireLock = (props) => {
                             </div>
                         </div>
                         {ownerArr.map((item, index) => {
-                            <div className="list-item ">
-                                <div className="col">
-                                    {item}
-                                </div>
-                                <div className="col">
-
-                                </div>
-                                <div className="col">
-                                    {item}
-                                </div>
-                                
-                            </div>
-                            
                             return (
                                 <div className="address-item" key={index}>
-
-                                    <div className="flex-box">
-                                        <div className="col " style={{marginLeft:'30px'}}>
-                                            {item}
+                                    <Form form={form} name="control-hooks" className="form">
+                                        <div className="flex-box">
+                                            <div className="col " style={{ marginLeft: '30px' }}>
+                                                {item}
+                                            </div>
+                                            <Form.Item className="col pid1" style={{ marginLeft: '10px' }}>
+                                                <Input placeholder={item}  />
+                                            </Form.Item>
+                                            <Form.Item className="col address1" style={{ marginLeft: '10px',width: '130px', border: '1px solid rgba(205, 158, 87, 1)', background: 'rgba(205, 158, 87, 0.20)', textAlign: 'center', borderRadius: '25px'  }}>
+                                                <Input placeholder={item}  />
+                                            </Form.Item>
+                                            
                                         </div>
-                                        <div className="col pid">
-                                            {item}
-                                        </div>
-                                        <div className="col address" style={{width:'130px',border:'1px solid rgba(205, 158, 87, 1)',background:'rgba(205, 158, 87, 0.20)',marginLeft:'40px',textAlign:'center',borderRadius:'25px'}}>
-                                            {item}
-                                        </div>
-                                    </div>
-                                    <hr style={{opacity:'0.1',width:'85%'}} />
-                                    {/* {(ownerArr.length > 1 && index == 0) && (
+                                        <hr style={{ opacity: '0.1', width: '85%' }} />
+                                        {/* {(ownerArr.length > 1 && index == 0) && (
                                         <UserDeleteOutlined className="icon" onClick={() => {
                                             removeOwner()
                                         }} />)}  */}
-                                    {(index == ownerArr.length - 1) && (
-                                        <img className="icon" src={add} onClick={() => {
-                                            addOwner()
-                                        }} />)}
+                                        {(index == ownerArr.length - 1) && (
+                                            <img className="icon" src={add} onClick={() => {
+                                                addOwner()
+                                            }} />)}
+                                    </Form>
                                 </div>
                             )
                         })}
                     </div>
-
+                </div>
+                <div className='phone-list'>
 
                 </div>
                 <Button className="sub-btn" onClick={handleSetAddress} type="primary">

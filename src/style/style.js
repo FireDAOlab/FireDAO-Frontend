@@ -236,9 +236,11 @@ const GlobalStyle = createGlobalStyle`
 
   /* reset button*/
   .ant-btn-primary {
-    border-radius: 10px;
+    border-radius: 25px;
   }
-
+  .connect-button{
+    border-radius: 25px;
+  }
   /* reset form*/
 
   .ant-form {
@@ -248,9 +250,9 @@ const GlobalStyle = createGlobalStyle`
       margin-bottom: 10px;
     }
 
-    input, textarea {
+    /* input, textarea {
       font-size: 16px !important;
-    }
+    } */
   }
   .ant-form-item-label > label::after{
     display: none;
@@ -361,7 +363,7 @@ const GlobalStyle = createGlobalStyle`
  
   }
 
-  
+/*   
   @media screen and (max-width: 700px) {
     .firebg{
       display: none;
@@ -390,7 +392,61 @@ const GlobalStyle = createGlobalStyle`
         border-radius:50%;
       }
     }
+  } */
+
+  @media screen and (max-width: 450px) {
+
+.App{
+  background:rgba(20, 14, 14, 1);
+  padding-bottom: 2em;
+}
+  .flex-container{
+width: 100%;
+padding: 0 4%;
+.logo{
+  width: 40%;
+}
+}
+
+.firebg{
+  display: none;
+}
+.logo-box1{
+  display: block;
+}
+.nav-box-box{
+  
+  display: none;
+}
+.content {
+  padding-left: 0px;
+}
+.firedao-header{
+  width: 100%!important;
+  .nav-list{
+    display: none!important;
   }
+ 
+  .member{
+    border: 1px solid white;
+    width: 100%;
+    height: 100%;
+    background: #1E0000;
+    border-radius:50%;
+  }
+}
+.fire-list-box {
+  .col {
+    font-size:14px;
+}}
+.fire-list-box {
+  .list-header{
+    font-size:14px;
+  }
+}
+}
+
+
   @media screen and (max-width: 400px) {
 
     .App{

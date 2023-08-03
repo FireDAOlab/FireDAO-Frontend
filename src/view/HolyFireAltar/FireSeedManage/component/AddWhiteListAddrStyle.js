@@ -4,7 +4,14 @@ export default   styled.div`
   left: 0;
   top: 0;
   z-index: 1;
+
+  @media screen and (max-width: 1950px) {
+   
+    .phone-list{
+      display: none;
+    }
   .address-list {
+    display: block;
     .address-item {
       display: block;
       align-items: center;
@@ -112,6 +119,7 @@ background: rgba(255,255,255,0.1);
             text-align:center;
             border-radius:25px;
             width: 80px;
+            height: 30px;
           }
         
 }
@@ -179,10 +187,123 @@ background: rgba(255,255,255,0.1);
     }
   }
   /* mobile style */
-  @media screen and (max-width: 1000px) {
+  }
+  @media screen and (max-width: 1500px) {
+    .address-list{
+      display: block;
+    }
+    .phone-list{
+      display: none;
+    }
     .dialog-content{
-      width: 90vw;
-      left: calc(5vw);
+      position: fixed;
+    z-index: 1;
+    top: calc(20vh);
+    left: calc(50vw - 250px);
+    width: 520px;
+    background: #241B1B;
+    border-radius: 13px;
+
+    }
+    .ant-form-item address{
+      
+    }
+
+  }
+  @media screen and (max-width: 450px) {
+    .address-list{
+      display: none;
+    }
+    .phone-list{
+      display: block;
+    }
+    .dialog-content{
+      position: fixed;
+    z-index: 1;
+    top: calc(20vh);
+    left: calc(50vw - 42.5%);
+    /* width: 520px; */
+    background: #241B1B;
+    border-radius: 13px;
+width: 85%;
+
+    border: 1px solid #3E3737;
+    padding: 30px;
+
+    .header{
+      text-align: right;      
+      .close{
+        cursor: pointer;
+      }
+    }
+    .title{
+      font-size: 18px;
+      text-align: center;
+      font-family: Roboto-Bold, Roboto;
+      font-weight: bold;
+      color: #FFFFFF;
+      /* margin-top: 1em; */
+      line-height: 29px;
+      }
+
+    .dialog-name,.ant-form-item-label label{
+      padding-bottom: 1em ;
+      font-size: 14px;
+      font-family: Roboto-Bold, Roboto;
+      font-weight: bold;
+      color: #aaa;
+      margin-top: 1em;
+      line-height: 29px;
+    }
+  }
+ 
+
+  }
+  @media screen and (max-width: 400px) {
+    .address-list{
+      display: none;
+    }
+    .phone-list{
+      display: block;
+    }
+    .dialog-content{
+      position: fixed;
+    z-index: 1;
+    top: calc(20vh);
+    left: calc(50vw - 42.5%);
+    /* width: 520px; */
+    background: #241B1B;
+    border-radius: 13px;
+width: 85%;
+
+    border: 1px solid #3E3737;
+    padding: 30px;
+
+    .header{
+      text-align: right;      
+      .close{
+        cursor: pointer;
+      }
+    }
+    .title{
+      font-size: 18px;
+      text-align: center;
+      font-family: Roboto-Bold, Roboto;
+      font-weight: bold;
+      color: #FFFFFF;
+      /* margin-top: 1em; */
+      line-height: 29px;
+      }
+
+    .dialog-name,.ant-form-item-label label{
+      padding-bottom: 1em ;
+      font-size: 14px;
+      font-family: Roboto-Bold, Roboto;
+      font-weight: bold;
+      color: #aaa;
+      margin-top: 1em;
+      line-height: 29px;
+    }
     }
     .ant-form-item address{
       

@@ -105,7 +105,9 @@ const FireLock = (props) => {
     const getWhitelistDiscount = async () => {
         const discount = await handleViewMethod("whitelistDiscount", [])
         setWhitelistDiscount(discount)
+        console.log(discount);
     }
+
     const getDiscountFactors = async () => {
         // const arr = await handleViewMethod("discountFactors", [])
 
@@ -244,7 +246,7 @@ const FireLock = (props) => {
                     <div className={"nav-item " + (curNav == 2 ? "active" : "")} onClick={() => {
                         setCurNav(2)
                     }}>
-                        White List
+                        L2 Admin
                     </div>
                     <div className={"nav-item " + (curNav == 3 ? "active" : "")} onClick={() => {
                         setCurNav(3)
@@ -392,17 +394,13 @@ const FireLock = (props) => {
                                     </div>
                                     <div className="whitelist">
                                         <p>
-                                            Whitelist user Max
+                                        L2 Admin 
                                         </p>
                                         <Form form={form} name="control-hooks">
                                             <div className="user">
                                                 <div className="name">
                                                     Max
                                                 </div>
-                                                {/* <div className="value">
-                                                    {whiteMaxMint}
-                                                </div> */}
-
                                                 <Form.Item className="value"
                                                     name="WhitelistUserMintMax"
                                                     validateTrigger="onBlur"
@@ -435,7 +433,7 @@ const FireLock = (props) => {
                     <div className="panel-container">
 
                         <div className="panel-title" style={{ display: 'flex', justifyContent: 'space-between' }}>
-                            <p >White List</p>
+                            <p >L2 Admain</p>
                             <div className='tj' >
                                 <div type="primary" className='kk' onClick={() => { setShowAdd(true) }}>Add</div>
                                 <div type="primary" className='kk' onClick={() => { setShowRemove(true) }}>Mass Delete</div>
@@ -458,17 +456,17 @@ const FireLock = (props) => {
                             </div>
 
 
-                            {/* {whitelist.map((item, index) => ( */}
+                            {whitelist.map((item, index) => (
 
                             <div className="list-item">
                                 <div className="col1 no">
-                                    忽然回复
+                                    {item}
                                 </div>
                                 <div className="col1 pid">
-                                    忽然回复
+                                {item}
                                 </div>
                                 <div className="col1 address">
-                                    忽然回复
+                                {item}
                                 </div>
                                 {(ownerArr.length = 1) && (
                                     <div className="col1 sc1" onClick={() => { removeOwner() }}>
@@ -477,7 +475,7 @@ const FireLock = (props) => {
                                 )}
                             </div>
 
-                            {/* ))} */}
+                             ))} 
                         </div>
                         <div className="pagination">
                             {
@@ -596,7 +594,7 @@ const FireLock = (props) => {
                         <div className="content-item">
                             <div className="panel-title" style={{ display: 'flex', justifyContent: 'space-between' }}>
                                 <span>Mint Amount Discount</span>
-                                <div className='tj' style={{width:'12%'}}>
+                                <div className='tj1' >
                                     <div type="primary" className='kk' style={{width:'100%',marginRight:'0px'}} onClick={() => {  }}>Add</div>
                                 </div>
                             </div>
@@ -623,7 +621,7 @@ const FireLock = (props) => {
                                                     { required: true, message: 'Please input start!' },
                                                 ]}>
                                                 <Input placeholder={item.start} className="dtoo1" />
-                                              
+                                                
 
                                             </Form.Item>
                                             <span className='space'>-</span>
@@ -632,7 +630,7 @@ const FireLock = (props) => {
                                                 rules={[
                                                     { required: true, message: 'Please input end!' },
                                                 ]}>
-                                                <Input placeholder={item.end} className="dtoo1" />
+                                                <Input placeholder={item.end}  className="dtoo1" />
                                                 
                                             </Form.Item>
                                         </div>
@@ -643,15 +641,15 @@ const FireLock = (props) => {
                                                     { required: true, message: 'Please input discount!' },
                                                 ]}>
                                                 <Input placeholder={item.discount} className="dtoo1" />
-                                                {/* {item.discount} */}
+                                                
                                             </Form.Item>
                                             
                                         </div>
                                         <div className='col price'>
-                                            {/* {item.discount} */}115141
+                                            {/* {item.discount} */}
                                         </div>
                                     </div>
-                                    ) })} 
+                                      ) })}  
                                     
                                 </Form>
                             </div>

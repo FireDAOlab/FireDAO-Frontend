@@ -42,7 +42,9 @@ export default styled.div`
           font-weight: 600;
           font-size: 14px;
         }
-
+        .ant-form{ input{
+    font-size:16px;
+  }}
         .ant-form-item-label > label {
           color: white;
           font-size: 15px;
@@ -142,7 +144,7 @@ export default styled.div`
 
         .fire-nav-list {
           width: 57%;
-          height: 45px;
+          height: 50px;
 
         }
 
@@ -150,7 +152,7 @@ export default styled.div`
           cursor: pointer;
           width: 23%;
           border-radius: 25px;
-          font-size: 16px;
+          font-size: 20px;
           font-weight: bold;
 
           &.active {
@@ -477,6 +479,9 @@ export default styled.div`
 
 
       @media screen and (max-width: 1500px) {
+        .ant-form{ input{
+    font-size:14px;
+  }}
         .ant-btn {
           font-weight: 600;
           font-size: 14px;
@@ -924,18 +929,260 @@ export default styled.div`
 @media screen and (max-width: 800px)  {
 
 }
- @media screen and (max-width: 650px)  {
+ @media screen and (max-width: 450px)  {
+  .ant-form{ input{
+    font-size:14px;
+  }}
+  .ant-form-item-label > label {
+          color: white;
+          font-size: 14px;
+        }
+  .panel-box{
+        
+        .panel-container{
+          padding: 18px 5.9%;
+          .panel-title{
+            font-size:18px;
+            padding: 5px 0px;
+          }
+          .conuser{
+            margin: 0px 5px;
+            text-align: center;
+            line-height: 24px;
+            width: 26px;
+            .conimg{
+                 width: 18px;
+                  margin-left: -8px;
+                  margin-top: -5px;
+                }
+      }
+      .describe{
+        width: 100%;
+        margin: 1em auto;
+        border-radius:10px;
+      
+        .ant-form-item-label > label {
+          font-size:14px;
+        }
+        .check-box{
+          display: flex;
+          width: 100%;
+          justify-content: center;
+          
+          .check-btn{
+            width: 100px;
+            height: 30px;
+            font-size:14px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: rgba(205,158,87,0.1);
+            border-radius: 38px 38px 38px 38px;
+            opacity: 1;
+            border: 1px solid rgba(205,158,87,0.5);
+            margin: 10px auto;
 
-
+            color: #CD9E57;
+            span{
+              margin-right: 10px;
+            }
+            &.yes{
+              background: rgba(89,170,121,0.1);
+              border-radius: 38px 38px 38px 38px;
+              border: 1px solid rgba(89,170,121,0.5);
+              color: #59AA79;
+            }
+            &.no{
+              background: rgba(205,87,87,0.1);
+              border-radius: 38px 38px 38px 38px;
+              border: 1px solid rgba(205,87,87,0.5);
+              color: #CD5757;
+            }
+          }
+        }
+      }
+      
+      
+        }
+        .content2{
+        display:block;
+        margin: 1em auto;
+        .myrecommend{
+          width: 100%;
+          padding: 1em;
+      height:125px;
+      border-radius:10px;
+          .name{
+            font-size:12px;
+          }
+          .value{
+            font-size:12px;
+          }
+        }
+        .myteamsize{
+          border-radius:10px;
+      height:125px;
+          width: 100%;
+          padding: 1em;
+          margin: 0.5em 0em;
+          .box-title{
+            font-size: 12px;
+          }
+          .refer-list{
+            font-size:14px;
+          }
+        }
+      }                                                     
+      .header-box{
+        .nav-list-box{
+          margin: 0.5em 0;
+          .fire-nav-list{
+            width: 100%;
+            height: 40px;
+            .nav-item{
+              font-size:14px;
+            }
+          }
+        }
+      }
+      .fire-list-box{
+        overflow:scroll;
+        border-radius:10px;
+      
+        .list-header {
+                  padding: 20px 1em;
+                }
+      
+                .list-item, .list-header {
+                  justify-content: flex-start;
+                  font-size:14px;
+                }
+      
+                .col {
+                  font-size:14px;
+                  text-align: left;
+                  align-items: center;
+      
+                  &:nth-child(1) {
+                    width: 15%;
+                  }
+      
+                  &:nth-child(2) {
+                    width: 35%;
+                  }
+      
+                  &:nth-child(3) {
+                    width: 16%;
+                  }
+      
+                  &:nth-child(4) {
+                    width: 16%;
+                  }
+      
+                  &:nth-child(5) {
+                    width: 26%;
+                  }
+      
+                  &:nth-child(6) {
+                    width: 44%;
+                  }
+      
+                  &:nth-child(7) {
+                    width: 38%;
+                  }
+      
+                  &:nth-child(8) {
+                    width: 38%;
+                  }
+      
+                  &:nth-child(9) {
+                    width: 38%;
+                    text-align: center;
+      
+                  }
+      
+                  &:nth-child(10) {
+                    width: 30%;
+                    text-align: center;
+                  }
+      
+                }
+                .list-item {
+                  padding: 0.5em 1em;
+      
+                  .col {
+                    overflow: hidden;
+                    padding-left: 0.5%;
+                    //text-overflow: ellipsis;
+      
+                  }
+                }
+      
+                .list-item {
+                  padding: 0.5em 1em;
+      
+                  .col {
+                    overflow: hidden;
+                    padding-left: 0.5%;
+      
+                    //text-overflow: ellipsis;
+      
+                  }
+      
+                  .no {
+                    color: #E48686;
+                  }
+      
+                  .pid {
+                    color: #FE6D46;
+                    
+      border: 1px solid rgba(254,109,70,0.2);
+                   
+      background: rgba(254,109,70,0.1);
+                    text-align: center;
+                    border-radius: 25px;
+                  }
+      
+                  .fid {
+                    color: #FE6D46;
+                   
+      border: 1px solid rgba(254,109,70,0.2);
+                    
+      background: rgba(254,109,70,0.1);
+                    text-align: center;
+                    border-radius: 25px;
+                    margin-right: 10px;
+                  }
+      
+                  .address {
+                    a {
+                      color: #CD9E57;
+                    }
+      
+                    
+      border: 1px solid rgba(205,158,87,0.5);
+                    background: rgba(205, 158, 87, 0.10);
+                    text-align: center;
+                    border-radius: 25px;
+                    width: 80px;
+                    margin-right: 10px;
+      
+                  }
+      }
+      }
+              }
 }
 
       @media screen and (max-width: 400px)  {
+        .ant-form{ input{
+    font-size:14px;
+  }}
         .panel-box{
         
   .panel-container{
     padding: 16px 5.9%;
     .panel-title{
-      font-size:16px;
+      font-size:18px;
       padding: 5px 0px;
     }
     .conuser{
@@ -955,14 +1202,44 @@ export default styled.div`
   border-radius:10px;
 
   .ant-form-item-label > label {
-    font-size:12px;
+    font-size:14px;
   }
   .check-box{
-    line-height:20px;
-    .check-btn{
-      font-size:10px;
-    }
-  }
+          display: flex;
+          width: 100%;
+          justify-content: center;
+          
+          .check-btn{
+            width: 100px;
+            height: 30px;
+            font-size:14px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: rgba(205,158,87,0.1);
+            border-radius: 38px 38px 38px 38px;
+            opacity: 1;
+            border: 1px solid rgba(205,158,87,0.5);
+            margin: 10px auto;
+
+            color: #CD9E57;
+            span{
+              margin-right: 10px;
+            }
+            &.yes{
+              background: rgba(89,170,121,0.1);
+              border-radius: 38px 38px 38px 38px;
+              border: 1px solid rgba(89,170,121,0.5);
+              color: #59AA79;
+            }
+            &.no{
+              background: rgba(205,87,87,0.1);
+              border-radius: 38px 38px 38px 38px;
+              border: 1px solid rgba(205,87,87,0.5);
+              color: #CD5757;
+            }
+          }
+        }
 }
 
 
@@ -976,10 +1253,10 @@ export default styled.div`
 height:125px;
 border-radius:10px;
     .name{
-      font-size:10px;
+      font-size:12px;
     }
     .value{
-      font-size:10px;
+      font-size:12px;
     }
   }
   .myteamsize{
@@ -989,10 +1266,10 @@ height:125px;
     padding: 1em;
     margin: 0.5em 0em;
     .box-title{
-      font-size: 10px;
+      font-size: 12px;
     }
     .refer-list{
-      font-size:12px;
+      font-size:14px;
     }
   }
 }                                                     
@@ -1001,7 +1278,7 @@ height:125px;
     margin: 0.5em 0;
     .fire-nav-list{
       width: 100%;
-      height: 35px;
+      height: 40px;
       .nav-item{
         font-size:12px;
       }
@@ -1017,13 +1294,14 @@ height:125px;
           }
 
           .list-item, .list-header {
+            font-size:12px;
             justify-content: flex-start;
           }
 
           .col {
             text-align: left;
             align-items: center;
-
+            font-size:12px;
             &:nth-child(1) {
               width: 15%;
             }

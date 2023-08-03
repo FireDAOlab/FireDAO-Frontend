@@ -34,6 +34,9 @@ padding: 0px 10px;
 
 }
 
+.ant-form{ input{
+    font-size:16px;
+  }}
 .ant-form-item-label>label{
   font-size:16px;
   color: white;
@@ -59,12 +62,12 @@ padding: 0px 10px;
     width: 100%;
 
     .fire-nav-list {
-      height: 45px;
+      height: 50px;
     width: 60%;
     line-height:15px;
       .nav-item {
         width:42%;
-        font-size:18px;
+        font-size:20px;
       }
     }
   }
@@ -151,6 +154,9 @@ padding: 20px;
 
 }
         }
+        .flex-box2{
+          padding: 20px 1em;
+        }
         .flex-box2,  .list-item{
           justify-content: flex-start;
           font-size:16px;
@@ -217,7 +223,9 @@ color: #8A8080;
           .fire-list-box{
         margin: 2em 0em;
         text-align:left;
-
+        .ant-form {input{
+          font-size:16px;
+        }}
         .flex-box3,.dis {
             font-size: 16px;
             justify-content: flex-start;
@@ -280,6 +288,8 @@ color: #8A8080;
   float: left;
   text-align:center;
   .dtoo1{
+    font-size:16px;
+
   width: 100%;
   text-align:center;        
   color:rgba(228, 134, 134, 1);
@@ -329,7 +339,7 @@ font-weight: bold;
 color: #8A8080;
         }
         .lever{
-          padding: 0.5em 0em;
+          padding: 0.5em 1em;
           
             .value{
               
@@ -428,6 +438,10 @@ width: 52%;
   display: flex;
   width: 27%;
 }
+.tj1{
+            display: flex;
+            width: 12%;
+          }
 .kk{
   width: 45%;
   height: 30px;
@@ -622,10 +636,10 @@ width: 52%;
   font-size:14px;
 
 }
-.ant-form input{
-  font-size:14px;
+.ant-form{ input{
+  font-size:15px;
 
-}
+}}
 .ant-form-item-label>label{
   font-size:14px;
   
@@ -728,51 +742,55 @@ padding: 20px;
           height: 40px;
         }
   .fire-list-box {
-        .list-header{
-            padding: 20px 1em;
+    .flex-box2{
+          padding: 20px 1em;
         }
-        .flex-box2, .list-header {
+        .flex-box2, .list-item {
           justify-content: flex-start;
           font-size:14px;
           font-family: Roboto-Medium, Roboto;
 font-weight: bold;
 color: #8A8080;
-        }
-        .list-item{
-          .ant-form-item-row{
-  margin: 0em ;
-  font-size:14px;
 
-}
-        }
-
-        .col {
-          text-align: left;
-          align-items: center;
+.col1 {
           font-size:14px;
+          text-align: left;
+          justify-content: flex-start;
           &:nth-child(1) {
             width: 18%;
             margin-left:50px;
           }
 
           &:nth-child(2) {
-            width: 20%;
-            text-align: center;
+            width: 15%;
+            margin-left:50px;
           }
 
           &:nth-child(3) {
-            width: 22%;
-            text-align: center;
-            margin-left:30px;
-            margin-right: 0px;
+            width:28%;
+            margin-left:50px;
           }
           &:nth-child(4) {
             width: 22%;
             margin-left:50px;
+            text-align:left;
           }
         }
+      }
+        .list-item{
+          text-align:center;
+          .ant-form-item-row{
+
+  margin: 0em ;
+  font-size:14px;
+
+}
+        }
+
+        
         .flex-box2 {
-            padding: 0.5em 1em;
+            
+          padding: 20px 1em;
             font-family: Roboto-Medium, Roboto;
 font-weight: bold;
 color: #8A8080;
@@ -818,7 +836,9 @@ font-size:14px;
           .fire-list-box{
         margin: 2em 0em;
         text-align:left;
-
+        .ant-form input{
+          font-size:14px;
+        }
         .flex-box3,.dis {
             font-size: 14px;
             justify-content: flex-start;
@@ -831,14 +851,18 @@ color: #8A8080;
         text-align:left;
 
       &:nth-child(1){
-        margin-left:70px;
-        width:30%;
+        margin-left:50px;
+        width:35%;
       }
       &:nth-child(2){
-        width: 30%;
+        width: 20%;
+        margin-left:20px;
+
       }
       &:nth-child(3){
         width: 30%;
+        margin-left:40px;
+
       }
      
      
@@ -854,7 +878,7 @@ color: #8A8080;
         .dis{
           padding: 0.5em 0em;
             .start{
-              width: 35%;
+              width: 43%;
               text-align:center;
               float: left;
               .dtoo1{
@@ -871,7 +895,7 @@ color: #8A8080;
             .end{
               text-align:center;
               float: left;
-              width: 35%;
+              width: 43%;
               .dtoo1{
   width: 100%;
   text-align:center;        
@@ -885,6 +909,8 @@ color: #8A8080;
   width: 100%;
   text-align:center;        
   color:rgba(228, 134, 134, 1);
+  font-size:14px;
+
 }
 }     
         }
@@ -896,12 +922,12 @@ color: #8A8080;
         margin: 2em 0em;
         text-align:left;
 
-        .flex-box1,.list-item {
+        .flex-box1,.lever {
             font-size: 14px;
             font-family: Roboto-Medium, Roboto;
+          justify-content: flex-start;
 font-weight: bold;
 color: #8A8080;
-            padding: 20px 1em;
     .col{
         text-align:left;
         font-size:14px;
@@ -922,17 +948,14 @@ color: #8A8080;
 }  
 
 .flex-box1 {
-          font-size:14px;
+  font-size:14px;
           padding: 20px 1em;
           font-family: Roboto-Medium, Roboto;
 font-weight: bold;
 color: #8A8080;
         }
-        .list-item, .flex-box1 {
-          justify-content: flex-start;
-        }
         .lever{
-          padding: 0.5em 0em;
+          padding: 0.5em 1em;
             .value{
               
               .dtoo1{
@@ -1032,7 +1055,10 @@ font-size:14px;
 }
 }
   }
-
+  .tj1{
+            display: flex;
+            width: 12%;
+          }
 .tj{
   display: flex;
   width: 29%;
@@ -1212,15 +1238,19 @@ line-height: 18px;
           }
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 450px) {
   .ant-form-item-label>label{
-  font-size:12px;
+  font-size:14px;
 }
 .ant-input{
-  font-size:12px;
+  font-size:14px;
 }
+.ant-form{ input{
+  font-size:14px;
+
+}}
   .page-title{
-    font-size:16px;
+    font-size:18px;
     padding: 0;
   }
   .header-nav{
@@ -1228,52 +1258,53 @@ line-height: 18px;
     width: 100%;
     .fire-nav-list{
       width: 100%;
-    height: 35px;
+    height: 40px;
     .nav-item{
-      font-size:12px;
+      padding:0px ;
+      font-size:14px;
     }
     }
   }
   .panel-box{
     .panel-container{
-      padding: 16px 5.9%;
+      padding: 18px 5.9%;
       .panel-title{
-        font-size:16px;
+        font-size:18px;
       }
       .current-box{
         width: 100%;
         margin: 10px 0;
         .current{
           .name{
-            font-size:12px;
+            font-size:14px;
           }
           .value{
-            font-size:12px;
+            font-size:14px;
           }
         }
         
       
       }
   .max-btn{
-          font-size:15px;
+          font-size:17px;
         }
       .amountbox{
         display: block;
         margin: 10px 0;
         .general{
           width: 100%;
-          font-size:12px;
+          font-size:14px;
           .user{
             display: block;
             .name{
               width: 100%;
-              font-size:12px;
+              font-size:14px;
             }
             .value{
               width:100%;
               font-weight: 600;
 
-              font-size:12px;
+              font-size:14px;
             }
           }
         }
@@ -1281,18 +1312,18 @@ line-height: 18px;
       .whitelist{
         margin: 10px 0;
           width: 100%;
-          font-size:12px;
+          font-size:14px;
           .user{
             display: block;
             .name{
               width: 100%;
-              font-size:12px;
+              font-size:14px;
             }
             .value{
               width:100%;
               font-weight: 600;
 
-              font-size:12px;
+              font-size:14px;
             }
           }
           
@@ -1301,40 +1332,54 @@ line-height: 18px;
             .tj{
             display: flex;
             width: 58%;
-            .kk{
-              font-size:10px;
+            
             }
+          }
+          .kk{
+              font-size:12px;
             }
+          .tj1{
+            display: flex;
+            width: 23%;
           }
 
           .fire-list-box {
             margin: 0.5em 0;
-        .list-header {
-            padding: 20px 1em;
-        }
-        .list-item, .list-header {
-          justify-content: flex-start;
+            .flex-box2{
+          padding: 20px 1em;
         }
         .list-item{
+          font-size:14px;
           .ant-form-item-row{
   margin: 0em ;
 }
         }
-        .col {
+        .list-item, .flex-box2 {
+          justify-content: flex-start;
+          justify-content: flex-start;
+          font-size:14px;
+          font-family: Roboto-Medium, Roboto;
+font-weight: bold;
+color: #8A8080;
+       
+       
+        .col1 {
+          font-size:14px;
           text-align: left;
           align-items: center;
           &:nth-child(1) {
-            width: 15%;
+            width: 8%;
             margin-left:0px;
           }
 
           &:nth-child(2) {
-            width: 18%;
+            width: 20%;
             text-align: center;
+            margin-left:15px;
           }
 
           &:nth-child(3) {
-            width:35%;
+            width:38%;
             text-align: center;
            
             margin-left:20px;
@@ -1344,9 +1389,10 @@ line-height: 18px;
             margin-left:20px;
           }
         }
+      }
         .list-item {
             padding: 0.5em 1em;
-          .col {
+          .col1 {
             overflow: hidden;
             padding-left: 0.5%;
             //text-overflow: ellipsis;
@@ -1376,24 +1422,118 @@ line-height: 18px;
             margin-right:0px;
            
           }
+
+
+
           .fire-list-box{
         margin: 2em 0em;
         text-align:left;
-
-        .flex-box1,.list-item {
-            font-size: 18px;
-    font-weight: bold;
-    color: #8A8080;
-            padding: 20px 1em;
+       
+        .flex-box3,.dis {
+            font-size: 14px;
+            justify-content: flex-start;
+            font-family: Roboto-Medium, Roboto;
+font-weight: bold;
+color: #8A8080;
+            
     .col{
+      font-size:14px;
         text-align:left;
 
       &:nth-child(1){
-        margin-left:70px;
-        width:30%;
+        margin-left:10px;
+        width:35%;
       }
       &:nth-child(2){
-        width: 30%;
+        width: 36%;
+        margin-left:0px;
+        
+      }
+      &:nth-child(3){
+        width: 20%;
+        margin-left:15px;
+      }
+     
+     
+    }
+}  
+
+        .flex-box3 {
+          font-size:14px;
+          padding: 20px 1em;
+          font-family: Roboto-Medium, Roboto;
+font-weight: bold;
+color: #8A8080;
+        }
+        .dis{
+          padding: 0.5em 0em;
+            .start{
+              width: 43%;
+              text-align:center;
+              float: left;
+              .dtoo1{
+  width: 100%;
+  text-align:center;        
+  color:rgba(228, 134, 134, 1);
+  font-size:14px;
+}
+
+            }
+            .space{
+              float:left;
+              padding:5px 3px ;
+            }
+            .end{
+              text-align:center;
+              float: left;
+              width: 43%;
+              .dtoo1{
+  width: 100%;
+  text-align:center;        
+  color:rgba(228, 134, 134, 1);
+} 
+}
+.dis1{
+  float: left;
+  text-align:center;
+  .dtoo1{
+  width: 100%;
+  text-align:center;        
+  color:rgba(228, 134, 134, 1);
+  font-size:14px;
+
+}
+}     
+        }
+
+}
+
+
+.ant-form-item-control-input-content{
+          height: 28px;
+          line-height:28px;
+        }
+          .fire-list-box{
+        margin: 2em 0em;
+        text-align:left;
+.flex-box1{
+  padding: 20px 1em;
+
+}
+        .flex-box1,.lever {
+          justify-content: flex-start;
+            font-size: 14px;
+    font-weight: bold;
+    color: #8A8080;
+    .col{
+        text-align:left;
+font-size:14px;
+      &:nth-child(1){
+        margin-left:10px;
+        width:20%;
+      }
+      &:nth-child(2){
+        width: 48%;
       }
       &:nth-child(3){
         width: 30%;
@@ -1402,14 +1542,12 @@ line-height: 18px;
      
     }
 }  
-        .list-item, .flex-box1 {
-          justify-content: flex-start;
-        }
-        .list-item{
+     
+        .lever{
             .value{
               
               .dtoo1{
-  width: 85%;
+  width: 66%;
   text-align:center;        
   color:rgba(228, 134, 134, 1);
 }
@@ -1423,37 +1561,43 @@ line-height: 18px;
 
 }
 
+
+
           .discount{
             margin: 10px auto;
             display: block;
             .mintfee{
               width: 100%;
-          font-size:12px;
+          font-size:14px;
           .fee1{
             display: block;
             .name{
               width: 100%;
-              font-size:12px;
+              font-size:14px;
             }
             .value{
               width:100%;
               font-weight: 600;
 
               text-align:left;
-              font-size:12px;
+              font-size:14px;
               .too1{
-  width: 67%;
+                font-size:14px;
+  width: 70%;
   text-align:center;        
 }
 .too1dw{
+  font-size:14px;
                     float:right;
                     font-weight:600;
                     color:rgba(138, 128, 128, 1);
                   }
 .too{
-                  width: 85%;
+  font-size:12px;
+                  width: 87%;
                   text-align:center;
                   .toodw{
+                    font-size:14px;
                     float:right;
                     font-weight:600;
                     color:rgba(138, 128, 128, 1);
@@ -1465,19 +1609,19 @@ line-height: 18px;
             .mintdis{
               margin: 10px 0;
               width: 100%;
-          font-size:12px;
+          font-size:14px;
           .fee1{
             display: block;
             .name{
               width: 100%;
-              font-size:12px;
+              font-size:14px;
             }
             .value{
               width:100%;
               font-weight: 600;
 
               text-align:left;
-              font-size:12px;
+              font-size:14px;
               .dtoo1{
   width: 80%;
   text-align:center;        
@@ -1507,12 +1651,457 @@ line-height: 18px;
             .disac{
               .name{
               width: 100%;
-              font-size:12px;
+              font-size:14px;
             }
             .value{
               width:100%;
               text-align:left;
+              font-size:14px;
+              .dtoo1{
+  width: 80%;
+  text-align:center;        
+}
+.dtoo1dw{
+                    float:right;
+                    font-weight:600;
+                    color:rgba(138, 128, 128, 1);
+                  }
+.too{
+                  width: 85%;
+                  text-align:center;
+                  .toodw{
+                    float:right;
+                    font-weight:600;
+                    color:rgba(138, 128, 128, 1);
+                  }
+                }
+            }
+            }
+          } 
+
+    }
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .ant-form-item-label>label{
+  font-size:14px;
+}
+.ant-input{
+  font-size:14px;
+}
+.ant-form{ input{
+  font-size:14px;
+
+}}
+  .page-title{
+    font-size:18px;
+    padding: 0;
+  }
+  .header-nav{
+    padding: 0;
+    width: 100%;
+    .fire-nav-list{
+      width: 100%;
+    height: 40px;
+    .nav-item{
+      font-size:12px;
+      padding:0px ;
+    }
+    }
+  }
+  .panel-box{
+    .panel-container{
+      padding: 16px 5.9%;
+      .panel-title{
+        font-size:18px;
+      }
+      .current-box{
+        width: 100%;
+        margin: 10px 0;
+        .current{
+          .name{
+            font-size:14px;
+          }
+          .value{
+            font-size:14px;
+          }
+        }
+        
+      
+      }
+  .max-btn{
+          font-size:15px;
+        }
+      .amountbox{
+        display: block;
+        margin: 10px 0;
+        .general{
+          width: 100%;
+          font-size:12px;
+          .user{
+            display: block;
+            .name{
+              width: 100%;
+              font-size:14px;
+            }
+            .value{
+              width:100%;
+              font-weight: 600;
+
+              font-size:14px;
+            }
+          }
+        }
+      }
+      .whitelist{
+        margin: 10px 0;
+          width: 100%;
+          font-size:12px;
+          .user{
+            display: block;
+            .name{
+              width: 100%;
+              font-size:14px;
+            }
+            .value{
+              width:100%;
+              font-weight: 600;
+
+              font-size:14px;
+            }
+          }
+          
+      }
+      .panel-title{
+            .tj{
+            display: flex;
+            width: 58%;
+            
+            }
+          }
+          .kk{
               font-size:12px;
+            }
+          .tj1{
+            display: flex;
+            width: 23%;
+          }
+
+          .fire-list-box {
+            margin: 0.5em 0;
+            .flex-box2{
+          padding: 20px 1em;
+        }
+        .list-item{
+          font-size:12px;
+          .ant-form-item-row{
+  margin: 0em ;
+}
+        }
+        .list-item, .flex-box2 {
+          justify-content: flex-start;
+          justify-content: flex-start;
+          font-size:12px;
+          font-family: Roboto-Medium, Roboto;
+font-weight: bold;
+color: #8A8080;
+       
+       
+        .col1 {
+          font-size:12px;
+          text-align: left;
+          align-items: center;
+          &:nth-child(1) {
+            width: 10%;
+            margin-left:0px;
+          }
+
+          &:nth-child(2) {
+            width: 20%;
+            text-align: center;
+            margin-left:20px;
+          }
+
+          &:nth-child(3) {
+            width:35%;
+            text-align: center;
+           
+            margin-left:20px;
+          }
+          &:nth-child(4) {
+            width: 22%;
+            margin-left:20px;
+          }
+        }
+      }
+        .list-item {
+            padding: 0.5em 1em;
+          .col1 {
+            overflow: hidden;
+            padding-left: 0.5%;
+            //text-overflow: ellipsis;
+
+          }
+  }
+}
+  .no{
+            color: #FE6D46;
+            
+          }
+          .pid{
+            color: #FE6D46;
+            border: 1px solid #FE6D46;
+            background: rgba(254, 109, 70, 0.20);
+            text-align:center;
+            border-radius:25px;
+          }
+
+          .address {
+                color: rgba(205, 158, 87, 1);
+            border: 1px solid rgba(205, 158, 87, 1);
+            background: rgba(205, 158, 87, 0.20);
+            text-align:center;
+            border-radius:25px;
+            width: 50px;
+            margin-right:0px;
+           
+          }
+
+
+
+          .fire-list-box{
+        margin: 2em 0em;
+        text-align:left;
+       
+        .flex-box3,.dis {
+            font-size: 12px;
+            justify-content: flex-start;
+            font-family: Roboto-Medium, Roboto;
+font-weight: bold;
+color: #8A8080;
+            
+    .col{
+      font-size:12px;
+        text-align:left;
+
+      &:nth-child(1){
+        margin-left:10px;
+        width:40%;
+      }
+      &:nth-child(2){
+        width: 32%;
+        margin-left:0px;
+        
+      }
+      &:nth-child(3){
+        width: 20%;
+        margin-left:15px;
+      }
+     
+     
+    }
+}  
+        .flex-box3 {
+          font-size:12px;
+          padding: 20px 1em;
+          font-family: Roboto-Medium, Roboto;
+font-weight: bold;
+color: #8A8080;
+        }
+        .dis{
+          padding: 0.5em 0em;
+            .start{
+              font-size:12px;
+              width: 43%;
+              text-align:center;
+              float: left;
+              .dtoo1{
+  width: 100%;
+  text-align:center;        
+  color:rgba(228, 134, 134, 1);
+  font-size:12px;
+}
+
+            }
+            .space{
+              float:left;
+              padding:5px ;
+            }
+            .end{
+              text-align:center;
+              float: left;
+              width: 43%;
+              .dtoo1{
+  width: 100%;
+  text-align:center;        
+  color:rgba(228, 134, 134, 1);
+} 
+}
+.dis1{
+  float: left;
+  text-align:center;
+  .dtoo1{
+  width: 100%;
+  text-align:center;        
+  color:rgba(228, 134, 134, 1);
+  font-size:12px;
+
+}
+}     
+        }
+
+}
+
+
+.ant-form-item-control-input-content{
+          height: 28px;
+          line-height:28px;
+        }
+          .fire-list-box{
+        margin: 2em 0em;
+        text-align:left;
+.flex-box1{
+  padding: 20px 1em;
+
+}
+        .flex-box1,.lever {
+          justify-content: flex-start;
+            font-size: 12px;
+    font-weight: bold;
+    color: #8A8080;
+    .col{
+        text-align:left;
+font-size:12px;
+      &:nth-child(1){
+        margin-left:20px;
+        width:20%;
+      }
+      &:nth-child(2){
+        width: 45%;
+      }
+      &:nth-child(3){
+        width: 30%;
+      }
+     
+     
+    }
+}  
+     
+        .lever{
+            .value{
+              
+              .dtoo1{
+  width: 66%;
+  text-align:center;        
+  color:rgba(228, 134, 134, 1);
+}
+.dtoo1dw{
+                    float:right;
+                    font-weight:600;
+                    color:rgba(228, 134, 134, 1);
+                  }
+            }
+        }
+
+}
+
+
+
+          .discount{
+            margin: 10px auto;
+            display: block;
+            .mintfee{
+              width: 100%;
+          font-size:14px;
+          .fee1{
+            display: block;
+            .name{
+              width: 100%;
+              font-size:14px;
+            }
+            .value{
+              width:100%;
+              font-weight: 600;
+
+              text-align:left;
+              font-size:14px;
+              .too1{
+                font-size:14px;
+  width: 70%;
+  text-align:center;        
+}
+.too1dw{
+  font-size:14px;
+                    float:right;
+                    font-weight:600;
+                    color:rgba(138, 128, 128, 1);
+                  }
+.too{
+  font-size:14px;
+                  width: 85%;
+                  text-align:center;
+                  .toodw{
+                    font-size:14px;
+                    float:right;
+                    font-weight:600;
+                    color:rgba(138, 128, 128, 1);
+                  }
+                }
+            }
+          }
+            }
+            .mintdis{
+              margin: 10px 0;
+              width: 100%;
+          font-size:14px;
+          .fee1{
+            display: block;
+            .name{
+              width: 100%;
+              font-size:14px;
+            }
+            .value{
+              width:100%;
+              font-weight: 600;
+
+              text-align:left;
+              font-size:14px;
+              .dtoo1{
+  width: 80%;
+  text-align:center;        
+}
+.dtoo1dw{
+                    float:right;
+                    font-weight:600;
+                    color:rgba(138, 128, 128, 1);
+                  }
+.too{
+                  width: 85%;
+                  text-align:center;
+                  .toodw{
+                    float:right;
+                    font-weight:600;
+                    color:rgba(138, 128, 128, 1);
+                  }
+                }
+            }
+          }
+            }
+          }
+          .discount1{
+            margin: 10px auto;
+            display: block;
+            width: 100%;
+            .disac{
+              .name{
+              width: 100%;
+              font-size:14px;
+            }
+            .value{
+              width:100%;
+              text-align:left;
+              font-size:14px;
               .dtoo1{
   width: 80%;
   text-align:center;        
@@ -1534,12 +2123,7 @@ line-height: 18px;
             }
             }
           }
-
-        .content-item{
-          .fire-list-box{
-
-          }
-        }  
+ 
 
     }
   }
