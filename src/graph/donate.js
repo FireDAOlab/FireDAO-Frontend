@@ -23,16 +23,16 @@ export function getSecondDonateRecord(addr) {
     return fetchQueryBase("patton-sr/privateexchangepoolog2", {
         text: ` {
   allRecords(where: {addrTow: "${addr}"}, first: 10) {
-    id
-       no
-pid
-name
-    addr
-ethAmount
-    usdtAmount
-rate
-fdtAmount
-    time
+        id
+        no
+        pid
+        name
+        addr
+        ethAmount
+        usdtAmount
+        rate
+        fdtAmount
+        time
   }
 }`
     }, "")
