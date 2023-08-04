@@ -19,7 +19,7 @@ export default styled.div`
 
 
 
-@media screen and (min-width: 1500px) {
+@media screen and (max-width: 1950px) {
 
     .ant-form .ant-form-item {
     margin-bottom: 12px;
@@ -40,6 +40,14 @@ export default styled.div`
             width: 100%;
         }
     }
+    .ecos{
+          font-size:17px;
+        }
+        .ecoshr{
+          width: 25%;
+           opacity:  0.15;
+           margin-top:10px;
+        }
       .content-box {
         display: flex;
         padding: 2em 0;
@@ -112,7 +120,6 @@ export default styled.div`
          
           .mint-tip {
             font-size:16px;
-            /* padding: 0.6em 0em; */
             padding-top:1.2em;
             height: 65px;
             color: #856465;
@@ -123,9 +130,7 @@ export default styled.div`
                 font-weight:600;
                 font-size:16px;
             }
-            span {
-              color: #fff;
-            }
+           
             .choosePayType{
               .ant-form-item-label{
                 display: none;
@@ -168,30 +173,9 @@ font-size:15px;
         }
       }
     }
-      /* mobile style */
-      /* @media screen and (max-width: 1000px) {
-        .panel-box{
-        width: 100%;
-        margin: 0em 5em;
-    }
-        
-        .content-box {
-          display: block;
-          .left,.right{
-            width: 100%;
-            .mint-tip{
-              justify-content: space-between;
-            }
-            .ant-btn{
-              width: 100%;
-            }
-          }
-        }
-      } */
+    
 
-
-
-      @media screen and (max-width: 1500px) {
+    @media screen and (max-width: 1500px) {
         .ant-form-item-label>label{
     font-size:13px;
     color: rgba(138, 128, 128, 1);
@@ -205,7 +189,14 @@ font-size:15px;
             width: 100%;
         }
     }
-   
+    .ecos{
+          font-size:13px;
+        }
+        .ecoshr{
+          width: 25%;
+           opacity:  0.15;
+           margin-top:8px;
+        }
     .content-box {
         display: flex;
         padding: 2em 0;
@@ -227,9 +218,7 @@ font-size:15px;
             font-size:18px;
             line-height:45px;
         }
-        span{
-            font-size:13px;
-        }
+      
           img {
             box-shadow: 0 0 10px rgba(255, 255, 255, 0), 0 0 5px rgba(0, 0, 0, 1);
             display: inline-block;
@@ -284,10 +273,14 @@ font-size:15px;
             color: #856465;
             height: 30px;
             display: flex;
+            padding-top: 0em;
             justify-content: space-between;
-            span {
-              color: #fff;
+            .fee{
+                font-size:14px;
+                height: 30px;
+                
             }
+           
             .choosePayType{
               .ant-form-item-label{
                 display: none;
@@ -330,5 +323,163 @@ font-size:13px;
         }
       }
       }
+
+
+
+      @media screen and (max-width: 450px) {
+        
+        .ant-form-item-label>label{
+    font-size:14px;
+    color: rgba(138, 128, 128, 1);
+    height: 20px;
+}
+.ant-input-affix-wrapper{
+    font-size:14px;
+}
+    .panel-box{
+        .panel-container{
+            width: 100%;
+        }
+    }
+    .ecos{
+          font-size:16px;
+        }
+        .ecoshr{
+          width: 20%;
+           opacity:  0.15;
+           margin-top:10px;
+        }
+    .content-box {
+        display: block;
+        padding: 2em 0;
+
+        .left {
+          width: 100%;
+          padding-right:0%;
+
+          .img-box {
+        border: 1px solid rgba(255,255,255,0.4);
+          border-radius: 5%;
+          background: linear-gradient(136deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+          box-shadow: 0 0 10px rgba(255, 255, 255, 0), 0 0 5px rgba(0, 0, 0, 1);
+          padding: 10px;
+          font-family: Squada One-Regular, Squada One;
+          font-weight: 600;
+          text-align:center;
+          p{
+            font-size:20px;
+            line-height:45px;
+        }
+        
+          img {
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0), 0 0 5px rgba(0, 0, 0, 1);
+            display: inline-block;
+            border: 1px solid rgba(255,255,255,0.5);
+            border-radius: 20px;
+            width: 100%;
+            margin: 0 auto;
+          }
+        }
+
+          .nft-detail {
+            font-size: 14px;
+            margin-top: 2em;
+
+            .title {
+              width: 20%;
+              margin: 0 auto;
+              text-align:center;
+              background: rgba(205,158,87,0.1);
+border-radius: 30px ;
+border: 1px solid rgba(205,158,87,0.5);
+line-height:2.5em;
+color: rgba(205, 158, 87, 1);
+              font-size: 12px;
+            }
+
+            .content-item {
+              display: none;
+              justify-content: space-between;
+              margin: 0.8em 0;
+              text-align: right;
+
+              .name {
+                color: #999;
+                font-size:14px;
+                white-space: nowrap;
+              }
+
+              .value {
+                font-size:14px;
+                max-width: 60%;
+              }
+
+              .address {
+                a {
+                  color: #FF9260;
+                }
+              }
+            }
+          }
+
+        }
+
+        .right {
+          width: 100%;
+          display: block;
+         margin-top:1.5em;
+          .mint-tip {
+            font-size:13px;
+            color: #856465;
+            padding-top: 0.5em;
+            height: 45px;
+            display: flex;
+            justify-content: space-between;
+            .fee{
+                font-size:14px;
+                height: 50px;
+            }
+           
+            .choosePayType{
+              .ant-form-item-label{
+                display: none;
+              }
+              
+              .ant-form-item-control-input {
+                
+                background: none!important;
+                min-height: 20px!important;
+
+                .ant-form-item-control-input-content{
+                }
+                .ant-select-selector{
+                  border: none;
+                }
+              }
+            }
+          }
+        }
+      }
+
+      .username {
+        padding: 0 20px;
+        border-radius: 25px;
+      }
+
+      .button-box {
+        text-align: left;
+        border: 25px;
+        .subBtn {
+          text-align:center;
+          border-radius: 25px;
+        width: 100%;
+        height: 40px;
+background: linear-gradient(32deg, #FF4E50 0%, #F9D423 100%);
+font-size:13px;
+          
+        }
+      }
+
+      }    
       
 `

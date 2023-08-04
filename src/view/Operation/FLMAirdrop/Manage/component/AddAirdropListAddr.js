@@ -57,7 +57,7 @@ const FireLock = (props) => {
         for (let i = 0; i < _amount.length; i++) {
             _amount[i] = BigNumber(_amount[i]).multipliedBy(10 ** 18).toFixed(0).toString()
         }
-        if (!(BigNumber(_amount[_amount.length])>=0)) {
+        if (!(BigNumber(_amount[_amount.length-1])>=0)) {
             _amount.pop()
         }
         await handleDealMethod("addAirDropList", [_to, _amount, infoString])

@@ -351,7 +351,7 @@ const Register = (props) => {
                     </Form.Item>
                 </div>
                 <Form.Item className="button-box">
-                    {!isLoading && status == 3 && <Button  style={{}} className="ant-btn ant-btn-primary ant-btn-lg subBtn" htmlType="submit" type="primary"
+                    {!isLoading && status == 3 && <Button className="ant-btn ant-btn-primary ant-btn-lg subBtn" htmlType="submit" type="primary"
                         onClick={() => handlePost()}>Mint Passport</Button>
                     }
                     {!isLoading && status == 2 && <Button  className="ant-btn ant-btn-primary ant-btn-lg subBtn" >Insufficient ETH(WETH) balance</Button>
@@ -379,8 +379,10 @@ const Register = (props) => {
                             <div className="img-box">
                                 <img className="img" src={long} alt="" />
                                 <p >Pass FireSeed,Cast FireSoul</p>
-                                <div style={{ display: 'flex', marginTop: '-20px', height: '30px' }} ><hr style={{ width: '25%', opacity: ' 0.15' }} />
-                                    <span style={{ fontSize: '13px' }}>&nbsp;FireDAO Ecosystem&nbsp;</span><hr style={{ width: '25%', opacity: ' 0.15' }} />
+                                <div style={{ display: 'flex', marginTop: '-20px', height: '30px' }} >
+                                    <hr className='ecoshr' />
+                                    <span className='ecos'>&nbsp;FireDAO Ecosystem&nbsp;</span>
+                                    <hr className='ecoshr' />
                                 </div>
                             </div>
                             <div className="nft-detail">

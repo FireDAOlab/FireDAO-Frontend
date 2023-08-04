@@ -221,8 +221,12 @@ const Distribution = (props) => {
                 }
             })
         })
-        resArr.forEach(item => {
-            item.claiming = item.amount - item.claimed
+        resArr.forEach(item=>{
+            if(item.claimed){
+                item.claiming = item.amount - item.claimed;
+            }else{
+                item.claiming = item.amount;
+            }
         })
         resArr.sort((a, b) => {
             if (BigNumber(a.amount).lt(b.amount)) {
@@ -303,9 +307,7 @@ const Distribution = (props) => {
     }, [curBetchId]);
     return (
         <DistributionStyle>
-
             <div className="panel-box userinfo-box">
-
                 <div className="panel-container">
                     <div className="panel-title flex-box">
                         FLM Airdrop
@@ -422,9 +424,13 @@ const Distribution = (props) => {
                                     <div className="col">
                                         {index + 1}
                                     </div>
-                                    <div className="col">
+                                    <div className="col pc">
                                         <a className="address" href={develop.ethScan + "/address/" + item.user}
                                            target="_blank">{(item.user)}</a>
+                                    </div>
+                                    <div className="col m">
+                                        <a className="address" href={develop.ethScan + "/address/" + item.user}
+                                           target="_blank">{formatAddress((item.user))}</a>
                                     </div>
                                     <div className="col">
                                         {showNum(item.amount / 10 ** FLMDecimal)}
@@ -445,9 +451,13 @@ const Distribution = (props) => {
                                     <div className="col">
                                         {index + 1}
                                     </div>
-                                    <div className="col">
+                                    <div className="col pc">
                                         <a className="address" href={develop.ethScan + "/address/" + item.user}
                                            target="_blank">{(item.user)}</a>
+                                    </div>
+                                    <div className="col m">
+                                        <a className="address" href={develop.ethScan + "/address/" + item.user}
+                                           target="_blank">{formatAddress((item.user))}</a>
                                     </div>
                                     <div className="col">
                                         {showNum(item.amount / 10 ** FLMDecimal)}
@@ -653,75 +663,75 @@ const Distribution = (props) => {
                     </div>
                     <div className="fire-list-box fire-list-box-airdroplist">
                         {curAirdropList.map((item, index) => {
-                            if (index >= pageCount4 * (curPage4 - 1) && index < pageCount4 * curPage4) {
-                                if (index == 0 || item.batch != curAirdropList[index - 1].batch) {
-                                    return (
-                                        <div>
-                                            <div className="batch-box">
-                                                <div className="col">
-                                                    #{item.batch}
+                                if (index >= pageCount4 * (curPage4 - 1) && index < pageCount4 * curPage4) {
+                                    if (index == 0 || item.batch != curAirdropList[index - 1].batch) {
+                                        return (
+                                            <div>
+                                                <div className="batch-box">
+                                                    <div className="col">
+                                                        #{item.batch}
+                                                    </div>
+                                                    <div className="col">
+                                                        {item.info ? item.info : "--"}
+                                                    </div>
                                                 </div>
-                                                <div className="col">
-                                                    {item.info ? item.info : "--"}
+                                                <div className="list-header">
+                                                    <div className="col">
+                                                        No.
+                                                    </div>
+
+                                                    <div className="col">
+                                                        Address
+                                                    </div>
+                                                    <div className="col">
+                                                        Amount(s)
+                                                    </div>
+                                                    <div className="col">
+                                                        Time(UTC)
+                                                    </div>
+                                                </div>
+                                                <div className="list-item" key={index}>
+
+                                                    <div className="col">
+                                                        {index + 1}
+                                                    </div>
+
+                                                    <div className="col  ">
+                                                        <a className="address"
+                                                           href={develop.ethScan + "/address/" + item.user}
+                                                           target="_blank">{formatAddress(item.user)}</a>
+                                                    </div>
+                                                    <div className="col">
+                                                        {showNum(item.amount / 10 ** FLMDecimal)}
+                                                    </div>
+                                                    <div className="col">
+                                                        {dealTime(item.blockTimestamp)}
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div className="list-header">
-                                                <div className="col">
-                                                    No.
-                                                </div>
+                                        )
 
-                                                <div className="col">
-                                                    Address
-                                                </div>
-                                                <div className="col">
-                                                    Amount(s)
-                                                </div>
-                                                <div className="col">
-                                                    Time(UTC)
-                                                </div>
-                                            </div>
-                                            <div className="list-item" key={index}>
+                                    }
+                                    return (<div className="list-item" key={index}>
 
-                                                <div className="col">
-                                                    {index + 1}
-                                                </div>
-
-                                                <div className="col  ">
-                                                    <a className="address"
-                                                       href={develop.ethScan + "/address/" + item.user}
-                                                       target="_blank">{formatAddress(item.user)}</a>
-                                                </div>
-                                                <div className="col">
-                                                    {showNum(item.amount / 10 ** FLMDecimal)}
-                                                </div>
-                                                <div className="col">
-                                                    {dealTime(item.blockTimestamp)}
-                                                </div>
-                                            </div>
+                                        <div className="col">
+                                            {index + 1}
                                         </div>
-                                    )
 
+
+                                        <div className="col  ">
+                                            <a className="address" href={develop.ethScan + "/address/" + item.user}
+                                               target="_blank">{formatAddress(item.user)}</a>
+                                        </div>
+                                        <div className="col">
+                                            {showNum(item.amount / 10 ** FLMDecimal)}
+                                        </div>
+                                        <div className="col">
+                                            {dealTime(item.blockTimestamp)}
+                                        </div>
+                                    </div>)
                                 }
-                                return (<div className="list-item" key={index}>
-
-                                    <div className="col">
-                                        {index + 1}
-                                    </div>
-
-
-                                    <div className="col  ">
-                                        <a className="address" href={develop.ethScan + "/address/" + item.user}
-                                           target="_blank">{formatAddress(item.user)}</a>
-                                    </div>
-                                    <div className="col">
-                                        {showNum(item.amount / 10 ** FLMDecimal)}
-                                    </div>
-                                    <div className="col">
-                                        {dealTime(item.blockTimestamp)}
-                                    </div>
-                                </div>)
-                            }
-                        })
+                            })
                         }
                     </div>
                     <div className="pagination">

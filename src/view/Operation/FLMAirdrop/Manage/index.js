@@ -51,7 +51,7 @@ const FireLock = (props) => {
 
     const [isAdmin, setIsAdmin] = useState(false)
 
-    const [isSurAdmin, setSuperAdmin] = useState(true)
+    const [isSurAdmin, setSuperAdmin] = useState(false)
     const [searchContent, setSearchContent] = useState()
     const [showSearch, setShowSearch] = useState(false)
 
@@ -153,7 +153,6 @@ const FireLock = (props) => {
     const getWList = async () => {
         const record = await getWhitelist()
         const res = await handleViewMethod("getAirDropList", [])
-        console.log(res);
         const recordArr = record.data.claimRecords
         let resArr = []
         res.forEach(addr => {

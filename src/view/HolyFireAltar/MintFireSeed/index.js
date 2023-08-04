@@ -210,9 +210,9 @@ const MintFireSeed = (props) => {
                                 <img className="img" src={FireSeed} alt=""/>
                                 <p>Pass FireSeed,Cast FireSoul</p>
                                 <div style={{display: 'flex', marginTop: '-20px', height: '30px'}}>
-                                    <hr style={{width: '25%', opacity: ' 0.15'}}/>
-                                    <span style={{fontSize: '13px'}}>&nbsp;FireDAO Ecosystem&nbsp;</span>
-                                    <hr style={{width: '25%', opacity: ' 0.15'}}/>
+                                    <hr className='ecoshr'/>
+                                    <span className='ecos'>&nbsp;FireDAO Ecosystem&nbsp;</span>
+                                    <hr className='ecoshr'/>
                                 </div>
                             </div>
                         </div>

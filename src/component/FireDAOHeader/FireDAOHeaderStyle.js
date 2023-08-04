@@ -91,25 +91,7 @@ export default styled.div`
       }
     }
   }
-  @media screen and (max-width: 400px) {
-      .firedao-header {
-        padding: 1em 4%;
-        .logo{
-          width: 65%;
-    margin: 0.5em;
-      }
-      }
-      
-      
-    }
 
-@media screen and (min-width: 650px)  {
-
-
-}
-      @media screen and (max-width: 800px)  {
-
-}
 
   /* mobile style */
   @media screen and (max-width: 1000px) {
@@ -132,6 +114,36 @@ export default styled.div`
     }
 
   }
-   
+
+         @media screen and (max-width: 800px)  {
+
+}
+
+
+@media screen and (max-width: 650px)  {
+
+}
+@media screen and (max-width: 450px) {
+      .firedao-header {
+        padding: 1em 4%;
+        .logo{
+          width: 65%;
+    margin: 0.5em;
+      }
+      }
+      
+      
+    }
+    @media screen and (max-width: 400px) {
+      .firedao-header {
+        padding: 1em 4%;
+        .logo{
+          width: 65%;
+    margin: 0.5em;
+      }
+      }
+      
+      
+    }
 `
 

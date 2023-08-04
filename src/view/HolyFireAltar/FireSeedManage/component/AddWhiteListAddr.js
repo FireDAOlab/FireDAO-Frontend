@@ -68,64 +68,87 @@ const FireLock = (props) => {
                     <div className="fire-list-box1">
                         <div className="list-header flex-box">
                             <div className="col">
-                                No
+                                No.
                             </div>
-                            <div className="col">
-                                PID
-                            </div>
+
                             <div className="col">
                                 Address
                             </div>
                         </div>
                         {ownerArr.map((item, index) => {
-                            <div className="list-item ">
-                                <div className="col">
-                                    {item}
-                                </div>
-                                <div className="col">
-
-                                </div>
-                                <div className="col">
-                                    {item}
-                                </div>
-                                
-                            </div>
-                            
                             return (
                                 <div className="address-item" key={index}>
+                                    <Form form={form} name="control-hooks" className="form">
+                                        <div className="flex-box">
+                                            <Form.Item className="col no1"  >
+                                                {index + 1}
+                                            </Form.Item >
 
-                                    <div className="flex-box">
-                                        <div className="col " style={{marginLeft:'30px'}}>
-                                            {item}
+                                            <Form.Item name={"owner" + index} className="col address1" >
+                                                <Input />
+                                            </Form.Item>
+
                                         </div>
-                                        <div className="col pid">
-                                            {item}
-                                        </div>
-                                        <div className="col address" style={{width:'130px',border:'1px solid rgba(205, 158, 87, 1)',background:'rgba(205, 158, 87, 0.20)',marginLeft:'40px',textAlign:'center',borderRadius:'25px'}}>
-                                            {item}
-                                        </div>
-                                    </div>
-                                    <hr style={{opacity:'0.1',width:'85%'}} />
-                                    {/* {(ownerArr.length > 1 && index == 0) && (
-                                        <UserDeleteOutlined className="icon" onClick={() => {
-                                            removeOwner()
-                                        }} />)}  */}
-                                    {(index == ownerArr.length - 1) && (
-                                        <img className="icon" src={add} onClick={() => {
-                                            addOwner()
-                                        }} />)}
+                                        {(index == ownerArr.length - 1) && (
+                                            <img className="icon" src={add} onClick={() => {
+                                                addOwner()
+                                            }} />)}
+                                    </Form>
                                 </div>
                             )
                         })}
                     </div>
+                </div>
+                <div className='phone-list'>
+                    <div className="content-item">
+                        {ownerArr.map((item, index) => {
+                            return (
+                                <div className='discount' key={index}>
 
 
+                                    <Form form={form} name="control-hooks">
+                                        <div className='mintfee'>
+                                            <div className="fee1">
+                                                <div className="name">
+                                                    No.
+                                                </div>
+
+                                                <Form.Item className="value"   >
+                                                    {index + 1}
+                                                </Form.Item >
+                                            </div>
+                                            <div className='fee1'>
+                                                <div className="name">
+                                                    Address
+                                                </div>
+                                                <Form.Item
+                                                    className='value'
+                                                    name={"owner" + index}
+                                                    validateTrigger="onBlur"
+                                                    validateFirst={true}
+                                                    rules={[
+                                                        { required: true, message: 'Please input MintFee!' },
+                                                    ]}
+                                                >
+                                                    <Input className='too1' />
+                                                </Form.Item>
+                                            </div>
+                                        </div>
+                                        {(index == ownerArr.length - 1) && (
+                                            <img className="icon" src={add} onClick={() => {
+                                                addOwner()
+                                            }} />)}
+                                    </Form>
+                                </div>
+                            )
+                        })}
+                    </div>
                 </div>
                 <Button className="sub-btn" onClick={handleSetAddress} type="primary">
                     Submit
                 </Button>
             </div>
-        </AddWhiteListAddrStyle>
+        </AddWhiteListAddrStyle >
     )
 }
 export default FireLock

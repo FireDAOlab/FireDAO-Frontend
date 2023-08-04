@@ -1,3 +1,4 @@
+import React, { useEffect, useRef, useState } from 'react';
 import { useLocation, useNavigate } from "react-router-dom";
 import { Button } from "antd"
 import { useConnect, connect } from "../../api/contracts";
@@ -5,6 +6,7 @@ import { useConnect, connect } from "../../api/contracts";
 import WalletOutlined from "../../imgs/connect.png"
 import develop from "../../env";
 import { Network } from "../../config/constants";
+
 import ConnectWalletStyle from "./ConnectWalletStyle";
 import Ethereum from "../Ethereum/Ethereum";
 import right from "../../imgs/right.png"
@@ -14,13 +16,16 @@ import sz from "../../imgs/sz.png"
 import fz from "../../imgs/fz.png"
 import coinbase from "../../imgs/coinbase.png"
 import walletc from "../../imgs/walletc.png"
+import ConnectWt from "./component/ConnectWt"
 import group1 from '../../imgs/Group.png'
 import { Dropdown, Space } from 'antd';
 // import connect2 from './demo.css'
 
-const ConnectWallet = () => {
+const ConnectWallet = (props) => {
+    const { closeDialog, updateData } = props
     let { state, dispatch } = useConnect();
     const location = useLocation()
+    const [isShowWallet, setShowWallet] = useState(false)
     const connectWallet = async () => {
         try {
             let curChainId = await window.ethereum.request({ method: "eth_chainId" })
@@ -78,7 +83,7 @@ const ConnectWallet = () => {
     }
     const items = [
         {
-            label: <div style={{
+            label: <div className="sss" style={{
                 width: '230px', marginLeft: '-3px', display: 'flex', height: '65px',
                 background: '#241B1B',
                 borderRadius: '20px', padding: '0px 5px', border: '1px solid rgba(234,234,234,0.1)'
@@ -158,17 +163,20 @@ const ConnectWallet = () => {
     ];
     return (
         <ConnectWalletStyle>
+            
+             {isShowWallet && <ConnectWt updateData={() => {  }} closeDialog={() => { setShowWallet(false) }} />}
             {
                 location.pathname === "/" && (
+                    <div>
                     <Dropdown
-                        
+                        className="dropdow"
                         menu={{
                             items,
                         }}
                         trigger={['click']}
 
                     >
-                        <Button type="normal" onClick={(e) => e.preventDefault()} className="connect-button">
+                        <Button type="normal" onClick={(e) => e.preventDefault()} className="connect-button but2">
                             <img src={WalletOutlined} alt="" style={{ width: '20px', marginRight: '10px', verticalAlign: 'middle', }} />
                             {
                                 state.account ? state.account.substr(0, 5) + "..." + state.account.substr(state.account.length - 5, state.account.length) : " Connect Wallet"
@@ -176,11 +184,22 @@ const ConnectWallet = () => {
 
                         </Button>
                     </Dropdown>
+                    {/* e.preventDefault() */}
+                    <Button type="normal" onClick={(e) => { setShowWallet(true) }} className="connect-button but1">
+                            <img src={WalletOutlined} alt="" style={{ width: '20px', marginRight: '10px', verticalAlign: 'middle', }} />
+                            {
+                                state.account ? state.account.substr(0, 5) + "..." + state.account.substr(state.account.length - 5, state.account.length) : " Connect Wallet"
+                            }
+
+                        </Button>
+                    </div>
                 )
             }
             {
                 location.pathname !== "/" && (
+                <div>
                     <Dropdown
+                    className="dropdow"
                         placement='bottomRight'
                         menu={{
                             items,
@@ -197,14 +216,20 @@ const ConnectWallet = () => {
                         }}
                         trigger={['click']}
                     >
-                        <Button type="primary" onClick={(e) => e.preventDefault()
-                        } className="" >
+                        <Button type="primary" onClick={(e) => e.preventDefault()} className="connect-button but2" >
                             <img src={WalletOutlined} alt="" style={{ marginRight: '10px', verticalAlign: 'middle', }} />
                             {
                                 state.account ? state.account.substr(0, 5) + "..." + state.account.substr(state.account.length - 5, state.account.length) : " Connect Wallet"
                             }
                         </Button>
                     </Dropdown>
+                    <Button type="primary" onClick={(e) =>{ setShowWallet(true) }} className="connect-button but1" >
+                            <img src={WalletOutlined} alt="" style={{ marginRight: '10px', verticalAlign: 'middle', }} />
+                            {
+                                state.account ? state.account.substr(0, 5) + "..." + state.account.substr(state.account.length - 5, state.account.length) : " Connect Wallet"
+                            }
+                        </Button>
+                   </div> 
                 )
             }
 

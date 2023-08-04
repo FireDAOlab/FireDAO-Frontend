@@ -24,24 +24,14 @@ export default   styled.div`
     }
 
     .col:nth-child(2) {
-      width: 50px;
+      width: 300px;
     }
 
     .col:nth-child(3) {
       width: 100px;
     }
 
-    .col:nth-child(4) {
-      width: 50px;
-    }
 
-    .col:nth-child(5) {
-      width: 300px;
-    }
-
-    .col:nth-child(6) {
-      width: 100px;
-    }
   }
 
   .del-content {

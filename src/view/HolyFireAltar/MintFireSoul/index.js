@@ -196,8 +196,10 @@ const MintFireSoul = (props) => {
                             <div className="img-box">
                                 <img className="img" src={FireSoul} alt="" />
                                 <p >Pass FireSeed,Cast FireSoul</p>
-                                <div style={{ display: 'flex', marginTop: '-20px', height: '30px' }} ><hr style={{ width: '25%', opacity: ' 0.15' }} />
-                                    <span style={{ fontSize: '13px' }}>&nbsp;FireDAO Ecosystem&nbsp;</span><hr style={{ width: '25%', opacity: ' 0.15' }} />
+                                <div style={{ display: 'flex', marginTop: '-20px', height: '30px' }} >
+                                    <hr className='ecoshr' />
+                                    <span className='ecos'>&nbsp;FireDAO Ecosystem&nbsp;</span>
+                                    <hr className='ecoshr'/>
                                 </div>
                             </div>
                         </div>
@@ -258,8 +260,10 @@ const MintFireSoul = (props) => {
                                     </Button>
                                 </div>
                                 <div className='fee'>
-                                    <span>Fee : </span>
+                                    <span style={{fontFamily: 'Roboto-SemiBold, Roboto',fontWeight: '600'}}>Fee : </span>
                                     <img src={passportIcon} />
+                                    <span style={{color:'rgba(98, 132, 245, 1)',paddingLeft:'10px',
+                                        fontFamily: 'Roboto-SemiBold, Roboto',fontWeight:'600',verticalAlign:'middle'}}>{fee}ETH</span>
                                 </div>
                                 <Form.Item className="button-box" >
                                     {!allowance && <Button className="subBtn" htmlType="submit" type="primary"
