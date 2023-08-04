@@ -165,27 +165,24 @@ font-weight: bold;
 color: #8A8080;
         .col1 {
           font-size:16px;
-          text-align: left;
           justify-content: flex-start;
           &:nth-child(1) {
             width: 10%;
-            margin-left:50px;
+            margin-left:80px;
+            text-align:left;
           }
 
           &:nth-child(2) {
-            width: 15%;
-            margin-left:50px;
+            width: 45%;
+            margin-left:20px;
           }
 
           &:nth-child(3) {
-            width:28%;
-            margin-left:50px;
-          }
-          &:nth-child(4) {
-            width: 22%;
-            margin-left:50px;
+            width:20%;
+            margin-left:80px;
             text-align:left;
           }
+         
         }
       }
         .list-item {
@@ -193,7 +190,6 @@ color: #8A8080;
           .col1 {
             overflow: hidden;
             padding-left: 0.5%;
-            text-align:center;
             //text-overflow: ellipsis;
 
           }
@@ -217,7 +213,7 @@ color: #8A8080;
             background: rgba(205, 158, 87, 0.20);
             text-align:center;
             border-radius:25px;
-           
+            text-align:center;
           }
 
           .fire-list-box{
@@ -754,25 +750,22 @@ color: #8A8080;
 
 .col1 {
           font-size:14px;
-          text-align: left;
           justify-content: flex-start;
           &:nth-child(1) {
-            width: 18%;
-            margin-left:50px;
+            width: 10%;
+            margin-left:30px;
+            text-align:left;
           }
 
           &:nth-child(2) {
-            width: 15%;
-            margin-left:50px;
+            width: 58%;
+            
+            margin-left:20px;
           }
 
           &:nth-child(3) {
-            width:28%;
-            margin-left:50px;
-          }
-          &:nth-child(4) {
-            width: 22%;
-            margin-left:50px;
+            width:10%;
+            margin-left:20px;
             text-align:left;
           }
         }
@@ -817,16 +810,13 @@ font-size:14px;
           }
 
           .address {
-            
+            text-align:center;
                 color: rgba(205, 158, 87, 1);
-           
                width: 120px;
             border: 1px solid rgba(205, 158, 87, 1);
             background: rgba(205, 158, 87, 0.20);
             text-align:center;
             border-radius:25px;
-            /* width: 130px; */
-            margin-right:40px;
            
           }
           .sc{
@@ -1365,28 +1355,22 @@ color: #8A8080;
        
         .col1 {
           font-size:14px;
-          text-align: left;
           align-items: center;
           &:nth-child(1) {
-            width: 8%;
-            margin-left:0px;
+            width: 10%;
+            margin-left:20px;
+            text-align:left;
           }
 
           &:nth-child(2) {
-            width: 20%;
-            text-align: center;
-            margin-left:15px;
+            width: 65%;
+            margin-left:20px;
           }
 
           &:nth-child(3) {
-            width:38%;
-            text-align: center;
-           
+            width:20%;
             margin-left:20px;
-          }
-          &:nth-child(4) {
-            width: 22%;
-            margin-left:20px;
+            text-align:left;
           }
         }
       }
@@ -1810,28 +1794,22 @@ color: #8A8080;
        
         .col1 {
           font-size:12px;
-          text-align: left;
           align-items: center;
           &:nth-child(1) {
             width: 10%;
-            margin-left:0px;
+            margin-left:10px;
+            text-align:left;
           }
 
           &:nth-child(2) {
-            width: 20%;
-            text-align: center;
-            margin-left:20px;
+            width: 66%;
+            margin-left:10px;
           }
 
           &:nth-child(3) {
-            width:35%;
-            text-align: center;
-           
-            margin-left:20px;
-          }
-          &:nth-child(4) {
-            width: 22%;
-            margin-left:20px;
+            width:20%;
+            margin-left:10px;
+            text-align:left;
           }
         }
       }

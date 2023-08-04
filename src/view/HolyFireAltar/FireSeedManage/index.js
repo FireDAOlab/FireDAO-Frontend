@@ -80,7 +80,8 @@ const FireLock = (props) => {
 
     const removeOwner = () => {
         let tempArr = Object.assign([], ownerArr)
-        tempArr.shift()
+        // tempArr.shift()
+        console.log(tempArr);
         setOwnerArr(tempArr)
     }
     const onChangePage = async (page) => {
@@ -436,7 +437,7 @@ const FireLock = (props) => {
                             <p >L2 Admain</p>
                             <div className='tj' >
                                 <div type="primary" className='kk' onClick={() => { setShowAdd(true) }}>Add</div>
-                                <div type="primary" className='kk' onClick={() => { setShowRemove(true) }}>Mass Delete</div>
+                                <div type="primary" className='kk' onClick={(e) => {e.target.innerHTML='Delete'; }}>Mass Delete</div>
                             </div>
                         </div>
                         <div className="fire-list-box">
@@ -444,9 +445,9 @@ const FireLock = (props) => {
                                 <div className="col1">
                                     No.
                                 </div>
-                                <div className="col1">
+                                {/* <div className="col1">
                                     PID
-                                </div>
+                                </div> */}
                                 <div className="col1">
                                     Wallet Address
                                 </div>
@@ -460,18 +461,19 @@ const FireLock = (props) => {
 
                             <div className="list-item">
                                 <div className="col1 no">
-                                    {item}
+                                    {index+1}
                                 </div>
-                                <div className="col1 pid">
+                                {/* <div className="col1 pid">
                                 {item}
-                                </div>
+                                </div> */}
                                 <div className="col1 address">
                                 {item}
                                 </div>
-                                {(ownerArr.length = 1) && (
+                                {(ownerArr.length >= 1) && (
                                     <div className="col1 sc1" onClick={() => { removeOwner() }}>
                                         <img src={sc} className="sc" />
                                     </div>
+                                    
                                 )}
                             </div>
 

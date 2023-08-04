@@ -68,11 +68,9 @@ const FireLock = (props) => {
                     <div className="fire-list-box1">
                         <div className="list-header flex-box">
                             <div className="col">
-                                No
+                                No.
                             </div>
-                            <div className="col">
-                                PID
-                            </div>
+
                             <div className="col">
                                 Address
                             </div>
@@ -83,21 +81,14 @@ const FireLock = (props) => {
                                     <Form form={form} name="control-hooks" className="form">
                                         <div className="flex-box">
                                             <Form.Item className="col no1"  >
-                                                {item}
+                                                {index + 1}
                                             </Form.Item >
-                                            <Form.Item className="col pid1" >
-                                                <Input placeholder={item} />
-                                            </Form.Item>
-                                            <Form.Item className="col address1" >
-                                                <Input placeholder={item} />
+
+                                            <Form.Item name={"owner" + index} className="col address1" >
+                                                <Input />
                                             </Form.Item>
 
                                         </div>
-                                        {/* <hr style={{ opacity: '0.1', width: '85%' }} /> */}
-                                        {/* {(ownerArr.length > 1 && index == 0) && (
-                                        <UserDeleteOutlined className="icon" onClick={() => {
-                                            removeOwner()
-                                        }} />)}  */}
                                         {(index == ownerArr.length - 1) && (
                                             <img className="icon" src={add} onClick={() => {
                                                 addOwner()
@@ -119,20 +110,12 @@ const FireLock = (props) => {
                                         <div className='mintfee'>
                                             <div className="fee1">
                                                 <div className="name">
-                                                    PID
+                                                    No.
                                                 </div>
 
-                                                <Form.Item
-                                                    className='value'
-                                                    validateTrigger="onBlur"
-                                                    validateFirst={true}
-                                                    rules={[
-                                                        // { required: true, message: 'Please input Title!' },
-                                                    ]}
-                                                >
-
-                                                    <Input placeholder={item} className="too1" />
-                                                </Form.Item>
+                                                <Form.Item className="value"   >
+                                                    {index + 1}
+                                                </Form.Item >
                                             </div>
                                             <div className='fee1'>
                                                 <div className="name">
@@ -140,7 +123,7 @@ const FireLock = (props) => {
                                                 </div>
                                                 <Form.Item
                                                     className='value'
-                                                    name="MintFee"
+                                                    name={"owner" + index}
                                                     validateTrigger="onBlur"
                                                     validateFirst={true}
                                                     rules={[

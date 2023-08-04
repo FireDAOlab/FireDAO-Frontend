@@ -79,19 +79,15 @@ text-align:center;
       text-align: center;
       flex-shrink: 0;
       &:nth-child(1) {
-            width: 10%;
-            margin-left:40px;
+            width: 35%;
+            margin-left:60px;
           }
 
           &:nth-child(2) {
-            width: 25%;
-            margin-left:30px;
+            width: 50%;
+            margin-left:0px;
           }
 
-          &:nth-child(3) {
-            width:38%;
-            margin-left:20px;
-          }
     }
  
     
@@ -285,19 +281,14 @@ padding: 0em 0 0em;
   text-align: center;
   flex-shrink: 0;
   &:nth-child(1) {
-        width: 10%;
-        margin-left:40px;
-      }
+            width: 35%;
+            margin-left:60px;
+          }
 
-      &:nth-child(2) {
-        width: 25%;
-        margin-left:30px;
-      }
-
-      &:nth-child(3) {
-        width:38%;
-        margin-left:20px;
-      }
+          &:nth-child(2) {
+            width: 50%;
+            margin-left:0px;
+          }
 }
 
 
