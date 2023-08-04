@@ -267,6 +267,7 @@ const FireLock = (props) => {
                             <div className="content-item">
                                 <div className="panel-title">
                                     Owner Address
+                                    
                                 </div>
                                 <div className="current-box">
                                     <Form form={form} name="control-hooks" className="form">
