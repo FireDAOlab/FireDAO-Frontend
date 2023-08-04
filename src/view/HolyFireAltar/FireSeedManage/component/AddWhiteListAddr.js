@@ -82,18 +82,18 @@ const FireLock = (props) => {
                                 <div className="address-item" key={index}>
                                     <Form form={form} name="control-hooks" className="form">
                                         <div className="flex-box">
-                                            <div className="col " style={{ marginLeft: '30px' }}>
+                                            <Form.Item className="col no1"  >
                                                 {item}
-                                            </div>
-                                            <Form.Item className="col pid1" style={{ marginLeft: '10px' }}>
-                                                <Input placeholder={item}  />
+                                            </Form.Item >
+                                            <Form.Item className="col pid1" >
+                                                <Input placeholder={item} />
                                             </Form.Item>
-                                            <Form.Item className="col address1" style={{ marginLeft: '10px',width: '130px', border: '1px solid rgba(205, 158, 87, 1)', background: 'rgba(205, 158, 87, 0.20)', textAlign: 'center', borderRadius: '25px'  }}>
-                                                <Input placeholder={item}  />
+                                            <Form.Item className="col address1" >
+                                                <Input placeholder={item} />
                                             </Form.Item>
-                                            
+
                                         </div>
-                                        <hr style={{ opacity: '0.1', width: '85%' }} />
+                                        {/* <hr style={{ opacity: '0.1', width: '85%' }} /> */}
                                         {/* {(ownerArr.length > 1 && index == 0) && (
                                         <UserDeleteOutlined className="icon" onClick={() => {
                                             removeOwner()
@@ -109,13 +109,63 @@ const FireLock = (props) => {
                     </div>
                 </div>
                 <div className='phone-list'>
+                    <div className="content-item">
+                        {ownerArr.map((item, index) => {
+                            return (
+                                <div className='discount' key={index}>
 
+
+                                    <Form form={form} name="control-hooks">
+                                        <div className='mintfee'>
+                                            <div className="fee1">
+                                                <div className="name">
+                                                    PID
+                                                </div>
+
+                                                <Form.Item
+                                                    className='value'
+                                                    validateTrigger="onBlur"
+                                                    validateFirst={true}
+                                                    rules={[
+                                                        // { required: true, message: 'Please input Title!' },
+                                                    ]}
+                                                >
+
+                                                    <Input placeholder={item} className="too1" />
+                                                </Form.Item>
+                                            </div>
+                                            <div className='fee1'>
+                                                <div className="name">
+                                                    Address
+                                                </div>
+                                                <Form.Item
+                                                    className='value'
+                                                    name="MintFee"
+                                                    validateTrigger="onBlur"
+                                                    validateFirst={true}
+                                                    rules={[
+                                                        { required: true, message: 'Please input MintFee!' },
+                                                    ]}
+                                                >
+                                                    <Input className='too1' />
+                                                </Form.Item>
+                                            </div>
+                                        </div>
+                                        {(index == ownerArr.length - 1) && (
+                                            <img className="icon" src={add} onClick={() => {
+                                                addOwner()
+                                            }} />)}
+                                    </Form>
+                                </div>
+                            )
+                        })}
+                    </div>
                 </div>
                 <Button className="sub-btn" onClick={handleSetAddress} type="primary">
                     Submit
                 </Button>
             </div>
-        </AddWhiteListAddrStyle>
+        </AddWhiteListAddrStyle >
     )
 }
 export default FireLock
