@@ -91,7 +91,7 @@ const SBTList = (props) => {
                                 Issued Year
                             </div>
                             <div className="col">
-                                Issued Year
+                                Total Issue
                             </div>
                             <div className="col">
                                 Other
@@ -127,7 +127,7 @@ const SBTList = (props) => {
                     <h2 className="panel-title">
                         My SBTs
                     </h2>
-                    <div style={{ display: 'flex' }}>
+                    <div className='disabox'>
                         <div className="soulaccount">
                             <div className="name">
                                 My SoulAccount

@@ -78,9 +78,9 @@ const FireLock = (props) => {
     }
 
 
-    const removeOwner = () => {
+    const removeOwner = (index) => {
         let tempArr = Object.assign([], ownerArr)
-        // tempArr.shift()
+        tempArr.splice(index,1)
         console.log(tempArr);
         setOwnerArr(tempArr)
     }
@@ -459,7 +459,7 @@ const FireLock = (props) => {
 
                             {whitelist.map((item, index) => (
 
-                            <div className="list-item">
+                            <div className="list-item" key={index}>
                                 <div className="col1 no">
                                     {index+1}
                                 </div>

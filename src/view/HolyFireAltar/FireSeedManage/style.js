@@ -440,7 +440,8 @@ width: 52%;
           }
 .kk{
   width: 45%;
-  height: 30px;
+  height: 40px;
+  line-height:40px;
   background: rgba(255,255,255,0.15);
 border-radius: 34px 34px 34px 34px;
 font-size:16px;
@@ -1055,7 +1056,8 @@ font-size:14px;
 }
 .kk{
   width: 45%;
-  height: 30px;
+  height: 40px;
+  line-height:40px;
   background: rgba(255,255,255,0.15);
 border-radius: 34px 34px 34px 34px;
 font-size:14px;

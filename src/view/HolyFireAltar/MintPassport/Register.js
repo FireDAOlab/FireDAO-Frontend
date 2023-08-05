@@ -9,6 +9,7 @@ import long from "../../../imgs/long.png";
 import ethereum from "../../../imgs/ethereum.png";
 import { useNavigate } from 'react-router-dom'
 import addressMap from "../../../api/addressMap";
+import Detail from "./component/Detail";
 import develop from "../../../env"
 import RegisterStyle from "./style"
 
@@ -26,6 +27,7 @@ const Register = (props) => {
     const [messageApi] = message.useMessage();
     let { state, dispatch } = useConnect();
     const [isExist, setIsExist] = useState(false)
+    const [isDetail,setDetail] =useState(false)
     const [solName, setSolname] = useState(undefined)
     const [fee, setFee] = useState(0.008)
     const [wethBalance, setWethBalance] = useState(0)
@@ -369,6 +371,7 @@ const Register = (props) => {
     }
     return (
         <RegisterStyle className='daoHome daoContentBg'>
+             {isDetail&&<Detail  closeDialog={()=>{setDetail(false)}}/>}
             <div className="panel-box" >
                 <div className="panel-container">
                     <h2 className="panel-title">
@@ -385,7 +388,7 @@ const Register = (props) => {
                                     <hr className='ecoshr' />
                                 </div>
                             </div>
-                            <div className="nft-detail">
+                            <div className="nft-detail" onClick={()=>{setDetail(true)}}>
                                 <div className="title">
                                     Details
                                 </div>
