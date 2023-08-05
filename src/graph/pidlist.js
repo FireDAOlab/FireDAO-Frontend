@@ -12,7 +12,6 @@ export function getFireLock(amount, skip) {
 
                    information
                 }
-
         }`
     }, "")
 }
@@ -34,7 +33,6 @@ export function getPidList(amount, skip) {
 
 export function getPidCount(amount) {
     return fetchQuery("firepassport-nei-bu-kai-fa-ban", {
-
         text: `{
                   registers (first:1 orderBy:pid orderDirection:desc) {
                     pid

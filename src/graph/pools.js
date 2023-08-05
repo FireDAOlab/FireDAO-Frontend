@@ -11,7 +11,6 @@ export function getFLMPoolData() {
         token
         amount
         time
-
       }
       adminTransferRecords(first:5) {
         pid
