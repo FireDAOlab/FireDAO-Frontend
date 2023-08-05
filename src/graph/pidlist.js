@@ -12,7 +12,6 @@ export function getFireLock(amount, skip) {
 
                    information
                 }
-
         }`
     }, "")
 }

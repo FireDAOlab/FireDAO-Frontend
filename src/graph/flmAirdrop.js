@@ -12,7 +12,6 @@ export function getWhitelist() {
     amount
     blockTimestamp
   }
-
 }`
     }, "")
 }
