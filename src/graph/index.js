@@ -1,5 +1,4 @@
 /* eslint-disable */
-
 import $ from 'jquery'
 import {message} from "antd";
 import develop from "../env"
@@ -13,7 +12,6 @@ const headers = {
 
 const fetchQueryBase = (path,params, variables) => {
     //juicebox
-    //https://gateway.thegraph.com/api/5da5a88f070ac0b7892dc2aad44df198/deployments/id/QmcKc84SeJy1BJVH74YGJpfnjgbZtdG6MuifH9BfSf9fKP
 
     // https://gateway.testnet.thegraph.com/api/[api-key]/subgraphs/id/FFVH8p93DLnnYogLy4nhwTUSo7C976ZaGi1JUhvGVotQ
     const subgraphUrl = develop.graphUrlBase

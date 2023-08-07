@@ -31,26 +31,28 @@ export function getFLMPoolData() {
         weightCoefficient
         time
       }
-            userClaimFlms(first:5){
-              pid
-              name
-              fid
-              user
-              flmAmount
-              time
-            }
-            extractLpRecords(first:5){
-              pid
-              name
-              fid
-              user
-              lpAmount
-              time
-            }
+      
+       userClaimFlms(first:5){
+          pid
+          name
+          fid
+          user
+          flmAmount
+          time
+        }
+        extractLpRecords(first:5){
+          pid
+          name
+          fid
+          user
+          lpAmount
+          time
+        }
 
 }`
     }, "")
 }
+
 export function getFDTPoolData() {
     return fetchQueryBase("patton-sr/fdtlockmining", {
         text: `
