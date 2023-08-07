@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export default styled.div`
 
-@media screen and (min-width: 1500px) {
+@media screen and (max-width: 1950px) {
   .panel-title{
   font-size:30px;
 }
@@ -145,7 +145,7 @@ font-size:15px;
   /* mobile style */
   @media screen and (max-width: 1500px) {
     .panel-title{
-  font-size:30px;
+  font-size:21px;
 }
   .more-btn {
     width: 300px;
@@ -183,6 +183,7 @@ font-size:15px;
   }
   .total-score{
 
+    width: ;:100%
     margin: 20px 10px;
     display: flex;
     align-items: center;
@@ -192,6 +193,7 @@ font-weight: bold;
 color: #8A8080;
 line-height: 21px;
 font-size:14px;
+width:48%;
     }
     .score{
       text-align:center;
@@ -208,6 +210,7 @@ border: 1px solid rgba(254,109,70,0.5);
     }
   }
   .my-soul{
+    width:100%
     margin: 20px 0px;
     margin-right:20px;
     display: flex;
@@ -219,6 +222,7 @@ font-weight: bold;
 color: #8A8080;
 line-height: 21px;
 font-size:14px;
+width:48%;
     }
     .value{
       text-align:center;

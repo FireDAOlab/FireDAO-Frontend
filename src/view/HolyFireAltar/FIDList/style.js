@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export default  styled.div`
 
-@media screen and (min-width: 1500px) {
+@media screen and (max-width: 1950px) {
     .panel-container {
     padding:30px 4.6%;
         .header-box {
@@ -21,6 +21,9 @@ export default  styled.div`
                 height: 45px;
                 width: 30%;
                 margin: 0;
+                .nav-item{
+                  font-size:18px;
+                }
             }
           }
 
@@ -127,6 +130,9 @@ export default  styled.div`
                 height: 45px;
                 width: 50%;
                 margin: 0;
+                .nav-item{
+                  font-size:16px;
+                }
             }
           }
 

@@ -67,7 +67,7 @@ padding: 0px 10px;
     line-height:15px;
       .nav-item {
         width:42%;
-        font-size:20px;
+        font-size:18px;
       }
     }
   }
@@ -664,7 +664,7 @@ width: 52%;
     line-height:15px;
       .nav-item {
         width:42%;
-        font-size:14px;
+        font-size:16px;
       }
     }
   }
@@ -744,7 +744,7 @@ padding: 20px;
         }
         .flex-box2, .list-item {
           justify-content: flex-start;
-          font-size:14px;
+          font-size:16px;
           font-family: Roboto-Medium, Roboto;
 font-weight: bold;
 color: #8A8080;

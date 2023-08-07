@@ -312,7 +312,7 @@ const GlobalStyle = createGlobalStyle`
     }
     .panel-box{
       .panel-title {
-        font-size:23px;
+        font-size:30px;
         margin: 0px;
       }
     }
@@ -357,7 +357,7 @@ const GlobalStyle = createGlobalStyle`
 
     .panel-box{
       .panel-title {
-        font-size:20px;
+        font-size:21px;
         margin: 0px;
       }
     }

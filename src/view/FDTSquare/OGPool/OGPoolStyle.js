@@ -4,7 +4,8 @@ export default styled.div`
     border: none !important;
   }
 
-  .page-title {
+  @media screen and (max-width: 1950px) {
+   .page-title {
     font-size: 30px;
     font-family: Roboto-Bold, Roboto;
     font-weight: bold;
@@ -44,9 +45,10 @@ export default styled.div`
 
     .fire-nav-list {
       height: 45px;
-    width: 28%;
+    width: 34%;
       .nav-item {
-        width:42%;
+        width:46%;
+        font-size:18px;
       }
     }
   }
@@ -334,6 +336,7 @@ background: linear-gradient(32deg, #FF4E50 0%, #F9D423 100%);
     width: 28%;
       .nav-item {
         width:42%;
+        font-size:18px;
       }
       }
     }
@@ -543,15 +546,13 @@ margin-right:36px;
       }
     }
   }
+}
 
-  .pagination {
-    text-align: center;
-  }
 
   /* mobile style */
   @media screen and (max-width: 1500px) {
     .page-title {
-    font-size: 30px;
+    font-size: 21px;
     font-family: Roboto-Bold, Roboto;
     font-weight: bold;
     padding: 0px 11.7%;
@@ -590,9 +591,10 @@ margin-right:36px;
 
     .fire-nav-list {
       height: 45px;
-    width: 43%;
+    width: 46%;
       .nav-item {
-        width:42%;
+        width:46%;
+        font-size:16px;
       }
     }
   }
@@ -881,6 +883,7 @@ background: linear-gradient(32deg, #FF4E50 0%, #F9D423 100%);
     width: 43%;
       .nav-item {
         width:42%;
+        font-size:16px;
       }
       }
     }
@@ -918,10 +921,11 @@ background: linear-gradient(32deg, #FF4E50 0%, #F9D423 100%);
   .fire-list-box {
         .list-header {
             padding: 20px 1em;
+            justify-content: flex-start;
         }
-        .list-item, .list-header {
+        .list-item {
           justify-content: flex-start;
-          /* padding: 0.5em 2.5em 0.5em 2em; */
+          padding: 0em 1em;
           
         }
   
@@ -929,24 +933,28 @@ background: linear-gradient(32deg, #FF4E50 0%, #F9D423 100%);
       text-align:left;
       padding-left: 0.5%;
       &:nth-child(1) {
-        width: 7%;
+        width: 5%;
       }
 
       &:nth-child(2) {
-        width: 10%;
+        width: 9%;
+        margin-left:3px;
       }
 
       &:nth-child(3) {
-        width: 13%;
+        width: 14%;
+        margin-left:3px;
+
       }
 
       &:nth-child(4) {
-        width: 17.5%;
+        width: 18%;
       }
 
       &:nth-child(5) {
         width: 8%;
-        /* padding-right: 5px; */
+        margin-left:10px;
+
       }
 
       &:nth-child(6) {
@@ -1090,6 +1098,12 @@ margin-right:18px;
       }
     }
   }
+  }
+
+
+
+  .pagination {
+    text-align: center;
   }
 `
 

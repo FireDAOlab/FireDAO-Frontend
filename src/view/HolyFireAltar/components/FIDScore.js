@@ -93,8 +93,8 @@ const FIDScore = (props) => {
     return (
         <FIDScoreStyle>
             <div  className="panel-box">
-                <div className="panel-container" style={{ border: 'none',paddingTop: "3em" }}>
-                    <div className="panel-title" style={{fontSize:'30px'}}>
+                <div className="panel-container" style={{ border: 'none'}}>
+                    <div className="panel-title" >
                         FID Score
                     </div>
                     <div style={{display:'flex',marginTop:'25px'}}>

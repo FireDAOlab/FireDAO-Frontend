@@ -152,7 +152,7 @@ export default styled.div`
           cursor: pointer;
           width: 23%;
           border-radius: 25px;
-          font-size: 20px;
+          font-size: 18px;
           font-weight: bold;
 
           &.active {
@@ -1280,7 +1280,7 @@ height:125px;
       width: 100%;
       height: 40px;
       .nav-item{
-        font-size:12px;
+        font-size:14px;
       }
     }
   }

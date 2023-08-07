@@ -183,11 +183,11 @@ const FIDList = (props) => {
                             <div className="col">
                                 Reputation
                             </div>
-                            {/* {
+                            {
                                 !searchData && activeNav == 1 && state.PidArr.map((item, index) => (
                                     Row(item, index)
                                 ))
-                            } */}
+                            }
                             {
                                 activeNav == 2 && FIDARR.map((item, index) => (
                                     index >= pageCount * (curPage - 1) && index < pageCount * curPage &&

@@ -462,7 +462,7 @@ width: 85%;
         width: 25px;
         line-height: 30px;
         font-size: 26px;
-        margin-left: 45%;
+        /* margin-left: 45%; */
       }
             .mintfee{
               width: 100%;

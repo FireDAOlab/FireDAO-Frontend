@@ -1,27 +1,32 @@
-import React, {useEffect, useRef, useState} from 'react';
-import {useConnect} from "../../../api/contracts";
+import React, { useEffect, useRef, useState } from 'react';
+import { useConnect } from "../../../api/contracts";
 import {
     Radio,
     Button,
     message,
     Form,
     Input,
-    Switch 
+    Switch, Pagination
 } from 'antd';
-import {getContractByName, getContractByContract} from "../../../api/connectContract";
-import {dealMethod, dealPayMethod, viewMethod} from "../../../utils/contractUtil"
+import { getContractByName, getContractByContract } from "../../../api/connectContract";
+import { dealMethod, dealPayMethod, viewMethod } from "../../../utils/contractUtil"
 import develop from "../../../env";
 import judgeStatus from "../../../utils/judgeStatus";
 import OGPoolAdminStyle from "./OGPoolAdminStyle";
 import AddAddressRate from "./AddAddressRate.js";
-import {showNum} from "../../../utils/bigNumberUtil";
-import {getSecondDonateRecord, getThreeDonateRecord} from "../../../graph/donate";
+import { showNum } from "../../../utils/bigNumberUtil";
+import del from "../../../imgs/sc.png";
+import eth from "../../../imgs/ethereum.png";
+import { getSecondDonateRecord, getThreeDonateRecord } from "../../../graph/donate";
 import BigNumber from "bignumber.js";
 
 const OGPool = (props) => {
+
     const [form2] = Form.useForm();
-    let {state, dispatch} = useConnect();
+    let { state, dispatch } = useConnect();
+    const [searchData, setSearchData] = useState("")
     const [activeNav, setActiveNav] = useState(1)
+    const [recordNav, setRecordNav] = useState(1)
     const [form] = Form.useForm();
     const [secondAdmins, setSecondAdmin] = useState([])
     const [assignAmin, setAssignAdmin] = useState([])
@@ -52,7 +57,7 @@ const OGPool = (props) => {
     const [curId, setCurId] = useState("")
     const onChange = (checked) => {
         console.log(`switch to ${checked}`);
-      };
+    };
     const handleViewMethod = async (name, params) => {
         let contractTemp = await getContractByName("PrivateExchangePoolOG", state.api,)
         if (!contractTemp) {
@@ -355,14 +360,15 @@ const OGPool = (props) => {
     }
     const Row2 = (item, index) => {
         return <div className="list-item " key={index}>
-            <div className="col id">
+            <div className="col no">
+                {index + 1}
+            </div>
+            <div className="col pid">
                 {item.Pid}
             </div>
-            <div className="col">
+            <div className="col ">
                 {item.name}
             </div>
-
-
             <div className="col address">
                 {item.user &&
                     <a href={develop.ethScan + "address/" + item.user} target="_blank">
@@ -371,7 +377,21 @@ const OGPool = (props) => {
                 }
 
             </div>
-
+            <div className="col">
+                
+            </div>
+            <div className="col">
+               $
+            </div>
+            <div className="col ">
+              $
+            </div>
+            <div className="col">
+           
+            </div>
+            <div className="col ">
+             
+            </div>
 
         </div>
     }
@@ -383,30 +403,30 @@ const OGPool = (props) => {
                 OG Pool
             </div>
             <div className="header-nav">
-            <div className="fire-nav-list">
-                <div className={"nav-item " + (activeNav == 1 ? "active" : "")} onClick={() => {
-                    setActiveNav(1)
-                }}>
-                    Important Operation
-                </div>
-                <div className={"nav-item " + (activeNav == 2 ? "active" : "")} onClick={() => {
-                    setActiveNav(2)
-                }}>
-                    OG Contract
-                    Parameters
-                </div>
-                <div className={"nav-item " + (activeNav == 3 ? "active" : "")} onClick={() => {
-                    setActiveNav(3)
-                }}>
-                    OG Donate Pool
-                </div>
-                {/* <div className={"nav-item " + (activeNav == 4 ? "active" : "")} onClick={() => {
+                <div className="fire-nav-list">
+                    <div className={"nav-item " + (activeNav == 1 ? "active" : "")} onClick={() => {
+                        setActiveNav(1)
+                    }}>
+                        Important Operation
+                    </div>
+                    <div className={"nav-item " + (activeNav == 2 ? "active" : "")} onClick={() => {
+                        setActiveNav(2)
+                    }}>
+                        OG Contract
+                        Parameters
+                    </div>
+                    <div className={"nav-item " + (activeNav == 3 ? "active" : "")} onClick={() => {
+                        setActiveNav(3)
+                    }}>
+                        OG Donate Pool
+                    </div>
+                    {/* <div className={"nav-item " + (activeNav == 4 ? "active" : "")} onClick={() => {
                     setActiveNav(4)
                 }}>
                     Summary
                 </div> */}
+                </div>
             </div>
-        </div>
             {activeNav == 1 && (
                 <div className="part1">
                     <div className="panel-box">
@@ -426,7 +446,7 @@ const OGPool = (props) => {
                                     validateTrigger="onBlur"
                                     validateFirst={true}
                                 >
-                                    <Input/>
+                                    <Input />
                                 </Form.Item>
                                 <Button type="primary" className="go-btn" onClick={() => {
                                     transferOwnership()
@@ -456,7 +476,7 @@ const OGPool = (props) => {
                         </div>
 
                     </div>
-                    <div className="panel-box">
+                    {/* <div className="panel-box">
                         <div className="panel-container">
                             <div className="panel-title">
                                 Set Pid Status For Admin: {status1 ? "True" : "False"}
@@ -499,12 +519,12 @@ const OGPool = (props) => {
                                 <Button type="primary" onClick={setFDTAddress}>Submit</Button>
                             </Form>
                         </div>
-                    </div>
+                    </div> */}
                 </div>
             )}
             {activeNav == 2 && (
                 <div>
-                    <div className="panel-box part2">
+                    <div className="panel-box part21">
                         <div className="panel-container">
                             <div className="panel-title">
                                 Set Level 2 Administrator
@@ -512,19 +532,54 @@ const OGPool = (props) => {
                             <div className="fire-list-box">
                                 <div className="list-header flex-box">
                                     <div className="col">
-                                        Address
+                                        No.
+                                    </div>
+                                    <div className="col">
+                                        PID
+                                    </div>
+                                    <div className="col">
+                                        Username
+                                    </div>
+                                    <div className="col">
+                                        Wallet Address
+                                    </div>
+                                    <div className="col">
+                                        Delete
                                     </div>
                                 </div>
                                 {
                                     secondAdmins.map((item, index) => (
-                                        <div className="row list-item" key={index}>
-                                            {item}
+                                        <div className='list-item '>
+                                            <div className="col no" key={index}>
+                                                {index + 1}
+                                            </div>
+                                            <div className="col pid" >
+
+                                            </div>
+                                            <div className="col" >
+
+                                            </div>
+                                            <div className="col address" >
+                                                {item}
+                                            </div>
+                                            <div className="col del" >
+                                                <img src={del} className="sc" />
+                                            </div>
                                         </div>
                                     ))
                                 }
 
                             </div>
-                            <Form form={form} name="control-hooks" className="form">
+
+                            <div className="btns" style={{ textAlign: 'center', marginTop: '1.7em' }}>
+                                <Button className="add-btn" type="primary" onClick={() => {
+                                    setAdmins()
+                                }}>addAdmins</Button>
+                                <Button className="add-btn" type="primary" onClick={() => {
+                                    removeAdmin()
+                                }}>removeAdmin</Button>
+                            </div>
+                            {/* <Form form={form} name="control-hooks" className="form">
 
                                 <Form.Item
                                     name="adminaddress"
@@ -533,19 +588,11 @@ const OGPool = (props) => {
                                     validateFirst={true}
                                 >
                                     <div className="input-box">
-                                        <Input/>
+                                        <Input />
                                     </div>
                                 </Form.Item>
 
-                                <div className="btns">
-                                    <Button className="add-btn" type="primary" onClick={() => {
-                                        setAdmins()
-                                    }}>addAdmins</Button>
-                                    <Button className="add-btn" type="primary" onClick={() => {
-                                        removeAdmin()
-                                    }}>removeAdmin</Button>
-                                </div>
-                            </Form>
+                            </Form> */}
                         </div>
 
                         <div className="panel-container">
@@ -559,7 +606,7 @@ const OGPool = (props) => {
                                     validateFirst={true}
                                 >
                                     <div className="input-box">
-                                        <Input/>
+                                        <Input />
                                     </div>
                                 </Form.Item>
 
@@ -581,7 +628,7 @@ const OGPool = (props) => {
                                     validateFirst={true}
                                 >
                                     <div className="input-box">
-                                        <Input/>
+                                        <Input />
                                     </div>
                                 </Form.Item>
 
@@ -602,7 +649,7 @@ const OGPool = (props) => {
                                         validateFirst={true}
                                     >
                                         <div className="input-box">
-                                            <Input/>
+                                            <Input />
                                         </div>
                                     </Form.Item>
 
@@ -624,7 +671,7 @@ const OGPool = (props) => {
                                     validateFirst={true}
                                 >
                                     <div className="input-box">
-                                        <Input/>
+                                        <Input />
                                     </div>
                                 </Form.Item>
                                 <h2> 2 Level Admin <strong>{inviteRate1}%</strong></h2>
@@ -634,7 +681,7 @@ const OGPool = (props) => {
                                     validateFirst={true}
                                 >
                                     <div className="input-box">
-                                        <Input/>
+                                        <Input />
                                     </div>
                                 </Form.Item>
                                 <div className="btns">
@@ -646,7 +693,7 @@ const OGPool = (props) => {
                         </div>
                         <div className="panel-container">
                             <div className="panel-title">
-                                Invite Rate:<br/>
+                                Invite Rate:<br />
                                 3 Level Admin{inviteRate2}% ID 0,
                                 2 Level Admin{inviteRate1}% ID 1
                             </div>
@@ -658,7 +705,7 @@ const OGPool = (props) => {
                                     validateFirst={true}
                                 >
                                     <div className="input-box">
-                                        <Input/>
+                                        <Input />
                                     </div>
                                 </Form.Item>
                                 <Form.Item
@@ -668,7 +715,7 @@ const OGPool = (props) => {
                                     validateFirst={true}
                                 >
                                     <div className="input-box">
-                                        <Input/>
+                                        <Input />
                                     </div>
                                 </Form.Item>
 
@@ -684,16 +731,64 @@ const OGPool = (props) => {
                             <div className="panel-title">
                                 Fund Allocation
                             </div>
-                            <div className="tip-box">
-                                Recommender Allocation Rate
-                            </div>
-                            <div className=" fire-list-box">
-                                <div className=" list-header ">
+                            <Form form={form2} name="control-hooks" className="form hh">
+                                {/* <Form.Item
+                                    name="assignId"
+                                    label="assignId"
+                                    validateTrigger="onBlur"
+                                    validateFirst={true}
+                                >
+                                    <div className="input-box">
+                                        {curId}
+                                    </div>
+                                </Form.Item> */}
+                                <div style={{ width: '50%', float: 'left' }}>
+
+
+                                    <Form.Item
+                                        name="assignRate"
+                                        label="Recommender Allocation Rate"
+                                        validateTrigger="onBlur"
+                                        validateFirst={true}
+                                    >
+                                        <div className="input-box">
+                                            <Input />
+                                        </div>
+                                    </Form.Item>
+                                    <Form.Item
+                                        name="assignAddress"
+                                        label="Other Address"
+                                        validateTrigger="onBlur"
+                                        validateFirst={true}
+                                    >
+                                        <div className="input-box">
+                                            <Input value={curAddr} onChange={(e) => {
+                                                setCurAddr(e.target.value)
+                                            }} />
+
+                                        </div>
+                                    </Form.Item>
+                                </div>
+
+                                <div className="btns">
+                                    <Button className="add-btn" type="primary" onClick={() => {
+                                        setRateAndAddress()
+                                    }}>Confirm</Button>
+
+                                </div>
+
+
+                            </Form>
+                            <div className="fire-list-box hh1">
+                                <div className="list-header  flex-box1">
                                     <div className="col">
                                         No.
                                     </div>
                                     <div className="col">
-                                        Address
+                                        Username
+                                    </div>
+                                    <div className="col">
+                                        Wallet Address
                                     </div>
 
                                     <div className="col">
@@ -706,80 +801,43 @@ const OGPool = (props) => {
 
                                 {
                                     assignAmin.map((item, index) => (
-                                        <div className="assign-row list-item" key={index} onClick={() => {
+                                        <div className="assign-row list-item hhi" key={index} onClick={() => {
                                             chooseRow(item, index)
                                         }}>
-                                            <div className="col">
+                                            <div className="col no">
                                                 {index + 1}
                                             </div>
                                             <div className="col">
+
+                                            </div>
+                                            <div className="col address">
                                                 {item.assign}
                                             </div>
-                                            <div className="col">
-                                                {item.rate}
+                                            <div className="col ">
+                                                {item.rate}%
                                             </div>
-                                            <div className="col">
-                                                <Button onClick={() => {
-                                                    delARRow(item)
-                                                }}>Del</Button>
+                                            <div className="col del" onClick={() => {
+                                                delARRow(item)
+                                            }}>
+                                                <img src={del} className="sc" />
                                             </div>
+
                                         </div>
 
                                     ))
                                 }
 
                             </div>
+
                             <div className="operate-box">
+
                                 <Button className="add" type="primary" onClick={() => {
                                     setShowAddRate(true)
-                                }}>ADD</Button>
+                                }}>Add</Button>
+                                <Button className="add" type="primary" onClick={() => {
+
+                                }}>Confirm</Button>
                             </div>
-                            <h3 style={{marginTop: '20px'}}>UPDATE</h3>
-                            <Form form={form2} name="control-hooks" className="form">
-                                <Form.Item
-                                    name="assignId"
-                                    label="assignId"
-                                    validateTrigger="onBlur"
-                                    validateFirst={true}
-                                >
-                                    <div className="input-box">
-                                        {curId}
-                                    </div>
-                                </Form.Item>
-                                <Form.Item
-                                    name="assignAddress"
-                                    label="assignAddress"
-                                    validateTrigger="onBlur"
-                                    validateFirst={true}
-                                >
-                                    <div className="input-box">
-                                        <Input value={curAddr} onChange={(e) => {
-                                            setCurAddr(e.target.value)
-                                        }}/>
-
-                                    </div>
-                                </Form.Item>
-
-                                <Form.Item
-                                    name="assignRate"
-                                    label="assignRate"
-                                    validateTrigger="onBlur"
-                                    validateFirst={true}
-                                >
-                                    <div className="input-box">
-                                        <Input/>
-                                    </div>
-                                </Form.Item>
-
-                                <div className="btns">
-                                    <Button className="add-btn" type="primary" onClick={() => {
-                                        setRateAndAddress()
-                                    }}>setRateAndAddress</Button>
-
-                                </div>
-
-
-                            </Form>
                         </div>
                     </div>
                 </div>
@@ -790,7 +848,7 @@ const OGPool = (props) => {
                         <div className="panel-box">
                             <div className="panel-container">
                                 <div className="panel-title">
-                                    OG Donate 1
+                                    OG Round 1
                                 </div>
                                 <div className="donate-info">
                                     <div className="info-item">
@@ -801,22 +859,35 @@ const OGPool = (props) => {
                                             {FDTBalance}
                                         </div>
                                     </div>
-                                    <div className="flex-box">
+                                    <div className="flex-box1">
                                         <div className="info-item">
                                             <div className="name">
                                                 Value
                                             </div>
                                             <div className="value">
-                                                {showNum(BigNumber(FDTBalance).multipliedBy(salePriceV))}
+                                                ${showNum(BigNumber(FDTBalance).multipliedBy(salePriceV))}
                                             </div>
                                         </div>
                                         <div className="info-item">
                                             <div className="name">
                                                 Total Donate
                                             </div>
+
                                             <div className="value">
-                                                {totalDonate} ETH
+                                                <p><img src={eth} style={{ marginTop: '-5px', marginRight: '10px' }} />
+                                                    {totalDonate} ETH</p>
                                             </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div className='rate1'>
+                                    <div className="info-item">
+                                        <div className="name">
+                                            Donate Rate
+                                        </div>
+                                        <div className="value">
+                                            1 FDT-OG = 0.01 USD
                                         </div>
                                     </div>
                                 </div>
@@ -828,7 +899,7 @@ const OGPool = (props) => {
                                         validateFirst={true}
                                     >
                                         <div className="input-box">
-                                            <Input/>
+                                            <Input />
                                         </div>
                                     </Form.Item>
                                     <Form.Item
@@ -838,7 +909,7 @@ const OGPool = (props) => {
                                         validateFirst={true}
                                     >
                                         <div className="input-box">
-                                            <Input/>
+                                            <Input />
                                         </div>
                                     </Form.Item>
                                 </Form>
@@ -856,7 +927,7 @@ const OGPool = (props) => {
                                         validateFirst={true}
                                     >
                                         <div className="input-box">
-                                            <Input/>
+                                            <Input />
                                         </div>
                                     </Form.Item>
                                 </Form>
@@ -868,11 +939,31 @@ const OGPool = (props) => {
                         <div className="panel-box part2">
                             <div className="panel-container">
                                 <div className="panel-title">
-                                    Whitelist
+                                    Donate Records
+                                </div>
+                                <div className="header-box">
+                                    <div className="nav-list-box">
+                                        <div className="fire-nav-list">
+                                            <div className={"nav-item " + (recordNav == 1 ? "active" : "")} onClick={() => {
+                                                setRecordNav(1)
+                                            }}>
+                                                All Records
+                                            </div>
+                                            <div className={"nav-item " + (recordNav == 2 ? "active" : "")} onClick={() => {
+                                                setRecordNav(2)
+                                            }}>
+                                                My Records
+                                            </div>
+                                        </div>
+                                    </div>
+
                                 </div>
                                 <div className="fire-list-box">
                                     <div className="list-header flex-box">
 
+                                        <div className="col">
+                                            No.
+                                        </div>
                                         <div className="col">
                                             PID
                                         </div>
@@ -880,17 +971,44 @@ const OGPool = (props) => {
                                             Username
                                         </div>
                                         <div className="col">
-                                            Address
+                                            Wallet Address
+                                        </div>
+                                        <div className="col">
+                                            ETH
+                                        </div>
+                                        <div className="col">
+                                            Value
+                                        </div>
+                                        <div className="col">
+                                            Rate
+                                        </div>
+                                        <div className="col">
+                                            Amounts
+                                        </div>
+                                        <div className="col">
+                                            Time(UTC)
                                         </div>
 
                                     </div>
 
                                     {
-                                        whiteList.map((item, index) => (
+                                        !searchData && recordNav == 1 && whiteList.map((item, index) => (
+                                            Row2(item, index)
+                                        ))
+                                    }
+                                    {
+                                        recordNav == 2 && whiteList.map((item, index) => (
                                             Row2(item, index)
                                         ))
                                     }
 
+                                </div>
+                                <div className="pagination">
+                                    {
+                                        recordNav == 1 && <Pagination current={curPage} showSizeChanger onShowSizeChange={handleShowSizeChange}
+                                            onChange={onChangePage} total={total}
+                                            defaultPageSize={pageCount} />
+                                    }
                                 </div>
                             </div>
 
@@ -998,7 +1116,7 @@ const OGPool = (props) => {
             {showAddRate && (<AddAddressRate updateData={() => {
             }} closeDialog={() => {
                 setShowAddRate(false)
-            }}/>)}
+            }} />)}
 
         </OGPoolAdminStyle>
     )

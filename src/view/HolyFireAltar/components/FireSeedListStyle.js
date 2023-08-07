@@ -5,7 +5,7 @@ export default styled.div`
   width: 100%;
 }
 
-@media screen and (min-width: 1500px) {
+@media screen and (max-width: 1950px) {
   .panel-title{
   font-size:30px;
 }
@@ -100,7 +100,7 @@ font-weight: bold;
   /* mobile style */
   @media screen and (max-width: 1500px) {
     .panel-title{
-  font-size:30px;
+  font-size:21px;
 }
 .panel-container1{
   border: none;
