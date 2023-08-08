@@ -326,7 +326,7 @@ const Distribution = (props) => {
                         <div className="left-part">
                             <div className="info-box">
                                 <div className="title">
-                                    FLM Claim Pool
+                                FLM Airdrop Pool
                                 </div>
                                 <div className="num-box">
                                     {showNum(poolBalance)}
@@ -335,7 +335,7 @@ const Distribution = (props) => {
                             <div className="bottom-part">
                                 <div className="info-box">
                                     <div className="name">
-                                        Total Reward
+                                        Total
                                     </div>
                                     <div className="value">
                                         {showNum(BigNumber(claimedAmount).plus(canClaim).toString())}
@@ -343,7 +343,7 @@ const Distribution = (props) => {
                                 </div>
                                 <div className="info-box">
                                     <div className="name">
-                                        Total Claimed
+                                    Withdrawn
                                     </div>
                                     <div className="value">
                                         {showNum(claimedAmount)}
@@ -351,7 +351,7 @@ const Distribution = (props) => {
                                 </div>
                                 <div className="info-box">
                                     <div className="name">
-                                        Unclaimed Balance
+                                       Balance
                                     </div>
                                     <div className="value">
                                         {showNum(canClaim)}

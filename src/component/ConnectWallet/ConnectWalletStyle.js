@@ -14,6 +14,9 @@ export default   styled.div`
 .ant-btn ant-btn-primary{
   border: 1px solid rgba(255, 255, 255, 0.15);
 }
+.ant-dropdown-menu-submenu-title:hover{
+    background-color:rgb(138, 128, 128);
+  }
  .ant-dropdown-menu-item-only-child{
      padding: 0px;
   }
@@ -52,7 +55,9 @@ export default   styled.div`
     padding: 0px;
     background-color:hsl(0deg 0% 12.16%);
   }}
-
+.ant-dropdown-menu-submenu-title:hover{
+    background-color:rgb(138, 128, 128);
+  }
   .connect-button {
     border-radius: 25px;
     border: 1px solid rgba(255, 255, 255, 0.15);

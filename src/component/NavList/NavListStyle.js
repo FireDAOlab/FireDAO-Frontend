@@ -23,21 +23,24 @@ export default styled.div`
 
   .ant-menu-sub {
     .ant-menu-title-content {
-      padding-left: 0.8em;
+      padding:0 2em;
     }
   }
-
+.ant-menu-item{
+ left:-10px;
+}
   .ant-menu-root {
     > .ant-menu-item-selected {
       position: relative;
       background: linear-gradient(32deg, #FF4E50 0%, #F9D423 100%);
+      
       &:after {
         content: '';
         position: absolute;
         right: 0;
         top: 0;
         width: 2px;
-        height: 50px;
+        height: 25px;
         
 background: linear-gradient(-92deg, #FF4E50 0%, #F9D423 100%);
       }
@@ -47,6 +50,7 @@ background: linear-gradient(-92deg, #FF4E50 0%, #F9D423 100%);
   .ant-menu-submenu-selected {
     /* background: radial-gradient(rgba(205, 144, 51, 0.5), rgba(97, 54, 144, 0.4)); */
     background-image: radial-gradient( rgba(205, 144, 51, 0.4),rgba(97, 54, 144, 0.3));
+    
     /* background: linear-gradient(32deg, #FF4E50 0%, #F9D423 100%); */
     .ant-menu-submenu-title {
       position: relative;
@@ -87,6 +91,14 @@ background: linear-gradient(-92deg, #FF4E50 0%, #F9D423 100%);
       width: 3px;
     }
   }
+  .ant-menu-item-selected{
+  .ant-menu-title-content{
+    height: 40px;
+      border: 1px solid rgba(255, 255, 255, 0.10);
+      background: rgba(255, 255, 255, 0.10);
+      border-radius:25px;
+    }
+}
 
   .navBox {
     background: #201414;
