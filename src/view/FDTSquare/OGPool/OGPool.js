@@ -113,8 +113,8 @@ const OGPoolPublic = (props) => {
     }
 
     const Row = (item, index) => {
-        return <div className="list-item " key={index}>
-            <div className="col id">
+        return <div className="list-item row1" key={index}>
+            <div className="col no">
                 {item.no}
             </div>
             <div className="col pid">
@@ -156,10 +156,10 @@ const OGPoolPublic = (props) => {
             <div className="col no">
                 {index + 1}
             </div>
-            <div className="col id">
+            <div className="col pid">
                 {item.Pid}
             </div>
-            <div className="col">
+            <div className="col name">
                 {item.name}
             </div>
 
@@ -589,7 +589,7 @@ const OGPoolPublic = (props) => {
                                 </div>
                             </div>
                             <div className="fire-list-box" style={{minWidth:'100%'}}>
-                                <div className="list-header flex-box">
+                                <div className="list-header flex-box1">
                                     <div className="col">
                                         No.
                                     </div>
@@ -672,7 +672,7 @@ const OGPoolPublic = (props) => {
                                 </span>
                             </div>
                             <div className="fire-list-box">
-                                <div className="list-header2  flex-box">
+                                <div className="list-header flex-box2">
                                     <div className="col">
                                         No.
                                     </div>

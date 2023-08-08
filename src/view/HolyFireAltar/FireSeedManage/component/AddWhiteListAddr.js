@@ -5,6 +5,7 @@ import { Button, Card, Form, Input, notification, Radio, Switch } from "antd";
 import { getContractByName } from "../../../../api/connectContract";
 import { dealMethod } from "../../../../utils/contractUtil";
 import add from "../../../../imgs/add.png";
+import remove1 from "../../../../imgs/remove.png";
 const FireLock = (props) => {
     const { closeDialog, updateData } = props
 
@@ -134,10 +135,15 @@ const FireLock = (props) => {
                                                 </Form.Item>
                                             </div>
                                         </div>
+                                        {(ownerArr.length > 1 && index == 0) && (
+                                            <img className="icon" src={remove1} onClick={() => {
+                                                removeOwner()
+                                            }} />)}
                                         {(index == ownerArr.length - 1) && (
                                             <img className="icon" src={add} onClick={() => {
                                                 addOwner()
                                             }} />)}
+                                        
                                     </Form>
                                 </div>
                             )

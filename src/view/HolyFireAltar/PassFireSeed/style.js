@@ -152,7 +152,7 @@ export default styled.div`
           cursor: pointer;
           width: 23%;
           border-radius: 25px;
-          font-size: 20px;
+          font-size: 18px;
           font-weight: bold;
 
           &.active {
@@ -1257,6 +1257,7 @@ border-radius:10px;
     }
     .value{
       font-size:12px;
+      overflow: scroll;
     }
   }
   .myteamsize{

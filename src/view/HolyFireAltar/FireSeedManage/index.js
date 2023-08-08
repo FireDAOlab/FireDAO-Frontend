@@ -78,9 +78,9 @@ const FireLock = (props) => {
     }
 
 
-    const removeOwner = (index) => {
+    const removeOwner = (item, index) => {
         let tempArr = Object.assign([], ownerArr)
-        tempArr.splice(index,1)
+        tempArr.splice(index,1);
         console.log(tempArr);
         setOwnerArr(tempArr)
     }
@@ -110,9 +110,9 @@ const FireLock = (props) => {
     }
 
     const getDiscountFactors = async () => {
-        // const arr = await handleViewMethod("discountFactors", [])
+        const arr = await handleViewMethod("discountFactors", [])
 
-        // setDiscountArr(arr)
+        setDiscountArr(arr)
     }
     const getFeeReceiver = async () => {
         const feeReceiver = await handleViewMethod("rainbowTreasury", [])
@@ -154,6 +154,10 @@ const FireLock = (props) => {
         const arr = await handleViewMethod("getAirDropList", [])
         console.log(arr);
         setWhitelistArr(arr)
+    }
+
+    const del=async()=>{
+    //     const arrnew=;
     }
     const getWhiteMaxMint = async () => {
         const maxM = await handleViewMethod("whiteListPerMintMax", [])
@@ -211,13 +215,17 @@ const FireLock = (props) => {
         await handleDealMethod("addWhiteListUser", [])
         // getWhitelist()
     }
+
     const handleSetAddress = async () => {
         let _to = []
+        console.log(form.getFieldValue())
         for (let i = 0; i < ownerArr.length; i++) {
             _to.push(form.getFieldValue()["owner" + i])
         }
-        await handleDealMethod("removeFromWhiteList", [_to])
+
+        await handleDealMethod("addWhiteListUser", [_to])
         updateData()
+        closeDialog()
     }
     useEffect(async () => {
         let judgeRes = await judgeStatus(state)
@@ -457,26 +465,29 @@ const FireLock = (props) => {
                             </div>
 
 
-                            {whitelist.map((item, index) => (
-
+                            {whitelist.map((item, index)  => (
+                                // <Form>
                             <div className="list-item" key={index}>
+                                {/* <Form.Item> */}
                                 <div className="col1 no">
                                     {index+1}
                                 </div>
+                                {/* </Form.Item> */}
                                 {/* <div className="col1 pid">
                                 {item}
                                 </div> */}
                                 <div className="col1 address">
                                 {item}
                                 </div>
-                                {(ownerArr.length >= 1) && (
+                                {/* ownerArr.length >=1 */}
+                                {(index == ownerArr.length - 1) && (
                                     <div className="col1 sc1" onClick={() => { removeOwner() }}>
                                         <img src={sc} className="sc" />
                                     </div>
                                     
                                 )}
                             </div>
-
+// </Form>
                              ))} 
                         </div>
                         <div className="pagination">

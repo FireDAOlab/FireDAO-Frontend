@@ -51,7 +51,7 @@ const FireLock = (props) => {
 
     const [isAdmin, setIsAdmin] = useState(false)
 
-    const [isSurAdmin, setSuperAdmin] = useState(false)
+    const [isSurAdmin, setSuperAdmin] = useState(true)
     const [searchContent, setSearchContent] = useState()
     const [showSearch, setShowSearch] = useState(false)
 

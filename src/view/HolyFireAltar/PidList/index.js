@@ -77,7 +77,20 @@ const PidList = (props) => {
                     {item.account.substr(0, 7) + "..." + item.account.substr(item.account.length - 3, item.account.length)}
                 </a>
             </div>
-            {/* <div className="col link">
+           
+            <div className="col">
+                BTC Sector
+            </div>
+            <div className="col">
+                Only discuss
+            </div>
+            <div className="col">
+                0
+            </div>
+            <div className="col">
+                0
+            </div>
+             {/* <div className="col link">
 
                 <a href={"https://twitter.com/" + (item.Twitter ? item.Twitter : "")}
                    target="_blank">
@@ -97,18 +110,6 @@ const PidList = (props) => {
                     {item.pid}
                 </a>
             </div> */}
-            <div className="col">
-                BTC Sector
-            </div>
-            <div className="col">
-                Only discuss
-            </div>
-            <div className="col">
-                0
-            </div>
-            <div className="col">
-                0
-            </div>
             {/* <div className="col">
                 <Button type="primary" onClick={() => {
                     history("/Passport", {state: item.account})
@@ -240,15 +241,7 @@ const PidList = (props) => {
                             <div className="col">
                                 Wallet Address
                             </div>
-                            {/* <div className="col">
-                                Twitter
-                            </div>
-                            <div className="col">
-                                Telegram
-                            </div>
-                            <div className="col">
-                                Forum ID
-                            </div>*/}
+                           
                             <div className="col">
                                 Forum Profile
                             </div>
@@ -263,6 +256,15 @@ const PidList = (props) => {
                                 Forum Merits
                                 {/* <img src={listIcon} alt="" className="list-icon"/> */}
                             </div>
+                             {/* <div className="col">
+                                Twitter
+                            </div>
+                            <div className="col">
+                                Telegram
+                            </div>
+                            <div className="col">
+                                Forum ID
+                            </div>*/}
                             {/* <div className="col">
                                 More
                             </div> */}

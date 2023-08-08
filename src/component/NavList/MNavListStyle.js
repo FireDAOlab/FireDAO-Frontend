@@ -17,11 +17,18 @@ export default  styled.div`
     }
   }
   .ant-menu-title-content-selectd{
-    width:'180px';
-    height:'30px';
-    border-radius:'50px';
-    background-color:'rgba(47, 35, 35, 1)';
+    width:180px;
+    height:30px;
+    border-radius:50px;
+    background-color:rgba(47, 35, 35, 1);
+    border:1px solid white;
   }
+.ant-menu-item-selected{
+  .ant-menu-title-content{
+      border: 1px solid white;
+    }
+}
+
   .ant-menu-root{
     >.ant-menu-item-selected{
       
@@ -31,9 +38,9 @@ export default  styled.div`
         position: absolute;
         right: 0;
         top: 0;
-        width: 2px;
+        width: 50px;
         height: 50px;
-        
+        border: 1px solid white;
 background: linear-gradient(32deg, #FF4E50 0%, #F9D423 100%);
       }
     }
