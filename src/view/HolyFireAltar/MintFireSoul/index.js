@@ -262,7 +262,7 @@ const MintFireSoul = (props) => {
                                 <div className='fee'>
                                     <span style={{fontFamily: 'Roboto-SemiBold, Roboto',fontWeight: '600'}}>Fee : </span>
                                     <img src={passportIcon} />
-                                    <span style={{color:'rgba(98, 132, 245, 1)',paddingLeft:'10px',
+                                    <span style={{color:'rgba(98, 132, 245, 1)',paddingLeft:'5px',
                                         fontFamily: 'Roboto-SemiBold, Roboto',fontWeight:'600',verticalAlign:'middle'}}>{fee}ETH</span>
                                 </div>
                                 <Form.Item className="button-box" >

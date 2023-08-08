@@ -372,10 +372,10 @@ background: linear-gradient(32deg, #FF4E50 0%, #F9D423 100%);
   }
 
   .fire-list-box {
-        .list-header {
+        .flex-box1 {
             padding: 20px 1em;
         }
-        .list-item, .list-header {
+        .row1, .flex-box1 {
           justify-content: flex-start;
           /* padding: 0.5em 2.5em 0.5em 2em; */
           
@@ -425,13 +425,13 @@ background: linear-gradient(32deg, #FF4E50 0%, #F9D423 100%);
     }
  
 
-    .list-item {
+    .row1 {
       .col {
         overflow: hidden;
        
       }
-      .id{
-            color: #FE6D46;
+      .no{
+            color: rgba(228, 134, 134, 1);
             width: 60px;
           }
           .pid{
@@ -440,7 +440,7 @@ background: linear-gradient(32deg, #FF4E50 0%, #F9D423 100%);
             background: rgba(254, 109, 70, 0.20);
             border-radius:25px;
             width: 60px;
-margin-right:36px;
+            margin-right:36px;
           }
           .address {
             a{
@@ -458,12 +458,12 @@ margin-right:36px;
     }
    }
 
-
-        .row2-list-item, .list-header2 {
-          justify-content: flex-start;
-
-
+   .flex-box2{ 
     padding: 20px 2em;
+  }
+        .row2-list-item, .flex-box2 {
+          justify-content: flex-start;
+          
     font-size: 18px;
     font-weight: bold;
     color: #8A8080;
@@ -471,22 +471,26 @@ margin-right:36px;
 
     .col {
       text-align:left;
-      padding-left: 3.5em;
+    
       overflow: hidden;
       &:nth-child(1) {
-        width: 23%;
+        width: 10%;
+        margin-left:70px;
       }
 
       &:nth-child(2) {
-        width: 23%;
+        width:15%;
+        margin-left:20px;
       }
 
       &:nth-child(3) {
-        width: 23%;
+        width: 20%;
+        margin-left:40px;
       }
 
       &:nth-child(4) {
-        width: 23%;
+        width: 30%;
+        margin-left:20px;
       }
 
       
@@ -495,18 +499,23 @@ margin-right:36px;
  }  
 
     .row2-list-item {
+      
       .col {
         overflow: hidden;
        
       }
-      .id{
-            color: #FE6D46;
+      .no{
+            color: rgba(228, 134, 134, 1);
           }
           .pid{
+            margin-right:0px;
             color: #FE6D46;
             border: 1px solid #FE6D46;
             background: rgba(254, 109, 70, 0.20);
             border-radius:25px;
+          }
+          .name{
+            color: white;
           }
           .address {
             a{
@@ -878,7 +887,8 @@ background: linear-gradient(32deg, #FF4E50 0%, #F9D423 100%);
   .part2 {
     .list-top-part {
       
-      .fire-nav-list {margin: 1em 0;
+      .fire-nav-list {
+        margin: 1em 0;
         height: 45px;
     width: 43%;
       .nav-item {
@@ -919,11 +929,12 @@ background: linear-gradient(32deg, #FF4E50 0%, #F9D423 100%);
   }
 
   .fire-list-box {
-        .list-header {
+        .flex-box1 {
             padding: 20px 1em;
             justify-content: flex-start;
         }
-        .list-item {
+        
+        .row1 {
           justify-content: flex-start;
           padding: 0em 1em;
           
@@ -932,6 +943,7 @@ background: linear-gradient(32deg, #FF4E50 0%, #F9D423 100%);
     .col {
       text-align:left;
       padding-left: 0.5%;
+      font-size:14px;
       &:nth-child(1) {
         width: 5%;
       }
@@ -977,13 +989,13 @@ background: linear-gradient(32deg, #FF4E50 0%, #F9D423 100%);
     }
  
 
-    .list-item {
+    .row1 {
       .col {
         overflow: hidden;
        
       }
-      .id{
-            color: #FE6D46;
+      .no{
+            color: rgba(228, 134, 134, 1);
             width: 40px;
           }
           .pid{
@@ -1011,34 +1023,40 @@ margin-right:18px;
    }
 
 
-        .row2-list-item, .list-header2 {
+   .flex-box2 {
+   padding: 20px 2em;
+}
+        .row2-list-item, .flex-box2 {
           justify-content: flex-start;
-
-
-    padding: 20px 2em;
     font-size: 14px;
     font-weight: bold;
     color: #8A8080;
    
 
     .col {
+      font-size: 14px;
       text-align:left;
-      padding-left: 3.5em;
+      padding-left: 0em;
       overflow: hidden;
       &:nth-child(1) {
-        width: 23%;
+        width: 10%;
+        margin-left:30px;
       }
 
       &:nth-child(2) {
-        width: 23%;
+        width: 15%;
+        margin-left:20px;
+        margin-right:0px;
       }
 
       &:nth-child(3) {
         width: 23%;
+        margin-left:20px;
       }
 
       &:nth-child(4) {
-        width: 23%;
+        width: 27%;
+        margin-left:20px;
       }
 
       
@@ -1047,12 +1065,13 @@ margin-right:18px;
  }  
 
     .row2-list-item {
+
       .col {
         overflow: hidden;
        
       }
-      .id{
-            color: #FE6D46;
+      .no{
+            color: rgba(228, 134, 134, 1);
           }
           .pid{
             color: #FE6D46;

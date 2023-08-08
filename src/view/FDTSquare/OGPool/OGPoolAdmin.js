@@ -431,7 +431,7 @@ const OGPool = (props) => {
                 <div className="part1">
                     <div className="panel-box">
                         <div className="panel-container">
-                            <div className="panel-title">
+                            <div className="panel-title1">
                                 Transfer Administrator
                             </div>
                             <Form form={form} name="control-hooks" className="form">
@@ -458,7 +458,7 @@ const OGPool = (props) => {
                     </div>
                     <div className="panel-box">
                         <div className="panel-container">
-                            <div className="panel-title">
+                            <div className="panel-title1">
                                 Contract Status : {isPause ? "Paused" : "UnPaused"}
                             </div>
                             <Form form={form} name="control-hooks" className="form">
@@ -466,8 +466,8 @@ const OGPool = (props) => {
                                     <p><span>Running</span><Switch defaultChecked onChange={onChange} /></p>
                                     <p><span>Pause</span><Switch onChange={onChange} /></p>
                                 </div>
-                                <Button type="primary" onClick={handlePause}>Pause</Button>
-                                <Button type="primary" onClick={handleUnpause}>Unpause</Button>
+                                {/* <Button type="primary" onClick={handlePause}>Pause</Button>
+                                <Button type="primary" onClick={handleUnpause}>Unpause</Button> */}
                             </Form>
                             <div className="info tip-box">
                                 This function is related to the running status of the contract, please use it with
@@ -742,7 +742,7 @@ const OGPool = (props) => {
                                         {curId}
                                     </div>
                                 </Form.Item> */}
-                                <div style={{ width: '50%', float: 'left' }}>
+                                <div style={{ width: '100%', float: 'left' }}>
 
 
                                     <Form.Item
@@ -750,9 +750,10 @@ const OGPool = (props) => {
                                         label="Recommender Allocation Rate"
                                         validateTrigger="onBlur"
                                         validateFirst={true}
+                                        style={{width:'100%'}}
                                     >
-                                        <div className="input-box">
-                                            <Input />
+                                        <div className="input-box" style={{width:'100%'}}>
+                                            <Input style={{width:'100%'}} />
                                         </div>
                                     </Form.Item>
                                     <Form.Item
@@ -891,7 +892,7 @@ const OGPool = (props) => {
                                         </div>
                                     </div>
                                 </div>
-                                <Form form={form2} name="control-hooks" className="form">
+                                {/* <Form form={form2} name="control-hooks" className="form">
                                     <Form.Item
                                         name="tokenAddress"
                                         label="tokenAddress"
@@ -933,7 +934,7 @@ const OGPool = (props) => {
                                 </Form>
                                 <Button type="primary" className="operate-btn" onClick={withdraw}>
                                     FDT-OG Withdraw
-                                </Button>
+                                </Button> */}
                             </div>
                         </div>
                         <div className="panel-box part2">

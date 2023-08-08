@@ -1257,6 +1257,7 @@ border-radius:10px;
     }
     .value{
       font-size:12px;
+      overflow: scroll;
     }
   }
   .myteamsize{
@@ -1280,7 +1281,7 @@ height:125px;
       width: 100%;
       height: 40px;
       .nav-item{
-        font-size:14px;
+        font-size:12px;
       }
     }
   }

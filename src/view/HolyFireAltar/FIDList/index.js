@@ -183,13 +183,13 @@ const FIDList = (props) => {
                             <div className="col">
                                 Reputation
                             </div>
-                            {
+                            {/* {
                                 !searchData && activeNav == 1 && state.PidArr.map((item, index) => (
                                     Row(item, index)
                                 ))
-                            }
+                            } */}
                             {
-                                activeNav == 2 && FIDARR.map((item, index) => (
+                                activeNav == 1 && FIDARR.map((item, index) => (
                                     index >= pageCount * (curPage - 1) && index < pageCount * curPage &&
                                     Row(item, index)
                                 ))
@@ -204,17 +204,41 @@ const FIDList = (props) => {
                         {
                             state.PidArr.map(item => (
                                 <div className="list-item ">
-                                    <div className="col">
+                                    <div className="col pid">
+                                    
+                                    </div>
+                                    <div className="col fid">
                                         {item.fid}
                                     </div>
                                     <div className="col">
-
+                                    
                                     </div>
-                                    <div className="col">
-
-                                    </div>
-                                    <div className="col">
+                                    <div className="col address">
                                         {item.soulAccount}
+                                    </div>
+                                    <div className="col">
+                                        
+                                    </div>
+                                    <div className="col">
+                                    
+                                    </div>
+                                    <div className="col">
+                                    
+                                    </div>
+                                    <div className="col">
+                                     
+                                    </div>
+                                    <div className="col">
+                                    
+                                    </div>
+                                    <div className="col">
+                                    
+                                    </div>
+                                    <div className="col">
+                                    
+                                    </div>
+                                    <div className="col">
+                                    
                                     </div>
                                 </div>
                             ))
