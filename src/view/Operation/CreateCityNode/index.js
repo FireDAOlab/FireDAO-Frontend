@@ -17,9 +17,6 @@ const CityNode = (props) => {
     const goPage = (url) => {
         history(url);
     }
-    const [myClassAddress, setMyClass] = useState("")
-    const [myClassPid, setMyClassPid] = useState(0)
-    const [CityNode, setPassport] = useState("")
     const [score, setScore] = useState(0)
 
     const [form] = Form.useForm();

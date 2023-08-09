@@ -21,7 +21,6 @@ const CityNode = (props) => {
     const [loading, setLoading] = useState(false);
     const [imageUrl, setImageUrl] = useState();
     const [score, setScore] = useState(0)
-
     const [form] = Form.useForm();
 
     const openNotification = (message) => {
