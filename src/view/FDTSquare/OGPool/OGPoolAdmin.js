@@ -240,7 +240,6 @@ const OGPool = (props) => {
         getpidStatusForUser()
     }
 
-
     const setRateAndAddress = async () => {
         await handleDealMethod("setAssignAddressAndRatio", [curId, curAddr, form2.getFieldValue().assignRate])
         getAssignAndRates()
