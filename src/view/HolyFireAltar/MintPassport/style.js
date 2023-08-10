@@ -6,150 +6,135 @@ export default styled.div`
       flex-shrink: 0;
       flex-grow: 0;
       display: flex;
-      
-font-family: Roboto-SemiBold, Roboto;
-     
+
+      .ant-form-item-control{
+    min-height:40px;
+}
 .ant-form-item-control-input{
     border-radius:25px;
-    height: 40px;
 }
 .ant-input-affix-wrapper{
     border-radius:25px;
 }
-.ant-input:focus{
-border-color:rgba(255, 255, 255, 0.10);
-}
-.ant-input:hover{
-border-color:rgba(255, 255, 255, 0.10);
-}
-.ant-btn{
-  height: 40px;
-}
 @media screen and (min-width: 1951px) {
-  .dx{
-        .ant-form-item-control{
-          height:90px;
-        }
-        .ant-form-item-control-input{
-          
-        border-radius:10px;
-       height: 100%;
-        }
-      }
-     
 
-.ant-form .ant-form-item {
-margin-bottom: 12px;
-}
-    .ant-input{
-        line-height:2;
-}
-.ant-form-item-label>label{
-font-size:16px;
-color: rgba(138, 128, 128, 1);
-height: 40px;
-}
-.ant-input-affix-wrapper{
-font-size:16px;
-}
-.panel-box{
-    .panel-container{
+    .ant-form .ant-form-item {
+      margin-bottom: 12px;
+    }
+
+    .ant-input {
+      line-height: 2;
+    }
+
+    .ant-form-item-label > label {
+      font-size: 16px;
+      color: rgba(138, 128, 128, 1);
+      height: 40px;
+    }
+
+    .ant-input-affix-wrapper {
+      font-size: 16px;
+    }
+
+    .panel-box {
+      .panel-container {
         width: 100%;
+      }
     }
-}
-.ecos{
-      font-size:17px;
+
+    .ecos {
+      font-size: 17px;
     }
-    .ecoshr{
+
+    .ecoshr {
       width: 25%;
-       opacity:  0.15;
-       margin-top:10px;
-    }
-  .content-box {
-    display: flex;
-    padding: 2em 0;
-
-    .left {
-      width: 50%;
-      padding-right: 5%;
-
-      .img-box {
-    border: 1px solid rgba(255,255,255,0.4);
-      border-radius: 5%;
-      background: linear-gradient(136deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
-      box-shadow: 0 0 10px rgba(255, 255, 255, 0), 0 0 5px rgba(0, 0, 0, 1);
-      padding: 10px;
-      font-family: Squada One-Regular, Squada One;
-      font-weight: 600;
-      text-align:center;
-      p{
-        font-size:23px;
-        line-height:50px;
-    }
-      img {
-        box-shadow: 0 0 10px rgba(255, 255, 255, 0), 0 0 5px rgba(0, 0, 0, 1);
-        display: inline-block;
-        border: 1px solid rgba(255,255,255,0.5);
-        border-radius: 20px;
-        width: 100%;
-        margin: 0 auto;
-      }
+      opacity: 0.15;
+      margin-top: 10px;
     }
 
-      .nft-detail {
-        font-size: 14px;
-        margin-top: 2em;
+    .content-box {
+      display: flex;
+      padding: 2em 0;
 
-        .title {
-          font-size: 17px;
+      .left {
+        width: 50%;
+        padding-right: 5%;
+
+        .img-box {
+          border: 1px solid rgba(255, 255, 255, 0.4);
+          border-radius: 5%;
+          background: linear-gradient(136deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+          box-shadow: 0 0 10px rgba(255, 255, 255, 0), 0 0 5px rgba(0, 0, 0, 1);
+          padding: 10px;
+          font-family: Squada One-Regular, Squada One;
+          font-weight: 600;
+          text-align: center;
+
+          p {
+            font-size: 23px;
+            line-height: 50px;
+          }
+
+          img {
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0), 0 0 5px rgba(0, 0, 0, 1);
+            display: inline-block;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-radius: 20px;
+            width: 100%;
+            margin: 0 auto;
+          }
         }
 
-        .content-item {
-          display: flex;
-          justify-content: space-between;
-          margin: 0.8em 0;
-          text-align: right;
+        .nft-detail {
+          font-size: 14px;
+          margin-top: 2em;
 
-          .name {
-            color: #999;
-            font-size:17px;
-            white-space: nowrap;
+          .title {
+            font-size: 17px;
           }
 
-          .value {
-            font-size:17px;
-            max-width: 60%;
-          }
+          .content-item {
+            display: flex;
+            justify-content: space-between;
+            margin: 0.8em 0;
+            text-align: right;
 
-          .address {
-            a {
-              color: #FF9260;
+            .name {
+              color: #999;
+              font-size: 17px;
+              white-space: nowrap;
+            }
+
+            .value {
+              font-size: 17px;
+              max-width: 60%;
+            }
+
+            .address {
+              a {
+                color: #FF9260;
+              }
             }
           }
         }
-      }
 
-    }
+      }
 
     .right {
       width: 50%;
       display: flex;
-      flex-direction: flex-start;
+     
       .mint-tip {
         font-size:16px;
         padding-top:1.2em;
-        /* height: 65px; */
+        height: 65px;
         color: #856465;
         display: flex;
         justify-content: space-between;
-        font-family: Roboto-SemiBold, Roboto;
-font-weight: 600;
         .fee{
             color:white;
             font-weight:600;
             font-size:16px;
-            font-family: Roboto-SemiBold, Roboto;
-            padding-top: 6px;
         }
        
         .choosePayType{
@@ -162,27 +147,26 @@ font-weight: 600;
             background: none!important;
             min-height: 20px!important;
 
-            .ant-form-item-control-input-content{
-            }
-            .ant-select-selector{
-              border: none;
+              .ant-form-item-control-input-content {
+              }
+
+              .ant-select-selector {
+                border: none;
+              }
             }
           }
         }
       }
     }
-  }
 
   .username {
     padding: 0 20px;
     border-radius: 25px;
-    height: 40px;
   }
 
   .button-box {
     text-align: left;
     border: 25px;
-  
     .subBtn {
       text-align:center;
       border-radius: 25px;
@@ -190,124 +174,126 @@ font-weight: 600;
     height: 40px;
 background: linear-gradient(32deg, #FF4E50 0%, #F9D423 100%);
 font-size:15px;
-      
+      &.grey-status{
+        
+      }
     }
   }
 }
 
 
 @media screen and (max-width: 1950px) {
-  .dx{
-        .ant-form-item-control{
-          height:80px;
-        }
-        .ant-form-item-control-input{
-          
-        border-radius:10px;
-       height: 100%;
-        }
-      }
+
     .ant-form .ant-form-item {
-    margin-bottom: 12px;
-}
-        .ant-input{
-            line-height:2;
+      margin-bottom: 12px;
     }
-    .ant-form-item-label>label{
-    font-size:16px;
-    color: rgba(138, 128, 128, 1);
-    height: 40px;
-}
-.ant-input-affix-wrapper{
-    font-size:16px;
-}
-    .panel-box{
-        .panel-container{
-            width: 100%;
-        }
+
+    .ant-input {
+      line-height: 2;
     }
-    .ecos{
-          font-size:17px;
-        }
-        .ecoshr{
-          width: 25%;
-           opacity:  0.15;
-           margin-top:10px;
-        }
-      .content-box {
-        display: flex;
-        padding: 2em 0;
 
-        .left {
-          width: 50%;
-          padding-right: 5%;
+    .ant-form-item-label > label {
+      font-size: 16px;
+      color: rgba(138, 128, 128, 1);
+      height: 40px;
+    }
 
-          .img-box {
-        border: 1px solid rgba(255,255,255,0.4);
+    .ant-input-affix-wrapper {
+      font-size: 16px;
+    }
+
+    .panel-box {
+      .panel-container {
+        width: 100%;
+      }
+    }
+
+    .ecos {
+      font-size: 17px;
+    }
+
+    .ecoshr {
+      width: 25%;
+      opacity: 0.15;
+      margin-top: 10px;
+    }
+
+    .content-box {
+      display: flex;
+      padding: 2em 0;
+
+      .left {
+        width: 50%;
+        padding-right: 5%;
+
+        .img-box {
+          border: 1px solid rgba(255, 255, 255, 0.4);
           border-radius: 5%;
-          background: linear-gradient(136deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+          background: linear-gradient(136deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
           box-shadow: 0 0 10px rgba(255, 255, 255, 0), 0 0 5px rgba(0, 0, 0, 1);
           padding: 10px;
           font-family: Squada One-Regular, Squada One;
           font-weight: 600;
-          text-align:center;
-          p{
-            font-size:23px;
-            line-height:50px;
-        }
+          text-align: center;
+
+          p {
+            font-size: 23px;
+            line-height: 50px;
+          }
+
           img {
             box-shadow: 0 0 10px rgba(255, 255, 255, 0), 0 0 5px rgba(0, 0, 0, 1);
             display: inline-block;
-            border: 1px solid rgba(255,255,255,0.5);
+            border: 1px solid rgba(255, 255, 255, 0.5);
             border-radius: 20px;
             width: 100%;
             margin: 0 auto;
           }
         }
 
-          .nft-detail {
-            font-size: 14px;
-            margin-top: 2em;
+        .nft-detail {
+          font-size: 14px;
+          margin-top: 2em;
 
-            .title {
+          .title {
+            font-size: 17px;
+          }
+
+          .content-item {
+            display: flex;
+            justify-content: space-between;
+            margin: 0.8em 0;
+            text-align: right;
+
+            .name {
+              color: #999;
               font-size: 17px;
+              white-space: nowrap;
             }
 
-            .content-item {
-              display: flex;
-              justify-content: space-between;
-              margin: 0.8em 0;
-              text-align: right;
+            .value {
+              font-size: 17px;
+              max-width: 60%;
+            }
 
-              .name {
-                color: #999;
-                font-size:17px;
-                white-space: nowrap;
-              }
-
-              .value {
-                font-size:17px;
-                max-width: 60%;
-              }
-
-              .address {
-                a {
-                  color: #FF9260;
-                }
+            .address {
+              a {
+                color: #FF9260;
               }
             }
           }
-
         }
+
+      }
 
         .right {
           width: 50%;
           display: flex;
-          flex-direction: flex-start;
+         
           .mint-tip {
             font-size:16px;
             padding-top:1.2em;
-            height: 70px;
+            height: 65px;
             color: #856465;
             display: flex;
             justify-content: space-between;
@@ -315,10 +301,6 @@ font-size:15px;
                 color:white;
                 font-weight:600;
                 font-size:16px;
-                font-family: Roboto-SemiBold, Roboto;
-                padding-top: 6px;
-                font-family: Roboto-SemiBold, Roboto;
-font-weight: 600;
             }
            
             .choosePayType{
@@ -331,52 +313,43 @@ font-weight: 600;
                 background: none!important;
                 min-height: 20px!important;
 
-                .ant-form-item-control-input-content{
-                }
-                .ant-select-selector{
-                  border: none;
-                }
+              .ant-form-item-control-input-content {
+              }
+
+              .ant-select-selector {
+                border: none;
               }
             }
           }
         }
       }
+    }
 
-      .username {
-        padding: 0 20px;
-        border-radius: 25px;
-      }
+    .username {
+      padding: 0 20px;
+      border-radius: 25px;
+    }
 
       .button-box {
         text-align: left;
         border: 25px;
-        height: 40px;
         .subBtn {
           text-align:center;
           border-radius: 25px;
         width: 150px;
         height: 40px;
-background: linear-gradient(32deg, #FF4E50 0%, #F9D423 100%);
-font-size:15px;
-          &.grey-status{
-            
-          }
+        background: linear-gradient(32deg, #FF4E50 0%, #F9D423 100%);
+        font-size: 15px;
+
+        &.grey-status {
+
         }
       }
     }
-    
+  }
+
 
     @media screen and (max-width: 1500px) {
-      .dx{
-        .ant-form-item-control{
-          height:80px;
-        }
-        .ant-form-item-control-input{
-          
-        border-radius:10px;
-       height: 100%;
-        }
-      }
         .ant-form-item-label>label{
     font-size:13px;
     color: rgba(138, 128, 128, 1);
@@ -390,98 +363,99 @@ font-size:15px;
             width: 100%;
         }
     }
-    .ecos{
-          font-size:13px;
-        }
-        .ecoshr{
-          width: 25%;
-           opacity:  0.15;
-           margin-top:8px;
-        }
+
+    .ecos {
+      font-size: 13px;
+    }
+
+    .ecoshr {
+      width: 25%;
+      opacity: 0.15;
+      margin-top: 8px;
+    }
+
     .content-box {
-        display: flex;
-        padding: 2em 0;
+      display: flex;
+      padding: 2em 0;
 
-        .left {
-          width: 50%;
-          padding-right: 5%;
+      .left {
+        width: 50%;
+        padding-right: 5%;
 
-          .img-box {
-        border: 1px solid rgba(255,255,255,0.4);
+        .img-box {
+          border: 1px solid rgba(255, 255, 255, 0.4);
           border-radius: 5%;
-          background: linear-gradient(136deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+          background: linear-gradient(136deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
           box-shadow: 0 0 10px rgba(255, 255, 255, 0), 0 0 5px rgba(0, 0, 0, 1);
           padding: 10px;
           font-family: Squada One-Regular, Squada One;
           font-weight: 600;
-          text-align:center;
-          p{
-            font-size:18px;
-            line-height:45px;
-        }
-      
+          text-align: center;
+
+          p {
+            font-size: 18px;
+            line-height: 45px;
+          }
+
           img {
             box-shadow: 0 0 10px rgba(255, 255, 255, 0), 0 0 5px rgba(0, 0, 0, 1);
             display: inline-block;
-            border: 1px solid rgba(255,255,255,0.5);
+            border: 1px solid rgba(255, 255, 255, 0.5);
             border-radius: 20px;
             width: 100%;
             margin: 0 auto;
           }
         }
 
-          .nft-detail {
-            font-size: 14px;
-            margin-top: 2em;
+        .nft-detail {
+          font-size: 14px;
+          margin-top: 2em;
 
-            .title {
+          .title {
+            font-size: 14px;
+          }
+
+          .content-item {
+            display: flex;
+            justify-content: space-between;
+            margin: 0.8em 0;
+            text-align: right;
+
+            .name {
+              color: #999;
               font-size: 14px;
+              white-space: nowrap;
             }
 
-            .content-item {
-              display: flex;
-              justify-content: space-between;
-              margin: 0.8em 0;
-              text-align: right;
+            .value {
+              font-size: 14px;
+              max-width: 60%;
+            }
 
-              .name {
-                color: #999;
-                font-size:14px;
-                white-space: nowrap;
-              }
-
-              .value {
-                font-size:14px;
-                max-width: 60%;
-              }
-
-              .address {
-                a {
-                  color: #FF9260;
-                }
+            .address {
+              a {
+                color: #FF9260;
               }
             }
           }
-
         }
+
+      }
 
         .right {
           width: 50%;
           display: flex;
-          flex-direction: flex-start;
-
+         
           .mint-tip {
-            font-size:14px;
+            font-size:13px;
             color: #856465;
-            height: 35px;
+            height: 30px;
             display: flex;
             padding-top: 0em;
             justify-content: space-between;
-
             .fee{
                 font-size:14px;
-                height: 35px;
-                font-family: Roboto-SemiBold, Roboto;
+                height: 30px;
                 
             }
            
@@ -495,46 +469,45 @@ font-size:15px;
                 background: none!important;
                 min-height: 20px!important;
 
-                .ant-form-item-control-input-content{
-                }
-                .ant-select-selector{
-                  border: none;
-                }
+              .ant-form-item-control-input-content {
+              }
+
+              .ant-select-selector {
+                border: none;
               }
             }
           }
         }
       }
+    }
 
-      .username {
-        padding: 0 20px;
+    .username {
+      padding: 0 20px;
+      border-radius: 25px;
+    }
+
+    .button-box {
+      text-align: left;
+      border: 25px;
+
+      .subBtn {
+        text-align: center;
         border-radius: 25px;
-      }
-
-      .button-box {
-        text-align: left;
-        border: 25px;
-        .subBtn {
-          text-align:center;
-          border-radius: 25px;
-        width: 150px;
+        min-width: 150px;
         height: 40px;
-background: linear-gradient(32deg, #FF4E50 0%, #F9D423 100%);
-font-size:13px;
-          &.grey-status{
-            
-          }
+        background: linear-gradient(32deg, #FF4E50 0%, #F9D423 100%);
+        font-size: 13px;
+
+        &.grey-status {
+
         }
       }
-      }
-
+    }
+  }
 
 
       @media screen and (max-width: 450px) {
-        .connect-button{
-          width: 100%;
-          height: 40px;
-        }
+        
         .ant-form-item-label>label{
     font-size:14px;
     color: rgba(138, 128, 128, 1);
@@ -548,107 +521,107 @@ font-size:13px;
             width: 100%;
         }
     }
-    .ecos{
-          font-size:16px;
-        }
-        .ecoshr{
-          width: 20%;
-           opacity:  0.15;
-           margin-top:10px;
-        }
+
+    .ecos {
+      font-size: 16px;
+    }
+
+    .ecoshr {
+      width: 20%;
+      opacity: 0.15;
+      margin-top: 10px;
+    }
+
     .content-box {
         display: block;
-        padding: 1em 0;
+        padding: 2em 0;
 
-        .left {
-          width: 100%;
-          padding-right:0%;
+      .left {
+        width: 100%;
+        padding-right: 0%;
 
-          .img-box {
-        border: 1px solid rgba(255,255,255,0.4);
+        .img-box {
+          border: 1px solid rgba(255, 255, 255, 0.4);
           border-radius: 5%;
-          background: linear-gradient(136deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+          background: linear-gradient(136deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
           box-shadow: 0 0 10px rgba(255, 255, 255, 0), 0 0 5px rgba(0, 0, 0, 1);
           padding: 10px;
           font-family: Squada One-Regular, Squada One;
           font-weight: 600;
-          text-align:center;
-          p{
-            font-size:20px;
-            line-height:45px;
-        }
-        
+          text-align: center;
+
+          p {
+            font-size: 20px;
+            line-height: 45px;
+          }
+
           img {
             box-shadow: 0 0 10px rgba(255, 255, 255, 0), 0 0 5px rgba(0, 0, 0, 1);
             display: inline-block;
-            border: 1px solid rgba(255,255,255,0.5);
+            border: 1px solid rgba(255, 255, 255, 0.5);
             border-radius: 20px;
             width: 100%;
             margin: 0 auto;
           }
         }
 
-          .nft-detail {
-            font-size: 14px;
-            margin-top: 2em;
+        .nft-detail {
+          font-size: 14px;
+          margin-top: 2em;
 
-            .title {
-              width: 20%;
-              margin: 0 auto;
-              text-align:center;
-              background: rgba(205,158,87,0.1);
-border-radius: 30px ;
-border: 1px solid rgba(205,158,87,0.5);
-line-height:2.5em;
-color: rgba(205, 158, 87, 1);
-              font-size: 12px;
+          .title {
+            width: 20%;
+            margin: 0 auto;
+            text-align: center;
+            background: rgba(205, 158, 87, 0.1);
+            border-radius: 30px;
+            border: 1px solid rgba(205, 158, 87, 0.5);
+            line-height: 2.5em;
+            color: rgba(205, 158, 87, 1);
+            font-size: 12px;
+          }
+
+          .content-item {
+            display: none;
+            justify-content: space-between;
+            margin: 0.8em 0;
+            text-align: right;
+
+            .name {
+              color: #999;
+              font-size: 14px;
+              white-space: nowrap;
             }
 
-            .content-item {
-              display: none;
-              justify-content: space-between;
-              margin: 0.8em 0;
-              text-align: right;
+            .value {
+              font-size: 14px;
+              max-width: 60%;
+            }
 
-              .name {
-                color: #999;
-                font-size:14px;
-                white-space: nowrap;
-              }
-
-              .value {
-                font-size:14px;
-                max-width: 60%;
-              }
-
-              .address {
-                a {
-                  color: #FF9260;
-                }
+            .address {
+              a {
+                color: #FF9260;
               }
             }
           }
-
         }
+
+      }
 
         .right {
           width: 100%;
           display: block;
          margin-top:1.5em;
           .mint-tip {
-            font-size:14px;
+            font-size:13px;
             color: #856465;
             padding-top: 0.5em;
-            margin-bottom:1em;
             height: 45px;
             display: flex;
             justify-content: space-between;
-            font-family: Roboto-SemiBold, Roboto;
-font-weight: 600;
             .fee{
                 font-size:14px;
-                height: 40px;
-              
+                height: 50px;
             }
            
             .choosePayType{
@@ -661,36 +634,38 @@ font-weight: 600;
                 background: none!important;
                 min-height: 20px!important;
 
-                .ant-form-item-control-input-content{
-                }
-                .ant-select-selector{
-                  border: none;
-                }
+              .ant-form-item-control-input-content {
+              }
+
+              .ant-select-selector {
+                border: none;
               }
             }
           }
         }
       }
+    }
 
-      .username {
-        padding: 0 20px;
+    .username {
+      padding: 0 20px;
+      border-radius: 25px;
+    }
+
+    .button-box {
+      text-align: left;
+      border: 25px;
+
+      .subBtn {
+        text-align: center;
         border-radius: 25px;
-      }
-
-      .button-box {
-        text-align: left;
-        border: 25px;
-        .subBtn {
-          text-align:center;
-          border-radius: 25px;
         width: 100%;
         height: 40px;
-background: linear-gradient(32deg, #FF4E50 0%, #F9D423 100%);
-font-size:13px;
-          
-        }
-      }
+        background: linear-gradient(32deg, #FF4E50 0%, #F9D423 100%);
+        font-size: 13px;
 
-      }    
-      
+      }
+    }
+
+  }
+
 `

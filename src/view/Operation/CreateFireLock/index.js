@@ -19,6 +19,7 @@ import {getContractByContract, getContractByName} from "../../../api/connectCont
 import {dealMethod, dealPayMethod, viewMethod} from "../../../utils/contractUtil";
 import moment from "moment";
 import {FireLockDecimal} from "../../../utils/constants";
+import BigNumber from "bignumber.js";
 
 const FireLock = (props) => {
     const [form] = Form.useForm();
@@ -76,7 +77,7 @@ const FireLock = (props) => {
     const approve = async () => {
 
         /*eslint-disable*/
-        await handleDealCoinMethod("approve", form.getFieldValue().TokenAddress.toString().trim(), [contractAddress, BigInt(10 ** 50).toString()])
+        await handleDealCoinMethod("approve", form.getFieldValue().TokenAddress.toString().trim(), [contractAddress, BigNumber(10 ** 50).toString()])
         let contractTemp = await getContractByContract("erc20", form.getFieldValue().TokenAddress.toString().trim(), state.api,)
         const allowance = await viewMethod(contractTemp, state.account, "allowance", [state.account, contractAddress])
         setAllowance(allowance / FireLockDecimal)
@@ -185,7 +186,7 @@ const FireLock = (props) => {
         }
         let coinAmount = 0
         if (coinInfo.decimal && parseInt(coinInfo.decimal) > 0) {
-            coinAmount = BigInt(amount * parseInt((10 ** coinInfo.decimal))).toString()
+            coinAmount = BigNumber(amount * parseInt((10 ** coinInfo.decimal))).toString()
 
         } else {
             message.error("please input Token Address")

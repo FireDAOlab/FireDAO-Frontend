@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useLocation, useNavigate } from "react-router-dom";
 import { Button } from "antd"
 import { useConnect, connect } from "../../api/contracts";
-
+import detectEthereumProvider from '@metamask/detect-provider';
 import WalletOutlined from "../../imgs/connect.png"
 import develop from "../../env";
 import { Network } from "../../config/constants";
@@ -26,6 +26,24 @@ const ConnectWallet = (props) => {
     let { state, dispatch } = useConnect();
     const location = useLocation()
     const [isShowWallet, setShowWallet] = useState(false)
+
+    useEffect(()=>{
+        detectEthereumProvider()
+            .then(async (provider) => {
+                if (!provider) {
+                    console.log("noe provider")
+                } else {
+                    const accounts = await window.ethereum.request({method: 'eth_accounts'});
+                    if (accounts && accounts[0]) {
+                        await connect(state, dispatch)
+
+                    } else {
+
+                    }
+
+                }
+            })
+    },[])
     const connectWallet = async () => {
         try {
             let curChainId = await window.ethereum.request({ method: "eth_chainId" })
