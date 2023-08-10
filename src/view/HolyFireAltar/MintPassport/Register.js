@@ -27,6 +27,7 @@ const Register = (props) => {
     const [messageApi] = message.useMessage();
     let { state, dispatch } = useConnect();
     const [isExist, setIsExist] = useState(false)
+    const [isShowWallet, setShowWallet] = useState(false)
     const [isDetail,setDetail] =useState(false)
     const [solName, setSolname] = useState(undefined)
     const [fee, setFee] = useState(0.008)
@@ -281,11 +282,13 @@ const Register = (props) => {
                 <Form.Item
                     name="BIO"
                     label="Bio"
+                    className='dx'
                     initialValue={"Let's build the Bit Civilization together!"}
                     rules={[
-                        { max: 200, message: "BIO length need < 200" },]}
+                        { max: 200, message: "BIO length need < 200" }]}
+                        
                 >
-                    <TextArea allowClear defaultValue={"Let's build the Bit Civilization together!"} />
+                    <TextArea allowClear defaultValue={"Let's build the Bit Civilization together!"} style={{borderRadius:'10px'}} />
                 </Form.Item>
                 <Form.Item
                     name="Twitter"
@@ -332,8 +335,8 @@ const Register = (props) => {
                         rules={[
                             { max: 50, message: "Telegram length need < 50" },]}
                     >
-                        <img src={ethereum}/><span style={{color:'rgba(98, 132, 245, 1)',paddingLeft:'10px',
-            fontFamily: 'Roboto-SemiBold, Roboto',fontWeight:'600',verticalAlign:'text-top',}}>{fee}ETH</span>
+                        <img src={ethereum} style={{width:'28px'}}/><span style={{color:'rgba(98, 132, 245, 1)',paddingLeft:'10px',
+            fontFamily: 'Roboto-SemiBold, Roboto',fontWeight:'600',verticalAlign:'middle',}}>{fee}ETH</span>
                         {/* <Select
                             style={{ width: 100, height: 30 }}
                             defaultValue="ETH"
@@ -421,7 +424,7 @@ const Register = (props) => {
                                         Chain
                                     </div>
                                     <div className="value">
-                                        <img style={{margin:'0px 10px'}} src={ethereum} />{develop.Name}
+                                        <img style={{margin:'0px 10px',width:'28px'}} src={ethereum} />{develop.Name}
                                     </div>
                                 </div>
                                 <div className="content-item">

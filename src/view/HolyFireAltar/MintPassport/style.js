@@ -6,17 +6,37 @@ export default styled.div`
       flex-shrink: 0;
       flex-grow: 0;
       display: flex;
-
-      .ant-form-item-control{
-    min-height:40px;
-}
+      
+font-family: Roboto-SemiBold, Roboto;
+     
 .ant-form-item-control-input{
     border-radius:25px;
+    height: 40px;
 }
 .ant-input-affix-wrapper{
     border-radius:25px;
 }
+.ant-input:focus{
+border-color:rgba(255, 255, 255, 0.10);
+}
+.ant-input:hover{
+border-color:rgba(255, 255, 255, 0.10);
+}
+.ant-btn{
+  height: 40px;
+}
 @media screen and (min-width: 1951px) {
+  .dx{
+        .ant-form-item-control{
+          height:90px;
+        }
+        .ant-form-item-control-input{
+          
+        border-radius:10px;
+       height: 100%;
+        }
+      }
+     
 
 .ant-form .ant-form-item {
 margin-bottom: 12px;
@@ -114,18 +134,22 @@ font-size:16px;
     .right {
       width: 50%;
       display: flex;
-     
+      flex-direction: flex-start;
       .mint-tip {
         font-size:16px;
         padding-top:1.2em;
-        height: 65px;
+        /* height: 65px; */
         color: #856465;
         display: flex;
         justify-content: space-between;
+        font-family: Roboto-SemiBold, Roboto;
+font-weight: 600;
         .fee{
             color:white;
             font-weight:600;
             font-size:16px;
+            font-family: Roboto-SemiBold, Roboto;
+            padding-top: 6px;
         }
        
         .choosePayType{
@@ -152,11 +176,13 @@ font-size:16px;
   .username {
     padding: 0 20px;
     border-radius: 25px;
+    height: 40px;
   }
 
   .button-box {
     text-align: left;
     border: 25px;
+  
     .subBtn {
       text-align:center;
       border-radius: 25px;
@@ -164,16 +190,23 @@ font-size:16px;
     height: 40px;
 background: linear-gradient(32deg, #FF4E50 0%, #F9D423 100%);
 font-size:15px;
-      &.grey-status{
-        
-      }
+      
     }
   }
 }
 
 
 @media screen and (max-width: 1950px) {
-
+  .dx{
+        .ant-form-item-control{
+          height:80px;
+        }
+        .ant-form-item-control-input{
+          
+        border-radius:10px;
+       height: 100%;
+        }
+      }
     .ant-form .ant-form-item {
     margin-bottom: 12px;
 }
@@ -270,11 +303,11 @@ font-size:15px;
         .right {
           width: 50%;
           display: flex;
-         
+          flex-direction: flex-start;
           .mint-tip {
             font-size:16px;
             padding-top:1.2em;
-            height: 65px;
+            height: 70px;
             color: #856465;
             display: flex;
             justify-content: space-between;
@@ -282,6 +315,10 @@ font-size:15px;
                 color:white;
                 font-weight:600;
                 font-size:16px;
+                font-family: Roboto-SemiBold, Roboto;
+                padding-top: 6px;
+                font-family: Roboto-SemiBold, Roboto;
+font-weight: 600;
             }
            
             .choosePayType{
@@ -313,6 +350,7 @@ font-size:15px;
       .button-box {
         text-align: left;
         border: 25px;
+        height: 40px;
         .subBtn {
           text-align:center;
           border-radius: 25px;
@@ -329,6 +367,16 @@ font-size:15px;
     
 
     @media screen and (max-width: 1500px) {
+      .dx{
+        .ant-form-item-control{
+          height:80px;
+        }
+        .ant-form-item-control-input{
+          
+        border-radius:10px;
+       height: 100%;
+        }
+      }
         .ant-form-item-label>label{
     font-size:13px;
     color: rgba(138, 128, 128, 1);
@@ -420,17 +468,20 @@ font-size:15px;
         .right {
           width: 50%;
           display: flex;
-         
+          flex-direction: flex-start;
+
           .mint-tip {
-            font-size:13px;
+            font-size:14px;
             color: #856465;
-            height: 30px;
+            height: 35px;
             display: flex;
             padding-top: 0em;
             justify-content: space-between;
+
             .fee{
                 font-size:14px;
-                height: 30px;
+                height: 35px;
+                font-family: Roboto-SemiBold, Roboto;
                 
             }
            
@@ -480,7 +531,10 @@ font-size:13px;
 
 
       @media screen and (max-width: 450px) {
-        
+        .connect-button{
+          width: 100%;
+          height: 40px;
+        }
         .ant-form-item-label>label{
     font-size:14px;
     color: rgba(138, 128, 128, 1);
@@ -504,7 +558,7 @@ font-size:13px;
         }
     .content-box {
         display: block;
-        padding: 2em 0;
+        padding: 1em 0;
 
         .left {
           width: 100%;
@@ -582,15 +636,19 @@ color: rgba(205, 158, 87, 1);
           display: block;
          margin-top:1.5em;
           .mint-tip {
-            font-size:13px;
+            font-size:14px;
             color: #856465;
             padding-top: 0.5em;
+            margin-bottom:1em;
             height: 45px;
             display: flex;
             justify-content: space-between;
+            font-family: Roboto-SemiBold, Roboto;
+font-weight: 600;
             .fee{
                 font-size:14px;
-                height: 50px;
+                height: 40px;
+              
             }
            
             .choosePayType{

@@ -110,7 +110,7 @@ font-size:15px;
         .col {
           text-align: left;
           align-items: center;
-          font-size:14px;
+          font-size:16px;
           &:nth-child(1) {
             width: 25%;
             padding-left: 50px;

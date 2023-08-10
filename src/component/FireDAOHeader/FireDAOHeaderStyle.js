@@ -10,7 +10,7 @@ export default styled.div`
     z-index: 3;
     width: calc(100% - 256px);
     background: #150D0D;
-    padding: 1em 3em;
+   padding: 1em 8.7%;
     display: flex;
     justify-content: space-between;
     
@@ -115,14 +115,6 @@ export default styled.div`
 
   }
 
-         @media screen and (max-width: 800px)  {
-
-}
-
-
-@media screen and (max-width: 650px)  {
-
-}
 @media screen and (max-width: 450px) {
       .firedao-header {
         padding: 1em 4%;

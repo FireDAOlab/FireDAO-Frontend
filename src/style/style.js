@@ -1,6 +1,7 @@
 import {createGlobalStyle} from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
+
   @font-face {
     font-family: "RoBoto-Medium";
     src: url("./font/RobotoMedium.ttf");
@@ -23,7 +24,28 @@ const GlobalStyle = createGlobalStyle`
 
   * {
     box-sizing: border-box;
+    font-family: Helvetica-Bold,Helvetica,sans-serif;
+
   }
+  .ant-input-affix-wrapper:hover{
+    border-color:rgba(255, 255, 255, 0.10);
+
+  }
+  .ant-input-affix-wrapper:focus{
+    border-color:rgba(255, 255, 255, 0.10);
+
+  }
+  .ant-input{
+  border-radius:51px;
+  border-color:rgba(255, 255, 255, 0.10);
+
+}
+.ant-input:focus{
+border-color:rgba(255, 255, 255, 0.10);
+}
+.ant-input:hover{
+border-color:rgba(255, 255, 255, 0.10);
+}
   input::-webkit-validation-bubble {
     display: none!important;
   }
@@ -237,6 +259,7 @@ const GlobalStyle = createGlobalStyle`
   /* reset button*/
   .ant-btn-primary {
     border-radius: 25px;
+    text-shadow:none;
   }
   .connect-button{
     border-radius: 25px;

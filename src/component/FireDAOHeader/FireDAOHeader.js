@@ -27,6 +27,7 @@ const items = [
             <img style={{ width: '50px', height: '50px', marginTop: '8px' }} src={eth} /><span style={{ width: '50%', fontSize: '16px', lineHeight: '63px', marginLeft: '5px' }}>Ethereum</span><img style={{ width: '20px', height: '15px', marginTop: '23px', marginLeft: '25px' }} src={right} /></div>
         // key: '0',
     },
+  
     {
         label: <div style={{
             width: '230px', marginLeft: '-3px', display: 'flex', height: '65px', background: '#241B1B',

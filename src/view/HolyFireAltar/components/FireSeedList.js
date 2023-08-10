@@ -53,6 +53,7 @@ const FireSeedList = (props) => {
                         My FireSeed
                     </div>
 
+                    
                     <div className="content1">
 
                         <div className="list">

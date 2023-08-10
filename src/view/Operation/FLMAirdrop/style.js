@@ -3,12 +3,25 @@ import passportHeaderBg from "../../../imgs/passport_header_bg.webp";
 
 export default styled.div`
   display: flex;
-  flex-direction: column;
-  align-items: stretch;
 
+  align-items: stretch;
+.ant-form-item-control-input {
+  border-radius:51px;
+}
+.ant-input{
+  border-radius:51px;
+  border-color:rgba(255, 255, 255, 0.10);
+
+}
+.ant-input:focus{
+border-color:rgba(255, 255, 255, 0.10);
+}
+.ant-input:hover{
+border-color:rgba(255, 255, 255, 0.10);
+}
   .panel-title.flex-box {
     justify-content: space-between;
-
+    margin-bottom:0px;
     .search-box {
       display: flex;
       .ant-btn{
@@ -37,7 +50,7 @@ export default styled.div`
     border: 1px solid rgba(205, 158, 87, 0.5);
   }
 
-  .fire-list-box-deposit {
+  .fire-list-box-userclaim {
     .col:nth-child(1) {
       width: 50px;
     }
@@ -90,9 +103,53 @@ export default styled.div`
 
 
   @media screen and (max-width: 1950px) {
-    .panel-title {
-      font-size: 30px;
+    .ant-form-item-label>label{
+      font-size:18px;
+      font-family: Roboto-SemiBold, Roboto;
+font-weight: 600;
+color: #8A8080;
     }
+    .panel-title {
+      
+      display: flex;
+      flex-direction:initial;
+      justify-content:space-between;
+      p{
+        font-size: 30px;
+      }
+      .lv{
+            width: 25%;
+            
+            display: flex;
+            justify-content:space-between;
+            img{
+                    width: 18px;
+                    height: 18px;
+                    margin-right: 5px;
+                  
+                }
+            .lvleft{
+                width: 46%;
+                height: 40px;
+background: rgba(255,255,255,0.15);
+                border-radius:50px;
+                border: 1px solid rgba(255,255,255,0.15);
+                font-size:16px;
+line-height:20px;
+            }
+            .lvright{
+                width: 46%;height: 40px;
+                background: rgba(255,255,255,0.15);
+                border-radius:50px;
+                border: 1px solid rgba(255,255,255,0.15);
+                margin-left:15px;
+                font-size:16px;
+line-height:20px;
+            }
+        }
+    }
+
+
     .can-claim {
       font-size: 12px;
     }
@@ -101,7 +158,7 @@ export default styled.div`
     }
 
     .content-box {
-      flex-direction: column;
+      flex-direction: initial;
 
       .left-part, .right-part {
         width: 100%;
@@ -118,7 +175,7 @@ export default styled.div`
       }
 
       .right-part {
-        margin-top: 20px;
+        /* margin-top: 20px; */
       }
     }
 
@@ -156,12 +213,7 @@ export default styled.div`
    }
  }
 }
-.panel-title.flex-box{
- flex-direction: column;
- .search-box{
-   margin-top: 10px;
- }
-}
+
 .pid-box {
     font-family: Roboto-SemiBold, Roboto;
     font-weight: 600;
@@ -169,6 +221,7 @@ export default styled.div`
     display: flex;
     align-items: center;
     white-space: nowrap;
+    font-size:20px;
     .pid {
       width: 40px;
       padding: 0 10px;
@@ -180,7 +233,7 @@ export default styled.div`
       border: 1px solid rgba(254, 109, 70, 0.5);
       display: flex;
       align-items: center;
-      font-size: 14px;
+      font-size: 20px;
       font-family: Roboto-SemiBold, Roboto;
       font-weight: 600;
       color: #FE6D46;
@@ -221,7 +274,7 @@ export default styled.div`
     font-weight: bold;
     color: #FFFFFF;
   }
-  .fire-list-box-airdroplist {
+  .fire-list-box-userclaim {
     .list-header{
       .col{
         padding-left: 10px;
@@ -237,17 +290,16 @@ export default styled.div`
     .col:nth-child(4) {
       width: 150px;
     }
+    
     .col:nth-child(6) {
       width: 130px;
       overflow: hidden;
     }
+    .no{
+        color: rgba(228, 134, 134, 1);
+    }
   }
 
-  .panel-container {
-    padding: 3em 8%;
-    margin: 1em 5%;
-    width: 90%;
-  }
 
   .claim-nav {
     margin: 10px 0 0px;
@@ -261,7 +313,7 @@ export default styled.div`
     }
   }
 
-  .fire-list-box-userclaim {
+  .fire-list-box-airdrop {
     .col {
       &:nth-child(1) {
         width: 50px;
@@ -285,11 +337,17 @@ export default styled.div`
 
 
     }
+    .no{
+        color: rgba(228, 134, 134, 1);
+    }
   }
 
   .can-claim {
     color: #8A8080;
-
+font-size:20px;
+font-family: Roboto-Medium, Roboto;
+font-weight: 600;
+color: #8A8080;
     strong {
       font-family: Roboto-Bold, Roboto;
       font-weight: bold;
@@ -329,37 +387,37 @@ export default styled.div`
   .content-box {
     display: flex;
     justify-content: space-between;
-    margin-top: 30px;
-    padding: 20px 0 30px;
+    padding: 0px 0 30px;
 
     .left-part, .right-part {
       width: 48%;
       background: #1A1414;
       border-radius: 20px;
       border: 1px solid rgba(255, 255, 255, 0.1);
-      padding: 30px 50px;
+      padding: 30px 3%;
     }
 
     .left-part {
       .title {
-        font-size: 15px;
+        font-size: 20px;
         font-family: Roboto-Medium, Roboto;
         font-weight: 500;
         color: #8A8080;
       }
 
       .num-box {
-        font-size: 30px;
+        font-size: 40px;
         font-family: Russo One-Regular, Russo One;
         font-weight: 600;
-        background: linear-gradient(32deg, #FF4E50 0%, #F9D423 100%);
+        margin-top: 20px;
+background: linear-gradient(32deg, #FF4E50 0%, #F9D423 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
       }
 
       .bottom-part {
         display: flex;
-        margin-top: 20px;
+        margin-top: 3vwvwvvw0px;
         justify-content: space-between;
         flex-wrap: wrap;
         .info-box {
@@ -369,16 +427,19 @@ export default styled.div`
           }
 
           .name {
-            font-size: 13px;
-            font-family: Roboto-Medium, Roboto;
-            font-weight: 500;
-            color: #8A8080;
+            font-size: 20px;
+font-family: Roboto-Medium, Roboto;
+font-weight: 500;
+color: #8A8080;
+line-height: 26px;
           }
 
           .value {
             font-size: 20px;
-            font-family: Russo One-Regular, Russo One;
-            font-weight: 600;
+            margin-top: 20px;
+line-height: 26px;
+font-family: Roboto-Bold, Roboto;
+            font-weight: bold;
             color: #FFFFFF;
           }
         }
@@ -392,7 +453,7 @@ export default styled.div`
       }
 
       .withdrawForm {
-        margin-top: 10px;
+        margin-top: 20px;
       }
 
       .input-box {
@@ -402,22 +463,25 @@ export default styled.div`
         align-items: center;
 
         input {
-          font-size: 23px;
+          font-size: 18px;
           font-family: Russo One-Regular, Russo One;
           font-weight: 400;
+          line-height: 32px;
+
         }
 
         .max-btn {
-          width: 57px;
-          height: 30px;
+          width: 80px;
+          height: 32px;
           background: linear-gradient(32deg, #FF4E50 0%, #F9D423 100%);
           border-radius: 38px;
           position: absolute;
           right: 0;
           display: flex;
           justify-content: center;
+          margin-right:5px;
           align-items: center;
-          font-size: 12px;
+          font-size: 16px;
           font-family: Roboto-SemiBold, Roboto;
           font-weight: 600;
           cursor: pointer;
@@ -428,6 +492,11 @@ export default styled.div`
       .withdraw-btn {
         margin-top: 10px;
         width: 100%;
+        height: 42px;
+        font-size:16px;
+        font-family: Roboto-SemiBold, Roboto;
+font-weight: 600;
+color: #FFFFFF;
       }
     }
   }
@@ -438,8 +507,11 @@ export default styled.div`
     }
 
     .fire-nav-list {
+      width: 37%;
+      
       .nav-item {
         width: 180px;
+        font-size:18px;
       }
     }
   }
@@ -511,12 +583,7 @@ export default styled.div`
    }
  }
 }
-.panel-title.flex-box{
- flex-direction: column;
- .search-box{
-   margin-top: 10px;
- }
-}
+
 .pid-box {
     font-family: Roboto-SemiBold, Roboto;
     font-weight: 600;

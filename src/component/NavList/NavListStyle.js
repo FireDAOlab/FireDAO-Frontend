@@ -23,7 +23,7 @@ export default styled.div`
 
   .ant-menu-sub {
     .ant-menu-title-content {
-      padding:0 2em;
+      padding:0 2.5em;
     }
   }
 .ant-menu-item{
