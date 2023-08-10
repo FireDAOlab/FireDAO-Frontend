@@ -49,8 +49,23 @@ background: linear-gradient(-92deg, #FF4E50 0%, #F9D423 100%);
 
   .ant-menu-submenu-selected {
     /* background: radial-gradient(rgba(205, 144, 51, 0.5), rgba(97, 54, 144, 0.4)); */
-    background-image: radial-gradient( rgba(205, 144, 51, 0.4),rgba(97, 54, 144, 0.3));
-    
+    position: relative;
+    overflow: hidden;
+    .ant-menu-submenu-title{
+      position: relative;
+      :before{
+        content: '';
+        position: absolute;
+        background-image: radial-gradient( rgba(205, 144, 51, 0.4),rgba(97, 54, 144, 0.3));
+        width: 160px;
+        height: 160px;
+        top: -100px;
+        left: 50%;
+        filter: blur(10px);
+        transform: translate( -50%, 0);
+        border-radius: 50%;
+      }
+    }
     /* background: linear-gradient(32deg, #FF4E50 0%, #F9D423 100%); */
     .ant-menu-submenu-title {
       position: relative;
