@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useLocation, useNavigate } from "react-router-dom";
 import { Button } from "antd"
 import { useConnect, connect } from "../../api/contracts";
-
+import detectEthereumProvider from '@metamask/detect-provider';
 import WalletOutlined from "../../imgs/connect.png"
 import develop from "../../env";
 import { Network } from "../../config/constants";
@@ -26,6 +26,24 @@ const ConnectWallet = (props) => {
     let { state, dispatch } = useConnect();
     const location = useLocation()
     const [isShowWallet, setShowWallet] = useState(false)
+
+    useEffect(()=>{
+        detectEthereumProvider()
+            .then(async (provider) => {
+                if (!provider) {
+                    console.log("noe provider")
+                } else {
+                    const accounts = await window.ethereum.request({method: 'eth_accounts'});
+                    if (accounts && accounts[0]) {
+                        await connect(state, dispatch)
+
+                    } else {
+
+                    }
+
+                }
+            })
+    },[])
     const connectWallet = async () => {
         try {
             let curChainId = await window.ethereum.request({ method: "eth_chainId" })
@@ -89,12 +107,13 @@ const ConnectWallet = (props) => {
                 borderRadius: '20px', padding: '0px 5px', border: '1px solid rgba(234,234,234,0.1)'
             }} onClick={() => { connectWallet() }}>
                 <img style={{ width: '50px', height: '50px', marginTop: '10px' }} src={sz} />
-                <span style={{ width: '50%', fontSize: '15px', lineHeight: '63px', marginLeft: '10px',marginTop: '-12px' }}>MetaMask
+               
+                <span style={{ width: '50%', fontSize: '15px', lineHeight: '63px'}}>MetaMask
                 <span style={{ dontSize:'14px',color:'#999999',display:'block',marginTop: '-40px' }}> {
                                 state.account ? state.account.substr(0, 5) + "..." + state.account.substr(state.account.length - 5, state.account.length) : ""
                             }
                     </span>
-                    <img style={{width:'15px',margin: '-132px 0px 0px 100px'}} src={fz} />
+                    {/* <img style={{width:'15px',margin: '-132px 0px 0px 100px'}} src={fz} /> */}
                 </span>
                 <img style={{ width: '20px', height: '15px', marginTop: '23px', marginLeft: '20px' }} src={right} />
                 
@@ -197,7 +216,7 @@ const ConnectWallet = (props) => {
             }
             {
                 location.pathname !== "/" && (
-                <div>
+                <div className='buttt'>
                     <Dropdown
                     className="dropdow"
                         placement='bottomRight'

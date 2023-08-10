@@ -1,18 +1,19 @@
-import React, {useEffect, useRef, useState} from 'react';
-import {useConnect} from "../../../api/contracts";
-import {Card, Button, Descriptions, message, Form, List, Input, notification, Pagination, Select} from 'antd';
-import {getContractByName, getContractByContract} from "../../../api/connectContract";
-import {dealMethod, viewMethod} from "../../../utils/contractUtil"
+import React, { useEffect, useRef, useState } from 'react';
+import { useConnect } from "../../../api/contracts";
+import { Card, Button, Descriptions, message, Form, List, Input, notification, Pagination, Select } from 'antd';
+import { getContractByName, getContractByContract } from "../../../api/connectContract";
+import { dealMethod, viewMethod } from "../../../utils/contractUtil"
 import manage from "../../../imgs/svg/manage.svg"
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import judgeStatus from "../../../utils/judgeStatus";
 import DistributionStyle from "./style"
 import addressMap from "../../../api/addressMap";
-import {showNum} from "../../../utils/bigNumberUtil";
+import { showNum } from "../../../utils/bigNumberUtil";
 import BigNumber from "bignumber.js";
-import {getClaimRecords, getDepositRecords, getWhitelist} from "../../../graph/flmAirdrop";
-import {dealTime} from "../../../utils/timeUtil";
-import {formatAddress} from "../../../utils/publicJs";
+import { getClaimRecords, getDepositRecords, getWhitelist } from "../../../graph/flmAirdrop";
+import { dealTime } from "../../../utils/timeUtil";
+import { formatAddress } from "../../../utils/publicJs";
+import user from "../../../imgs/user3.png"
 import develop from "../../../env"
 import checkIcon from "../../../imgs/svg/checkbox-checked.svg";
 import checkActiveIcon from "../../../imgs/svg/checkbox-checked-active.svg";
@@ -22,7 +23,7 @@ const FLMDecimal = 18
 const Distribution = (props) => {
 
 
-    let {state, dispatch} = useConnect();
+    let { state, dispatch } = useConnect();
     const history = useNavigate();
     const goPage = (url) => {
         history(url);
@@ -221,10 +222,10 @@ const Distribution = (props) => {
                 }
             })
         })
-        resArr.forEach(item=>{
-            if(item.claimed){
+        resArr.forEach(item => {
+            if (item.claimed) {
                 item.claiming = item.amount - item.claimed;
-            }else{
+            } else {
                 item.claiming = item.amount;
             }
         })
@@ -310,15 +311,25 @@ const Distribution = (props) => {
             <div className="panel-box userinfo-box">
                 <div className="panel-container">
                     <div className="panel-title flex-box">
-                        FLM Airdrop
-                        <div className="add-coin" onClick={addToken}>
-                            Add FLM Address
+                        <p>FLM Airdrop</p>
+                        <div className='lv'>
+                            <Button className='lvleft' onClick={() => goPage("/FLMAirdropLv1")}>
+                                <img src={user}></img>
+                                <span>Lv1</span>
+                            </Button>
+                            <Button className='lvright' onClick={() => goPage("/FLMAirdropLv2")}>
+                                <img src={user}></img>
+                                <span>Lv2</span>
+                            </Button>
                         </div>
+                        {/* <div className="add-coin" onClick={addToken}>
+                            Add FLM Address
+                        </div> */}
                         {isAdmin && (
                             <div className="admin-icon-box" onClick={() => {
                                 history("/FLMAirdropManage")
                             }}>
-                                <img className="admin-icon" src={manage} alt=""/>
+                                <img className="admin-icon" src={manage} alt="" />
                             </div>
                         )}
                     </div>
@@ -326,7 +337,7 @@ const Distribution = (props) => {
                         <div className="left-part">
                             <div className="info-box">
                                 <div className="title">
-                                FLM Airdrop Pool
+                                    FLM Airdrop Pool
                                 </div>
                                 <div className="num-box">
                                     {showNum(poolBalance)}
@@ -343,7 +354,7 @@ const Distribution = (props) => {
                                 </div>
                                 <div className="info-box">
                                     <div className="name">
-                                    Withdrawn
+                                        Withdrawn
                                     </div>
                                     <div className="value">
                                         {showNum(claimedAmount)}
@@ -351,7 +362,7 @@ const Distribution = (props) => {
                                 </div>
                                 <div className="info-box">
                                     <div className="name">
-                                       Balance
+                                        Balance
                                     </div>
                                     <div className="value">
                                         {showNum(canClaim)}
@@ -363,14 +374,14 @@ const Distribution = (props) => {
                             <div className="info-box">
                                 <div className="pid-box">PID : <div className="pid">{state.pid ? state.pid : 0}</div>
                                 </div>
-                                <div className="can-claim"> Unclaimed Balance: <strong>{canClaim}</strong></div>
+                                <div className="can-claim"> Can Claim: <strong>{canClaim}</strong></div>
                             </div>
                             <Form form={form} className="withdrawForm">
                                 <Form.Item label="Withdraw">
                                     <div className="input-box">
                                         <Input className='input' placeholder="0" step="any" type="number"
-                                               value={withdrawNum}
-                                               onChange={e => setWithdrawNum(e.target.value)}/>
+                                            value={withdrawNum}
+                                            onChange={e => setWithdrawNum(e.target.value)} />
                                         <div className="max-btn" onClick={() => {
                                             setWithdrawNum(canClaim)
                                         }}>
@@ -390,15 +401,15 @@ const Distribution = (props) => {
                 <div className="panel-container">
                     <div className="panel-title flex-box">
                         Leaderboard
-                        <div className="search-box">
+                        {/* <div className="search-box">
                             <Input value={searchContent} onChange={(e) => {
                                 setSearchContent(e.target.value)
                                 if (!e.target.value) setShowSearch(false)
-                            }} allowClear/>
+                            }} allowClear />
                             <Button className="btn" type="primary" onClick={() => {
                                 handleSearch()
                             }}>Search</Button>
-                        </div>
+                        </div> */}
                     </div>
                     <div className="fire-list-box fire-list-box-airdrop">
                         <div className="list-header">
@@ -415,22 +426,22 @@ const Distribution = (props) => {
                                 Claimed
                             </div>
                             <div className="col">
-                                Pending
+                            Claiming
                             </div>
                         </div>
                         {!showSearch && curPage2 && whitelist.map((item, index) => {
                             if (index >= pageCount2 * (curPage2 - 1) && index < pageCount2 * curPage2) {
                                 return (<div className="list-item" key={index}>
-                                    <div className="col">
+                                    <div className="col no">
                                         {index + 1}
                                     </div>
-                                    <div className="col pc">
+                                    {/* <div className="col pc">
                                         <a className="address" href={develop.ethScan + "/address/" + item.user}
-                                           target="_blank">{(item.user)}</a>
-                                    </div>
+                                            target="_blank">{(item.user)}</a>
+                                    </div> */}
                                     <div className="col m">
                                         <a className="address" href={develop.ethScan + "/address/" + item.user}
-                                           target="_blank">{formatAddress((item.user))}</a>
+                                            target="_blank">{formatAddress((item.user))}</a>
                                     </div>
                                     <div className="col">
                                         {showNum(item.amount / 10 ** FLMDecimal)}
@@ -448,16 +459,16 @@ const Distribution = (props) => {
                         {showSearch && whitelist.map((item, index) => {
                             if (item.user.toLowerCase() == searchContent.toString().toLowerCase()) {
                                 return (<div className="list-item" key={index}>
-                                    <div className="col">
+                                    <div className="col no">
                                         {index + 1}
                                     </div>
-                                    <div className="col pc">
+                                    {/* <div className="col pc">
                                         <a className="address" href={develop.ethScan + "/address/" + item.user}
-                                           target="_blank">{(item.user)}</a>
-                                    </div>
+                                            target="_blank">{(item.user)}</a>
+                                    </div> */}
                                     <div className="col m">
                                         <a className="address" href={develop.ethScan + "/address/" + item.user}
-                                           target="_blank">{formatAddress((item.user))}</a>
+                                            target="_blank">{formatAddress((item.user))}</a>
                                     </div>
                                     <div className="col">
                                         {showNum(item.amount / 10 ** FLMDecimal)}
@@ -476,9 +487,9 @@ const Distribution = (props) => {
                     <div className="pagination">
                         {
                             <Pagination current={curPage2} showSizeChanger
-                                        onShowSizeChange={handleShowSizeChange2}
-                                        onChange={onChangePage2} total={total2}
-                                        defaultPageSize={pageCount2}/>
+                                onShowSizeChange={handleShowSizeChange2}
+                                onChange={onChangePage2} total={total2}
+                                defaultPageSize={pageCount2} />
                         }
                     </div>
                 </div>
@@ -525,7 +536,7 @@ const Distribution = (props) => {
                         {curNav == 1 && allRecords.map((item, index) => {
                             if (index >= pageCount1 * (curPage1 - 1) && index < pageCount1 * curPage1) {
                                 return (<div className="list-item" key={index}>
-                                    <div className="col">
+                                    <div className="col no">
                                         {allRecords.length - index}
                                     </div>
                                     <div className="col">
@@ -536,7 +547,7 @@ const Distribution = (props) => {
                                     </div>
                                     <div className="col  ">
                                         <a className="address" href={develop.ethScan + "/address/" + item.user}
-                                           target="_blank">{formatAddress(item.user)}</a>
+                                            target="_blank">{formatAddress(item.user)}</a>
                                     </div>
                                     <div className="col">
                                         {showNum(item.amount / 10 ** FLMDecimal)}
@@ -564,7 +575,7 @@ const Distribution = (props) => {
                                 </div>
                                 <div className="col">
                                     <a href={develop.ethScan + "/address/" + item.user}
-                                       target="_blank">{formatAddress(item.user)}</a>
+                                        target="_blank">{formatAddress(item.user)}</a>
                                 </div>
                                 <div className="col">
                                     {item.amount / 10 ** FLMDecimal}
@@ -578,9 +589,9 @@ const Distribution = (props) => {
                     <div className="pagination">
                         {
                             curNav == 1 && <Pagination current={curPage1} showSizeChanger
-                                                       onShowSizeChange={handleShowSizeChange1}
-                                                       onChange={onChangePage1} total={total1}
-                                                       defaultPageSize={pageCount1}/>
+                                onShowSizeChange={handleShowSizeChange1}
+                                onChange={onChangePage1} total={total1}
+                                defaultPageSize={pageCount1} />
                         }
                     </div>
                 </div>
@@ -625,7 +636,7 @@ const Distribution = (props) => {
                                     </div>
                                     <div className="col  ">
                                         <a className="address" href={develop.ethScan + "/address/" + item.user}
-                                           target="_blank">{formatAddress(item.user)}</a>
+                                            target="_blank">{formatAddress(item.user)}</a>
                                     </div>
                                     <div className="col">
                                         {showNum(item.amount / 10 ** FLMDecimal)}
@@ -642,9 +653,9 @@ const Distribution = (props) => {
                     <div className="pagination">
                         {
                             <Pagination current={curPage3} showSizeChanger
-                                        onShowSizeChange={handleShowSizeChange3}
-                                        onChange={onChangePage3} total={total3}
-                                        defaultPageSize={pageCount3}/>
+                                onShowSizeChange={handleShowSizeChange3}
+                                onChange={onChangePage3} total={total3}
+                                defaultPageSize={pageCount3} />
                         }
                     </div>
                 </div>
@@ -663,83 +674,83 @@ const Distribution = (props) => {
                     </div>
                     <div className="fire-list-box fire-list-box-airdroplist">
                         {curAirdropList.map((item, index) => {
-                                if (index >= pageCount4 * (curPage4 - 1) && index < pageCount4 * curPage4) {
-                                    if (index == 0 || item.batch != curAirdropList[index - 1].batch) {
-                                        return (
-                                            <div>
-                                                <div className="batch-box">
-                                                    <div className="col">
-                                                        #{item.batch}
-                                                    </div>
-                                                    <div className="col">
-                                                        {item.info ? item.info : "--"}
-                                                    </div>
+                            if (index >= pageCount4 * (curPage4 - 1) && index < pageCount4 * curPage4) {
+                                if (index == 0 || item.batch != curAirdropList[index - 1].batch) {
+                                    return (
+                                        <div>
+                                            <div className="batch-box">
+                                                <div className="col">
+                                                    #{item.batch}
                                                 </div>
-                                                <div className="list-header">
-                                                    <div className="col">
-                                                        No.
-                                                    </div>
-
-                                                    <div className="col">
-                                                        Address
-                                                    </div>
-                                                    <div className="col">
-                                                        Amount(s)
-                                                    </div>
-                                                    <div className="col">
-                                                        Time(UTC)
-                                                    </div>
-                                                </div>
-                                                <div className="list-item" key={index}>
-
-                                                    <div className="col">
-                                                        {index + 1}
-                                                    </div>
-
-                                                    <div className="col  ">
-                                                        <a className="address"
-                                                           href={develop.ethScan + "/address/" + item.user}
-                                                           target="_blank">{formatAddress(item.user)}</a>
-                                                    </div>
-                                                    <div className="col">
-                                                        {showNum(item.amount / 10 ** FLMDecimal)}
-                                                    </div>
-                                                    <div className="col">
-                                                        {dealTime(item.blockTimestamp)}
-                                                    </div>
+                                                <div className="col">
+                                                    {item.info ? item.info : "--"}
                                                 </div>
                                             </div>
-                                        )
+                                            <div className="list-header">
+                                                <div className="col">
+                                                    No.
+                                                </div>
 
-                                    }
-                                    return (<div className="list-item" key={index}>
+                                                <div className="col">
+                                                    Address
+                                                </div>
+                                                <div className="col">
+                                                    Amount(s)
+                                                </div>
+                                                <div className="col">
+                                                    Time(UTC)
+                                                </div>
+                                            </div>
+                                            <div className="list-item" key={index}>
 
-                                        <div className="col">
-                                            {index + 1}
-                                        </div>
+                                                <div className="col">
+                                                    {index + 1}
+                                                </div>
 
+                                                <div className="col  ">
+                                                    <a className="address"
+                                                        href={develop.ethScan + "/address/" + item.user}
+                                                        target="_blank">{formatAddress(item.user)}</a>
+                                                </div>
+                                                <div className="col">
+                                                    {showNum(item.amount / 10 ** FLMDecimal)}
+                                                </div>
+                                                <div className="col">
+                                                    {dealTime(item.blockTimestamp)}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    )
 
-                                        <div className="col  ">
-                                            <a className="address" href={develop.ethScan + "/address/" + item.user}
-                                               target="_blank">{formatAddress(item.user)}</a>
-                                        </div>
-                                        <div className="col">
-                                            {showNum(item.amount / 10 ** FLMDecimal)}
-                                        </div>
-                                        <div className="col">
-                                            {dealTime(item.blockTimestamp)}
-                                        </div>
-                                    </div>)
                                 }
-                            })
+                                return (<div className="list-item" key={index}>
+
+                                    <div className="col">
+                                        {index + 1}
+                                    </div>
+
+
+                                    <div className="col  ">
+                                        <a className="address" href={develop.ethScan + "/address/" + item.user}
+                                            target="_blank">{formatAddress(item.user)}</a>
+                                    </div>
+                                    <div className="col">
+                                        {showNum(item.amount / 10 ** FLMDecimal)}
+                                    </div>
+                                    <div className="col">
+                                        {dealTime(item.blockTimestamp)}
+                                    </div>
+                                </div>)
+                            }
+                        })
                         }
                     </div>
                     <div className="pagination">
                         {
                             <Pagination current={curPage4} showSizeChanger
-                                        onShowSizeChange={handleShowSizeChange4}
-                                        onChange={onChangePage4} total={total4}
-                                        defaultPageSize={pageCount4}/>
+                                onShowSizeChange={handleShowSizeChange4}
+                                onChange={onChangePage4} total={total4}
+                                defaultPageSize={pageCount4} />
                         }
                     </div>
                 </div>

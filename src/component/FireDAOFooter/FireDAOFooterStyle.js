@@ -28,12 +28,17 @@ export default  styled.div`
 
   .footer {
     width: 100%;
-    background: #150D0D;
+    background: rgba(26, 20, 20, 1);
     
    
   }
 
-  @media screen and (max-width: 1950px) {
+  @media screen and (min-width: 1950px) {
+    .navBox{
+      .ant-menu{
+        background: rgba(26, 20, 20, 1);
+      }
+    }
     .footer{
       min-width: 1100px;
     padding: 3% 5%;
@@ -49,33 +54,35 @@ export default  styled.div`
     width: 150px;
   }
   .copyrightphone {
+    
     display: none;
   }
   .copyright {
     color: #544545;
+    margin-top:1em;
   }
 
   .link-list {
     display: flex;
     flex-grow: 1;
-    margin: 2em 0;
-    flex-wrap: wrap;
-    width: 220px;
+    margin: 0em;
+    
+    width: 100%;
 
     .link-item {
-      margin-right: 1.5em;
+      margin-right: 1em;
       margin-top: 2em;
       cursor: pointer;
 
       .icon {
-        width: 20px;
+        width: 35px;
       }
     }
   }
 
 
   .left {
-    width: 15%;
+    width: 25%;
   }
 
   .right {
@@ -89,6 +96,121 @@ export default  styled.div`
     .link-list {
       display: flex;
       width: 100%;
+      margin-top: 1em;
+      justify-content: flex-end;
+
+      .link {
+        width: 90px;
+        color: #FFFFFF;
+        margin-left: 10px;
+        height: 30px;
+        border-radius: 15px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 12px;
+        border: 1px solid #936540;
+      }
+    }
+  }
+
+  .link-box {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    font-family: Helvetica-Bold, Helvetica, sans-serif;
+
+    .link-col {
+      opacity: 0.5;
+
+      &:first-child {
+        margin-left: 0%;
+      }
+
+      .link-row {
+        font-weight: bold;
+        color: #544545;
+        line-height: 26px;
+        font-size: 12px;
+        cursor: pointer;
+        white-space: pre-wrap;
+        flex-shrink: 0;
+      }
+
+      .link-row.title {
+        font-size: 14px;
+        line-height: 30px;
+        font-weight: bold;
+        color: #FFFFFF;
+        white-space: pre-wrap;
+      }
+    }
+  }
+  }
+  @media screen and (max-width: 1950px) {
+    .navBox{
+      .ant-menu{
+        background: rgba(26, 20, 20, 1);
+      }
+    }
+    .footer{
+      min-width: 1100px;
+    padding: 3% 5%;
+    display: flex;
+    justify-content: space-between;
+      
+      .lb{
+      display:none;
+    }
+    }
+    
+    .logo {
+    width: 150px;
+  }
+  .copyrightphone {
+    
+    display: none;
+  }
+  .copyright {
+    color: #544545;
+    margin-top:1em;
+  }
+
+  .link-list {
+    display: flex;
+    flex-grow: 1;
+    margin: 0em;
+    
+    width: 100%;
+
+    .link-item {
+      margin-right: 1em;
+      margin-top: 2em;
+      cursor: pointer;
+
+      .icon {
+        width: 35px;
+      }
+    }
+  }
+
+
+  .left {
+    width: 25%;
+  }
+
+  .right {
+    width: 65%;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: flex-end;
+
+    .link-list {
+      display: flex;
+      width: 100%;
+      margin-top: 1em;
       justify-content: flex-end;
 
       .link {
@@ -163,24 +285,24 @@ export default  styled.div`
   .link-list {
     display: flex;
     flex-grow: 1;
-    margin: 2em 0;
+    margin: 0;
     flex-wrap: wrap;
-    width: 220px;
+    width:100%;
 
     .link-item {
-      margin-right: 1.5em;
-      margin-top: 2em;
+      margin-right: 1em;
+    margin-top: 1em;
       cursor: pointer;
 
       .icon {
-        width: 20px;
+        width: 35px;
       }
     }
   }
 
 
   .left {
-    width: 15%;
+    width: 25%;
   }
 
   .right {
@@ -194,6 +316,7 @@ export default  styled.div`
     .link-list {
       display: flex;
       width: 100%;
+      margin-top: 2em;
       justify-content: flex-end;
 
       .link {
@@ -284,7 +407,7 @@ line-height: 20px;
     margin-top: 2.5em;
   }
 .link-list{
-  justify-content: center;
+  justify-content: flex-start;
 }
   .copyrightphone {
     display: block;
@@ -295,13 +418,14 @@ line-height: 20px;
 
   .link-list {
     display: flex;
+    /* justify-content:flex-start; */
     flex-grow: 1;
     flex-wrap: wrap;
     width: 100%;
-    margin:1em 0;
+    margin:1em 0em;
+    padding: 0em 4em;
     .link-item {
-      /* margin-right: 1.5em; */
-      margin: 0.5em ;
+      margin: 0.5em 0.5em;
       cursor: pointer;
 
       .icon {
@@ -387,7 +511,7 @@ line-height: 20px;
     margin-top: 2.5em;
   }
 .link-list{
-  justify-content: center;
+  justify-content: flex-start;
 }
   .copyrightphone {
     display: block;
@@ -398,13 +522,14 @@ line-height: 20px;
 
   .link-list {
     display: flex;
+    /* justify-content:flex-start; */
     flex-grow: 1;
     flex-wrap: wrap;
     width: 100%;
     margin:1em 0em;
-
+    padding: 0em 2.5em;
     .link-item {
-      margin: 0.5em;
+      margin: 0.5em 0.5em;
       cursor: pointer;
 
       .icon {

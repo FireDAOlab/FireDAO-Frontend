@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import { Component, useEffect, useReducer } from "react";
 import logo from "../../imgs/logo.png"
-import icon1 from "../../imgs/github.webp"
-import icon2 from "../../imgs/twitter.webp"
-import icon3 from "../../imgs/telegram.webp"
-import icon4 from "../../imgs/facebook.webp"
-import icon5 from "../../imgs/tiktok.webp"
-import icon6 from "../../imgs/youtube.webp"
-import icon7 from "../../imgs/reddit@2x.webp"
-import icon8 from "../../imgs/medium.webp"
-import icon9 from "../../imgs/discord.webp"
+import icon1 from "../../imgs/11.png"
+import icon2 from "../../imgs/22.png"
+import icon3 from "../../imgs/33.png"
+import icon4 from "../../imgs/44.png"
+import icon5 from "../../imgs/55.png"
+import icon6 from "../../imgs/66.png"
+import icon7 from "../../imgs/77.png"
+import icon8 from "../../imgs/88.png"
+import icon9 from "../../imgs/99.png"
 import { useLocation, useNavigate } from "react-router-dom";
 import footerMap from "../../config/footerMap";
 import { Menu } from 'antd';
@@ -32,7 +32,7 @@ const FireDAOFooter = () => {
     const goPage = (obj) => {
         setSelectedKeys(obj.keyPath)
         history("/" + obj.key);
-        setSelectNav(obj.keyPath[1])
+        // setSelectNav(obj.keyPath[1])
     }
     const onOpenChange = (keys) => {
         console.log(keys)

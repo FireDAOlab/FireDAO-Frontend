@@ -7,17 +7,17 @@ import fireIcon5 from "../imgs/fire_icon5.webp";
 import fireIcon6 from "../imgs/fire_icon6.webp";
 import React from "react";
 
-function getItem(label, key,  children, type) {
+function getItem(label, key,hr,  children, type) {
     return {
         key,
-        
+        hr,
         children,
         label,
         type,
     };
 }
 export default  [
-    getItem('Holy Fire Altar', 'Holy Fire Altar', [
+    getItem('Holy Fire Altar', 'Holy Fire Altar',<hr />, [
         getItem('Mint Passport', 'MintPassport'),
         getItem('Mint FireSeed', 'MintFireSeed'),
         getItem('Mint FireSoul', 'MintFireSoul'),
@@ -32,7 +32,7 @@ export default  [
 
 
 
-    getItem('FDT Square', 'FDTSquare',  [
+    getItem('FDT Square', 'FDTSquare',<hr />,   [
         getItem('OG Pool', 'OGPool'),
         getItem('Seed Pool', 'SeedPool'),
         getItem('Consensus Pool', 'ConsensusPool'),
@@ -46,7 +46,7 @@ export default  [
         getItem('Auto Reflow LP', 'AutoReflowLP'),
         getItem('Seed Donation', 'SeedDonation'),
     ]),
-    getItem('Operation', 'Operation',  [
+    getItem('Operation', 'Operation', <hr />,  [
         getItem('Guild', 'Guild'),
         getItem('Citynode', 'Citynode'),
         getItem('LP Mining', 'LPMining'),
@@ -56,7 +56,7 @@ export default  [
         getItem('FLM Airdrop', 'FLMAirdrop'),
         getItem('Forum FLM Airdrop', 'ForumFLMAirdrop'),
     ]),
-    getItem('Treasury', 'Treasury',[
+    getItem('Treasury', 'Treasury',<hr />, [
         getItem('Source', 'Source'),
         getItem('Distribution', 'Distribution'),
         getItem('Community Vault', 'CommunityVault'),
@@ -65,12 +65,12 @@ export default  [
         getItem('Citynode Competition', 'CitynodeCompetition'),
         getItem('Incentive Fund', 'IncentiveFund'),
     ]),
-    getItem('Governance', 'Governance', [
+    getItem('Governance', 'Governance', <hr />, [
         getItem('FID Reputation', 'FIDReputation'),
         getItem('Referendum', 'Referendum'),
         getItem('Create Proposal', 'Create Proposal'),
     ]),
-    getItem('Ecological Forum', 'EcologicalForum',[
+    getItem('Ecological Forum', 'EcologicalForum',<hr />, [
         getItem('Tokenomics', 'Tokenomics'),
         getItem('Guild', 'EcologicalForumGuild'),
         getItem('Citynode', 'EcologicalForumCitynode'),
@@ -79,7 +79,7 @@ export default  [
         getItem('Local', 'Local'),
         getItem('Management', 'Management'),
     ]),
-    getItem('SBB Square', 'SBBSquare', [
+    getItem('SBB Square', 'SBBSquare',<hr />,  [
         getItem('General', 'General'),
         getItem('DeFi', 'DeFi'),
         getItem('DAOs', 'DAOs'),

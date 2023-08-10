@@ -7,6 +7,7 @@ import {getContractByContract, getContractByName} from "../api/connectContract";
 import {dealMethod, viewMethod} from "../utils/contractUtil"
 import {useNavigate} from "react-router-dom";
 import moment from "moment"
+import BigNumber from "bignumber.js";
 const CreatePage = (props) => {
     const [form] = Form.useForm();
     const history = useNavigate();
@@ -94,8 +95,7 @@ const CreatePage = (props) => {
     const approve = async () => {
         const listLength = await handleViewMethod("getOwnerLockLenglength", [])
         const address = await handleViewMethod("ownerLock", [state.account, listLength - 1])
-        /*eslint-disable*/
-        handleDealCoinMethod("approve", form.getFieldValue().TokenAddress.toString().trim(), [address, BigInt(10 ** 50).toString()])
+        handleDealCoinMethod("approve", form.getFieldValue().TokenAddress.toString().trim(), [address, BigNumber(10 ** 50).toString()])
     }
     const lock = async () => {
         const listLength = await handleViewMethod("getOwnerLockLenglength", [])
@@ -103,11 +103,10 @@ const CreatePage = (props) => {
         const {TokenAddress, CliffPeriod, UnlockCycle, UnlockRound, Amount, Title} = form.getFieldValue()
         let amount = 0
         if(coinInfo.decimal&&parseInt(coinInfo.decimal)>0){
-            amount = BigInt(Amount* parseInt((10**coinInfo.decimal))).toString()
+            amount = BigNumber(Amount* parseInt((10**coinInfo.decimal))).toString()
 
         }else{
-            /*eslint-disable*/
-            amount = BigInt(Amount*10**18).toString()
+            amount = BigNumber(Amount*10**18).toString()
             message.error("please input Token Address")
         }
         if(!Amount){

@@ -8,7 +8,7 @@ export default   styled.div`
     .mask{
     position: fixed;
     left: 0;
-    top: 0;
+    top: 10px;
     width: 100vw;
     height: 100vh;
     background: #000000;
@@ -19,17 +19,19 @@ export default   styled.div`
       position: fixed;
     z-index: 1;
     top: calc(20vh);
-    left: calc(50vw - 42.5%);
+    left: calc(50vw - 45%);
     /* width: 520px; */
     background: #241B1B;
     border-radius: 13px;
-width: 85%;
+width: 90%;
 
     border: 1px solid #3E3737;
-    padding: 30px;
+    padding: 20px 15px;
 
     .header{
       text-align: right;      
+      display: flex;
+      justify-content:space-between;
       .close{
         cursor: pointer;
       }
