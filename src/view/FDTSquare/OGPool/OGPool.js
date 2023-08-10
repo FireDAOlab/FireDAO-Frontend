@@ -190,15 +190,14 @@ const OGPoolPublic = (props) => {
     const getfdtAmount = async (value) => {
         if (value > 0 || value == 0) {
             setInputValue(value)
-            /* eslint-disable */
-            let res = await handleViewMethod("getfdtAmount", [BigInt(value * 10 ** 18)])
+            let res = await handleViewMethod("getfdtAmount", [BigNumber(value * 10 ** 18)])
             setExchangeAmount(BigNumber(res / 10 ** 18).toFixed(2))
         }
     }
 
     const exchangeFdt = async () => {
         if (inputValue > 0) {
-            await handlePayDealMethod("donate", [(BigInt(inputValue * 10 ** 18)).toString()], state.api.utils.toWei(inputValue.toString()))
+            await handlePayDealMethod("donate", [(BigNumber(inputValue * 10 ** 18)).toString()], state.api.utils.toWei(inputValue.toString()))
             getData()
         }
     }

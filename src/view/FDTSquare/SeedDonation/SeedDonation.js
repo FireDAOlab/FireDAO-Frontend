@@ -130,8 +130,7 @@ const SeedDonationNew = (props) => {
     const getfdtAmount = async (value) => {
         if (value > 0) {
             setInputValue(value)
-            /* eslint-disable */
-            let res = await handleViewMethod("getRewardAmount", [BigInt(value * 10 ** 18)])
+            let res = await handleViewMethod("getRewardAmount", [BigNumber(value * 10 ** 18)])
             setExchangeAmount(BigNumber(res / 10 ** 18).toFixed(2))
         }
     }
