@@ -45,23 +45,26 @@ width: 100%;
     position: fixed;
     z-index: 1;
     top: calc(25vh);
-    left: calc(50vw - 42.5%);
+    left: calc(50vw - 45%);
     /* width: 520px; */
     background: #241B1B;
     border-radius: 13px;
-width: 85%;
+width: 90%;
 
     border: 1px solid #3E3737;
-    padding: 30px;
+    padding: 20px 15px;
 
     .header{
-      text-align: right;      
+      text-align: right;   
+      display:flex ;
+      justify-content:center;
       .close{
         cursor: pointer;
       }
     }
     .title{
       font-size: 18px;
+      margin:15px 0px;
       text-align: center;
       font-family: Roboto-Bold, Roboto;
       font-weight: bold;

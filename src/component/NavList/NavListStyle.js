@@ -50,7 +50,7 @@ background: linear-gradient(-92deg, #FF4E50 0%, #F9D423 100%);
   .ant-menu-submenu-selected {
     /* background: radial-gradient(rgba(205, 144, 51, 0.5), rgba(97, 54, 144, 0.4)); */
     background-image: radial-gradient( rgba(205, 144, 51, 0.4),rgba(97, 54, 144, 0.3));
-    
+    background-position:20px;
     /* background: linear-gradient(32deg, #FF4E50 0%, #F9D423 100%); */
     .ant-menu-submenu-title {
       position: relative;
@@ -63,7 +63,7 @@ background: linear-gradient(-92deg, #FF4E50 0%, #F9D423 100%);
         top: 0;
         width: 2px;
         height: 50px;
-        background: linear-gradient(320deg,  #FF4E50 0%, #F9D423 100%);
+        /* background: linear-gradient(320deg,  #FF4E50 0%, #F9D423 100%); */
         border-radius:50px;
       }
     }

@@ -21,11 +21,11 @@ export default  styled.div`
     height:30px;
     border-radius:50px;
     background-color:rgba(47, 35, 35, 1);
-    border:1px solid white;
+    /* border:1px solid white; */
   }
 .ant-menu-item-selected{
   .ant-menu-title-content{
-      border: 1px solid white;
+      /* border: 1px solid white; */
     }
 }
 
