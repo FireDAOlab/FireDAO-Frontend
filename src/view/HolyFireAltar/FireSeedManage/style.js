@@ -2545,16 +2545,16 @@ color: #8A8080;
 
       &:nth-child(1){
         margin-left:0px;
-        width:35%;
+        width:38%;
       }
       &:nth-child(2){
-        width: 35%;
-        margin-left:5px;
+        width: 38%;
+        margin-left:3px;
         
       }
       &:nth-child(3){
         width: 20%;
-        margin-left:5px;
+        margin-left:3px;
       }
      
      
@@ -2562,21 +2562,23 @@ color: #8A8080;
 }  
         .flex-box3 {
           font-size:12px;
-          padding: 20px 3em;
+          padding: 20px 2em;
           font-family: Roboto-Medium, Roboto;
 font-weight: bold;
 color: #8A8080;
         }
         .dis{
+            .ant-form-item-control-input{
+                min-height:20px;
+            }
             padding: 0.5em 0em;
-          width: 81%;
+          width: 83%;
             margin: 0 auto;
-            border-radius:0px;
+            border-radius:2px;
             border-bottom:1px solid rgba(255, 255, 255, 0.1);
             .start{
               font-size:12px;
               width: 43%;
-            
               border-radius:2px;
               text-align:center;
               float: left;

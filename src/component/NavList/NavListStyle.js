@@ -15,7 +15,14 @@ export default styled.div`
     color: transparent;
 
   }
-
+  .ant-menu-inline.ant-menu-root .ant-menu-item>.ant-menu-title-content{
+    padding-left:35px;
+    
+  }
+  .ant-menu-item .ant-menu-title-content{
+    margin-left: -25px;
+    margin-right:25px;
+  }
   .ant-menu-submenu-title {
 
     i {
@@ -62,10 +69,10 @@ export default styled.div`
       :before {
         content: '';
         position: absolute;
-        background-image: radial-gradient(rgba(205, 144, 51, 0.4), rgba(97, 54, 144, 0.3));
+        background-image: radial-gradient(rgba(167, 109, 21, 0.5), rgba(97, 54, 144, 0.5));
         width: 160px;
         height: 160px;
-        top: -100px;
+        top: -120px;
         left: 50%;
         filter: blur(10px);
         transform: translate(-50%, 0);

@@ -372,11 +372,17 @@ export default styled.div`
     .ant-menu-submenu-arrow{
         display: none;
     }
-
+  
+    .ant-menu-dark.ant-menu-inline .ant-menu-item{
+        border-bottom: 1px solid rgba(255,255,255,0.15);
+    }
+    .ant-menu-inline.ant-menu-root .ant-menu-submenu-title{
+        background:rgba(26, 20, 20, 1);
+    }
     .ant-menu-submenu-title {
     width: 100%;
     border-bottom: 1px solid rgba(255,255,255,0.15);
-    padding-left:40px !important;
+    padding-left:45px !important;
     font-size: 16px;
 font-family: Roboto-SemiBold, Roboto;
 font-weight: 600;
@@ -385,18 +391,28 @@ line-height:30px;
 background:rgba(26, 20, 20, 1) ;
 .ant-menu-title-content{
     color:rgba(180, 158, 158, 1);
+    border-bottom: 1px solid rgba(255,255,255,0.15);
+    
+
 }
 
 }
-/* .ant-menu-dark .ant-menu-submenu-active{
+
+.ant-menu .ant-menu-root .ant-menu-inline .ant-menu-dark menu{
     background:rgba(26, 20, 20, 1) ;
-} */
-.navBox{
-    .ant-menu{
-    background: rgb(36, 27, 27, 1);
-}
-}
 
+}
+.ant-menu-dark.ant-menu-dark:not(.ant-menu-horizontal) .ant-menu-item-selected{
+    background: linear-gradient(32deg, rgb(255,255,255,0.5) 10%, rgb(255,255,255,0.5) 10%);
+    -webkit-background-clip: text;
+    color: transparent;
+
+}
+.ant-menu-dark .ant-menu-submenu-active, .ant-menu-dark .ant-menu-submenu-open{
+    .ant-menu-sub.ant-menu-inline{
+        background:rgba(36, 27, 27, 1);
+    }
+}
 .ant-menu-dark.ant-menu-inline .ant-menu-item{
     font-size: 12px;
 font-family: Roboto-Medium, Roboto;
@@ -424,7 +440,7 @@ line-height: 20px;
       }
     
     .right {
-      //transform: scale(0.8);
+  
       display: none;
       width: 100%;
       
