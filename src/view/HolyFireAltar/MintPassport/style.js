@@ -6,7 +6,7 @@ export default styled.div`
       flex-shrink: 0;
       flex-grow: 0;
       display: flex;
-
+ 
       .ant-form-item-control{
     min-height:40px;
 }
@@ -15,13 +15,51 @@ export default styled.div`
 }
 .ant-input-affix-wrapper{
     border-radius:25px;
+    border-color:rgba(255, 255, 255, 0.10);
+    width: 100%;
 }
-@media screen and (min-width: 1951px) {
 
+.ant-input:hover {
+    border-color:rgba(255, 255, 255, 0.10);
+}
+.button-box {
+    text-align: left;
+    border: 25px;
+    .subBtn {
+      
+    height: 40px;
+
+      &.grey-status{
+        
+      }
+    }
+  }
+  .ant-btn-primary{
+    height: 40px;
+
+font-family: Roboto-SemiBold, Roboto;
+font-weight: 600;
+color: #FFFFFF;
+  }
+  
+@media screen and (min-width: 1951px) {
+    
+  .connect-button{
+img{
+  display:none ;
+}
+  }
     .ant-form .ant-form-item {
       margin-bottom: 12px;
     }
+    .dx{
+    line-height: 50px;
+    .ant-form-item-control-input{
+      border-radius:10px;
+      /* line-height: 50px; */
+    }
 
+  }
     .ant-input {
       line-height: 2;
     }
@@ -34,6 +72,7 @@ export default styled.div`
 
     .ant-input-affix-wrapper {
       font-size: 16px;
+      height: 100%;
     }
 
     .panel-box {
@@ -107,7 +146,7 @@ export default styled.div`
 
             .value {
               font-size: 17px;
-              max-width: 60%;
+              max-width: 62%;
             }
 
             .address {
@@ -135,8 +174,11 @@ export default styled.div`
             color:white;
             font-weight:600;
             font-size:16px;
+           
         }
-       
+        span{
+              font-size:16px;
+            }
         .choosePayType{
           .ant-form-item-label{
             display: none;
@@ -166,14 +208,16 @@ export default styled.div`
 
   .button-box {
     text-align: left;
+    height: 40px;
     border: 25px;
     .subBtn {
       text-align:center;
       border-radius: 25px;
-    width: 150px;
+    min-width: 150px;
+    max-width: 280px;
     height: 40px;
 background: linear-gradient(32deg, #FF4E50 0%, #F9D423 100%);
-font-size:15px;
+font-size:16px;
       &.grey-status{
         
       }
@@ -183,11 +227,22 @@ font-size:15px;
 
 
 @media screen and (max-width: 1950px) {
-
+  .connect-button{
+img{
+  display:none ;
+}
+  }
     .ant-form .ant-form-item {
       margin-bottom: 12px;
     }
+    .dx{
+    line-height: 50px;
+    .ant-form-item-control-input{
+      border-radius:10px;
+      /* line-height: 50px; */
+    }
 
+  }
     .ant-input {
       line-height: 2;
     }
@@ -200,6 +255,7 @@ font-size:15px;
 
     .ant-input-affix-wrapper {
       font-size: 16px;
+      height: 100%;
     }
 
     .panel-box {
@@ -273,7 +329,7 @@ font-size:15px;
 
             .value {
               font-size: 17px;
-              max-width: 60%;
+              max-width: 62%;
             }
 
             .address {
@@ -292,8 +348,8 @@ font-size:15px;
          
           .mint-tip {
             font-size:16px;
-            padding-top:1.2em;
-            height: 65px;
+            padding-top:1em;
+            height: 60px;
             color: #856465;
             display: flex;
             justify-content: space-between;
@@ -301,8 +357,11 @@ font-size:15px;
                 color:white;
                 font-weight:600;
                 font-size:16px;
+                
             }
-           
+           span{
+              font-size:16px;
+            }
             .choosePayType{
               .ant-form-item-label{
                 display: none;
@@ -333,13 +392,15 @@ font-size:15px;
       .button-box {
         text-align: left;
         border: 25px;
+        height: 40px;
         .subBtn {
           text-align:center;
           border-radius: 25px;
-        width: 150px;
+        min-width: 150px;
+    max-width: 280px;
         height: 40px;
         background: linear-gradient(32deg, #FF4E50 0%, #F9D423 100%);
-        font-size: 15px;
+        font-size: 16px;
 
         &.grey-status {
 
@@ -351,13 +412,32 @@ font-size:15px;
 
     @media screen and (max-width: 1500px) {
         .ant-form-item-label>label{
-    font-size:13px;
+    font-size:14px;
     color: rgba(138, 128, 128, 1);
     height: 20px;
 }
-.ant-input-affix-wrapper{
-    font-size:13px;
+.connect-button{
+img{
+  display:none ;
 }
+  }
+.ant-input-affix-wrapper{
+    font-size:14px;
+}
+.dx{
+    line-height: 30px;
+    .ant-form-item-control-input{
+      border-radius:10px;
+      /* line-height: 50px; */
+    }
+
+  }
+  .ant-form{
+ .ant-form-item{
+    margin-bottom:6px;
+  }
+  }
+ 
     .panel-box{
         .panel-container{
             width: 100%;
@@ -447,18 +527,21 @@ font-size:15px;
           display: flex;
          
           .mint-tip {
-            font-size:13px;
+            font-size:14px;
             color: #856465;
-            height: 30px;
+            height: 40px;
             display: flex;
-            padding-top: 0em;
+            padding-top:0em;
             justify-content: space-between;
             .fee{
                 font-size:14px;
                 height: 30px;
+              
                 
             }
-           
+             span{
+              font-size:14px;
+            }
             .choosePayType{
               .ant-form-item-label{
                 display: none;
@@ -494,9 +577,10 @@ font-size:15px;
         text-align: center;
         border-radius: 25px;
         min-width: 150px;
+    max-width: 250px;
         height: 40px;
         background: linear-gradient(32deg, #FF4E50 0%, #F9D423 100%);
-        font-size: 13px;
+        font-size: 14px;
 
         &.grey-status {
 
@@ -516,6 +600,14 @@ font-size:15px;
 .ant-input-affix-wrapper{
     font-size:14px;
 }
+.dx{
+    line-height: 30px;
+    .ant-form-item-control-input{
+      border-radius:10px;
+      /* line-height: 50px; */
+    }
+
+  }
     .panel-box{
         .panel-container{
             width: 100%;
@@ -622,8 +714,11 @@ font-size:15px;
             .fee{
                 font-size:14px;
                 height: 50px;
-            }
            
+            }
+                span{
+              font-size:14px;
+            }
             .choosePayType{
               .ant-form-item-label{
                 display: none;
@@ -654,18 +749,26 @@ font-size:15px;
     .button-box {
       text-align: left;
       border: 25px;
-
+width: 100%;
+height:40px;
       .subBtn {
         text-align: center;
         border-radius: 25px;
         width: 100%;
-        height: 40px;
+        min-width:100%;
+        max-width:100%;
+        height:40px;
+        font-weight:bold;
         background: linear-gradient(32deg, #FF4E50 0%, #F9D423 100%);
-        font-size: 13px;
+        font-size: 14px;
 
       }
     }
-
+.connect-button{
+width: 100%;
+img{
+  display:none ;
+}
   }
-
+      }
 `

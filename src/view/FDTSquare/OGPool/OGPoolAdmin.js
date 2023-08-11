@@ -1,5 +1,5 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { useConnect } from "../../../api/contracts";
+import React, {useEffect, useRef, useState} from 'react';
+import {useConnect} from "../../../api/contracts";
 import {
     Radio,
     Button,
@@ -8,22 +8,22 @@ import {
     Input,
     Switch, Pagination
 } from 'antd';
-import { getContractByName, getContractByContract } from "../../../api/connectContract";
-import { dealMethod, dealPayMethod, viewMethod } from "../../../utils/contractUtil"
+import {getContractByName, getContractByContract} from "../../../api/connectContract";
+import {dealMethod, dealPayMethod, viewMethod} from "../../../utils/contractUtil"
 import develop from "../../../env";
 import judgeStatus from "../../../utils/judgeStatus";
 import OGPoolAdminStyle from "./OGPoolAdminStyle";
 import AddAddressRate from "./AddAddressRate.js";
-import { showNum } from "../../../utils/bigNumberUtil";
+import {showNum} from "../../../utils/bigNumberUtil";
 import del from "../../../imgs/sc.png";
-import eth from "../../../imgs/ethereum.png";
-import { getSecondDonateRecord, getThreeDonateRecord } from "../../../graph/donate";
+import eth from "../../../imgs/ethereum.svg";
+import {getSecondDonateRecord, getThreeDonateRecord} from "../../../graph/donate";
 import BigNumber from "bignumber.js";
 
 const OGPool = (props) => {
 
     const [form2] = Form.useForm();
-    let { state, dispatch } = useConnect();
+    let {state, dispatch} = useConnect();
     const [searchData, setSearchData] = useState("")
     const [activeNav, setActiveNav] = useState(1)
     const [recordNav, setRecordNav] = useState(1)
@@ -377,19 +377,19 @@ const OGPool = (props) => {
 
             </div>
             <div className="col">
-                
+
             </div>
             <div className="col">
-               $
+                $
             </div>
             <div className="col ">
-              $
+                $
             </div>
             <div className="col">
-           
+
             </div>
             <div className="col ">
-             
+
             </div>
 
         </div>
@@ -419,6 +419,11 @@ const OGPool = (props) => {
                     }}>
                         OG Donate Pool
                     </div>
+                    <div className={"nav-item " + (activeNav == 5 ? "active" : "")} onClick={() => {
+                        setActiveNav(5)
+                    }}>
+                        Rewards And Allocation
+                    </div>
                     {/* <div className={"nav-item " + (activeNav == 4 ? "active" : "")} onClick={() => {
                     setActiveNav(4)
                 }}>
@@ -445,7 +450,7 @@ const OGPool = (props) => {
                                     validateTrigger="onBlur"
                                     validateFirst={true}
                                 >
-                                    <Input />
+                                    <Input/>
                                 </Form.Item>
                                 <Button type="primary" className="go-btn" onClick={() => {
                                     transferOwnership()
@@ -458,12 +463,12 @@ const OGPool = (props) => {
                     <div className="panel-box">
                         <div className="panel-container">
                             <div className="panel-title1">
-                                Contract Status : {isPause ? "Paused" : "UnPaused"}
+                                Contract Status : {isPause ? "Running" : "Stop"}
                             </div>
                             <Form form={form} name="control-hooks" className="form">
                                 <div className='switchh'>
-                                    <p><span>Running</span><Switch defaultChecked onChange={onChange} /></p>
-                                    <p><span>Pause</span><Switch onChange={onChange} /></p>
+                                    <p><span>Running</span><Switch defaultChecked onChange={onChange}/></p>
+                                    <p><span>Pause</span><Switch onChange={onChange}/></p>
                                 </div>
                                 {/* <Button type="primary" onClick={handlePause}>Pause</Button>
                                 <Button type="primary" onClick={handleUnpause}>Unpause</Button> */}
@@ -475,7 +480,7 @@ const OGPool = (props) => {
                         </div>
 
                     </div>
-                    {/* <div className="panel-box">
+                    <div className="panel-box">
                         <div className="panel-container">
                             <div className="panel-title">
                                 Set Pid Status For Admin: {status1 ? "True" : "False"}
@@ -518,7 +523,7 @@ const OGPool = (props) => {
                                 <Button type="primary" onClick={setFDTAddress}>Submit</Button>
                             </Form>
                         </div>
-                    </div> */}
+                    </div>
                 </div>
             )}
             {activeNav == 2 && (
@@ -552,17 +557,17 @@ const OGPool = (props) => {
                                             <div className="col no" key={index}>
                                                 {index + 1}
                                             </div>
-                                            <div className="col pid" >
+                                            <div className="col pid">
 
                                             </div>
-                                            <div className="col" >
+                                            <div className="col">
 
                                             </div>
-                                            <div className="col address" >
+                                            <div className="col address">
                                                 {item}
                                             </div>
-                                            <div className="col del" >
-                                                <img src={del} className="sc" />
+                                            <div className="col del">
+                                                <img src={del} className="sc"/>
                                             </div>
                                         </div>
                                     ))
@@ -570,7 +575,7 @@ const OGPool = (props) => {
 
                             </div>
 
-                            <div className="btns" style={{ textAlign: 'center', marginTop: '1.7em' }}>
+                            <div className="btns" style={{textAlign: 'center', marginTop: '1.7em'}}>
                                 <Button className="add-btn" type="primary" onClick={() => {
                                     setAdmins()
                                 }}>addAdmins</Button>
@@ -605,7 +610,7 @@ const OGPool = (props) => {
                                     validateFirst={true}
                                 >
                                     <div className="input-box">
-                                        <Input />
+                                        <Input/>
                                     </div>
                                 </Form.Item>
 
@@ -627,7 +632,7 @@ const OGPool = (props) => {
                                     validateFirst={true}
                                 >
                                     <div className="input-box">
-                                        <Input />
+                                        <Input/>
                                     </div>
                                 </Form.Item>
 
@@ -648,7 +653,7 @@ const OGPool = (props) => {
                                         validateFirst={true}
                                     >
                                         <div className="input-box">
-                                            <Input />
+                                            <Input/>
                                         </div>
                                     </Form.Item>
 
@@ -670,7 +675,7 @@ const OGPool = (props) => {
                                     validateFirst={true}
                                 >
                                     <div className="input-box">
-                                        <Input />
+                                        <Input/>
                                     </div>
                                 </Form.Item>
                                 <h2> 2 Level Admin <strong>{inviteRate1}%</strong></h2>
@@ -680,7 +685,7 @@ const OGPool = (props) => {
                                     validateFirst={true}
                                 >
                                     <div className="input-box">
-                                        <Input />
+                                        <Input/>
                                     </div>
                                 </Form.Item>
                                 <div className="btns">
@@ -692,7 +697,7 @@ const OGPool = (props) => {
                         </div>
                         <div className="panel-container">
                             <div className="panel-title">
-                                Invite Rate:<br />
+                                Invite Rate:<br/>
                                 3 Level Admin{inviteRate2}% ID 0,
                                 2 Level Admin{inviteRate1}% ID 1
                             </div>
@@ -704,7 +709,7 @@ const OGPool = (props) => {
                                     validateFirst={true}
                                 >
                                     <div className="input-box">
-                                        <Input />
+                                        <Input/>
                                     </div>
                                 </Form.Item>
                                 <Form.Item
@@ -714,7 +719,7 @@ const OGPool = (props) => {
                                     validateFirst={true}
                                 >
                                     <div className="input-box">
-                                        <Input />
+                                        <Input/>
                                     </div>
                                 </Form.Item>
 
@@ -741,7 +746,7 @@ const OGPool = (props) => {
                                         {curId}
                                     </div>
                                 </Form.Item> */}
-                                <div style={{ width: '100%', float: 'left' }}>
+                                <div style={{width: '100%', float: 'left'}}>
 
 
                                     <Form.Item
@@ -749,10 +754,10 @@ const OGPool = (props) => {
                                         label="Recommender Allocation Rate"
                                         validateTrigger="onBlur"
                                         validateFirst={true}
-                                        style={{width:'100%'}}
+                                        style={{width: '100%'}}
                                     >
-                                        <div className="input-box" style={{width:'100%'}}>
-                                            <Input style={{width:'100%'}} />
+                                        <div className="input-box" style={{width: '100%'}}>
+                                            <Input style={{width: '100%'}}/>
                                         </div>
                                     </Form.Item>
                                     <Form.Item
@@ -764,7 +769,7 @@ const OGPool = (props) => {
                                         <div className="input-box">
                                             <Input value={curAddr} onChange={(e) => {
                                                 setCurAddr(e.target.value)
-                                            }} />
+                                            }}/>
 
                                         </div>
                                     </Form.Item>
@@ -819,7 +824,7 @@ const OGPool = (props) => {
                                             <div className="col del" onClick={() => {
                                                 delARRow(item)
                                             }}>
-                                                <img src={del} className="sc" />
+                                                <img src={del} className="sc"/>
                                             </div>
 
                                         </div>
@@ -874,7 +879,7 @@ const OGPool = (props) => {
                                             </div>
 
                                             <div className="value">
-                                                <p><img src={eth} style={{ marginTop: '-5px', marginRight: '10px' }} />
+                                                <p><img src={eth} style={{marginTop: '-5px', marginRight: '10px'}}/>
                                                     {totalDonate} ETH</p>
                                             </div>
                                         </div>
@@ -1005,9 +1010,10 @@ const OGPool = (props) => {
                                 </div>
                                 <div className="pagination">
                                     {
-                                        recordNav == 1 && <Pagination current={curPage} showSizeChanger onShowSizeChange={handleShowSizeChange}
-                                            onChange={onChangePage} total={total}
-                                            defaultPageSize={pageCount} />
+                                        recordNav == 1 && <Pagination current={curPage} showSizeChanger
+                                                                      onShowSizeChange={handleShowSizeChange}
+                                                                      onChange={onChangePage} total={total}
+                                                                      defaultPageSize={pageCount}/>
                                     }
                                 </div>
                             </div>
@@ -1116,7 +1122,7 @@ const OGPool = (props) => {
             {showAddRate && (<AddAddressRate updateData={() => {
             }} closeDialog={() => {
                 setShowAddRate(false)
-            }} />)}
+            }}/>)}
 
         </OGPoolAdminStyle>
     )

@@ -175,19 +175,21 @@ const MyPassport = (props) => {
             <div className="panel-box userinfo-box" style={{ width: '100%' }}>
                 <div className="panel-title" style={{ marginBottom: '0.7em' }}>
                     <span>My Passport</span>
-                    <Button style={{ background: '#373232', textAlign: 'center', lineHeight: '28px', width: "32px", height: '32px', border: '1px solid rgba(255, 255, 255, 0.15)', borderRadius: '50%', }}>
+                    <Button onClick={() => goPage("/passportAdmin")} style={{ background: '#373232', textAlign: 'center', lineHeight: '28px', width: "32px", height: '32px', border: '1px solid rgba(255, 255, 255, 0.15)', borderRadius: '50%', }}>
+                        {/* {isAdmin && */}
                         <img src={user3} style={{ width: '22px', marginLeft: '-10px', marginTop: '-10px' }} />
+                        {/* }  */}
                     </Button>
                 </div>
                 <div className="panel-container user-info" style={{ border: 'none', width: '100%', padding: '0em', margin: '0', boxShadow: 'none' }}>
                     <div className="passport-header-bg">
-                        <Button style={{ float: 'right', background: '#373232', textAlign: 'center', lineHeight: '28px', width: "32px", height: '32px', border: '1px solid rgba(255, 255, 255, 0.15)', borderRadius: '50%', }}>
+                        <Button onClick={() => goPage("/ChangeUserInfo")} style={{ float: 'right', background: '#373232', textAlign: 'center', lineHeight: '28px', width: "32px", height: '32px', border: '1px solid rgba(255, 255, 255, 0.15)', borderRadius: '50%', }}>
                             <img src={kg} style={{ width: '22px', marginLeft: '-10px', marginTop: '-10px' }} />
                         </Button>
                     </div>
 
                     <div className="userinfo-header">
-                        <div className="header-icon">
+                        <div className="header-icon" >
                             <img src={headerImg} alt="" />
                             <p>{userData.name ? userData.name : "FireDAO"}</p>
                         </div>
@@ -228,13 +230,6 @@ const MyPassport = (props) => {
                         </div>
 
                     </div>
-                    {/* <div className="change-userInfo">
-                        {isAdmin &&
-                            <img src={adminIcon} style={{ marginRight: '30px' }} onClick={() => goPage("/passportAdmin")}
-                                alt="" />
-                        }
-                        <img src={editIcon} onClick={() => goPage("/ChangeUserInfo")} alt="" />
-                    </div> */}
                     <hr className='hrrr' />
                     <div className="recommender">
                         <div className="left">
@@ -243,7 +238,7 @@ const MyPassport = (props) => {
                                     My Recommender :
                                 </div>
                                 <div className='lvalue'>
-
+                                    -
                                 </div>
                             </div>
                             <div className="recommender-info">
@@ -357,7 +352,7 @@ const MyPassport = (props) => {
                                     <div className="name">
                                         <p >Pass FireSeed,Cast FireSoul</p>
                                         <div style={{ display: 'flex', marginTop: '-20px', height: '30px' }} >
-                                            <hr className='ecoshr'/>
+                                            <hr className='ecoshr' />
                                             <span className='ecos'>&nbsp;FireDAO Ecosystem&nbsp;</span>
                                             <hr className='ecoshr' />
                                         </div>
@@ -369,7 +364,7 @@ const MyPassport = (props) => {
                                     <span>Fire Passport </span>
                                     <span className='val'>#{state.pid}</span>
                                     <p><span>ERC721 Non-transferable</span>
-                                        <span className='id'> PID  <div className='bor'>{state.pid}</div></span>
+                                        <span className='id'> PID  <div className='bor'>-{state.pid}</div></span>
                                     </p>
                                 </div>
                             </div>
@@ -382,7 +377,7 @@ const MyPassport = (props) => {
                                     <div className="name">
                                         <p >Pass FireSeed,Cast FireSoul</p>
                                         <div style={{ display: 'flex', marginTop: '-20px', height: '30px' }} >
-                                            <hr className='ecoshr'/>
+                                            <hr className='ecoshr' />
                                             <span className='ecos'>&nbsp;FireDAO Ecosystem&nbsp;</span>
                                             <hr className='ecoshr' />
                                         </div>
@@ -398,7 +393,7 @@ const MyPassport = (props) => {
                                     <span className='val'>#{state.fid}</span>
 
                                     <p ><span>ERC721 Non-transferable</span>
-                                        <span className='id'> FID <div className='bor'>{state.fid}</div> </span>
+                                        <span className='id'> FID <div className='bor'>-{state.fid}</div> </span>
                                     </p>
                                 </div>
                             </div>
@@ -414,17 +409,17 @@ const MyPassport = (props) => {
                         My SBT
                         <div className='soul'>
                             <p>My SoulAccount</p>
-                            <div className='soulkk'></div>
+                            <div className='soulkk'>-</div>
                         </div>
                         <div className='fidr'>
                             <p>FID Reputation Score</p>
-                            <div className='fidkk'></div>
+                            <div className='fidkk'>-</div>
                         </div>
                     </div>
 
-                    <div className="c">
+                    <div className='myFireSeed'>
                         <div className="fire-list-box">
-                            <div className="list-header flex-box">
+                            <div className="list-header flex-box11">
                                 <div className="col">
                                     SBT
                                 </div>
@@ -441,7 +436,7 @@ const MyPassport = (props) => {
                             {
                                 SBTARR.map((item, index) => (
                                     //    index > 10 * (curSBTPage - 1) && index < 10 * curSBTPage &&
-                                    <div className="list-item" key={index}>
+                                    <div className="list-item sbt1" key={index}>
                                         <div className="col id">
                                             SBT-{index}
                                         </div>
@@ -469,12 +464,12 @@ const MyPassport = (props) => {
                         <div className='wall'>
                             <p>Total Assets</p>
                             <div className='wallkk'>$</div>
-                            
+
                         </div>
                     </div>
                     <div className="myWall">
                         <div className="fire-list-box">
-                            <div className="list-header flex-box">
+                            <div className="list-header flex-box11">
                                 <div className="col">
                                     Token
                                 </div>
@@ -491,11 +486,11 @@ const MyPassport = (props) => {
                             {
                                 //    SBTARR.map((item, index) => (
                                 //    index > 10 * (curSBTPage - 1) && index < 10 * curSBTPage &&
-                                <div className='asc'>
-                                    <div className="list-item">
+                                <div className='asc sbt1'>
+                                    <div className="list-item ss1">
 
                                         <div className="col id">
-                                            <img src={btc} className="rtth"/> BTC
+                                            <img src={btc} className="rtth" /> BTC
                                         </div>
                                         <div className="col">
                                             $
@@ -507,25 +502,25 @@ const MyPassport = (props) => {
                                             $
                                         </div>
                                     </div>
-                                    <div className="list-item">
+                                    <div className="list-item ss1">
 
                                         <div className="col id">
-                                            <img src={rth} className="rtth"/> BTC
+                                            <img src={rth} className="rtth" /> BTC
                                         </div>
                                         <div className="col">
-                                                $
+                                            $
                                         </div>
                                         <div className="col">
-                                            
+
                                         </div>
                                         <div className="col">
                                             $
                                         </div>
                                     </div>
-                                    <div className="list-item">
+                                    <div className="list-item ss1">
 
                                         <div className="col id">
-                                            <img src={usdt} className="rtth"  /> BTC
+                                            <img src={usdt} className="rtth" /> BTC
                                         </div>
                                         <div className="col">
                                             $
@@ -550,16 +545,18 @@ const MyPassport = (props) => {
                         My FDT
                         <div className='fdt'>
                             <div className='fff'>
-                            <p>FDT</p>
-                            <div className='fdtkk'></div></div>
+                                <p>FDT</p>
+                                <div className='fdtkk'>-</div>
+                            </div>
                             <div className='fff'>
-                            <p>Value</p>
-                            <div className='valuekk'></div></div>
+                                <p>Value</p>
+                                <div className='valuekk'>-</div>
+                            </div>
                         </div>
                     </div>
                     <div className="myfdt">
                         <div className="fire-list-box">
-                            <div className="list-header flex-box">
+                            <div className="list-header flex-box22">
                                 <div className="col">
                                     Pool
                                 </div>
@@ -579,26 +576,24 @@ const MyPassport = (props) => {
                             {
                                 //    SBTARR.map((item, index) => (
                                 //    index > 10 * (curSBTPage - 1) && index < 10 * curSBTPage &&
-                                <div className='asc'>
-                                    <div className="list-item">
 
-                                        <div className="col id">
+                                <div className="list-item sbt2">
 
-                                        </div>
-                                        <div className="col">
-
-                                        </div>
-                                        <div className="col">
-
-                                        </div>
-                                        <div className="col">
-
-                                        </div>
-                                        <div className="col">
-
-                                        </div>
+                                    <div className="col id">
+                                        sfff
                                     </div>
-
+                                    <div className="col">
+                                        vdaf
+                                    </div>
+                                    <div className="col">
+                                        vafd
+                                    </div>
+                                    <div className="col">
+                                        advf
+                                    </div>
+                                    <div className="col">
+                                        vfdavfvfdF
+                                    </div>
                                 </div>
                                 //    ))
                             }

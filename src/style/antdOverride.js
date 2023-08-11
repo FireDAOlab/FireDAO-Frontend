@@ -107,20 +107,21 @@ const AntdOverride = createGlobalStyle`
   .ant-input, .ant-form-item-control-input, .ant-select, .ant-select-selector, .ant-input-status-error, .ant-input-affix-wrapper-status-error, .ant-input-affix-wrapper {
     border-radius: 10px;
     &:focus{
-      border-color: #d46b08!important;
+      border-color: rgba(255, 255, 255, 0.10) !important;
     }
+
     &:hover{
-      border-color: #d46b08!important;
+      border-color: rgba(255, 255, 255, 0.10) !important;
     }
     &:active{
-      border-color: #d46b08!important;
+      border-color:rgba(255, 255, 255, 0.10) !important;
     }
     &::selection{
-      background: #d46b08!important;
+      background: rgba(255, 255, 255, 0.10) !important;
     }
   }
   .ant-input-affix-wrapper-focus{
-    border-color: #d46b08!important;
+    border-color: rgba(255, 255, 255, 0.10) !important;
   }
   /* input */
 

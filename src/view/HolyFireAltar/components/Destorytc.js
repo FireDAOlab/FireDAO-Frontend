@@ -1,23 +1,29 @@
-import React, {useEffect, useRef, useState} from 'react';
-import {useConnect} from "../../../api/contracts";
-import {Button, Card, Form, Input, Radio, Switch,message} from "antd";
-import {getContractByName} from "../../../api/connectContract";
-import {dealMethod, viewMethod} from "../../../utils/contractUtil";
-import {useNavigate} from "react-router-dom";
+import React, { useEffect, useRef, useState } from 'react';
+import { useConnect } from "../../../api/contracts";
+import { Button, Card, Form, Input, Radio, Switch, message } from "antd";
+import { getContractByName } from "../../../api/connectContract";
+import { dealMethod, viewMethod } from "../../../utils/contractUtil";
+import { useNavigate } from "react-router-dom";
 import DestorytcStyle from './DestorytcStyle';
 
 const Firetc = (props) => {
-    const {closeDialog,UserFID,UserToSoul} = props
-    let {state, dispatch} = useConnect();
-    const [length,setLength] = useState(0)
+    const { closeDialog, UserFID, UserToSoul } = props
+    let { state, dispatch } = useConnect();
+    const [length, setLength] = useState(0)
     const history = useNavigate();
     const [form] = Form.useForm();
 
 
     return (
         <DestorytcStyle>
+            <div className="mask" onClick={closeDialog}>
+
+            </div>
             <div className="dialog-content">
                 <div className="header">
+                    <div className="dialog-name">
+                        Destroy
+                    </div>
                     <div className="close" onClick={closeDialog}>
                         <svg t="1681179633627" className="icon" viewBox="0 0 1024 1024" version="1.1"
                             xmlns="http://www.w3.org/2000/svg" p-id="2615" width="26" height="26">
@@ -27,17 +33,15 @@ const Firetc = (props) => {
                         </svg>
                     </div>
                 </div>
-                <div className="dialog-name">
-                    Destroy
-                </div>
+
                 <div className="dialog-info">
-                    <p>Canceling FireSoul will cancel FireSoul's NFT, 
-                        destroy the soul account, destroy the generated FID, 
+                    <p>Canceling FireSoul will cancel FireSoul's NFT,
+                        destroy the soul account, destroy the generated FID,
                         and destroy various SBTs in the soul account. Are you sure you want to destroy?</p>
                 </div>
                 <div className="btn-box">
-                    <Button className="sub-btn" onClick={() => {  }} type="primary">
-                    Destroy
+                    <Button className="sub-btn" onClick={() => { }} type="primary">
+                        Destroy
                     </Button>
 
                 </div>

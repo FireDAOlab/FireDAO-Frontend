@@ -205,40 +205,40 @@ const FIDList = (props) => {
                             state.PidArr.map(item => (
                                 <div className="list-item ">
                                     <div className="col pid">
-                                    
+                                    -
                                     </div>
                                     <div className="col fid">
-                                        {item.fid}
+                                        {item.fid}-
                                     </div>
                                     <div className="col">
-                                    
+                                    12345578
                                     </div>
                                     <div className="col address">
                                         {item.soulAccount}
                                     </div>
                                     <div className="col">
-                                        
+                                        12345578
                                     </div>
                                     <div className="col">
-                                    
+                                   12345578
                                     </div>
                                     <div className="col">
-                                    
+                                    12345578
                                     </div>
                                     <div className="col">
-                                     
+                                     12345578
                                     </div>
                                     <div className="col">
-                                    
+                                    12345578
                                     </div>
                                     <div className="col">
-                                    
+                                    12345578
                                     </div>
                                     <div className="col">
-                                    
+                                    12345578
                                     </div>
                                     <div className="col">
-                                    
+                                    12345578
                                     </div>
                                 </div>
                             ))

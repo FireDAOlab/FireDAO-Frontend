@@ -412,7 +412,7 @@ const Distribution = (props) => {
                         </div> */}
                     </div>
                     <div className="fire-list-box fire-list-box-airdrop">
-                        <div className="list-header">
+                        <div className="list-header leader">
                             <div className="col">
                                 No.
                             </div>
@@ -429,60 +429,64 @@ const Distribution = (props) => {
                             Claiming
                             </div>
                         </div>
-                        {!showSearch && curPage2 && whitelist.map((item, index) => {
+                        {/* {!showSearch && curPage2 && whitelist.map((item, index) => {
                             if (index >= pageCount2 * (curPage2 - 1) && index < pageCount2 * curPage2) {
-                                return (<div className="list-item" key={index}>
+                                return ( */}
+                                <div className="list-item leaderl" >
                                     <div className="col no">
-                                        {index + 1}
+                                        {/* {index + 1} */}dfssfacds
+                                    </div>
+                                    {/* <div className="col pc">
+                                        <a className="address" href={develop.ethScan + "/address/" + item.user}
+                                            target="_blank">{(item.user)}</a>
+                                    </div> */}
+                                    <div className="col m">dfssfacds
+                                        {/* <a className="address" href={develop.ethScan + "/address/" + item.user}
+                                            target="_blank">{formatAddress((item.user))}</a> */}
+                                    </div>
+                                    <div className="col">dfssfacds
+                                        {/* {showNum(item.amount / 10 ** FLMDecimal)} */}
+                                    </div>
+                                    <div className="col">dfssfacds
+                                        {/* {showNum(item.claimed > 0 ? item.claimed / 10 ** FLMDecimal : 0)} */}
+                                    </div>
+                                    <div className="col">dfssfacds
+                                        {/* {showNum(item.claiming > 0 ? item.claiming / 10 ** FLMDecimal : 0)} */}
+                                    </div>
+                                </div>
+                            {/* )
+                     }
+
+                 })}
+                 {showSearch && whitelist.map((item, index) => { 
+                             if (item.user.toLowerCase() == searchContent.toString().toLowerCase()) {
+                                return ( */}
+                                <div className="list-item" >
+                                    <div className="col no">
+                                        {/* {index + 1} */}
                                     </div>
                                     {/* <div className="col pc">
                                         <a className="address" href={develop.ethScan + "/address/" + item.user}
                                             target="_blank">{(item.user)}</a>
                                     </div> */}
                                     <div className="col m">
-                                        <a className="address" href={develop.ethScan + "/address/" + item.user}
-                                            target="_blank">{formatAddress((item.user))}</a>
+                                        {/* <a className="address" href={develop.ethScan + "/address/" + item.user}
+                                            target="_blank">{formatAddress((item.user))}</a> */}
                                     </div>
                                     <div className="col">
-                                        {showNum(item.amount / 10 ** FLMDecimal)}
+                                        {/* {showNum(item.amount / 10 ** FLMDecimal)} */}
                                     </div>
                                     <div className="col">
-                                        {showNum(item.claimed > 0 ? item.claimed / 10 ** FLMDecimal : 0)}
+                                        {/* {showNum(item.claimed > 0 ? item.claimed / 10 ** FLMDecimal : 0)} */}
                                     </div>
                                     <div className="col">
-                                        {showNum(item.claiming > 0 ? item.claiming / 10 ** FLMDecimal : 0)}
+                                        {/* {showNum(item.claiming > 0 ? item.claiming / 10 ** FLMDecimal : 0)} */}
                                     </div>
-                                </div>)
-                            }
+                                </div>
+                                
+                        {/*     ) }
 
-                        })}
-                        {showSearch && whitelist.map((item, index) => {
-                            if (item.user.toLowerCase() == searchContent.toString().toLowerCase()) {
-                                return (<div className="list-item" key={index}>
-                                    <div className="col no">
-                                        {index + 1}
-                                    </div>
-                                    {/* <div className="col pc">
-                                        <a className="address" href={develop.ethScan + "/address/" + item.user}
-                                            target="_blank">{(item.user)}</a>
-                                    </div> */}
-                                    <div className="col m">
-                                        <a className="address" href={develop.ethScan + "/address/" + item.user}
-                                            target="_blank">{formatAddress((item.user))}</a>
-                                    </div>
-                                    <div className="col">
-                                        {showNum(item.amount / 10 ** FLMDecimal)}
-                                    </div>
-                                    <div className="col">
-                                        {showNum(item.claimed > 0 ? item.claimed / 10 ** FLMDecimal : 0)}
-                                    </div>
-                                    <div className="col">
-                                        {showNum(item.claiming > 0 ? item.claiming / 10 ** FLMDecimal : 0)}
-                                    </div>
-                                </div>)
-                            }
-
-                        })}
+                         })} */}
                     </div>
                     <div className="pagination">
                         {

@@ -1,7 +1,9 @@
 import styled from "styled-components";
 export default   styled.div`
  
-
+ .ant-btn-primary::after{
+  background: #140E0E;
+ }
   @media screen and (max-width: 1950px) {
     .ant-btn-primary {
       background: linear-gradient(32deg, #FF4E50 0%, #F9D423 100%);
@@ -94,6 +96,7 @@ export default   styled.div`
 .ant-dropdown-menu-submenu-title:hover{
     background-color:rgb(138, 128, 128);
   }
+}
   @media screen and (max-width: 1500px) {
     .ant-btn-primary {
       background: linear-gradient(32deg, #FF4E50 0%, #F9D423 100%);

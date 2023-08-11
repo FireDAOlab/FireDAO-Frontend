@@ -97,30 +97,42 @@ const SBTList = (props) => {
                                 Other
                             </div>
                         </div>
-                        {
-                            PIDARR.map(item => (
-                                <div className="list-item ">
-                                    <div className="col no"  style={{color:'#E48686'}}>
-                                        1
-                                    </div>
-                                    <div className="col">
-                                        {item.blockNumber}
-                                    </div>
-                                    <div className="col">
-                                        {item.from}
-                                    </div>
-                                    <div className="col">
-                                        {item.to}
-                                    </div>
-                                </div>
-                            ))
+                        {/* { 
+                            PIDARR.map(item => (*/}
+                        <div className="list-item ">
+                            <div className="col no" style={{ color: '#E48686' }}>
+                                1
+                            </div>
+                            <div className="col">
+                                {/* {item.blockNumber} */}
+                                cdsc
+                            </div>
+                            <div className="col">
+                                {/* {item.from} */}
+                                dcscds
+                            </div>
+                            <div className="col">
+                                {/* {item.to} */}
+                                dscdcs
+                            </div>
+                            <div className="col">
+                                dsvzdv
+                            </div>
+                            <div className="col">
+                                vzssdf
+                            </div>
+                            <div className="col">
+                                zvdfdfv
+                            </div>
+                        </div>
+                        {/* ))
 
-                        }
-                        {/* </div> */}
+                        } */}
                     </div>
-
-
                 </div>
+
+
+
 
 
                 <div className="panel-container">
@@ -145,9 +157,8 @@ const SBTList = (props) => {
                             </div>
                         </div>
                     </div>
-                    <div className="fire-list-box">
-                        {/* <div className="list-box"> */}
-                        <div className="list-header1 flex-box">
+                    <div className="fire-list-box sbt11">
+                        <div className="list-header flex-box2">
                             <div className="col" >
                                 SBT
                             </div>
@@ -162,32 +173,34 @@ const SBTList = (props) => {
                             </div>
 
                         </div>
-                        {
-                            PIDARR.map(item => (
-                                <div className="list-item ">
-                                    <div className="col no" style={{color:'#E48686'}}>
-                                        1
-                                    </div>
-                                    <div className="col">
-                                        {item.blockNumber}
-                                    </div>
-                                    <div className="col">
-                                        {item.from}
-                                    </div>
-                                    <div className="col">
-                                        {item.to}
-                                    </div>
-                                </div>
-                            ))
+                        {/* {
+                            PIDARR.map(item => ( */}
+                        <div className="list-item flex-nn">
+                            <div className="col no" style={{ color: '#E48686' }}>
+                                1
+                            </div>
+                            <div className="col">
+                                {/* {item.blockNumber} */}
+                                dsfasds
+                            </div>
+                            <div className="col">
+                                {/* {item.from} */}
+                                dsfasds
+                            </div>
+                            <div className="col">
+                                {/* {item.to} */}
+                                dsfasds
+                            </div>
+                        </div>
+                        {/* ))
 
-                        }
-                        {/* </div> */}
+                        } */}
                     </div>
 
 
                 </div>
             </div>
-        </StyleBox>
+        </StyleBox >
     )
 }
 export default SBTList

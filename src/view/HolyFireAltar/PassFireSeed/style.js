@@ -36,24 +36,29 @@ export default styled.div`
       .ant-input {
         border-radius: 25px;
       }
-
+.panel-box{
+    .conten-contain{
+    padding: 30px 3.2%;
+}
+}
 
       @media screen and (min-width: 1950px) {
         .ant-btn {
           font-weight: 600;
-          font-size: 14px;
+          font-size: 18px;
         }
-        .ant-form{ input{
+        .ant-form{ 
+            input{
     font-size:16px;
   }}
         .ant-form-item-label > label {
           color: white;
-          font-size: 15px;
+          font-size: 16px;
         }
 
         .flex-box {
-          border-radius: 25px;
           width: 100%;
+          font-size:16px;
         }
 
         .panel-container1 {
@@ -95,7 +100,7 @@ export default styled.div`
         }
 
         .describe {
-          width: 42%;
+          width: 45%;
     padding: 20px;
           text-align: center;
           background-color: #1A1414;
@@ -144,7 +149,7 @@ export default styled.div`
         }
 
         .fire-nav-list {
-          width: 57%;
+          width: 50%;
           height: 50px;
 
         }
@@ -180,7 +185,7 @@ export default styled.div`
           display: flex;
           width: 100%;
           justify-content: center;
-          
+          font-size:15px;
           .check-btn{
             width: 100px;
             height: 30px;
@@ -226,6 +231,8 @@ export default styled.div`
             background: #3F3535;
             border-radius: 10px;
             border: 1px solid #7F6868;
+           
+
             width: 23%;
 
             &:nth-child(4n) {
@@ -274,7 +281,7 @@ export default styled.div`
           width: 100%;
 
           .myrecommend {
-            height: 150px;
+            height: 170px;
             background: #1A1414;
             width: 48%;
             align-items: center;
@@ -283,15 +290,16 @@ export default styled.div`
             padding: 1.5em;
 
             .name {
-              font-size: 15px;
+              font-size: 18px;
               font-family: Helvetica-Bold, Helvetica;
               font-weight: bold;
               color: #8A8080;
               line-height: 26px;
+              margin-top:0.5em;
             }
 
             .value {
-              font-size: 13px;
+              font-size: 16px;
               margin: 1.5em 0em;
               line-height: 40px;
               padding: 0 10px;
@@ -307,18 +315,19 @@ export default styled.div`
 
           .myteamsize {
             padding: 1.5em;
-            height: 150px;
+            height: 170px;
             background: #1A1414;
             width: 48%;
             border-radius: 20px;
             border: 1px solid rgba(255, 255, 255, 0.1);
 
             .box-title {
-              font-size: 15px;
+              font-size:18px;
               font-family: Helvetica-Bold, Helvetica;
               font-weight: bold;
               color: #8A8080;
               line-height: 26px;
+              margin-top:0.5em;
             }
 
             .refer-list {
@@ -328,21 +337,23 @@ export default styled.div`
               .refer-item {
                 margin-right: 10px;
                 text-align: center;
-                margin-top: 0.2em;
+                margin-top: 1em;
 
                 .name {
                   line-height: 40px;
                   margin-top: 10px;
                   font-family: Helvetica-Bold, Helvetica;
                   font-weight: bold;
+                  font-size:18px;
                   color: #8A8080;
                   line-height: 22px;
                 }
 
                 .value {
-                  font-size: 14px;
+                  font-size: 18px;
                   font-family: Krungthep;
                   line-height: 50px;
+                  margin-top: 5px;
                   color: #fff;
                   text-align: left;
                 }
@@ -358,7 +369,7 @@ export default styled.div`
 
         .fire-list-box {
           .list-header {
-            padding: 20px 1em;
+            padding: 20px 2em;
           }
 
           .list-item, .list-header {
@@ -368,74 +379,71 @@ export default styled.div`
           .col {
             text-align: left;
             align-items: center;
-
+font-size:16px;
             &:nth-child(1) {
-              width: 5%;
+              width:6%;
+             margin-left:0px;
             }
 
             &:nth-child(2) {
-              width: 9%;
+              width: 10%;
+              margin-left:10px;
             }
 
             &:nth-child(3) {
-              width: 5%;
+              width: 7%;
+              margin-left:10px;
             }
 
             &:nth-child(4) {
-              width: 5%;
+              width: 7%;
+              margin-left:10px;
             }
 
             &:nth-child(5) {
-              width: 10%;
+              width:8%;
+              margin-left:10px;
             }
 
             &:nth-child(6) {
-              width: 16%;
+              width:11%;
+              margin-left:10px;
             }
 
             &:nth-child(7) {
-              width: 14%;
+              width: 10%;
+              margin-left:10px;
             }
 
             &:nth-child(8) {
-              width: 14%;
+              width: 10%;
+              margin-left:10px;
             }
 
             &:nth-child(9) {
-              width: 13%;
-              text-align: center;
+              width: 11%;
+              margin-left:10px;
+              text-align: left;
 
             }
 
             &:nth-child(10) {
-              width: 8%;
-              text-align: center;
-            }
-
-            &:nth-child(11) {
-              width: 8%;
+              width: 15%;
+              margin-left:10px;
+              text-align: left;
             }
           }
 
-          .list-item {
-            padding: 0.5em 1em;
-
-            .col {
-              overflow: hidden;
-              padding-left: 0.5%;
-              //text-overflow: ellipsis;
-
-            }
-          }
 
           .list-item {
-            padding: 0.5em 1em;
-
+            padding: 0.5em 0em;
+            width: 95%;
+            margin: 0 auto;
+            border-radius:0px;
+            border-bottom:1px solid rgba(255, 255, 255, 0.1);
             .col {
               overflow: hidden;
-              padding-left: 0.5%;
-
-              //text-overflow: ellipsis;
+              padding-left: 0;
 
             }
 
@@ -446,7 +454,7 @@ export default styled.div`
             .pid {
               color: #FE6D46;
               border: 1px solid #FE6D46;
-              background: rgba(254, 109, 70, 0.20);
+              background: rgba(254, 109, 70, 0.10);
               text-align: center;
               border-radius: 25px;
             }
@@ -454,46 +462,41 @@ export default styled.div`
             .fid {
               color: #FE6D46;
               border: 1px solid #FE6D46;
-              background: rgba(254, 109, 70, 0.20);
+              background: rgba(254, 109, 70, 0.10);
               text-align: center;
               border-radius: 25px;
-              margin-right: 20px;
             }
 
             .address {
               a {
-                color: rgba(205, 158, 87, 1);
+                color: #CD9E57;
               }
 
               border: 1px solid rgba(205, 158, 87, 1);
-              background: rgba(205, 158, 87, 0.20);
+              background: rgba(205, 158, 87, 0.10);
               text-align: center;
               border-radius: 25px;
-              width: 130px;
-              margin-right: 40px;
-
             }
           }
         }
       }
-
-
       @media screen and (max-width: 1950px) {
         .ant-btn {
           font-weight: 600;
-          font-size: 14px;
+          font-size: 18px;
         }
-        .ant-form{ input{
+        .ant-form{ 
+            input{
     font-size:16px;
   }}
         .ant-form-item-label > label {
           color: white;
-          font-size: 15px;
+          font-size: 16px;
         }
 
         .flex-box {
-          border-radius: 25px;
           width: 100%;
+          font-size: 16px;
         }
 
         .panel-container1 {
@@ -535,7 +538,7 @@ export default styled.div`
         }
 
         .describe {
-          width: 42%;
+          width: 45%;
     padding: 20px;
           text-align: center;
           background-color: #1A1414;
@@ -560,13 +563,13 @@ export default styled.div`
         .send-fireseed {
           .ant-form-item {
             margin: 0em auto;
-            width: 92% !important;
+            width: 98% !important;
             display: flex;
 
           }
 
           .send-button {
-            width: 92%;
+            width: 98%;
             background: linear-gradient(32deg, #FF4E50 0%, #F9D423 100%);
             margin: 1em 0em;
             height: 40px;
@@ -584,7 +587,7 @@ export default styled.div`
         }
 
         .fire-nav-list {
-          width: 57%;
+          width: 50%;
           height: 50px;
 
         }
@@ -620,7 +623,7 @@ export default styled.div`
           display: flex;
           width: 100%;
           justify-content: center;
-          
+          font-size:15px;
           .check-btn{
             width: 100px;
             height: 30px;
@@ -714,7 +717,7 @@ export default styled.div`
           width: 100%;
 
           .myrecommend {
-            height: 150px;
+            height: 170px;
             background: #1A1414;
             width: 48%;
             align-items: center;
@@ -723,15 +726,16 @@ export default styled.div`
             padding: 1.5em;
 
             .name {
-              font-size: 15px;
+              font-size: 18px;
               font-family: Helvetica-Bold, Helvetica;
               font-weight: bold;
               color: #8A8080;
               line-height: 26px;
+              margin-top:0.5em;
             }
 
             .value {
-              font-size: 13px;
+              font-size: 16px;
               margin: 1.5em 0em;
               line-height: 40px;
               padding: 0 10px;
@@ -747,18 +751,19 @@ export default styled.div`
 
           .myteamsize {
             padding: 1.5em;
-            height: 150px;
+            height: 170px;
             background: #1A1414;
             width: 48%;
             border-radius: 20px;
             border: 1px solid rgba(255, 255, 255, 0.1);
 
             .box-title {
-              font-size: 15px;
+              font-size:18px;
               font-family: Helvetica-Bold, Helvetica;
               font-weight: bold;
               color: #8A8080;
               line-height: 26px;
+              margin-top:0.5em;
             }
 
             .refer-list {
@@ -768,21 +773,23 @@ export default styled.div`
               .refer-item {
                 margin-right: 10px;
                 text-align: center;
-                margin-top: 0.2em;
+                margin-top: 1em;
 
                 .name {
                   line-height: 40px;
                   margin-top: 10px;
                   font-family: Helvetica-Bold, Helvetica;
                   font-weight: bold;
+                  font-size:18px;
                   color: #8A8080;
                   line-height: 22px;
                 }
 
                 .value {
-                  font-size: 14px;
+                  font-size: 18px;
                   font-family: Krungthep;
                   line-height: 50px;
+                  margin-top: 5px;
                   color: #fff;
                   text-align: left;
                 }
@@ -797,87 +804,84 @@ export default styled.div`
 
 
         .fire-list-box {
-          .list-header {
-            padding: 20px 1em;
-          }
-
-          .list-item, .list-header {
-            justify-content: flex-start;
-          }
-
-          .col {
-            text-align: left;
-            align-items: center;
-
-            &:nth-child(1) {
-              width: 5%;
+            .list-header {
+              padding: 20px 2em;
             }
-
-            &:nth-child(2) {
-              width: 9%;
+  
+            .list-item, .list-header {
+              justify-content: flex-start;
             }
-
-            &:nth-child(3) {
-              width: 5%;
-            }
-
-            &:nth-child(4) {
-              width: 5%;
-            }
-
-            &:nth-child(5) {
-              width: 10%;
-            }
-
-            &:nth-child(6) {
-              width: 16%;
-            }
-
-            &:nth-child(7) {
-              width: 14%;
-            }
-
-            &:nth-child(8) {
-              width: 14%;
-            }
-
-            &:nth-child(9) {
-              width: 13%;
-              text-align: center;
-
-            }
-
-            &:nth-child(10) {
-              width: 8%;
-              text-align: center;
-            }
-
-            &:nth-child(11) {
-              width: 8%;
-            }
-          }
-
-          .list-item {
-            padding: 0.5em 1em;
-
+  
             .col {
-              overflow: hidden;
-              padding-left: 0.5%;
-              //text-overflow: ellipsis;
-
+              text-align: left;
+              align-items: center;
+  font-size:16px;
+              &:nth-child(1) {
+                width:6%;
+               margin-left:0px;
+              }
+  
+              &:nth-child(2) {
+                width: 10%;
+                margin-left:10px;
+              }
+  
+              &:nth-child(3) {
+                width: 7%;
+                margin-left:10px;
+              }
+  
+              &:nth-child(4) {
+                width: 7%;
+                margin-left:10px;
+              }
+  
+              &:nth-child(5) {
+                width:8%;
+                margin-left:10px;
+              }
+  
+              &:nth-child(6) {
+                width:11%;
+                margin-left:10px;
+              }
+  
+              &:nth-child(7) {
+                width: 10%;
+                margin-left:10px;
+              }
+  
+              &:nth-child(8) {
+                width: 10%;
+                margin-left:10px;
+              }
+  
+              &:nth-child(9) {
+                width: 11%;
+                margin-left:10px;
+                text-align: left;
+  
+              }
+  
+              &:nth-child(10) {
+                width: 15%;
+                margin-left:10px;
+                text-align: left;
+              }
             }
-          }
-
-          .list-item {
-            padding: 0.5em 1em;
-
-            .col {
-              overflow: hidden;
-              padding-left: 0.5%;
-
-              //text-overflow: ellipsis;
-
-            }
+  
+  
+            .list-item {
+              padding: 0.5em 0em;
+              width: 95%;
+              margin: 0 auto;
+              border-radius:0px;
+              border-bottom:1px solid rgba(255, 255, 255, 0.1);
+              .col {
+                overflow: hidden;
+                padding-left: 0;
+  
+              }
 
             .no {
               color: #FE6D46;
@@ -886,7 +890,7 @@ export default styled.div`
             .pid {
               color: #FE6D46;
               border: 1px solid #FE6D46;
-              background: rgba(254, 109, 70, 0.20);
+              background: rgba(254, 109, 70, 0.10);
               text-align: center;
               border-radius: 25px;
             }
@@ -894,38 +898,32 @@ export default styled.div`
             .fid {
               color: #FE6D46;
               border: 1px solid #FE6D46;
-              background: rgba(254, 109, 70, 0.20);
+              background: rgba(254, 109, 70, 0.10);
               text-align: center;
               border-radius: 25px;
-              margin-right: 20px;
             }
 
             .address {
               a {
-                color: rgba(205, 158, 87, 1);
+                color: #CD9E57;
               }
 
               border: 1px solid rgba(205, 158, 87, 1);
-              background: rgba(205, 158, 87, 0.20);
+              background: rgba(205, 158, 87, 0.10);
               text-align: center;
               border-radius: 25px;
-              width: 130px;
-              margin-right: 40px;
-
             }
           }
         }
       }
 
-
-
       @media screen and (max-width: 1500px) {
         .ant-form{ input{
-    font-size:14px;
+    font-size:13px;
   }}
         .ant-btn {
           font-weight: 600;
-          font-size: 14px;
+          font-size: 15px;
         }
 
         .ant-form-item-label > label {
@@ -934,8 +932,8 @@ export default styled.div`
         }
 
         .flex-box {
-          border-radius: 25px;
           width: 100%;
+          font-size: 14px;
         }
 
 
@@ -1003,13 +1001,13 @@ export default styled.div`
         .send-fireseed {
           .ant-form-item {
             margin: 0em auto;
-            width: 92% !important;
+            width: 98% !important;
             display: flex;
 
           }
 
           .send-button {
-            width: 92%;
+            width: 98%;
             background: linear-gradient(32deg, #FF4E50 0%, #F9D423 100%);
             margin: 1em 0em;
             height: 40px;
@@ -1027,7 +1025,7 @@ export default styled.div`
         }
 
         .fire-nav-list {
-          width: 86%;
+          width: 50%;
           height: 45px;
 
         }
@@ -1036,7 +1034,7 @@ export default styled.div`
           cursor: pointer;
           width: 23%;
           border-radius: 25px;
-          font-size: 16px;
+          font-size: 14px;
           font-weight: bold;
 
           &.active {
@@ -1067,7 +1065,6 @@ export default styled.div`
           .check-btn{
             width: 100px;
             height: 30px;
-
             display: flex;
             justify-content: center;
             align-items: center;
@@ -1159,7 +1156,7 @@ export default styled.div`
           .myrecommend {
             height: 140px;
             background: #1A1414;
-            width: 48%;
+            width: 49%;
             align-items: center;
             border-radius: 20px;
             border: 1px solid rgba(255, 255, 255, 0.1);
@@ -1174,7 +1171,7 @@ export default styled.div`
             }
 
             .value {
-              font-size: 13px;
+              font-size: 14px;
               margin: 1.5em 0em;
               line-height: 40px;
               padding: 0 10px;
@@ -1192,7 +1189,7 @@ export default styled.div`
             padding: 1.5em;
             height: 140px;
             background: #1A1414;
-            width: 48%;
+            width: 49%;
             border-radius: 20px;
             border: 1px solid rgba(255, 255, 255, 0.1);
 
@@ -1211,11 +1208,12 @@ export default styled.div`
               .refer-item {
                 margin-right: 10px;
                 text-align: center;
-                margin-top: 0.2em;
+                margin-top: 0.5em;
+                font-size:14px;
 
                 .name {
+                    font-size:14px;
                   line-height: 40px;
-                  margin-top: 10px;
                   font-family: Helvetica-Bold, Helvetica;
                   font-weight: bold;
                   color: #8A8080;
@@ -1225,7 +1223,7 @@ export default styled.div`
                 .value {
                   font-size: 14px;
                   font-family: Krungthep;
-                  line-height: 50px;
+                  line-height: 25px;
                   color: #fff;
                   text-align: left;
                 }
@@ -1241,7 +1239,7 @@ export default styled.div`
 
         .fire-list-box {
           .list-header {
-            padding: 20px 1em;
+            padding: 20px 2em;
           }
 
           .list-item, .list-header {
@@ -1251,72 +1249,74 @@ export default styled.div`
           .col {
             text-align: left;
             align-items: center;
-
+font-size:13px;
             &:nth-child(1) {
               width: 5%;
+              margin-left:0px;
             }
 
             &:nth-child(2) {
-              width: 9%;
+              width: 10%;
+              margin-left:5px;
             }
 
             &:nth-child(3) {
-              width: 5%;
+              width: 7%;
+              margin-left:5px;
             }
 
             &:nth-child(4) {
-              width: 5%;
+              width: 7%;
+              margin-left:5px;
             }
 
             &:nth-child(5) {
-              width: 10%;
+              width: 8%;
+              margin-left:5px;
             }
 
             &:nth-child(6) {
-              width: 16%;
+              width: 13%;
+              margin-left:5px;
             }
 
             &:nth-child(7) {
-              width: 14%;
+              width: 11%;
+              margin-left:5px;
             }
 
             &:nth-child(8) {
-              width: 14%;
+              width: 12%;
+              margin-left:5px;
             }
 
             &:nth-child(9) {
-              width: 13%;
-              text-align: center;
+              width: 11%;
+              margin-left:5px;
+              text-align: left;
 
             }
 
             &:nth-child(10) {
               width: 8%;
-              text-align: center;
+              margin-left:5px;
+              text-align: left;
             }
 
-            &:nth-child(11) {
-              width: 8%;
-            }
+           
           }
 
-          .list-item {
-            padding: 0.5em 1em;
-
-            .col {
-              overflow: hidden;
-              padding-left: 0.5%;
-              //text-overflow: ellipsis;
-
-            }
-          }
+        
 
           .list-item {
-            padding: 0.5em 1em;
-
+            padding: 0.5em 0em;
+            width: 93%;
+            margin: 0 auto;
+            border-radius:0px;
+            border-bottom:1px solid rgba(255, 255, 255, 0.1);
             .col {
               overflow: hidden;
-              padding-left: 0.5%;
+              padding-left: 0%;
 
               //text-overflow: ellipsis;
 
@@ -1340,7 +1340,6 @@ export default styled.div`
               background: rgba(254, 109, 70, 0.20);
               text-align: center;
               border-radius: 25px;
-              margin-right: 20px;
             }
 
             .address {
@@ -1352,8 +1351,6 @@ export default styled.div`
               background: rgba(205, 158, 87, 0.20);
               text-align: center;
               border-radius: 25px;
-              width: 130px;
-              margin-right: 40px;
 
             }
           }
@@ -1363,13 +1360,7 @@ export default styled.div`
    
    
 
-@media screen and (max-width: 1000px)  {
 
-} 
-
-@media screen and (max-width: 800px)  {
-
-}
  @media screen and (max-width: 450px)  {
   .ant-form{ input{
     font-size:14px;
@@ -1381,7 +1372,10 @@ export default styled.div`
       display: flex;
 
     }
-
+    .flex-box {
+        width: 500px;
+        font-size:14px;
+      }
     .send-button {
       width: 100%;
       background: linear-gradient(32deg, #FF4E50 0%, #F9D423 100%);
@@ -1476,10 +1470,10 @@ export default styled.div`
       border: none;
       background:rgba(36,27,27,1) ;
           .name{
-            font-size:12px;
+            font-size:14px;
           }
           .value{
-            font-size:12px;
+            font-size:14px;
             margin:1em 0;
           }
         }
@@ -1492,7 +1486,7 @@ export default styled.div`
           border: none;
           background:rgba(36,27,27,1) ;
           .box-title{
-            font-size: 12px;
+            font-size: 14px;
           }
           .refer-list{
             font-size:14px;
@@ -1517,7 +1511,7 @@ export default styled.div`
         border-radius:10px;
       
         .list-header {
-                  padding: 20px 1em;
+                  padding: 20px 2.5em;
                 }
       
                 .list-item, .list-header {
@@ -1531,7 +1525,7 @@ export default styled.div`
                   align-items: center;
       
                   &:nth-child(1) {
-                    width: 15%;
+                    width: 18%;
                   }
       
                   &:nth-child(2) {
@@ -1539,11 +1533,11 @@ export default styled.div`
                   }
       
                   &:nth-child(3) {
-                    width: 16%;
+                    width: 20%;
                   }
       
                   &:nth-child(4) {
-                    width: 16%;
+                    width: 20%;
                   }
       
                   &:nth-child(5) {
@@ -1564,33 +1558,27 @@ export default styled.div`
       
                   &:nth-child(9) {
                     width: 38%;
-                    text-align: center;
+                    text-align: left;
       
                   }
       
                   &:nth-child(10) {
-                    width: 30%;
-                    text-align: center;
+                    width: 40%;
+                    text-align: left;
                   }
       
                 }
+           
                 .list-item {
-                  padding: 0.5em 1em;
+                    padding: 0.5 0em;
+                    width: 83%;
+                    margin: 0 auto;
+                    border-radius:0px;
+                    border-bottom:1px solid rgba(255, 255, 255, 0.1);        
       
                   .col {
                     overflow: hidden;
-                    padding-left: 0.5%;
-                    //text-overflow: ellipsis;
-      
-                  }
-                }
-      
-                .list-item {
-                  padding: 0.5em 1em;
-      
-                  .col {
-                    overflow: hidden;
-                    padding-left: 0.5%;
+                    padding-left: 0%;
       
                     //text-overflow: ellipsis;
       
@@ -1618,21 +1606,16 @@ export default styled.div`
       background: rgba(254,109,70,0.1);
                     text-align: center;
                     border-radius: 25px;
-                    margin-right: 10px;
                   }
       
                   .address {
                     a {
                       color: #CD9E57;
-                    }
-      
-                    
+                    }   
       border: 1px solid rgba(205,158,87,0.5);
                     background: rgba(205, 158, 87, 0.10);
                     text-align: center;
                     border-radius: 25px;
-                    width: 80px;
-                    margin-right: 10px;
       
                   }
       }
@@ -1740,7 +1723,7 @@ height:100px;
 border:none;
 background: rgba(36, 27, 27, 1);
     .name{
-      font-size:12px;
+      font-size:14px;
     }
     .value{
       font-size:12px;
@@ -1756,7 +1739,7 @@ height:100px;
 background: rgba(36, 27, 27, 1);
     margin: 0em;
     .box-title{
-      font-size: 12px;
+      font-size: 14px;
     }
     .refer-list{
       font-size:14px;
@@ -1770,93 +1753,89 @@ background: rgba(36, 27, 27, 1);
       width: 100%;
       height: 40px;
       .nav-item{
-        font-size:12px;
+        font-size:13px;
       }
     }
   }
 }
 .fire-list-box{
-  overflow:scroll;
-  border-radius:10px;
-
-  .list-header {
-            padding: 20px 1em;
-          }
-
-          .list-item, .list-header {
-            font-size:12px;
-            justify-content: flex-start;
-          }
-
-          .col {
-            text-align: left;
-            align-items: center;
-            font-size:12px;
-            &:nth-child(1) {
-              width: 15%;
+    overflow:scroll;
+    border-radius:10px;
+  
+    .list-header {
+              padding: 20px 2.6em;
             }
-
-            &:nth-child(2) {
-              width: 35%;
+  
+            .list-item, .list-header {
+              justify-content: flex-start;
+              font-size:13px;
             }
-
-            &:nth-child(3) {
-              width: 16%;
-            }
-
-            &:nth-child(4) {
-              width: 16%;
-            }
-
-            &:nth-child(5) {
-              width: 26%;
-            }
-
-            &:nth-child(6) {
-              width: 44%;
-            }
-
-            &:nth-child(7) {
-              width: 38%;
-            }
-
-            &:nth-child(8) {
-              width: 38%;
-            }
-
-            &:nth-child(9) {
-              width: 38%;
-              text-align: center;
-
-            }
-
-            &:nth-child(10) {
-              width: 30%;
-              text-align: center;
-            }
-
-          }
-          .list-item {
-            padding: 0.5em 1em;
-
+  
             .col {
-              overflow: hidden;
-              padding-left: 0.5%;
-              //text-overflow: ellipsis;
-
+              font-size:13px;
+              text-align: left;
+              align-items: center;
+  
+              &:nth-child(1) {
+                width: 18%;
+              }
+  
+              &:nth-child(2) {
+                width: 35%;
+              }
+  
+              &:nth-child(3) {
+                width: 20%;
+              }
+  
+              &:nth-child(4) {
+                width: 20%;
+              }
+  
+              &:nth-child(5) {
+                width: 26%;
+              }
+  
+              &:nth-child(6) {
+                width: 44%;
+              }
+  
+              &:nth-child(7) {
+                width: 38%;
+              }
+  
+              &:nth-child(8) {
+                width: 38%;
+              }
+  
+              &:nth-child(9) {
+                width: 38%;
+                text-align: left;
+  
+              }
+  
+              &:nth-child(10) {
+                width: 40%;
+                text-align: left;
+              }
+  
             }
-          }
-
-          .list-item {
-            padding: 0.5em 1em;
-
-            .col {
-              overflow: hidden;
-              padding-left: 0.5%;
-
-              //text-overflow: ellipsis;
-
-            }
+       
+            .list-item {
+                padding: 0.5 0em;
+                width: 81%;
+                margin: 0 auto;
+                border-radius:0px;
+                border-bottom:1px solid rgba(255, 255, 255, 0.1);        
+  
+              .col {
+                overflow: hidden;
+                padding-left: 0%;
+  
+                //text-overflow: ellipsis;
+  
+              }
+  
 
             .no {
               color: #E48686;
@@ -1880,7 +1859,6 @@ border: 1px solid rgba(254,109,70,0.2);
 background: rgba(254,109,70,0.1);
               text-align: center;
               border-radius: 25px;
-              margin-right: 10px;
             }
 
             .address {
@@ -1893,8 +1871,6 @@ border: 1px solid rgba(205,158,87,0.5);
               background: rgba(205, 158, 87, 0.10);
               text-align: center;
               border-radius: 25px;
-              width: 80px;
-              margin-right: 10px;
 
             }
 }

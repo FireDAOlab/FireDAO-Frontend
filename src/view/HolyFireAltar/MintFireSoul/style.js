@@ -9,7 +9,22 @@ export default styled.div`
       .ant-form-item-control-input-content{
         flex:none;
       }
-
+      
+      .ant-form-item-control-input-content{
+        width: 100%;
+.ant-input{
+    width: 100%;
+    border-radius:25px;
+}}
+.ant-form-item-control-input{
+        width: 100%;
+.ant-select{
+    width: 100%;
+.ant-select-selector{
+    width: 100%;
+    border-radius:25px;
+}}
+}
       @media screen and (min-width: 1950px) {
         .ant-form-item-label>label{
     font-size:16px;
@@ -84,7 +99,7 @@ export default styled.div`
           .choose-id{
             display: flex;
             justify-content: space-between;
-            padding: 0 1em;
+            padding: 0em;
           }
           .flex-box{
             position: relative;;
@@ -248,7 +263,7 @@ background: linear-gradient(32deg, #FF4E50 0%, #F9D423 100%);
           .choose-id{
             display: flex;
             justify-content: space-between;
-            padding: 0 1em;
+            padding: 0em;
           }
           .flex-box{
             position: relative;;
@@ -416,7 +431,7 @@ background: linear-gradient(32deg, #FF4E50 0%, #F9D423 100%);
           .choose-id{
             display: flex;
             justify-content: space-between;
-            padding: 0 1em;
+            padding: 0em;
           }
           .flex-box{
             position: relative;;
@@ -585,7 +600,7 @@ background: linear-gradient(32deg, #FF4E50 0%, #F9D423 100%);
           .choose-id{
             display: flex;
             justify-content: space-between;
-            padding: 0 1em;
+            padding: 0em;
           }
           .flex-box{
             position: relative;;

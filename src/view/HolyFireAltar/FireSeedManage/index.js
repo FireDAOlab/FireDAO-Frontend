@@ -624,8 +624,8 @@ const FireLock = (props) => {
                                     </div>
                                 </div>
                                 <Form form={form} name="control-hooks">
-                                    {discountArr.map(item => {
-                                            return (
+                                    {/* {discountArr.map(item => {
+                                            return ( */}
                                     <div className="list-item dis">
                                         <div className='col range'>
                                             <Form.Item className='start'
@@ -633,7 +633,7 @@ const FireLock = (props) => {
                                                 rules={[
                                                     { required: true, message: 'Please input start!' },
                                                 ]}>
-                                                <Input placeholder={item.start} className="dtoo1" />
+                                                <Input placeholder='{item.start} 'className="dtoo1" />
                                                 
 
                                             </Form.Item>
@@ -643,7 +643,7 @@ const FireLock = (props) => {
                                                 rules={[
                                                     { required: true, message: 'Please input end!' },
                                                 ]}>
-                                                <Input placeholder={item.end}  className="dtoo1" />
+                                                <Input placeholder='{item.end}'  className="dtoo1" />
                                                 
                                             </Form.Item>
                                         </div>
@@ -653,16 +653,16 @@ const FireLock = (props) => {
                                                 rules={[
                                                     { required: true, message: 'Please input discount!' },
                                                 ]}>
-                                                <Input placeholder={item.discount} className="dtoo1" />
+                                                <Input placeholder='{item.discount}' className="dtoo1" />
                                                 
                                             </Form.Item>
                                             
                                         </div>
                                         <div className='col price'>
-                                            {/* {item.discount} */}
+                                            "item.discount"
                                         </div>
                                     </div>
-                                      ) })}  
+                                      {/* ) })}   */}
                                     
                                 </Form>
                             </div>
