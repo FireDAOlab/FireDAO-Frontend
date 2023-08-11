@@ -4,7 +4,7 @@ import BigNumber from "bignumber.js"
 import AddNomalWhiteList from "./ThreelWhiteList";
 import AddThreeWhiteList from "./WhiteList";
 import { showNum } from "../../../utils/bigNumberUtil";
-import ethereum from "../../../imgs/ethereum.png";
+import ethereum from "../../../imgs/ethereum.svg";
 import { formatAddress } from "../../../utils/publicJs";
 import ConnectWallet from "../../../component/ConnectWallet/ConnectWallet";
 import user3 from "../../../imgs/user3.png"
@@ -718,6 +718,20 @@ const OGPoolPublic = (props) => {
                     <AddNomalWhiteList allRecords={allRecords}></AddNomalWhiteList>
                 </div>
             )}
+            {activeNav==5 &&(
+                <div>
+                    <div className="panel-box">
+                        <div className="panel-container">
+                            <div className="panel-title">
+                                Fund Allocation
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            )
+
+            }
         </OGPoolStyle>
     )
 }
