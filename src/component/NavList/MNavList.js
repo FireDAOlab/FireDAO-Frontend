@@ -3,10 +3,10 @@ import React, { useState } from 'react';
 
 import english from "../../imgs/english.webp"
 import { Button, Menu } from 'antd';
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import develop from "../../env"
 import navMap from "../../config/navMap";
-import {useConnect} from "../../api/contracts";
+import { useConnect } from "../../api/contracts";
 import MNavListStyle from "./MNavListStyle";
 function getItem(label, key, icon, children, type) {
     return {
@@ -18,41 +18,41 @@ function getItem(label, key, icon, children, type) {
     };
 }
 
-const items =navMap;
+const items = navMap;
 
 const NavList = () => {
-    let {state, dispatch} = useConnect();
+    let { state, dispatch } = useConnect();
     const [collapsed, setCollapsed] = useState(false);
-    const [selectedKeys, setSelectedKeys] = useState(["Holy Fire Altar","MintPassport"]);
+    const [selectedKeys, setSelectedKeys] = useState(["Holy Fire Altar", "MintPassport"]);
     const [selectNav, setSelectNav] = useState("Holy Fire Altar");
     const toggleCollapsed = () => {
         setCollapsed(!collapsed);
     };
     const history = useNavigate();
     const goPage = (obj) => {
-        if(develop.ENV === "dev"){
+        if (develop.ENV === "dev") {
             setSelectedKeys(obj.keyPath)
-            history("/"+ obj.key );
+            history("/" + obj.key);
             setSelectNav(obj.keyPath[1])
-            localStorage.setItem("activeNav",obj.keyPath[1])
-        }else if(develop.ENV === "production"){
-            if(obj.key=="MintPassport" ||obj.key== "PIDList" ||obj.key== "MyPassport"  ){
+            localStorage.setItem("activeNav", obj.keyPath[1])
+        } else if (develop.ENV === "production") {
+            if (obj.key == "MintPassport" || obj.key == "PIDList" || obj.key == "MyPassport") {
                 setSelectedKeys(obj.keyPath)
-                history("/"+ obj.key );
+                history("/" + obj.key);
                 setSelectNav(obj.keyPath[1])
-            }else{
-                history("/OnBuilding" );
+            } else {
+                history("/OnBuilding");
             }
-        }else{
-            if(obj.key=="MintPassport" ||obj.key== "PIDList" ||obj.key== "MyPassport"||obj.key== "PidAirdrop"   ){
+        } else {
+            if (obj.key == "MintPassport" || obj.key == "PIDList" || obj.key == "MyPassport" || obj.key == "PidAirdrop") {
                 setSelectedKeys(obj.keyPath)
-                history("/"+ obj.key );
+                history("/" + obj.key);
                 setSelectNav(obj.keyPath[1])
-            }else{
-                history("/OnBuilding" );
+            } else {
+                history("/OnBuilding");
             }
         }
-        dispatch({type: "SET_IsShowNav", payload: false})
+        dispatch({ type: "SET_IsShowNav", payload: false })
 
     }
 
@@ -68,12 +68,13 @@ const NavList = () => {
     };
     return (
         <MNavListStyle>
+           
             <div className="m-nav-box">
                 <div
                     className="navBox"
                     style={{
                         width: 256,
-                        
+
                     }}
                 >
 
@@ -81,15 +82,15 @@ const NavList = () => {
                         className="menu"
                         defaultSelectedKeys={[]}
                         defaultOpenKeys={[selectNav]}
-                        selectedKeys={selectedKeys }
+                        selectedKeys={selectedKeys}
                         mode="inline"
                         theme="dark"
                         inlineCollapsed={collapsed}
                         items={items}
-                        onClick={(e)=>goPage(e)}
+                        onClick={(e) => goPage(e)}
                     />
                     <div className="lng-choose">
-                        <img src={english} alt=""/>
+                        <img src={english} alt="" />
                         <span>English</span>
                     </div>
                 </div>

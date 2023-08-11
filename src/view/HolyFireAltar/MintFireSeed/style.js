@@ -84,11 +84,14 @@ export default styled.div`
             margin-top: 0em;
 
             .button-box {
-              margin-top: 7em;
+              margin-top: 10em;
             }
 
             .mint-fee {
               padding: 0 1em;
+              img{
+                width:28px;
+              }
             }
 
             .subBtn {
@@ -99,6 +102,7 @@ export default styled.div`
 
             .tip {
               text-align:justify;
+              justify-content:flex-end;
               margin-top: 3em;
               font-size: 16px;
               font-family: PingFangSCSemibold-, PingFangSCSemibold, sans-serif;
@@ -164,6 +168,7 @@ export default styled.div`
 
         .right {
           width: 50%;
+          height: 100%;
           /* max-width: 500px; */
           display: flex;
 
@@ -176,6 +181,9 @@ export default styled.div`
 
             .mint-fee {
               padding: 0 1em;
+              img{
+                width:28px;
+              }
             }
 
             .subBtn {
@@ -265,6 +273,9 @@ export default styled.div`
 
             .mint-fee {
               padding: 0 1em;
+              img{
+                width:28px;
+              }
             }
 
             .subBtn {
@@ -357,6 +368,9 @@ export default styled.div`
             .mint-fee {
               padding: 0 1em;
               font-size:14px;
+              img{
+                width:28px;
+              }
             }
 
             .subBtn {

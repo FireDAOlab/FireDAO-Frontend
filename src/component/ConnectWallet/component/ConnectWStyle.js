@@ -1,10 +1,11 @@
 import styled from "styled-components";
-export default   styled.div`
+export default styled.div`
   position: fixed;
   left: 0;
   top: 0;
   z-index: 1;
-  .address-list {
+ @media screen and (max-width: 450px){
+    .address-list {
     .fire-list-icon{
         display: block;
       align-items: center;
@@ -83,5 +84,6 @@ width: 90%;
     }
     
   }
+ }
   
 `

@@ -214,9 +214,7 @@ const MintFireSoul = (props) => {
                                         validateFirst={true}
 
                                     >
-                                        <div className="pid">
-                                            {state.pid}
-                                        </div>
+                                        <Input placeholder={state.pid} />
                                     </Form.Item>
                                     <Button type="primary" className="go-btn" onClick={() => {
                                         goPath('/MintPassport')
@@ -230,10 +228,16 @@ const MintFireSoul = (props) => {
                                         label="Your FireSeedID:"
                                     >
                                         <div className="choose-id" onClick={focusSelect}>
-                                            {chooseId}
-                                            <div className="cur-amount">
-                                                ×{balance}
-                                            </div>
+                                            
+                                            <Select
+                                        className="select-chain"
+                                        defaultValue={chooseId}
+                                        value={chooseId}
+                                        options={balance}
+                                    />
+                                            {/* <div className="cur-amount">
+                                               
+                                            </div> */}
                                         </div>
 
                                     </Form.Item>

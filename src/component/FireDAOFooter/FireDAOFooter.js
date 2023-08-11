@@ -14,6 +14,16 @@ import { useLocation, useNavigate } from "react-router-dom";
 import footerMap from "../../config/footerMap";
 import { Menu } from 'antd';
 import FireDAOFooterStyle from "./FireDAOFooterStyle";
+function getItem(label, key, hr, children, type) {
+    return {
+        key,
+        hr,
+        children,
+        label,
+        type,
+    };
+}
+
 const items = footerMap;
 const FireDAOFooter = () => {
     const [collapsed, setCollapsed] = useState(false);
@@ -81,7 +91,7 @@ const FireDAOFooter = () => {
                                 openKeys={openKeys}
                                 onOpenChange={onOpenChange}
                                 theme="dark"
-                                // inlineCollapsed={collapsed}
+                                inlineCollapsed={collapsed}
                                 items={items}
                                 onClick={(e) => goPage(e)}
                             />

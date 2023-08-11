@@ -31,6 +31,7 @@ export default styled.div`
 
     .header {
       text-align: right;
+display: flex;
 
       .close {
         cursor: pointer;
@@ -61,6 +62,7 @@ export default styled.div`
     .dialog-name {
       font-size: 24px;
       text-align: center;
+      margin: 0 auto;
       font-family: Roboto-Bold, Roboto;
       font-weight: bold;
       color: #FFFFFF;

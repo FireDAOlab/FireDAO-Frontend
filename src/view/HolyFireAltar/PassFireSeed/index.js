@@ -1,14 +1,14 @@
-import React, {useEffect, useRef, useState} from 'react';
-import {useConnect} from "../../../api/contracts";
-import {Pagination, Card, Button, Select, Descriptions, message, Form, List, Input, notification, Tooltip} from 'antd';
-import {QuestionCircleOutlined, SendOutlined, TwitterOutlined, UserOutlined} from "@ant-design/icons";
-import {getContractByName, getContractByContract} from "../../../api/connectContract";
-import {dealMethod, viewMethod} from "../../../utils/contractUtil"
+import React, { useEffect, useRef, useState } from 'react';
+import { useConnect } from "../../../api/contracts";
+import { Pagination, Card, Button, Select, Descriptions, message, Form, List, Input, notification, Tooltip } from 'antd';
+import { QuestionCircleOutlined, SendOutlined, TwitterOutlined, UserOutlined } from "@ant-design/icons";
+import { getContractByName, getContractByContract } from "../../../api/connectContract";
+import { dealMethod, viewMethod } from "../../../utils/contractUtil"
 import passport from "../../../imgs/long.png"
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import user3 from "../../../imgs/user3.png";
 import judgeStatus from "../../../utils/judgeStatus.js"
-import {getPasslist} from "../../../graph/myFireseed";
+import { getPasslist } from "../../../graph/myFireseed";
 import coinInfo from "../../../config/coinInfo";
 import StyleBox from "./style"
 let logs = []
@@ -16,7 +16,7 @@ let logs = []
 const LockList = (props) => {
     const [form] = Form.useForm();
 
-    let {state, dispatch} = useConnect();
+    let { state, dispatch } = useConnect();
     const [curPage, setCurPage] = useState(1)
     const [pageCount, setPageCount] = useState(20)
     const [curId, setID] = useState([])
@@ -87,7 +87,7 @@ const LockList = (props) => {
 
             }
         }
-        dispatch({type: "SET_MyRecommender", payload: address})
+        dispatch({ type: "SET_MyRecommender", payload: address })
         setLevel1(recommenderInfoArr.length)
         setLevel2(level2TotalLength)
         setLevel3(level3TotalLength)
@@ -115,11 +115,11 @@ const LockList = (props) => {
             })
         }
 
-        dispatch({type: "SET_FIREDSEEDLIST", payload: list})
+        dispatch({ type: "SET_FIREDSEEDLIST", payload: list })
     }
 
     const transfer = async () => {
-        const {toAddress, amount} = form.getFieldValue()
+        const { toAddress, amount } = form.getFieldValue()
         // params _token
         await handleDealMethod("safeTransferFrom", [state.account, toAddress, curId, amount, "0x00"])
         getData()
@@ -240,13 +240,13 @@ const LockList = (props) => {
                         My FireSeed
                         {
                             // isAdmin && (
-                                <Button className='conuser'
-                                        onClick={() => {
-                                            history("/FireSeedManage")
-                                        }}>
-                                    <img src={user3} className="conimg"/>
-                                </Button>
-                                // )
+                            <Button className='conuser'
+                                onClick={() => {
+                                    history("/FireSeedManage")
+                                }}>
+                                <img src={user3} className="conimg" />
+                            </Button>
+                            // )
                         }
                     </div>
 
@@ -262,7 +262,7 @@ const LockList = (props) => {
                                         <div className='tpitem' onClick={() => {
                                             setID(item.id)
                                         }}>
-                                            <img src={passport}/>
+                                            <img src={passport} />
                                             <p>FireSeed # {item.id} ×{item.balance}</p>
                                         </div>
                                     ))
@@ -286,6 +286,7 @@ const LockList = (props) => {
                                 <Form.Item
                                     name="FireSeed ID"
                                     label="FireSeed ID"
+                                    className='xial'
                                 >
                                     <Select
                                         className="select-chain"
@@ -335,43 +336,43 @@ const LockList = (props) => {
                                     }}
                                 >
                                     <div className="flex-box">
-                                        <Input/>
+                                        <Input />
 
                                     </div>
                                 </Form.Item>
                                 <div className="check-box">
                                     {
-                                        hasTransfer===0&&(
+                                        hasTransfer === 0 && (
                                             <a className="check-btn"
-                                               onClick={() => {
-                                                   check()
-                                               }}>
+                                                onClick={() => {
+                                                    check()
+                                                }}>
                                                 <span>Check</span>
                                                 <Tooltip
                                                     title="Unlocinimum set-up is 1 day. ">
-                                                    <QuestionCircleOutlined className="icon"/>
+                                                    <QuestionCircleOutlined className="icon" />
                                                 </Tooltip>
                                             </a>
                                         )
                                     }
                                     {
-                                        hasTransfer===true&&(
+                                        hasTransfer === true && (
                                             <div className="check-btn yes">
                                                 <span>Yes</span>
                                                 <Tooltip
                                                     title="Unt-up is 1 day. ">
-                                                    <QuestionCircleOutlined className="icon"/>
+                                                    <QuestionCircleOutlined className="icon" />
                                                 </Tooltip>
                                             </div>
                                         )
                                     }
                                     {
-                                        hasTransfer===false&&(
+                                        hasTransfer === false && (
                                             <div className="check-btn no">
                                                 <span>No</span>
                                                 <Tooltip
                                                     title="Unlocke minimum set-up is 1 day. ">
-                                                    <QuestionCircleOutlined className="icon"/>
+                                                    <QuestionCircleOutlined className="icon" />
                                                 </Tooltip>
                                             </div>
                                         )
@@ -389,7 +390,7 @@ const LockList = (props) => {
 
                                 >
                                     <div className="flex-box">
-                                        <Input placeholder='Enter Amounts'/>
+                                        <Input placeholder='Enter Amounts' />
                                     </div>
                                 </Form.Item>
                                 <Button className="send-button" type="primary" htmlType="submit" onClick={() => {
@@ -403,14 +404,14 @@ const LockList = (props) => {
                 </div>
             </div>
             <div className="panel-box content2-part2">
-                <div className="panel-container" >
+                <div className="panel-container conten-contain" >
                     <div className="panel-title">
                         My Team
                     </div>
                     <div className="content2">
                         <div className="myrecommend">
                             <div className="name">
-                            Contract Address
+                                Contract Address
                             </div>
                             <div className="value">
                                 {state.myRecommender}
@@ -506,60 +507,92 @@ const LockList = (props) => {
                                 Forum ID
                             </div>
                             <div className="col">
-                            FDT Transaction <br />Tax
+                                FDT Transaction <br />Tax
                             </div>
                             <div className="col">
                                 Mint FireSeed <br />Fees
                             </div>
                             <div className='col'>
-                            Seed Donation <br />Fees
+                                Seed Donation <br />Fees
                             </div>
                             <div className="col">
-                            Consensus<br /> Donation Fees
+                                Consensus<br /> Donation Fees
                             </div>
                             <div className="col">
                                 Time(UTC)
                             </div>
-                            
+
                         </div>
-                        {
-                            logArr.map(item => (
-                                <div className="list-item ">
-                                    <div className="col no">
-                                        1
-                                    </div>
-                                    <div className="col address">
-                                        {item.transferTime}
-                                    </div>
-                                    <div className="col pid">
-                                        {item.from}
-                                    </div>
-                                    <div className="col fid">
-                                        {item.to}
-                                    </div>
-                                    <div className='col'>
+                        {/* {
+                            logArr.map((item,index) => ( */}
+                        <div className="list-item ">
+                            <div className="col no">
+                                1dvasdvas
+                            </div>
+                            <div className="col address">
+                                {/* {item.transferTime}svd */}dvsdvsva
+                            </div>
+                            <div className="col pid">
+                                {/* {item.from}avds */}sdvsdvdsv
+                            </div>
+                            <div className="col fid">
+                                {/* {item.to}davs */}vsddvdsvds
+                            </div>
+                            <div className='col'>
+                                savd
+                            </div>
+                            <div className='col'>
+                                sad
+                            </div>
+                            <div className='col'>
+                                dvs
+                            </div>
+                            <div className='col'>
+                                svda
+                            </div>
+                            <div className='col'>
+                                withD
+                            </div>
+                            <div className='col'>
+                                irectives sd
+                            </div>
+                        </div>
+                        <div className="list-item ">
+                            <div className="col no">
+                                1dvasdvas
+                            </div>
+                            <div className="col address">
+                                {/* {item.transferTime}svd */}dvsdvsva
+                            </div>
+                            <div className="col pid">
+                                {/* {item.from}avds */}sdvsdvdsv
+                            </div>
+                            <div className="col fid">
+                                {/* {item.to}davs */}vsddvdsvds
+                            </div>
+                            <div className='col'>
+                                savd
+                            </div>
+                            <div className='col'>
+                                sad
+                            </div>
+                            <div className='col'>
+                                dvs
+                            </div>
+                            <div className='col'>
+                                svda
+                            </div>
+                            <div className='col'>
+                                withD
+                            </div>
+                            <div className='col'>
+                                irectives sd
+                            </div>
+                        </div>
+                        {/* ))
 
-                                    </div>
-                                    <div className='col'>
-
-                                    </div>
-                                    <div className='col'>
-
-                                    </div>
-                                    <div className='col'>
-
-                                    </div>
-                                    <div className='col'>
-
-                                    </div>
-                                    <div className='col'>
-
-                                    </div>
-                                </div>
-                            ))
-
-                        }
-                        {
+                        } */}
+                        {/* {
                             level2Arr.map(item => (
                                 <div className="list-item ">
                                     <div className="col">
@@ -596,14 +629,14 @@ const LockList = (props) => {
                                 </div>
                             ))
 
-                        }
+                        } */}
                     </div>
                     <div className="pagination">
                         {
                             activeNav == 1 &&
                             <Pagination current={curPage} showSizeChanger onShowSizeChange={handleShowSizeChange}
-                                        onChange={onChangePage} total={total}
-                                        defaultPageSize={pageCount}/>
+                                onChange={onChangePage} total={total}
+                                defaultPageSize={pageCount} />
                         }
                     </div>
                 </div>

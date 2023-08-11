@@ -6,7 +6,7 @@ export default styled.div`
       flex-shrink: 0;
       flex-grow: 0;
       display: flex;
-
+ 
       .ant-form-item-control{
     min-height:40px;
 }
@@ -15,6 +15,12 @@ export default styled.div`
 }
 .ant-input-affix-wrapper{
     border-radius:25px;
+    border-color:rgba(255, 255, 255, 0.10);
+    width: 100%;
+}
+
+.ant-input:hover {
+    border-color:rgba(255, 255, 255, 0.10);
 }
 .button-box {
     text-align: left;
@@ -37,6 +43,7 @@ color: #FFFFFF;
   }
   
 @media screen and (min-width: 1951px) {
+    
   .connect-button{
 img{
   display:none ;
@@ -65,6 +72,7 @@ img{
 
     .ant-input-affix-wrapper {
       font-size: 16px;
+      height: 100%;
     }
 
     .panel-box {
@@ -138,7 +146,7 @@ img{
 
             .value {
               font-size: 17px;
-              max-width: 60%;
+              max-width: 62%;
             }
 
             .address {
@@ -166,11 +174,11 @@ img{
             color:white;
             font-weight:600;
             font-size:16px;
-            span{
+           
+        }
+        span{
               font-size:16px;
             }
-        }
-       
         .choosePayType{
           .ant-form-item-label{
             display: none;
@@ -247,6 +255,7 @@ img{
 
     .ant-input-affix-wrapper {
       font-size: 16px;
+      height: 100%;
     }
 
     .panel-box {
@@ -320,7 +329,7 @@ img{
 
             .value {
               font-size: 17px;
-              max-width: 60%;
+              max-width: 62%;
             }
 
             .address {
@@ -339,8 +348,8 @@ img{
          
           .mint-tip {
             font-size:16px;
-            padding-top:1.2em;
-            height: 65px;
+            padding-top:1em;
+            height: 60px;
             color: #856465;
             display: flex;
             justify-content: space-between;
@@ -348,11 +357,11 @@ img{
                 color:white;
                 font-weight:600;
                 font-size:16px;
-                span{
+                
+            }
+           span{
               font-size:16px;
             }
-            }
-           
             .choosePayType{
               .ant-form-item-label{
                 display: none;
@@ -423,6 +432,12 @@ img{
     }
 
   }
+  .ant-form{
+ .ant-form-item{
+    margin-bottom:6px;
+  }
+  }
+ 
     .panel-box{
         .panel-container{
             width: 100%;
@@ -514,19 +529,19 @@ img{
           .mint-tip {
             font-size:14px;
             color: #856465;
-            height: 50px;
+            height: 40px;
             display: flex;
-            padding-top: 1em;
+            padding-top:0em;
             justify-content: space-between;
             .fee{
                 font-size:14px;
                 height: 30px;
-                span{
-              font-size:14px;
-            }
+              
                 
             }
-           
+             span{
+              font-size:14px;
+            }
             .choosePayType{
               .ant-form-item-label{
                 display: none;
@@ -699,11 +714,11 @@ img{
             .fee{
                 font-size:14px;
                 height: 50px;
+           
+            }
                 span{
               font-size:14px;
             }
-            }
-           
             .choosePayType{
               .ant-form-item-label{
                 display: none;

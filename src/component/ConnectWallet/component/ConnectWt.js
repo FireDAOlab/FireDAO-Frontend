@@ -92,10 +92,10 @@ const ConnectWallet = (props) => {
                             <p className='icon-name'>MetaMask</p>
                         </div>
                         <div className="list-icon">
-                            <div style={{ width:'48px',height:'48px',marginLeft: '41%', marginTop: '13px', textAlign: 'center',  marginBottom: '20px', backgroundColor: 'rgba(255,255,255,0.1)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '50%' }}>
+                            <div style={{ width:'48px',height:'48px',marginLeft: '44%', marginTop: '13px', textAlign: 'center',  marginBottom: '20px', backgroundColor: 'rgba(255,255,255,0.1)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '50%' }}>
                                 <img style={{ width: '60%',marginTop:'9px' }} src={walletc} />
                             </div>
-                            <p className='icon-name'>WalletConnect</p>
+                            <p className='icon-name'>Wallet Connect</p>
                         </div>
                     </div>
                 </div>

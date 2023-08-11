@@ -13,7 +13,7 @@ const Detai = (props) => {
 
     return (
         <DetailStyle>
-            <div className="mask">
+            <div className="mask" onClick={closeDialog}>
 
             </div>
             <div className="dialog-content">
