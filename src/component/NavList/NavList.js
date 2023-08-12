@@ -19,7 +19,6 @@ const NavList = () => {
     const rootSubmenuKeys = navMap.map(items => {
         return items.key
     });
-    console.log(navMap)
     const toggleCollapsed = () => {
         setCollapsed(!collapsed);
     };
@@ -40,7 +39,6 @@ const NavList = () => {
         }
     };
     useEffect(() => {
-
         let keyPath = []
         const curKey = location.pathname.substring(1, location.pathname.length)
         navMap.forEach(navObj => {
