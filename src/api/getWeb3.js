@@ -3,12 +3,11 @@ let curProvider = null
 const getWeb3= async (provider)=>{
     return new Promise(function (resolve,reject){
 
-        let web3js = window.web3
         if(provider){
             curProvider = provider
-        }else if (typeof web3js !== 'undefined') {
-            let web3 = new Web3(web3js.currentProvider)
-            curProvider = web3js.currentProvider
+        }else if (typeof window.ethereum !== 'undefined') {
+            let web3 = new Web3(window.ethereum)
+            curProvider = window.ethereum
             resolve({
                 web3,
                 account: curProvider.accounts && curProvider.accounts.length > 0 ? curProvider.accounts[0] : null
