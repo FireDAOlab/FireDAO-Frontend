@@ -19,8 +19,10 @@ import del from "../../../imgs/sc.png";
 import eth from "../../../imgs/ethereum.svg";
 import {getSecondDonateRecord, getThreeDonateRecord} from "../../../graph/donate";
 import BigNumber from "bignumber.js";
+import addressMap from "../../../api/addressMap";
+import {FDTDecimals} from "../../../config/constants";
 
-const OGPool = (props) => {
+const OgPoolAdmin = (props) => {
 
     const [form2] = Form.useForm();
     let {state, dispatch} = useConnect();
@@ -41,7 +43,7 @@ const OGPool = (props) => {
     const [maxThree, setMaxThree] = useState(0)
     const [maxThreeAdmin, setMaxThreeAdmin] = useState(0)
 
-    const [exchangeAmount, setExchangeAmount] = useState(0)
+    const [withdrawCoinAddr, setWithdrawCoinAddr] = useState()
     const [sumArr, setSumArr] = useState([])
     const [inputValue, setInputValue] = useState(0)
     const [showAddRate, setShowAddRate] = useState(false)
@@ -52,9 +54,13 @@ const OGPool = (props) => {
     const [fdtAddr, setFDTAddressValue] = useState()
 
 
+
+    const [referralRewards, setReferralRewards] = useState()
+
     const [ownerAddress, setOwnerAddress] = useState("")
     const [curAddr, setCurAddr] = useState("")
     const [curId, setCurId] = useState("")
+    const [coinInfo ,setCoinInfo] = useState({})
     const onChange = (checked) => {
         console.log(`switch to ${checked}`);
     };
@@ -151,7 +157,7 @@ const OGPool = (props) => {
         setAssignAdmin(resArr)
     }
     const getBalanceOfFDT = async () => {
-        let balance = await handleViewMethod("getBalanceOfFDT", [])
+        let balance = await handleViewMethod("getBalanceOfFDTOG", [])
         balance = parseInt(parseInt(balance) / 10 ** 18)
         if (balance > 0) {
             setFDTBalance(balance)
@@ -163,11 +169,11 @@ const OGPool = (props) => {
     }
     const getTotalDonate = async () => {
         let res = await handleViewMethod("totalDonate", [])
-        setTotalDonate(res / 10 ** 18)
+        setTotalDonate(BigNumber(res).dividedBy(10 ** FDTDecimals).toString() )
     }
     const getSalePrice = async () => {
         let res = await handleViewMethod("salePrice", [])
-        setSalePriceV(res / 1000)
+        setSalePriceV(BigNumber(res).dividedBy(1000).toString())
     }
     const getMaxThree = async () => {
         let res = await handleViewMethod("maxThree", [])
@@ -204,7 +210,7 @@ const OGPool = (props) => {
         setStatus2(res)
     }
     const getFDTAddress = async () => {
-        let res = await handleViewMethod("fdt", [])
+        let res = await handleViewMethod("fdtOg", [])
         setFDTAddressValue(res)
     }
     const getSecondAdmins = async () => {
@@ -215,6 +221,7 @@ const OGPool = (props) => {
 
     const getInviteRate = async () => {
         const rate = await handleViewMethod("getRate", [])
+        console.log(rate)
         if (rate > 0) {
             let inviteRate2 = await handleViewMethod("inviteRate", [0])
             let inviteRate1 = await handleViewMethod("inviteRate", [1])
@@ -299,13 +306,13 @@ const OGPool = (props) => {
         }
         getTotalDonate()
         getBalanceOfFDT()
-        getShowWhiteList()
+        // getShowWhiteList()
         getOwner()
         getSecondAdmins()
         getInviteRate()
         getSalePrice()
         getMaxThree()
-        getMaxThreeAdmin()
+        // getMaxThreeAdmin()
         getSummary()
         getPause()
         getpidStatusForAdmin()
@@ -328,7 +335,26 @@ const OGPool = (props) => {
     const delARRow = async (item) => {
         await handleDealMethod("removeAssiginAddressAndRatio", [[item.assign]])
     }
+    const getCoinInfo = async (coinAddr) => {
+        if (!state.api.utils.isAddress(coinAddr)) {
+            return
+        }
+        let contractTemp = await getContractByContract("erc20", coinAddr, state.api,)
+        const decimal = await viewMethod(contractTemp, state.account, "decimals", [])
+        let balance = await viewMethod(contractTemp, state.account, "balanceOf", [addressMap["FLMAirdrop"].address])
+        let name =  await viewMethod(contractTemp, state.account, "name", [])
+        let symbol =  await viewMethod(contractTemp, state.account, "symbol", [])
+        balance = balance / (10 ** parseInt(decimal))
+        setCoinInfo({
+            balance,
+            symbol,
+            decimal
+        })
 
+    }
+    const withdrawToken =  async (item) => {
+        await handleDealMethod("Claim", [form.getFieldValue().withdrawAmount])
+    }
     useEffect(() => {
         getData()
     }, [state.account]);
@@ -357,6 +383,7 @@ const OGPool = (props) => {
             </div>
         </div>
     }
+
     const Row2 = (item, index) => {
         return <div className="list-item " key={index}>
             <div className="col no">
@@ -896,49 +923,69 @@ const OGPool = (props) => {
                                         </div>
                                     </div>
                                 </div>
-                                {/* <Form form={form2} name="control-hooks" className="form">
-                                    <Form.Item
-                                        name="tokenAddress"
-                                        label="tokenAddress"
-                                        validateTrigger="onBlur"
-                                        validateFirst={true}
-                                    >
-                                        <div className="input-box">
-                                            <Input />
+                            </div>
+                            <div className="panel-container">
+                                <div className="content-item">
+                                    <h2>Coin Withdraw</h2>
+
+                                    <Form form={form} name="control-hooks">
+                                        <div className="current">
+                                            <div className="name">
+                                                Pool {coinInfo.name} Balance:
+                                            </div>
+                                            <div className="value">
+                                                {showNum(coinInfo.balance)}
+                                            </div>
                                         </div>
-                                    </Form.Item>
-                                    <Form.Item
-                                        name="tokenNumber"
-                                        label="tokenNumber"
-                                        validateTrigger="onBlur"
-                                        validateFirst={true}
-                                    >
-                                        <div className="input-box">
-                                            <Input />
+                                        <div className="current">
+                                            <div className="name">
+                                               Symbol
+                                            </div>
+                                            <div className="value">
+                                                {coinInfo.symbol}
+                                            </div>
                                         </div>
-                                    </Form.Item>
-                                </Form>
-                                <Button onClick={claim} type="primary" className="operate-btn">
-                                    Claim
-                                </Button>
-                                <h3 className="panel-title">
-                                    Withdraw FDT-OG
-                                </h3>
-                                <Form form={form2} name="control-hooks" className="form">
-                                    <Form.Item
-                                        name="withdrawNum"
-                                        label="withdrawNum"
-                                        validateTrigger="onBlur"
-                                        validateFirst={true}
-                                    >
-                                        <div className="input-box">
-                                            <Input />
+                                        <div className="current">
+                                            <div className="name">
+                                                Decimals
+                                            </div>
+                                            <div className="value">
+                                                {coinInfo.decmials}
+                                            </div>
                                         </div>
-                                    </Form.Item>
-                                </Form>
-                                <Button type="primary" className="operate-btn" onClick={withdraw}>
-                                    FDT-OG Withdraw
-                                </Button> */}
+                                        <Form.Item
+                                            name="withdrawCoinAddr"
+                                            label="Coin Address"
+                                            validateTrigger="onBlur"
+                                            validateFirst={true}
+                                            rules={[
+                                                {required: true, message: 'Please input coin Address!'},
+                                            ]}
+                                        >
+                                            <Input value={withdrawCoinAddr} onChange={(e) => {
+                                                setWithdrawCoinAddr(e.target.value)
+                                                getCoinInfo(e.target.value)
+                                            }}/>
+                                        </Form.Item>
+                                        <Form.Item
+                                            name="withdrawAmount"
+                                            label="Amount"
+                                            validateTrigger="onBlur"
+                                            validateFirst={true}
+                                            rules={[
+                                                {required: true, message: 'Please input coin Amount!'},
+                                            ]}
+                                        >
+                                            <Input/>
+                                        </Form.Item>
+                                    </Form>
+
+                                    <Button type="primary" className="max-btn" onClick={() => {
+                                        withdrawToken()
+                                    }}>
+                                        Withdraw
+                                    </Button>
+                                </div>
                             </div>
                         </div>
                         <div className="panel-box part2">
@@ -1119,6 +1166,33 @@ const OGPool = (props) => {
                     </div>
                 )
             }
+            {
+                activeNav==5&& (<div className="panel-box">
+                    <div className="panel-container">
+                        <div className="panel-title">
+                            Fund Allocation
+                        </div>
+                        <div className="panel-content">
+                            <div className="content-item">
+                                <div className="current">
+                                    Referral Rewards : {referralRewards}
+                                </div>
+                                <Form form={form} name="control-hooks" className="form">
+                                    <Form.Item
+                                        name="ReferralRewards"
+                                        label="Referra lRewards"
+                                    >
+                                        <div className="input-box">
+                                            <Input/>
+                                        </div>
+                                    </Form.Item>
+                                    <Button type="primary" onClick={setReferralRewards}>Submit</Button>
+                                </Form>
+                            </div>
+                        </div>
+                    </div>
+                </div>)
+            }
             {showAddRate && (<AddAddressRate updateData={() => {
             }} closeDialog={() => {
                 setShowAddRate(false)
@@ -1127,4 +1201,4 @@ const OGPool = (props) => {
         </OGPoolAdminStyle>
     )
 }
-export default OGPool
+export default OgPoolAdmin
