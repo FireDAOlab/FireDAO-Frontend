@@ -15,7 +15,7 @@ import {
     message,
     AutoComplete,
     Form,
-    Pagination
+    Pagination, Input
 } from 'antd';
 import {getContractByName, getContractByContract} from "../../../api/connectContract";
 import {dealMethod, dealPayMethod, viewMethod} from "../../../utils/contractUtil"
@@ -27,7 +27,7 @@ import {useNavigate} from "react-router-dom";
 import judgeStatus from "../../../utils/judgeStatus";
 import {getDonateRecord} from "../../../graph/donate";
 import OGPoolStyle from "./OGPoolStyle";
-import {ETHDecimals, FDTDecimals} from "../../../config/constants";
+import {ETHDecimals, FDTDecimals, USDTDecimals, ZeroAddress} from "../../../config/constants";
 
 const OGPoolPublic = (props) => {
     let {state, dispatch} = useConnect();
@@ -43,8 +43,9 @@ const OGPoolPublic = (props) => {
     const [totalDonate, setTotalDonate] = useState(0)
     const [exchangeAmount, setExchangeAmount] = useState(0)
     const [inputValue, setInputValue] = useState(0)
-    const [isSAdmin, setIsSecondAdmin] = useState(false)
-    const [isTAdmin, setIsThreeAdmin] = useState(false)
+    const [isSecondAdmin, setIsSecondAdmin] = useState(false)
+    const [isThreeAdmin, setIsThreeAdmin] = useState(false)
+    const [isFourAdmin, setIsFourAdmin] = useState(false)
     const [fdtBalance, setFdtBalance] = useState(0)
     const [allRecords, setAllRecords] = useState([])
     const [refRecords, setREFRecords] = useState([])
@@ -132,17 +133,17 @@ const OGPoolPublic = (props) => {
                 )}
             </div>
             <div className="col ">
-                {item.ethAmount / 10 ** 18}
+                {item.ethAmount / 10 ** ETHDecimals}
             </div>
             <div className="col">
-                {BigNumber(item.usdtAmount / 10 ** 18).toFixed(2)}
+                {BigNumber(item.usdtAmount / 10 ** USDTDecimals).toFixed(2)}
             </div>
 
             <div className="col">
                 {item.rate}%
             </div>
             <div className="col ">
-                {BigNumber(item.fdtAmount / 10 ** 18).toFixed(2)}
+                {BigNumber(item.fdtAmount / 10 ** FDTDecimals).toFixed(2)}
             </div>
 
             <div className="col">
@@ -176,8 +177,8 @@ const OGPoolPublic = (props) => {
         </div>
     }
     const getBalanceOfFDT = async () => {
-        let balance = await handleViewMethod("getBalanceOfFDT", [])
-        balance = parseInt(parseInt(balance) / 10 ** 18)
+        let balance = await handleViewMethod("getBalanceOfFDTOG", [])
+        balance = parseInt(BigNumber(balance).dividedBy( 10 ** FDTDecimals).toString() )
         if (balance > 0) {
             setFDTBalance(balance)
         }
@@ -185,65 +186,52 @@ const OGPoolPublic = (props) => {
 
     const getTotalDonate = async () => {
         let res = await handleViewMethod("totalDonate", [])
-        setTotalDonate(res / 10 ** 18)
+        setTotalDonate(BigNumber(res).dividedBy(10**FDTDecimals).toString() )
     }
     const getfdtAmount = async (value) => {
         if (value > 0 || value == 0) {
             setInputValue(value)
-            let res = await handleViewMethod("getfdtAmount", [BigNumber(value * 10 ** 18)])
-            setExchangeAmount(BigNumber(res ).dividedBy(10 ** FDTDecimals).toFixed(2))
+            let res = await handleViewMethod("getfdtOgAmount", [BigNumber(BigNumber(value).multipliedBy(10 ** FDTDecimals)).toString()])
+            setExchangeAmount(BigNumber(res ).dividedBy(10 ** FDTDecimals).toFixed(2).toString() )
         }
     }
 
     const exchangeFdt = async () => {
+        console.log(inputValue)
         if (inputValue > 0) {
-            await handlePayDealMethod("donate", [(BigNumber(inputValue).multipliedBy( 10 ** ETHDecimals)).toString()], state.api.utils.toWei(inputValue.toString()))
+            await handlePayDealMethod("donate", [(BigNumber(inputValue).multipliedBy( 10 ** ETHDecimals)).toString()], (BigNumber(inputValue).multipliedBy( 10 ** ETHDecimals)).toString())
             getData()
         }
     }
-    const getShowWhiteList = async () => {
-        let length = await handleViewMethod("getWhiteListLength", [])
-        let isW = await handleViewMethod("WhiteListUser", [state.account])
-        setIsInWhiteList(isW)
-        let arr = []
-        for (let i = 0; i < length; i++) {
-            let res = await handleViewMethod("ShowWhiteList", [i])
-            arr.push(res)
+    const handleRegister = async ()=>{
+        let addr = form.getFieldValue().referralCode
+        if (!state.api.utils.isAddress(form.getFieldValue().referralCode)) {
+           return
         }
-        setTotal2(length)
-        setAllWhiteList(arr)
+       await handleDealMethod("register", [addr.toString()])
     }
 
 
     const getIsAdmin = async () => {
-        const secondArr = await handleViewMethod("getAdminsLevelTwoList", [])
-        const threeArr = await handleViewMethod("getAdminsLevelThreeList", [])
-        let isS = false, isT = false
-        secondArr.forEach(item => {
-            if (item.toLowerCase() === state.account.toLowerCase()) {
-                isS = true
-            }
-        })
-        threeArr.forEach(item => {
-            if (item.toLowerCase() === state.account.toLowerCase()) {
-                isT = true
-            }
-        })
+        const isS = await handleViewMethod("checkAddrForAdminLevelTwo", [state.account])
+        const isT = await handleViewMethod("checkAddrForAdminLevelThree", [state.account])
+        const isF = await handleViewMethod("checkAddrForAdminLevelFour", [state.account])
 
         setIsSecondAdmin(isS)
         setIsThreeAdmin(isT)
+        setIsFourAdmin(isF)
     }
     const getSalePrice = async () => {
         let res = await handleViewMethod("salePrice", [])
-        setSalePriceV(BigNumber(res).dividedBy(1000))
+        setSalePriceV(BigNumber(res).dividedBy(1000).toString() )
     }
     const getValidNumbers = async () => {
         let length = await handleViewMethod("getValidNumbers", [])
-        let res = await handleViewMethod("validNumbers", [length - 1])
+        let res = await handleViewMethod("validNumbers", [BigNumber(length).minus(1).toString() ])
     }
     const CoinBalance = async () => {
         let res2 = await handleCoinViewMethod("balanceOf", "FDT", [state.account])
-        setFdtBalance(BigNumber(res2).dividedBy(10 ** FDTDecimals))
+        setFdtBalance(BigNumber(res2).dividedBy(10 ** FDTDecimals).toString() )
     }
 
 
@@ -257,8 +245,6 @@ const OGPoolPublic = (props) => {
             getTotalDonate()
             getBalanceOfFDT()
             CoinBalance()
-            getShowWhiteList()
-            getUserInfo()
             getSalePrice()
             getValidNumbers()
             getAdmin()
@@ -387,13 +373,18 @@ const OGPoolPublic = (props) => {
                     }}>
                         OG Donate Pool
                     </div>
+                    <div className={"nav-item " + (activeNav == 3 ? "active" : "")} onClick={() => {
+                        setActiveNav(3)
+                    }}>
+                        Login
+                    </div>
                     <div className={"nav-item " + (activeNav == 2 ? "active" : "")} onClick={() => {
                         setActiveNav(2)
                     }}>
                         WhiteList
                     </div>
                     {
-                        isSAdmin && (
+                        isSecondAdmin && (
 
                             <div className={"nav-item " + (activeNav == 4 ? "active" : "")} onClick={() => {
 
@@ -403,17 +394,7 @@ const OGPoolPublic = (props) => {
                             </div>
                         )
                     }
-                    {
 
-                        (isTAdmin) && (
-
-                            <div className={"nav-item " + (activeNav == 3 ? "active" : "")} onClick={() => {
-                                setActiveNav(3)
-                            }}>
-                                Set WhiteList
-                            </div>
-                        )
-                    }
 
                 </div>
 
@@ -454,7 +435,7 @@ const OGPoolPublic = (props) => {
                                         </div>
                                         <div className="value">
                                             <p><img src={ethereum}
-                                                    style={{marginTop: '-5px', marginRight: '10px'}}/>{totalDonate} ETH
+                                                    style={{marginTop: '-5px', marginRight: '10px'}}/>{showNum(totalDonate)} ETH
                                             </p>
                                         </div>
                                     </div>
@@ -590,7 +571,7 @@ const OGPoolPublic = (props) => {
                                     }}>
                                         My Records
                                     </div>
-                                    {(isTAdmin) && (
+                                    {(isThreeAdmin) && (
                                         <div className={"nav-item " + (recordNav == 3 ? "active" : "")} onClick={() => {
                                             setRecordNav(3)
                                         }}>
@@ -722,8 +703,33 @@ const OGPoolPublic = (props) => {
             )}
             {activeNav == 3 && (
                 <div>
-                    <AddThreeWhiteList allRecords={allRecords}></AddThreeWhiteList>
+                    {/*<AddThreeWhiteList allRecords={allRecords}></AddThreeWhiteList>*/}
+                    <div className="panel-box">
+                        <div className="panel-container">
+                            <div className="panel-title">
+                                Login
+                            </div>
+                            <div className="panel-content">
+                                <Form form={form} name="control-hooks" className="form">
+                                    <Form.Item
+                                        name="referralCode"
+                                        validateTrigger="onBlur"
+                                        validateFirst={true}
+                                    >
+                                        <div className="input-box">
+                                            <Input/>
+                                        </div>
+                                    </Form.Item>
 
+                                    <div className="btns">
+                                        <Button className="add-btn" type="primary" onClick={() => {
+                                            handleRegister()
+                                        }}>Register</Button>
+                                    </div>
+                                </Form>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             )}
             {activeNav == 4 && (

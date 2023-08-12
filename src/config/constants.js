@@ -4,6 +4,7 @@ const ZeroAddress = '0x0000000000000000000000000000000000000000';
 const MaxUint256 = BigNumber('0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff').toFixed(0);
 const ETHDecimals = 18
 const FDTDecimals = 18
+const USDTDecimals = 18
 const Network = {
   '0xaa36a7': {
     chainId: '0xaa36a7',
@@ -32,4 +33,4 @@ const Network = {
     },
   },
 };
-export { Network, ZeroAddress,MaxUint256 ,ETHDecimals,FDTDecimals };
+export { Network, ZeroAddress,MaxUint256 ,ETHDecimals,FDTDecimals,USDTDecimals };
