@@ -34,13 +34,13 @@ const connect = async (state, dispatch) => {
             dispatch({type: "SET_ACCOUNT", payload: accounts[0]})
             result.web3.eth.getAccounts().then(async res=>{
                 let balance =await result.web3.eth.getBalance(res[0])
-                dispatch({type:"SET_ETHBALANCE",payload:BigNumber(balance).multipliedBy(10**ETHDecimals)})
+                dispatch({type:"SET_ETHBALANCE",payload:BigNumber(balance).dividedBy(10**ETHDecimals)})
             })
         });
         window.ethereum.on('chainChanged', () => {
             result.web3.eth.getAccounts().then(async res=>{
                 let balance =await result.web3.eth.getBalance(res[0])
-                dispatch({type:"SET_ETHBALANCE",payload:BigNumber(balance).multipliedBy(10**ETHDecimals)})
+                dispatch({type:"SET_ETHBALANCE",payload:BigNumber(balance).dividedBy(10**ETHDecimals)})
             })
 
         });
@@ -50,7 +50,7 @@ const connect = async (state, dispatch) => {
         })
         result.web3.eth.getAccounts().then(async res=>{
             let balance =await result.web3.eth.getBalance(res[0])
-            dispatch({type:"SET_ETHBALANCE",payload: BigNumber(balance).multipliedBy(10**ETHDecimals)})
+            dispatch({type:"SET_ETHBALANCE",payload: BigNumber(balance).dividedBy(10**ETHDecimals)})
         })
 
         result.web3.eth.getCoinbase().then(account => {
