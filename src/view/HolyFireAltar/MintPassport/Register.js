@@ -391,8 +391,8 @@ const Register = (props) => {
                                     <hr className='ecoshr' />
                                 </div>
                             </div>
-                            <div className="nft-detail" onClick={()=>{setDetail(true)}}>
-                                <div className="title1" >
+                            <div className="nft-detail" >
+                                <div className="title1" onClick={()=>{setDetail(true)}}>
                                     Details
                                 </div>
                                 <div className="title" >

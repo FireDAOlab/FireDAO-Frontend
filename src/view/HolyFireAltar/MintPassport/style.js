@@ -503,10 +503,10 @@ img{
           font-size: 14px;
           margin-top: 2em;
 
-          .title1 {
+          .title{
             font-size: 14px;
           }
-.title{
+.title1{
     display:none
 }
    
@@ -677,8 +677,11 @@ img{
         .nft-detail {
           font-size: 14px;
           margin-top: 2em;
-
-          .title {
+.title{
+    display: none;
+}
+          .title1 {
+            display: block;
             width: 20%;
             margin: 0 auto;
             text-align: center;
@@ -788,4 +791,7 @@ img{
 }
   }
       }
+
+
+   
 `

@@ -36,7 +36,7 @@ width: 90%;
         cursor: pointer;
       }
     }
-    .title1{
+    .title{
         display: block;
       font-size: 16px;
       text-align: center;
@@ -46,9 +46,7 @@ width: 90%;
       /* margin-top: 1em; */
       line-height: 25px;
       }
-.title{
-    display: none;
-}
+
     .dialog-name,.ant-form-item-label label{
       padding-bottom: 1em ;
       font-size: 14px;

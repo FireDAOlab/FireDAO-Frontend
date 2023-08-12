@@ -435,7 +435,7 @@ const MyPassport = (props) => {
                             </div>
                             {
                                 SBTARR.map((item, index) => (
-                                    //    index > 10 * (curSBTPage - 1) && index < 10 * curSBTPage &&
+                                       index > 10 * (curSBTPage - 1) && index < 10 * curSBTPage &&
                                     <div className="list-item sbt1" key={index}>
                                         <div className="col id">
                                             SBT-{index}

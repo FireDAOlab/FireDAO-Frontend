@@ -144,7 +144,7 @@ text-align:center;
     width: 520px;
     background: #241B1B;
     border-radius: 13px;
-
+overflow-y: scroll;
 
     border: 1px solid #3E3737;
     padding: 30px;
