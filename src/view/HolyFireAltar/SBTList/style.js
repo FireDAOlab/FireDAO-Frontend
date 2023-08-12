@@ -126,6 +126,7 @@ export  default   styled.div`
 
 .disabox{
   display:flex;
+
 }
     .soulaccount{
     margin: 10px 0;
@@ -140,6 +141,7 @@ line-height: 21px;
     .value{
       text-align:center;
       margin-left: 20px;
+      color: rgba(205, 158, 87, 1);
       line-height:30px;
       width: 160px;
 height: 30px;
@@ -164,6 +166,7 @@ line-height: 21px;
   text-align:center;
   margin-left: 20px;
   font-size: 15px;
+  color: rgba(254, 109, 70, 1);
   line-height:30px;
   width: 160px;
 height: 30px;
@@ -315,6 +318,7 @@ line-height: 21px;
       margin-left: 20px;
       line-height:30px;
       width: 160px;
+      color: rgba(205, 158, 87, 1);
 height: 30px;
 background: rgba(205,158,87,0.1);
 border-radius: 50px 50px 50px 50px;
@@ -334,7 +338,9 @@ color: #8A8080;
 line-height: 21px;
 }
 .score{
-  text-align:center;
+  text-align:center; 
+   color: rgba(254, 109, 70, 1);
+
   margin-left: 20px;
   font-size: 15px;
   line-height:30px;
@@ -486,6 +492,7 @@ font-size:14px;
     .value{
         font-size:14px;
       text-align:center;
+      color: rgba(205, 158, 87, 1);
       margin-left: 20px;
       line-height:30px;
       width: 160px;
@@ -511,6 +518,8 @@ font-size:14px;
 .score{
   text-align:center;
   margin-left: 20px;
+  color: rgba(254, 109, 70, 1);
+
   font-size: 14px;
   line-height:30px;
   width: 160px;
@@ -662,6 +671,7 @@ font-size:14px;
         font-size:14px;
       text-align:center;
       line-height:30px;
+      color: rgba(205, 158, 87, 1);
       width: 160px;
 height: 30px;
 background: rgba(205,158,87,0.1);
@@ -684,6 +694,8 @@ line-height: 21px;
 font-size:14px;
 }
 .score{
+    color: rgba(254, 109, 70, 1);
+
   text-align:center;
   margin-left: 20px;
   font-size: 14px;
@@ -840,6 +852,7 @@ font-size:14px;
       line-height:30px;
       width: 160px;
 height: 30px;
+color: rgba(205, 158, 87, 1);
 background: rgba(205,158,87,0.1);
 border-radius: 50px ;
 opacity: 1;
@@ -860,6 +873,8 @@ line-height: 21px;
 font-size:14px;
 }
 .score{
+    color: rgba(254, 109, 70, 1);
+
   text-align:center;
   margin-left: 20px;
   font-size: 14px;

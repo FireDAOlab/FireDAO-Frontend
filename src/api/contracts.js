@@ -3,6 +3,8 @@ import reducer from "./reducer"
 import initState from "./initState"
 import getWeb3 from "./getWeb3";
 import {notification} from "antd";
+import BigNumber from "bignumber.js";
+import {ETHDecimals} from "../config/constants"
 const openNotification = (message) => {
     notification.error({
         message: message,
@@ -32,13 +34,13 @@ const connect = async (state, dispatch) => {
             dispatch({type: "SET_ACCOUNT", payload: accounts[0]})
             result.web3.eth.getAccounts().then(async res=>{
                 let balance =await result.web3.eth.getBalance(res[0])
-                dispatch({type:"SET_ETHBALANCE",payload:balance/10**18})
+                dispatch({type:"SET_ETHBALANCE",payload:BigNumber(balance).dividedBy(10**ETHDecimals)})
             })
         });
         window.ethereum.on('chainChanged', () => {
             result.web3.eth.getAccounts().then(async res=>{
                 let balance =await result.web3.eth.getBalance(res[0])
-                dispatch({type:"SET_ETHBALANCE",payload:balance/10**18})
+                dispatch({type:"SET_ETHBALANCE",payload:BigNumber(balance).dividedBy(10**ETHDecimals)})
             })
 
         });
@@ -48,7 +50,7 @@ const connect = async (state, dispatch) => {
         })
         result.web3.eth.getAccounts().then(async res=>{
             let balance =await result.web3.eth.getBalance(res[0])
-            dispatch({type:"SET_ETHBALANCE",payload:balance/10**18})
+            dispatch({type:"SET_ETHBALANCE",payload: BigNumber(balance).dividedBy(10**ETHDecimals)})
         })
 
         result.web3.eth.getCoinbase().then(account => {

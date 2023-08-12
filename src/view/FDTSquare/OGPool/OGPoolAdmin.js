@@ -1,7 +1,7 @@
 import React, {useEffect, useRef, useState} from 'react';
 import {useConnect} from "../../../api/contracts";
 import {
-    Radio,
+    Table,
     Button,
     message,
     Form,
@@ -19,8 +19,10 @@ import del from "../../../imgs/sc.png";
 import eth from "../../../imgs/ethereum.svg";
 import {getSecondDonateRecord, getThreeDonateRecord} from "../../../graph/donate";
 import BigNumber from "bignumber.js";
+import addressMap from "../../../api/addressMap";
+import {FDTDecimals} from "../../../config/constants";
 
-const OGPool = (props) => {
+const OgPoolAdmin = (props) => {
 
     const [form2] = Form.useForm();
     let {state, dispatch} = useConnect();
@@ -33,28 +35,40 @@ const OGPool = (props) => {
     const [total, setTotal] = useState(0)
     const [curPage, setCurPage] = useState(1)
     const [pageCount, setPageCount] = useState(20)
-    const [inviteRate2, setInv2] = useState(0)
-    const [inviteRate1, setInv1] = useState(0)
+
     const [FDTBalance, setFDTBalance] = useState(0)
     const [totalDonate, setTotalDonate] = useState(0)
     const [salePriceV, setSalePriceV] = useState(0)
     const [maxThree, setMaxThree] = useState(0)
     const [maxThreeAdmin, setMaxThreeAdmin] = useState(0)
 
-    const [exchangeAmount, setExchangeAmount] = useState(0)
+    const [withdrawCoinAddr, setWithdrawCoinAddr] = useState()
     const [sumArr, setSumArr] = useState([])
     const [inputValue, setInputValue] = useState(0)
     const [showAddRate, setShowAddRate] = useState(false)
-    const [isPause, setIsPause] = useState(false)
+    const [receiveRemainingInvitationRewards, setReceiveRemainingInvitationRewards] = useState()
+    const [receiveRemainingTeamRewards, setReceiveRemainingTeamRewards] = useState()
     const [whiteList, setAllWhiteList] = useState([])
     const [status1, setStatus1] = useState()
     const [status2, setStatus2] = useState()
     const [fdtAddr, setFDTAddressValue] = useState()
 
-
+    const [isPause, setIsPause] = useState()
     const [ownerAddress, setOwnerAddress] = useState("")
     const [curAddr, setCurAddr] = useState("")
     const [curId, setCurId] = useState("")
+    const [coinInfo, setCoinInfo] = useState({})
+
+    const [totalInviteRate, setTotalInviteRate] = useState(0)
+    const [inviteRateArr, setInvArr] = useState([])
+
+    const [totalTeamRate, setTotalTeamRate] = useState(0)
+    const [teamRateArr, setTeamRateArr] = useState([])
+
+    const [totalOtherRate, setTotalOtherRate] = useState(0)
+
+    const [adminFlmRewardMap, setAdminFlmReward] = useState([])
+
     const onChange = (checked) => {
         console.log(`switch to ${checked}`);
     };
@@ -119,7 +133,6 @@ const OGPool = (props) => {
                 }
             }
         }
-        console.log(sumArr)
         setSumArr(sumArr)
     }
     const getWhitelist = async (addr) => {
@@ -141,17 +154,9 @@ const OGPool = (props) => {
         return adminWhiteList
 
     }
-    const getAssignAndRates = async () => {
-        const length = await handleViewMethod("getAssignAndRateslength", [])
-        const resArr = []
-        for (let i = 0; i < length; i++) {
-            const res = await handleViewMethod("assignAndRates", [i])
-            resArr.push(res)
-        }
-        setAssignAdmin(resArr)
-    }
+
     const getBalanceOfFDT = async () => {
-        let balance = await handleViewMethod("getBalanceOfFDT", [])
+        let balance = await handleViewMethod("getBalanceOfFDTOG", [])
         balance = parseInt(parseInt(balance) / 10 ** 18)
         if (balance > 0) {
             setFDTBalance(balance)
@@ -163,11 +168,11 @@ const OGPool = (props) => {
     }
     const getTotalDonate = async () => {
         let res = await handleViewMethod("totalDonate", [])
-        setTotalDonate(res / 10 ** 18)
+        setTotalDonate(BigNumber(res).dividedBy(10 ** FDTDecimals).toString())
     }
     const getSalePrice = async () => {
         let res = await handleViewMethod("salePrice", [])
-        setSalePriceV(res / 1000)
+        setSalePriceV(BigNumber(res).dividedBy(1000).toString())
     }
     const getMaxThree = async () => {
         let res = await handleViewMethod("maxThree", [])
@@ -195,16 +200,34 @@ const OGPool = (props) => {
     }
     const getpidStatusForAdmin = async () => {
         let res = await handleViewMethod("pidStatusForAdmin", [])
-        console.log(res)
         setStatus1(res)
     }
     const getpidStatusForUser = async () => {
         let res = await handleViewMethod("pidStatusForUser", [])
-        console.log(res)
         setStatus2(res)
     }
+    //Invite Addr
+    const getReceiveRemainingInvitationRewards = async () => {
+        let res = await handleViewMethod("receiveRemainingInvitationRewards", [])
+        setReceiveRemainingInvitationRewards(res)
+    }
+    const handleSetreceiveRemainingInvitationRewards = async () => {
+        await handleDealMethod("setreceiveRemainingInvitationRewards", [form2.getFieldValue().receiveRemainingInvitationRewards])
+        getReceiveRemainingInvitationRewards()
+    }
+
+    //Team Addr
+    const getReceiveRemainingTeamRewards = async () => {
+        let res = await handleViewMethod("receiveRemainingTeamRewards", [])
+        setReceiveRemainingTeamRewards(res)
+    }
+    const handleSetReceiveRemainingTeamRewards = async () => {
+        handleDealMethod("setReceiveRemainingTeamRewards", [form2.getFieldValue().receiveRemainingTeamRewards])
+        getReceiveRemainingTeamRewards()
+    }
+
     const getFDTAddress = async () => {
-        let res = await handleViewMethod("fdt", [])
+        let res = await handleViewMethod("fdtOg", [])
         setFDTAddressValue(res)
     }
     const getSecondAdmins = async () => {
@@ -214,17 +237,59 @@ const OGPool = (props) => {
     }
 
     const getInviteRate = async () => {
-        const rate = await handleViewMethod("getRate", [])
-        if (rate > 0) {
-            let inviteRate2 = await handleViewMethod("inviteRate", [0])
-            let inviteRate1 = await handleViewMethod("inviteRate", [1])
-            setInv2(inviteRate2)
-            setInv1(inviteRate1)
+        const rateLength = await handleViewMethod("getInviteRate", [])
+        let tempArr = [], totalRate = 0
+        for (let i = 0; i < rateLength; i++) {
+            const inviteRate = await handleViewMethod("inviteRate", [i])
+            tempArr.push({index: i + 1, inviteRate: inviteRate.toString()})
+            totalRate = BigNumber(totalRate).plus(inviteRate)
         }
+        setTotalInviteRate(totalRate.toString())
+        setInvArr(tempArr)
     }
 
+    const getTeamRate = async () => {
+        let tempArr = [], totalRate = 0
+        for (let i = 0; i < 3; i++) {
+            const inviteRate = await handleViewMethod("teamRate", [i])
+            tempArr.push({index: i + 1, inviteRate: inviteRate.toString()})
+            totalRate = BigNumber(totalRate).plus(inviteRate)
+        }
+        setTotalTeamRate(totalRate.toString())
+        setTeamRateArr(tempArr)
+    }
+
+    const getAssignAndRates = async () => {
+        const length = await handleViewMethod("getAssignAndRateslength", [])
+        let resArr = [],totalRate = 0
+        for (let i = 0; i < length; i++) {
+            const res = await handleViewMethod("assignAndRates", [i])
+            resArr.push(res)
+            totalRate = BigNumber(totalRate).plus(res.rate)
+        }
+        setTotalOtherRate(totalRate.toString())
+        setAssignAdmin(resArr)
+    }
+
+    const getAdminFlmReward = async () => {
+        const rate1 = await handleViewMethod("adminFlmReward", [0])
+        const rate2 = await handleViewMethod("adminFlmReward", [1])
+        const rate3 = await handleViewMethod("adminFlmReward", [2])
+        setAdminFlmReward([{
+            name:"Level 4 Admin",
+            rate:rate1.toLocaleString()
+        },{
+            name:"Level 3 Admin",
+            rate:rate2.toLocaleString()
+        },{
+            name:"Level 2 Admin",
+            rate: rate3.toLocaleString()
+        }])
+    }
     const addInviteRate = async () => {
-        await handleDealMethod("addInviteRate", [[form2.getFieldValue().inviteRate1, form2.getFieldValue().inviteRate2]])
+        const tempArr = [form2.getFieldValue().inviteRate0, form2.getFieldValue().inviteRate1,
+            form2.getFieldValue().inviteRate2, form2.getFieldValue().inviteRate3, form2.getFieldValue().inviteRate4]
+        await handleDealMethod("addInviteRate", [tempArr])
         getInviteRate()
     }
     const setPidStatusForAdmin = async () => {
@@ -299,20 +364,25 @@ const OGPool = (props) => {
         }
         getTotalDonate()
         getBalanceOfFDT()
-        getShowWhiteList()
+        // getShowWhiteList()
         getOwner()
         getSecondAdmins()
-        getInviteRate()
         getSalePrice()
         getMaxThree()
-        getMaxThreeAdmin()
+        // getMaxThreeAdmin()
         getSummary()
         getPause()
         getpidStatusForAdmin()
         getpidStatusForAdmin()
         getFDTAddress()
-        getAssignAndRates()
         getpidStatusForUser()
+        getReceiveRemainingInvitationRewards()
+        getReceiveRemainingTeamRewards()
+
+        getInviteRate()
+        getTeamRate()
+        getAssignAndRates()
+        getAdminFlmReward()
     }
     const chooseRow = (item, id) => {
         setCurAddr(item.assign)
@@ -328,7 +398,26 @@ const OGPool = (props) => {
     const delARRow = async (item) => {
         await handleDealMethod("removeAssiginAddressAndRatio", [[item.assign]])
     }
+    const getCoinInfo = async (coinAddr) => {
+        if (!state.api.utils.isAddress(coinAddr)) {
+            return
+        }
+        let contractTemp = await getContractByContract("erc20", coinAddr, state.api,)
+        const decimal = await viewMethod(contractTemp, state.account, "decimals", [])
+        let balance = await viewMethod(contractTemp, state.account, "balanceOf", [addressMap["FLMAirdrop"].address])
+        let name = await viewMethod(contractTemp, state.account, "name", [])
+        let symbol = await viewMethod(contractTemp, state.account, "symbol", [])
+        balance = balance / (10 ** parseInt(decimal))
+        setCoinInfo({
+            balance,
+            symbol,
+            decimal
+        })
 
+    }
+    const withdrawToken = async (item) => {
+        await handleDealMethod("Claim", [form.getFieldValue().withdrawAmount])
+    }
     useEffect(() => {
         getData()
     }, [state.account]);
@@ -357,6 +446,7 @@ const OGPool = (props) => {
             </div>
         </div>
     }
+
     const Row2 = (item, index) => {
         return <div className="list-item " key={index}>
             <div className="col no">
@@ -394,7 +484,48 @@ const OGPool = (props) => {
 
         </div>
     }
+    const inviteColumns = [
+        {
+            title: 'Level',
+            dataIndex: 'index',
+            key: 'index',
+        },
 
+        {
+            title: 'InviteRate',
+            dataIndex: 'inviteRate',
+            key: 'inviteRate',
+            render: (text) => <span>{text}%</span>,
+        },
+    ]
+    const teamColumns = [
+        {
+            title: 'Level',
+            dataIndex: 'index',
+            key: 'index',
+        },
+
+        {
+            title: 'InviteRate',
+            dataIndex: 'inviteRate',
+            key: 'inviteRate',
+            render: (text) => <span>{text}%</span>,
+        },
+    ]
+    const flmColumns = [
+        {
+            title: 'Category',
+            dataIndex: 'name',
+            key: 'name',
+        },
+
+        {
+            title: 'Percentage',
+            dataIndex: 'rate',
+            key: 'rate',
+            render: (rate) => <span>{rate}%</span>,
+        },
+    ]
 
     return (
         <OGPoolAdminStyle>
@@ -528,8 +659,8 @@ const OGPool = (props) => {
             )}
             {activeNav == 2 && (
                 <div>
-                    <div className="panel-box part21">
-                        <div className="panel-container">
+                    <div className="panel-box">
+                        <div className="panel-container ">
                             <div className="panel-title">
                                 Set Level 2 Administrator
                             </div>
@@ -664,186 +795,10 @@ const OGPool = (props) => {
                                     </div>
                                 </div>
                             </Form>
-                            <div className="panel-title">
-                                Add Invite Rate
-                            </div>
-                            <Form form={form2} name="control-hooks" className="form">
-                                <h2>3 Level Admin <strong>{inviteRate2}%</strong></h2>
-                                <Form.Item
-                                    name="inviteRate1"
-                                    validateTrigger="onBlur"
-                                    validateFirst={true}
-                                >
-                                    <div className="input-box">
-                                        <Input/>
-                                    </div>
-                                </Form.Item>
-                                <h2> 2 Level Admin <strong>{inviteRate1}%</strong></h2>
-                                <Form.Item
-                                    name="inviteRate2"
-                                    validateTrigger="onBlur"
-                                    validateFirst={true}
-                                >
-                                    <div className="input-box">
-                                        <Input/>
-                                    </div>
-                                </Form.Item>
-                                <div className="btns">
-                                    <Button className="add-btn" type="primary" onClick={() => {
-                                        addInviteRate()
-                                    }}>Add Invite Rate</Button>
-                                </div>
-                            </Form>
-                        </div>
-                        <div className="panel-container">
-                            <div className="panel-title">
-                                Invite Rate:<br/>
-                                3 Level Admin{inviteRate2}% ID 0,
-                                2 Level Admin{inviteRate1}% ID 1
-                            </div>
-                            <Form form={form2} name="control-hooks" className="form">
-                                <Form.Item
-                                    name="inviteRateID"
-                                    label="Invite Rate ID"
-                                    validateTrigger="onBlur"
-                                    validateFirst={true}
-                                >
-                                    <div className="input-box">
-                                        <Input/>
-                                    </div>
-                                </Form.Item>
-                                <Form.Item
-                                    name="inviteRate"
-                                    label="Invite Rate"
-                                    validateTrigger="onBlur"
-                                    validateFirst={true}
-                                >
-                                    <div className="input-box">
-                                        <Input/>
-                                    </div>
-                                </Form.Item>
 
-                                <div className="btns">
-                                    <Button className="add-btn" type="primary" onClick={() => {
-                                        setInviteRate()
-                                    }}>setInviteRate</Button>
-                                </div>
-                            </Form>
                         </div>
 
-                        <div className="panel-container">
-                            <div className="panel-title">
-                                Fund Allocation
-                            </div>
-                            <Form form={form2} name="control-hooks" className="form hh">
-                                {/* <Form.Item
-                                    name="assignId"
-                                    label="assignId"
-                                    validateTrigger="onBlur"
-                                    validateFirst={true}
-                                >
-                                    <div className="input-box">
-                                        {curId}
-                                    </div>
-                                </Form.Item> */}
-                                <div style={{width: '100%', float: 'left'}}>
 
-
-                                    <Form.Item
-                                        name="assignRate"
-                                        label="Recommender Allocation Rate"
-                                        validateTrigger="onBlur"
-                                        validateFirst={true}
-                                        style={{width: '100%'}}
-                                    >
-                                        <div className="input-box" style={{width: '100%'}}>
-                                            <Input style={{width: '100%'}}/>
-                                        </div>
-                                    </Form.Item>
-                                    <Form.Item
-                                        name="assignAddress"
-                                        label="Other Address"
-                                        validateTrigger="onBlur"
-                                        validateFirst={true}
-                                    >
-                                        <div className="input-box">
-                                            <Input value={curAddr} onChange={(e) => {
-                                                setCurAddr(e.target.value)
-                                            }}/>
-
-                                        </div>
-                                    </Form.Item>
-                                </div>
-
-                                <div className="btns">
-                                    <Button className="add-btn" type="primary" onClick={() => {
-                                        setRateAndAddress()
-                                    }}>Confirm</Button>
-
-                                </div>
-
-
-                            </Form>
-                            <div className="fire-list-box hh1">
-                                <div className="list-header  flex-box1">
-                                    <div className="col">
-                                        No.
-                                    </div>
-                                    <div className="col">
-                                        Username
-                                    </div>
-                                    <div className="col">
-                                        Wallet Address
-                                    </div>
-
-                                    <div className="col">
-                                        Rate
-                                    </div>
-                                    <div className="col">
-                                        Delete
-                                    </div>
-                                </div>
-
-                                {
-                                    assignAmin.map((item, index) => (
-                                        <div className="assign-row list-item hhi" key={index} onClick={() => {
-                                            chooseRow(item, index)
-                                        }}>
-                                            <div className="col no">
-                                                {index + 1}
-                                            </div>
-                                            <div className="col">
-
-                                            </div>
-                                            <div className="col address">
-                                                {item.assign}
-                                            </div>
-                                            <div className="col ">
-                                                {item.rate}%
-                                            </div>
-                                            <div className="col del" onClick={() => {
-                                                delARRow(item)
-                                            }}>
-                                                <img src={del} className="sc"/>
-                                            </div>
-
-                                        </div>
-
-                                    ))
-                                }
-
-                            </div>
-
-                            <div className="operate-box">
-
-                                <Button className="add" type="primary" onClick={() => {
-                                    setShowAddRate(true)
-                                }}>Add</Button>
-                                <Button className="add" type="primary" onClick={() => {
-
-                                }}>Confirm</Button>
-                            </div>
-                        </div>
                     </div>
                 </div>
             )}
@@ -896,49 +851,69 @@ const OGPool = (props) => {
                                         </div>
                                     </div>
                                 </div>
-                                {/* <Form form={form2} name="control-hooks" className="form">
-                                    <Form.Item
-                                        name="tokenAddress"
-                                        label="tokenAddress"
-                                        validateTrigger="onBlur"
-                                        validateFirst={true}
-                                    >
-                                        <div className="input-box">
-                                            <Input />
+                            </div>
+                            <div className="panel-container">
+                                <div className="content-item">
+                                    <h2>Coin Withdraw</h2>
+
+                                    <Form form={form} name="control-hooks">
+                                        <div className="current">
+                                            <div className="name">
+                                                Pool {coinInfo.name} Balance:
+                                            </div>
+                                            <div className="value">
+                                                {showNum(coinInfo.balance)}
+                                            </div>
                                         </div>
-                                    </Form.Item>
-                                    <Form.Item
-                                        name="tokenNumber"
-                                        label="tokenNumber"
-                                        validateTrigger="onBlur"
-                                        validateFirst={true}
-                                    >
-                                        <div className="input-box">
-                                            <Input />
+                                        <div className="current">
+                                            <div className="name">
+                                                Symbol
+                                            </div>
+                                            <div className="value">
+                                                {coinInfo.symbol}
+                                            </div>
                                         </div>
-                                    </Form.Item>
-                                </Form>
-                                <Button onClick={claim} type="primary" className="operate-btn">
-                                    Claim
-                                </Button>
-                                <h3 className="panel-title">
-                                    Withdraw FDT-OG
-                                </h3>
-                                <Form form={form2} name="control-hooks" className="form">
-                                    <Form.Item
-                                        name="withdrawNum"
-                                        label="withdrawNum"
-                                        validateTrigger="onBlur"
-                                        validateFirst={true}
-                                    >
-                                        <div className="input-box">
-                                            <Input />
+                                        <div className="current">
+                                            <div className="name">
+                                                Decimals
+                                            </div>
+                                            <div className="value">
+                                                {coinInfo.decmials}
+                                            </div>
                                         </div>
-                                    </Form.Item>
-                                </Form>
-                                <Button type="primary" className="operate-btn" onClick={withdraw}>
-                                    FDT-OG Withdraw
-                                </Button> */}
+                                        <Form.Item
+                                            name="withdrawCoinAddr"
+                                            label="Coin Address"
+                                            validateTrigger="onBlur"
+                                            validateFirst={true}
+                                            rules={[
+                                                {required: true, message: 'Please input coin Address!'},
+                                            ]}
+                                        >
+                                            <Input value={withdrawCoinAddr} onChange={(e) => {
+                                                setWithdrawCoinAddr(e.target.value)
+                                                getCoinInfo(e.target.value)
+                                            }}/>
+                                        </Form.Item>
+                                        <Form.Item
+                                            name="withdrawAmount"
+                                            label="Amount"
+                                            validateTrigger="onBlur"
+                                            validateFirst={true}
+                                            rules={[
+                                                {required: true, message: 'Please input coin Amount!'},
+                                            ]}
+                                        >
+                                            <Input/>
+                                        </Form.Item>
+                                    </Form>
+
+                                    <Button type="primary" className="max-btn" onClick={() => {
+                                        withdrawToken()
+                                    }}>
+                                        Withdraw
+                                    </Button>
+                                </div>
                             </div>
                         </div>
                         <div className="panel-box part2">
@@ -1119,6 +1094,294 @@ const OGPool = (props) => {
                     </div>
                 )
             }
+            {
+                activeNav == 5 && (<div className="panel-box">
+                    <div className="panel-container">
+                        <div className="panel-title">
+                            Fund Allocation
+                        </div>
+                        <div className="fire-list-box">
+                            <div className="list-header">
+                                <div className="col">
+                                    Category
+                                </div>
+                                <div className="col">
+                                    Percentage
+                                </div>
+                            </div>
+                            <div className="list-item">
+                                <div className="col">
+                                    Referral Rewards
+                                </div>
+                                <div className="col">
+                                    {totalInviteRate}
+                                </div>
+                            </div>
+                            <div className="list-item">
+                                <div className="col">
+                                    Team Rewards
+                                </div>
+                                <div className="col">
+                                    {totalTeamRate}
+                                </div>
+                            </div>
+                            <div className="list-item">
+                                <div className="col">
+                                    Other Rewards
+                                </div>
+                                <div className="col">
+                                    {totalOtherRate}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="panel-container">
+                        <h2 className="sub-title">
+                            Referral Rewards
+                        </h2>
+                        <Table pagination={false} columns={inviteColumns} dataSource={inviteRateArr}/>
+                        {inviteRateArr.length == 0 && (<div className="content-item">
+                            <div className="panel-title">
+                                Add Invite Rate
+                            </div>
+                            <Form form={form2} name="control-hooks" className="form">
+                                {[0, 1, 2, 3, 4].map((index) => {
+                                    return (<>
+                                        <h5> Level Admin <strong>{index + 1}</strong></h5>
+                                        <Form.Item
+                                            name={"inviteRate" + index}
+                                            validateTrigger="onBlur"
+                                            validateFirst={true}
+                                        >
+                                            <div className="input-box">
+                                                <Input/>
+                                            </div>
+                                        </Form.Item>
+                                    </>)
+                                })}
+
+                                <div className="btns">
+                                    <Button className="add-btn" type="primary" onClick={() => {
+                                        addInviteRate()
+                                    }}>Add Invite Rate</Button>
+                                </div>
+                            </Form>
+                        </div>)}
+                        <div className="content-item">
+                            <div className="panel-title">
+                                Set Invite Rate
+                            </div>
+                            <Form form={form2} name="control-hooks" className="form">
+                                <Form.Item
+                                    name="inviteRateID"
+                                    label="Invite Rate Level"
+                                    validateTrigger="onBlur"
+                                    validateFirst={true}
+                                >
+                                    <div className="input-box">
+                                        <Input/>
+                                    </div>
+                                </Form.Item>
+                                <Form.Item
+                                    name="inviteRate"
+                                    label="Invite Rate"
+                                    validateTrigger="onBlur"
+                                    validateFirst={true}
+                                >
+                                    <div className="input-box">
+                                        <Input/>
+                                    </div>
+                                </Form.Item>
+
+                                <div className="btns">
+                                    <Button className="add-btn" type="primary" onClick={() => {
+                                        setInviteRate()
+                                    }}>setInviteRate</Button>
+                                </div>
+                            </Form>
+                        </div>
+                        <div className="content-item">
+                            <div className="panel-title">
+                                Set Funds Receiving Address
+                            </div>
+                            <Form form={form2} name="control-hooks" className="form">
+                                <div className="current">
+                                    {receiveRemainingInvitationRewards}
+                                </div>
+                                <Form.Item
+                                    name="receiveRemainingInvitationRewards"
+                                    label="Funds Receiving Address"
+                                    validateTrigger="onBlur"
+                                    validateFirst={true}
+                                >
+                                    <div className="input-box">
+                                        <Input/>
+                                    </div>
+                                </Form.Item>
+
+                                <div className="btns">
+                                    <Button className="add-btn" type="primary" onClick={() => {
+                                        handleSetreceiveRemainingInvitationRewards()
+                                    }}>setInviteRate</Button>
+                                </div>
+                            </Form>
+                        </div>
+                    </div>
+                    <div className="panel-container">
+                        <div className="panel-title">
+                            Team Rewards
+                        </div>
+                        <Table pagination={false} columns={teamColumns} dataSource={teamRateArr}/>
+                        <div className="content-item">
+                            <div className="panel-title">
+                                Set Blacklist Receiving Address
+                            </div>
+                            <Form form={form2} name="control-hooks" className="form">
+                                <div className="current">
+                                    {receiveRemainingTeamRewards}
+                                </div>
+                                <Form.Item
+                                    name="receiveRemainingTeamRewards"
+                                    label="Blacklist Receiving Address"
+                                    validateTrigger="onBlur"
+                                    validateFirst={true}
+                                >
+                                    <div className="input-box">
+                                        <Input/>
+                                    </div>
+                                </Form.Item>
+
+                                <div className="btns">
+                                    <Button className="add-btn" type="primary" onClick={() => {
+                                        handleSetReceiveRemainingTeamRewards()
+                                    }}>setTeamRate</Button>
+                                </div>
+                            </Form>
+
+                        </div>
+                    </div>
+                    <div className="panel-container part21">
+                        <div className="panel-title">
+                            Other Rewards
+                        </div>
+                        <Form form={form2} name="control-hooks" className="other-reward">
+                            {/* <Form.Item
+                                    name="assignId"
+                                    label="assignId"
+                                    validateTrigger="onBlur"
+                                    validateFirst={true}
+                                >
+                                    <div className="input-box">
+                                        {curId}
+                                    </div>
+                                </Form.Item> */}
+
+                            <div className="flex-box ">
+                                <Form.Item
+                                    name="assignAddress"
+                                    label="Other Address"
+                                    validateTrigger="onBlur"
+                                    validateFirst={true}
+                                    style={{width: '100%'}}
+                                >
+                                    <div className="input-box">
+                                        <Input value={curAddr} onChange={(e) => {
+                                            setCurAddr(e.target.value)
+                                        }}/>
+
+                                    </div>
+                                </Form.Item>
+                                <Form.Item
+                                    name="assignRate"
+                                    label="Recommender Allocation Rate"
+                                    validateTrigger="onBlur"
+                                    validateFirst={true}
+
+                                >
+                                    <div className="input-box" style={{width: '100%'}}>
+                                        <Input style={{width: '100%'}}/>
+                                    </div>
+                                </Form.Item>
+                            </div>
+
+
+                            <div className="btns">
+                                <Button className="add-btn" type="primary" onClick={() => {
+                                    setRateAndAddress()
+                                }}>Confirm</Button>
+
+                            </div>
+
+
+                        </Form>
+                        <div className="fire-list-box hh1">
+                            <div className="list-header  flex-box1">
+                                <div className="col">
+                                    No.
+                                </div>
+                                <div className="col">
+                                    Username
+                                </div>
+                                <div className="col">
+                                    Wallet Address
+                                </div>
+
+                                <div className="col">
+                                    Rate
+                                </div>
+                                <div className="col">
+                                    Delete
+                                </div>
+                            </div>
+
+                            {
+                                assignAmin.map((item, index) => (
+                                    <div className="assign-row list-item hhi" key={index} onClick={() => {
+                                        chooseRow(item, index)
+                                    }}>
+                                        <div className="col no">
+                                            {index + 1}
+                                        </div>
+                                        <div className="col">
+
+                                        </div>
+                                        <div className="col address">
+                                            {item.assign}
+                                        </div>
+                                        <div className="col ">
+                                            {item.rate.toString()}%
+                                        </div>
+                                        <div className="col del" onClick={() => {
+                                            delARRow(item)
+                                        }}>
+                                            <img src={del} className="sc"/>
+                                        </div>
+
+                                    </div>
+
+                                ))
+                            }
+
+                        </div>
+
+                        <div className="operate-box">
+
+                            <Button className="add" type="primary" onClick={() => {
+                                setShowAddRate(true)
+                            }}>Add</Button>
+                            <Button className="add" type="primary" onClick={() => {
+
+                            }}>Confirm</Button>
+                        </div>
+                    </div>
+                    <div className="panel-container">
+                        <div className="panel-title">
+                            FLM Rewards
+                        </div>
+                        <Table pagination={false} columns={flmColumns} dataSource={adminFlmRewardMap}/>
+                    </div>
+                </div>)
+            }
             {showAddRate && (<AddAddressRate updateData={() => {
             }} closeDialog={() => {
                 setShowAddRate(false)
@@ -1127,4 +1390,4 @@ const OGPool = (props) => {
         </OGPoolAdminStyle>
     )
 }
-export default OGPool
+export default OgPoolAdmin

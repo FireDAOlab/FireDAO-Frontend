@@ -289,7 +289,7 @@ text-align:center;
           /* flex-wrap: wrap; */
           .flex-box {
             
-          width: 95%;
+          width:75%;
           }
           .link-item {
             padding-top: 1.2em;
@@ -1010,7 +1010,7 @@ text-align:center;
           /* flex-wrap: wrap; */
           .flex-box {
             
-          width: 95%;
+          width: 75%;
           }
           .link-item {
             padding-top: 1.2em;
@@ -1729,7 +1729,7 @@ margin-top:0em;
           /* flex-wrap: wrap; */
           .flex-box {
             
-          width: 75%;
+          width: 100%;
           }
           .link-item {
             padding-top: 1.2em;
@@ -1876,7 +1876,9 @@ border: 1px solid rgba(254,109,70,0.5);
           .flex-box11 {
             padding: 20px 3em;
           }
-
+.list-item{
+    padding: 0.5em 0em;
+}
           .sbt1, .flex-box11{
             justify-content: flex-start;
           }

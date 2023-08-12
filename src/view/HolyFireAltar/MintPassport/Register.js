@@ -12,7 +12,7 @@ import addressMap from "../../../api/addressMap";
 import Detail from "./component/Detail";
 import develop from "../../../env"
 import RegisterStyle from "./style"
-
+import {ETHDecimals} from "../../../config/constants";
 import {
     TwitterOutlined,
     SendOutlined,
@@ -21,6 +21,7 @@ import {
 } from '@ant-design/icons';
 import { dealMethod, viewMethod, dealPayMethod } from "../../../utils/contractUtil";
 import ConnectWallet from "../../../component/ConnectWallet/ConnectWallet";
+import BigNumber from "bignumber.js";
 const Register = (props) => {
     const [form] = Form.useForm();
    
@@ -167,7 +168,8 @@ const Register = (props) => {
                     feeValue = await getFee()
                     await handleDealPayMethod("register",
                         [userName, Email, jsonUrl.IpfsHash],
-                        feeValue / 10 ** 18)
+                        BigNumber(feeValue).dividedBy(10 ** ETHDecimals)
+                         )
                     goPage('/MyPassport')
                     setIsLoading(false)
                     return
@@ -184,13 +186,13 @@ const Register = (props) => {
     const getData = async () => {
         const isOpenFeeOn = await feeOn()
         if (isOpenFeeOn) {
-            let feeValue = await getFee() / 10 ** 18
+            let feeValue = BigNumber(await getFee()).dividedBy(10 ** ETHDecimals).toString()
             setFee(feeValue)
         }
     }
     const getWeth = async () => {
         let balance = await handleCoinViewMethod("balanceOf", [state.account])
-        setWethBalance(balance / 10 ** 18)
+        setWethBalance( BigNumber(balance).dividedBy( 10 ** ETHDecimals).toString())
     }
     useEffect(() => {
         if (status == 3) {
@@ -391,8 +393,11 @@ const Register = (props) => {
                                     <hr className='ecoshr' />
                                 </div>
                             </div>
-                            <div className="nft-detail" onClick={()=>{setDetail(true)}}>
-                                <div className="title">
+                            <div className="nft-detail" >
+                                <div className="title1" onClick={()=>{setDetail(true)}}>
+                                    Details
+                                </div>
+                                <div className="title" >
                                     Details
                                 </div>
                                 <div className="content-item">

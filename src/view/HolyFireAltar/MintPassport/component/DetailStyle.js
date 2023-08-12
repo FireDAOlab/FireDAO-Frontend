@@ -37,6 +37,7 @@ width: 90%;
       }
     }
     .title{
+        display: block;
       font-size: 16px;
       text-align: center;
       font-family: Roboto-Bold, Roboto;

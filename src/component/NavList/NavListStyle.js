@@ -15,10 +15,10 @@ export default styled.div`
     color: transparent;
 
   }
-  .ant-menu-inline.ant-menu-root .ant-menu-item>.ant-menu-title-content{
+  /* .ant-menu-inline.ant-menu-root .ant-menu-item>.ant-menu-title-content{
     padding-left:35px;
     
-  }
+  } */
   .ant-menu-item .ant-menu-title-content{
     margin-left: -25px;
     margin-right:25px;
@@ -69,12 +69,12 @@ export default styled.div`
       :before {
         content: '';
         position: absolute;
-        background-image: radial-gradient(rgba(167, 109, 21, 0.5), rgba(97, 54, 144, 0.5));
-        width: 160px;
-        height: 160px;
-        top: -120px;
+        background-image: radial-gradient(rgba(167, 109, 21, 0.7), rgba(97,54,144, 0.5));
+        width: 200px;
+        height: 200px;
+        top: -170px;
         left: 50%;
-        filter: blur(10px);
+        filter: blur(20px);
         transform: translate(-50%, 0);
         border-radius: 50%;
       }

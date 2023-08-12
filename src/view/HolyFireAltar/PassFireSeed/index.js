@@ -489,110 +489,83 @@ const LockList = (props) => {
                             </div>
                         </div>
                     </div>
+                    {/* <div style={{}}> */} 
                     <div className="fire-list-box">
-                        <div className="list-header flex-box">
-                            <div className="col">
-                                No.
-                            </div>
-                            <div className="col">
-                                Address
-                            </div>
-                            <div className="col">
-                                PID
-                            </div>
-                            <div className="col">
-                                FID
-                            </div>
-                            <div className="col">
-                                Forum ID
-                            </div>
-                            <div className="col">
-                                FDT Transaction <br />Tax
-                            </div>
-                            <div className="col">
-                                Mint FireSeed <br />Fees
-                            </div>
-                            <div className='col'>
-                                Seed Donation <br />Fees
-                            </div>
-                            <div className="col">
-                                Consensus<br /> Donation Fees
-                            </div>
-                            <div className="col">
-                                Time(UTC)
+                       
+                            <div className="list-header flex-box">
+
+                                <div className="col">
+                                    No.
+                                </div>
+                                <div className="col">
+                                    Address
+                                </div>
+                                <div className="col">
+                                    PID
+                                </div>
+                                <div className="col">
+                                    FID
+                                </div>
+                                <div className="col">
+                                    Forum ID
+                                </div>
+                                <div className="col">
+                                    FDT Transaction <br />Tax
+                                </div>
+                                <div className="col">
+                                    Mint FireSeed <br />Fees
+                                </div>
+                                <div className='col'>
+                                    Seed Donation <br />Fees
+                                </div>
+                                <div className="col">
+                                    Consensus<br /> Donation Fees
+                                </div>
+                                <div className="col">
+                                    Time(UTC)
+                                </div>
+
                             </div>
 
-                        </div>
-                        {/* {
+                            {/* {
                             logArr.map((item,index) => ( */}
-                        <div className="list-item ">
-                            <div className="col no">
-                                1dvasdvas
+                            <div className="list-item ">
+                                <div className="col no">
+                                    1dvasdvas
+                                </div>
+                                <div className="col address">
+                                    {/* {item.transferTime}svd */}dvsdvsva
+                                </div>
+                                <div className="col pid">
+                                    {/* {item.from}avds */}sdvsdvdsv
+                                </div>
+                                <div className="col fid">
+                                    {/* {item.to}davs */}vsddvdsvds
+                                </div>
+                                <div className='col'>
+                                    savd
+                                </div>
+                                <div className='col'>
+                                    sad
+                                </div>
+                                <div className='col'>
+                                    dvs
+                                </div>
+                                <div className='col'>
+                                    svda
+                                </div>
+                                <div className='col'>
+                                    withD
+                                </div>
+                                <div className='col'>
+                                    irectives sd
+                                </div>
                             </div>
-                            <div className="col address">
-                                {/* {item.transferTime}svd */}dvsdvsva
-                            </div>
-                            <div className="col pid">
-                                {/* {item.from}avds */}sdvsdvdsv
-                            </div>
-                            <div className="col fid">
-                                {/* {item.to}davs */}vsddvdsvds
-                            </div>
-                            <div className='col'>
-                                savd
-                            </div>
-                            <div className='col'>
-                                sad
-                            </div>
-                            <div className='col'>
-                                dvs
-                            </div>
-                            <div className='col'>
-                                svda
-                            </div>
-                            <div className='col'>
-                                withD
-                            </div>
-                            <div className='col'>
-                                irectives sd
-                            </div>
-                        </div>
-                        <div className="list-item ">
-                            <div className="col no">
-                                1dvasdvas
-                            </div>
-                            <div className="col address">
-                                {/* {item.transferTime}svd */}dvsdvsva
-                            </div>
-                            <div className="col pid">
-                                {/* {item.from}avds */}sdvsdvdsv
-                            </div>
-                            <div className="col fid">
-                                {/* {item.to}davs */}vsddvdsvds
-                            </div>
-                            <div className='col'>
-                                savd
-                            </div>
-                            <div className='col'>
-                                sad
-                            </div>
-                            <div className='col'>
-                                dvs
-                            </div>
-                            <div className='col'>
-                                svda
-                            </div>
-                            <div className='col'>
-                                withD
-                            </div>
-                            <div className='col'>
-                                irectives sd
-                            </div>
-                        </div>
-                        {/* ))
+
+                            {/* ))
 
                         } */}
-                        {/* {
+                            {/* {
                             level2Arr.map(item => (
                                 <div className="list-item ">
                                     <div className="col">
@@ -630,17 +603,19 @@ const LockList = (props) => {
                             ))
 
                         } */}
-                    </div>
-                    <div className="pagination">
-                        {
-                            activeNav == 1 &&
-                            <Pagination current={curPage} showSizeChanger onShowSizeChange={handleShowSizeChange}
-                                onChange={onChangePage} total={total}
-                                defaultPageSize={pageCount} />
-                        }
-                    </div>
+                        </div>
+                     
+                        {/* </div> */}
+                        <div className="pagination">
+                            {
+                                activeNav == 1 &&
+                                <Pagination current={curPage} showSizeChanger onShowSizeChange={handleShowSizeChange}
+                                    onChange={onChangePage} total={total}
+                                    defaultPageSize={pageCount} />
+                            }
+                        </div>
+                        </div>
                 </div>
-            </div>
 
 
         </StyleBox>
