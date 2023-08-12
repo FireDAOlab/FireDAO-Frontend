@@ -15,10 +15,10 @@ export default styled.div`
     color: transparent;
 
   }
-  .ant-menu-inline.ant-menu-root .ant-menu-item>.ant-menu-title-content{
+  /* .ant-menu-inline.ant-menu-root .ant-menu-item>.ant-menu-title-content{
     padding-left:35px;
     
-  }
+  } */
   .ant-menu-item .ant-menu-title-content{
     margin-left: -25px;
     margin-right:25px;

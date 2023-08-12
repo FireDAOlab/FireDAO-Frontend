@@ -1373,7 +1373,6 @@ font-size:13px;
 
     }
     .flex-box {
-        width: 500px;
         font-size:14px;
       }
     .send-button {
@@ -1507,7 +1506,7 @@ font-size:13px;
         }
       }
       .fire-list-box{
-        overflow:scroll;
+        
         border-radius:10px;
       
         .list-header {
@@ -1517,6 +1516,8 @@ font-size:13px;
                 .list-item, .list-header {
                   justify-content: flex-start;
                   font-size:14px;
+             
+                  overflow-x: scroll;
                 }
       
                 .col {
@@ -1768,6 +1769,7 @@ background: rgba(36, 27, 27, 1);
   
             .list-item, .list-header {
               justify-content: flex-start;
+                  overflow-x: scroll;
               font-size:13px;
             }
   

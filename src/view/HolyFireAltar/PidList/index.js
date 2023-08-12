@@ -1,21 +1,21 @@
-import React, {useEffect, useRef, useState} from 'react';
-import {useConnect} from "../../../api/contracts";
-import {Pagination, Button, Select, Descriptions, message, Form, List, Input, notification} from 'antd';
-import {getContractByName, getContractByContract} from "../../../api/connectContract";
-import {dealMethod, viewMethod} from "../../../utils/contractUtil"
+import React, { useEffect, useRef, useState } from 'react';
+import { useConnect } from "../../../api/contracts";
+import { Pagination, Button, Select, Descriptions, message, Form, List, Input, notification } from 'antd';
+import { getContractByName, getContractByContract } from "../../../api/connectContract";
+import { dealMethod, viewMethod } from "../../../utils/contractUtil"
 import listIcon from "../../../imgs/list-icon.webp"
-import {SearchOutlined} from "@ant-design/icons";
+import { SearchOutlined } from "@ant-design/icons";
 import search from '../../../imgs/search.png'
-import {getIpfs} from "../../../utils/ipfsApi";
-import {getPidList, getPidCount,getSearchData} from "../../../graph/pidlist";
+import { getIpfs } from "../../../utils/ipfsApi";
+import { getPidList, getPidCount, getSearchData } from "../../../graph/pidlist";
 import develop from "../../../env"
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import fresh from "../../../imgs/fresh_icon.webp";
 import StyleBox from "./style"
 const PidList = (props) => {
-    
+
     const [activeNav, setNav] = useState(1)
-    let {state, dispatch} = useConnect();
+    let { state, dispatch } = useConnect();
     const [MYPIDARR, setMYPIDARR] = useState([])
     const [curPage, setCurPage] = useState(1)
     const [pageCount, setPageCount] = useState(20)
@@ -73,11 +73,11 @@ const PidList = (props) => {
             </div>
 
             <div className="col address">
-                <a  href={develop.ethScan + "address/" + item.account} target="_blank">
-                    {item.account&&<span>{item.account.substr(0, 7) + "..." + item.account.substr(item.account.length - 3, item.account.length)}</span>}
+                <a href={develop.ethScan + "address/" + item.account} target="_blank">
+                    {item.account && <span>{item.account.substr(0, 7) + "..." + item.account.substr(item.account.length - 3, item.account.length)}</span>}
                 </a>
             </div>
-           
+
             <div className="col">
                 BTC Sector
             </div>
@@ -90,7 +90,7 @@ const PidList = (props) => {
             <div className="col">
                 0
             </div>
-             {/* <div className="col link">
+            {/* <div className="col link">
 
                 <a href={"https://twitter.com/" + (item.Twitter ? item.Twitter : "")}
                    target="_blank">
@@ -123,10 +123,10 @@ const PidList = (props) => {
         let count = parseInt((await getPidCount()).data.registers[0].pid)
         setTotal(count)
 
-        if(!page){
-            page=1
+        if (!page) {
+            page = 1
         }
-        let pidListRes = await getPidList(pageCount, (page-1)*pageCount)
+        let pidListRes = await getPidList(pageCount, (page - 1) * pageCount)
 
         let arr = pidListRes.data.registers
         let tempArr = []
@@ -135,16 +135,16 @@ const PidList = (props) => {
             return b.pid - a.pid
         })
 
-        dispatch({type: "SET_PidArr", payload: arr})
+        dispatch({ type: "SET_PidArr", payload: arr })
 
 
         for (const item of arr) {
             const info = getIpfs(item.information);
-            const mergedItem = {...item, ...await info};
+            const mergedItem = { ...item, ...await info };
             tempArr.push(mergedItem);
 
         }
-        dispatch({type: "SET_PidArr", payload: tempArr})
+        dispatch({ type: "SET_PidArr", payload: tempArr })
     }
     const handleSearchChange = async (e) => {
         setSearchData(e.target.value);
@@ -157,7 +157,7 @@ const PidList = (props) => {
         setPageCount(count)
     }
     const handleSearch = async () => {
-        let data = await getSearchData(searchData,state.api)
+        let data = await getSearchData(searchData, state.api)
         setSearchArr(data.data.registers)
     }
     useEffect(() => {
@@ -165,13 +165,13 @@ const PidList = (props) => {
     }, []);
     useEffect(async () => {
 
-        try{
-            let myPid = await getSearchData(state.account,state.api)
+        try {
+            let myPid = await getSearchData(state.account, state.api)
             setMYPIDARR([{
                 ...myPid.data.registers[0],
                 ...getIpfs(myPid.data.registers[0].information)
             }])
-        }catch (e){
+        } catch (e) {
             console.log(e)
         }
     }, [state.account]);
@@ -217,46 +217,47 @@ const PidList = (props) => {
 
                                         ]}
                                     /> */}
-                                <Input style={{borderRadius:'50px'}} allowClear value={searchData} onChange={handleSearchChange}  placeholder="Search"/>
-                                <Button className="search-btn" style={{ width:'45px',borderRadius:'45px',height:'40px'}}  onClick={handleSearch} type="primary">
-                                    <img src={search}  style={{width:'25px',margin:'0px -10px'}}/>
+                                <Input style={{ borderRadius: '50px' }} allowClear value={searchData} onChange={handleSearchChange} placeholder="Search" />
+                                <Button className="search-btn" style={{ width: '45px', borderRadius: '45px', height: '40px' }} onClick={handleSearch} type="primary">
+                                    <img src={search} style={{ width: '25px', margin: '0px -10px' }} />
                                 </Button>
                             </form>
                         </div>
                     </div>
+                    <div style={{overflow:'scroll',border:'1px solid rgb(255,255,255,.1)'}}>
+                        <div className="fire-list-box">
+                            <div>
+                            <div className="list-header flex-box">
+                                <div className="col">
+                                    PID
+                                    {/* <img src={listIcon} alt="" className="list-icon"/> */}
+                                </div>
+                                <div className="col">
+                                    FID
+                                    {/* <img src={listIcon} alt="" className="list-icon"/> */}
+                                </div>
+                                <div className="col">
+                                    Username
+                                </div>
+                                <div className="col">
+                                    Wallet Address
+                                </div>
 
-                    <div className="fire-list-box">
-                        <div className="list-header flex-box">
-                            <div className="col">
-                                PID
-                                {/* <img src={listIcon} alt="" className="list-icon"/> */}
-                            </div>
-                            <div className="col">
-                                FID
-                                {/* <img src={listIcon} alt="" className="list-icon"/> */}
-                            </div>
-                            <div className="col">
-                                Username
-                            </div>
-                            <div className="col">
-                                Wallet Address
-                            </div>
-                           
-                            <div className="col">
-                                Forum Profile
-                            </div>
-                            <div className="col">
-                                Forum Position
-                            </div>
-                            <div className="col">
-                                Forum Posts
-                                {/* <img src={listIcon} alt="" className="list-icon"/> */}
-                            </div>
-                            <div className="col">
-                                Forum Merits
-                                {/* <img src={listIcon} alt="" className="list-icon"/> */}
-                            </div>
-                             {/* <div className="col">
+                                <div className="col">
+                                    Forum Profile
+                                </div>
+                                <div className="col">
+                                    Forum Position
+                                </div>
+                                <div className="col">
+                                    Forum Posts
+                                    {/* <img src={listIcon} alt="" className="list-icon"/> */}
+                                </div>
+                                <div className="col">
+                                    Forum Merits
+                                    {/* <img src={listIcon} alt="" className="list-icon"/> */}
+                                </div>
+                                {/* <div className="col">
                                 Twitter
                             </div>
                             <div className="col">
@@ -265,32 +266,34 @@ const PidList = (props) => {
                             <div className="col">
                                 Forum ID
                             </div>*/}
-                            {/* <div className="col">
+                                {/* <div className="col">
                                 More
                             </div> */}
+                            </div>
+                            </div>
+                            {
+                                !searchData && activeNav == 1 && state.PidArr.map((item, index) => (
+                                    Row(item, index)
+                                ))
+                            }
+                            {
+                                activeNav == 2 && MYPIDARR.map((item, index) => (
+                                    index >= pageCount * (curPage - 1) && index < pageCount * curPage &&
+                                    Row(item, index)
+                                ))
+                            }
+                            {
+                                searchArr.length > 0 && searchArr.map((item, index) => (
+                                    Row(item, index)
+                                ))
+                            }
                         </div>
-                        {
-                            !searchData && activeNav == 1 && state.PidArr.map((item, index) => (
-                                Row(item, index)
-                            ))
-                        }
-                        {
-                            activeNav == 2 && MYPIDARR.map((item, index) => (
-                                index >= pageCount * (curPage - 1) && index < pageCount * curPage &&
-                                Row(item, index)
-                            ))
-                        }
-                        {
-                            searchArr.length>0 && searchArr.map((item, index) => (
-                                Row(item, index)
-                            ))
-                        }
                     </div>
                     <div className="pagination">
                         {
-                            activeNav==1&& <Pagination current={curPage} showSizeChanger onShowSizeChange={handleShowSizeChange}
-                                                       onChange={onChangePage} total={total}
-                                                       defaultPageSize={pageCount}/>
+                            activeNav == 1 && <Pagination current={curPage} showSizeChanger onShowSizeChange={handleShowSizeChange}
+                                onChange={onChangePage} total={total}
+                                defaultPageSize={pageCount} />
                         }
                     </div>
                 </div>

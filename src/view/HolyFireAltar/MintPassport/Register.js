@@ -392,7 +392,10 @@ const Register = (props) => {
                                 </div>
                             </div>
                             <div className="nft-detail" onClick={()=>{setDetail(true)}}>
-                                <div className="title">
+                                <div className="title1" >
+                                    Details
+                                </div>
+                                <div className="title" >
                                     Details
                                 </div>
                                 <div className="content-item">

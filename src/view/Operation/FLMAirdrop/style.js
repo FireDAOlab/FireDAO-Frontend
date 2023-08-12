@@ -29,8 +29,53 @@ border-color:rgba(255, 255, 255, 0.10);
       }
     }
   }
+
+
+  .flmz{
+    margin-top:16px;
+    font-family: Roboto-Medium, Roboto;
+font-weight: 500;
+display: block;
+    .fl{
+        font-size:20px;
+        color:rgba(138, 128, 128, 1);
+        font-weight:bold;
+       
+    }
+    .sz{
+        font-size:20px;
+    }
+  }
+  .flex-li{
+    display: flex;
+    flex-direction:initial;
+    justify-content:space-between;
+    margin-top:20px;
+
+  }
+ 
   .select-box{
     width: 160px;
+    height: 50px;
+    background: rgba(255,255,255,0.1);
+border-radius: 51px 51px 51px 51px;
+border: 1px solid rgba(255,255,255,0.1);
+
+
+    .ant-select-selector{
+    width: 100%;
+    height: 100%;
+    border-radius:50px;  
+    padding-top:10px;
+    font-size:18px;
+    padding-left: 25px;
+
+    .ant-select-selection-search-input{
+    height: 50px;
+    
+    border-radius: 51px 51px 51px 51px;
+  }
+}
   }
   .add-coin {
     background: rgba(254, 109, 70, 0.1);
@@ -50,59 +95,11 @@ border-color:rgba(255, 255, 255, 0.10);
     border: 1px solid rgba(205, 158, 87, 0.5);
   }
 
-  .fire-list-box-userclaim {
-    .col:nth-child(1) {
-      width: 50px;
-    }
-
-    .col:nth-child(2) {
-      width: 50px;
-    }
-
-    .col:nth-child(3) {
-      width: 50px;
-    }
-
-    .col:nth-child(4) {
-      width: 100px;
-    }
-
-    .col:nth-child(5) {
-      width: 50px;
-    }
-
-    .col:nth-child(6) {
-      width: 150px;
-    }
-  }
-
-  .fire-list-box-airdrop {
-    .col:nth-child(1) {
-      width: 50px;
-    }
-
-    .col:nth-child(2) {
-      width: 300px;
-    }
-
-    .col:nth-child(3) {
-      width: 50px;
-    }
-
-    .col:nth-child(4) {
-      width: 50px;
-    }
-
-    .col:nth-child(5) {
-      width: 50px;
-    }
-
-
-  }
 
 
 
   @media screen and (max-width: 1950px) {
+
     .ant-form-item-label>label{
       font-size:18px;
       font-family: Roboto-SemiBold, Roboto;
@@ -340,9 +337,7 @@ line-height:20px;
       padding: 20px;
       margin: 0;
       border-radius: 0;
-      &:last-child{
-        border-radius: 0 0 20px 20px;
-      }
+      
     }
   } 
   
@@ -356,7 +351,7 @@ line-height:20px;
 }
 .leaderl,.leader{
     display: flex;
-    /* justify-content: flex-start; */
+    justify-content: flex-start;
 }
 .col{
     text-align: left;
@@ -400,20 +395,35 @@ margin-right:10px;
     .no {
               color: #FE6D46;
             }
+            .address {
+            
+               color: rgba(205, 158, 87, 1);
+             
+border: 1px solid rgba(205,158,87,0.5);
+            background: rgba(205, 158, 87, 0.20);
+            text-align:center;
+            border-radius:25px;
+           
+          }
 }
 
 }
 
 .fire-list-box-userclaim {
-    .list-header{
-        padding: 20px;
+
+.reel,.ree{
+    display: flex;
+    justify-content: flex-start;
+}
+    .ree{
+        padding: 20px 3em;
     }
       .col{
         text-align:left;
-
+align-items:center;
         font-size:16px;
     &:nth-child(1) {
-      width: 15%;
+      width: 13%;
       margin-right:5px;
     }
 
@@ -428,7 +438,7 @@ margin-right:10px;
     }
 
     &:nth-child(4) {
-      width: 15%;
+      width: 18%;
       margin-right:5px;
     }
     &:nth-child(5) {
@@ -442,10 +452,31 @@ margin-right:10px;
     }
    
 } 
+.reel{
+        padding: 0.5 0em;
+            width: 94%;
+            margin: 0 auto;
+            border-radius:0px;
+            border-bottom:1px solid rgba(255, 255, 255, 0.1);
+            .col {
+              overflow: hidden;
+              padding-left: 0%;
+
+            }
+}
 .no{
         color: rgba(228, 134, 134, 1);
     }
-  
+    .address {
+            
+            color: rgba(205, 158, 87, 1);
+          
+border: 1px solid rgba(205,158,87,0.5);
+         background: rgba(205, 158, 87, 0.20);
+         text-align:center;
+         border-radius:25px;
+        
+       }
 }
 
 
@@ -476,33 +507,22 @@ margin-right:10px;
   }
 
   .fire-list-box-airdrop {
-    .col {
-      &:nth-child(1) {
-        width: 50px;
-      }
-
-      &:nth-child(2) {
-        width: 50px;
-      }
-
-      &:nth-child(3) {
-        width: 100px;
-      }
-
-      &:nth-child(4) {
-        width: 100px;
-      }
-
-      &:nth-child(5) {
-        width: 100px;
-      }
-
-
-    }
+  
     .no{
         color: rgba(228, 134, 134, 1);
     }
+    .m {
+  color: rgba(205, 158, 87, 1);
+border: 1px solid rgba(205,158,87,0.5);
+            background: rgba(205, 158, 87, 0.20);
+            text-align:center;
+            padding: 0px 2px;
+            border-radius:15px;
+           
+          }
   }
+
+
 
     }
 

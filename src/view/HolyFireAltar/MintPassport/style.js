@@ -57,6 +57,9 @@ img{
     .ant-form-item-control-input{
       border-radius:10px;
       /* line-height: 50px; */
+      span{
+        padding-top:10px;
+      }
     }
 
   }
@@ -131,7 +134,9 @@ img{
           .title {
             font-size: 17px;
           }
-
+.title1{
+    display:none
+}
           .content-item {
             display: flex;
             justify-content: space-between;
@@ -239,7 +244,9 @@ img{
     line-height: 50px;
     .ant-form-item-control-input{
       border-radius:10px;
-      /* line-height: 50px; */
+      span{
+        padding-top:10px;
+      }
     }
 
   }
@@ -314,7 +321,10 @@ img{
           .title {
             font-size: 17px;
           }
-
+          .title1{
+    display:none
+}
+   
           .content-item {
             display: flex;
             justify-content: space-between;
@@ -428,7 +438,9 @@ img{
     line-height: 30px;
     .ant-form-item-control-input{
       border-radius:10px;
-      /* line-height: 50px; */
+      span{
+        padding-top:10px;
+      }
     }
 
   }
@@ -491,10 +503,13 @@ img{
           font-size: 14px;
           margin-top: 2em;
 
-          .title {
+          .title1 {
             font-size: 14px;
           }
-
+.title{
+    display:none
+}
+   
           .content-item {
             display: flex;
             justify-content: space-between;
@@ -604,7 +619,9 @@ img{
     line-height: 30px;
     .ant-form-item-control-input{
       border-radius:10px;
-      /* line-height: 50px; */
+      span{
+        padding-top:10px;
+      }
     }
 
   }

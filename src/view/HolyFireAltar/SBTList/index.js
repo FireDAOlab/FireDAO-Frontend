@@ -145,7 +145,7 @@ const SBTList = (props) => {
                                 My SoulAccount
                             </div>
                             <div className="value">
-                                {/* {UserToSoul} */}
+                                {/* {UserToSoul} */}-
                             </div>
                         </div>
                         <div className="fidscore">
@@ -153,7 +153,7 @@ const SBTList = (props) => {
                                 FID ReputationScore
                             </div>
                             <div className="score">
-                                {/* {score} */}
+                                {/* {score} */}-
                             </div>
                         </div>
                     </div>

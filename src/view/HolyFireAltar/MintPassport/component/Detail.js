@@ -18,7 +18,7 @@ const Detai = (props) => {
             </div>
             <div className="dialog-content">
                 <div className="header">
-                    <div className="title">
+                    <div className="title1">
                         Details
                     </div>
                     <div className="close" onClick={closeDialog}>
