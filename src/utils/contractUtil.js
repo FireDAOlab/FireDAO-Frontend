@@ -1,5 +1,6 @@
 import {message, notification} from "antd";
 import {dealError} from "./dealResult";
+import BigNumber from "bignumber.js";
 const gasPrice = 20e7
 export async function dealMethod(contract,account,methodName,params){
     const hide3 = message.loading('wait sign', 0);
@@ -9,7 +10,7 @@ export async function dealMethod(contract,account,methodName,params){
         }).then(async gas => {
             await contract.methods[methodName](...params).send({
                 from: account,
-                gas: parseInt(gas * 1.2),
+                gas: parseInt(BigNumber(gas).multipliedBy(1.2) ).toString(),
                 // gasPrice,
             }).then(async res => {
                 setTimeout(hide3, 1000);
@@ -53,7 +54,7 @@ export async function  dealPayMethod(contract,account,methodName,params,value){
         }).then(async gas => {
             await contract.methods[methodName](...params).send({
                 from: account,
-                gas: parseInt(gas * 1.2),
+                gas: parseInt(BigNumber(gas).multipliedBy(1.2) ).toString(),
                 // gasPrice,
                 value
             }).then(async res => {

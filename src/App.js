@@ -53,6 +53,7 @@ import CommunityMyDraft from "./view/Treasury/CommunityVault/MyDraft";
 //FDTSquare
 import OGPool from "./view/FDTSquare/OGPool/OGPool";
 import OGPoolAdmin from "./view/FDTSquare/OGPool/OGPoolAdmin";
+import OGUserAdmin from "./view/FDTSquare/OGPool/OGUserAdmin";
 import FDTRelease from "./view/FDTSquare/FDTRelease/index";
 import FDTReleaseManage from "./view/FDTSquare/FDTReleaseManage/index";
 import FDTOgToFdt from "./view/FDTSquare/FDTOgToFdt"
@@ -170,7 +171,7 @@ function App() {
                                 <Route path="/AutoReflowLPManage" element={<AutoReflowLPManage/>}/>
                                 <Route path="/SeedDonation" element={<SeedDonation/>}/>
                                 <Route path="/SeedDonationManage" element={<SeedDonationManage/>}/>
-
+                                <Route path="/OGUserAdmin" element={<OGUserAdmin/>}/>
                                 {/*Operation*/}
                                 <Route path="/FireLock" element={<FireLock/>}/>
                                 <Route path="/FireLockView" element={<FireLockView/>}/>

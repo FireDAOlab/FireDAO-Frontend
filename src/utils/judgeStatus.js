@@ -13,7 +13,7 @@ const openNotification = (message) => {
 };
 export default async function judgeStatus(state){
     if (!state.api) {
-        openNotification("Please connect")
+        // openNotification("Please connect")
         return
     }
     if(!state.account){
