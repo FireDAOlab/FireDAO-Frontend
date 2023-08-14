@@ -6,6 +6,9 @@ export default styled.div`
   flex-direction: column;
   align-items: stretch;
   /* pc style */
+  .list-item:last-child{
+    border-bottom:none!important;
+}
   .panel-box{
     .panel-container{
       border:none
@@ -456,14 +459,16 @@ color: rgb(254, 109, 70);
           .flex-box11 {
             padding: 20px 2.5em;
           }
+  .sbt1 {
+           padding: 0.5em;
+          }
 
           .sbt1, .flex-box11{
             justify-content: flex-start;
-          }
+       
 
           .col {
             text-align: left;
-            align-items: center;
 font-size:16px;
             &:nth-child(1) {
               width:23%;
@@ -486,15 +491,13 @@ font-size:16px;
             }
 
           }
-
-          .sbt1 {
+        }
+        
+          .sbt1 {   
             padding:1em 0.5em ;
-          }
-
-          .sbt1 {
             font-size:16px;
-            padding: 0.5 0em;
-            width: 96%;
+          
+            width: 94%;
             margin: 0 auto;
             border-radius:0px;
             border-bottom:1px solid rgba(255, 255, 255, 0.1);
@@ -526,13 +529,19 @@ font-size:16px;
           .flex-box11 {
             padding: 20px 2.2em;
           }
+          .sbt1 {
+            padding: 0em;
 
+}
+.ss1{
+    padding: 1em 0.5em;
+    border-radius:0px;
+}
           .sbt1, .flex-box11{
             justify-content: flex-start;
          
           .col {
             text-align: left;
-            align-items: center;
 font-size:16px;
             &:nth-child(1) {
               width:23%;
@@ -560,18 +569,11 @@ font-size:16px;
 .rtth{
     width: 35px;
 }
-.sbt1 {
-            padding: 0em;
-.ss1{
-    padding: 1em 0.5em;
-    border-radius:0px;
-}
-}
+
           .ss1 {
-            font-size:16px;
             padding:1em 0.5em;
             width: 94%;
-            margin: 0 auto;
+            margin: 0em auto;
             border-radius:0px;
             border-bottom:1px solid rgba(255, 255, 255, 0.1);
 
@@ -601,16 +603,17 @@ font-size:16px;
         margin-top:2em;
        .fire-list-box {
           .flex-box22 {
-            padding: 20px 1.6em;
+            padding: 20px 1.8em;
           }
-
+          .sbt2{
+            padding: 0.5em;
+          }
           .sbt2, .flex-box22{
             justify-content: flex-start;
-          }
+          
 
           .col {
             text-align: left;
-            align-items: center;
 font-size:16px;
             &:nth-child(1) {
               width:19%;
@@ -635,8 +638,8 @@ font-size:16px;
 
         }
           
+    }     
         .sbt2 {
-            font-size:16px;
             padding: 1em 0.5em;
             width: 96%;
             margin: 0 auto;
@@ -1183,18 +1186,21 @@ color: rgb(254, 109, 70);
 .myFireSeed {
     margin-top:2em;
    
-  .fire-list-box {
+ 
+    .fire-list-box {
           .flex-box11 {
             padding: 20px 2.5em;
+          }
+  .sbt1 {
+           padding: 0.5em;
           }
 
           .sbt1, .flex-box11{
             justify-content: flex-start;
-          }
+       
 
           .col {
             text-align: left;
-            align-items: center;
 font-size:16px;
             &:nth-child(1) {
               width:23%;
@@ -1217,15 +1223,13 @@ font-size:16px;
             }
 
           }
-
-          .sbt1 {
+        }
+        
+          .sbt1 {   
             padding:1em 0.5em ;
-          }
-
-          .sbt1 {
             font-size:16px;
-            padding: 0.5 0em;
-            width: 96%;
+          
+            width: 94%;
             margin: 0 auto;
             border-radius:0px;
             border-bottom:1px solid rgba(255, 255, 255, 0.1);
@@ -1253,18 +1257,23 @@ font-size:16px;
 }
     .myWall {
         margin-top:2em;
-       .fire-list-box {
+             .fire-list-box {
           .flex-box11 {
-            padding: 20px 1.6em;
+            padding: 20px 2.2em;
           }
+          .sbt1 {
+            padding: 0em;
 
+}
+.ss1{
+    padding: 1em 0.5em;
+    border-radius:0px;
+}
           .sbt1, .flex-box11{
             justify-content: flex-start;
-          }
-
+         
           .col {
             text-align: left;
-            align-items: center;
 font-size:16px;
             &:nth-child(1) {
               width:23%;
@@ -1287,14 +1296,16 @@ font-size:16px;
             }
 
           }
+        }
+    
 .rtth{
     width: 35px;
 }
-          .sbt1 {
-            font-size:16px;
+
+          .ss1 {
             padding:1em 0.5em;
-            width: 96%;
-            margin: 0 auto;
+            width: 94%;
+            margin: 0em auto;
             border-radius:0px;
             border-bottom:1px solid rgba(255, 255, 255, 0.1);
 
@@ -1322,18 +1333,19 @@ font-size:16px;
 
     .myfdt {
         margin-top:2em;
-       .fire-list-box {
+        .fire-list-box {
           .flex-box22 {
-            padding: 20px 1.6em;
+            padding: 20px 1.8em;
           }
-
+          .sbt2{
+            padding: 0.5em;
+          }
           .sbt2, .flex-box22{
             justify-content: flex-start;
-          }
+          
 
           .col {
             text-align: left;
-            align-items: center;
 font-size:16px;
             &:nth-child(1) {
               width:19%;
@@ -1358,8 +1370,8 @@ font-size:16px;
 
         }
           
+    }     
         .sbt2 {
-            font-size:16px;
             padding: 1em 0.5em;
             width: 96%;
             margin: 0 auto;
@@ -1378,7 +1390,7 @@ font-size:16px;
           }
     }
 }
- 
+
     .fidr{
        
       width: 36%;
@@ -1894,51 +1906,50 @@ color: rgb(254, 109, 70);
 
     .myFireSeed {
     margin-top:2em;
-  .fire-list-box {
+   
+    .fire-list-box {
           .flex-box11 {
-            padding: 20px 2em;
+            padding: 20px 1.8em;
           }
-.list-item{
-    padding: 0.5em 0em;
-}
+  .sbt1 {
+           padding: 0.5em;
+          }
+
           .sbt1, .flex-box11{
             justify-content: flex-start;
-          }
+       
 
           .col {
             text-align: left;
-            align-items: center;
 font-size:14px;
             &:nth-child(1) {
-              width:24%;
-             margin-left:25px;
+              width:23%;
+             margin-left:10px;
             }
 
             &:nth-child(2) {
-              width: 24%;
+              width: 23%;
               margin-left:10px;
             }
 
             &:nth-child(3) {
-              width: 24%;
+              width: 23%;
               margin-left:10px;
             }
 
             &:nth-child(4) {
-              width: 24%;
+              width: 23%;
               margin-left:10px;
             }
 
           }
-
-          .sbt1 {
+        }
+        
+          .sbt1 {   
             padding:1em 0.5em ;
-          }
-
-          .sbt1 {
             font-size:14px;
-            padding: 0.5 0em;
-            width: 93%;
+          
+            width: 94%;
             margin: 0 auto;
             border-radius:0px;
             border-bottom:1px solid rgba(255, 255, 255, 0.1);
@@ -1955,7 +1966,6 @@ font-size:14px;
           }
         }
     }
-
     .panel-box{
 .wallt{
   display:flex;
@@ -1966,59 +1976,55 @@ font-size:14px;
 }
 .myWall {
         margin-top:2em;
-       .fire-list-box {
-        .flex-box11 {
-            padding: 20px 2.5em;
+        .fire-list-box {
+          .flex-box11 {
+            padding: 20px 1.5em;
           }
-
-          .sbt1, .flex-box11{
-            justify-content: flex-start;
-          }
-
-          .col {
-            text-align: left;
-            align-items: center;
-font-size:14px;
-            &:nth-child(1) {
-              width:24%;
-             margin-left:25px;
-            }
-
-            &:nth-child(2) {
-              width: 24%;
-              margin-left:10px;
-            }
-
-            &:nth-child(3) {
-              width: 24%;
-              margin-left:10px;
-            }
-
-            &:nth-child(4) {
-              width: 24%;
-              margin-left:10px;
-            }
-
-        
-
-          }
-.rtth{
-    width: 35px;
-}
           .sbt1 {
             padding: 0em;
+
+}
 .ss1{
     padding: 1em 0.5em;
     border-radius:0px;
 }
-            
+          .sbt1, .flex-box11{
+            justify-content: flex-start;
+         
+          .col {
+            text-align: left;
+font-size:14px;
+            &:nth-child(1) {
+              width:23%;
+             margin-left:10px;
+            }
+
+            &:nth-child(2) {
+              width: 23%;
+              margin-left:10px;
+            }
+
+            &:nth-child(3) {
+              width: 23%;
+              margin-left:10px;
+            }
+
+            &:nth-child(4) {
+              width: 23%;
+              margin-left:10px;
+            }
+
           }
+        }
+    
+.rtth{
+    width: 35px;
+}
 
           .ss1 {
-            font-size:14px;
-            padding: 0.5 0em;
-            width: 96%;
-            margin: 0 auto;
+            padding:1em 0.5em;
+            width: 94%;
+            margin: 0em auto;
             border-radius:0px;
             border-bottom:1px solid rgba(255, 255, 255, 0.1);
 
@@ -2045,46 +2051,47 @@ font-size:14px;
 }
 .myfdt {
         margin-top:2em;
-       .fire-list-box {
+        .fire-list-box {
           .flex-box22 {
-            padding: 20px 4em;
+            padding: 20px 1.6em;
           }
-
+          .sbt2{
+            padding: 0.5em;
+          }
           .sbt2, .flex-box22{
             justify-content: flex-start;
-          }
+          
 
           .col {
             text-align: left;
-            align-items: center;
 font-size:14px;
             &:nth-child(1) {
-              width:16%;
+              width:19%;
              margin-left:10px;
             }
             &:nth-child(2) {
-              width:16%;
+              width:19%;
              margin-left:10px;
             }
             &:nth-child(3) {
-              width:26%;
+              width:21%;
              margin-left:10px;
             }
             &:nth-child(4) {
-              width:16%;
+              width:19%;
              margin-left:10px;
             }
             &:nth-child(5) {
-              width:16%;
+              width:17%;
              margin-left:10px;
             }
 
         }
           
+    }     
         .sbt2 {
-            font-size:14px;
-            padding: 0.5 0em;
-            width: 91%;
+            padding: 1em 0.5em;
+            width: 94%;
             margin: 0 auto;
             border-radius:0px;
             border-bottom:1px solid rgba(255, 255, 255, 0.1);
@@ -2101,7 +2108,6 @@ font-size:14px;
           }
     }
 }
- 
     .fidr{
        
       width: 41%;
@@ -2650,55 +2656,56 @@ color: rgb(254, 109, 70);
 
 .myFireSeed {
     margin-top:2em;
-  .fire-list-box {
+  
+    .fire-list-box {
           .flex-box11 {
-            padding: 20px 3em;
+            padding: 20px 1.3em;
+          }
+  .sbt1 {
+           padding: 0.5em;
           }
 
           .sbt1, .flex-box11{
             justify-content: flex-start;
-          }
+       
 
           .col {
             text-align: left;
-            align-items: center;
-font-size:12px;
+font-size:14px;
             &:nth-child(1) {
-              width:24%;
+              width:23%;
              margin-left:5px;
             }
 
             &:nth-child(2) {
-              width: 24%;
-              margin-left:10px;
+              width: 23%;
+              margin-left:5px;
             }
 
             &:nth-child(3) {
-              width: 24%;
-              margin-left:10px;
+              width: 23%;
+              margin-left:5px;
             }
 
             &:nth-child(4) {
-              width: 24%;
-              margin-left:10px;
+              width: 23%;
+              margin-left:5px;
             }
 
           }
-
-          .sbt1 {
-            padding: 0.5em 1em;
-          }
-
-          .sbt1 {
-            font-size:12px;
-            padding: 0.5 0em;
-            width: 83%;
+        }
+        
+          .sbt1 {   
+            padding:1em 0.5em ;
+            font-size:14px;
+          
+            width: 94%;
             margin: 0 auto;
             border-radius:0px;
             border-bottom:1px solid rgba(255, 255, 255, 0.1);
 
             .col {
-                font-size:12px;
+                font-size:14px;
               overflow: hidden;
               padding-left: 0%;
 
@@ -2720,64 +2727,60 @@ font-size:12px;
 }
 .myWall {
         margin-top:2em;
-       .fire-list-box {
-        .flex-box11 {
-            padding: 20px 3.2em;
+        .fire-list-box {
+          .flex-box11 {
+            padding: 20px 1.2em;
           }
+          .sbt1 {
+            padding: 0em;
 
+}
+.ss1{
+    padding: 1em 0.5em;
+    border-radius:0px;
+}
           .sbt1, .flex-box11{
             justify-content: flex-start;
-          }
-
+         
           .col {
             text-align: left;
-            align-items: center;
-font-size:12px;
+font-size:14px;
             &:nth-child(1) {
-              width:24%;
+              width:23%;
              margin-left:5px;
             }
 
             &:nth-child(2) {
-              width: 24%;
-              margin-left:10px;
+              width: 23%;
+              margin-left:5px;
             }
 
             &:nth-child(3) {
-              width: 24%;
-              margin-left:10px;
+              width: 23%;
+              margin-left:5px;
             }
 
             &:nth-child(4) {
-              width: 24%;
-              margin-left:10px;
+              width: 23%;
+              margin-left:5px;
             }
 
-        
-
           }
+        }
+    
 .rtth{
-    width:25px;
+    width: 25px;
 }
-          .sbt1 {
-            padding: 0.5em 1em;
-.ss1{
-    padding: 0.5em 0;
-    border-radius:0px;
-}
-            
-          }
 
-          .sbt1 {
-            font-size:12px;
-            padding: 0.5 0em;
-            width: 83%;
-            margin: 0 auto;
+          .ss1 {
+            padding:1em 0.5em;
+            width: 94%;
+            margin: 0em auto;
             border-radius:0px;
             border-bottom:1px solid rgba(255, 255, 255, 0.1);
 
             .col {
-                font-size:12px;
+                font-size:14px;
               overflow: hidden;
               padding-left: 0%;
 
@@ -2789,7 +2792,7 @@ font-size:12px;
         }
     }
     .listheadert{
-    width: 430px;
+    width: 460px;
 }
     .myfdt {
         margin-top:2em;
@@ -2799,27 +2802,26 @@ font-size:12px;
             padding: 0.5em 0;
         }
           .flex-box22 {
-            padding: 20px 2.6em;
+            padding: 20px 1.5em;
           }
 
           .sbt2, .flex-box22{
             justify-content: flex-start;
-          }
-
+          
           .col {
             text-align: left;
             align-items: center;
-font-size:12px;
+font-size:14px;
             &:nth-child(1) {
-              width:40px;
-             margin-left:0px;
+              width:50px;
+             margin-left:5px;
             }
             &:nth-child(2) {
-              width:60px;
+              width:70px;
              margin-left:5px;
             }
             &:nth-child(3) {
-              width:120px;
+              width:140px;
              margin-left:5px;
             }
             &:nth-child(4) {
@@ -2827,22 +2829,23 @@ font-size:12px;
              margin-left:5px;
             }
             &:nth-child(5) {
-              width:60px;
+              width:75px;
              margin-left:5px;
             }
 
         }
-          
+    }
+   
         .sbt2 {
-            font-size:12px;
+            font-size:14px;
             padding: 0.5 0em;
-            width: 83%;
+            width: 91%;
             margin: 0 auto;
             border-radius:0px;
             border-bottom:1px solid rgba(255, 255, 255, 0.1);
 
             .col {
-                font-size:12px;
+                font-size:14px;
               overflow: hidden;
               padding-left: 0%;
 
@@ -3440,55 +3443,55 @@ color: rgb(254, 109, 70);
 
 .myFireSeed {
     margin-top:2em;
-  .fire-list-box {
+    .fire-list-box {
           .flex-box11 {
-            padding: 20px 3em;
+            padding: 20px 1.3em;
+          }
+  .sbt1 {
+           padding: 0.5em;
           }
 
           .sbt1, .flex-box11{
             justify-content: flex-start;
-          }
+       
 
           .col {
             text-align: left;
-            align-items: center;
-font-size:12px;
+font-size:14px;
             &:nth-child(1) {
-              width:24%;
+              width:23%;
              margin-left:5px;
             }
 
             &:nth-child(2) {
-              width: 24%;
-              margin-left:10px;
+              width: 23%;
+              margin-left:5px;
             }
 
             &:nth-child(3) {
-              width: 24%;
-              margin-left:10px;
+              width: 23%;
+              margin-left:5px;
             }
 
             &:nth-child(4) {
-              width: 24%;
-              margin-left:10px;
+              width: 23%;
+              margin-left:5px;
             }
 
           }
-
-          .sbt1 {
-            padding: 0.5em 1em;
-          }
-
-          .sbt1 {
-            font-size:12px;
-            padding: 0.5 0em;
-            width: 83%;
+        }
+        
+          .sbt1 {   
+            padding:1em 0.5em ;
+            font-size:14px;
+          
+            width: 94%;
             margin: 0 auto;
             border-radius:0px;
             border-bottom:1px solid rgba(255, 255, 255, 0.1);
 
             .col {
-                font-size:12px;
+                font-size:14px;
               overflow: hidden;
               padding-left: 0%;
 
@@ -3510,64 +3513,60 @@ font-size:12px;
 }
 .myWall {
         margin-top:2em;
-       .fire-list-box {
-        .flex-box11 {
-            padding: 20px 3.2em;
+        .fire-list-box {
+          .flex-box11 {
+            padding: 20px 1.2em;
           }
+          .sbt1 {
+            padding: 0em;
 
+}
+.ss1{
+    padding: 1em 0.5em;
+    border-radius:0px;
+}
           .sbt1, .flex-box11{
             justify-content: flex-start;
-          }
-
+         
           .col {
             text-align: left;
-            align-items: center;
-font-size:12px;
+font-size:14px;
             &:nth-child(1) {
-              width:24%;
+              width:23%;
              margin-left:5px;
             }
 
             &:nth-child(2) {
-              width: 24%;
-              margin-left:10px;
+              width: 23%;
+              margin-left:5px;
             }
 
             &:nth-child(3) {
-              width: 24%;
-              margin-left:10px;
+              width: 23%;
+              margin-left:5px;
             }
 
             &:nth-child(4) {
-              width: 24%;
-              margin-left:10px;
+              width: 23%;
+              margin-left:5px;
             }
 
-        
-
           }
+        }
+    
 .rtth{
-    width:25px;
+    width: 25px;
 }
-          .sbt1 {
-            padding: 0.5em 1em;
-.ss1{
-    padding: 0.5em 0;
-    border-radius:0px;
-}
-            
-          }
 
-          .sbt1 {
-            font-size:12px;
-            padding: 0.5 0em;
-            width: 83%;
-            margin: 0 auto;
+          .ss1 {
+            padding:1em 0.5em;
+            width: 94%;
+            margin: 0em auto;
             border-radius:0px;
             border-bottom:1px solid rgba(255, 255, 255, 0.1);
 
             .col {
-                font-size:12px;
+                font-size:14px;
               overflow: hidden;
               padding-left: 0%;
 
@@ -3578,9 +3577,8 @@ font-size:12px;
           }
         }
     }
-
     .listheadert{
-    width: 430px;
+    width: 460px;
 }
     .myfdt {
         margin-top:2em;
@@ -3590,27 +3588,26 @@ font-size:12px;
             padding: 0.5em 0;
         }
           .flex-box22 {
-            padding: 20px 2.6em;
+            padding: 20px 1.5em;
           }
 
           .sbt2, .flex-box22{
             justify-content: flex-start;
-          }
-
+          
           .col {
             text-align: left;
             align-items: center;
-font-size:12px;
+font-size:14px;
             &:nth-child(1) {
-              width:40px;
-             margin-left:0px;
+              width:50px;
+             margin-left:5px;
             }
             &:nth-child(2) {
-              width:60px;
+              width:70px;
              margin-left:5px;
             }
             &:nth-child(3) {
-              width:120px;
+              width:140px;
              margin-left:5px;
             }
             &:nth-child(4) {
@@ -3618,22 +3615,23 @@ font-size:12px;
              margin-left:5px;
             }
             &:nth-child(5) {
-              width:60px;
+              width:75px;
              margin-left:5px;
             }
 
         }
-          
+    }
+   
         .sbt2 {
-            font-size:12px;
+            font-size:14px;
             padding: 0.5 0em;
-            width: 83%;
+            width: 91%;
             margin: 0 auto;
             border-radius:0px;
             border-bottom:1px solid rgba(255, 255, 255, 0.1);
 
             .col {
-                font-size:12px;
+                font-size:14px;
               overflow: hidden;
               padding-left: 0%;
 
@@ -3644,7 +3642,6 @@ font-size:12px;
           }
     }
 }
-
 .panel-box{
 .sbttit{
   display:block;

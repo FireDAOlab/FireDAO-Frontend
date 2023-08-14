@@ -527,45 +527,45 @@ const LockList = (props) => {
 
                             </div>
 
-                            {/* {
-                            logArr.map((item,index) => ( */}
+                            {
+                            logArr.map((item,index) => (
                             <div className="list-item ">
                                 <div className="col no">
-                                    1dvasdvas
+                                    -
                                 </div>
                                 <div className="col address">
-                                    {/* {item.transferTime}svd */}dvsdvsva
+                                   <a> {item.transferTime}</a>
                                 </div>
                                 <div className="col pid">
-                                    {/* {item.from}avds */}sdvsdvdsv
+                                    {item.from}
                                 </div>
                                 <div className="col fid">
-                                    {/* {item.to}davs */}vsddvdsvds
+                                    {item.to}
                                 </div>
                                 <div className='col'>
-                                    savd
+                                    -
                                 </div>
                                 <div className='col'>
-                                    sad
+                                    -
                                 </div>
                                 <div className='col'>
-                                    dvs
+                                    -
                                 </div>
                                 <div className='col'>
-                                    svda
+                                    -
                                 </div>
                                 <div className='col'>
-                                    withD
+                                    -
                                 </div>
                                 <div className='col'>
-                                    irectives sd
+                                    - 
                                 </div>
                             </div>
 
-                            {/* ))
+                          ))
 
-                        } */}
-                            {/* {
+                        }
+                            {
                             level2Arr.map(item => (
                                 <div className="list-item ">
                                     <div className="col">
@@ -602,7 +602,7 @@ const LockList = (props) => {
                                 </div>
                             ))
 
-                        } */}
+                        }
                         </div>
                     </div>
                     {/* </div> */}

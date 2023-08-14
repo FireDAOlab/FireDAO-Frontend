@@ -72,7 +72,7 @@ const SBTList = (props) => {
                             <img src={user3} style={{ width: '22px', marginLeft: '-10px', marginTop: '-10px' }} />
                         </Button>
                     </div>
-                    <div className="fire-list-box">
+                    <div className="fire-list-box ss1">
                         {/* <div className="list-box"> */}
                         <div className='listheadert'>
                             <div className="list-header flexsbt">

@@ -86,9 +86,9 @@ const FireDAOFooter = () => {
                                 className="menu"
                                 mode="inline"
                                 defaultSelectedKeys={[]}
-                                defaultOpenKeys={[selectNav]}
+                                defaultOpenKeys={[]}
                                 selectedKeys={selectedKeys}
-                                openKeys={openKeys}
+                                
                                 onOpenChange={onOpenChange}
                                 theme="dark"
                                 inlineCollapsed={collapsed}

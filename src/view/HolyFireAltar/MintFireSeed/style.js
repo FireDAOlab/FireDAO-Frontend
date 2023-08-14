@@ -88,9 +88,13 @@ export default styled.div`
             }
 
             .mint-fee {
-              padding: 0 1em;
+                height: 30px;
+                width: 100%;
+              padding: 5px 1em;
+            
               img{
                 width:28px;
+                margin-top:-5px;
               }
             }
 
