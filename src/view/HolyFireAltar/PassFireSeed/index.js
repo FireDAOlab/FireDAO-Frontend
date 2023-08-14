@@ -489,9 +489,9 @@ const LockList = (props) => {
                             </div>
                         </div>
                     </div>
-                    {/* <div style={{}}> */} 
+
                     <div className="fire-list-box">
-                       
+                        <div className='listheadert'>
                             <div className="list-header flex-box">
 
                                 <div className="col">
@@ -604,18 +604,18 @@ const LockList = (props) => {
 
                         } */}
                         </div>
-                     
-                        {/* </div> */}
-                        <div className="pagination">
-                            {
-                                activeNav == 1 &&
-                                <Pagination current={curPage} showSizeChanger onShowSizeChange={handleShowSizeChange}
-                                    onChange={onChangePage} total={total}
-                                    defaultPageSize={pageCount} />
-                            }
-                        </div>
-                        </div>
+                    </div>
+                    {/* </div> */}
+                    <div className="pagination">
+                        {
+                            activeNav == 1 &&
+                            <Pagination current={curPage} showSizeChanger onShowSizeChange={handleShowSizeChange}
+                                onChange={onChangePage} total={total}
+                                defaultPageSize={pageCount} />
+                        }
+                    </div>
                 </div>
+            </div>
 
 
         </StyleBox>

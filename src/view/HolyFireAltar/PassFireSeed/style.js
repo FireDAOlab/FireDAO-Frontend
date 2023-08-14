@@ -1505,8 +1505,11 @@ font-size:13px;
           }
         }
       }
+      .listheadert{
+        width: 1160px;
+      }
       .fire-list-box{
-        
+        overflow: scroll;
         border-radius:10px;
       
         .list-header {
@@ -1516,9 +1519,7 @@ font-size:13px;
                 .list-item, .list-header {
                   justify-content: flex-start;
                   font-size:14px;
-             
-                  overflow-x: scroll;
-                }
+                
       
                 .col {
                   font-size:14px;
@@ -1526,53 +1527,63 @@ font-size:13px;
                   align-items: center;
       
                   &:nth-child(1) {
-                    width: 18%;
+                    width: 90px;
+                    margin-left:5px;
                   }
       
                   &:nth-child(2) {
-                    width: 35%;
+                    width: 120px;
+                    margin-left:5px;
                   }
       
                   &:nth-child(3) {
-                    width: 20%;
+                    width:90px;
+                    margin-left:5px;
                   }
       
                   &:nth-child(4) {
-                    width: 20%;
+                    width: 90px;
+                    margin-left:5px;
                   }
       
                   &:nth-child(5) {
-                    width: 26%;
+                    width: 80px;
+                    margin-left:5px;
                   }
       
                   &:nth-child(6) {
-                    width: 44%;
+                    width: 120px;
+                    margin-left:5px;
                   }
       
                   &:nth-child(7) {
-                    width: 38%;
+                    width: 110px;
+                    margin-left:5px;
                   }
       
                   &:nth-child(8) {
-                    width: 38%;
+                    width: 110px;
+                    margin-left:5px;
                   }
       
                   &:nth-child(9) {
-                    width: 38%;
+                    width: 110px;
+                    margin-left:5px;
                     text-align: left;
       
                   }
       
                   &:nth-child(10) {
-                    width: 40%;
+                    width: 150px;
+                    margin-left:5px;
                     text-align: left;
                   }
       
                 }
-           
+            }
                 .list-item {
                     padding: 0.5 0em;
-                    width: 83%;
+                    width: 94%;
                     margin: 0 auto;
                     border-radius:0px;
                     border-bottom:1px solid rgba(255, 255, 255, 0.1);        
@@ -1759,73 +1770,85 @@ background: rgba(36, 27, 27, 1);
     }
   }
 }
-.fire-list-box{
-    overflow:scroll;
-    border-radius:10px;
-  
-    .list-header {
-              padding: 20px 2.6em;
+.listheadert{
+        width: 1160px;
+      }
+      .fire-list-box{
+        overflow: scroll;
+        border-radius:10px;
+      
+        .list-header {
+                  padding: 20px 2.5em;
+                }
+      
+                .list-item, .list-header {
+                  justify-content: flex-start;
+                  font-size:14px;
+                
+      
+                .col {
+                  font-size:14px;
+                  text-align: left;
+                  align-items: center;
+      
+                  &:nth-child(1) {
+                    width: 90px;
+                    margin-left:5px;
+                  }
+      
+                  &:nth-child(2) {
+                    width: 120px;
+                    margin-left:5px;
+                  }
+      
+                  &:nth-child(3) {
+                    width:90px;
+                    margin-left:5px;
+                  }
+      
+                  &:nth-child(4) {
+                    width: 90px;
+                    margin-left:5px;
+                  }
+      
+                  &:nth-child(5) {
+                    width: 80px;
+                    margin-left:5px;
+                  }
+      
+                  &:nth-child(6) {
+                    width: 120px;
+                    margin-left:5px;
+                  }
+      
+                  &:nth-child(7) {
+                    width: 110px;
+                    margin-left:5px;
+                  }
+      
+                  &:nth-child(8) {
+                    width: 110px;
+                    margin-left:5px;
+                  }
+      
+                  &:nth-child(9) {
+                    width: 110px;
+                    margin-left:5px;
+                    text-align: left;
+      
+                  }
+      
+                  &:nth-child(10) {
+                    width: 150px;
+                    margin-left:5px;
+                    text-align: left;
+                  }
+      
+                }
             }
-  
-            .list-item, .list-header {
-              justify-content: flex-start;
-                  overflow-x: scroll;
-              font-size:13px;
-            }
-  
-            .col {
-              font-size:13px;
-              text-align: left;
-              align-items: center;
-  
-              &:nth-child(1) {
-                width: 18%;
-              }
-  
-              &:nth-child(2) {
-                width: 35%;
-              }
-  
-              &:nth-child(3) {
-                width: 20%;
-              }
-  
-              &:nth-child(4) {
-                width: 20%;
-              }
-  
-              &:nth-child(5) {
-                width: 26%;
-              }
-  
-              &:nth-child(6) {
-                width: 44%;
-              }
-  
-              &:nth-child(7) {
-                width: 38%;
-              }
-  
-              &:nth-child(8) {
-                width: 38%;
-              }
-  
-              &:nth-child(9) {
-                width: 38%;
-                text-align: left;
-  
-              }
-  
-              &:nth-child(10) {
-                width: 40%;
-                text-align: left;
-              }
-  
-            }
-       
-            .list-item {
-                padding: 0.5 0em;
-                width: 81%;
+                .list-item {
+                    padding: 0.5 0em;
+                    width: 94%;
                 margin: 0 auto;
                 border-radius:0px;
                 border-bottom:1px solid rgba(255, 255, 255, 0.1);        

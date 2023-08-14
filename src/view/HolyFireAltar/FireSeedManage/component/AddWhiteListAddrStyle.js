@@ -140,11 +140,12 @@ text-align:center;
     position: fixed;
     z-index: 1;
     top: calc(20vh);
+    height: 500px;
     left: calc(50vw - 250px);
-    width: 520px;
+    width: 550px;
     background: #241B1B;
     border-radius: 13px;
-overflow-y: scroll;
+overflow-y: auto;
 
     border: 1px solid #3E3737;
     padding: 30px;
@@ -342,11 +343,11 @@ width: 100%;
     z-index: 1;
     top: calc(20vh);
     left: calc(50vw - 250px);
-    width: 520px;
+    width: 550px;
     background: #241B1B;
     border-radius: 13px;
-
-
+    overflow-y: auto;
+height:400px;
     border: 1px solid #3E3737;
     padding: 30px;
 
@@ -419,10 +420,10 @@ width: 100%;
     background: #241B1B;
     border-radius: 13px;
 width: 85%;
-
+height: ;
     border: 1px solid #3E3737;
     padding: 30px;
-
+    overflow-y: auto;
     .header{
       text-align: right;      
       .close{

@@ -61,36 +61,37 @@ const PidList = (props) => {
         return await viewMethod(contractTemp, state.account, name, params)
     }
     const Row = (item, index) => {
-        return <div className="list-item " key={index}>
-            <div className="col id">
-                {item.pid}
-            </div>
-            <div className="col fid">
-                0
-            </div>
-            <div className="col">
-                {item.username}
-            </div>
+        return <div className='listitemt'>
+            <div className="list-item " key={index}>
+                <div className="col pid">
+                    {item.pid}
+                </div>
+                <div className="col fid">
+                    0
+                </div>
+                <div className="col">
+                    {item.username}
+                </div>
 
-            <div className="col address">
-                <a href={develop.ethScan + "address/" + item.account} target="_blank">
-                    {item.account && <span>{item.account.substr(0, 7) + "..." + item.account.substr(item.account.length - 3, item.account.length)}</span>}
-                </a>
-            </div>
+                <div className="col address">
+                    <a href={develop.ethScan + "address/" + item.account} target="_blank">
+                        {item.account && <span>{item.account.substr(0, 7) + "..." + item.account.substr(item.account.length - 3, item.account.length)}</span>}
+                    </a>
+                </div>
 
-            <div className="col">
-                BTC Sector
-            </div>
-            <div className="col">
-                Only discuss
-            </div>
-            <div className="col">
-                0
-            </div>
-            <div className="col">
-                0
-            </div>
-            {/* <div className="col link">
+                <div className="col">
+                    BTC Sector
+                </div>
+                <div className="col">
+                    Only discuss
+                </div>
+                <div className="col">
+                    0
+                </div>
+                <div className="col">
+                    0
+                </div>
+                {/* <div className="col link">
 
                 <a href={"https://twitter.com/" + (item.Twitter ? item.Twitter : "")}
                    target="_blank">
@@ -104,19 +105,20 @@ const PidList = (props) => {
                 </a>
             </div> */}
 
-            {/* <div className="col">
+                {/* <div className="col">
                 <a href={develop.forum + "/index.php?action=profile;u=" + (item.pid ? item.pid : "0")}
                    target="_blank">
                     {item.pid}
                 </a>
             </div> */}
-            {/* <div className="col">
+                {/* <div className="col">
                 <Button type="primary" onClick={() => {
                     history("/Passport", {state: item.account})
                 }}>
                     View
                 </Button>
             </div> */}
+            </div>
         </div>
     }
     const getData = async (page) => {
@@ -224,9 +226,9 @@ const PidList = (props) => {
                             </form>
                         </div>
                     </div>
-                    <div style={{overflow:'scroll',border:'1px solid rgb(255,255,255,.1)'}}>
-                        <div className="fire-list-box">
-                            <div>
+
+                    <div className="fire-list-box">
+                        <div className='listheadert'>
                             <div className="list-header flex-box">
                                 <div className="col">
                                     PID
@@ -270,25 +272,25 @@ const PidList = (props) => {
                                 More
                             </div> */}
                             </div>
-                            </div>
-                            {
-                                !searchData && activeNav == 1 && state.PidArr.map((item, index) => (
-                                    Row(item, index)
-                                ))
-                            }
-                            {
-                                activeNav == 2 && MYPIDARR.map((item, index) => (
-                                    index >= pageCount * (curPage - 1) && index < pageCount * curPage &&
-                                    Row(item, index)
-                                ))
-                            }
-                            {
-                                searchArr.length > 0 && searchArr.map((item, index) => (
-                                    Row(item, index)
-                                ))
-                            }
                         </div>
+                        {
+                            !searchData && activeNav == 1 && state.PidArr.map((item, index) => (
+                                Row(item, index)
+                            ))
+                        }
+                        {
+                            activeNav == 2 && MYPIDARR.map((item, index) => (
+                                index >= pageCount * (curPage - 1) && index < pageCount * curPage &&
+                                Row(item, index)
+                            ))
+                        }
+                        {
+                            searchArr.length > 0 && searchArr.map((item, index) => (
+                                Row(item, index)
+                            ))
+                        }
                     </div>
+
                     <div className="pagination">
                         {
                             activeNav == 1 && <Pagination current={curPage} showSizeChanger onShowSizeChange={handleShowSizeChange}
