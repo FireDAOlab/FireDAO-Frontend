@@ -1,11 +1,12 @@
 import {fetchQuery, fetchQueryBase} from "./index";
 
 export function getWhitelist() {
-    return fetchQueryBase("patton-sr/airdropflmarb", {
+    return fetchQueryBase("patton-sr/airdropusdtarb", {
         text: `{
   claimRecords(first: 1000) {
   id
     Contract_id
+
     user
     amount
     blockTimestamp
@@ -18,7 +19,7 @@ export function getWhitelist() {
 }
 
 export function getClaimRecords() {
-    return fetchQueryBase("patton-sr/airdropflmarb", {
+    return fetchQueryBase("patton-sr/airdropusdtarb", {
         text: `{
        claimeds(first: 1000,orderBy: blockTimestamp,orderDirection: desc) {
         id
@@ -33,7 +34,7 @@ export function getClaimRecords() {
 }
 
 export function getDepositRecords() {
-    return fetchQueryBase("patton-sr/airdropflmarb", {
+    return fetchQueryBase("patton-sr/airdropusdtarb", {
         text: `{
 depositRecords(first: 1000) {
     id
@@ -46,7 +47,6 @@ depositRecords(first: 1000) {
       }`
     }, "")
 }
-
 
 
 export function getDeleteData() {

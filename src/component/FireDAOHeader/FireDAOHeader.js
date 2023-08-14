@@ -137,7 +137,7 @@ const FireDAOHeader = () => {
                                 fill="#ffffff" p-id="2669"></path>
                         </svg>
                     </div>
-                    <NavList className="firenav" />
+                    <NavList className="firenav" closeDialog= {()=>{dispatch({ type: "SET_IsShowNav", payload: false })}}/>   
                 </div>
             </div>}
 

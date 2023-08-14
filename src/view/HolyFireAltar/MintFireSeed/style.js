@@ -84,13 +84,17 @@ export default styled.div`
             margin-top: 0em;
 
             .button-box {
-              margin-top: 10em;
+              margin: 3.5em 0em 8em 0em;
             }
 
             .mint-fee {
-              padding: 0 1em;
+                height: 30px;
+                width: 100%;
+              padding: 5px 1em;
+            
               img{
                 width:28px;
+                margin-top:-5px;
               }
             }
 
@@ -176,7 +180,7 @@ export default styled.div`
             margin-top: 0em;
 
             .button-box {
-              margin-top: 7em;
+                margin: 3.5em 0em 8em 0em;
             }
 
             .mint-fee {

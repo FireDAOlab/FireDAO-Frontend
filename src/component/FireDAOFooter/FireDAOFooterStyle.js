@@ -372,26 +372,38 @@ export default styled.div`
     .ant-menu-submenu-arrow{
         display: none;
     }
-  
+    .ant-menu-dark .ant-menu-submenu-open .ant-menu-sub.ant-menu-inline{
+        .ant-menu-item {
+            padding-left: 0px!important;
+
+        }
+    }
     .ant-menu-dark.ant-menu-inline .ant-menu-item{
-        border-bottom: 1px solid rgba(255,255,255,0.15);
+        border-bottom: 1px solid rgba(255,255,255,0.05);
+  
+        text-align:left;
+        width: 85%;
+    margin: 0 0 0 60px ;
     }
     .ant-menu-inline.ant-menu-root .ant-menu-submenu-title{
         background:rgba(26, 20, 20, 1);
     }
     .ant-menu-submenu-title {
     width: 100%;
-    border-bottom: 1px solid rgba(255,255,255,0.15);
+    border-bottom: 1px solid rgba(255,255,255,0.05);
     padding-left:45px !important;
     font-size: 16px;
 font-family: Roboto-SemiBold, Roboto;
+margin: 0px;
+    
 font-weight: 600;
 color: #8A8080;
 line-height:30px;
 background:rgba(26, 20, 20, 1) ;
 .ant-menu-title-content{
     color:rgba(180, 158, 158, 1);
-    border-bottom: 1px solid rgba(255,255,255,0.15);
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    margin: 0px;
     
 
 }
@@ -474,7 +486,7 @@ line-height: 20px;
     flex-wrap: wrap;
     width: 100%;
     margin:1em 0em;
-    padding: 0em 5.5em;
+    padding: 0em 4.5em;
     .link-item {
       margin: 0.5em 0.5em;
       cursor: pointer;

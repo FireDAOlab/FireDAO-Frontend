@@ -3,6 +3,15 @@ export default styled.div`
 
   height: 100vh;
   font-weight: bold;
+     .mask{
+    position: fixed;
+    left:0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    background: #000000;
+    opacity: 0.5;
+  }
   .ant-menu-submenu-title{
     i{
       display: none;

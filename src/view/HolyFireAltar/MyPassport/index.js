@@ -433,12 +433,12 @@ const MyPassport = (props) => {
                                     Score
                                 </div>
                             </div>
-                            {
+                            {/* {
                                 SBTARR.map((item, index) => (
-                                       index > 10 * (curSBTPage - 1) && index < 10 * curSBTPage &&
-                                    <div className="list-item sbt1" key={index}>
+                                    index > 10 * (curSBTPage - 1) && index < 10 * curSBTPage && */}
+                                    <div className="list-item sbt1">
                                         <div className="col id">
-                                            SBT-{index}
+                                            {/* SBT-{index} */}dfvsdfv
                                         </div>
                                         <div className="col">
                                             88
@@ -450,8 +450,9 @@ const MyPassport = (props) => {
                                             100
                                         </div>
                                     </div>
-                                ))
-                            }
+                                    
+                                {/* ))
+                            } */}
                         </div>
                     </div>
                 </div>
@@ -556,47 +557,49 @@ const MyPassport = (props) => {
                     </div>
                     <div className="myfdt">
                         <div className="fire-list-box">
-                            <div className="list-header flex-box22">
-                                <div className="col">
-                                    Pool
+                            <div className='listheadert'>
+                                <div className="list-header flex-box22">
+                                    <div className="col">
+                                        Pool
+                                    </div>
+                                    <div className="col">
+                                        Locking
+                                    </div>
+                                    <div className="col">
+                                        Pending Extraction
+                                    </div>
+                                    <div className="col">
+                                        Available
+                                    </div>
+                                    <div className='col'>
+                                        Total
+                                    </div>
                                 </div>
-                                <div className="col">
-                                    Locking
-                                </div>
-                                <div className="col">
-                                    Pending Extraction
-                                </div>
-                                <div className="col">
-                                    Available
-                                </div>
-                                <div className='col'>
-                                    Total
-                                </div>
+                                {
+                                    //    SBTARR.map((item, index) => (
+                                    //    index > 10 * (curSBTPage - 1) && index < 10 * curSBTPage &&
+
+                                    <div className="list-item sbt2">
+
+                                        <div className="col id">
+                                            sfff
+                                        </div>
+                                        <div className="col">
+                                            vdaf
+                                        </div>
+                                        <div className="col">
+                                            vafd
+                                        </div>
+                                        <div className="col">
+                                            advf
+                                        </div>
+                                        <div className="col">
+                                            vfdavfvfdF
+                                        </div>
+                                    </div>
+                                    //    ))
+                                }
                             </div>
-                            {
-                                //    SBTARR.map((item, index) => (
-                                //    index > 10 * (curSBTPage - 1) && index < 10 * curSBTPage &&
-
-                                <div className="list-item sbt2">
-
-                                    <div className="col id">
-                                        sfff
-                                    </div>
-                                    <div className="col">
-                                        vdaf
-                                    </div>
-                                    <div className="col">
-                                        vafd
-                                    </div>
-                                    <div className="col">
-                                        advf
-                                    </div>
-                                    <div className="col">
-                                        vfdavfvfdF
-                                    </div>
-                                </div>
-                                //    ))
-                            }
                         </div>
                     </div>
                 </div>

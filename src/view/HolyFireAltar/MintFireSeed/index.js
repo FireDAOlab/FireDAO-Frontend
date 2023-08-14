@@ -240,7 +240,7 @@ const MintFireSeed = (props) => {
                                     label="Minting Fee"
                                 >
                                     <div className="mint-fee">
-                                        {fee}
+                                       <span className='feeval'> {fee}</span>
                                         <div style={{float: 'right'}}>
                                             <img src={ethereum}/><span style={{marginLeft: '10px'}}>ETH</span>
                                         </div>

@@ -285,47 +285,47 @@ const Register = (props) => {
                     name="BIO"
                     label="Bio"
                     className='dx'
-                    initialValue={"Let's build the Bit Civilization together!"}
+                    initialValues={"Let's build the Bit Civilization together!"}
                     rules={[
                         { max: 200, message: "BIO length need < 200" }]}
                         
                 >
-                    <TextArea allowClear defaultValue={"Let's build the Bit Civilization together!"} style={{borderRadius:'10px'}} />
+                    <TextArea allowClear placeholder={"Let's build the Bit Civilization together!"} style={{borderRadius:'10px'}} />
                 </Form.Item>
                 <Form.Item
                     name="Twitter"
                     label="Twitter"
-                    initialValue={"FireDAOlab"}
+                    initialValues={"FireDAOlab"}
                     rules={[
                         { max: 50, message: "Twitter length need < 50" },]}
                 >
                     <Input
                         prefix={<TwitterOutlined />}
-                        defaultValue={"FireDAOlab"}
+                        placeholder={"FireDAOlab"}
                         allowClear
                     />
                 </Form.Item>
                 <Form.Item
                     name="telegram"
                     label="Telegram"
-                    initialValue={"FireDAOEN"}
+                    initialValues={"FireDAOEN"}
                     rules={[
                         { max: 50, message: "Telegram length need < 50" },]}
                 >
                     <Input
                         prefix={<SendOutlined />}
-                        defaultValue={"FireDAOEN"}
+                        placeholder={"FireDAOEN"}
                         allowClear
                     />
                 </Form.Item>
                 <Form.Item
                     name="Website"
                     label="Website"
-                    initialValue={"www.FireDAO.co"}
+                    initialValues={"www.FireDAO.co"}
                     rules={[
                         { max: 50, message: "Website length need < 50" },]}
                 >
-                    <Input defaultValue={"www.FireDAO.co"} allowClear />
+                    <Input placeholder={"www.FireDAO.co"} allowClear />
                 </Form.Item>
 
                 <div className="mint-tip">
@@ -333,7 +333,7 @@ const Register = (props) => {
                     <Form.Item
                         className="choosePayType"
                         name="paytype"
-                        initialValue="1"
+                        initialValues="1"
                         rules={[
                             { max: 50, message: "Telegram length need < 50" },]}
                     >

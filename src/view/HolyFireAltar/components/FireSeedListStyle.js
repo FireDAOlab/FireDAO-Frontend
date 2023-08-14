@@ -33,8 +33,9 @@ background: #140E0E;
       p{
         text-align:left;
         margin: 10px;
-        font-size: 20px;
-font-family: Roboto-Bold, Roboto;
+        font-size: 20px;         
+         font-family: Squada One-Regular, Squada One;
+
 font-weight: bold;
       }
     }
@@ -128,7 +129,8 @@ background: #140E0E;
         text-align:left;
         margin: 10px;
         font-size: 20px;
-font-family: Roboto-Bold, Roboto;
+        font-family: Squada One-Regular, Squada One;
+
 font-weight: bold;
       }
     }
@@ -221,7 +223,8 @@ background: #140E0E;
         text-align:left;
         margin: 10px;
         font-size: 20px;
-font-family: Roboto-Bold, Roboto;
+        font-family: Squada One-Regular, Squada One;
+
 font-weight: bold;
       }
     }
@@ -316,7 +319,7 @@ background: #140E0E;
         text-align:left;
         margin: 10px;
         font-size: 18px;
-font-family: Roboto-Bold, Roboto;
+        font-family: Squada One-Regular, Squada One;
 font-weight: bold;
       }
     }
