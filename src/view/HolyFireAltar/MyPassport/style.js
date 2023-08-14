@@ -9,7 +9,12 @@ export default styled.div`
   .panel-box{
     .panel-container{
       border:none
+
+    
     }
+    /* .asc :last-child .sbt1{
+            border-bottom:none;
+        } */
   }
   @media screen and (min-width: 1950px) {
     .boxhr{
@@ -23,7 +28,7 @@ export default styled.div`
     }
     .ecos{
         font-weight:600;
-font-family: Squada One-Regular, Squada One;
+        font-family: Helvetica-Bold, Helvetica, sans-serif;
           font-size:17px;
         }
         .ecoshr{
@@ -119,13 +124,14 @@ text-align:center;
                 /* background: #3F3535; */
                 
                 div{
-                 background: rgba(254, 109, 70, 0.20);
               margin-left: 1em;
                   width: 80px;
                   height: 30px;
-                  border-radius: 50px;
-                  border: 1px solid rgba(254, 109, 70, 0.50);
-                  color: rgba(254, 109, 70, 1);
+                  color: rgb(254, 109, 70);
+    background: rgba(254, 109, 70, 0.1);
+    border-radius: 30px;
+    opacity: 1;
+    border: 1px solid rgba(254, 109, 70, 0.5);
                 }
               }
               .reputation {
@@ -144,15 +150,16 @@ text-align:center;
               .reputation-data {
                 text-align:center;
                 line-height:30px;
-                background: rgba(254, 109, 70, 0.20);
                 margin-left:10px;
                   width: 80px;          
                   font-weight: 400;
 
                   height: 30px;
-                  border-radius: 50px;
-                  border: 1px solid rgba(254, 109, 70, 0.50);
-                  color: rgba(254, 109, 70, 1);
+                  color: rgb(254, 109, 70);
+    background: rgba(254, 109, 70, 0.1);
+    border-radius: 30px;
+    opacity: 1;
+    border: 1px solid rgba(254, 109, 70, 0.5);
               }
             }
 
@@ -237,13 +244,14 @@ text-align:center;
                 text-align:center;
                 font-weight:400;
                 line-height:30px;
-                background: rgba(205, 158, 87, 0.20);
                 margin-left:20px;
                   width: 120px;
                   height: 30px;
-                  border-radius: 50px;
-                  border: 1px solid rgba(205, 158, 87, 0.20);
-                  color: rgba(205, 158, 87, 1);
+                  color: rgb(255, 146, 96);
+background: rgba(205, 158, 87, 0.1);
+    border-radius: 30px;
+    opacity: 1;
+    border: 1px solid rgba(205, 158, 87, 0.5);
               }
             img {
               cursor: pointer;
@@ -265,14 +273,15 @@ text-align:center;
                 .reputation-data {
                 text-align:center;
                 line-height:30px;
-                background: rgba(254, 109, 70, 0.20);
                 margin-left:20px;
                   width: 80px;              font-weight: 400;
 
                   height: 30px;
-                  border-radius: 50px;
-                  border: 1px solid rgba(254, 109, 70, 0.50);
-                  color: rgba(254, 109, 70, 1);
+                  color: rgb(254, 109, 70);
+    background: rgba(254, 109, 70, 0.1);
+    border-radius: 30px;
+    opacity: 1;
+    border: 1px solid rgba(254, 109, 70, 0.5);
               }
             span {
               margin-left: 0.5em;
@@ -364,7 +373,8 @@ margin: 1em auto;
                 font-weight: bold;   
               p{
                 font-weight: bold;
-            font-family: Squada One-Regular, Squada One;
+            
+font-family: Squada One-Regular, Squada One;
             font-size:28px;
             line-height:45px;
         }
@@ -416,10 +426,11 @@ font-family: Roboto-SemiBold, Roboto;
               width: 70px;
               line-height:30px;
 height: 30px;
-color: rgba(254, 109, 70, 1);
-              background: rgba(254,109,70,0.1);
-border-radius: 50px 50px 50px 50px;
-border: 1px solid rgba(254,109,70,0.5);
+color: rgb(254, 109, 70);
+    background: rgba(254, 109, 70, 0.1);
+    border-radius: 30px;
+    opacity: 1;
+    border: 1px solid rgba(254, 109, 70, 0.5);
             }
           }
           }
@@ -440,9 +451,10 @@ border: 1px solid rgba(254,109,70,0.5);
 
 .myFireSeed {
     margin-top:2em;
+   
   .fire-list-box {
           .flex-box11 {
-            padding: 20px 2.8em;
+            padding: 20px 2.5em;
           }
 
           .sbt1, .flex-box11{
@@ -476,13 +488,13 @@ font-size:16px;
           }
 
           .sbt1 {
-            padding: 0.5em 1em;
+            padding:1em 0.5em ;
           }
 
           .sbt1 {
             font-size:16px;
             padding: 0.5 0em;
-            width: 94%;
+            width: 96%;
             margin: 0 auto;
             border-radius:0px;
             border-bottom:1px solid rgba(255, 255, 255, 0.1);
@@ -512,13 +524,12 @@ font-size:16px;
         margin-top:2em;
        .fire-list-box {
           .flex-box11 {
-            padding: 20px 2.8em;
+            padding: 20px 2.2em;
           }
 
           .sbt1, .flex-box11{
             justify-content: flex-start;
-          }
-
+         
           .col {
             text-align: left;
             align-items: center;
@@ -544,21 +555,21 @@ font-size:16px;
             }
 
           }
+        }
+    
 .rtth{
     width: 35px;
 }
-          .sbt1 {
-            padding: 0.5em 1em;
+.sbt1 {
+            padding: 0em;
 .ss1{
-    padding: 0.5em 0;
+    padding: 1em 0.5em;
     border-radius:0px;
 }
-            
-          }
-
-          .sbt1 {
+}
+          .ss1 {
             font-size:16px;
-            padding: 0.5 0em;
+            padding:1em 0.5em;
             width: 94%;
             margin: 0 auto;
             border-radius:0px;
@@ -585,11 +596,12 @@ font-size:16px;
    
 }
 }
+
     .myfdt {
         margin-top:2em;
        .fire-list-box {
           .flex-box22 {
-            padding: 20px 4em;
+            padding: 20px 1.6em;
           }
 
           .sbt2, .flex-box22{
@@ -625,8 +637,8 @@ font-size:16px;
           
         .sbt2 {
             font-size:16px;
-            padding: 0.5 0em;
-            width: 94%;
+            padding: 1em 0.5em;
+            width: 96%;
             margin: 0 auto;
             border-radius:0px;
             border-bottom:1px solid rgba(255, 255, 255, 0.1);
@@ -656,15 +668,16 @@ font-size:16px;
       }
       .fidkk{
         margin-left:8px;
-        color:rgba(254, 109, 70, 1);
         width: 45%;
         height: 35px;
         line-height: 35px;
         font-size:16px;
         text-align:center;
-        border: 1px solid rgba(254,109,70,0.5);
-        border-radius: 25px;
-        background: rgba(254,109,70,0.1);      
+        color: rgb(254, 109, 70);
+    background: rgba(254, 109, 70, 0.1);
+    border-radius: 30px;
+    opacity: 1;
+    border: 1px solid rgba(254, 109, 70, 0.5); 
       }
     }
     .wall{
@@ -678,15 +691,14 @@ font-size:16px;
       }
       .wallkk{
         margin-left:8px;
-        color:rgba(254, 109, 70, 1);
         width: 60%;
         height: 35px;
         line-height: 35px;
         font-size:16px;
         text-align:center;
-        border: 1px solid rgba(254,109,70,0.5);
-        border-radius: 25px;
-        background: rgba(254,109,70,0.1);      
+        color: rgb(254, 109, 70);
+    opacity: 1;
+    border: none;   
       }
     }
     .fdt{
@@ -706,27 +718,29 @@ font-size:16px;
   
       .fdtkk{
         margin-left:8px;
-        color:rgba(254, 109, 70, 1);
         width: 70%;
         height: 35px;
         line-height: 35px;
         font-size:16px;
         text-align:center;
-        border: 1px solid rgba(254,109,70,0.5);
-        border-radius: 25px;
-        background: rgba(254,109,70,0.1);      
+        color: rgb(254, 109, 70);
+    background: rgba(254, 109, 70, 0.1);
+    border-radius: 30px;
+    opacity: 1;
+    border: 1px solid rgba(254, 109, 70, 0.5);   
       }
       .valuekk{
         margin-left:8px;
-        color:rgba(254, 109, 70, 1);
         width: 70%;
         height: 35px;
         line-height: 35px;
         font-size:16px;
         text-align:center;
-        border: 1px solid rgba(254,109,70,0.5);
-        border-radius: 25px;
-        background: rgba(254,109,70,0.1);        
+        color: rgb(254, 109, 70);
+    background: rgba(254, 109, 70, 0.1);
+    border-radius: 30px;
+    opacity: 1;
+    border: 1px solid rgba(254, 109, 70, 0.5);      
       }
     }
     }
@@ -745,7 +759,7 @@ font-size:16px;
     }
     .ecos{
         font-weight:600;
-font-family: Squada One-Regular, Squada One;
+        font-family: Helvetica-Bold, Helvetica, sans-serif;
           font-size:17px;
         }
         .ecoshr{
@@ -841,13 +855,14 @@ text-align:center;
                 /* background: #3F3535; */
                 
                 div{
-                 background: rgba(254, 109, 70, 0.20);
               margin-left: 1em;
                   width: 80px;
                   height: 30px;
-                  border-radius: 50px;
-                  border: 1px solid rgba(254, 109, 70, 0.50);
-                  color: rgba(254, 109, 70, 1);
+                  color: rgb(254, 109, 70);
+    background: rgba(254, 109, 70, 0.1);
+    border-radius: 30px;
+    opacity: 1;
+    border: 1px solid rgba(254, 109, 70, 0.5);
                 }
               }
               .reputation {
@@ -866,14 +881,16 @@ text-align:center;
               .reputation-data {
                 text-align:center;
                 line-height:30px;
-                background: rgba(254, 109, 70, 0.20);
                 margin-left:10px;
-                  width: 80px;              font-weight: 400;
+                  width: 80px;          
+                  font-weight: 400;
 
                   height: 30px;
-                  border-radius: 50px;
-                  border: 1px solid rgba(254, 109, 70, 0.50);
-                  color: rgba(254, 109, 70, 1);
+                  color: rgb(254, 109, 70);
+    background: rgba(254, 109, 70, 0.1);
+    border-radius: 30px;
+    opacity: 1;
+    border: 1px solid rgba(254, 109, 70, 0.5);
               }
             }
 
@@ -956,15 +973,16 @@ text-align:center;
                 color: rgba(138, 128, 128, 1);
             .address-data {
                 text-align:center;
+                font-weight:400;
                 line-height:30px;
-                background: rgba(205, 158, 87, 0.20);
                 margin-left:20px;
                   width: 120px;
-                  font-weight:400;
                   height: 30px;
-                  border-radius: 50px;
-                  border: 1px solid rgba(205, 158, 87, 0.20);
-                  color: rgba(205, 158, 87, 1);
+                  color: rgb(255, 146, 96);
+background: rgba(205, 158, 87, 0.1);
+    border-radius: 30px;
+    opacity: 1;
+    border: 1px solid rgba(205, 158, 87, 0.5);
               }
             img {
               cursor: pointer;
@@ -986,14 +1004,15 @@ text-align:center;
                 .reputation-data {
                 text-align:center;
                 line-height:30px;
-                background: rgba(254, 109, 70, 0.20);
-                margin-left:20px;              font-weight: 400;
+                margin-left:20px;
+                  width: 80px;              font-weight: 400;
 
-                  width: 80px;
                   height: 30px;
-                  border-radius: 50px;
-                  border: 1px solid rgba(254, 109, 70, 0.50);
-                  color: rgba(254, 109, 70, 1);
+                  color: rgb(254, 109, 70);
+    background: rgba(254, 109, 70, 0.1);
+    border-radius: 30px;
+    opacity: 1;
+    border: 1px solid rgba(254, 109, 70, 0.5);
               }
             span {
               margin-left: 0.5em;
@@ -1010,7 +1029,7 @@ text-align:center;
           /* flex-wrap: wrap; */
           .flex-box {
             
-          width: 75%;
+          width:75%;
           }
           .link-item {
             padding-top: 1.2em;
@@ -1085,7 +1104,8 @@ margin: 1em auto;
                 font-weight: bold;   
               p{
                 font-weight: bold;
-            font-family: Squada One-Regular, Squada One;
+                font-family: Squada One-Regular, Squada One;
+
             font-size:28px;
             line-height:45px;
         }
@@ -1137,10 +1157,11 @@ font-family: Roboto-SemiBold, Roboto;
               width: 70px;
               line-height:30px;
 height: 30px;
-color: rgba(254, 109, 70, 1);
-              background: rgba(254,109,70,0.1);
-border-radius: 50px 50px 50px 50px;
-border: 1px solid rgba(254,109,70,0.5);
+color: rgb(254, 109, 70);
+    background: rgba(254, 109, 70, 0.1);
+    border-radius: 30px;
+    opacity: 1;
+    border: 1px solid rgba(254, 109, 70, 0.5);
             }
           }
           }
@@ -1161,9 +1182,10 @@ border: 1px solid rgba(254,109,70,0.5);
 
 .myFireSeed {
     margin-top:2em;
+   
   .fire-list-box {
           .flex-box11 {
-            padding: 20px 2.8em;
+            padding: 20px 2.5em;
           }
 
           .sbt1, .flex-box11{
@@ -1197,13 +1219,13 @@ font-size:16px;
           }
 
           .sbt1 {
-            padding: 0.5em 1em;
+            padding:1em 0.5em ;
           }
 
           .sbt1 {
             font-size:16px;
             padding: 0.5 0em;
-            width: 94%;
+            width: 96%;
             margin: 0 auto;
             border-radius:0px;
             border-bottom:1px solid rgba(255, 255, 255, 0.1);
@@ -1233,7 +1255,7 @@ font-size:16px;
         margin-top:2em;
        .fire-list-box {
           .flex-box11 {
-            padding: 20px 2.8em;
+            padding: 20px 1.6em;
           }
 
           .sbt1, .flex-box11{
@@ -1269,18 +1291,9 @@ font-size:16px;
     width: 35px;
 }
           .sbt1 {
-            padding: 0.5em 1em;
-.ss1{
-    padding: 0.5em 0;
-    border-radius:0px;
-}
-            
-          }
-
-          .sbt1 {
             font-size:16px;
-            padding: 0.5 0em;
-            width: 94%;
+            padding:1em 0.5em;
+            width: 96%;
             margin: 0 auto;
             border-radius:0px;
             border-bottom:1px solid rgba(255, 255, 255, 0.1);
@@ -1306,11 +1319,12 @@ font-size:16px;
    
 }
 }
+
     .myfdt {
         margin-top:2em;
        .fire-list-box {
           .flex-box22 {
-            padding: 20px 4em;
+            padding: 20px 1.6em;
           }
 
           .sbt2, .flex-box22{
@@ -1346,8 +1360,8 @@ font-size:16px;
           
         .sbt2 {
             font-size:16px;
-            padding: 0.5 0em;
-            width: 94%;
+            padding: 1em 0.5em;
+            width: 96%;
             margin: 0 auto;
             border-radius:0px;
             border-bottom:1px solid rgba(255, 255, 255, 0.1);
@@ -1377,15 +1391,16 @@ font-size:16px;
       }
       .fidkk{
         margin-left:8px;
-        color:rgba(254, 109, 70, 1);
         width: 45%;
         height: 35px;
         line-height: 35px;
         font-size:16px;
         text-align:center;
-        border: 1px solid rgba(254,109,70,0.5);
-        border-radius: 25px;
-        background: rgba(254,109,70,0.1);      
+        color: rgb(254, 109, 70);
+    background: rgba(254, 109, 70, 0.1);
+    border-radius: 30px;
+    opacity: 1;
+    border: 1px solid rgba(254, 109, 70, 0.5); 
       }
     }
     .wall{
@@ -1399,15 +1414,14 @@ font-size:16px;
       }
       .wallkk{
         margin-left:8px;
-        color:rgba(254, 109, 70, 1);
         width: 60%;
         height: 35px;
         line-height: 35px;
         font-size:16px;
         text-align:center;
-        border: 1px solid rgba(254,109,70,0.5);
-        border-radius: 25px;
-        background: rgba(254,109,70,0.1);      
+        color: rgb(254, 109, 70);
+    opacity: 1;
+    border: none;   
       }
     }
     .fdt{
@@ -1427,32 +1441,33 @@ font-size:16px;
   
       .fdtkk{
         margin-left:8px;
-        color:rgba(254, 109, 70, 1);
         width: 70%;
         height: 35px;
         line-height: 35px;
         font-size:16px;
         text-align:center;
-        border: 1px solid rgba(254,109,70,0.5);
-        border-radius: 25px;
-        background: rgba(254,109,70,0.1);      
+        color: rgb(254, 109, 70);
+    background: rgba(254, 109, 70, 0.1);
+    border-radius: 30px;
+    opacity: 1;
+    border: 1px solid rgba(254, 109, 70, 0.5);   
       }
       .valuekk{
         margin-left:8px;
-        color:rgba(254, 109, 70, 1);
         width: 70%;
         height: 35px;
         line-height: 35px;
         font-size:16px;
         text-align:center;
-        border: 1px solid rgba(254,109,70,0.5);
-        border-radius: 25px;
-        background: rgba(254,109,70,0.1);        
+        color: rgb(254, 109, 70);
+    background: rgba(254, 109, 70, 0.1);
+    border-radius: 30px;
+    opacity: 1;
+    border: 1px solid rgba(254, 109, 70, 0.5);      
       }
     }
     }
   }
-
   @media screen and (max-width: 1500px) {
     .boxhr{
       display: none;
@@ -1559,13 +1574,16 @@ margin-top:0em;
                 /* background: #3F3535; */
                 
                 div{
-                 background: rgba(254, 109, 70, 0.20);
               margin-left: 1em;
                   width: 80px;
                   height: 30px;
                   border-radius: 50px;
                   border: 1px solid rgba(254, 109, 70, 0.50);
-                  color: rgba(254, 109, 70, 1);
+                  color: rgba(254, 109, 70, 1); color: rgb(254, 109, 70);
+    background: rgba(254, 109, 70, 0.1);
+    border-radius: 30px;
+    opacity: 1;
+    border: 1px solid rgba(254, 109, 70, 0.5); 
                 }
               }
               .reputation {
@@ -1585,13 +1603,14 @@ margin-top:0em;
                 text-align:center;              font-weight: 400;
 
                 line-height:30px;
-                background: rgba(254, 109, 70, 0.20);
                 margin-left:10px;
                   width: 80px;
                   height: 30px;
-                  border-radius: 50px;
-                  border: 1px solid rgba(254, 109, 70, 0.50);
-                  color: rgba(254, 109, 70, 1);
+                  color: rgb(254, 109, 70);
+    background: rgba(254, 109, 70, 0.1);
+    border-radius: 30px;
+    opacity: 1;
+    border: 1px solid rgba(254, 109, 70, 0.5); 
               }
             }
 
@@ -1676,14 +1695,15 @@ margin-top:0em;
             .address-data {
                 text-align:center;
                 line-height:30px;
-                background: rgba(205, 158, 87, 0.20);
                 margin-left:20px;
                   width: 120px;
                   height: 30px;
                   font-weight:400;
-                  border-radius: 50px;
-                  border: 1px solid rgba(205, 158, 87, 0.20);
-                  color: rgba(205, 158, 87, 1);
+                  color: rgb(255, 146, 96);
+background: rgba(205, 158, 87, 0.1);
+    border-radius: 30px;
+    opacity: 1;
+    border: 1px solid rgba(205, 158, 87, 0.5);
               }
             img {
               cursor: pointer;
@@ -1704,15 +1724,16 @@ margin-top:0em;
                 color: rgba(138, 128, 128, 1);
                 .reputation-data {
                 text-align:center;
-                line-height:30px;              font-weight: 400;
-
-                background: rgba(254, 109, 70, 0.20);
+                line-height:30px;              
+                font-weight: 400;
                 margin-left:20px;
                   width: 80px;
                   height: 30px;
-                  border-radius: 50px;
-                  border: 1px solid rgba(254, 109, 70, 0.50);
-                  color: rgba(254, 109, 70, 1);
+                  color: rgb(254, 109, 70);
+    background: rgba(254, 109, 70, 0.1);
+    border-radius: 30px;
+    opacity: 1;
+    border: 1px solid rgba(254, 109, 70, 0.5); 
               }
             span {
               margin-left: 0.5em;
@@ -1803,9 +1824,10 @@ margin: 1em auto;
 
             .name {
               font-weight: bold;
-              
-              font-family: Helvetica-Bold, Helvetica, sans-serif;
+
               p{
+                font-family: Squada One-Regular, Squada One;
+
             font-size:18px;
             line-height:45px;
         }
@@ -1855,11 +1877,11 @@ font-family: Roboto-SemiBold, Roboto;
               width: 65px;
               line-height:30px;
 height: 30px;
-color: rgba(254, 109, 70, 1);
-
-              background: rgba(254,109,70,0.1);
-border-radius: 50px 50px 50px 50px;
-border: 1px solid rgba(254,109,70,0.5);
+color: rgb(254, 109, 70);
+    background: rgba(254, 109, 70, 0.1);
+    border-radius: 30px;
+    opacity: 1;
+    border: 1px solid rgba(254, 109, 70, 0.5);
             }
           }
           }
@@ -1874,7 +1896,7 @@ border: 1px solid rgba(254,109,70,0.5);
     margin-top:2em;
   .fire-list-box {
           .flex-box11 {
-            padding: 20px 3em;
+            padding: 20px 2em;
           }
 .list-item{
     padding: 0.5em 0em;
@@ -1910,13 +1932,13 @@ font-size:14px;
           }
 
           .sbt1 {
-            padding: 0.5em 1em;
+            padding:1em 0.5em ;
           }
 
           .sbt1 {
             font-size:14px;
             padding: 0.5 0em;
-            width: 91%;
+            width: 93%;
             margin: 0 auto;
             border-radius:0px;
             border-bottom:1px solid rgba(255, 255, 255, 0.1);
@@ -1946,7 +1968,7 @@ font-size:14px;
         margin-top:2em;
        .fire-list-box {
         .flex-box11 {
-            padding: 20px 3.2em;
+            padding: 20px 2.5em;
           }
 
           .sbt1, .flex-box11{
@@ -1984,18 +2006,18 @@ font-size:14px;
     width: 35px;
 }
           .sbt1 {
-            padding: 0.5em 1em;
+            padding: 0em;
 .ss1{
-    padding: 0.5em 0;
+    padding: 1em 0.5em;
     border-radius:0px;
 }
             
           }
 
-          .sbt1 {
+          .ss1 {
             font-size:14px;
             padding: 0.5 0em;
-            width: 91%;
+            width: 96%;
             margin: 0 auto;
             border-radius:0px;
             border-bottom:1px solid rgba(255, 255, 255, 0.1);
@@ -2092,15 +2114,16 @@ font-size:14px;
       }
       .fidkk{
         margin-left:8px;
-        color:rgba(254, 109, 70, 1);
         width: 45%;
         height: 35px;
         line-height: 35px;
         font-size:14px;
         text-align:center;
-        border: 1px solid rgba(254,109,70,0.5);
-        border-radius: 25px;
-        background: rgba(254,109,70,0.1);      
+        color: rgb(254, 109, 70);
+    background: rgba(254, 109, 70, 0.1);
+    border-radius: 30px;
+    opacity: 1;
+    border: 1px solid rgba(254, 109, 70, 0.5);   
       }
     }
     .wall{
@@ -2114,15 +2137,16 @@ font-size:14px;
       }
       .wallkk{
         margin-left:8px;
-        color:rgba(254, 109, 70, 1);
         width: 58%;
         height: 35px;
         line-height: 35px;
         font-size:14px;
         text-align:center;
-        border: 1px solid rgba(254,109,70,0.5);
-        border-radius: 25px;
-        background: rgba(254,109,70,0.1);      
+        color: rgb(254, 109, 70);
+    background: rgba(254, 109, 70, 0.1);
+    border-radius: 30px;
+    opacity: 1;
+    border: 1px solid rgba(254, 109, 70, 0.5);
       }
     }
     .fdt{
@@ -2142,27 +2166,29 @@ font-size:14px;
   
       .fdtkk{
         margin-left:8px;
-        color:rgba(254, 109, 70, 1);
         width: 70%;
         height: 35px;
         line-height: 35px;
         font-size:14px;
         text-align:center;
-        border: 1px solid rgba(254,109,70,0.5);
-        border-radius: 25px;
-        background: rgba(254,109,70,0.1);      
+        color: rgb(254, 109, 70);
+    background: rgba(254, 109, 70, 0.1);
+    border-radius: 30px;
+    opacity: 1;
+    border: 1px solid rgba(254, 109, 70, 0.5);
       }
       .valuekk{
         margin-left:8px;
-        color:rgba(254, 109, 70, 1);
         width: 70%;
         height: 35px;
         line-height: 35px;
         font-size:14px;
         text-align:center;
-        border: 1px solid rgba(254,109,70,0.5);
-        border-radius: 25px;
-        background: rgba(254,109,70,0.1);        
+        color: rgb(254, 109, 70);
+    background: rgba(254, 109, 70, 0.1);
+    border-radius: 30px;
+    opacity: 1;
+    border: 1px solid rgba(254, 109, 70, 0.5);    
       }
     }
     }
@@ -2190,6 +2216,7 @@ font-size:14px;
   
   }
 }
+
 .panel-title11{
       display: flex;
       justify-content:space-between;
@@ -2298,15 +2325,15 @@ line-height: 19px;
             /* background: #3F3535; */
             
             div{
-           
-background: rgba(254,109,70,0.1);
           margin-left: 0em;
               width: 80px;
               height: 30px;
               line-height:30px;
-              border-radius: 50px;
-              border: 1px solid rgba(254, 109, 70, 0.50);
-              color: rgba(254, 109, 70, 1);
+              color: rgb(254, 109, 70);
+    background: rgba(254, 109, 70, 0.1);
+    border-radius: 30px;
+    opacity: 1;
+    border: 1px solid rgba(254, 109, 70, 0.5);
             }
           }
           .reputation {
@@ -2324,16 +2351,16 @@ background: rgba(254,109,70,0.1);
 
           .reputation-data {
             text-align:center;
-            line-height:30px;              font-weight: 400;
-
-          
-background: rgba(254,109,70,0.1);
+            line-height:30px;              
+            font-weight: 400;
             margin-left:0px;
               width: 80px;
               height: 30px;
-              border-radius: 50px;
-              border: 1px solid rgba(254, 109, 70, 0.50);
-              color: rgba(254, 109, 70, 1);
+              color: rgb(254, 109, 70);
+    background: rgba(254, 109, 70, 0.1);
+    border-radius: 30px;
+    opacity: 1;
+    border: 1px solid rgba(254, 109, 70, 0.5);
           }
         }
 
@@ -2390,10 +2417,11 @@ background: rgba(254,109,70,0.1);
             width: 80px;
             text-align:center;
               height: 30px;
-              border-radius: 50px;
-              border: 1px solid rgba(254, 109, 70, 0.50);
-              color: rgba(254, 109, 70, 1);
-background: rgba(254,109,70,0.1);
+              color: rgb(254, 109, 70);
+    background: rgba(254, 109, 70, 0.1);
+    border-radius: 30px;
+    opacity: 1;
+    border: 1px solid rgba(254, 109, 70, 0.5);
           }
       .name {
         font-size: 14px;
@@ -2419,14 +2447,16 @@ color: #8A8080;
         .address-data {
             text-align:center;
             line-height:30px;
-            background: rgba(205, 158, 87, 0.10);
             margin-left:20px;
             font-weight:400;
               width: 120px;
               height: 30px;
-              border-radius: 50px;
-              border: 1px solid rgba(205, 158, 87, 0.20);
-              color: rgba(205, 158, 87, 1);
+              color: rgb(255, 146, 96);
+background: rgba(205, 158, 87, 0.1);
+    border-radius: 30px;
+    opacity: 1;
+    border: 1px solid rgba(205, 158, 87, 0.5);
+
           }
         img {
           cursor: pointer;
@@ -2452,14 +2482,16 @@ color: #8A8080;
             .reputation-data {
             text-align:center;
             line-height:30px;
-            background: rgba(254, 109, 70, 0.10);
             margin-left:0px;
-              width: 80px;              font-weight: 400;
+              width: 80px;             
+               font-weight: 400;
 
               height: 30px;
-              border-radius: 50px;
-              border: 1px solid rgba(254, 109, 70, 0.50);
-              color: rgba(254, 109, 70, 1);
+              color: rgb(254, 109, 70);
+    background: rgba(254, 109, 70, 0.1);
+    border-radius: 30px;
+    opacity: 1;
+    border: 1px solid rgba(254, 109, 70, 0.5);
           }
         span {
           margin-left: 0.5em;
@@ -2549,9 +2581,9 @@ margin: 0em auto;
 
         .name {
           font-weight: bold;
-          
-          font-family: Helvetica-Bold, Helvetica, sans-serif;
           p{
+            font-family: Squada One-Regular, Squada One;
+
         font-size:20px;
         line-height:45px;
               }
@@ -2601,10 +2633,11 @@ font-family: Roboto-SemiBold, Roboto;
           width: 65px;
           line-height:30px;
 height: 30px;
-color: rgba(254, 109, 70, 1);
-          background: rgba(254,109,70,0.1);
-border-radius: 50px 50px 50px 50px;
-border: 1px solid rgba(254,109,70,0.5);
+color: rgb(254, 109, 70);
+    background: rgba(254, 109, 70, 0.1);
+    border-radius: 30px;
+    opacity: 1;
+    border: 1px solid rgba(254, 109, 70, 0.5);
         }
       }
       }
@@ -2755,15 +2788,18 @@ font-size:12px;
           }
         }
     }
-
+    .listheadert{
+    width: 430px;
+}
     .myfdt {
         margin-top:2em;
        .fire-list-box {
+        overflow:scroll;
         .list-item{
             padding: 0.5em 0;
         }
           .flex-box22 {
-            padding: 20px 2em;
+            padding: 20px 2.6em;
           }
 
           .sbt2, .flex-box22{
@@ -2775,23 +2811,23 @@ font-size:12px;
             align-items: center;
 font-size:12px;
             &:nth-child(1) {
-              width:10%;
+              width:40px;
              margin-left:0px;
             }
             &:nth-child(2) {
-              width:16%;
+              width:60px;
              margin-left:5px;
             }
             &:nth-child(3) {
-              width:36%;
+              width:120px;
              margin-left:5px;
             }
             &:nth-child(4) {
-              width:17%;
+              width:65px;
              margin-left:5px;
             }
             &:nth-child(5) {
-              width:16%;
+              width:60px;
              margin-left:5px;
             }
 
@@ -2839,15 +2875,16 @@ font-size:12px;
   }
   .soulkk{
     margin-left:8px;
-    color:rgba(205, 158, 87, 1);
     width: 40%;
     height: 35px;
     line-height:35px;
 
     text-align:center;
-    background: rgba(205,158,87,0.1);
-border-radius: 30px 30px 30px 30px;
-border: 1px solid rgba(205,158,87,0.5);
+    color: rgb(255, 146, 96);
+background: rgba(205, 158, 87, 0.1);
+    border-radius: 30px;
+    opacity: 1;
+    border: 1px solid rgba(205, 158, 87, 0.5);
   }
 }
 .fidr{
@@ -3080,14 +3117,15 @@ line-height: 19px;
             
             div{
            
-background: rgba(254,109,70,0.1);
           margin-left: 0em;
               width: 80px;
               height: 30px;
               line-height:30px;
-              border-radius: 50px;
-              border: 1px solid rgba(254, 109, 70, 0.50);
-              color: rgba(254, 109, 70, 1);
+              color: rgb(254, 109, 70);
+    background: rgba(254, 109, 70, 0.1);
+    border-radius: 30px;
+    opacity: 1;
+    border: 1px solid rgba(254, 109, 70, 0.5);
             }
           }
           .reputation {
@@ -3105,16 +3143,15 @@ background: rgba(254,109,70,0.1);
 
           .reputation-data {
             text-align:center;
-            line-height:30px;              font-weight: 400;
-
-          
-background: rgba(254,109,70,0.1);
+            line-height:30px;              
+            font-weight: 400;
             margin-left:0px;
               width: 80px;
-              height: 30px;
-              border-radius: 50px;
-              border: 1px solid rgba(254, 109, 70, 0.50);
-              color: rgba(254, 109, 70, 1);
+              height: 30px;color: rgb(254, 109, 70);
+    background: rgba(254, 109, 70, 0.1);
+    border-radius: 30px;
+    opacity: 1;
+    border: 1px solid rgba(254, 109, 70, 0.5);
           }
         }
 
@@ -3171,10 +3208,11 @@ background: rgba(254,109,70,0.1);
             width: 80px;
             text-align:center;
               height: 30px;
-              border-radius: 50px;
-              border: 1px solid rgba(254, 109, 70, 0.50);
-              color: rgba(254, 109, 70, 1);
-background: rgba(254,109,70,0.1);
+      color: rgb(254, 109, 70);
+    background: rgba(254, 109, 70, 0.1);
+    border-radius: 30px;
+    opacity: 1;
+    border: 1px solid rgba(254, 109, 70, 0.5);
           }
       .name {
         font-size: 14px;
@@ -3200,14 +3238,15 @@ color: #8A8080;
         .address-data {
             text-align:center;
             line-height:30px;
-            background: rgba(205, 158, 87, 0.10);
             margin-left:20px;
             font-weight:400;
               width: 120px;
               height: 30px;
-              border-radius: 50px;
-              border: 1px solid rgba(205, 158, 87, 0.20);
-              color: rgba(205, 158, 87, 1);
+              color: rgb(255, 146, 96);
+background: rgba(205, 158, 87, 0.1);
+    border-radius: 30px;
+    opacity: 1;
+    border: 1px solid rgba(205, 158, 87, 0.5);
           }
         img {
           cursor: pointer;
@@ -3233,14 +3272,16 @@ color: #8A8080;
             .reputation-data {
             text-align:center;
             line-height:30px;
-            background: rgba(254, 109, 70, 0.10);
             margin-left:0px;
-              width: 80px;              font-weight: 400;
+              width: 80px;         
+              font-weight: 400;
 
               height: 30px;
-              border-radius: 50px;
-              border: 1px solid rgba(254, 109, 70, 0.50);
-              color: rgba(254, 109, 70, 1);
+              color: rgb(254, 109, 70);
+    background: rgba(254, 109, 70, 0.1);
+    border-radius: 30px;
+    opacity: 1;
+    border: 1px solid rgba(254, 109, 70, 0.5);
           }
         span {
           margin-left: 0.5em;
@@ -3330,10 +3371,10 @@ margin: 0em auto;
 
         .name {
           font-weight: bold;
-          
-          font-family: Helvetica-Bold, Helvetica, sans-serif;
           p{
         font-size:20px;
+        font-family: Squada One-Regular, Squada One;
+
         line-height:45px;
               }
         }
@@ -3382,10 +3423,11 @@ font-family: Roboto-SemiBold, Roboto;
           width: 65px;
           line-height:30px;
 height: 30px;
-color: rgba(254, 109, 70, 1);
-          background: rgba(254,109,70,0.1);
-border-radius: 50px 50px 50px 50px;
-border: 1px solid rgba(254,109,70,0.5);
+color: rgb(254, 109, 70);
+    background: rgba(254, 109, 70, 0.1);
+    border-radius: 30px;
+    opacity: 1;
+    border: 1px solid rgba(254, 109, 70, 0.5);
         }
       }
       }
@@ -3537,14 +3579,18 @@ font-size:12px;
         }
     }
 
+    .listheadert{
+    width: 430px;
+}
     .myfdt {
         margin-top:2em;
        .fire-list-box {
+        overflow:scroll;
         .list-item{
             padding: 0.5em 0;
         }
           .flex-box22 {
-            padding: 20px 2em;
+            padding: 20px 2.6em;
           }
 
           .sbt2, .flex-box22{
@@ -3556,23 +3602,23 @@ font-size:12px;
             align-items: center;
 font-size:12px;
             &:nth-child(1) {
-              width:10%;
+              width:40px;
              margin-left:0px;
             }
             &:nth-child(2) {
-              width:16%;
+              width:60px;
              margin-left:5px;
             }
             &:nth-child(3) {
-              width:36%;
+              width:120px;
              margin-left:5px;
             }
             &:nth-child(4) {
-              width:17%;
+              width:65px;
              margin-left:5px;
             }
             &:nth-child(5) {
-              width:16%;
+              width:60px;
              margin-left:5px;
             }
 
@@ -3620,15 +3666,17 @@ font-size:12px;
   }
   .soulkk{
     margin-left:8px;
-    color:rgba(205, 158, 87, 1);
     width: 40%;
     height: 35px;
     line-height:35px;
 
     text-align:center;
-    background: rgba(205,158,87,0.1);
-border-radius: 30px 30px 30px 30px;
-border: 1px solid rgba(205,158,87,0.5);
+    color: rgb(255, 146, 96);
+background: rgba(205, 158, 87, 0.1);
+    border-radius: 30px;
+    opacity: 1;
+    border: 1px solid rgba(205, 158, 87, 0.5);
+
   }
 }
 .fidr{
@@ -3642,15 +3690,16 @@ border: 1px solid rgba(205,158,87,0.5);
   }
   .fidkk{
     margin-left:8px;
-    color:rgba(254, 109, 70, 1);
     width: 40%;
     height: 35px;
     line-height:35px;
 
     text-align:center;
-    border: 1px solid rgba(254,109,70,0.5);
-    border-radius: 25px;
-    background: rgba(254,109,70,0.1);      
+    color: rgb(254, 109, 70);
+    background: rgba(254, 109, 70, 0.1);
+    border-radius: 30px;
+    opacity: 1;
+    border: 1px solid rgba(254, 109, 70, 0.5);
   }
 }
 .panel-box{
@@ -3673,14 +3722,14 @@ border: 1px solid rgba(205,158,87,0.5);
 
   .wallkk{
     margin-left:8px;
-    color:rgba(254, 109, 70, 1);
     width: 53%;
     height: 35px;
     line-height:35px;
     text-align:right;
+    color: rgb(254, 109, 70);
+    /* border-radius: 30px; */
+    opacity: 1;
     border: none;
-    border-radius: 0px;
-    background: rgba(36, 27, 27, 1);      
   }
 }
 .panel-box{
@@ -3704,26 +3753,27 @@ border: 1px solid rgba(205,158,87,0.5);
   
   .fdtkk{
     margin:0 ;
-    color:rgba(254, 109, 70, 1);
     width: 40%;
     height: 35px;
     line-height:35px;
-
-    border: 1px solid rgba(254,109,70,0.5);
-    border-radius: 25px;
+    color: rgb(254, 109, 70);
+    background: rgba(254, 109, 70, 0.1);
+    border-radius: 30px;
+    opacity: 1;
+    border: 1px solid rgba(254, 109, 70, 0.5);
     text-align:center;
-    background: rgba(254,109,70,0.1);      
   }
   .valuekk{
     margin-left:0px;
-    color:rgba(254, 109, 70, 1);
     width: 40%;
     text-align:center;
     height: 35px;
     line-height:35px;
-    border: 1px solid rgba(254,109,70,0.5);
-    border-radius: 25px;
-    background: rgba(254,109,70,0.1);      
+    color: rgb(254, 109, 70);
+    background: rgba(254, 109, 70, 0.1);
+    border-radius: 30px;
+    opacity: 1;
+    border: 1px solid rgba(254, 109, 70, 0.5); 
   }
 }
 }

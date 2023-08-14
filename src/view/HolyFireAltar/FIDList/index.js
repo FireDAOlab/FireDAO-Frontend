@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useConnect } from "../../../api/contracts";
-import { Pagination,Card, Button, Descriptions, message, Form, List, Input, notification } from 'antd';
+import { Pagination, Card, Button, Descriptions, message, Form, List, Input, notification } from 'antd';
 import { getContractByName, getContractByContract } from "../../../api/connectContract";
 import { dealMethod, viewMethod } from "../../../utils/contractUtil"
 import search from '../../../imgs/search.png'
@@ -139,106 +139,111 @@ const FIDList = (props) => {
                                         ]}
                                     /> */}
                                 <Input style={{ borderRadius: '50px' }} allowClear value={searchData} onChange={handleSearchChange} placeholder="Search" />
-                                <Button className="search-btn" style={{ width: '45px', borderRadius: '45px',height:'40px' }} onClick={handleSearch} type="primary">
+                                <Button className="search-btn" style={{ width: '45px', borderRadius: '45px', height: '40px' }} onClick={handleSearch} type="primary">
                                     <img src={search} style={{ width: '25px', margin: '0px -10px' }} />
                                 </Button>
                             </form>
                         </div>
                     </div>
                     <div className="fire-list-box">
-                        <div className="list-header flex-box">
-                            <div className="col">
-                                PID
+                        <div className='listheadert'>
+                            <div className="list-header flex-box">
+                                <div className="col">
+                                    PID
+                                </div>
+                                <div className="col">
+                                    FID
+                                </div>
+                                <div className="col">
+                                    Username
+                                </div>
+                                <div className="col">
+                                    Wallet Address
+                                </div>
+                                <div className="col">
+                                    Soul Contract
+                                </div>
+                                <div className="col">
+                                    SBT-001
+                                </div>
+                                <div className="col">
+                                    SBT-002
+                                </div>
+                                <div className="col">
+                                    SBT-003
+                                </div>
+                                <div className="col">
+                                    SBT-004
+                                </div>
+                                <div className="col">
+                                    SBT-005
+                                </div>
+                                <div className="col">
+                                    SBT-006
+                                </div>
+                                <div className="col">
+                                    Reputation
+                                </div>
                             </div>
-                            <div className="col">
-                                FID
-                            </div>
-                            <div className="col">
-                                Username
-                            </div>
-                            <div className="col">
-                                Wallet Address
-                            </div>
-                            <div className="col">
-                                Soul Contract
-                            </div>
-                            <div className="col">
-                                SBT-001
-                            </div>
-                            <div className="col">
-                                SBT-002
-                            </div>
-                            <div className="col">
-                                SBT-003
-                            </div>
-                            <div className="col">
-                                SBT-004
-                            </div>
-                            <div className="col">
-                                SBT-005
-                            </div>
-                            <div className="col">
-                                SBT-006
-                            </div>
-                            <div className="col">
-                                Reputation
-                            </div>
-                            {/* {
+                        </div>
+                        {/* {
                                 !searchData && activeNav == 1 && state.PidArr.map((item, index) => (
                                     Row(item, index)
                                 ))
                             } */}
-                            {
-                                activeNav == 1 && FIDARR.map((item, index) => (
-                                    index >= pageCount * (curPage - 1) && index < pageCount * curPage &&
-                                    Row(item, index)
-                                ))
-                            }
-                            {
-                                searchArr.length > 0 && searchArr.map((item, index) => (
-                                    Row(item, index)
-                                ))
-                            }
-                        </div>
+                        {
+                            activeNav == 1 && FIDARR.map((item, index) => (
+                                index >= pageCount * (curPage - 1) && index < pageCount * curPage &&
+                                Row(item, index)
+                            ))
+                        }
+                        {
+                            searchArr.length > 0 && searchArr.map((item, index) => (
+                                Row(item, index)
+                            ))
+                        }
+
 
                         {
-                            state.PidArr.map(item => (
-                                <div className="list-item ">
-                                    <div className="col pid">
-                                    -
-                                    </div>
-                                    <div className="col fid">
-                                        {item.fid}-
-                                    </div>
-                                    <div className="col">
-                                    12345578
-                                    </div>
-                                    <div className="col address">
-                                        {item.soulAccount}
-                                    </div>
-                                    <div className="col">
-                                        12345578
-                                    </div>
-                                    <div className="col">
-                                   12345578
-                                    </div>
-                                    <div className="col">
-                                    12345578
-                                    </div>
-                                    <div className="col">
-                                     12345578
-                                    </div>
-                                    <div className="col">
-                                    12345578
-                                    </div>
-                                    <div className="col">
-                                    12345578
-                                    </div>
-                                    <div className="col">
-                                    12345578
-                                    </div>
-                                    <div className="col">
-                                    12345578
+                            state.PidArr.map((item, index) => (
+                                <div className='listitemt'>
+                                    <div className="list-item " key={index}>
+                                        <div className="col pid">
+                                            -
+                                        </div>
+                                        <div className="col fid">
+                                            {item.fid}-
+                                        </div>
+                                        <div className="col">
+                                            12345578
+                                        </div>
+                                        <div className="col address">
+                                            {}{item.soulAccount}
+                                        </div>
+                                        <div className="col">
+                                            12345578
+                                        </div>
+                                        <div className="col">
+                                            12345578
+                                        </div>
+                                        <div className="col">
+                                            12345578
+                                        </div>
+                                        <div className="col">
+                                            12345578
+                                        </div>
+                                        <div className="col">
+                                            12345578
+                                        </div>
+                                        <div className="col">
+                                            12345578
+                                        </div>
+                                        <div className="col">
+                                            12345578
+                                        </div>
+                                        <div className="col">
+                                            12345578
+                                        </div>
                                     </div>
                                 </div>
                             ))
@@ -248,8 +253,8 @@ const FIDList = (props) => {
                     <div className="pagination">
                         {
                             activeNav == 1 && <Pagination current={curPage} showSizeChanger onShowSizeChange={handleShowSizeChange}
-                                                          onChange={onChangePage} total={total}
-                                                          defaultPageSize={pageCount} />
+                                onChange={onChangePage} total={total}
+                                defaultPageSize={pageCount} />
                         }
                     </div>
                 </div>

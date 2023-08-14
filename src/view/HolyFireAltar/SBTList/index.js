@@ -74,60 +74,62 @@ const SBTList = (props) => {
                     </div>
                     <div className="fire-list-box">
                         {/* <div className="list-box"> */}
-                        <div className="list-header flex-box">
-                            <div className="col">
-                                Token
+                        <div className='listheadert'>
+                            <div className="list-header flexsbt">
+                                <div className="col">
+                                    Token
+                                </div>
+                                <div className="col">
+                                    Issued Today
+                                </div>
+                                <div className="col">
+                                    Issued Weekly
+                                </div>
+                                <div className="col">
+                                    Issued Monthly
+                                </div>
+                                <div className="col">
+                                    Issued Year
+                                </div>
+                                <div className="col">
+                                    Total Issue
+                                </div>
+                                <div className="col">
+                                    Other
+                                </div>
                             </div>
-                            <div className="col">
-                                Issued Today
-                            </div>
-                            <div className="col">
-                                Issued Weekly
-                            </div>
-                            <div className="col">
-                                Issued Monthly
-                            </div>
-                            <div className="col">
-                                Issued Year
-                            </div>
-                            <div className="col">
-                                Total Issue
-                            </div>
-                            <div className="col">
-                                Other
-                            </div>
-                        </div>
-                        {/* { 
+                            {/* { 
                             PIDARR.map(item => (*/}
-                        <div className="list-item ">
-                            <div className="col no" style={{ color: '#E48686' }}>
-                                1
+                            <div className="list-item sbtl">
+                                <div className="col no" style={{ color: '#E48686' }}>
+                                    1
+                                </div>
+                                <div className="col">
+                                    {/* {item.blockNumber} */}
+                                    cdsc
+                                </div>
+                                <div className="col">
+                                    {/* {item.from} */}
+                                    dcscds
+                                </div>
+                                <div className="col">
+                                    {/* {item.to} */}
+                                    dscdcs
+                                </div>
+                                <div className="col">
+                                    dsvzdv
+                                </div>
+                                <div className="col">
+                                    vzssdf
+                                </div>
+                                <div className="col">
+                                    zvdfdfv
+                                </div>
                             </div>
-                            <div className="col">
-                                {/* {item.blockNumber} */}
-                                cdsc
-                            </div>
-                            <div className="col">
-                                {/* {item.from} */}
-                                dcscds
-                            </div>
-                            <div className="col">
-                                {/* {item.to} */}
-                                dscdcs
-                            </div>
-                            <div className="col">
-                                dsvzdv
-                            </div>
-                            <div className="col">
-                                vzssdf
-                            </div>
-                            <div className="col">
-                                zvdfdfv
-                            </div>
-                        </div>
-                        {/* ))
+                            {/* ))
 
                         } */}
+                        </div>
                     </div>
                 </div>
 
