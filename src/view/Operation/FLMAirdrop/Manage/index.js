@@ -21,7 +21,7 @@ import FireLockStyle from "./style";
 import judgeStatus from "../../../../utils/judgeStatus";
 import AddWhiteListAddr from "./component/AddAirdropListAddr";
 import RemoveWhiteListAddr from "./component/RemoveWhiteListAddr";
-import {getWhitelist} from "../../../../graph/flmAirdrop";
+import {getWhitelist,getDeleteData,getsSetAmountData} from "../../../../graph/flmAirdrop";
 import AddWhiteListAddr2 from "./component/AddSecondAdminAddr";
 import addressMap from "../../../../api/addressMap";
 import {MaxUint256} from "../../../../config/constants";
@@ -51,7 +51,7 @@ const FireLock = (props) => {
 
     const [isAdmin, setIsAdmin] = useState(false)
 
-    const [isSurAdmin, setSuperAdmin] = useState(true)
+    const [isSurAdmin, setSuperAdmin] = useState(false)
     const [searchContent, setSearchContent] = useState()
     const [showSearch, setShowSearch] = useState(false)
 
@@ -65,7 +65,7 @@ const FireLock = (props) => {
     const [poolFLMBalance, setPoolFLMBalance] = useState(0)
     const [coinAddr, setCoinAddr] = useState()
     const [withdrawCoinAddr, setWithdrawCoinAddr] = useState()
-
+    const [isSetAmountOpen, setIsSetAmountOpen] = useState(false)
     const [flmAddr, setFLMAddr] = useState()
     const [form] = Form.useForm();
     const [addressString, setCurAddrString] = useState()
@@ -152,6 +152,9 @@ const FireLock = (props) => {
     }
     const getWList = async () => {
         const record = await getWhitelist()
+        const deleteData = await getDeleteData()
+        const setAmountData = await getsSetAmountData()
+
         const res = await handleViewMethod("getAirDropList", [])
         const recordArr = record.data.claimRecords
         let resArr = []
@@ -171,6 +174,25 @@ const FireLock = (props) => {
 
         })
         setWhitelistArr(resArr)
+
+        if(deleteData&&deleteData.data&&deleteData.data.decUserAmounts.length>0){
+            resArr.forEach(item=>{
+                deleteData.data.decUserAmounts.forEach(delItem=>{
+                    if(delItem.user.toLowerCase() == item.user.toLowerCase()){
+                        item.amount = BigNumber(item.amount).minus(delItem.amount).toString()
+                    }
+                })
+            })
+        }
+        if(setAmountData&&setAmountData.data&&setAmountData.data.fixEvents.length>0){
+            resArr.forEach(item=>{
+                deleteData.data.fixEvents.forEach(setItem=>{
+                    if(setItem.user.toLowerCase() == item.user.toLowerCase()){
+                        item.amount =setItem.amount
+                    }
+                })
+            })
+        }
 
         resArr.forEach(item => {
             item.checked = false
@@ -263,6 +285,27 @@ const FireLock = (props) => {
         }
         console.log({_to,_amount,infoString})
         await handleDealMethod("subAirDropAmount", [_to,_amount,infoString])
+        getWList()
+    }
+    const subAirDropAmountForAdmin1 = async (addr) => {
+        let _to = [], _amount = []
+        _to = addressString.toString().split('\n')
+        _amount = amountString.toString().split('\n')
+        _to.forEach((address, index) => {
+            address = address.trim()
+            if (!state.api.utils.isAddress(address)) {
+                _to.splice(index, 1)
+            }
+
+        })
+        for (let i = 0; i < _amount.length; i++) {
+            _amount[i] = BigNumber(_amount[i]).multipliedBy(10 ** flmDecimal).toFixed(0).toString()
+        }
+        if (!(BigNumber(_amount[_amount.length-1])>=0)) {
+            _amount.pop()
+        }
+        console.log({_to,_amount,infoString})
+        await handleDealMethod("setUserAmount", [_to,_amount,infoString])
         getWList()
     }
     const setFlm = async (addr) => {
@@ -383,6 +426,49 @@ const FireLock = (props) => {
                                 </Form.Item>
                             </Form>
 
+                        </div>
+                    </Modal>
+                    <Modal className="model-dialog" title="Set Can Claim Amount List" open={isSetAmountOpen} onOk={subAirDropAmountForAdmin1}
+                           onCancel={() => {
+                               setIsSetAmountOpen(false)
+                           }}>
+                        <div className="del-content">
+                            <Form form={form} name="control-hooks">
+                                <Form.Item
+                                    name="address"
+                                    label="Wallet Address"
+                                    className="address-box"
+                                >
+                                    <div className="flex-box">
+                                        <TextArea placeholder="one address perline" rows={10} value={addressString}
+                                                  onChange={(e) => {
+                                                      setCurAddrString(e.target.value)
+                                                  }}/>
+                                    </div>
+                                </Form.Item>
+                                <Form.Item
+                                    name="amount"
+                                    label="Amount (Enter the amount you want to change to)"
+                                    className="number-box"
+                                >
+                                    <div className="flex-box">
+                                        <TextArea placeholder="one amount perline" rows={10} value={amountString}
+                                                  onChange={(e) => {
+                                                      setAmountString(e.target.value)
+                                                  }}/>
+                                    </div>
+                                </Form.Item>
+                                <Form.Item
+                                    name="info"
+                                    label="Info"
+                                >
+                                    <div className="flex-box">
+                                        <TextArea value={infoString} onChange={(e) => {
+                                            setInfoString(e.target.value)
+                                        }}/>
+                                    </div>
+                                </Form.Item>
+                            </Form>
                         </div>
                     </Modal>
                     <div className="panel-container">
@@ -645,12 +731,7 @@ const FireLock = (props) => {
                                 <div className="col">
                                     No.
                                 </div>
-                                {/*<div className="col">*/}
-                                {/*    PID*/}
-                                {/*</div>*/}
-                                {/*<div className="col">*/}
-                                {/*    Username*/}
-                                {/*</div>*/}
+
                                 <div className="col">
                                     Address
                                 </div>
@@ -683,15 +764,6 @@ const FireLock = (props) => {
                                         <div className="col">
                                             {index + 1}
                                         </div>
-                                        {/*<div className="col">*/}
-                                        {/*    {item.pid}*/}
-                                        {/*</div>*/}
-                                        {/*<div className="col">*/}
-                                        {/*    {item.username}*/}
-                                        {/*</div>*/}
-                                        {/*<div className="col">*/}
-                                        {/*    {item.fid}*/}
-                                        {/*</div>*/}
                                         <div className="col">
                                             {item.user}
                                         </div>
@@ -725,15 +797,7 @@ const FireLock = (props) => {
                                         <div className="col">
                                             {index + 1}
                                         </div>
-                                        <div className="col">
-                                            {item.pid}
-                                        </div>
-                                        <div className="col">
-                                            {item.username}
-                                        </div>
-                                        <div className="col">
-                                            {item.fid}
-                                        </div>
+
                                         <div className="col">
                                             {item.user}
                                         </div>
@@ -762,50 +826,145 @@ const FireLock = (props) => {
                             }
                         </div>
                     </div>}
-                    {curNav == 3 && <div className="panel-container">
-                        <div className="panel-title">
-                            Set Admin Level2
-                            <div className="btn-box">
-                                <Button className="btn" type="primary" onClick={() => {
-                                    setShowAddLevel2(true)
-                                }}>Add</Button>
-                                <Button className="btn" type="primary" onClick={() => {
-                                    setShowRemove(true)
-                                }}>Remove</Button>
+                    {curNav == 3 && <div className="panel-box">
+                        <div className="panel-container">
+                            <div className="panel-title">
+                                Set Admin Level2
+                                <div className="btn-box">
+                                    <Button className="btn" type="primary" onClick={() => {
+                                        setShowAddLevel2(true)
+                                    }}>Add</Button>
+                                    <Button className="btn" type="primary" onClick={() => {
+                                        setShowRemove(true)
+                                    }}>Remove</Button>
+                                </div>
+                            </div>
+                            <div className="fire-list-box fire-list-box-admin">
+                                <div className="list-header">
+                                    <div className="col">
+                                        No.
+                                    </div>
+                                    <div className="col">
+                                        Address
+                                    </div>
+                                    <div className="col">
+                                        Delete
+                                    </div>
+
+                                </div>
+                                {adminArr.map((item, index) => {
+                                    return (<div className="list-item list-item-admin" key={index}>
+                                        <div className="col">
+                                            {index + 1}
+                                        </div>
+
+                                        <div className="col">
+                                            {item}
+                                        </div>
+                                        <div className="col">
+                                            <div className="col">
+                                                <Button onClick={() => {
+                                                    removeAdminsLevelTwo(item)
+                                                }}>Delete</Button>
+                                            </div>
+                                        </div>
+                                    </div>)
+                                })}
                             </div>
                         </div>
 
-                        <div className="fire-list-box fire-list-box-admin">
-                            <div className="list-header">
-                                <div className="col">
-                                    No.
+                        <div className="panel-container">
+                            <div className="panel-title">
+                                Set Airdrop User Amount
+                                <div className="search-box">
+                                    <Input value={searchContent} onChange={(e) => {
+                                        setSearchContent(e.target.value)
+                                        if (!e.target.value) setShowSearch(false)
+                                    }} allowClear/>
+                                    <Button className="btn" type="primary" onClick={() => {
+                                        handleSearch()
+                                    }}>Search</Button>
                                 </div>
-                                <div className="col">
-                                    Address
+                            </div>
+
+                            <div className="fire-list-box fire-list-box-airdrop">
+                                <div className="list-header">
+                                    <div className="col">
+                                        No.
+                                    </div>
+
+                                    <div className="col">
+                                        Address
+                                    </div>
+                                    <div className="col">
+                                        Amount
+                                    </div>
+                                    <div className="col">
+                                        Set Amount
+                                    </div>
+
                                 </div>
-                                <div className="col">
-                                    Delete
-                                </div>
+                                {!showSearch && curPage && whitelist.map((item, index) => {
+                                    if (index >= pageCount * (curPage - 1) && index < pageCount * curPage) {
+                                        return (<div className="list-item" key={index}>
+                                            <div className="col">
+                                                {index + 1}
+                                            </div>
+                                            <div className="col">
+                                                {item.user}
+                                            </div>
+                                            <div className="col">
+                                                {showNum(item.amount / 10 ** flmDecimal)}
+                                            </div>
+                                            <div className="col">
+                                                {!item.checked && <img className="check-icon" onClick={() => {
+                                                    handleCheck(item, index, true)
+                                                }} src={checkIcon} alt=""/>}
+                                                {item.checked && <img className="check-icon" onClick={() => {
+                                                    handleCheck(item, index, false)
+                                                }} src={checkActiveIcon} alt=""/>}
+                                                <Button className="remove-btn" onClick={() => {
+                                                    // removeWhiteList(item.user)
+                                                    setIsSetAmountOpen(true)
+                                                    getSingleModifList(item)
+                                                }}>Set Amount</Button>
+                                            </div>
+                                        </div>)
+                                    }
+
+                                })}
+                                {showSearch && whitelist.map((item, index) => {
+                                    if (item.user.toLowerCase() == searchContent.toString().toLowerCase()) {
+                                        return (<div className="list-item" key={index}>
+                                            <div className="col">
+                                                {index + 1}
+                                            </div>
+                                            <div className="col">
+                                                {item.user}
+                                            </div>
+                                            <div className="col">
+                                                {showNum(item.amount / 10 ** flmDecimal)}
+                                            </div>
+                                            <div className="col">
+                                                <Button onClick={() => {
+                                                    // removeWhiteList(item.user)
+                                                    setIsSetAmountOpen(true)
+                                                    getSingleModifList(item)
+                                                }}>Set Amount</Button>
+                                            </div>
+                                        </div>)
+                                    }
+                                })}
 
                             </div>
-                            {adminArr.map((item, index) => {
-                                return (<div className="list-item list-item-admin" key={index}>
-                                    <div className="col">
-                                        {index + 1}
-                                    </div>
-
-                                    <div className="col">
-                                        {item}
-                                    </div>
-                                    <div className="col">
-                                        <div className="col">
-                                            <Button onClick={() => {
-                                                removeAdminsLevelTwo(item)
-                                            }}>Delete</Button>
-                                        </div>
-                                    </div>
-                                </div>)
-                            })}
+                            <div className="pagination">
+                                {
+                                    <Pagination current={curPage} showSizeChanger
+                                                onShowSizeChange={handleShowSizeChange}
+                                                onChange={onChangePage} total={total}
+                                                defaultPageSize={pageCount}/>
+                                }
+                            </div>
                         </div>
 
                     </div>}
