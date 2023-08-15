@@ -47,6 +47,7 @@ export async function dealMethod(contract,account,methodName,params){
 }
 export async function  dealPayMethod(contract,account,methodName,params,value){
     const hide3 = message.loading('wait sign', 0);
+    console.log(methodName,params,value)
     try{
         await contract.methods[methodName](...params).estimateGas({
             from: account,

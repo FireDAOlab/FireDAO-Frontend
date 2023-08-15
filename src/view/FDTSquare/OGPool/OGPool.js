@@ -2,7 +2,7 @@ import React, {useEffect, useRef, useState} from 'react';
 import {useConnect} from "../../../api/contracts";
 import BigNumber from "bignumber.js"
 import AddNomalWhiteList from "./ThreelWhiteList";
-import AddThreeWhiteList from "./WhiteList";
+import AddThreeWhiteList from "./components/OgAdminLevel2";
 import {showNum} from "../../../utils/bigNumberUtil";
 import ethereum from "../../../imgs/ethereum.svg";
 import {formatAddress} from "../../../utils/publicJs";
@@ -25,7 +25,7 @@ import listIcon from "../../../imgs/list-icon.webp";
 import develop from "../../../env";
 import {useNavigate} from "react-router-dom";
 import judgeStatus from "../../../utils/judgeStatus";
-import {getDonateRecord} from "../../../graph/donate";
+import {getDonateRecord, getAllRegisters} from "../../../graph/donate";
 import OGPoolStyle from "./OGPoolStyle";
 import {ETHDecimals, FDTDecimals, USDTDecimals, ZeroAddress} from "../../../config/constants";
 
@@ -56,7 +56,7 @@ const OGPoolPublic = (props) => {
     const [salePrice, setSalePriceV] = useState(0.01)
     const [status, setStatus] = useState(0)
     const [isAdmin, setIsAdmin] = useState(false)
-
+    const [myTeam, setMyTeamArr] = useState([])
     const history = useNavigate();
     const [form] = Form.useForm();
 
@@ -152,63 +152,39 @@ const OGPoolPublic = (props) => {
 
         </div>
     }
-    const Row2 = (item, index) => {
-        return <div className="list-item row2-list-item" key={index}>
-            <div className="col no">
-                {index + 1}
-            </div>
-            <div className="col pid">
-                {item.Pid}
-            </div>
-            <div className="col name">
-                {item.name}
-            </div>
 
-            <div className="col address">
-                {
-                    item.user && <a href={develop.ethScan + "address/" + item.user} target="_blank">
-                        {(item.user)}
-                    </a>
-                }
-
-            </div>
-
-
-        </div>
-    }
     const getBalanceOfFDT = async () => {
         let balance = await handleViewMethod("getBalanceOfFDTOG", [])
-        balance = parseInt(BigNumber(balance).dividedBy( 10 ** FDTDecimals).toString() )
+        balance = parseInt(BigNumber(balance).dividedBy(10 ** FDTDecimals).toString())
         if (balance > 0) {
-            setFDTBalance(balance)
+            setFDTBalance(balance.toString())
         }
     }
 
     const getTotalDonate = async () => {
         let res = await handleViewMethod("totalDonate", [])
-        setTotalDonate(BigNumber(res).dividedBy(10**FDTDecimals).toString() )
+        setTotalDonate(BigNumber(res).dividedBy(10 ** FDTDecimals).toString())
     }
     const getfdtAmount = async (value) => {
         if (value > 0 || value == 0) {
             setInputValue(value)
             let res = await handleViewMethod("getfdtOgAmount", [BigNumber(BigNumber(value).multipliedBy(10 ** FDTDecimals)).toString()])
-            setExchangeAmount(BigNumber(res ).dividedBy(10 ** FDTDecimals).toFixed(2).toString() )
+            setExchangeAmount(BigNumber(res).dividedBy(10 ** FDTDecimals).toFixed(2).toString())
         }
     }
 
     const exchangeFdt = async () => {
-        console.log(inputValue)
         if (inputValue > 0) {
-            await handlePayDealMethod("donate", [(BigNumber(inputValue).multipliedBy( 10 ** ETHDecimals)).toString()], (BigNumber(inputValue).multipliedBy( 10 ** ETHDecimals)).toString())
+            await handlePayDealMethod("donate", [(BigNumber(inputValue).multipliedBy(10 ** ETHDecimals)).toString()], (BigNumber(inputValue).multipliedBy(10 ** ETHDecimals)).toString())
             getData()
         }
     }
-    const handleRegister = async ()=>{
+    const handleRegister = async () => {
         let addr = form.getFieldValue().referralCode
         if (!state.api.utils.isAddress(form.getFieldValue().referralCode)) {
-           return
+            return
         }
-       await handleDealMethod("register", [addr.toString()])
+        await handleDealMethod("register", [addr.toString()])
     }
 
 
@@ -223,15 +199,15 @@ const OGPoolPublic = (props) => {
     }
     const getSalePrice = async () => {
         let res = await handleViewMethod("salePrice", [])
-        setSalePriceV(BigNumber(res).dividedBy(1000).toString() )
+        setSalePriceV(BigNumber(res).dividedBy(1000).toString())
     }
     const getValidNumbers = async () => {
         let length = await handleViewMethod("getValidNumbers", [])
-        let res = await handleViewMethod("validNumbers", [BigNumber(length).minus(1).toString() ])
+        let res = await handleViewMethod("validNumbers", [BigNumber(length).minus(1).toString()])
     }
     const CoinBalance = async () => {
         let res2 = await handleCoinViewMethod("balanceOf", "FDT", [state.account])
-        setFdtBalance(BigNumber(res2).dividedBy(10 ** FDTDecimals).toString() )
+        setFdtBalance(BigNumber(res2).dividedBy(10 ** FDTDecimals).toString())
     }
 
 
@@ -266,6 +242,53 @@ const OGPoolPublic = (props) => {
     const handleShowSizeChange2 = async (page, count) => {
         setPageCount2(count)
     }
+    const getMyTeam = async (address) => {
+        address = "0x0a5302c74742b6ce851c79ac94451a2ab4b7124c"
+        const myTeamArr = []
+        let level1Res = await getAllRegisters(address)
+        if (level1Res.data && level1Res.data.allRegisters) {
+            const level1Arr = level1Res.data.allRegisters
+            myTeamArr.push(...level1Arr)
+
+            console.log("level1",level1Arr)
+            for(let i=0; i <level1Arr.length;i++ ){
+                const item = level1Arr[i]
+                let res = await getAllRegisters(item._user)
+                const level2Arr = res.data.allRegisters
+                console.log("level2",level2Arr)
+                myTeamArr.push(...level2Arr)
+
+                level2Arr.forEach(async item => {
+                    let res = await getAllRegisters(item._user)
+                    const level3Arr = res.data.allRegisters
+                    myTeamArr.push(...level3Arr)
+                    console.log("level3",level3Arr)
+                    level3Arr.forEach(async item => {
+                        let res = await getAllRegisters(item._user)
+                        const level4Arr = res.data.allRegisters
+                        myTeamArr.push(...level4Arr)
+
+                        level4Arr.forEach(async item => {
+                            let res = await getAllRegisters(item._user)
+                            const level5Arr = res.data.allRegisters
+                            myTeamArr.push(...level5Arr)
+
+                        })
+
+                    })
+                })
+            }
+
+
+
+            console.log("sum",myTeamArr)
+            setMyTeamArr(myTeamArr)
+        }
+
+
+
+    }
+
     const getRecord = async () => {
         try {
             let res = await getDonateRecord()
@@ -281,7 +304,6 @@ const OGPoolPublic = (props) => {
                 })
 
                 if (res.data.allRecords && res.data.allRecords.length > 0) {
-                    res.data.allRecords.shift()
                     setAllRecords(res.data.allRecords)
                     setTotal(res.data.allRecords.length)
                     seMyRecords(arr)
@@ -295,7 +317,7 @@ const OGPoolPublic = (props) => {
     useEffect(async () => {
 
         getRecord()
-
+        getMyTeam(state.account)
     }, []);
     useEffect(() => {
         getData()
@@ -381,19 +403,13 @@ const OGPoolPublic = (props) => {
                     <div className={"nav-item " + (activeNav == 2 ? "active" : "")} onClick={() => {
                         setActiveNav(2)
                     }}>
-                        WhiteList
+                        Team
                     </div>
-                    {
-                        isSecondAdmin && (
-
-                            <div className={"nav-item " + (activeNav == 4 ? "active" : "")} onClick={() => {
-
-                                setActiveNav(4)
-                            }}>
-                                Set Admin
-                            </div>
-                        )
-                    }
+                    <div className={"nav-item " + (activeNav == 4 ? "active" : "")} onClick={() => {
+                        setActiveNav(4)
+                    }}>
+                        Active Accounts
+                    </div>
 
 
                 </div>
@@ -435,7 +451,10 @@ const OGPoolPublic = (props) => {
                                         </div>
                                         <div className="value">
                                             <p><img src={ethereum}
-                                                    style={{marginTop: '-5px', marginRight: '10px'}}/>{showNum(totalDonate)} ETH
+                                                    style={{
+                                                        marginTop: '-5px',
+                                                        marginRight: '10px'
+                                                    }}/>{showNum(totalDonate)} ETH
                                             </p>
                                         </div>
                                     </div>
@@ -650,20 +669,7 @@ const OGPoolPublic = (props) => {
                 <div className="white-list">
                     <div className="panel-box">
                         <div className="panel-container">
-                            <div className="isInW">
-                                <span style={{display: 'flex'}}>
-                                    PID
-                                    <div className='kk'>
-                                    {state.pid}
-                                    </div>
-                                </span>
-                                <span style={{display: 'flex', marginLeft: '10px'}}>
-                                    Whiterlist
-                                    <div className='kk'>
-                                        {isInWhiteList ? "Yes" : "False"}
-                                    </div>
-                                </span>
-                            </div>
+
                             <div className="fire-list-box">
                                 <div className="list-header flex-box2">
                                     <div className="col">
@@ -681,9 +687,16 @@ const OGPoolPublic = (props) => {
 
                                 </div>
                                 {
-                                    whiteList.map((item, index) => (
+                                    myTeam.map((item, index) => (
                                         index >= pageCount2 * (curPage2 - 1) && index < pageCount2 * curPage2 &&
-                                        Row2(item, index)
+                                        <div className="list-item row2-list-item" key={index}>
+                                            <div className="col no">
+                                                {index + 1}
+                                            </div>
+                                            <div className="col address">
+                                                {item._user}
+                                            </div>
+                                        </div>
                                     ))
                                 }
 
@@ -732,11 +745,7 @@ const OGPoolPublic = (props) => {
                     </div>
                 </div>
             )}
-            {activeNav == 4 && (
-                <div>
-                    <AddNomalWhiteList allRecords={allRecords}></AddNomalWhiteList>
-                </div>
-            )}
+
             {activeNav == 5 && (
                 <div>
                     <div className="panel-box">

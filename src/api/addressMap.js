@@ -68,12 +68,12 @@ if (develop.ENV === "production") {
         SBT001: {address: "0xa6096Fb5541396e38bC86A0E6e912EBE9cB6f65a", abi: erc20Abi},
         SBT003: {address: "0x058C32ff6e93fd5d58598f6540063d7c00a2c49B", abi: erc20Abi},
         airdrop: {address: "0xcB9F989490a2084944323C727d159A4D4baA07C9", abi: airdrop},
-        PrivateExchangePoolOG: {address: "0x08E5C142835B201a9A6b0b1c04d26db8Eb8EC363", abi: PrivateExchangePoolOG},
+        PrivateExchangePoolOG: {address: "0xE1b86Ce3824ceAF0dC18fcE6D03E61725Ea9BA2d", abi: PrivateExchangePoolOG},
         TreasuryDistribution: {address: "0xA8FcF03CDEc12CF19767d12aC4c627FF6e5D1c21", abi: TreasuryDistribution},
         Guild: {address: "0xD75a1A6F27993571048C17FD1D346a36DD38E6Bd", abi: Guild},
         cityNode: {address: "0x054dd609360c254b21E39AFDa333317486761D3d", abi: cityNode},
         WETH: {address: "0x7313A220a6220bF83245058a29Eb6187e9964927", abi: erc20Abi},
-        FDT: {address: "0xd1ad4a44f65141edcac9a23838f1bc6ed6dfeaef", abi: FDT},
+        FDT: {address: "0x37F361E62c7AebD5C75614Dda1a18fb84f0b99A1", abi: FDT},
         fdtOgToFdt: {address: "0x21212FC679C23bbAa8ae3dDAE43127590331ccA1", abi: fdtOgToFdt},
         FLMPool: {address: "0xF4CFfc4e0D71B26592D3a916160e3Fc6ca58aa62", abi: FLMPool},
         FDTLockMining:{address:"0x8Fe6595636e03dee7b8BDcC23b0533E6Eb26B781",abi:FDTLockMining},
@@ -91,7 +91,7 @@ if (develop.ENV === "production") {
         normalPool: {address: "0x44dBD7664A4F89C2598b93a04C3EF7c13FC859bC", abi: normalPool},
         poolManager : {address: "0x59eEeD4C641592a622d1Ee1F960D2e27376BC212", abi: poolManger},
         erc1155: {abi: erc1155},
-        FDTOG:{address:"0xCDa5630c203c88618f421F74bEba2E947B97af43"}
+        FDTOG:{address:"0x37F361E62c7AebD5C75614Dda1a18fb84f0b99A1"}
     };
 } else {
     CONTRACTS = {

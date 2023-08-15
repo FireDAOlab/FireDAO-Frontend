@@ -1,6 +1,6 @@
 import React, {useEffect, useRef, useState} from 'react';
-import {formatAddress} from "../../../utils/publicJs";
-import {useConnect} from "../../../api/contracts";
+import {formatAddress} from "../../../../utils/publicJs";
+import {useConnect} from "../../../../api/contracts";
 import {
     Button,
     message,
@@ -8,17 +8,17 @@ import {
     Input, Modal,
 
 } from 'antd';
-import {getContractByName, getContractByContract} from "../../../api/connectContract";
-import {dealMethod, dealPayMethod, viewMethod} from "../../../utils/contractUtil"
-import develop from "../../../env";
-import AddThreeWhiteListStyle from "./WhiteListStyle";
+import {getContractByName, getContractByContract} from "../../../../api/connectContract";
+import {dealMethod, dealPayMethod, viewMethod} from "../../../../utils/contractUtil"
+import develop from "../../../../env";
+import AddThreeWhiteListStyle from "./OgAdminLevelStyle";
 
 
-const AddWhiteList = ({allRecords}) => {
+const AddThreeWhiteList = ({allRecords}) => {
     let {state, dispatch} = useConnect();
     const [isAdmin, setIsThreeAdmin] = useState(true)
     const [addWhiteArr, setAddWArr] = useState([{}])
-    const [curWhiteUser, setCurWhiteUser] = useState({})
+    const [curWhiteUser, setCurWhiteUser] = useState("")
 
     const [form] = Form.useForm();
     const [form2] = Form.useForm();
@@ -53,12 +53,12 @@ const AddWhiteList = ({allRecords}) => {
         return await viewMethod(contractTemp, state.account, name, params)
     }
 
-    const getAdminWhiteList = async () => {
+    const getUserSetAdminsLevelThree = async () => {
         try {
-            let length = await handleViewMethod("getAdminWhiteListLength", [])
+            let length = await handleViewMethod("getUserSetAdminsLevelThree", [state.account])
             let adminWhiteList = []
             for (let i = 0; i < length; i++) {
-                let res = await handleViewMethod("adminInviter", [state.account, i])
+                let res = await handleViewMethod("userSetAdminsForThree", [state.account, i])
                 adminWhiteList.push(res)
             }
             setAdminWhiteList(adminWhiteList)
@@ -84,31 +84,27 @@ const AddWhiteList = ({allRecords}) => {
                 usdtAmount: tUSDT
             })
             setREFRecords(refArr)
-
         } catch (e) {
 
         }
     }
-    const addWhiteList = async () => {
+    const handleSetBlackList = async () => {
         let arr = []
         for (let i = 0; i < addWhiteArr.length; i++) {
             arr.push(form2.getFieldValue()["address" + i])
         }
-        await handleDealMethod("addWhiteList", [arr])
-        getAdminWhiteList()
+        await handleDealMethod("setBlackList", [arr])
+        getUserSetAdminsLevelThree()
     }
     const getMaxThree = async () => {
-        let res = await handleViewMethod("maxThree", [])
-        setMaxThree(res)
+        let res = await handleViewMethod("maxTwo", [])
+        setMaxThree(res.toString())
     }
-    const removeWhiteList = async () => {
-        await handleDealMethod("removeWhiteListBatch", [[form2.getFieldValue().address]])
-        getAdminWhiteList()
-    }
+
     const removeWhiteListUser = async () => {
-        await handleDealMethod("removeWhiteListBatch", [[curWhiteUser.user]])
+        await handleDealMethod("removeWhiteListBatch", [[curWhiteUser]])
         setDelOpen(false)
-        getAdminWhiteList()
+        getUserSetAdminsLevelThree()
     }
 
     const deleteWhite = async (user) => {
@@ -118,57 +114,39 @@ const AddWhiteList = ({allRecords}) => {
 
     useEffect(() => {
         if (!state.account) return
-        getAdminWhiteList()
+        getUserSetAdminsLevelThree()
         getMaxThree()
     }, [state.account]);
 
 
     return (
         <AddThreeWhiteListStyle>
-            <Modal className="model-dialog" title="Delete WhiteList User" open={isDelMolOpen} onOk={removeWhiteListUser}
-                   onCancel={() => {
-                       setDelOpen(false)
-                   }}>
-                <h3>
-                    PID
-                </h3>
-                <div className="value">
-                    {curWhiteUser.Pid}
-                </div>
-                <h3>
-                    UserName
-                </h3>
-                <div className="value">
-                    {curWhiteUser.name}
-                </div>
-                <h3>
-                    Wallet Address
-                </h3>
-                <div className="value">
-                    {curWhiteUser.user}
-                </div>
-            </Modal>
+
             <div className="part3">
+                <Modal className="model-dialog" title="Delete  Dialog" open={isDelMolOpen} onOk={removeWhiteListUser}
+                       onCancel={() => {
+                           setDelOpen(false)
+                       }}>
+                    <h3>
+                        Wallet Address
+                    </h3>
+                    <div className="value">
+                        {curWhiteUser}
+                    </div>
+                </Modal>
                 <div className="panel-box">
                     <div className="panel-container">
-                        <h3 className="tip">
-                            I can have <strong>{maxThree}</strong> whitelists, I've
-                            got <strong>{adminWhiteList.length}</strong> whitelists, I can
-                            set up <strong>{maxThree - adminWhiteList.length}</strong> whitelists.
-
-                        </h3>
-                        <div className="fire-list-box">
+                        <div className="panel-title">
+                            Set Blacklist
+                        </div>
+                        <div className="fire-list-box admin3-list">
                             <div className="list-header3 list-header">
                                 <div className="col">
                                     No.
                                 </div>
-                                <div className="col">
-                                    PID
-                                </div>
-                                <div className="col">
-                                    Username
-                                </div>
-                                <div className="col">
+
+
+                                <div className="col address">
                                     Address
                                 </div>
                                 <div className="col">
@@ -179,21 +157,15 @@ const AddWhiteList = ({allRecords}) => {
 
                             {
                                 adminWhiteList.map((item, index) => (
-                                    <div className="list-item row3-list-item" key={index}>
+                                    <div className="list-item " key={index}>
                                         <div className="col no">
                                             {index + 1}
                                         </div>
-                                        <div className="col id">
-                                            {item.Pid}
-                                        </div>
-                                        <div className="col">
-                                            {item.name}
-                                        </div>
+
                                         <div className="col address">
-                                            <a href={develop.ethScan + "address/" + item.user} target="_blank">
-                                                {item.user}
-                                            </a>
+                                            {item}
                                         </div>
+
                                         <div className="col">
                                             <Button className="del-button" onClick={() => {
                                                 deleteWhite(item)
@@ -207,7 +179,6 @@ const AddWhiteList = ({allRecords}) => {
                             }
 
                         </div>
-
                         <Form form={form2} name="control-hooks" className="form">
 
                             {addWhiteArr.map((item, index) => {
@@ -247,7 +218,7 @@ const AddWhiteList = ({allRecords}) => {
                         </Form>
                         <div className="btns">
                             <Button className="add-btn" type="primary" onClick={() => {
-                                addWhiteList()
+                                handleSetBlackList()
                             }}>Add Whitelist</Button>
                             {/*<Button className="add-btn" type="primary" onClick={() => {*/}
                             {/*    removeWhiteList()*/}
@@ -262,4 +233,4 @@ const AddWhiteList = ({allRecords}) => {
         </AddThreeWhiteListStyle>
     )
 }
-export default AddWhiteList
+export default AddThreeWhiteList
