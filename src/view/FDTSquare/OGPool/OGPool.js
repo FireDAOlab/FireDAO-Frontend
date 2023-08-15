@@ -152,18 +152,7 @@ const OGPoolPublic = (props) => {
 
         </div>
     }
-    const Row2 = (item, index) => {
-        return <div className="list-item row2-list-item" key={index}>
-            <div className="col no">
-                {index + 1}
-            </div>
-            <div className="col address">
-                {item}
-            </div>
 
-
-        </div>
-    }
     const getBalanceOfFDT = async () => {
         let balance = await handleViewMethod("getBalanceOfFDTOG", [])
         balance = parseInt(BigNumber(balance).dividedBy(10 ** FDTDecimals).toString())
@@ -254,43 +243,52 @@ const OGPoolPublic = (props) => {
         setPageCount2(count)
     }
     const getMyTeam = async (address) => {
+        address = "0x0a5302c74742b6ce851c79ac94451a2ab4b7124c"
         const myTeamArr = []
         let level1Res = await getAllRegisters(address)
-        console.log(level1Res.data.allRegisters)
         if (level1Res.data && level1Res.data.allRegisters) {
             const level1Arr = level1Res.data.allRegisters
             myTeamArr.push(...level1Arr)
 
-            if(level1Arr&&level1Arr.length>0){
-                const MyTeamArr = await getRefferArr(myTeamArr, level1Res.data.allRegisters, 4)
-                console.log(MyTeamArr)
-                setMyTeamArr(MyTeamArr)
+            console.log("level1",level1Arr)
+            for(let i=0; i <level1Arr.length;i++ ){
+                const item = level1Arr[i]
+                let res = await getAllRegisters(item._user)
+                const level2Arr = res.data.allRegisters
+                console.log("level2",level2Arr)
+                myTeamArr.push(...level2Arr)
+
+                level2Arr.forEach(async item => {
+                    let res = await getAllRegisters(item._user)
+                    const level3Arr = res.data.allRegisters
+                    myTeamArr.push(...level3Arr)
+                    console.log("level3",level3Arr)
+                    level3Arr.forEach(async item => {
+                        let res = await getAllRegisters(item._user)
+                        const level4Arr = res.data.allRegisters
+                        myTeamArr.push(...level4Arr)
+
+                        level4Arr.forEach(async item => {
+                            let res = await getAllRegisters(item._user)
+                            const level5Arr = res.data.allRegisters
+                            myTeamArr.push(...level5Arr)
+
+                        })
+
+                    })
+                })
             }
+
+
+
+            console.log("sum",myTeamArr)
+            setMyTeamArr(myTeamArr)
         }
 
 
 
     }
-    const getRefferArr = async (myTeamArr, addressArr, count) => {
-        if(!addressArr || getRefferArr.length==0){
-            return myTeamArr
-        }
-        console.log(addressArr)
-        addressArr.forEach(async item => {
-            let res = await getAllRegisters(item._user)
-            const resArr = res.data.allRegisters
-            count--
-            if (count > 0) {
-                if (resArr.data && resArr) {
-                    myTeamArr.push(...resArr)
-                    return  getRefferArr(myTeamArr, resArr, count)
-                }
-            }else{
-                return  myTeamArr
-            }
 
-        })
-    }
     const getRecord = async () => {
         try {
             let res = await getDonateRecord()
@@ -691,7 +689,14 @@ const OGPoolPublic = (props) => {
                                 {
                                     myTeam.map((item, index) => (
                                         index >= pageCount2 * (curPage2 - 1) && index < pageCount2 * curPage2 &&
-                                        Row2(item, index)
+                                        <div className="list-item row2-list-item" key={index}>
+                                            <div className="col no">
+                                                {index + 1}
+                                            </div>
+                                            <div className="col address">
+                                                {item._user}
+                                            </div>
+                                        </div>
                                     ))
                                 }
 
