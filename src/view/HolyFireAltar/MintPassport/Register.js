@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import styled from "styled-components";
 import { useConnect } from "../../../api/contracts";
 import { getContractByContract, getContractByName } from "../../../api/connectContract"
@@ -7,7 +7,7 @@ import { uploadJson, uploadFile } from "../../../utils/ipfsApi"
 import firepassport from "../../../imgs/passport@2x.webp"
 import long from "../../../imgs/long.png";
 import ethereum from "../../../imgs/ethereum.png";
-import { useNavigate } from 'react-router-dom'
+import {useNavigate} from 'react-router-dom'
 import addressMap from "../../../api/addressMap";
 import Detail from "./component/Detail";
 import develop from "../../../env"
@@ -19,17 +19,18 @@ import {
     UserOutlined,
     LoadingOutlined
 } from '@ant-design/icons';
-import { dealMethod, viewMethod, dealPayMethod } from "../../../utils/contractUtil";
+import {dealMethod, viewMethod, dealPayMethod} from "../../../utils/contractUtil";
 import ConnectWallet from "../../../component/ConnectWallet/ConnectWallet";
 import BigNumber from "bignumber.js";
+
 const Register = (props) => {
     const [form] = Form.useForm();
-   
+
     const [messageApi] = message.useMessage();
-    let { state, dispatch } = useConnect();
+    let {state, dispatch} = useConnect();
     const [isExist, setIsExist] = useState(false)
     const [isShowWallet, setShowWallet] = useState(false)
-    const [isDetail,setDetail] =useState(false)
+    const [isDetail, setDetail] = useState(false)
     const [solName, setSolname] = useState(undefined)
     const [fee, setFee] = useState(0.008)
     const [wethBalance, setWethBalance] = useState(0)
@@ -108,7 +109,7 @@ const Register = (props) => {
     const handlePost = async () => {
         try {
             setIsLoading(true)
-            let { userName, BIO, Email, Twitter, telegram, Website, paytype } = { ...(form.getFieldsValue()) }
+            let {userName, BIO, Email, Twitter, telegram, Website, paytype} = {...(form.getFieldsValue())}
             if (!paytype) {
                 paytype = 1
             }
@@ -169,7 +170,7 @@ const Register = (props) => {
                     await handleDealPayMethod("register",
                         [userName, Email, jsonUrl.IpfsHash],
                         BigNumber(feeValue).dividedBy(10 ** ETHDecimals)
-                         )
+                    )
                     goPage('/MyPassport')
                     setIsLoading(false)
                     return
@@ -192,14 +193,15 @@ const Register = (props) => {
     }
     const getWeth = async () => {
         let balance = await handleCoinViewMethod("balanceOf", [state.account])
-        setWethBalance( BigNumber(balance).dividedBy( 10 ** ETHDecimals).toString())
+        setWethBalance(BigNumber(balance).dividedBy(10 ** ETHDecimals).toString())
     }
+    let isUnmount = false;
     useEffect(() => {
-        if (status == 3) {
+        if (status == 3 && !isUnmount) {
             getData()
             getWeth()
         }
-
+        return () => isUnmount = true
     }, [state.account, status]);
     //check can submit
     useEffect(() => {
@@ -230,8 +232,8 @@ const Register = (props) => {
     }
     const Table = () => {
 
-        const { TextArea } = Input;
-        
+        const {TextArea} = Input;
+
         return (
             <Form form={form} name="control-hooks">
                 <Form.Item
@@ -240,9 +242,9 @@ const Register = (props) => {
                     validateTrigger="onBlur"
                     validateFirst={true}
                     rules={[
-                        { required: true, message: 'Please input your username!' },
-                        { min: 4, message: "name length need > 4" },
-                        { max: 20, message: "name length need < 20" },
+                        {required: true, message: 'Please input your username!'},
+                        {min: 4, message: "name length need > 4"},
+                        {max: 20, message: "name length need < 20"},
                         {
                             pattern: new RegExp('^[0-9a-zA-Z_]{1,}$', 'g'),
                             message: 'The value can contain only digits, letters, and underscores'
@@ -256,7 +258,7 @@ const Register = (props) => {
 
                 >
                     <Input
-                        prefix={<UserOutlined />}
+                        prefix={<UserOutlined/>}
                         allowClear
                     />
                 </Form.Item>
@@ -270,16 +272,16 @@ const Register = (props) => {
                 <Form.Item
                     name="Email"
                     label=" Email"
-                    rules={[{ required: true, message: 'Please input your Email!' },
-                    { max: 50, message: "Email length need < 50" },
+                    rules={[{required: true, message: 'Please input your Email!'},
+                        {max: 50, message: "Email length need < 50"},
 
-                    {
-                        pattern: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/,
-                        message: "Email error"
-                    }
+                        {
+                            pattern: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/,
+                            message: "Email error"
+                        }
                     ]}
                 >
-                    <Input allowClear />
+                    <Input allowClear/>
                 </Form.Item>
                 <Form.Item
                     name="BIO"
@@ -287,20 +289,21 @@ const Register = (props) => {
                     className='dx'
                     initialValues={"Let's build the Bit Civilization together!"}
                     rules={[
-                        { max: 200, message: "BIO length need < 200" }]}
-                        
+                        {max: 200, message: "BIO length need < 200"}]}
+
                 >
-                    <TextArea allowClear placeholder={"Let's build the Bit Civilization together!"} style={{borderRadius:'10px'}} />
+                    <TextArea allowClear placeholder={"Let's build the Bit Civilization together!"}
+                              style={{borderRadius: '10px'}}/>
                 </Form.Item>
                 <Form.Item
                     name="Twitter"
                     label="Twitter"
                     initialValues={"FireDAOlab"}
                     rules={[
-                        { max: 50, message: "Twitter length need < 50" },]}
+                        {max: 50, message: "Twitter length need < 50"},]}
                 >
                     <Input
-                        prefix={<TwitterOutlined />}
+                        prefix={<TwitterOutlined/>}
                         placeholder={"FireDAOlab"}
                         allowClear
                     />
@@ -310,10 +313,10 @@ const Register = (props) => {
                     label="Telegram"
                     initialValues={"FireDAOEN"}
                     rules={[
-                        { max: 50, message: "Telegram length need < 50" },]}
+                        {max: 50, message: "Telegram length need < 50"},]}
                 >
                     <Input
-                        prefix={<SendOutlined />}
+                        prefix={<SendOutlined/>}
                         placeholder={"FireDAOEN"}
                         allowClear
                     />
@@ -323,22 +326,24 @@ const Register = (props) => {
                     label="Website"
                     initialValues={"www.FireDAO.co"}
                     rules={[
-                        { max: 50, message: "Website length need < 50" },]}
+                        {max: 50, message: "Website length need < 50"},]}
                 >
-                    <Input placeholder={"www.FireDAO.co"} allowClear />
+                    <Input placeholder={"www.FireDAO.co"} allowClear/>
                 </Form.Item>
 
                 <div className="mint-tip">
-                    <div className='fee'>Fee: </div>
+                    <div className='fee'>Fee:</div>
                     <Form.Item
                         className="choosePayType"
                         name="paytype"
                         initialValues="1"
                         rules={[
-                            { max: 50, message: "Telegram length need < 50" },]}
+                            {max: 50, message: "Telegram length need < 50"},]}
                     >
-                        <img src={ethereum} style={{width:'28px'}}/><span style={{color:'rgba(98, 132, 245, 1)',paddingLeft:'10px',
-            fontFamily: 'Roboto-SemiBold, Roboto',fontWeight:'600',verticalAlign:'middle',}}>{fee}ETH</span>
+                        <img src={ethereum} style={{width: '28px'}}/><span style={{
+                        color: 'rgba(98, 132, 245, 1)', paddingLeft: '10px',
+                        fontFamily: 'Roboto-SemiBold, Roboto', fontWeight: '600', verticalAlign: 'middle',
+                    }}>{fee}ETH</span>
                         {/* <Select
                             style={{ width: 100, height: 30 }}
                             defaultValue="ETH"
@@ -358,16 +363,21 @@ const Register = (props) => {
                     </Form.Item>
                 </div>
                 <Form.Item className="button-box">
-                    {!isLoading && status == 3 && <Button className="ant-btn ant-btn-primary ant-btn-lg subBtn" htmlType="submit" type="primary"
-                        onClick={() => handlePost()}>Mint Passport</Button>
+                    {!isLoading && status == 3 &&
+                        <Button className="ant-btn ant-btn-primary ant-btn-lg subBtn" htmlType="submit" type="primary"
+                                onClick={() => handlePost()}>Mint Passport</Button>
                     }
-                    {!isLoading && status == 2 && <Button  className="ant-btn ant-btn-primary ant-btn-lg subBtn" >Insufficient ETH(WETH) balance</Button>
+                    {!isLoading && status == 2 &&
+                        <Button className="ant-btn ant-btn-primary ant-btn-lg subBtn">Insufficient ETH(WETH)
+                            balance</Button>
                     }
-                    {!isLoading && status == 0 && <ConnectWallet  className="ant-btn ant-btn-primary ant-btn-lg subBtn"/>}
-                    {!isLoading && status == 1 && <Button  className="ant-btn ant-btn-primary ant-btn-lg subBtn"
-                        onClick={() => checkMintInfo()}>Mint Passport</Button>}
+                    {!isLoading && status == 0 &&
+                        <ConnectWallet className="ant-btn ant-btn-primary ant-btn-lg subBtn"/>}
+                    {!isLoading && status == 1 && <Button className="ant-btn ant-btn-primary ant-btn-lg subBtn"
+                                                          onClick={() => checkMintInfo()}>Mint Passport</Button>}
 
-                    {isLoading && <Button className="ant-btn ant-btn-primary ant-btn-lg subBtn" >Minting Passport<LoadingOutlined /></Button>
+                    {isLoading &&
+                        <Button className="ant-btn ant-btn-primary ant-btn-lg subBtn">Minting Passport<LoadingOutlined/></Button>
                     }
                 </Form.Item>
 
@@ -376,8 +386,10 @@ const Register = (props) => {
     }
     return (
         <RegisterStyle className='daoHome daoContentBg'>
-             {isDetail&&<Detail  closeDialog={()=>{setDetail(false)}}/>}
-            <div className="panel-box" >
+            {isDetail && <Detail closeDialog={() => {
+                setDetail(false)
+            }}/>}
+            <div className="panel-box">
                 <div className="panel-container">
                     <h2 className="panel-title">
                         Mint Passport
@@ -385,19 +397,21 @@ const Register = (props) => {
                     <div className="content-box ">
                         <div className="left">
                             <div className="img-box">
-                                <img className="img" src={long} alt="" />
-                                <p >Pass FireSeed,Cast FireSoul</p>
-                                <div style={{ display: 'flex', marginTop: '-20px', height: '30px' }} >
-                                    <hr className='ecoshr' />
+                                <img className="img" src={long} alt=""/>
+                                <p>Pass FireSeed,Cast FireSoul</p>
+                                <div style={{display: 'flex', marginTop: '-20px', height: '30px'}}>
+                                    <hr className='ecoshr'/>
                                     <span className='ecos'>&nbsp;FireDAO Ecosystem&nbsp;</span>
-                                    <hr className='ecoshr' />
+                                    <hr className='ecoshr'/>
                                 </div>
                             </div>
-                            <div className="nft-detail" >
-                                <div className="title1" onClick={()=>{setDetail(true)}}>
+                            <div className="nft-detail">
+                                <div className="title1" onClick={() => {
+                                    setDetail(true)
+                                }}>
                                     Details
                                 </div>
-                                <div className="title" >
+                                <div className="title">
                                     Details
                                 </div>
                                 <div className="content-item">
@@ -405,15 +419,17 @@ const Register = (props) => {
                                         Contract Address
                                     </div>
                                     <div className="value address"
-                                    style={{background: 'rgba(205,158,87,0.1)',
-                                        borderRadius: '50px',
-                                        color:'rgba(205, 158, 87, 1)',
-                                        
-                                        // opacity: 1,
-                                        border: '1px solid rgba(205,158,87,0.5)',}}
+                                         style={{
+                                             background: 'rgba(205,158,87,0.1)',
+                                             borderRadius: '50px',
+                                             color: 'rgba(205, 158, 87, 1)',
+
+                                             // opacity: 1,
+                                             border: '1px solid rgba(205,158,87,0.5)',
+                                         }}
                                     >
-                                        <a target="_blank"style={{margin:'5px 10px'}}
-                                            href={develop.ethScan + "address/" + addressMap.user.address}>{addressMap.user.address.substr(0, 6) + "..." + addressMap.user.address.substr(addressMap.user.address.length - 3, addressMap.user.address.length)}</a>
+                                        <a target="_blank" style={{margin: '5px 10px'}}
+                                           href={develop.ethScan + "address/" + addressMap.user.address}>{addressMap.user.address.substr(0, 6) + "..." + addressMap.user.address.substr(addressMap.user.address.length - 3, addressMap.user.address.length)}</a>
                                     </div>
                                 </div>
                                 <div className="content-item">
@@ -429,7 +445,7 @@ const Register = (props) => {
                                         Chain
                                     </div>
                                     <div className="value">
-                                        <img style={{margin:'0px 10px',width:'28px'}} src={ethereum} />{develop.Name}
+                                        <img style={{margin: '0px 10px', width: '28px'}} src={ethereum}/>{develop.Name}
                                     </div>
                                 </div>
                                 <div className="content-item">
@@ -437,8 +453,8 @@ const Register = (props) => {
                                         NFT Features
                                     </div>
                                     <div className="value">
-                                    Each wallet can only mint one passport,
-                                    and it cannot be transferred, soul binding.
+                                        Each wallet can only mint one passport,
+                                        and it cannot be transferred, soul binding.
                                     </div>
                                 </div>
                             </div>
