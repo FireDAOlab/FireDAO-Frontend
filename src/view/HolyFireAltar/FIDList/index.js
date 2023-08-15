@@ -186,11 +186,11 @@ const FIDList = (props) => {
                                 </div>
                             </div>
                         </div>
-                        {/* {
-                                !searchData && activeNav == 1 && state.PidArr.map((item, index) => (
+                        {
+                                !searchData && activeNav == 1 &&FIDARR.map((item, index) => (
                                     Row(item, index)
                                 ))
-                            } */}
+                            }
                         {
                             activeNav == 1 && FIDARR.map((item, index) => (
                                 index >= pageCount * (curPage - 1) && index < pageCount * curPage &&
@@ -205,14 +205,15 @@ const FIDList = (props) => {
 
 
                         {
-                            state.PidArr.map((item, index) => (
+                            FIDARR.length==0? <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />:
+                            FIDARR.map((item, index) => (
                                 <div className='listitemt'>
                                     <div className="list-item " key={index}>
                                         <div className="col pid">
                                            {item.pid ? item.pid :"-"}
                                         </div>
                                         <div className="col fid">
-                                            {/* {item.fid ? item.fid :"-"} */}-
+                                            {item.fid ? item.fid :"-"}
                                         </div>
                                         <div className="col">
                                             

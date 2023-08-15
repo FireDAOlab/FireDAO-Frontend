@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useConnect } from "../../../api/contracts";
-import { Pagination,Empty, Button, Select, Descriptions, message, Form, List, Input, notification, Card } from 'antd';
+import { Pagination, Empty, Button, Select, Descriptions, message, Form, List, Input, notification, Card } from 'antd';
 import { getContractByName, getContractByContract } from "../../../api/connectContract";
 import { dealMethod, viewMethod } from "../../../utils/contractUtil"
 import { useNavigate, useLocation } from "react-router-dom";
@@ -79,10 +79,11 @@ const FireLock = (props) => {
 
 
     const removeOwner = (item, index) => {
-        let tempArr = Object.assign([], ownerArr)
-        tempArr.splice(index, 1);
+        let tempArr = [...whitelist]
+
+        tempArr.splice(index, 1, tempArr);
         console.log(tempArr);
-        setOwnerArr(tempArr)
+        setWhitelistArr(tempArr)
     }
     const onChangePage = async (page) => {
         getData(page)
@@ -213,7 +214,7 @@ const FireLock = (props) => {
     }
     const addWhiteListUser = async () => {
         await handleDealMethod("addWhiteListUser", [])
-        // getWhitelist()
+        getWhitelist()
     }
 
     const handleSetAddress = async () => {
@@ -232,6 +233,7 @@ const FireLock = (props) => {
         if (!judgeRes) {
             return
         }
+        console.log(11111111111);
         await getData()
 
 
@@ -465,33 +467,38 @@ const FireLock = (props) => {
                             </div>
 
 
-                            { 
-                            whitelist.length==0? <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />:
-                            whitelist.map((item, index) => (
-                                <Form className='ffa'>
-                                <div className="list-item" key={index}>
-                                    {/* <Form.Item> */}
-                                    <div className="col1 no">
-                                        {index + 1}
-                                    </div>
-                                    {/* </Form.Item> */}
-                                    {/* <div className="col1 pid">
+                            {
+                                whitelist.length == 0 ? <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} /> :
+                                    whitelist.map((item, index) => (
+                                        <Form className='ffad'>
+                                            <div className="list-item" key={index}>
+                                                <Form.Item className="col1 no">
+
+                                                    {index + 1}
+
+                                                </Form.Item>
+                                                {/* <div className="col1 pid">
                                 {item}
                                 </div> */}
-                                    <div className="col1 address">
-                                        <a> {item}</a>
-                                    </div>
-                                    {/* ownerArr.length >=1 */}
-                                    {(index == ownerArr.length - 1) && (
-                                        <div className="col1 sc1" onClick={() => { removeOwner() }}>
-                                            <img src={sc} className="sc" />
-                                        </div>
+                                                <div className="col1 address">
+                                                    <a> {item}</a>
+                                                </div>
+                                                {(index == ownerArr.length - 1) && (
+                                                    <div className="col1 sc1" onClick={() => { removeOwner() }}>
+                                                        <img src={sc} className="sc" />
+                                                    </div>
 
-                                    )}
-                                </div>
-                                
-                                 </Form>
-                            ))}
+                                                )}
+                                                {(index == ownerArr.length - 1) && (
+                                                    <div className="col1 sc1" onClick={() => { removeOwner() }}>
+                                                        <img src={sc} className="sc" />
+                                                    </div>
+
+                                                )}
+                                            </div>
+
+                                        </Form>
+                                    ))}
                         </div>
                         <div className="pagination">
                             {
@@ -627,54 +634,56 @@ const FireLock = (props) => {
                                             Price/unit
                                         </div>
                                     </div>
-                                
-                                <Form form={form} name="control-hooks">
                                     {
-                                     discountArr.length==0? <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />:
-                                    discountArr.map(item => {
-                                            return (
-                                
-                                        <div className="list-item dis">
-                                            <div className='col range'>
-                                                <Form.Item className='start'
-                                                    validateFirst={true}
-                                                    rules={[
-                                                        // { required: true, message: 'Please input start!' },
-                                                    ]}>
-                                                    <Input placeholder={item.start}  className="dtoo1" />
+                                         discountArr.length==0? <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />:
+                                        discountArr.map((item,index) => {
+                                                return (
+                                        <Form form={form} name="control-hooks">
 
 
-                                                </Form.Item>
-                                                <span className='space'>-</span>
-                                                <Form.Item className='end'
-                                                    validateFirst={true}
-                                                    rules={[
-                                                        // { required: true, message: 'Please input end!' },
-                                                    ]}>
-                                                    <Input placeholder={item.end} className="dtoo1" />
+                                            <div className="list-item dis">
+                                                <div className='col range'>
+                                                    <Form.Item className='start'
+                                                        validateFirst={true}
+                                                        rules={[
+                                                            // { required: true, message: 'Please input start!' },
+                                                        ]}>
+                                                        <Input placeholder='{item.start}' className="dtoo1" />
 
-                                                </Form.Item>
+
+                                                    </Form.Item>
+                                                    <span className='space'>-</span>
+                                                    <Form.Item className='end'
+                                                        validateFirst={true}
+                                                        rules={[
+                                                            // { required: true, message: 'Please input end!' },
+                                                        ]}>
+                                                        <Input placeholder='{item.end}' className="dtoo1" />
+
+                                                    </Form.Item>
+                                                </div>
+                                                <div className='col disamount'>
+                                                    <Form.Item className='dis1'
+                                                        validateFirst={true}
+                                                        rules={[
+                                                            // { required: true, message: 'Please input discount!' },
+                                                        ]}>
+                                                        <Input placeholder='{item.discount}' className="dtoo1" />
+
+                                                    </Form.Item>
+
+                                                </div>
+                                                <div className='col price'>
+                                                    czxc
+                                                </div>
                                             </div>
-                                            <div className='col disamount'>
-                                                <Form.Item className='dis1'
-                                                    validateFirst={true}
-                                                    rules={[
-                                                        // { required: true, message: 'Please input discount!' },
-                                                    ]}>
-                                                    <Input placeholder={item.discount} className="dtoo1" />
 
-                                                </Form.Item>
 
-                                            </div>
-                                            <div className='col price'>
-                                                
-                                            </div>
-                                        </div>
-                                    
-                               ) })}  
+                                        </Form>
 
-                                </Form>
-                                </div>
+                                           ) })
+                                    }   
+                                    </div>
                             </div>
                             <Button type="primary" className="max-btn" style={{ width: '45%', margin: '1em 25%' }} onClick={() => {
                                 setDiscountFactor()

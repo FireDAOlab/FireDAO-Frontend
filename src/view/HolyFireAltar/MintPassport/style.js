@@ -24,7 +24,7 @@ export default styled.div`
 }
 .button-box {
     text-align: left;
-    border: 25px;
+    border-radius: 25px;
     .subBtn {
       
     height: 40px;
@@ -36,7 +36,7 @@ export default styled.div`
   }
   .ant-btn-primary{
     height: 40px;
-
+    border-radius: 25px;
 font-family: Roboto-SemiBold, Roboto;
 font-weight: 600;
 color: #FFFFFF;

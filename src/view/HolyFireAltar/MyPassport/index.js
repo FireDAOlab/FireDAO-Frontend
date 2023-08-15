@@ -38,7 +38,7 @@ const MyPassport = (props) => {
     const [myClassAddress, setMyClass] = useState("")
     const [myClassPid, setMyClassPid] = useState(0)
     const [myPassport, setPassport] = useState("")
-    const [SBTARR, setSBTARR] = useState([{}])
+    const [SBTARR, setSBTARR] = useState([])
     const [curSBTPage, setCurSBTPage] = useState(1)
     const [showTip, setShowTip] = useState(false)
     const [isAdmin, setIsAdmin] = useState(false)
@@ -583,7 +583,7 @@ const MyPassport = (props) => {
                                 {
                                      SBTARR.length==0? <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />:
                                        SBTARR.map((item, index) => (
-                                    //    index > 10 * (curSBTPage - 1) && index < 10 * curSBTPage &&
+                                       index > 10 * (curSBTPage - 1) && index < 10 * curSBTPage &&
 
                                     <div className="list-item sbt2">
 
@@ -603,6 +603,7 @@ const MyPassport = (props) => {
                                             
                                         </div>
                                     </div>
+                                    
                                        ))
                                 }
                             </div>

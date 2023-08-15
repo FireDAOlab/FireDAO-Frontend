@@ -274,6 +274,7 @@ const PidList = (props) => {
                             </div>
                         </div>
                         {
+                           
                             !searchData && activeNav == 1 && state.PidArr.map((item, index) => (
                                 Row(item, index)
                             ))

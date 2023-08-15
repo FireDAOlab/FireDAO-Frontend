@@ -38,9 +38,7 @@ export default styled.div`
     }
   }
 }
-.list-item:last-child{
-    border-bottom:none!important;
-}
+
       .ant-form-item-control-input {
         border-radius: 25px;
       }

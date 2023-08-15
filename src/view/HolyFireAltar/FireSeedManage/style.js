@@ -18,11 +18,13 @@ export default styled.div`
 .ant-form-item-control-input{
   border-radius:25px;
   line-height:40px;
+
   
 }
 .ant-form-item-control-input-content{
   display: flex;
   text-align:center;
+
   
 }
 
@@ -36,9 +38,8 @@ padding: 0px 10px;
   outline:none;
   border:none;
 }
-.list-item:last-child{
-    border-bottom:none!important;
-}
+
+
 @media screen and (min-width: 1950px) {
     
     .max-btn{
@@ -162,6 +163,9 @@ padding: 20px;
   }
 
   .ffad{
+    &:last-child .list-item{
+    border-bottom:none!important;
+}
     margin:0em;
         .list-item{
           padding: 0.5em;
@@ -206,7 +210,7 @@ padding: 20px;
           }
           .no{padding: 2px 4px;
             color: #FE6D46;
-
+text-align:center;
           }
           .pid{
             padding: 2px 4px;
@@ -236,6 +240,9 @@ padding: 20px;
           .ff1{
         margin: 2em 0em;
         text-align:left;
+        &:last-child .list-item {
+    border-bottom:none!important;
+}
         .ant-form {
             input{
           font-size:16px;
@@ -310,15 +317,19 @@ font-size:16px;
 }     
         }
 
-}
+    }
 
 
 .ant-form-item-control-input-content{
           height: 40px;
+text-align:center;
         }
 
 
           .ff2{
+            .list-item:last-child{
+    border-bottom:none!important;
+}
         margin: 2em 0;
         .flex-box1 {
             padding: 20px 2em;
@@ -770,6 +781,9 @@ padding: 20px;
   }
 
   .ffad{
+    &:last-child .list-item{
+    border-bottom:none!important;
+}
     margin:0em;
     .list-item{
       padding: 0.5em;
@@ -814,7 +828,7 @@ padding: 20px;
       }
       .no{padding: 2px 4px;
         color: #FE6D46;
-
+        text-align:center;
       }
       .pid{padding: 2px 4px;
         color: #FE6D46;
@@ -843,6 +857,9 @@ padding: 20px;
     .ff1{
         margin: 2em 0em;
         text-align:left;
+        &:last-child .list-item {
+    border-bottom:none!important;
+}
         .ant-form {
             input{
           font-size:16px;
@@ -923,6 +940,9 @@ font-size:16px;
         }
         .ff2{
         margin: 2em 0;
+        .list-item:last-child{
+    border-bottom:none!important;
+}
             .flex-box1 {
                 padding: 20px 2em;
               }
@@ -1411,7 +1431,7 @@ padding: 20px;
               }
               .no{padding: 2px 4px;
                 color: #FE6D46;
-    
+                text-align:center;
               }
               .pid{padding: 2px 4px;
                 color: #FE6D46;
@@ -1441,6 +1461,9 @@ padding: 20px;
             .ff1{
         margin: 2em 0em;
                 text-align:left;
+                &:last-child .list-item {
+    border-bottom:none!important;
+}
                 .ant-form {
                     input{
                   font-size:14px;
@@ -1519,6 +1542,9 @@ padding: 20px;
 
 
         .ff2{
+            .list-item:last-child{
+    border-bottom:none!important;
+}
         margin: 2em 0;
             .flex-box1 {
                 padding: 20px 2em;
@@ -1986,7 +2012,7 @@ line-height: 18px;
               }
               .no{padding: 2px 4px;
                 color: #FE6D46;
-    
+                text-align:center;
               }
               .pid{padding: 2px 4px;
                 color: #FE6D46;
@@ -2424,7 +2450,7 @@ line-height: 18px;
               }
               .no{padding: 2px 4px;
                 color: #FE6D46;
-    
+                text-align:center;
               }
               .pid{padding: 2px 4px;
                 color: #FE6D46;

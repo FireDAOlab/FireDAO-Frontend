@@ -5,10 +5,7 @@ export default styled.div`
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  /* pc style */
-  .list-item:last-child{
-    border-bottom:none!important;
-}
+  
   .panel-box{
     .panel-container{
       border:none
@@ -451,6 +448,9 @@ color: rgb(254, 109, 70);
     margin-top:2em;
    
   .fire-list-box {
+    .list-item:last-child{
+    border-bottom:none!important;
+}
           .flex-box11 {
             padding: 20px 2.5em;
           }
@@ -521,6 +521,9 @@ font-size:16px;
     .myWall {
         margin-top:2em;
        .fire-list-box {
+        &:last-child .list-item {
+    border-bottom:none!important;
+}
           .flex-box11 {
             padding: 20px 2.2em;
           }
@@ -597,6 +600,9 @@ font-size:16px;
     .myfdt {
         margin-top:2em;
        .fire-list-box {
+        .list-item:last-child{
+    border-bottom:none!important;
+}
           .flex-box22 {
             padding: 20px 1.8em;
           }
@@ -1185,6 +1191,9 @@ color: rgb(254, 109, 70);
    
  
     .fire-list-box {
+        .list-item:last-child{
+    border-bottom:none!important;
+}
           .flex-box11 {
             padding: 20px 2.5em;
           }
@@ -1253,8 +1262,12 @@ font-size:16px;
 }
 }
     .myWall {
+        
         margin-top:2em;
              .fire-list-box {
+                &:last-child .list-item {
+    border-bottom:none!important;
+}
           .flex-box11 {
             padding: 20px 2.2em;
           }
@@ -1331,6 +1344,9 @@ font-size:16px;
     .myfdt {
         margin-top:2em;
         .fire-list-box {
+            .list-item:last-child{
+    border-bottom:none!important;
+}
           .flex-box22 {
             padding: 20px 1.8em;
           }
@@ -1908,6 +1924,9 @@ color: rgb(254, 109, 70);
     margin-top:2em;
    
     .fire-list-box {
+        .list-item:last-child{
+    border-bottom:none!important;
+}
           .flex-box11 {
             padding: 20px 1.8em;
           }
@@ -1977,6 +1996,9 @@ font-size:14px;
 .myWall {
         margin-top:2em;
         .fire-list-box {
+            &:last-child .list-item {
+    border-bottom:none!important;
+}
           .flex-box11 {
             padding: 20px 1.5em;
           }
@@ -2052,6 +2074,9 @@ font-size:14px;
 .myfdt {
         margin-top:2em;
         .fire-list-box {
+            .list-item:last-child{
+    border-bottom:none!important;
+}
           .flex-box22 {
             padding: 20px 1.6em;
           }

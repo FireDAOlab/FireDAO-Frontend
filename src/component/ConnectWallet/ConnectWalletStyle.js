@@ -4,9 +4,16 @@ export default   styled.div`
  .ant-btn-primary::after{
   background: #140E0E;
  }
+ .ant-dropdown-menu-item:hover{
+    background:#1f1f1f!important;
+ }
+ .ant-dropdown-menu-item .ant-dropdown-menu-item-only-child{
+    background:#1f1f1f !important;
+ }
   @media screen and (max-width: 1950px) {
     .ant-btn-primary {
       background: linear-gradient(32deg, #FF4E50 0%, #F9D423 100%);
+      border-radius:25px;
     }
 
     .but2 {
@@ -57,7 +64,7 @@ export default   styled.div`
 .but1{
   display:none;
 }
-.ant-btn ant-btn-primary{
+.ant-btn .ant-btn-primary{
   border: 1px solid rgba(255, 255, 255, 0.15);
 }
 .ant-dropdown-menu-submenu-title:hover{
