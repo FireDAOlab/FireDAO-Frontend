@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useConnect } from "../../../api/contracts";
-import { Pagination, Card, Button, Descriptions, message, Form, List, Input, notification } from 'antd';
+import { Pagination, Card,Empty, Button, Descriptions, message, Form, List, Input, notification } from 'antd';
 import { getContractByName, getContractByContract } from "../../../api/connectContract";
 import { dealMethod, viewMethod } from "../../../utils/contractUtil"
 import search from '../../../imgs/search.png'
@@ -209,40 +209,40 @@ const FIDList = (props) => {
                                 <div className='listitemt'>
                                     <div className="list-item " key={index}>
                                         <div className="col pid">
-                                            -
+                                           {item.pid ? item.pid :"-"}
                                         </div>
                                         <div className="col fid">
-                                            {item.fid}-
+                                            {/* {item.fid ? item.fid :"-"} */}-
                                         </div>
                                         <div className="col">
-                                            12345578
+                                            
                                         </div>
                                         <div className="col address">
-                                            {}{item.soulAccount}
+                                            {item.soulAccount ? item.soulAccount :'-'}
                                         </div>
                                         <div className="col">
-                                            12345578
+                                            
                                         </div>
                                         <div className="col">
-                                            12345578
+                                            
                                         </div>
                                         <div className="col">
-                                            12345578
+                                            
                                         </div>
                                         <div className="col">
-                                            12345578
+                                            
                                         </div>
                                         <div className="col">
-                                            12345578
+                                            
                                         </div>
                                         <div className="col">
-                                            12345578
+                                            
                                         </div>
                                         <div className="col">
-                                            12345578
+                                            
                                         </div>
                                         <div className="col">
-                                            12345578
+                                            
                                         </div>
                                     </div>
                                 </div>

@@ -12,12 +12,10 @@ export default styled.div`
   .panel-box{
     .panel-container{
       border:none
-
-    
     }
-    /* .asc :last-child .sbt1{
-            border-bottom:none;
-        } */
+  }
+  .ant-btn-primary::after{
+    background: none;
   }
   @media screen and (min-width: 1950px) {
     .boxhr{
@@ -344,11 +342,8 @@ border: 1px solid rgba(87,141,205,0.5);
       .nft-list {
         justify-content: center;
 width: 100%;
-margin-top: 3em;
-margin-bottom: 1em;
+margin-top: 2em;
 .boxshadow{
-  
-  margin-top: 3em;
 width: 48%;
 margin: 0 auto;
 background: #140E0E;
@@ -378,7 +373,7 @@ margin: 1em auto;
                 font-weight: bold;
             
 font-family: Squada One-Regular, Squada One;
-            font-size:28px;
+            font-size:25px;
             line-height:45px;
         }
      
@@ -660,18 +655,18 @@ font-size:16px;
 }
  
     .fidr{
-       
-      width: 36%;
       display: flex;
       align-items:center;
       p{
-       padding-top:15px;
+       padding-top:12px;
+       width: 190px;
         font-size:18px;
       color:rgba(138, 128, 128, 1);
       }
       .fidkk{
+        margin-top:-5px;
+        width: 150px;
         margin-left:8px;
-        width: 45%;
         height: 35px;
         line-height: 35px;
         font-size:16px;
@@ -684,24 +679,27 @@ font-size:16px;
       }
     }
     .wall{
-      width:28%;
       display: flex;
       align-items:center;
       p{
-        padding-top:15px;
+        width: 120px;
+        padding-top:12px;
         font-size:18px;
       color:rgba(138, 128, 128, 1);
       }
       .wallkk{
+        margin-top:-5px;
         margin-left:8px;
-        width: 60%;
+        width: 150px;
         height: 35px;
         line-height: 35px;
         font-size:16px;
         text-align:center;
         color: rgb(254, 109, 70);
+    background: rgba(254, 109, 70, 0.1);
+    border-radius: 30px;
     opacity: 1;
-    border: none;   
+    border: 1px solid rgba(254, 109, 70, 0.5); 
       }
     }
     .fdt{
@@ -714,12 +712,13 @@ font-size:16px;
         display: flex;
         align-items:center;
         p{
-        padding-top:18px;
+        padding-top:12px;
         font-size:18px;
       color:rgba(138, 128, 128, 1);
       }
   
       .fdtkk{
+        margin-top:-6px;
         margin-left:8px;
         width: 70%;
         height: 35px;
@@ -733,6 +732,7 @@ font-size:16px;
     border: 1px solid rgba(254, 109, 70, 0.5);   
       }
       .valuekk{
+        margin-top:-6px;
         margin-left:8px;
         width: 70%;
         height: 35px;
@@ -1075,11 +1075,8 @@ border: 1px solid rgba(87,141,205,0.5);
       .nft-list {
         justify-content: center;
 width: 100%;
-margin-top: 3em;
-margin-bottom: 1em;
+margin-top: 2em;
 .boxshadow{
-  
-  margin-top: 3em;
 width: 48%;
 margin: 0 auto;
 background: #140E0E;
@@ -1109,7 +1106,7 @@ margin: 1em auto;
                 font-weight: bold;
                 font-family: Squada One-Regular, Squada One;
 
-            font-size:28px;
+            font-size:25px;
             line-height:45px;
         }
      
@@ -1391,95 +1388,100 @@ font-size:16px;
     }
 }
 
-    .fidr{
-       
-      width: 36%;
-      display: flex;
-      align-items:center;
-      p{
-       padding-top:15px;
-        font-size:18px;
-      color:rgba(138, 128, 128, 1);
-      }
-      .fidkk{
-        margin-left:8px;
-        width: 45%;
-        height: 35px;
-        line-height: 35px;
-        font-size:16px;
-        text-align:center;
-        color: rgb(254, 109, 70);
-    background: rgba(254, 109, 70, 0.1);
-    border-radius: 30px;
-    opacity: 1;
-    border: 1px solid rgba(254, 109, 70, 0.5); 
-      }
+.fidr{
+    display: flex;
+    align-items:center;
+    p{
+     padding-top:12px;
+     width: 190px;
+      font-size:18px;
+    color:rgba(138, 128, 128, 1);
     }
-    .wall{
-      width:28%;
-      display: flex;
-      align-items:center;
-      p{
-        padding-top:15px;
-        font-size:18px;
-      color:rgba(138, 128, 128, 1);
-      }
-      .wallkk{
-        margin-left:8px;
-        width: 60%;
-        height: 35px;
-        line-height: 35px;
-        font-size:16px;
-        text-align:center;
-        color: rgb(254, 109, 70);
-    opacity: 1;
-    border: none;   
-      }
-    }
-    .fdt{
-      width: 35%;
-      display: flex;
-      align-items:center;
-  
-      .fff{
-        width: 100%;
-        display: flex;
-        align-items:center;
-        p{
-        padding-top:18px;
-        font-size:18px;
-      color:rgba(138, 128, 128, 1);
-      }
-  
-      .fdtkk{
-        margin-left:8px;
-        width: 70%;
-        height: 35px;
-        line-height: 35px;
-        font-size:16px;
-        text-align:center;
-        color: rgb(254, 109, 70);
-    background: rgba(254, 109, 70, 0.1);
-    border-radius: 30px;
-    opacity: 1;
-    border: 1px solid rgba(254, 109, 70, 0.5);   
-      }
-      .valuekk{
-        margin-left:8px;
-        width: 70%;
-        height: 35px;
-        line-height: 35px;
-        font-size:16px;
-        text-align:center;
-        color: rgb(254, 109, 70);
-    background: rgba(254, 109, 70, 0.1);
-    border-radius: 30px;
-    opacity: 1;
-    border: 1px solid rgba(254, 109, 70, 0.5);      
-      }
-    }
+    .fidkk{
+      margin-top:-5px;
+      width: 150px;
+      margin-left:8px;
+      height: 35px;
+      line-height: 35px;
+      font-size:16px;
+      text-align:center;
+      color: rgb(254, 109, 70);
+  background: rgba(254, 109, 70, 0.1);
+  border-radius: 30px;
+  opacity: 1;
+  border: 1px solid rgba(254, 109, 70, 0.5); 
     }
   }
+  .wall{
+    display: flex;
+    align-items:center;
+    p{
+      width: 120px;
+      padding-top:12px;
+      font-size:18px;
+    color:rgba(138, 128, 128, 1);
+    }
+    .wallkk{
+      margin-top:-5px;
+      margin-left:8px;
+      width: 150px;
+      height: 35px;
+      line-height: 35px;
+      font-size:16px;
+      text-align:center;
+      color: rgb(254, 109, 70);
+  background: rgba(254, 109, 70, 0.1);
+  border-radius: 30px;
+  opacity: 1;
+  border: 1px solid rgba(254, 109, 70, 0.5); 
+    }
+  }
+  .fdt{
+    width: 35%;
+    display: flex;
+    align-items:center;
+
+    .fff{
+      width: 100%;
+      display: flex;
+      align-items:center;
+      p{
+      padding-top:12px;
+      font-size:18px;
+    color:rgba(138, 128, 128, 1);
+    }
+
+    .fdtkk{
+      margin-top:-6px;
+      margin-left:8px;
+      width: 70%;
+      height: 35px;
+      line-height: 35px;
+      font-size:16px;
+      text-align:center;
+      color: rgb(254, 109, 70);
+  background: rgba(254, 109, 70, 0.1);
+  border-radius: 30px;
+  opacity: 1;
+  border: 1px solid rgba(254, 109, 70, 0.5);   
+    }
+    .valuekk{
+      margin-top:-6px;
+      margin-left:8px;
+      width: 70%;
+      height: 35px;
+      line-height: 35px;
+      font-size:16px;
+      text-align:center;
+      color: rgb(254, 109, 70);
+  background: rgba(254, 109, 70, 0.1);
+  border-radius: 30px;
+  opacity: 1;
+  border: 1px solid rgba(254, 109, 70, 0.5);      
+    }
+  }
+  }
+}
   @media screen and (max-width: 1500px) {
     .boxhr{
       display: none;
@@ -1806,11 +1808,9 @@ border: 1px solid rgba(87,141,205,0.5);
       .nft-list {
         justify-content: center;
 width: 100%;
-margin-top: 3em;
-margin-bottom: 1em;
+margin-top: 2em;
 .boxshadow{
   
-  margin-top: 3em;
 width: 48%;
 margin: 0 auto;
 background: #140E0E;
@@ -2108,19 +2108,19 @@ font-size:14px;
           }
     }
 }
-    .fidr{
-       
-      width: 41%;
-      display: flex;
-      align-items:center;
-      p{
-       padding-top:15px;
-        font-size:14px;
-      color:rgba(138, 128, 128, 1);
-      }
-      .fidkk{
+.fidr{
+    display: flex;
+    align-items:center;
+    p{
+        padding-top:6px;
+     width: 190px;
+      font-size:16px;
+    color:rgba(138, 128, 128, 1);
+    }
+    .fidkk{
+        margin-top:-5px;
+      width: 140px;
         margin-left:8px;
-        width: 45%;
         height: 35px;
         line-height: 35px;
         font-size:14px;
@@ -2137,22 +2137,24 @@ font-size:14px;
       display: flex;
       align-items:center;
       p{
-        padding-top:15px;
-        font-size:14px;
+        padding-top:6px;
+        font-size:16px;
       color:rgba(138, 128, 128, 1);
+      width: 120px;
       }
       .wallkk{
+        margin-top:-5px;
         margin-left:8px;
-        width: 58%;
+        width: 150px;
         height: 35px;
         line-height: 35px;
         font-size:14px;
         text-align:center;
         color: rgb(254, 109, 70);
-    background: rgba(254, 109, 70, 0.1);
-    border-radius: 30px;
-    opacity: 1;
-    border: 1px solid rgba(254, 109, 70, 0.5);
+        background: rgba(254, 109, 70, 0.1);
+        border-radius: 30px;
+        opacity: 1;
+        border: 1px solid rgba(254, 109, 70, 0.5);   
       }
     }
     .fdt{
@@ -2165,12 +2167,13 @@ font-size:14px;
         display: flex;
         align-items:center;
         p{
-        padding-top:16px;
-        font-size:14px;
+        padding-top:8px;
+        font-size:16px;
       color:rgba(138, 128, 128, 1);
       }
   
       .fdtkk{
+        margin-top:-8px;
         margin-left:8px;
         width: 70%;
         height: 35px;
@@ -2184,6 +2187,7 @@ font-size:14px;
     border: 1px solid rgba(254, 109, 70, 0.5);
       }
       .valuekk{
+        margin-top:-8px;
         margin-left:8px;
         width: 70%;
         height: 35px;
@@ -2559,7 +2563,6 @@ font-family: Roboto-SemiBold, Roboto;
     justify-content: center;
 width: 100%;
 margin-top: 2em;
-margin-bottom: 1em;
 .boxshadow{
 
 width: 100%;
@@ -3346,7 +3349,6 @@ font-family: Roboto-SemiBold, Roboto;
     justify-content: center;
 width: 100%;
 margin-top: 2em;
-margin-bottom: 1em;
 .boxshadow{
 
 width: 100%;

@@ -2,6 +2,21 @@ import styled from "styled-components";
 
 export default styled.div`
       width: 100%;
+      
+.ant-pagination .ant-pagination-item-link {
+    border-radius:5px;
+}
+.ant-pagination-disabled{
+    border-radius:5px;
+
+}
+.panel-container .search-container .search-box .ant-input-affix-wrapper{
+    border:none;
+}
+.ant-select:not(.ant-select-customize-input) .ant-select-selector{
+    border-radius:5px;
+
+}
 .panel-box{
   .panel-container{
     padding: 30px 11.7%;
@@ -30,11 +45,7 @@ export default styled.div`
         border-radius: 25px;
       }
 
-      .ant-select:not(.ant-select-customize-input) {
-        .ant-select-selector {
-          border-radius: 25px;
-        }
-      }
+      
 
       .ant-input {
         border-radius: 25px;
@@ -109,7 +120,7 @@ export default styled.div`
           background-color: #1A1414;
           border-radius: 20px;
           border: 1px solid rgba(255, 255, 255, 0.1);
-          margin: 4em auto;
+          margin: 2em auto;
           margin-bottom: 0em;
         }
 
@@ -555,7 +566,7 @@ background: rgba(205, 158, 87, 0.1);
           background-color: #1A1414;
           border-radius: 20px;
           border: 1px solid rgba(255, 255, 255, 0.1);
-          margin: 4em auto;
+          margin: 2em auto;
           margin-bottom: 0em;
         }
 
@@ -1003,7 +1014,7 @@ background: rgba(205, 158, 87, 0.1);
           background-color: #1A1414;
           border-radius: 20px;
           border: 1px solid rgba(255, 255, 255, 0.1);
-          margin: 4em auto;
+          margin: 2em auto;
           margin-bottom: 0em;
         }
 

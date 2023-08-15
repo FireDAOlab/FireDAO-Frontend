@@ -326,6 +326,7 @@ border-color:rgba(255, 255, 255, 0.10);
       }
     }
     .fire-list-box {
+        margin:2em 0em;
       .col {
         font-size:16px;
     }}
@@ -369,7 +370,7 @@ border-color:rgba(255, 255, 255, 0.10);
         margin: 0px;
       }
     }
-    .fire-list-box {
+    .fire-list-box {  margin:2em 0em;
       .col {
         font-size:16px;
     }}
@@ -414,16 +415,14 @@ border-color:rgba(255, 255, 255, 0.10);
         margin: 0px;
       }
     }
-    .fire-list-box {
+    .fire-list-box {  margin:2em 0em;
       .col {
         font-size:15px;
-    }}
-    .fire-list-box {
-      .list-header{
+    }  .list-header{
         font-size:15px;
       }
     }
- 
+    
   }
 
 

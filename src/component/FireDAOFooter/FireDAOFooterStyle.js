@@ -382,8 +382,11 @@ export default styled.div`
         border-bottom: 1px solid rgba(255,255,255,0.05);
   
         text-align:left;
-        width: 85%;
-    margin: 0 0 0 60px ;
+        width: 80%;
+    margin: 0px auto;
+    }
+    .ant-menu-inline>.ant-menu-submenu>.ant-menu-submenu-title{
+        height:50px;
     }
     .ant-menu-inline.ant-menu-root .ant-menu-submenu-title{
         background:rgba(26, 20, 20, 1);
@@ -398,13 +401,13 @@ margin: 0px;
     
 font-weight: 600;
 color: #8A8080;
-line-height:30px;
+line-height:50px;
 background:rgba(26, 20, 20, 1) ;
 .ant-menu-title-content{
     color:rgba(180, 158, 158, 1);
     border-bottom: 1px solid rgba(255,255,255,0.05);
     margin: 0px;
-    
+    line-height:50px;
 
 }
 

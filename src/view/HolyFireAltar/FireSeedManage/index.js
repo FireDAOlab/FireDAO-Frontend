@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useConnect } from "../../../api/contracts";
-import { Pagination, Button, Select, Descriptions, message, Form, List, Input, notification, Card } from 'antd';
+import { Pagination,Empty, Button, Select, Descriptions, message, Form, List, Input, notification, Card } from 'antd';
 import { getContractByName, getContractByContract } from "../../../api/connectContract";
 import { dealMethod, viewMethod } from "../../../utils/contractUtil"
 import { useNavigate, useLocation } from "react-router-dom";
@@ -368,7 +368,7 @@ const FireLock = (props) => {
                                                     validateTrigger="onBlur"
                                                     validateFirst={true}
                                                     rules={[
-                                                        { required: true, message: ' input !' },
+                                                        // { required: true, message: ' input !' },
                                                     ]}
                                                 >
                                                     <Input placeholder={lowestMint} style={{ textAlign: 'center' }} />
@@ -388,7 +388,7 @@ const FireLock = (props) => {
                                                     validateTrigger="onBlur"
                                                     validateFirst={true}
                                                     rules={[
-                                                        { required: true, message: ' input' },
+                                                        // { required: true, message: ' input' },
                                                     ]}
                                                 >
                                                     <Input placeholder={userMaxMint} style={{ textAlign: 'center' }} />
@@ -415,7 +415,7 @@ const FireLock = (props) => {
                                                     validateTrigger="onBlur"
                                                     validateFirst={true}
                                                     rules={[
-                                                        { required: true, message: ' input !' },
+                                                        // { required: true, message: ' input !' },
                                                     ]}
                                                 >
                                                     <Input placeholder={whiteMaxMint} style={{ textAlign: 'center' }} />
@@ -448,7 +448,7 @@ const FireLock = (props) => {
                                 <div type="primary" className='kk' onClick={(e) => { e.target.innerHTML = 'Delete'; }}>Mass Delete</div>
                             </div>
                         </div>
-                        <div className="fire-list-box">
+                        <div className="fire-list-box ffad">
                             <div className="list-header flex-box2">
                                 <div className="col1">
                                     No.
@@ -465,7 +465,9 @@ const FireLock = (props) => {
                             </div>
 
 
-                            {whitelist.map((item, index) => (
+                            { 
+                            whitelist.length==0? <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />:
+                            whitelist.map((item, index) => (
                                 <Form className='ffa'>
                                 <div className="list-item" key={index}>
                                     {/* <Form.Item> */}
@@ -540,7 +542,7 @@ const FireLock = (props) => {
                                                 validateTrigger="onBlur"
                                                 validateFirst={true}
                                                 rules={[
-                                                    { required: true, message: 'Please input MintFee!' },
+                                                    // { required: true, message: 'Please input MintFee!' },
                                                 ]}
                                             >
                                                 <Input className='too1' />
@@ -586,7 +588,7 @@ const FireLock = (props) => {
                                                 validateTrigger="onBlur"
                                                 validateFirst={true}
                                                 rules={[
-                                                    { required: true, message: 'Please input UserMintMax!' },
+                                                    // { required: true, message: 'Please input UserMintMax!' },
                                                 ]}
                                             >
                                                 <Input className='dtoo1' />
@@ -612,7 +614,7 @@ const FireLock = (props) => {
                                     <div type="primary" className='kk' style={{ width: '100%', marginRight: '0px' }} onClick={() => { }}>Add</div>
                                 </div>
                             </div>
-                            <div className="fire-list-box">
+                            <div className="fire-list-box ff1">
                                 <div className='listheadert'>
                                     <div className="list-header flex-box3">
                                         <div className="col">
@@ -627,17 +629,19 @@ const FireLock = (props) => {
                                     </div>
                                 
                                 <Form form={form} name="control-hooks">
-                                    {/* {discountArr.map(item => {
-                                            return ( */}
+                                    {
+                                     discountArr.length==0? <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />:
+                                    discountArr.map(item => {
+                                            return (
                                 
                                         <div className="list-item dis">
                                             <div className='col range'>
                                                 <Form.Item className='start'
                                                     validateFirst={true}
                                                     rules={[
-                                                        { required: true, message: 'Please input start!' },
+                                                        // { required: true, message: 'Please input start!' },
                                                     ]}>
-                                                    <Input placeholder='{item.start} ' className="dtoo1" />
+                                                    <Input placeholder={item.start}  className="dtoo1" />
 
 
                                                 </Form.Item>
@@ -645,9 +649,9 @@ const FireLock = (props) => {
                                                 <Form.Item className='end'
                                                     validateFirst={true}
                                                     rules={[
-                                                        { required: true, message: 'Please input end!' },
+                                                        // { required: true, message: 'Please input end!' },
                                                     ]}>
-                                                    <Input placeholder='{item.end}' className="dtoo1" />
+                                                    <Input placeholder={item.end} className="dtoo1" />
 
                                                 </Form.Item>
                                             </div>
@@ -655,19 +659,19 @@ const FireLock = (props) => {
                                                 <Form.Item className='dis1'
                                                     validateFirst={true}
                                                     rules={[
-                                                        { required: true, message: 'Please input discount!' },
+                                                        // { required: true, message: 'Please input discount!' },
                                                     ]}>
-                                                    <Input placeholder='{item.discount}' className="dtoo1" />
+                                                    <Input placeholder={item.discount} className="dtoo1" />
 
                                                 </Form.Item>
 
                                             </div>
                                             <div className='col price'>
-                                                "item.discount"
+                                                
                                             </div>
                                         </div>
                                     
-                                    {/* ) })}   */}
+                               ) })}  
 
                                 </Form>
                                 </div>
@@ -716,7 +720,7 @@ const FireLock = (props) => {
                                             validateTrigger="onBlur"
                                             validateFirst={true}
                                             rules={[
-                                                { required: true, message: 'Please input WhitelistDiscount!' },
+                                                // { required: true, message: 'Please input WhitelistDiscount!' },
                                             ]}
                                         >
                                             <Input className='dtoo1' />
@@ -743,7 +747,7 @@ const FireLock = (props) => {
                             <div className="panel-title">
                                 Mint Revenue Allocation
                             </div>
-                            <div className="fire-list-box">
+                            <div className="fire-list-box ff2">
                                 <div className="list-header flex-box1">
                                     <div className="col">
                                         No.
@@ -767,7 +771,7 @@ const FireLock = (props) => {
                                         <Form.Item className='value'
                                             validateFirst={true}
                                             rules={[
-                                                { required: true, message: 'Please input rate1!' },
+                                                // { required: true, message: 'Please input rate1!' },
                                             ]}>
                                             {/* <div className='col'> */}
                                             <Input placeholder={rateObj.rate1} className="dtoo1" />
@@ -785,7 +789,7 @@ const FireLock = (props) => {
                                         <Form.Item className='value'
                                             validateFirst={true}
                                             rules={[
-                                                { required: true, message: 'Please input rate2!' },
+                                                // { required: true, message: 'Please input rate2!' },
                                             ]}>
                                             {/* <div className='col'> */}
                                             <Input placeholder={rateObj.rate2} className="dtoo1" />
@@ -803,7 +807,7 @@ const FireLock = (props) => {
                                         <Form.Item className='value'
                                             validateFirst={true}
                                             rules={[
-                                                { required: true, message: 'Please input rate3!' },
+                                                // { required: true, message: 'Please input rate3!' },
                                             ]}>
                                             {/* <div className='col'> */}
                                             <Input placeholder={rateObj.rate3} className="dtoo1" />
@@ -825,7 +829,7 @@ const FireLock = (props) => {
                         <div className="panel-title">
                             Category: Referrer
                         </div>
-                        <div className="fire-list-box">
+                        <div className="fire-list-box ff2">
                             <div className="list-header flex-box1">
                                 <div className="col">
                                     No.
@@ -849,7 +853,7 @@ const FireLock = (props) => {
                                     <Form.Item className='value'
                                         validateFirst={true}
                                         rules={[
-                                            { required: true, message: 'Please input lever1!' },
+                                            // { required: true, message: 'Please input lever1!' },
                                         ]}>
                                         {/* <div className='col'> */}
                                         <Input placeholder={referObj.lever1} className="dtoo1" />
@@ -866,7 +870,7 @@ const FireLock = (props) => {
                                     <Form.Item className='value'
                                         validateFirst={true}
                                         rules={[
-                                            { required: true, message: 'Please input lever2!' },
+                                            // { required: true, message: 'Please input lever2!' },
                                         ]}>
                                         {/* <div className='col'> */}
                                         <Input placeholder={rateObj.lever2} className="dtoo1" />
@@ -883,7 +887,7 @@ const FireLock = (props) => {
                                     <Form.Item className='value'
                                         validateFirst={true}
                                         rules={[
-                                            { required: true, message: 'Please input lever3!' },
+                                            // { required: true, message: 'Please input lever3!' },
                                         ]}>
                                         {/* <div className='col'> */}
                                         <Input placeholder={rateObj.lever3} className='dtoo1' />

@@ -1,9 +1,9 @@
 import React, {useEffect, useRef, useState} from 'react';
 import styled from "styled-components";
-import {useConnect} from "../../../api/contracts";
-import {getContractByContract, getContractByName} from "../../../api/connectContract"
-import {Button, Form, message, Input, Tooltip, notification, Select} from 'antd';
-import {uploadJson, uploadFile} from "../../../utils/ipfsApi"
+import { useConnect } from "../../../api/contracts";
+import { getContractByContract, getContractByName } from "../../../api/connectContract"
+import { Button,Empty, Form, message, Input, Tooltip, notification, Select } from 'antd';
+import { uploadJson, uploadFile } from "../../../utils/ipfsApi"
 import firepassport from "../../../imgs/passport@2x.webp"
 import long from "../../../imgs/long.png";
 import ethereum from "../../../imgs/ethereum.png";
