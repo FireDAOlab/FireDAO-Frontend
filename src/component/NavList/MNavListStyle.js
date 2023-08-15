@@ -5,10 +5,10 @@ export default styled.div`
   font-weight: bold;
      .mask{
     position: fixed;
-    left:0px;
+    left: 0;
     top: 0px;
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
     background: #000000;
     opacity: 0.5;
   }

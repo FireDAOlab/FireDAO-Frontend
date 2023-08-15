@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useConnect } from "../../../api/contracts";
-import { Pagination, Card, Button, Select, Descriptions, message, Form, List, Input, notification, Tooltip } from 'antd';
+import { Pagination, Card, Empty,Button, Select, Descriptions, message, Form, List, Input, notification, Tooltip } from 'antd';
 import { QuestionCircleOutlined, SendOutlined, TwitterOutlined, UserOutlined } from "@ant-design/icons";
 import { getContractByName, getContractByContract } from "../../../api/connectContract";
 import { dealMethod, viewMethod } from "../../../utils/contractUtil"
@@ -528,7 +528,8 @@ const LockList = (props) => {
                             </div>
 
                             {
-                            logArr.map((item,index) => (
+                                 logArr.length==0? <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />:
+                                 logArr.map((item,index) => (
                             <div className="list-item ">
                                 <div className="col no">
                                     -

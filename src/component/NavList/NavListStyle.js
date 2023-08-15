@@ -29,7 +29,9 @@ export default styled.div`
       display: none;
     }
   }
-
+.ant-menu-inline .ant-menu-item{
+    margin-bottom:10px;
+}
   .ant-menu-sub {
     .ant-menu-title-content {
       padding: 0 2.5em;

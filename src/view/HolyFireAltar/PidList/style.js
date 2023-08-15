@@ -16,6 +16,9 @@ export default styled.div`
     border-radius:5px;
 
 }
+.fire-list-box{
+    margin: 1em 0em!important;
+}
  @media screen and (min-width: 1950px) {
 
   
@@ -79,6 +82,7 @@ export default styled.div`
 
 
   .fire-list-box {
+    margin: 1em 0em;
     .list-header {
             padding: 20px 2.2em;
         }
@@ -92,14 +96,14 @@ export default styled.div`
           text-align: left;
           font-size:15px;
           &:nth-child(1) {
-            width: 11%;
-            margin-right:10px;
+            width: 9%;
+            margin-right:20px;
             text-align:center;
           }
 
           &:nth-child(2) {
-            width: 11%;
-            margin-right:10px;
+            width: 9%;
+            margin-right:20px;
             text-align:center;
           }
 
@@ -262,6 +266,7 @@ a{
       }
 
       .fire-list-box {
+        margin: 1em 0em;
     .list-header {
             padding: 20px 2.2em;
         }
@@ -275,14 +280,14 @@ a{
           text-align: left;
           font-size:15px;
           &:nth-child(1) {
-            width: 11%;
-            margin-right:10px;
+            width: 9%;
+            margin-right:20px;
             text-align:center;
           }
 
           &:nth-child(2) {
-            width: 11%;
-            margin-right:10px;
+            width: 9%;
+            margin-right:20px;
             text-align:center;
           }
 
@@ -455,6 +460,7 @@ width: 870px;
 width: 870px;
 }
 .fire-list-box {
+    margin: 1em 0em;
 overflow-x: scroll;
   .list-header {
       padding: 20px 1.6em;
@@ -523,7 +529,7 @@ font-size:14px;
 
         .list-item {
             padding: 1 0.5em;
-        width: 96%;
+        width: 95%;
         margin: 0em auto;
         border-radius:0px;
         border-bottom:1px solid rgba(255, 255, 255, 0.1);
@@ -610,6 +616,7 @@ font-size:14px;
     width: 810px;
 }
       .fire-list-box {
+        margin: 1em 0em;
         overflow: scroll;
         .list-header {
         padding: 20px 1.6em;
@@ -640,23 +647,23 @@ font-size:14px;
            margin-right:5px;
         }
         &:nth-child(4) {
-            width: 110px;
+            width: 115px;
             margin-right:5px;
         }
         &:nth-child(5) {
-           width: 95px;
+           width: 110px;
            margin-right:5px;
         }
         &:nth-child(6) {
-            width:  95px;
+            width:  120px;
             margin-right:5px;
         }
         &:nth-child(7) {
-           width: 95px;
+           width: 100px;
            margin-right:5px;
         }
         &:nth-child(8) {
-           width: 95px;
+           width: 105px;
            margin-right:5px;
         }
         /* &:nth-child(9) {
@@ -675,7 +682,7 @@ font-size:14px;
     }
         .list-item {
             padding: 1 0.5em;
-            width: 96%;
+            width: 95%;
             margin: 0 auto;
             border-radius:0px;
             border-bottom:1px solid rgba(255, 255, 255, 0.1);

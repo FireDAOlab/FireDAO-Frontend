@@ -1,5 +1,20 @@
 import styled from "styled-components";
 export default styled.div`
+
+.ant-pagination .ant-pagination-item-link {
+    border-radius:5px;
+}
+.ant-pagination-disabled{
+    border-radius:5px;
+
+}
+.panel-container .search-container .search-box .ant-input-affix-wrapper{
+    border:none;
+}
+.ant-select:not(.ant-select-customize-input) .ant-select-selector{
+    border-radius:5px!important;
+
+}
 .ant-form-item-control-input{
   border-radius:25px;
   line-height:40px;
@@ -30,7 +45,6 @@ padding: 0px 10px;
           font-size:18px;
         }
     .fire-list-box{
-  margin: 2em auto;
   .list-header{
     font-size:16px;
   }
@@ -114,7 +128,7 @@ padding: 0px 10px;
   .current-box{
     width:45%;
 
-margin: 4em auto;
+margin: 2em auto;
 background: rgba(26, 20, 20, 1);
 border-radius: 20px;
 border: 1px solid rgba(255,255,255,0.1);
@@ -147,8 +161,8 @@ padding: 20px;
                   }
   }
 
-  .fire-list-box {
-      
+  .ffad{
+    margin:0em;
         .list-item{
           padding: 0.5em;
          
@@ -194,7 +208,8 @@ padding: 20px;
             color: #FE6D46;
 
           }
-          .pid{padding: 2px 4px;
+          .pid{
+            padding: 2px 4px;
             color: #FE6D46;
             border: 1px solid #FE6D46;
             background: rgba(254, 109, 70, 0.20);
@@ -218,7 +233,7 @@ padding: 20px;
 
  
         }
-          .fire-list-box{
+          .ff1{
         margin: 2em 0em;
         text-align:left;
         .ant-form {
@@ -303,10 +318,8 @@ font-size:16px;
         }
 
 
-
-          .fire-list-box{
-        margin: 2em 0em;
-        
+          .ff2{
+        margin: 2em 0;
         .flex-box1 {
             padding: 20px 2em;
           }
@@ -640,7 +653,6 @@ width: 52%;
           font-size:18px;
         }
     .fire-list-box{
-  margin: 2em auto;
   .list-header{
     font-size:16px;
   }
@@ -724,7 +736,7 @@ width: 52%;
   .current-box{
     width:45%;
 
-margin: 4em auto;
+margin: 2em auto;
 background: rgba(26, 20, 20, 1);
 border-radius: 20px;
 border: 1px solid rgba(255,255,255,0.1);
@@ -757,8 +769,8 @@ padding: 20px;
                   }
   }
 
-  .fire-list-box {
-      
+  .ffad{
+    margin:0em;
     .list-item{
       padding: 0.5em;
      
@@ -828,7 +840,7 @@ padding: 20px;
 
 
     }
-    .fire-list-box{
+    .ff1{
         margin: 2em 0em;
         text-align:left;
         .ant-form {
@@ -909,9 +921,8 @@ font-size:16px;
 .ant-form-item-control-input-content{
           height: 40px;
         }
-        .fire-list-box{
-            margin: 2em 0em;
-            
+        .ff2{
+        margin: 2em 0;
             .flex-box1 {
                 padding: 20px 2em;
               }
@@ -1322,7 +1333,7 @@ width: 52%;
   .current-box{
     width:60%;
 
-margin: 4em auto;
+margin: 2em auto;
 background: rgba(26, 20, 20, 1);
 border-radius: 20px;
 border: 1px solid rgba(255,255,255,0.1);
@@ -1355,8 +1366,8 @@ padding: 20px;
   .ant-form-item-control-input-content{
           height: 40px;
         }
-        .fire-list-box {
-      
+        .ffad{
+    margin:1em 0em;
             .list-item{
               padding: 0.5em;
              
@@ -1427,8 +1438,8 @@ padding: 20px;
      
             }
 
-            .fire-list-box{
-                margin: 2em 0em;
+            .ff1{
+        margin: 2em 0em;
                 text-align:left;
                 .ant-form {
                     input{
@@ -1507,9 +1518,8 @@ padding: 20px;
         }
 
 
-        .fire-list-box{
-            margin: 2em 0em;
-            
+        .ff2{
+        margin: 2em 0;
             .flex-box1 {
                 padding: 20px 2em;
               }
@@ -1860,7 +1870,7 @@ line-height: 18px;
       }
       .current-box{
         width: 100%;
-        margin: 10px 0;
+        margin: 1em 0;
         .current{
           .name{
             font-size:14px;
@@ -1931,8 +1941,8 @@ line-height: 18px;
             width: 23%;
           }
 
-          .fire-list-box {
-      
+          .ffad{
+            margin:1em 0em;
             .list-item{
               padding: 0.5em;
              
@@ -2007,9 +2017,9 @@ line-height: 18px;
  
 }
 
-            .fire-list-box{
+.ff1{
+        margin: 2em 0em;
                 overflow: scroll;
-                margin: 2em 0em;
                 text-align:left;
                 .ant-form {
                     input{
@@ -2092,8 +2102,8 @@ line-height: 18px;
           height: 28px;
           line-height:28px;
         }
-        .fire-list-box{
-            margin: 2em 0em;
+        .ff2{
+        margin: 2em 0;
             
             .flex-box1 {
                 padding: 20px 1.5em;
@@ -2298,7 +2308,7 @@ line-height: 18px;
       }
       .current-box{
         width: 100%;
-        margin: 10px 0;
+        margin: 1em 0;
         .current{
           .name{
             font-size:14px;
@@ -2369,9 +2379,8 @@ line-height: 18px;
             display: flex;
             width: 23%;
           }
-
-          .fire-list-box {
-      
+          .ffad{
+            margin:1em 0em;
             .list-item{
               padding: 0.5em;
              
@@ -2446,9 +2455,9 @@ line-height: 18px;
              
             }
             
-                        .fire-list-box{
+            .ff1{
+        margin: 2em 0em;
                             overflow: scroll;
-                            margin: 2em 0em;
                             text-align:left;
                             .ant-form {
                                 input{
@@ -2531,8 +2540,8 @@ line-height: 18px;
           height: 28px;
           line-height:28px;
         }
-        .fire-list-box{
-            margin: 2em 0em;
+        .ff2{
+        margin: 2em 0;
             
             .flex-box1 {
                 padding: 20px 1.5em;

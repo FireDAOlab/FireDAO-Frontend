@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useConnect } from "../../../api/contracts";
-import { Card, Button, Descriptions, message, Form, List, Input, notification } from 'antd';
+import { Card, Button, Descriptions, message, Form, List, Input,Empty , notification } from 'antd';
 import { getContractByName, getContractByContract } from "../../../api/connectContract";
 import { dealMethod, viewMethod } from "../../../utils/contractUtil"
 import user3 from "../../../imgs/user3.png";
@@ -98,37 +98,39 @@ const SBTList = (props) => {
                                     Other
                                 </div>
                             </div>
-                            {/* { 
-                            PIDARR.map(item => (*/}
+                           { 
+                           PIDARR.length==0? <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />:
+                           PIDARR.map((item,index) => (
+                                
                             <div className="list-item sbtl">
                                 <div className="col no" style={{ color: '#E48686' }}>
-                                    1
+                                {index+1}
                                 </div>
                                 <div className="col">
-                                    {/* {item.blockNumber} */}
-                                    cdsc
+                                    {item.blockNumber}
+                                 
                                 </div>
                                 <div className="col">
-                                    {/* {item.from} */}
-                                    dcscds
+                                    {item.from}
+                                   
                                 </div>
                                 <div className="col">
-                                    {/* {item.to} */}
-                                    dscdcs
+                                    {item.to}
+                                  
                                 </div>
                                 <div className="col">
-                                    dsvzdv
+                               
                                 </div>
                                 <div className="col">
-                                    vzssdf
+                                 
                                 </div>
                                 <div className="col">
-                                    zvdfdfv
+                                   
                                 </div>
                             </div>
-                            {/* ))
+                            ))
 
-                        } */}
+                        } 
                         </div>
                     </div>
                 </div>
@@ -147,7 +149,7 @@ const SBTList = (props) => {
                                 My SoulAccount
                             </div>
                             <div className="value">
-                                {/* {UserToSoul} */}-
+                                {/* {UserToSoul ? UserToSoul : "-"} */}
                             </div>
                         </div>
                         <div className="fidscore">
@@ -155,7 +157,7 @@ const SBTList = (props) => {
                                 FID ReputationScore
                             </div>
                             <div className="score">
-                                {/* {score} */}-
+                                {/* {score ? score :"-"} */}
                             </div>
                         </div>
                     </div>
@@ -175,28 +177,29 @@ const SBTList = (props) => {
                             </div>
 
                         </div>
-                        {/* {
-                            PIDARR.map(item => ( */}
+                        {
+                             PIDARR.length==0? <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />:
+                             PIDARR.map((item,index) => (
                         <div className="list-item flex-nn">
                             <div className="col no" style={{ color: '#E48686' }}>
-                                1
+                                {index+1}
                             </div>
                             <div className="col">
-                                {/* {item.blockNumber} */}
-                                dsfasds
+                                {item.blockNumber}
+                                
                             </div>
                             <div className="col">
-                                {/* {item.from} */}
-                                dsfasds
+                                {item.from}
+                                
                             </div>
                             <div className="col">
-                                {/* {item.to} */}
-                                dsfasds
+                                {item.to}
+                                
                             </div>
                         </div>
-                        {/* ))
+                         ))
 
-                        } */}
+                        } 
                     </div>
 
 

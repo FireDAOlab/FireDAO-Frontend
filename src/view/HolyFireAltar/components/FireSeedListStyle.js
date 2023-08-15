@@ -10,7 +10,7 @@ export default styled.div`
 }
 .panel-container1{
   border: none;
-  padding-top: 3em ;
+  padding-top: 2em ;
   position: relative;
 background: rgba(36, 27, 27, 1);
 width: 100%;
@@ -105,7 +105,7 @@ font-weight: bold;
 }
 .panel-container1{
   border: none;
-  padding-top: 3em ;
+  padding-top: 2em ;
   position: relative;
 background: rgba(36, 27, 27, 1);
 width: 100%;
@@ -199,7 +199,7 @@ font-weight: bold;
 }
 .panel-container1{
   border: none;
-  padding-top: 3em ;
+  padding-top: 2em ;
   position: relative;
 background: rgba(36, 27, 27, 1);
 width: 100%;

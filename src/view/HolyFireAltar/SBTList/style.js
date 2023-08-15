@@ -10,6 +10,7 @@ export  default   styled.div`
  
 
 .fire-list-box{
+    margin: 1em 0em;
     .list-header{
             padding: 20px 1.8em;
         }
@@ -20,7 +21,6 @@ export  default   styled.div`
         .list-item, .list-header {
           justify-content: flex-start;
     
-        margin: 1em 0em;
         .col{
             text-align:left;
             font-size:16px;
@@ -191,6 +191,7 @@ border: 1px solid rgba(254,109,70,0.5);
     .panel-container {
     padding:30px 11.7%;
     .fire-list-box{
+        margin: 2em 0em;
     .list-header{
             padding: 20px 1.8em;
         }
@@ -201,7 +202,6 @@ border: 1px solid rgba(254,109,70,0.5);
         .list-item, .list-header {
           justify-content: flex-start;
     
-        margin: 1em 0em;
         .col{
             text-align:left;
             font-size:16px;
@@ -259,7 +259,7 @@ border: 1px solid rgba(254,109,70,0.5);
    
 
       .sbt11{
-        margin: 1em 0em;
+        margin: 2em 0em;
         text-align:left;
        
        
@@ -441,7 +441,7 @@ border: 1px solid rgba(254,109,70,0.5);
 
    
       .sbt11{
-        margin: 1em 0em;
+        margin:2em 0em;
         text-align:left;
        overflow: normal;
        
@@ -516,7 +516,7 @@ width: 120px;
       color: rgba(205, 158, 87, 1);
       margin-left: 10px;
       line-height:30px;
-      width: 155px;
+      width: 140px;
 height: 30px;
 background: rgba(205,158,87,0.1);
 border-radius: 50px 50px 50px 50px;
@@ -526,7 +526,7 @@ border: 1px solid rgba(205,158,87,0.5);
   }
   .fidscore{
 
-margin: 10px 50px;
+margin: 10px 20px;
 display: flex;
 align-items: center;
 .name{
@@ -544,7 +544,7 @@ font-size:14px;
 
   font-size: 14px;
   line-height:30px;
-  width: 155px;
+  width: 140px;
 height: 30px;
 background: rgba(254,109,70,0.1);
 border-radius: 50px 50px 50px 50px;
@@ -622,7 +622,7 @@ border: 1px solid rgba(254,109,70,0.5);
  
 
       .sbt11{
-        margin: 1em 0em;
+        margin: 2em 0em;
         text-align:left;
        
         .flex-box2 {
@@ -696,7 +696,7 @@ font-size:14px;
       text-align:center;
       line-height:30px;
       color: rgba(205, 158, 87, 1);
-      width: 160px;
+      width: 145px;
 height: 30px;
 background: rgba(205,158,87,0.1);
 border-radius: 50px ;
@@ -724,7 +724,7 @@ font-size:14px;
   margin-left: 20px;
   font-size: 14px;
   line-height:30px;
-  width: 160px;
+  width: 145px;
 height: 30px;
 background: rgba(254,109,70,0.1);
 border-radius: 50px ;
@@ -802,7 +802,7 @@ border: 1px solid rgba(254,109,70,0.5);
  
   
       .sbt11{
-        margin: 1em 0em;
+        margin: 2em 0em;
         text-align:left;
        
         .flex-box2 {
@@ -875,7 +875,7 @@ font-size:14px;
         font-size:14px;
       text-align:center;
       line-height:30px;
-      width: 160px;
+      width: 145px;
 height: 30px;
 color: rgba(205, 158, 87, 1);
 background: rgba(205,158,87,0.1);
@@ -904,7 +904,7 @@ font-size:14px;
   margin-left: 20px;
   font-size: 14px;
   line-height:30px;
-  width: 160px;
+  width: 145px;
 height: 30px;
 background: rgba(254,109,70,0.1);
 border-radius: 50px ;
