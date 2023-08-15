@@ -19,9 +19,10 @@ export default async function judgeStatus(state){
     if(!state.account){
         return
     }
-    if(develop.chainId != state.networkId){
-        return
-    }
+
+    // if(develop.chainId != state.networkId){
+    //     return
+    // }
     // let chainId = await window.ethereum.request({method: "eth_chainId"})
     // if (develop.chainId != parseInt( chainId).toString(10)) {
     //     openNotification("The testnet is not available now, please connect to" + develop.Name)

@@ -7,7 +7,7 @@ const openSeaNFT = "https://opensea.io/zh-CN/collection/fireseed"
 export default {
     Name:"Ethereum",
     ENV: "dev",
-    chainId: "80001",
+    chainId: "421613",
     webside:"https://www.firedao.co/fdpaperen.pdf",
     github: "https://github.com/FireDAOlab",
     graphUrl:"https://api.thegraph.com/subgraphs/name/henry-maker-commits/",

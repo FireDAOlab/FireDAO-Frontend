@@ -120,7 +120,7 @@ const FireDAOHeader = () => {
         if (!judgeRes) {
             return
         }
-        getUserFIDAndAddr()
+        // getUserFIDAndAddr()
 
     }, [state.account, state.networkId]);
     return (
