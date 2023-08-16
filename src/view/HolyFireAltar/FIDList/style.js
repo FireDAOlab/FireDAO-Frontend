@@ -62,6 +62,7 @@ export default styled.div`
           }
 
     .fire-list-box {
+        margin:1em 0em;
         .list-header {
             padding: 20px 2.2em;
         }
@@ -224,6 +225,7 @@ border: 1px solid rgba(205,158,87,0.5);
    
 
     .fire-list-box {
+        margin:1em 0em;
         .list-header {
             padding: 20px 2.2em;
         }
@@ -394,6 +396,7 @@ width: 1130px;
 width: 1130px;
 }
 .fire-list-box {
+    margin:1em 0em;
 overflow-x: scroll;
   .list-header {
       padding: 20px 2em;
@@ -537,6 +540,7 @@ padding: 1 0.5em;
     width: 1120px;
 }
   .fire-list-box {
+    margin:1em 0em;
     overflow: scroll;
       .list-header {
           padding: 20px 2.2em;
@@ -678,6 +682,7 @@ padding:30px 4.6%;
   width: 1100px;
 }
 .fire-list-box {
+    margin:1em 0em;
   overflow: scroll;
     .list-header {
         padding: 20px 2.2em;

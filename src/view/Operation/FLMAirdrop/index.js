@@ -1,14 +1,15 @@
-import React, {useEffect, useRef, useState} from 'react';
-import {useConnect} from "../../../api/contracts";
-import {Card, Button, Descriptions, message, Form, List, Input, notification, Pagination, Select} from 'antd';
-import {getContractByName, getContractByContract} from "../../../api/connectContract";
-import {dealMethod, viewMethod} from "../../../utils/contractUtil"
+import React, { useEffect, useRef, useState } from 'react';
+import { useConnect } from "../../../api/contracts";
+import { Card, Button, Descriptions, message, Form, List, Input, notification, Pagination, Select } from 'antd';
+import { getContractByName, getContractByContract } from "../../../api/connectContract";
+import { dealMethod, viewMethod } from "../../../utils/contractUtil"
 import manage from "../../../imgs/svg/manage.svg"
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import judgeStatus from "../../../utils/judgeStatus";
 import DistributionStyle from "./style"
 import addressMap from "../../../api/addressMap";
-import {showNum} from "../../../utils/bigNumberUtil";
+import search from '../../../imgs/search.png'
+import { showNum } from "../../../utils/bigNumberUtil";
 import BigNumber from "bignumber.js";
 import {
     getClaimRecords,
@@ -17,8 +18,8 @@ import {
     getDeleteData,
     getsSetAmountData
 } from "../../../graph/flmAirdrop";
-import {dealTime} from "../../../utils/timeUtil";
-import {formatAddress} from "../../../utils/publicJs";
+import { dealTime } from "../../../utils/timeUtil";
+import { formatAddress } from "../../../utils/publicJs";
 import develop from "../../../env"
 import checkIcon from "../../../imgs/svg/checkbox-checked.svg";
 import checkActiveIcon from "../../../imgs/svg/checkbox-checked-active.svg";
@@ -28,7 +29,7 @@ const FLMDecimal = 18
 const Distribution = (props) => {
 
 
-    let {state, dispatch} = useConnect();
+    let { state, dispatch } = useConnect();
     const history = useNavigate();
     const goPage = (url) => {
         history(url);
@@ -231,20 +232,20 @@ const Distribution = (props) => {
         // handle sub & set  amount
         const deleteData = await getDeleteData()
         const setAmountData = await getsSetAmountData()
-        if(deleteData&&deleteData.data&&deleteData.data.decUserAmounts.length>0){
-            resArr.forEach(item=>{
-                deleteData.data.decUserAmounts.forEach(delItem=>{
-                    if(delItem.user.toLowerCase() == item.user.toLowerCase()){
+        if (deleteData && deleteData.data && deleteData.data.decUserAmounts.length > 0) {
+            resArr.forEach(item => {
+                deleteData.data.decUserAmounts.forEach(delItem => {
+                    if (delItem.user.toLowerCase() == item.user.toLowerCase()) {
                         item.amount = BigNumber(item.amount).minus(delItem.amount).toString()
                     }
                 })
             })
         }
-        if(setAmountData&&setAmountData.data&&setAmountData.data.fixEvents.length>0){
-            resArr.forEach(item=>{
-                deleteData.data.fixEvents.forEach(setItem=>{
-                    if(setItem.user.toLowerCase() == item.user.toLowerCase()){
-                        item.amount =setItem.amount
+        if (setAmountData && setAmountData.data && setAmountData.data.fixEvents.length > 0) {
+            resArr.forEach(item => {
+                deleteData.data.fixEvents.forEach(setItem => {
+                    if (setItem.user.toLowerCase() == item.user.toLowerCase()) {
+                        item.amount = setItem.amount
                     }
                 })
             })
@@ -350,7 +351,7 @@ const Distribution = (props) => {
                             <div className="admin-icon-box" onClick={() => {
                                 history("/FLMAirdropManage")
                             }}>
-                                <img className="admin-icon" src={manage} alt=""/>
+                                <img className="admin-icon" src={manage} alt="" />
                             </div>
                         )}
                     </div>
@@ -395,14 +396,14 @@ const Distribution = (props) => {
                             <div className="info-box">
                                 <div className="pid-box">PID : <div className="pid">{state.pid ? state.pid : 0}</div>
                                 </div>
-                                <div className="can-claim"> Unclaimed Balance: <strong>{canClaim}</strong></div>
+                                <div className="can-claim"> Unclaimed Balance :  <strong> {canClaim}</strong></div>
                             </div>
                             <Form form={form} className="withdrawForm">
                                 <Form.Item label="Withdraw">
                                     <div className="input-box">
                                         <Input className='input' placeholder="0" step="any" type="number"
-                                               value={withdrawNum}
-                                               onChange={e => setWithdrawNum(e.target.value)}/>
+                                            value={withdrawNum}
+                                            onChange={e => setWithdrawNum(e.target.value)} />
                                         <div className="max-btn" onClick={() => {
                                             setWithdrawNum(canClaim)
                                         }}>
@@ -422,95 +423,108 @@ const Distribution = (props) => {
                 <div className="panel-container">
                     <div className="panel-title flex-box">
                         Leaderboard
+
                         <div className="search-box">
                             <Input value={searchContent} onChange={(e) => {
                                 setSearchContent(e.target.value)
                                 if (!e.target.value) setShowSearch(false)
-                            }} allowClear/>
-                            <Button className="btn" type="primary" onClick={() => {
+                            }} allowClear />
+                            <Button className="search-btn" type="primary" onClick={() => {
                                 handleSearch()
-                            }}>Search</Button>
+                            }}>
+                                <img src={search} style={{ width: '25px', margin: '0px -10px' }} />
+                            </Button>
                         </div>
                     </div>
                     <div className="fire-list-box fire-list-box-airdrop">
-                        <div className="list-header">
-                            <div className="col">
-                                No.
+                        <div className='listheadert'>
+                            <div className="list-header">
+                                <div className="col">
+                                    No.
+                                </div>
+                                <div className="col">
+                                    Address
+                                </div>
+                                <div className="col">
+                                    Total Available
+                                </div>
+                                <div className="col">
+                                    Claimed
+                                </div>
+                                <div className="col">
+                                    Pending
+                                </div>
                             </div>
-                            <div className="col">
-                                Address
-                            </div>
-                            <div className="col">
-                                Total Available
-                            </div>
-                            <div className="col">
-                                Claimed
-                            </div>
-                            <div className="col">
-                                Pending
-                            </div>
-                        </div>
-                        {!showSearch && curPage2 && whitelist.map((item, index) => {
+                            {/* {!showSearch && curPage2 && whitelist.map((item, index) => {
                             if (index >= pageCount2 * (curPage2 - 1) && index < pageCount2 * curPage2) {
-                                return (<div className="list-item" key={index}>
-                                    <div className="col">
-                                        {index + 1}
-                                    </div>
-                                    <div className="col pc">
-                                        <a className="address" href={develop.ethScan + "/address/" + item.user}
-                                           target="_blank">{(item.user)}</a>
-                                    </div>
-                                    <div className="col m">
-                                        <a className="address" href={develop.ethScan + "/address/" + item.user}
-                                           target="_blank">{formatAddress((item.user))}</a>
-                                    </div>
-                                    <div className="col">
-                                        {showNum(item.amount / 10 ** FLMDecimal)}
-                                    </div>
-                                    <div className="col">
-                                        {showNum(item.claimed > 0 ? item.claimed / 10 ** FLMDecimal : 0)}
-                                    </div>
-                                    <div className="col">
-                                        {showNum(item.claiming > 0 ? item.claiming / 10 ** FLMDecimal : 0)}
-                                    </div>
-                                </div>)
+                                return ( */}
+                            {/* key={index} */}
+                            <div className="list-item" >
+                                <div className="col no">
+                                    {/* {index + 1} */}15616
+                                </div>
+
+                                <div className="col pc address">
+                                    {/* + item.user */}
+                                    <a className="" href={develop.ethScan + "/address/"} target="_blank">
+                                        {/* {(item.user)} */}56156665561
+                                    </a>
+                                </div>
+                                {/* <div className="col m address"> 
+                                    +item.user
+                                        <a className="address" href={develop.ethScan + "/address/" } target="_blank">
+                                            {formatAddress((item.user))}
+                                            </a>
+                                    </div> */}
+                                <div className="col">
+                                    {/* {showNum(item.amount / 10 ** FLMDecimal)} */}15461651
+                                </div>
+                                <div className="col">
+                                    15616161 {/* {showNum(item.claimed > 0 ? item.claimed / 10 ** FLMDecimal : 0)} */}
+                                </div>
+                                <div className="col">
+                                    156161 {/* {showNum(item.claiming > 0 ? item.claiming / 10 ** FLMDecimal : 0)} */}
+                                </div>
+                            </div>
+                            {/* )
                             }
 
-                        })}
-                        {showSearch && whitelist.map((item, index) => {
-                            if (item.user.toLowerCase() == searchContent.toString().toLowerCase()) {
-                                return (<div className="list-item" key={index}>
-                                    <div className="col">
-                                        {index + 1}
-                                    </div>
-                                    <div className="col pc">
-                                        <a className="address" href={develop.ethScan + "/address/" + item.user}
-                                           target="_blank">{(item.user)}</a>
-                                    </div>
-                                    <div className="col m">
-                                        <a className="address" href={develop.ethScan + "/address/" + item.user}
-                                           target="_blank">{formatAddress((item.user))}</a>
-                                    </div>
-                                    <div className="col">
-                                        {showNum(item.amount / 10 ** FLMDecimal)}
-                                    </div>
-                                    <div className="col">
-                                        {showNum(item.claimed > 0 ? item.claimed / 10 ** FLMDecimal : 0)}
-                                    </div>
-                                    <div className="col">
-                                        {showNum(item.claiming > 0 ? item.claiming / 10 ** FLMDecimal : 0)}
-                                    </div>
-                                </div>)
-                            }
+                        })} */}
+                            {showSearch && whitelist.map((item, index) => {
+                                if (item.user.toLowerCase() == searchContent.toString().toLowerCase()) {
+                                    return (<div className="list-item" key={index}>
+                                        <div className="col no">
+                                            {index + 1}
+                                        </div>
+                                        <div className="col pc address">
+                                            <a className="" href={develop.ethScan + "/address/" + item.user}
+                                                target="_blank">{(item.user)}</a>
+                                        </div>
+                                        <div className="col m address">
+                                            <a className="" href={develop.ethScan + "/address/" + item.user}
+                                                target="_blank">{formatAddress((item.user))}</a>
+                                        </div>
+                                        <div className="col">
+                                            {showNum(item.amount / 10 ** FLMDecimal)}
+                                        </div>
+                                        <div className="col">
+                                            {showNum(item.claimed > 0 ? item.claimed / 10 ** FLMDecimal : 0)}
+                                        </div>
+                                        <div className="col">
+                                            {showNum(item.claiming > 0 ? item.claiming / 10 ** FLMDecimal : 0)}
+                                        </div>
+                                    </div>)
+                                }
 
-                        })}
+                            })}
+                        </div>
                     </div>
                     <div className="pagination">
                         {
                             <Pagination current={curPage2} showSizeChanger
-                                        onShowSizeChange={handleShowSizeChange2}
-                                        onChange={onChangePage2} total={total2}
-                                        defaultPageSize={pageCount2}/>
+                                onShowSizeChange={handleShowSizeChange2}
+                                onChange={onChangePage2} total={total2}
+                                defaultPageSize={pageCount2} />
                         }
                     </div>
                 </div>
@@ -518,7 +532,7 @@ const Distribution = (props) => {
                     <div className="panel-title">
                         Claim Records
                     </div>
-                    <div className="nav-box claim-nav">
+                    <div className="nav-list-box">
                         <div className="fire-nav-list">
                             <div className={"nav-item " + (curNav == 1 ? "active" : "")} onClick={() => {
                                 setCurNav(1)
@@ -533,53 +547,55 @@ const Distribution = (props) => {
                         </div>
                     </div>
                     <div className="fire-list-box fire-list-box-userclaim">
-                        <div className="list-header">
-                            <div className="col">
-                                No.
-                            </div>
-                            <div className="col">
-                                PID
-                            </div>
-                            <div className="col">
-                                Username
-                            </div>
+                        <div className='listheadert'>
+                            <div className="list-header">
+                                <div className="col">
+                                    No.
+                                </div>
+                                <div className="col">
+                                    PID
+                                </div>
+                                <div className="col">
+                                    Username
+                                </div>
 
-                            <div className="col">
-                                Address
+                                <div className="col">
+                                    Address
+                                </div>
+                                <div className="col">
+                                    Amount(s)
+                                </div>
+                                <div className="col">
+                                    Time(UTC)
+                                </div>
                             </div>
-                            <div className="col">
-                                Amount(s)
-                            </div>
-                            <div className="col">
-                                Time(UTC)
-                            </div>
+                            {curNav == 1 && allRecords.map((item, index) => {
+                                if (index >= pageCount1 * (curPage1 - 1) && index < pageCount1 * curPage1) {
+                                    return (<div className="list-item" key={index}>
+                                        <div className="col no">
+                                            {allRecords.length - index}
+                                        </div>
+                                        <div className="col pid">
+                                            {item.pid}
+                                        </div>
+                                        <div className="col">
+                                            {item.username}
+                                        </div>
+                                        <div className="col address">
+                                            <a className="" href={develop.ethScan + "/address/" + item.user}
+                                                target="_blank">{formatAddress(item.user)}</a>
+                                        </div>
+                                        <div className="col">
+                                            {showNum(item.amount / 10 ** FLMDecimal)}
+                                        </div>
+                                        <div className="col">
+                                            {dealTime(item.blockTimestamp)}
+                                        </div>
+                                    </div>)
+                                }
+
+                            })}
                         </div>
-                        {curNav == 1 && allRecords.map((item, index) => {
-                            if (index >= pageCount1 * (curPage1 - 1) && index < pageCount1 * curPage1) {
-                                return (<div className="list-item" key={index}>
-                                    <div className="col">
-                                        {allRecords.length - index}
-                                    </div>
-                                    <div className="col">
-                                        {item.pid}
-                                    </div>
-                                    <div className="col">
-                                        {item.username}
-                                    </div>
-                                    <div className="col  ">
-                                        <a className="address" href={develop.ethScan + "/address/" + item.user}
-                                           target="_blank">{formatAddress(item.user)}</a>
-                                    </div>
-                                    <div className="col">
-                                        {showNum(item.amount / 10 ** FLMDecimal)}
-                                    </div>
-                                    <div className="col">
-                                        {dealTime(item.blockTimestamp)}
-                                    </div>
-                                </div>)
-                            }
-
-                        })}
                         {curNav == 2 && myRecords.map((item, index) => {
                             return (<div className="list-item" key={index}>
                                 <div className="col">
@@ -596,7 +612,7 @@ const Distribution = (props) => {
                                 </div>
                                 <div className="col">
                                     <a href={develop.ethScan + "/address/" + item.user}
-                                       target="_blank">{formatAddress(item.user)}</a>
+                                        target="_blank">{formatAddress(item.user)}</a>
                                 </div>
                                 <div className="col">
                                     {item.amount / 10 ** FLMDecimal}
@@ -610,9 +626,9 @@ const Distribution = (props) => {
                     <div className="pagination">
                         {
                             curNav == 1 && <Pagination current={curPage1} showSizeChanger
-                                                       onShowSizeChange={handleShowSizeChange1}
-                                                       onChange={onChangePage1} total={total1}
-                                                       defaultPageSize={pageCount1}/>
+                                onShowSizeChange={handleShowSizeChange1}
+                                onChange={onChangePage1} total={total1}
+                                defaultPageSize={pageCount1} />
                         }
                     </div>
                 </div>
@@ -622,156 +638,153 @@ const Distribution = (props) => {
                     </div>
 
                     <div className="fire-list-box fire-list-box-deposit">
-                        <div className="list-header">
-                            <div className="col">
-                                No.
-                            </div>
-                            <div className="col">
-                                PID
-                            </div>
-                            <div className="col">
-                                Username
-                            </div>
+                        <div className='listheadert'>
+                            <div className="list-header">
+                                <div className="col">
+                                    No.
+                                </div>
+                                <div className="col">
+                                    PID
+                                </div>
+                                <div className="col">
+                                    Username
+                                </div>
 
-                            <div className="col">
-                                Address
+                                <div className="col">
+                                    Address
+                                </div>
+                                <div className="col">
+                                    FLM
+                                </div>
+                                <div className="col">
+                                    Time(UTC)
+                                </div>
                             </div>
-                            <div className="col">
-                                FLM
-                            </div>
-                            <div className="col">
-                                Time(UTC)
-                            </div>
+                            {depositRecord.map((item, index) => {
+                                if (index >= pageCount3 * (curPage3 - 1) && index < pageCount3 * curPage3) {
+                                    return (<div className="list-item" key={index}>
+                                        <div className="col no">
+                                            {index + 1}
+                                        </div>
+                                        <div className="col pid">
+                                            {item.pid}
+                                        </div>
+                                        <div className="col">
+                                            {item.username}
+                                        </div>
+                                        <div className="col address">
+                                            <a className="" href={develop.ethScan + "/address/" + item.user}
+                                                target="_blank">{formatAddress(item.user)}</a>
+                                        </div>
+                                        <div className="col">
+                                            {showNum(item.amount / 10 ** FLMDecimal)}
+                                        </div>
+                                        <div className="col">
+                                            {dealTime(item.blockTimestamp)}
+                                        </div>
+                                    </div>)
+                                }
+
+                            })}
                         </div>
-                        {depositRecord.map((item, index) => {
-                            if (index >= pageCount3 * (curPage3 - 1) && index < pageCount3 * curPage3) {
-                                return (<div className="list-item" key={index}>
-                                    <div className="col">
-                                        {index + 1}
-                                    </div>
-                                    <div className="col">
-                                        {item.pid}
-                                    </div>
-                                    <div className="col">
-                                        {item.username}
-                                    </div>
-                                    <div className="col  ">
-                                        <a className="address" href={develop.ethScan + "/address/" + item.user}
-                                           target="_blank">{formatAddress(item.user)}</a>
-                                    </div>
-                                    <div className="col">
-                                        {showNum(item.amount / 10 ** FLMDecimal)}
-                                    </div>
-                                    <div className="col">
-                                        {dealTime(item.blockTimestamp)}
-                                    </div>
-                                </div>)
-                            }
-
-                        })}
-
                     </div>
                     <div className="pagination">
                         {
                             <Pagination current={curPage3} showSizeChanger
-                                        onShowSizeChange={handleShowSizeChange3}
-                                        onChange={onChangePage3} total={total3}
-                                        defaultPageSize={pageCount3}/>
+                                onShowSizeChange={handleShowSizeChange3}
+                                onChange={onChangePage3} total={total3}
+                                defaultPageSize={pageCount3} />
                         }
                     </div>
                 </div>
                 <div className="panel-container">
                     <div className="panel-title flex-box">
                         Airdrop List
+
+                    </div>
+                    <div className='select-b'>
                         <Select
-                            className="select-box"
+                            className="select-box1"
                             defaultValue="Goerli network"
                             onChange={(e) => {
                                 setCurBetchId(e)
                             }}
                             value={curBetchId}
                             options={selectArr}
+
                         />
+                        <div className='fkk'>
+                            <span className='ftitle'>FLM</span><span className='fval'></span>
+                        </div>
                     </div>
-                    <div className="fire-list-box fire-list-box-airdroplist">
-                        {curAirdropList.map((item, index) => {
+
+                    <div>
+                        {/* {curAirdropList.map((item, index) => {
                             if (index >= pageCount4 * (curPage4 - 1) && index < pageCount4 * curPage4) {
                                 if (index == 0 || item.batch != curAirdropList[index - 1].batch) {
-                                    return (
-                                        <div>
-                                            <div className="batch-box">
-                                                <div className="col">
-                                                    #{item.batch}
-                                                </div>
-                                                <div className="col">
-                                                    {item.info ? item.info : "--"}
-                                                </div>
-                                            </div>
-                                            <div className="list-header">
-                                                <div className="col">
-                                                    No.
-                                                </div>
+                                    return ( */}
 
-                                                <div className="col">
-                                                    Address
-                                                </div>
-                                                <div className="col">
-                                                    Amount(s)
-                                                </div>
-                                                <div className="col">
-                                                    Time(UTC)
-                                                </div>
-                                            </div>
-                                            <div className="list-item" key={index}>
-
-                                                <div className="col">
-                                                    {index + 1}
-                                                </div>
-
-                                                <div className="col  ">
-                                                    <a className="address"
-                                                       href={develop.ethScan + "/address/" + item.user}
-                                                       target="_blank">{formatAddress(item.user)}</a>
-                                                </div>
-                                                <div className="col">
-                                                    {showNum(item.amount / 10 ** FLMDecimal)}
-                                                </div>
-                                                <div className="col">
-                                                    {dealTime(item.blockTimestamp)}
-                                                </div>
-                                            </div>
-                                        </div>
-                                    )
-
-                                }
-                                return (<div className="list-item" key={index}>
+                        <div className="batch-box">
+                            <div className="col">
+                                {/* #{item.batch} */},mn manage
+                            </div>
+                            <div className="col">mn manage
+                                {/* {item.info ? item.info : "--"} */}
+                            </div>
+                        </div>
+                        <div className="fire-list-box fire-list-box-airdroplist">
+                            <div className="listheadert">
+                                <div className="list-header">
+                                    <div className="col">
+                                        No.
+                                    </div>
 
                                     <div className="col">
-                                        {index + 1}
-                                    </div>
-
-
-                                    <div className="col  ">
-                                        <a className="address" href={develop.ethScan + "/address/" + item.user}
-                                           target="_blank">{formatAddress(item.user)}</a>
+                                        Address
                                     </div>
                                     <div className="col">
-                                        {showNum(item.amount / 10 ** FLMDecimal)}
+                                        Amount(s)
                                     </div>
                                     <div className="col">
-                                        {dealTime(item.blockTimestamp)}
+                                        Time(UTC)
                                     </div>
-                                </div>)
-                            }
-                        })
-                        }
+                                </div>
+                                {/* key={index} */}
+                                <div className="list-item" >
+
+                                    <div className="col no">
+                                        {/* {index + 1} */}vafsdvdsvc
+                                    </div>
+
+                                    <div className="col address">
+                                        <a className=""
+                                            // + item.user
+                                            href={develop.ethScan + "/address/"} target="_blank">
+                                            {/* {formatAddress(item.user)} */}vafsdvdsvc
+                                        </a>
+                                    </div>
+                                    <div className="col">vafsdvdsvc
+                                        {/* {showNum(item.amount / 10 ** FLMDecimal)} */}
+                                    </div>
+                                    <div className="col">vafsdvdsvc
+                                        {/* {dealTime(item.blockTimestamp)} */}
+                                    </div>
+                                </div>
+                            </div>
+                            {/* )   } */}
+
+                        </div>
                     </div>
+                    {/* )}
+                        })
+                        } */}
+
                     <div className="pagination">
                         {
                             <Pagination current={curPage4} showSizeChanger
-                                        onShowSizeChange={handleShowSizeChange4}
-                                        onChange={onChangePage4} total={total4}
-                                        defaultPageSize={pageCount4}/>
+                                onShowSizeChange={handleShowSizeChange4}
+                                onChange={onChangePage4} total={total4}
+                                defaultPageSize={pageCount4} />
                         }
                     </div>
                 </div>

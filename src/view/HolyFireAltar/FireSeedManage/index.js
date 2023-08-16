@@ -233,7 +233,6 @@ const FireLock = (props) => {
         if (!judgeRes) {
             return
         }
-        console.log(11111111111);
         await getData()
 
 
@@ -444,7 +443,7 @@ const FireLock = (props) => {
                     <div className="panel-container">
 
                         <div className="panel-title" style={{ display: 'flex', justifyContent: 'space-between' }}>
-                            <p >L2 Admain</p>
+                            <p >L2 Admin</p>
                             <div className='tj' >
                                 <div type="primary" className='kk' onClick={() => { setShowAdd(true) }}>Add</div>
                                 <div type="primary" className='kk' onClick={(e) => { e.target.innerHTML = 'Delete'; }}>Mass Delete</div>

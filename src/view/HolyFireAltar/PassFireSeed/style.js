@@ -14,8 +14,11 @@ export default styled.div`
     border:none;
 }
 .ant-select:not(.ant-select-customize-input) .ant-select-selector{
-    border-radius:5px;
+    border-radius:25px;
 
+}
+.ant-select{
+    border-radius:25px;
 }
 .panel-box{
   .panel-container{

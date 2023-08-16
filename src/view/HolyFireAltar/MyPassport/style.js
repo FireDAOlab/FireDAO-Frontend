@@ -445,7 +445,7 @@ color: rgb(254, 109, 70);
 }
 
 .myFireSeed {
-    margin-top:2em;
+    margin-top:1em;
    
   .fire-list-box {
     .list-item:last-child{
@@ -519,7 +519,7 @@ font-size:16px;
 }
 }
     .myWall {
-        margin-top:2em;
+        margin-top:1em;
        .fire-list-box {
         &:last-child .list-item {
     border-bottom:none!important;
@@ -598,7 +598,7 @@ font-size:16px;
 }
 
     .myfdt {
-        margin-top:2em;
+        margin-top:1em;
        .fire-list-box {
         .list-item:last-child{
     border-bottom:none!important;
@@ -1187,7 +1187,7 @@ color: rgb(254, 109, 70);
 }
 
 .myFireSeed {
-    margin-top:2em;
+    margin-top:1em;
    
  
     .fire-list-box {
@@ -1263,7 +1263,7 @@ font-size:16px;
 }
     .myWall {
         
-        margin-top:2em;
+        margin-top:1em;
              .fire-list-box {
                 &:last-child .list-item {
     border-bottom:none!important;
@@ -1342,7 +1342,7 @@ font-size:16px;
 }
 
     .myfdt {
-        margin-top:2em;
+        margin-top:1em;
         .fire-list-box {
             .list-item:last-child{
     border-bottom:none!important;
@@ -1921,7 +1921,7 @@ color: rgb(254, 109, 70);
     }
 
     .myFireSeed {
-    margin-top:2em;
+    margin-top:1em;
    
     .fire-list-box {
         .list-item:last-child{
@@ -1994,7 +1994,7 @@ font-size:14px;
 }
 }
 .myWall {
-        margin-top:2em;
+        margin-top:1em;
         .fire-list-box {
             &:last-child .list-item {
     border-bottom:none!important;
@@ -2072,7 +2072,7 @@ font-size:14px;
 }
 }
 .myfdt {
-        margin-top:2em;
+        margin-top:1em;
         .fire-list-box {
             .list-item:last-child{
     border-bottom:none!important;
@@ -2616,8 +2616,7 @@ margin: 0em auto;
         .name {
           font-weight: bold;
           p{
-            font-family: Squada One-Regular, Squada One;
-
+            font-family: "Squada One-Regular", "Squada One";
         font-size:20px;
         line-height:45px;
               }
@@ -2683,7 +2682,7 @@ color: rgb(254, 109, 70);
 }
 
 .myFireSeed {
-    margin-top:2em;
+    margin-top:1em;
   
     .fire-list-box {
           .flex-box11 {
@@ -2754,7 +2753,7 @@ font-size:14px;
 }
 }
 .myWall {
-        margin-top:2em;
+        margin-top:1em;
         .fire-list-box {
           .flex-box11 {
             padding: 20px 1.2em;
@@ -2823,7 +2822,7 @@ font-size:14px;
     width: 460px;
 }
     .myfdt {
-        margin-top:2em;
+        margin-top:1em;
        .fire-list-box {
         overflow:scroll;
         .list-item{
@@ -2906,7 +2905,7 @@ font-size:14px;
   }
   .soulkk{
     margin-left:8px;
-    width: 40%;
+    width: 34%;
     height: 35px;
     line-height:35px;
 
@@ -2930,7 +2929,7 @@ background: rgba(205, 158, 87, 0.1);
   .fidkk{
     margin-left:8px;
     color:rgba(254, 109, 70, 1);
-    width: 40%;
+    width: 34%;
     height: 35px;
     line-height:35px;
 
@@ -2992,7 +2991,7 @@ background: rgba(205, 158, 87, 0.1);
   .fdtkk{
     margin:0 ;
     color:rgba(254, 109, 70, 1);
-    width: 40%;
+    width: 34%;
     height: 35px;
     line-height:35px;
 
@@ -3004,7 +3003,7 @@ background: rgba(205, 158, 87, 0.1);
   .valuekk{
     margin-left:0px;
     color:rgba(254, 109, 70, 1);
-    width: 40%;
+    width: 34%;
     text-align:center;
     height: 35px;
     line-height:35px;
@@ -3403,7 +3402,7 @@ margin: 0em auto;
           font-weight: bold;
           p{
         font-size:20px;
-        font-family: Squada One-Regular, Squada One;
+        font-family: "Squada One-Regular", "Squada One";
 
         line-height:45px;
               }
@@ -3469,7 +3468,7 @@ color: rgb(254, 109, 70);
 }
 
 .myFireSeed {
-    margin-top:2em;
+    margin-top:1em;
     .fire-list-box {
           .flex-box11 {
             padding: 20px 1.3em;
@@ -3539,7 +3538,7 @@ font-size:14px;
 }
 }
 .myWall {
-        margin-top:2em;
+        margin-top:1em;
         .fire-list-box {
           .flex-box11 {
             padding: 20px 1.2em;
@@ -3608,7 +3607,7 @@ font-size:14px;
     width: 460px;
 }
     .myfdt {
-        margin-top:2em;
+        margin-top:1em;
        .fire-list-box {
         overflow:scroll;
         .list-item{
@@ -3690,7 +3689,7 @@ font-size:14px;
   }
   .soulkk{
     margin-left:8px;
-    width: 40%;
+    width: 34%;
     height: 35px;
     line-height:35px;
 
@@ -3714,7 +3713,7 @@ background: rgba(205, 158, 87, 0.1);
   }
   .fidkk{
     margin-left:8px;
-    width: 40%;
+    width: 34%;
     height: 35px;
     line-height:35px;
 
@@ -3777,7 +3776,7 @@ background: rgba(205, 158, 87, 0.1);
   
   .fdtkk{
     margin:0 ;
-    width: 40%;
+    width: 34%;
     height: 35px;
     line-height:35px;
     color: rgb(254, 109, 70);
@@ -3789,7 +3788,7 @@ background: rgba(205, 158, 87, 0.1);
   }
   .valuekk{
     margin-left:0px;
-    width: 40%;
+    width: 34%;
     text-align:center;
     height: 35px;
     line-height:35px;

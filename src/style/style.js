@@ -480,6 +480,7 @@ padding: 0 4%;
     }
 
 .fire-list-box {
+    border-radius:10px;
   .col {
     font-size:14px;
 }}
@@ -544,6 +545,7 @@ padding: 0 4%;
       }}
     
     .fire-list-box {
+        border-radius:10px;
       .col {
         font-size:14px;
     }}

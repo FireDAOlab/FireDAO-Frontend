@@ -4,6 +4,10 @@ export default   styled.div`
   left: 0;
   top: 0;
   z-index: 1;
+  .ant-form-item-row{
+    width: 100%;
+    margin: 0em;
+  }
   @media screen and (min-width: 1950px) {
     .ant-form {input{
 text-align:center;
@@ -37,7 +41,7 @@ text-align:center;
         }
 
         .ant-form-item-control-input {
-          width: 60px;
+          width: 100%;
         }
       }
 
@@ -101,6 +105,25 @@ text-align:center;
           margin-top: 4px;
           margin-left: 6px;
         }
+      }
+      .no1{
+        margin: 15px 0px;
+        text-align:left;
+        justify-content:left;
+      
+  .ant-form-item-control-input-content{
+            text-align:left;
+            justify-content:start;
+        }
+       
+      }
+      .address1{
+        margin: 15px 0em;
+        color: rgb(255, 146, 96);
+background: rgba(205, 158, 87, 0.1);
+    border-radius: 30px;
+    opacity: 1;
+    border: 1px solid rgba(205, 158, 87, 0.5);
       }
     }
     .address-item {
@@ -306,6 +329,25 @@ text-align:center;
           margin-left: 6px;
         }
       }
+      .no1{
+        margin: 15px 0px;
+        text-align:left;
+        justify-content:left;
+      
+  .ant-form-item-control-input-content{
+            text-align:left;
+            justify-content:start;
+        }
+       
+      }
+      .address1{
+        margin: 15px 0em;
+        color: rgb(255, 146, 96);
+background: rgba(205, 158, 87, 0.1);
+    border-radius: 30px;
+    opacity: 1;
+    border: 1px solid rgba(205, 158, 87, 0.5);
+      }
     }
     .address-item {
       /* padding: 0.5em 2em; */
@@ -509,6 +551,25 @@ padding: 0em 0 0em;
       margin-left: 6px;
     }
   }
+  .no1{
+        margin: 15px 0px;
+        text-align:left;
+        justify-content:left;
+      
+  .ant-form-item-control-input-content{
+            text-align:left;
+            justify-content:start;
+        }
+       
+      }
+      .address1{
+        margin: 15px 0em;
+        color: rgb(255, 146, 96);
+background: rgba(205, 158, 87, 0.1);
+    border-radius: 30px;
+    opacity: 1;
+    border: 1px solid rgba(205, 158, 87, 0.5);
+      }
 }
 .address-item {
   /* padding: 0.5em 2em; */
@@ -631,14 +692,16 @@ height: ;
     padding: 30px;
     overflow-y: auto;
     .header{
+        display:flex;
+        justify-content:flex-end;
       text-align: right;      
       .close{
         cursor: pointer;
       }
-    }
-    .title{
+      .title{
       font-size: 16px;
       text-align: center;
+      margin:0 auto;
       font-family: Roboto-Bold, Roboto;
       font-weight: bold;
       color: #FFFFFF;
@@ -646,6 +709,8 @@ height: ;
       line-height: 29px;
       }
 
+    }
+    
     .dialog-name,.ant-form-item-label label{
       padding-bottom: 1em ;
       font-size: 14px;
@@ -656,8 +721,8 @@ height: ;
       line-height: 29px;
     }
     .sub-btn{
-      width: 200px;
-      margin: 0em 18%;
+      width: 100%;
+      margin: 0.5em auto;
     }
   }
  
@@ -669,11 +734,12 @@ height: ;
         width: 25px;
         line-height: 30px;
         font-size: 26px;
-        /* margin-left: 45%; */
+        margin-left: 45%;
       }
             .mintfee{
               width: 100%;
           font-size:14px;
+          
           .fee1{
             display: block;
             .name{
@@ -722,20 +788,24 @@ width: 85%;
     padding: 30px;
 
     .header{
+        display:flex;
+        justify-content:flex-end;
       text-align: right;      
       .close{
         cursor: pointer;
       }
-    }
-    .title{
+      .title{
       font-size: 16px;
       text-align: center;
+      margin:0 auto;
       font-family: Roboto-Bold, Roboto;
       font-weight: bold;
       color: #FFFFFF;
       /* margin-top: 1em; */
       line-height: 29px;
       }
+    }
+    
 
     .dialog-name,.ant-form-item-label label{
       padding-bottom: 1em ;
@@ -747,8 +817,8 @@ width: 85%;
       line-height: 29px;
     }
     .sub-btn{
-      width: 200px;
-      margin: 0em 18%;
+        width: 100%;
+        margin: 0.5em auto;
     }
   }
  

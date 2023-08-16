@@ -9,10 +9,10 @@ export  default   styled.div`
     padding:30px 11.7%;
  
 
-.fire-list-box{
+.ss1{
     margin: 1em 0em;
     .list-header{
-            padding: 20px 1.8em;
+            padding: 20px 1.7em;
         }
         .list-item{
             padding: 0.5em;
@@ -56,7 +56,7 @@ export  default   styled.div`
     }
         .list-item{
             padding: 1em  0.5em;
-            width: 95%;
+            width: 96%;
             margin: 0 auto;
             border-radius:0px;
             border-bottom:1px solid rgba(255, 255, 255, 0.1);
@@ -190,10 +190,10 @@ border: 1px solid rgba(254,109,70,0.5);
 @media screen and (max-width: 1950px) {
     .panel-container {
     padding:30px 11.7%;
-    .fire-list-box{
-        margin: 2em 0em;
+    .ss1{
+        margin:1em 0em;
     .list-header{
-            padding: 20px 1.8em;
+            padding: 20px 1.7em;
         }
         .list-item{
             padding: 0.5em;
@@ -237,7 +237,7 @@ border: 1px solid rgba(254,109,70,0.5);
     }
         .list-item{
             padding: 1em  0.5em;
-            width: 95%;
+            width: 96%;
             margin: 0 auto;
             border-radius:0px;
             border-bottom:1px solid rgba(255, 255, 255, 0.1);
@@ -259,7 +259,7 @@ border: 1px solid rgba(254,109,70,0.5);
    
 
       .sbt11{
-        margin: 2em 0em;
+        margin: 1em 0em;
         text-align:left;
        
        
@@ -382,7 +382,7 @@ border: 1px solid rgba(254,109,70,0.5);
 .ss1{
     overflow-x: scroll;
     .list-header{
-            padding: 20px 3em;
+            padding: 20px 1.7em;
         }
         .list-item{
             padding: 0.5em;
@@ -392,7 +392,7 @@ border: 1px solid rgba(254,109,70,0.5);
           justify-content: flex-start;
           /* padding: 0.5em 2.5em 0.5em 2em; */
       
-        margin: 1em 0em;
+        margin: 0em;
         .col{
             font-size:14px;
           &:nth-child(1){
@@ -427,7 +427,7 @@ border: 1px solid rgba(254,109,70,0.5);
     }  
         .list-item{
             padding: 0.5 0em;
-            width: 91%;
+            width: 96%;
             margin: 0 auto;
             border-radius:0px;
             border-bottom:1px solid rgba(255, 255, 255, 0.1);
@@ -441,7 +441,7 @@ border: 1px solid rgba(254,109,70,0.5);
 
    
       .sbt11{
-        margin:2em 0em;
+        margin:1em 0em;
         text-align:left;
        overflow: normal;
        
@@ -562,9 +562,10 @@ border: 1px solid rgba(254,109,70,0.5);
             width: 730px;
         }
         .ss1{
+            margin:1em 0em;
     overflow-x: scroll;
     .list-header{
-            padding: 20px 2.5em;
+            padding: 20px 1.7em;
         }
         .list-item{
             padding: 0.5em;
@@ -574,7 +575,7 @@ border: 1px solid rgba(254,109,70,0.5);
           justify-content: flex-start;
           /* padding: 0.5em 2.5em 0.5em 2em; */
        
-        margin: 1em 0em;
+        margin: 0em;
         .col{
             font-size:14px;
           &:nth-child(1){
@@ -609,7 +610,7 @@ border: 1px solid rgba(254,109,70,0.5);
     }
         .list-item{
             padding: 0.5 0em;
-            width: 91%;
+            width: 96%;
             margin: 0 auto;
             border-radius:0px;
             border-bottom:1px solid rgba(255, 255, 255, 0.1);
@@ -622,7 +623,7 @@ border: 1px solid rgba(254,109,70,0.5);
  
 
       .sbt11{
-        margin: 2em 0em;
+        margin: 1em 0em;
         text-align:left;
        
         .flex-box2 {
@@ -696,7 +697,7 @@ font-size:14px;
       text-align:center;
       line-height:30px;
       color: rgba(205, 158, 87, 1);
-      width: 145px;
+      width: 120px;
 height: 30px;
 background: rgba(205,158,87,0.1);
 border-radius: 50px ;
@@ -724,7 +725,7 @@ font-size:14px;
   margin-left: 20px;
   font-size: 14px;
   line-height:30px;
-  width: 145px;
+  width: 120px;
 height: 30px;
 background: rgba(254,109,70,0.1);
 border-radius: 50px ;
@@ -742,9 +743,10 @@ border: 1px solid rgba(254,109,70,0.5);
             width: 730px;
         }
         .ss1{
+            margin:1em 0em;
     overflow-x: scroll;
     .list-header{
-            padding: 20px 2.5em;
+            padding: 20px 1.7em;
         }
         .list-item{
             padding: 0.5em;
@@ -754,7 +756,7 @@ border: 1px solid rgba(254,109,70,0.5);
           justify-content: flex-start;
           /* padding: 0.5em 2.5em 0.5em 2em; */
        
-        margin: 1em 0em;
+        margin: 0em;
         .col{
             font-size:14px;
           &:nth-child(1){
@@ -789,7 +791,7 @@ border: 1px solid rgba(254,109,70,0.5);
     }
         .list-item{
             padding: 0.5 0em;
-            width: 91%;
+            width: 96%;
             margin: 0 auto;
             border-radius:0px;
             border-bottom:1px solid rgba(255, 255, 255, 0.1);
@@ -802,7 +804,7 @@ border: 1px solid rgba(254,109,70,0.5);
  
   
       .sbt11{
-        margin: 2em 0em;
+        margin:1em 0em;
         text-align:left;
        
         .flex-box2 {
@@ -875,7 +877,7 @@ font-size:14px;
         font-size:14px;
       text-align:center;
       line-height:30px;
-      width: 145px;
+      width: 120px;
 height: 30px;
 color: rgba(205, 158, 87, 1);
 background: rgba(205,158,87,0.1);
@@ -904,7 +906,7 @@ font-size:14px;
   margin-left: 20px;
   font-size: 14px;
   line-height:30px;
-  width: 145px;
+  width: 120px;
 height: 30px;
 background: rgba(254,109,70,0.1);
 border-radius: 50px ;
