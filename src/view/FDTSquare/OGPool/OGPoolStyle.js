@@ -4,7 +4,14 @@ export default styled.div`
   .ant-select-selector {
     border: none !important;
   }
-
+  .active-list-row{
+    .col:nth-child(2){
+      width: 60%!important;
+    }
+  }
+  .list-header{
+    padding: 10px 6px;
+  }
   @media screen and (max-width: 1950px) {
     .page-title {
       font-size: 30px;

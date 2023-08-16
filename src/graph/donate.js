@@ -16,6 +16,17 @@ export function getDonateRecord() {
     }, "")
 }
 
+export function getBlackUsers() {
+    return fetchQueryBase("patton-sr/testog1", {
+        text: ` {
+blackUsers(first:1000){
+    operator
+    user
+}
+}`
+    }, "")
+}
+
 export function getSecondDonateRecord(addr) {
     return fetchQueryBase("patton-sr/testog1", {
         text: ` {
