@@ -72,26 +72,6 @@
 	{
 		"inputs": [
 			{
-				"internalType": "uint256",
-				"name": "fee",
-				"type": "uint256"
-			}
-		],
-		"name": "donate",
-		"outputs": [],
-		"stateMutability": "payable",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "pause",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
 				"internalType": "contract ERC20",
 				"name": "_fdtOg",
 				"type": "address"
@@ -182,12 +162,6 @@
 			},
 			{
 				"indexed": false,
-				"internalType": "uint256",
-				"name": "pid",
-				"type": "uint256"
-			},
-			{
-				"indexed": false,
 				"internalType": "address",
 				"name": "addr",
 				"type": "address"
@@ -252,6 +226,25 @@
 		"type": "event"
 	},
 	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"internalType": "address",
+				"name": "operator",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "address",
+				"name": "user",
+				"type": "address"
+			}
+		],
+		"name": "blackUser",
+		"type": "event"
+	},
+	{
 		"inputs": [
 			{
 				"internalType": "address",
@@ -272,6 +265,26 @@
 				"type": "bool"
 			}
 		],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "fee",
+				"type": "uint256"
+			}
+		],
+		"name": "donate",
+		"outputs": [],
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "pause",
+		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
 	},
@@ -531,11 +544,6 @@
 				"internalType": "address",
 				"name": "_user",
 				"type": "address"
-			},
-			{
-				"internalType": "bool",
-				"name": "_set",
-				"type": "bool"
 			}
 		],
 		"name": "setBlackList",
@@ -1045,6 +1053,19 @@
 	},
 	{
 		"inputs": [],
+		"name": "getActivateAccount",
+		"outputs": [
+			{
+				"internalType": "address[]",
+				"name": "",
+				"type": "address[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
 		"name": "getAdminsLevelThreeList",
 		"outputs": [
 			{
@@ -1129,39 +1150,7 @@
 	},
 	{
 		"inputs": [],
-		"name": "getInviteRate",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
 		"name": "getLatesPrice",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "_user",
-				"type": "address"
-			}
-		],
-		"name": "getPid",
 		"outputs": [
 			{
 				"internalType": "uint256",
@@ -1193,7 +1182,7 @@
 				"type": "address"
 			}
 		],
-		"name": "getUserSetAdminsLevelThree",
+		"name": "getUserSetAdminsLevelFour",
 		"outputs": [
 			{
 				"internalType": "uint256",
@@ -1205,8 +1194,14 @@
 		"type": "function"
 	},
 	{
-		"inputs": [],
-		"name": "getValidNumbers",
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_user",
+				"type": "address"
+			}
+		],
+		"name": "getUserSetAdminsLevelThree",
 		"outputs": [
 			{
 				"internalType": "uint256",
