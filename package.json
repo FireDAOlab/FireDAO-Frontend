@@ -18,7 +18,7 @@
     "jquery": "^3.6.1",
     "jsonp": "^0.2.1",
     "moment": "^2.29.4",
-    "react": "^18.2.0",
+    "react": "^17.0.2",
     "react-datetime": "^3.1.1",
     "react-dom": "^17.0.2",
     "react-i18next": "^11.15.5",
@@ -31,7 +31,7 @@
     "viem": "^1.5.4",
     "wagmi": "^1.3.10",
     "web-vitals": "^2.1.4",
-    "web3": "^4.0.3",
+    "web3": "^1.10.1",
     "xlsjs": "^1.0.1",
     "xlsx": "^0.18.5"
   },
@@ -49,9 +49,11 @@
   },
   "browserslist": {
     "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
+      "chrome >= 67",
+      "edge >= 79",
+      "firefox >= 68",
+      "opera >= 54",
+      "safari >= 14"
     ],
     "development": [
       "last 1 chrome version",

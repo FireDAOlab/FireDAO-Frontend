@@ -40,7 +40,7 @@ const FireLock = (props) => {
     const [whitelist, setWhitelistArr] = useState([])
     const [flmDecimal, setFLMDecimal] = useState(0)
     const [adminArr, setWAdminArr] = useState([])
-    const [isSecAdmin, setISSecAdmin] = useState(false)
+    const [isSecAdmin, setISSecAdmin] = useState(true)
     const [isPause, setIsPause] = useState(false)
     const [isModifyMolOpen, setIsModifyMolOpen] = useState(false)
     const [modifyList, setModifyList] = useState([])

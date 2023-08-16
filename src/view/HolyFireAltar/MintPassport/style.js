@@ -24,7 +24,7 @@ export default styled.div`
 }
 .button-box {
     text-align: left;
-    border: 25px;
+    border-radius: 25px;
     .subBtn {
       
     height: 40px;
@@ -36,15 +36,18 @@ export default styled.div`
   }
   .ant-btn-primary{
     height: 40px;
-
+    border-radius: 25px;
 font-family: Roboto-SemiBold, Roboto;
 font-weight: 600;
 color: #FFFFFF;
   }
-  
+  .list-item:last-child{
+    border-bottom:none!important;
+}
 @media screen and (min-width: 1951px) {
     
   .connect-button{
+    border:none;
 img{
   display:none ;
 }
@@ -214,7 +217,7 @@ img{
   .button-box {
     text-align: left;
     height: 40px;
-    border: 25px;
+    border-radius: 25px;
     .subBtn {
       text-align:center;
       border-radius: 25px;
@@ -233,6 +236,7 @@ font-size:16px;
 
 @media screen and (max-width: 1950px) {
   .connect-button{
+    border:none;
 img{
   display:none ;
 }
@@ -401,7 +405,7 @@ img{
 
       .button-box {
         text-align: left;
-        border: 25px;
+        border-radius: 25px;
         height: 40px;
         .subBtn {
           text-align:center;
@@ -427,6 +431,7 @@ img{
     height: 20px;
 }
 .connect-button{
+    border:none;
 img{
   display:none ;
 }
@@ -586,7 +591,7 @@ img{
 
     .button-box {
       text-align: left;
-      border: 25px;
+      border-radius: 25px;
 
       .subBtn {
         text-align: center;
@@ -768,7 +773,7 @@ img{
 
     .button-box {
       text-align: left;
-      border: 25px;
+      border-radius: 25px;
 width: 100%;
 height:40px;
       .subBtn {
@@ -785,6 +790,7 @@ height:40px;
       }
     }
 .connect-button{
+    border:none;
 width: 100%;
 img{
   display:none ;

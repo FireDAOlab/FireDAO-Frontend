@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styled from "styled-components";
 import { useConnect } from "../../../api/contracts";
-import { Card, Button, Descriptions, message, Form, Modal, List, Input, notification } from 'antd';
+import { Card, Button,Table,Empty, Descriptions, message, Form, Modal, List, Input, notification } from 'antd';
 import { getContractByName, getContractByContract } from "../../../api/connectContract";
 import { dealMethod, viewMethod } from "../../../utils/contractUtil"
 import { getIpfs } from "../../../utils/ipfsApi";
@@ -19,6 +19,7 @@ import adminIcon from "../../../imgs/admin_icon.webp";
 import judgeStatus from "../../../utils/judgeStatus";
 import MyPassportStyle from "./style"
 import user3 from "../../../imgs/user3.png";
+
 import btc from "../../../imgs/btc.png";
 import rth from "../../../imgs/rth.png";
 import usdt from "../../../imgs/usdt.png";
@@ -37,7 +38,7 @@ const MyPassport = (props) => {
     const [myClassAddress, setMyClass] = useState("")
     const [myClassPid, setMyClassPid] = useState(0)
     const [myPassport, setPassport] = useState("")
-    const [SBTARR, setSBTARR] = useState([{}])
+    const [SBTARR, setSBTARR] = useState([])
     const [curSBTPage, setCurSBTPage] = useState(1)
     const [showTip, setShowTip] = useState(false)
     const [isAdmin, setIsAdmin] = useState(false)
@@ -205,13 +206,13 @@ const MyPassport = (props) => {
                             <h2 className="name">
 
                                 <div className="id">
-                                    PID <div className="reputation-data">{state.pid}</div>
+                                    PID <div className="reputation-data">{state.pid =='' ? state.pid : "-"}</div>
                                 </div>
                                 <div className="reputation">
                                     FID-Reputation
                                     <div className="reputation-data-box" >
                                         <div className="reputation-data">
-                                            0
+                                        0
                                         </div>
                                     </div>
 
@@ -364,7 +365,7 @@ const MyPassport = (props) => {
                                     <span>Fire Passport </span>
                                     <span className='val'>#{state.pid}</span>
                                     <p><span>ERC721 Non-transferable</span>
-                                        <span className='id'> PID  <div className='bor'>-{state.pid}</div></span>
+                                        <span className='id'> PID  <div className='bor'>-{state.pid ? state.pid : '-'}</div></span>
                                     </p>
                                 </div>
                             </div>
@@ -393,7 +394,7 @@ const MyPassport = (props) => {
                                     <span className='val'>#{state.fid}</span>
 
                                     <p ><span>ERC721 Non-transferable</span>
-                                        <span className='id'> FID <div className='bor'>-{state.fid}</div> </span>
+                                        <span className='id'> FID <div className='bor'>{state.fid  ? state.fid : "-"}</div> </span>
                                     </p>
                                 </div>
                             </div>
@@ -433,26 +434,28 @@ const MyPassport = (props) => {
                                     Score
                                 </div>
                             </div>
-                            {/* {
+                            {
+                                 SBTARR.length==0? <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />:
                                 SBTARR.map((item, index) => (
-                                    index > 10 * (curSBTPage - 1) && index < 10 * curSBTPage && */}
+                                    // index > 10 * (curSBTPage - 1) && index < 10 * curSBTPage && 
                                     <div className="list-item sbt1">
                                         <div className="col id">
-                                            {/* SBT-{index} */}dfvsdfv
+                                            SBT-{index}
                                         </div>
                                         <div className="col">
-                                            88
+                                            
                                         </div>
                                         <div className="col">
-                                            100
+                                            
                                         </div>
                                         <div className="col">
-                                            100
+                                            
                                         </div>
                                     </div>
                                     
-                                {/* ))
-                            } */}
+                                ))
+                               
+                            } 
                         </div>
                     </div>
                 </div>
@@ -485,7 +488,9 @@ const MyPassport = (props) => {
                                 </div>
                             </div>
                             {
-                                //    SBTARR.map((item, index) => (
+                                SBTARR.length==0? <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />:
+                                
+                        SBTARR.map((item, index) => (
                                 //    index > 10 * (curSBTPage - 1) && index < 10 * curSBTPage &&
                                 <div className='asc sbt1'>
                                     <div className="list-item ss1">
@@ -534,7 +539,7 @@ const MyPassport = (props) => {
                                         </div>
                                     </div>
                                 </div>
-                                //    ))
+                                   ))
                             }
                         </div>
                     </div>
@@ -576,28 +581,30 @@ const MyPassport = (props) => {
                                     </div>
                                 </div>
                                 {
-                                    //    SBTARR.map((item, index) => (
-                                    //    index > 10 * (curSBTPage - 1) && index < 10 * curSBTPage &&
+                                     SBTARR.length==0? <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />:
+                                       SBTARR.map((item, index) => (
+                                       index > 10 * (curSBTPage - 1) && index < 10 * curSBTPage &&
 
                                     <div className="list-item sbt2">
 
                                         <div className="col id">
-                                            sfff
+                                           
                                         </div>
                                         <div className="col">
-                                            vdaf
+                                            
                                         </div>
                                         <div className="col">
-                                            vafd
+                                            
                                         </div>
                                         <div className="col">
-                                            advf
+                                            
                                         </div>
                                         <div className="col">
-                                            vfdavfvfdF
+                                            
                                         </div>
                                     </div>
-                                    //    ))
+                                    
+                                       ))
                                 }
                             </div>
                         </div>

@@ -50,7 +50,7 @@ const FireLock = (props) => {
             <div className="dialog-content">
                 <div className="header">
                     <div className="title">
-                        Remove Wallet
+                        Delete
                     </div>
                     <div className="close" onClick={closeDialog}>
                         <svg t="1681179633627" className="icon" viewBox="0 0 1024 1024" version="1.1"

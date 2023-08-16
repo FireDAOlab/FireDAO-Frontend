@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useConnect } from "../../../api/contracts";
-import { Pagination, Card, Button, Select, Descriptions, message, Form, List, Input, notification, Tooltip } from 'antd';
+import { Pagination, Card, Empty,Button, Select, Descriptions, message, Form, List, Input, notification, Tooltip } from 'antd';
 import { QuestionCircleOutlined, SendOutlined, TwitterOutlined, UserOutlined } from "@ant-design/icons";
 import { getContractByName, getContractByContract } from "../../../api/connectContract";
 import { dealMethod, viewMethod } from "../../../utils/contractUtil"
@@ -258,6 +258,8 @@ const LockList = (props) => {
                         <div className="panel-container1">
                             <div className='tp'>
                                 {
+                                    
+                                    state.fireSeedList.length==0? <Empty style={{width:'100%'}} image={Empty.PRESENTED_IMAGE_SIMPLE} />:
                                     state.fireSeedList.map(item => (
                                         <div className='tpitem' onClick={() => {
                                             setID(item.id)
@@ -528,7 +530,9 @@ const LockList = (props) => {
                             </div>
 
                             {
-                            logArr.map((item,index) => (
+                                
+                                 logArr.length==0? <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />:
+                                 logArr.map((item,index) => (
                             <div className="list-item ">
                                 <div className="col no">
                                     -

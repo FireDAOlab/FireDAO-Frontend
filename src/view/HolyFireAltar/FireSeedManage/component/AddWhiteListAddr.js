@@ -52,7 +52,9 @@ const FireLock = (props) => {
             </div>
             <div className="dialog-content">
                 <div className="header">
-
+                    <div className="title">
+                        Add L2 Admin
+                    </div>
                     <div className="close" onClick={closeDialog}>
                         <svg t="1681179633627" className="icon" viewBox="0 0 1024 1024" version="1.1"
                             xmlns="http://www.w3.org/2000/svg" p-id="2615" width="26" height="26">
@@ -62,9 +64,7 @@ const FireLock = (props) => {
                         </svg>
                     </div>
                 </div>
-                <div className="title">
-                    Add WhiteList
-                </div>
+
                 <div className="address-list">
                     <div className="fire-list-box1">
                         <div className="list-header flex-box">
@@ -143,7 +143,7 @@ const FireLock = (props) => {
                                             <img className="icon" src={add} onClick={() => {
                                                 addOwner()
                                             }} />)}
-                                        
+
                                     </Form>
                                 </div>
                             )

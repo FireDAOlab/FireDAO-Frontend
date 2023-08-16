@@ -1,47 +1,52 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { useConnect } from "../../../api/contracts";
+import React, {useEffect, useRef, useState} from 'react';
+import {useConnect} from "../../../api/contracts";
 import BigNumber from "bignumber.js"
 import AddNomalWhiteList from "./ThreelWhiteList";
-import AddThreeWhiteList from "./WhiteList";
-import { showNum } from "../../../utils/bigNumberUtil";
-import ethereum from "../../../imgs/ethereum.svg";
-import { formatAddress } from "../../../utils/publicJs";
-import ConnectWallet from "../../../component/ConnectWallet/ConnectWallet";
-import user3 from "../../../imgs/user3.png"
-import download from "../../../imgs/download.png"
-import manage from "../../../imgs/svg/manage.svg"
-import {
-    Button,
-    message,
-    AutoComplete,
-    Form,
-    Pagination
-} from 'antd';
-import { getContractByName, getContractByContract } from "../../../api/connectContract";
-import { dealMethod, dealPayMethod, viewMethod } from "../../../utils/contractUtil"
-import ethIcon from "../../../imgs/eth_icon.webp";
-import downIcon from "../../../imgs/down_icon.webp";
-import listIcon from "../../../imgs/list-icon.webp";
-import develop from "../../../env";
-import { useNavigate } from "react-router-dom";
-import judgeStatus from "../../../utils/judgeStatus";
-import { getDonateRecord } from "../../../graph/donate";
-import OGPoolStyle from "./OGPoolStyle";
+import AddThreeWhiteList from "./components/OgAdminLevel2";
+import {formatAddress} from "../../../utils/publicJs";
 
+import {
+    message,
+    Form, Pagination,
+} from 'antd';
+import {getContractByName, getContractByContract} from "../../../api/connectContract";
+import {dealMethod, dealPayMethod, viewMethod} from "../../../utils/contractUtil"
+
+import develop from "../../../env";
+import {useNavigate} from "react-router-dom";
+import judgeStatus from "../../../utils/judgeStatus";
+import {getDonateRecord} from "../../../graph/donate";
+import OGPoolStyle from "./OGPoolStyle";
+import OgSetActive from "./components/OgSetActive";
+import OgSetBlacklist from "./components/OgSetBlacklist";
+import listIcon from "../../../imgs/list-icon.webp";
+import {ETHDecimals, FDTDecimals, USDTDecimals} from "../../../config/constants";
 
 const OGPoolPublic = (props) => {
-    let { state, dispatch } = useConnect();
+    let {state, dispatch} = useConnect();
     const [activeNav, setActiveNav] = useState(1)
 
-    const [isSAdmin, setIsSecondAdmin] = useState(false)
-    const [isTAdmin, setIsThreeAdmin] = useState(false)
+    const [isSecondAdmin, setIsSecondAdmin] = useState(false)
+    const [isThreeAdmin, setIsThreeAdmin] = useState(false)
+    const [isFourAdmin, setIsFourAdmin] = useState(false)
+    const [total, setTotal] = useState(0)
     const [allRecords, setAllRecords] = useState([])
-
+    const [curPage, setCurPage] = useState(1)
+    const [pageCount, setPageCount] = useState(20)
+    const [pageCount2, setPageCount2] = useState(20)
+    const [curPage2, setCurPage2] = useState(1)
 
     const history = useNavigate();
     const [form] = Form.useForm();
 
+    const onChangePage = async (page) => {
+        await setCurPage(page)
+    }
 
+
+    const handleShowSizeChange = async (page, count) => {
+        setPageCount(count)
+    }
     const handleUserViewMethod = async (name, params) => {
         let contractTemp = await getContractByName("user", state.api,)
         if (!contractTemp) {
@@ -72,110 +77,17 @@ const OGPoolPublic = (props) => {
         }
         return await viewMethod(contractTemp, state.account, name, params)
     }
-    const getUserInfo = async () => {
-        if (!state.pid) {
-            const userInfo = await handleUserViewMethod("userInfo", [state.account])
-            dispatch({ type: "SET_PID", payload: userInfo.PID })
-        }
-    }
-
-    const handleCoinViewMethod = async (name, coinName, params) => {
-        let contractTemp = await getContractByName(coinName, state.api,)
-        if (!contractTemp) {
-            message.warn("Please connect", 5)
-        }
-        return await viewMethod(contractTemp, state.account, name, params)
-    }
-
-    const Row = (item, index) => {
-        return <div className="list-item row1" key={index}>
-            <div className="col no">
-                {item.no}
-            </div>
-            <div className="col pid">
-                {item.pid}
-            </div>
-            <div className="col ">
-                {item.name}
-            </div>
-
-            <div className="col address">
-                {item.addr && (
-                    <a href={develop.ethScan + "address/" + item.addr} target="_blank">
-                        {formatAddress(item.addr)}
-                    </a>
-                )}
-            </div>
-            <div className="col ">
-                {item.ethAmount / 10 ** 18}
-            </div>
-            <div className="col">
-                {BigNumber(item.usdtAmount / 10 ** 18).toFixed(2)}
-            </div>
-
-            <div className="col">
-                {item.rate}%
-            </div>
-            <div className="col ">
-                {BigNumber(item.fdtAmount / 10 ** 18).toFixed(2)}
-            </div>
-
-            <div className="col">
-                {item.time}
-            </div>
-
-        </div>
-    }
-    const Row2 = (item, index) => {
-        return <div className="list-item row2-list-item" key={index}>
-            <div className="col no">
-                {index + 1}
-            </div>
-            <div className="col pid">
-                {item.Pid}
-            </div>
-            <div className="col name">
-                {item.name}
-            </div>
-
-            <div className="col address">
-                {
-                    item.user && <a href={develop.ethScan + "address/" + item.user} target="_blank">
-                        {(item.user)}
-                    </a>
-                }
-
-            </div>
-
-
-        </div>
-    }
-
-
 
 
 
     const getIsAdmin = async () => {
-        const secondArr = await handleViewMethod("getAdminsLevelTwoList", [])
-        const threeArr = await handleViewMethod("getAdminsLevelThreeList", [])
-        let isS = false, isT = false
-        secondArr.forEach(item => {
-            if (item.toLowerCase() === state.account.toLowerCase()) {
-                isS = true
-            }
-        })
-        threeArr.forEach(item => {
-            if (item.toLowerCase() === state.account.toLowerCase()) {
-                isT = true
-            }
-        })
-
-        setIsSecondAdmin(isS)
-        setIsThreeAdmin(isT)
+        const isSecond = await handleViewMethod("checkAddrForAdminLevelTwo", [state.account])
+        const isThree = await handleViewMethod("checkAddrForAdminLevelThree", [state.account])
+        const isFour = await handleViewMethod("checkAddrForAdminLevelFour", [state.account])
+        setIsSecondAdmin(isSecond)
+        setIsThreeAdmin(isThree)
+        setIsFourAdmin(isFour)
     }
-
-
-
 
 
     const getData = async () => {
@@ -185,9 +97,8 @@ const OGPoolPublic = (props) => {
                 return
             }
             getIsAdmin()
-            getUserInfo()
         } catch (e) {
-
+            console.log(e)
         }
     }
     const getRecord = async () => {
@@ -205,14 +116,45 @@ const OGPoolPublic = (props) => {
                 })
 
                 if (res.data.allRecords && res.data.allRecords.length > 0) {
-                    res.data.allRecords.shift()
                     setAllRecords(res.data.allRecords)
+                    setTotal(res.data.allRecords.length)
                 }
 
             }
         } catch (e) {
             console.log(e)
         }
+    }
+    const Row = (item, index) => {
+        return <div className="list-item" key={index}>
+            <div className="col no">
+                {item.no}
+            </div>
+
+
+            <div className="col address">
+                {item.addr && (
+                    <a href={develop.ethScan + "address/" + item.addr} target="_blank">
+                        {formatAddress(item.addr)}
+                    </a>
+                )}
+            </div>
+            <div className="col ">
+                {item.ethAmount / 10 ** ETHDecimals}
+            </div>
+            <div className="col">
+                {BigNumber(item.usdtAmount / 10 ** USDTDecimals).toFixed(2)}
+            </div>
+
+            <div className="col ">
+                {BigNumber(item.fdtAmount / 10 ** FDTDecimals).toFixed(2)}
+            </div>
+
+            <div className="col">
+                {item.time}
+            </div>
+
+        </div>
     }
     useEffect(async () => {
 
@@ -234,35 +176,48 @@ const OGPoolPublic = (props) => {
             </div>
             <div className="header-nav">
                 <div className="fire-nav-list ">
-                    <div className={"nav-item " + (activeNav == 1 ? "active" : "")} onClick={() => {
-                        setActiveNav(1)
-                    }}>
-                        OG Donate Pool
-                    </div>
-                    <div className={"nav-item " + (activeNav == 2 ? "active" : "")} onClick={() => {
-                        setActiveNav(2)
-                    }}>
-                        WhiteList
-                    </div>
                     {
-                        isSAdmin && (
+                        (isSecondAdmin || isThreeAdmin||isFourAdmin) &&
+                        <div className={"nav-item " + (activeNav == 1 ? "active" : "")} onClick={() => {
+                            setActiveNav(1)
+                        }}>
+                            Set Active Accounts
+                        </div>
+                    }
 
-                            <div className={"nav-item " + (activeNav == 4 ? "active" : "")} onClick={() => {
-
-                                setActiveNav(4)
+                    {
+                        (isSecondAdmin||isThreeAdmin ) && <div className={"nav-item " + (activeNav == 2 ? "active" : "")} onClick={() => {
+                            setActiveNav(2)
+                        }}>
+                            Donate Record
+                        </div>
+                    }
+                    {
+                        isSecondAdmin && (
+                            <div className={"nav-item " + (activeNav == 5 ? "active" : "")} onClick={() => {
+                                setActiveNav(5)
                             }}>
-                                Set Admin
+                                Set Blacklist
                             </div>
                         )
                     }
                     {
+                        isSecondAdmin && (
 
-                        (isTAdmin) && (
-
-                            <div className={"nav-item " + (activeNav == 3 ? "active" : "")} onClick={() => {
-                                setActiveNav(3)
+                            <div className={"nav-item " + (activeNav == 4 ? "active" : "")} onClick={() => {
+                                setActiveNav(4)
                             }}>
-                                Set WhiteList
+                                Set Lv3 Admin
+                            </div>
+                        )
+                    }
+                    {
+                        isThreeAdmin && (
+
+                            <div className={"nav-item " + (activeNav == 6 ? "active" : "")} onClick={() => {
+                                setActiveNav(6)
+                            }}>
+                                Set Lv4 Admin
                             </div>
                         )
                     }
@@ -271,18 +226,65 @@ const OGPoolPublic = (props) => {
 
             </div>
 
+            {activeNav == 1 && (<OgSetActive isFourAdmin={isFourAdmin}/>)}
+            {activeNav == 5 && (<OgSetBlacklist/>)}
 
-            {activeNav == 3 && (
-                <div>
-                    <AddThreeWhiteList allRecords={allRecords}></AddThreeWhiteList>
+            {activeNav ==2 &&(          <div className="panel-box part2">
+                <div className="panel-container">
+                    <div className="list-top-part">
+                        <div className="panel-title">
+                            Donate Records
+                        </div>
+                        <div className="fire-nav-list">
 
+                        </div>
+                    </div>
+                    <div className="fire-list-box" style={{minWidth: '100%'}}>
+                        <div className="list-header ">
+                            <div className="col">
+                                No.
+                            </div>
+
+                            <div className="col">
+                                Wallet Address
+                            </div>
+                            <div className="col">
+                                ETH
+                            </div>
+                            <div className="col">
+                                Value
+                            </div>
+
+                            <div className="col">
+                                Amount
+                            </div>
+                            <div className="col">
+                                Time(UTC)
+                            </div>
+                        </div>
+
+                        {
+                            allRecords.map((item, index) => (
+                                index >= pageCount * (curPage - 1) && index < pageCount * curPage &&
+                                Row(item, index)
+                            ))
+                        }
+
+
+                    </div>
+                    <div className="pagination">
+                        {
+                           <Pagination current={curPage} showSizeChanger
+                                                          onShowSizeChange={handleShowSizeChange}
+                                                          onChange={onChangePage} total={total}
+                                                          defaultPageSize={pageCount}/>
+                        }
+                    </div>
                 </div>
-            )}
-            {activeNav == 4 && (
-                <div>
-                    <AddNomalWhiteList allRecords={allRecords}></AddNomalWhiteList>
-                </div>
-            )}
+
+            </div>)}
+            {activeNav == 4 && (<AddThreeWhiteList isLevel2={isSecondAdmin} allRecords={allRecords}/>)}
+            {activeNav == 6 && (<AddThreeWhiteList isLevel2={isSecondAdmin} allRecords={allRecords}/>)}
 
         </OGPoolStyle>
     )

@@ -1,10 +1,17 @@
 import styled from "styled-components";
 const OGPoolStyle = styled.div`
-
+  .fire-list-box{
+    .col{
+      .icon{
+        width: 20px!important;
+      }
+    }
+  }
   .other-reward{
     display: flex;
     justify-content: space-between;
   }
+
   @media screen and (max-width: 1950px ) {
     .ant-input {
       font-size: 16px;

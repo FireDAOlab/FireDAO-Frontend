@@ -83,6 +83,11 @@
 			},
 			{
 				"internalType": "address",
+				"name": "_fireSeedCoupon",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
 				"name": "_weth",
 				"type": "address"
 			},
@@ -145,14 +150,14 @@
 		"inputs": [
 			{
 				"indexed": false,
-				"internalType": "uint256",
-				"name": "no",
-				"type": "uint256"
+				"internalType": "address",
+				"name": "recommender",
+				"type": "address"
 			},
 			{
 				"indexed": false,
 				"internalType": "uint256",
-				"name": "pid",
+				"name": "no",
 				"type": "uint256"
 			},
 			{
@@ -182,6 +187,12 @@
 			{
 				"indexed": false,
 				"internalType": "uint256",
+				"name": "flmAmount",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
 				"name": "time",
 				"type": "uint256"
 			}
@@ -201,11 +212,36 @@
 			{
 				"indexed": false,
 				"internalType": "address",
+				"name": "recommenders",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "address",
 				"name": "_user",
 				"type": "address"
 			}
 		],
 		"name": "allRegister",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"internalType": "address",
+				"name": "operator",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "address",
+				"name": "user",
+				"type": "address"
+			}
+		],
+		"name": "blackUser",
 		"type": "event"
 	},
 	{
@@ -409,6 +445,19 @@
 				"type": "uint256"
 			}
 		],
+		"name": "setAdminForOne",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_max",
+				"type": "uint256"
+			}
+		],
 		"name": "setAdminForThree",
 		"outputs": [],
 		"stateMutability": "nonpayable",
@@ -495,11 +544,6 @@
 				"internalType": "address",
 				"name": "_user",
 				"type": "address"
-			},
-			{
-				"internalType": "bool",
-				"name": "_set",
-				"type": "bool"
 			}
 		],
 		"name": "setBlackList",
@@ -542,6 +586,19 @@
 			}
 		],
 		"name": "setFlmRatio",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_fsc",
+				"type": "uint256"
+			}
+		],
+		"name": "setFSC",
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
@@ -938,6 +995,19 @@
 	},
 	{
 		"inputs": [],
+		"name": "FireSeedCoupon",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
 		"name": "flm",
 		"outputs": [
 			{
@@ -976,6 +1046,19 @@
 				"internalType": "uint256",
 				"name": "",
 				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getActivateAccount",
+		"outputs": [
+			{
+				"internalType": "address[]",
+				"name": "",
+				"type": "address[]"
 			}
 		],
 		"stateMutability": "view",
@@ -1067,39 +1150,7 @@
 	},
 	{
 		"inputs": [],
-		"name": "getInviteRate",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
 		"name": "getLatesPrice",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "_user",
-				"type": "address"
-			}
-		],
-		"name": "getPid",
 		"outputs": [
 			{
 				"internalType": "uint256",
@@ -1131,7 +1182,7 @@
 				"type": "address"
 			}
 		],
-		"name": "getUserSetAdminsLevelThree",
+		"name": "getUserSetAdminsLevelFour",
 		"outputs": [
 			{
 				"internalType": "uint256",
@@ -1143,8 +1194,14 @@
 		"type": "function"
 	},
 	{
-		"inputs": [],
-		"name": "getValidNumbers",
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_user",
+				"type": "address"
+			}
+		],
+		"name": "getUserSetAdminsLevelThree",
 		"outputs": [
 			{
 				"internalType": "uint256",
@@ -1267,6 +1324,19 @@
 	{
 		"inputs": [],
 		"name": "maxFour",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "maxOne",
 		"outputs": [
 			{
 				"internalType": "uint256",

@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useConnect } from "../../../api/contracts";
-import { Pagination, Button, Select, Descriptions, message, Form, List, Input, notification } from 'antd';
+import { Pagination, Button, Select, Descriptions,ConfigProvider, message, Form, List, Input, notification } from 'antd';
 import { getContractByName, getContractByContract } from "../../../api/connectContract";
 import { dealMethod, viewMethod } from "../../../utils/contractUtil"
 import listIcon from "../../../imgs/list-icon.webp"
@@ -274,6 +274,7 @@ const PidList = (props) => {
                             </div>
                         </div>
                         {
+                           
                             !searchData && activeNav == 1 && state.PidArr.map((item, index) => (
                                 Row(item, index)
                             ))

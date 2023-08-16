@@ -20,12 +20,11 @@ const CommonStyle = createGlobalStyle`
       align-items: center;
       text-align: center;
       justify-content: center;
-      padding: 0 10px;
       flex-grow: 1;
-      padding: 0 10px;
+      padding: 0px;
       border-radius: 38px;
       background: rgba(255, 255, 255, 0.1);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      border: 0.1px solid rgba(255, 255, 255, 0.1);
       cursor: pointer;
       color: #8A8080;
       margin-left: 8px;
@@ -35,9 +34,11 @@ const CommonStyle = createGlobalStyle`
       }
 
       &.active {
+        border: none;
         font-weight: bold;
         color: #FFFFFF;
-        background: linear-gradient(32deg, #FF4E50 0%, #F9D423 100%);
+       
+background: linear-gradient(32deg, #FF4E50 0%, #F9D423 100%);
         /* box-shadow: 0px 3px 6px 0px rgba(128, 4, 149, 0.3); */
 
       }

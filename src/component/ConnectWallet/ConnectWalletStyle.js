@@ -4,9 +4,14 @@ export default   styled.div`
  .ant-btn-primary::after{
   background: #140E0E;
  }
+ .ant-dropdown-menu-item:hover{
+background-color: hsl(0deg 0% 12.16%) !important;
+}
+
   @media screen and (max-width: 1950px) {
     .ant-btn-primary {
       background: linear-gradient(32deg, #FF4E50 0%, #F9D423 100%);
+      border-radius:25px;
     }
 
     .but2 {
@@ -57,7 +62,7 @@ export default   styled.div`
 .but1{
   display:none;
 }
-.ant-btn ant-btn-primary{
+.ant-btn .ant-btn-primary{
   border: 1px solid rgba(255, 255, 255, 0.15);
 }
 .ant-dropdown-menu-submenu-title:hover{

@@ -121,7 +121,7 @@ border-color:rgba(255, 255, 255, 0.10);
 
   .fire-list-box {
     background: #1A1414;
-    border-radius: 15px;
+    border-radius: 25px;
     border: 1px solid rgba(255,255,255,0.1);
     padding: 0em 0 0em;
     margin: 1em 0em;
@@ -326,6 +326,7 @@ border-color:rgba(255, 255, 255, 0.10);
       }
     }
     .fire-list-box {
+        margin:2em 0em;
       .col {
         font-size:16px;
     }}
@@ -369,7 +370,7 @@ border-color:rgba(255, 255, 255, 0.10);
         margin: 0px;
       }
     }
-    .fire-list-box {
+    .fire-list-box {  margin:2em 0em;
       .col {
         font-size:16px;
     }}
@@ -414,16 +415,14 @@ border-color:rgba(255, 255, 255, 0.10);
         margin: 0px;
       }
     }
-    .fire-list-box {
+    .fire-list-box {  margin:2em 0em;
       .col {
         font-size:15px;
-    }}
-    .fire-list-box {
-      .list-header{
+    }  .list-header{
         font-size:15px;
       }
     }
- 
+    
   }
 
 
@@ -481,6 +480,7 @@ padding: 0 4%;
     }
 
 .fire-list-box {
+    border-radius:10px;
   .col {
     font-size:14px;
 }}
@@ -545,6 +545,7 @@ padding: 0 4%;
       }}
     
     .fire-list-box {
+        border-radius:10px;
       .col {
         font-size:14px;
     }}
