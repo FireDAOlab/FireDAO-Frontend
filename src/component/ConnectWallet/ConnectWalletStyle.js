@@ -5,11 +5,9 @@ export default   styled.div`
   background: #140E0E;
  }
  .ant-dropdown-menu-item:hover{
-    background:#1f1f1f!important;
- }
- .ant-dropdown-menu-item .ant-dropdown-menu-item-only-child{
-    background:#1f1f1f !important;
- }
+background-color: hsl(0deg 0% 12.16%) !important;
+}
+
   @media screen and (max-width: 1950px) {
     .ant-btn-primary {
       background: linear-gradient(32deg, #FF4E50 0%, #F9D423 100%);

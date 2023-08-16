@@ -258,6 +258,8 @@ const LockList = (props) => {
                         <div className="panel-container1">
                             <div className='tp'>
                                 {
+                                    
+                                    state.fireSeedList.length==0? <Empty style={{width:'100%'}} image={Empty.PRESENTED_IMAGE_SIMPLE} />:
                                     state.fireSeedList.map(item => (
                                         <div className='tpitem' onClick={() => {
                                             setID(item.id)

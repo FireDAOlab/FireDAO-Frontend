@@ -52,8 +52,6 @@ const FireSeedList = (props) => {
                     <div className="panel-title">
                         My FireSeed
                     </div>
-
-                    
                     <div className="content1">
 
                         <div className="list">
@@ -62,7 +60,7 @@ const FireSeedList = (props) => {
                                     
                                     <div className="list-item" onClick={() => {
                                     }}>
-                                        <img className="img" src={fireseed} alt="" />
+                                        <img className="img" src={passport} alt="" />
                                         <div className="item-info">
                                             <div className="id">
                                             <p>FireSeed</p> 
@@ -87,18 +85,7 @@ const FireSeedList = (props) => {
                                     <img src={passport} />
                                     <p>FireSeed</p>
                                 </div>
-                                <div className='tpitem'>
-                                    <img src={passport} />
-                                    <p>FireSeed</p>
-                                </div>
-                                <div className='tpitem'>
-                                    <img src={passport} />
-                                    <p>FireSeed</p>
-                                </div>
-                                <div className='tpitem'>
-                                    <img src={passport} />
-                                    <p>FireSeed</p>
-                                </div>
+                                
                             </div>
                         </div>
                 </div>

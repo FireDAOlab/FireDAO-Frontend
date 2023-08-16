@@ -24,7 +24,7 @@ export default styled.div`
 .ant-form-item-control-input-content{
   display: flex;
   text-align:center;
-
+  justify-content: center;
   
 }
 
@@ -208,7 +208,8 @@ padding: 20px;
             //text-overflow: ellipsis;
 
           }
-          .no{padding: 2px 4px;
+          .no{
+            padding: 2px 4px;
             color: #FE6D46;
 text-align:center;
           }
@@ -238,7 +239,7 @@ text-align:center;
  
         }
           .ff1{
-        margin: 2em 0em;
+        margin: 1em 0em;
         text-align:left;
         &:last-child .list-item {
     border-bottom:none!important;
@@ -330,7 +331,7 @@ text-align:center;
             .list-item:last-child{
     border-bottom:none!important;
 }
-        margin: 2em 0;
+        margin: 1em 0;
         .flex-box1 {
             padding: 20px 2em;
           }
@@ -855,7 +856,7 @@ padding: 20px;
 
     }
     .ff1{
-        margin: 2em 0em;
+        margin: 1em 0em;
         text-align:left;
         &:last-child .list-item {
     border-bottom:none!important;
@@ -939,7 +940,7 @@ font-size:16px;
           height: 40px;
         }
         .ff2{
-        margin: 2em 0;
+        margin: 1em 0;
         .list-item:last-child{
     border-bottom:none!important;
 }
@@ -1459,7 +1460,7 @@ padding: 20px;
             }
 
             .ff1{
-        margin: 2em 0em;
+        margin: 1em 0em;
                 text-align:left;
                 &:last-child .list-item {
     border-bottom:none!important;
@@ -1545,7 +1546,7 @@ padding: 20px;
             .list-item:last-child{
     border-bottom:none!important;
 }
-        margin: 2em 0;
+        margin: 1em 0;
             .flex-box1 {
                 padding: 20px 2em;
               }
@@ -2044,7 +2045,7 @@ line-height: 18px;
 }
 
 .ff1{
-        margin: 2em 0em;
+        margin: 1em 0em;
                 overflow: scroll;
                 text-align:left;
                 .ant-form {
@@ -2129,7 +2130,7 @@ line-height: 18px;
           line-height:28px;
         }
         .ff2{
-        margin: 2em 0;
+        margin: 1em 0;
             
             .flex-box1 {
                 padding: 20px 1.5em;
@@ -2482,7 +2483,7 @@ line-height: 18px;
             }
             
             .ff1{
-        margin: 2em 0em;
+        margin: 1em 0em;
                             overflow: scroll;
                             text-align:left;
                             .ant-form {
@@ -2567,7 +2568,7 @@ line-height: 18px;
           line-height:28px;
         }
         .ff2{
-        margin: 2em 0;
+        margin: 1em 0;
             
             .flex-box1 {
                 padding: 20px 1.5em;
