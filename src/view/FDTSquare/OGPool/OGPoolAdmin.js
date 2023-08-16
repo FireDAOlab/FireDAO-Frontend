@@ -137,7 +137,11 @@ const OgPoolAdmin = (props) => {
     }
     const getWhitelist = async (addr) => {
         let res = await getThreeDonateRecord(addr)
-        return res.data.allRecords
+        if(res&&res.data){
+            return res.data.allRecords
+
+        }
+        return  []
     }
 
     const getAdminWhiteList = async (addr) => {
@@ -237,9 +241,9 @@ const OgPoolAdmin = (props) => {
     }
 
     const getInviteRate = async () => {
-        const rateLength = await handleViewMethod("getInviteRate", [])
+        // const rateLength = await handleViewMethod("getInviteRate", [])
         let tempArr = [], totalRate = 0
-        for (let i = 0; i < rateLength; i++) {
+        for (let i = 0; i < 5; i++) {
             const inviteRate = await handleViewMethod("inviteRate", [i])
             tempArr.push({index: i + 1, inviteRate: inviteRate.toString()})
             totalRate = BigNumber(totalRate).plus(inviteRate)
@@ -370,7 +374,6 @@ const OgPoolAdmin = (props) => {
         getSalePrice()
         getMaxThree()
         // getMaxThreeAdmin()
-        getSummary()
         getPause()
         getpidStatusForAdmin()
         getpidStatusForAdmin()
@@ -383,6 +386,9 @@ const OgPoolAdmin = (props) => {
         getTeamRate()
         getAssignAndRates()
         getAdminFlmReward()
+
+        // getSummary()
+
     }
     const chooseRow = (item, id) => {
         setCurAddr(item.assign)
@@ -698,7 +704,7 @@ const OgPoolAdmin = (props) => {
                                                 {item}
                                             </div>
                                             <div className="col del">
-                                                <img src={del} className="sc"/>
+                                                <img className="icon" src={del} />
                                             </div>
                                         </div>
                                     ))
@@ -1354,7 +1360,7 @@ const OgPoolAdmin = (props) => {
                                         <div className="col del" onClick={() => {
                                             delARRow(item)
                                         }}>
-                                            <img src={del} className="sc"/>
+                                            <img className="icon" src={del} />
                                         </div>
 
                                     </div>

@@ -50,6 +50,7 @@ export default styled.div`
         width: auto;
         .nav-item {
           width: auto;
+          padding: 0 20px;
           font-size: 18px;
         }
       }
@@ -411,7 +412,6 @@ export default styled.div`
         }
 
         &:nth-child(5) {
-          width: 8%;
           /* padding-right: 5px; */
         }
 
@@ -992,7 +992,6 @@ export default styled.div`
         }
 
         &:nth-child(5) {
-          width: 8%;
           margin-left: 10px;
 
         }
@@ -1078,20 +1077,17 @@ export default styled.div`
         }
 
         &:nth-child(2) {
-          width: 15%;
+          width: 10%;
           margin-left: 20px;
           margin-right: 0px;
         }
 
         &:nth-child(3) {
-          width: 23%;
+          width: 30%;
           margin-left: 20px;
         }
 
-        &:nth-child(4) {
-          width: 27%;
-          margin-left: 20px;
-        }
+  
 
 
       }

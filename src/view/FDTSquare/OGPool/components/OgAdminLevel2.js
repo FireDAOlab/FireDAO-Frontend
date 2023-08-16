@@ -15,7 +15,7 @@ import AddThreeWhiteListStyle from "./OgAdminLevelStyle";
 import judgeStatus from "../../../../utils/judgeStatus";
 
 
-const AddThreeWhiteList = ({allRecords,isLevel2}) => {
+const AddThreeWhiteList = ({allRecords, isLevel2}) => {
     let {state, dispatch} = useConnect();
     const [isAdmin, setIsThreeAdmin] = useState(true)
     const [addWhiteArr, setAddWArr] = useState([{}])
@@ -143,20 +143,28 @@ const AddThreeWhiteList = ({allRecords,isLevel2}) => {
         await handleDealMethod("setAdminLevelThree", [arr])
         getUserSetAdminsLevelThree()
     }
+
     const getMaxThree = async () => {
         let res
-        if(isLevel2){
-             res = await handleViewMethod("maxTwo", [])
-        }else{
-             res = await handleViewMethod("maxThree", [])
+        if (isLevel2) {
+            res = await handleViewMethod("maxTwo", [])
+        } else {
+            res = await handleViewMethod("maxThree", [])
         }
         setMax(res.toString())
     }
 
     const removeWhiteListUser = async () => {
-        await handleDealMethod("removeWhiteListBatch", [[curWhiteUser]])
+        if (isLevel2) {
+            await handleDealMethod("removeAdminLevelThree", [curWhiteUser])
+            getUserSetAdminsLevelThree()
+        } else {
+            await handleDealMethod("removeAdminLevelFour", [curWhiteUser])
+            getUserSetAdminsLevelFour()
+
+        }
         setDelOpen(false)
-        getUserSetAdminsLevelThree()
+
     }
 
     const deleteWhite = async (user) => {
@@ -170,9 +178,9 @@ const AddThreeWhiteList = ({allRecords,isLevel2}) => {
             return
         }
         console.log(isLevel2)
-        if(isLevel2){
+        if (isLevel2) {
             getUserSetAdminsLevelThree()
-        }else{
+        } else {
             getUserSetAdminsLevelFour()
         }
         getMaxThree()
@@ -197,9 +205,9 @@ const AddThreeWhiteList = ({allRecords,isLevel2}) => {
                 <div className="panel-box">
                     <div className="panel-container">
                         <h3 className="tip">
-                            I can have <strong>{maxSet}</strong> level{isLevel2?3:4}  admin, I've
-                            got <strong>{adminWhiteList.length}</strong> level{isLevel2?3:4} admin, I can
-                            set up <strong>{maxSet - adminWhiteList.length}</strong> level{isLevel2?3:4} admin.
+                            I can have <strong>{maxSet}</strong> level{isLevel2 ? 3 : 4} admin, I've
+                            got <strong>{adminWhiteList.length}</strong> level{isLevel2 ? 3 : 4} admin, I can
+                            set up <strong>{maxSet - adminWhiteList.length}</strong> level{isLevel2 ? 3 : 4} admin.
 
                         </h3>
                         <div className="fire-list-box admin3-list">
@@ -281,11 +289,11 @@ const AddThreeWhiteList = ({allRecords,isLevel2}) => {
                             </div>
                         </Form>
                         <div className="btns">
-                            {isLevel2&&<Button className="add-btn" type="primary" onClick={() => {
+                            {isLevel2 && <Button className="add-btn" type="primary" onClick={() => {
                                 handleSetAdminLevelThree()
                             }}>Add Admin level3</Button>}
 
-                            {!isLevel2&&<Button className="add-btn" type="primary" onClick={() => {
+                            {!isLevel2 && <Button className="add-btn" type="primary" onClick={() => {
                                 handleSetAdminLevelFour()
                             }}>Add Admin level4</Button>}
                         </div>

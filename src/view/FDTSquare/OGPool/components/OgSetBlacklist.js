@@ -93,7 +93,8 @@ const AddThreeWhiteList = ({allRecords}) => {
         for (let i = 0; i < addWhiteArr.length; i++) {
             arr.push(form2.getFieldValue()["address" + i])
         }
-        await handleDealMethod("setBlackList", [arr])
+        console.log(arr)
+        await handleDealMethod("setBlackList", [arr[0]])
         getUserSetAdminsLevelThree()
     }
     const getMaxThree = async () => {
@@ -197,29 +198,29 @@ const AddThreeWhiteList = ({allRecords}) => {
                                     </Form.Item>
                                 )
                             })}
-                            <div className="icon-box">
-                                <svg onClick={() => {
-                                    addOneWhite()
-                                }} t="1679715594436" className="icon" viewBox="0 0 1024 1024" version="1.1"
-                                     xmlns="http://www.w3.org/2000/svg" p-id="2724" width="30" height="30">
-                                    <path
-                                        d="M512 1024C229.248 1024 0 794.752 0 512S229.248 0 512 0s512 229.248 512 512-229.248 512-512 512z m0-896C299.968 128 128 299.968 128 512s171.968 384 384 384 384-171.968 384-384S724.032 128 512 128z m192 448h-128v128c0 35.392-28.608 64-64 64a64 64 0 0 1-64-64v-128h-128a64 64 0 1 1 0-128h128v-128a64.021333 64.021333 0 0 1 128 0v128h128a64 64 0 0 1 64 64c0 35.392-28.608 64-64 64z"
-                                        fill="#ffffff" p-id="2725"></path>
-                                </svg>
-                                <svg onClick={() => {
-                                    removeOneWhite()
-                                }} t="1679716770324" className="icon" viewBox="0 0 1024 1024" version="1.1"
-                                     xmlns="http://www.w3.org/2000/svg" p-id="3771" width="30" height="30">
-                                    <path
-                                        d="M512 1024C229.248 1024 0 794.752 0 512S229.248 0 512 0s512 229.248 512 512-229.248 512-512 512z m0-896C299.968 128 128 299.968 128 512s171.968 384 384 384 384-171.968 384-384S724.032 128 512 128z m192 448H320a64 64 0 1 1 0-128h384a64 64 0 0 1 64 64c0 35.392-28.608 64-64 64z"
-                                        fill="#ffffff" p-id="3772"></path>
-                                </svg>
-                            </div>
+                            {/*<div className="icon-box">*/}
+                            {/*    <svg onClick={() => {*/}
+                            {/*        addOneWhite()*/}
+                            {/*    }} t="1679715594436" className="icon" viewBox="0 0 1024 1024" version="1.1"*/}
+                            {/*         xmlns="http://www.w3.org/2000/svg" p-id="2724" width="30" height="30">*/}
+                            {/*        <path*/}
+                            {/*            d="M512 1024C229.248 1024 0 794.752 0 512S229.248 0 512 0s512 229.248 512 512-229.248 512-512 512z m0-896C299.968 128 128 299.968 128 512s171.968 384 384 384 384-171.968 384-384S724.032 128 512 128z m192 448h-128v128c0 35.392-28.608 64-64 64a64 64 0 0 1-64-64v-128h-128a64 64 0 1 1 0-128h128v-128a64.021333 64.021333 0 0 1 128 0v128h128a64 64 0 0 1 64 64c0 35.392-28.608 64-64 64z"*/}
+                            {/*            fill="#ffffff" p-id="2725"></path>*/}
+                            {/*    </svg>*/}
+                            {/*    <svg onClick={() => {*/}
+                            {/*        removeOneWhite()*/}
+                            {/*    }} t="1679716770324" className="icon" viewBox="0 0 1024 1024" version="1.1"*/}
+                            {/*         xmlns="http://www.w3.org/2000/svg" p-id="3771" width="30" height="30">*/}
+                            {/*        <path*/}
+                            {/*            d="M512 1024C229.248 1024 0 794.752 0 512S229.248 0 512 0s512 229.248 512 512-229.248 512-512 512z m0-896C299.968 128 128 299.968 128 512s171.968 384 384 384 384-171.968 384-384S724.032 128 512 128z m192 448H320a64 64 0 1 1 0-128h384a64 64 0 0 1 64 64c0 35.392-28.608 64-64 64z"*/}
+                            {/*            fill="#ffffff" p-id="3772"></path>*/}
+                            {/*    </svg>*/}
+                            {/*</div>*/}
                         </Form>
                         <div className="btns">
                             <Button className="add-btn" type="primary" onClick={() => {
                                 handleSetBlackList()
-                            }}>Add Whitelist</Button>
+                            }}>Submit</Button>
                             {/*<Button className="add-btn" type="primary" onClick={() => {*/}
                             {/*    removeWhiteList()*/}
                             {/*}}>Remove</Button>*/}
