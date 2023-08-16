@@ -12,11 +12,11 @@ import {getContractByName, getContractByContract} from "../../../../api/connectC
 import {dealMethod, dealPayMethod, viewMethod} from "../../../../utils/contractUtil"
 import develop from "../../../../env";
 import AddThreeWhiteListStyle from "./OgAdminLevelStyle";
-
+import {getBlackUsers} from "../../../../graph/donate";
 
 const AddThreeWhiteList = ({allRecords}) => {
     let {state, dispatch} = useConnect();
-    const [isAdmin, setIsThreeAdmin] = useState(true)
+    const [blackList, setBlackList] = useState([])
     const [addWhiteArr, setAddWArr] = useState([{}])
     const [curWhiteUser, setCurWhiteUser] = useState("")
 
@@ -53,37 +53,22 @@ const AddThreeWhiteList = ({allRecords}) => {
         return await viewMethod(contractTemp, state.account, name, params)
     }
 
-    const getUserSetAdminsLevelThree = async () => {
+    const getBlackList = async () => {
         try {
-            let length = await handleViewMethod("getUserSetAdminsLevelThree", [state.account])
-            let adminWhiteList = []
-            for (let i = 0; i < length; i++) {
-                let res = await handleViewMethod("userSetAdminsForThree", [state.account, i])
-                adminWhiteList.push(res)
-            }
-            setAdminWhiteList(adminWhiteList)
-
-            let refArr = []
-            allRecords.forEach(item => {
-                adminWhiteList.forEach(adminItem => {
-                    if (adminItem.user.toLowerCase() == item.addr.toLowerCase().toString()) {
-                        refArr.push(item)
+            const res = await getBlackUsers()
+            if (res && res.data) {
+                const arr = res.data.blackUsers
+                let tempArr = []
+                for (let i = 0; i < arr.length; i++) {
+                    const item = arr[i]
+                    if (tempArr.indexOf(item.user) < 0) {
+                        tempArr.push(item.user)
+                    } else {
+                        tempArr.splice(tempArr.indexOf(item.user), 1)
                     }
-                })
-            })
-            let tAmount = 0, tETH = 0, tUSDT = 0
-            refArr.forEach(item => {
-                tAmount += parseFloat(item.fdtAmount)
-                tETH += parseFloat(item.ethAmount)
-                tUSDT += parseFloat(item.usdtAmount)
-            })
-            refArr.push({
-                name: "Total",
-                fdtAmount: tAmount,
-                ethAmount: tETH,
-                usdtAmount: tUSDT
-            })
-            setREFRecords(refArr)
+                }
+                setBlackList(tempArr)
+            }
         } catch (e) {
 
         }
@@ -93,9 +78,10 @@ const AddThreeWhiteList = ({allRecords}) => {
         for (let i = 0; i < addWhiteArr.length; i++) {
             arr.push(form2.getFieldValue()["address" + i])
         }
-        console.log(arr)
         await handleDealMethod("setBlackList", [arr[0]])
-        getUserSetAdminsLevelThree()
+        setTimeout(() => {
+            getBlackList()
+        }, 3000)
     }
     const getMaxThree = async () => {
         let res = await handleViewMethod("maxTwo", [])
@@ -103,9 +89,9 @@ const AddThreeWhiteList = ({allRecords}) => {
     }
 
     const removeWhiteListUser = async () => {
-        await handleDealMethod("removeWhiteListBatch", [[curWhiteUser]])
+        await handleDealMethod("setBlackList", [curWhiteUser])
         setDelOpen(false)
-        getUserSetAdminsLevelThree()
+        getBlackList()
     }
 
     const deleteWhite = async (user) => {
@@ -115,7 +101,7 @@ const AddThreeWhiteList = ({allRecords}) => {
 
     useEffect(() => {
         if (!state.account) return
-        getUserSetAdminsLevelThree()
+        getBlackList()
         getMaxThree()
     }, [state.account]);
 
@@ -157,7 +143,7 @@ const AddThreeWhiteList = ({allRecords}) => {
                             </div>
 
                             {
-                                adminWhiteList.map((item, index) => (
+                                blackList.map((item, index) => (
                                     <div className="list-item " key={index}>
                                         <div className="col no">
                                             {index + 1}

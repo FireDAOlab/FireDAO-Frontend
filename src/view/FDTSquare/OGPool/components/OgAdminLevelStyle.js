@@ -9,10 +9,15 @@ export default  styled.div`
       margin-top: 10px;
     }
   }
+  .active-list-row{
+    .col:nth-child(2){
+      width: 60%!important;
+    }
+  }
   .admin3-list{
     .col{
       &.address{
-        width: 70%;
+        width: 60%;
       }
     }
   }

@@ -11,21 +11,18 @@ import {
 import {getContractByName, getContractByContract} from "../../../../api/connectContract";
 import {dealMethod, dealPayMethod, viewMethod} from "../../../../utils/contractUtil"
 import develop from "../../../../env";
-import AddThreeWhiteListStyle from "./OgAdminLevelStyle";
+import OgSetActiveStyle from "./OgSetActiveStyle";
 
 
-const AddThreeWhiteList = ({allRecords,isFourAdmin}) => {
+const AddThreeWhiteList = ({allRecords, isFourAdmin}) => {
     let {state, dispatch} = useConnect();
-    const [isAdmin, setIsThreeAdmin] = useState(true)
     const [addWhiteArr, setAddWArr] = useState([{}])
     const [curWhiteUser, setCurWhiteUser] = useState("")
 
     const [form] = Form.useForm();
     const [form2] = Form.useForm();
     const [isDelMolOpen, setDelOpen] = useState(false)
-    const [adminWhiteList, setAdminWhiteList] = useState([])
-    const [refRecords, setREFRecords] = useState([])
-    const [maxThree, setMaxThree] = useState(0)
+    const [activeArr, setActiveArr] = useState([])
 
     const handleDealMethod = async (name, params) => {
         let contractTemp = await getContractByName("PrivateExchangePoolOG", state.api,)
@@ -53,11 +50,12 @@ const AddThreeWhiteList = ({allRecords,isFourAdmin}) => {
         return await viewMethod(contractTemp, state.account, name, params)
     }
 
-    const getUserSetAdminsLevelThree = async () => {
+    const getActivateAccount = async () => {
         try {
-
+            const res = await handleViewMethod("getActivateAccount", [])
+            setActiveArr(res)
         } catch (e) {
-
+            console.log(e)
         }
     }
     const handleSetAdminLevelThree = async () => {
@@ -65,23 +63,19 @@ const AddThreeWhiteList = ({allRecords,isFourAdmin}) => {
         for (let i = 0; i < addWhiteArr.length; i++) {
             arr.push(form2.getFieldValue()["address" + i])
         }
-        if(isFourAdmin){
+        if (isFourAdmin) {
             await handleDealMethod("setActivateAccountForL4", [arr])
 
-        }else{
+        } else {
             await handleDealMethod("setActivateAccountForL2AndL3", [arr])
         }
-        getUserSetAdminsLevelThree()
-    }
-    const getMaxThree = async () => {
-        let res = await handleViewMethod("maxTwo", [])
-        setMaxThree(res.toString())
+        getActivateAccount()
     }
 
-    const removeWhiteListUser = async () => {
+    const removeActive = async () => {
         await handleDealMethod("removeWhiteListBatch", [[curWhiteUser]])
         setDelOpen(false)
-        getUserSetAdminsLevelThree()
+        getActivateAccount()
     }
 
     const deleteWhite = async (user) => {
@@ -91,16 +85,15 @@ const AddThreeWhiteList = ({allRecords,isFourAdmin}) => {
 
     useEffect(() => {
         if (!state.account) return
-        getUserSetAdminsLevelThree()
-        getMaxThree()
+        getActivateAccount()
     }, [state.account]);
 
 
     return (
-        <AddThreeWhiteListStyle>
+        <OgSetActiveStyle>
 
             <div className="part3">
-                <Modal className="model-dialog" title="Delete  Dialog" open={isDelMolOpen} onOk={removeWhiteListUser}
+                <Modal className="model-dialog" title="Delete  Dialog" open={isDelMolOpen} onOk={removeActive}
                        onCancel={() => {
                            setDelOpen(false)
                        }}>
@@ -114,8 +107,8 @@ const AddThreeWhiteList = ({allRecords,isFourAdmin}) => {
                 <div className="panel-box">
                     <div className="panel-container">
 
-                        <div className="fire-list-box admin3-list">
-                            <div className="list-header3 list-header">
+                        <div className="fire-list-box ">
+                            <div className=" list-header">
                                 <div className="col">
                                     No.
                                 </div>
@@ -124,14 +117,14 @@ const AddThreeWhiteList = ({allRecords,isFourAdmin}) => {
                                 <div className="col address">
                                     Address
                                 </div>
-                                <div className="col">
-                                    Del
-                                </div>
+                                {/*<div className="col">*/}
+                                {/*    Del*/}
+                                {/*</div>*/}
 
                             </div>
 
                             {
-                                adminWhiteList.map((item, index) => (
+                                activeArr.map((item, index) => (
                                     <div className="list-item " key={index}>
                                         <div className="col no">
                                             {index + 1}
@@ -141,13 +134,13 @@ const AddThreeWhiteList = ({allRecords,isFourAdmin}) => {
                                             {item}
                                         </div>
 
-                                        <div className="col">
-                                            <Button className="del-button" onClick={() => {
-                                                deleteWhite(item)
-                                            }}>
-                                                Delete
-                                            </Button>
-                                        </div>
+                                        {/*<div className="col">*/}
+                                        {/*    <Button className="del-button" onClick={() => {*/}
+                                        {/*        deleteWhite(item)*/}
+                                        {/*    }}>*/}
+                                        {/*        Delete*/}
+                                        {/*    </Button>*/}
+                                        {/*</div>*/}
 
                                     </div>)
                                 )
@@ -205,7 +198,7 @@ const AddThreeWhiteList = ({allRecords,isFourAdmin}) => {
             </div>
 
 
-        </AddThreeWhiteListStyle>
+        </OgSetActiveStyle>
     )
 }
 export default AddThreeWhiteList

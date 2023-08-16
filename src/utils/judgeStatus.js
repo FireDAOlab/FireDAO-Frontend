@@ -19,6 +19,7 @@ export default async function judgeStatus(state){
     if(!state.account){
         return
     }
+
     // if(develop.chainId != state.networkId){
     //     return
     // }

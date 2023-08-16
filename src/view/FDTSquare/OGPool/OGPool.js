@@ -62,7 +62,9 @@ const OGPoolPublic = (props) => {
     const [myTeamRecord, setMyTeamRecord] = useState([])
     const [inviteRateArr, setInvArr] = useState([])
     const [myStatus, setMyStatus] = useState({})
+    const [activeArr, setActiveArr] = useState([])
     const history = useNavigate();
+
     const [form] = Form.useForm();
 
 
@@ -220,6 +222,14 @@ const OGPoolPublic = (props) => {
             activeStatus
         })
     }
+    const getActivateAccount = async () => {
+        try {
+            const res = await handleViewMethod("getActivateAccount", [])
+            setActiveArr(res)
+        } catch (e) {
+            console.log(e)
+        }
+    }
 
     const getData = async () => {
         try {
@@ -235,6 +245,9 @@ const OGPoolPublic = (props) => {
             getAdmin()
             getRecord()
             getMyStatus()
+
+            getActivateAccount()
+
             await getInviteRate()
 
             getMyTeam(state.account)
@@ -498,8 +511,8 @@ const OGPoolPublic = (props) => {
                     }}>
                         Team
                     </div>
-                    <div className={"nav-item " + (activeNav == 4 ? "active" : "")} onClick={() => {
-                        setActiveNav(4)
+                    <div className={"nav-item " + (activeNav == 3 ? "active" : "")} onClick={() => {
+                        setActiveNav(3)
                     }}>
                         Active Accounts
                     </div>
@@ -894,16 +907,43 @@ const OGPoolPublic = (props) => {
             )}
 
 
-            {activeNav == 5 && (
-                <div>
-                    <div className="panel-box">
-                        <div className="panel-container">
-                            <div className="panel-title">
-                                Fund Allocation
+            {activeNav == 3 && (
+                <div className="panel-box">
+                    <div className="panel-container">
+                        <div className="panel-title">
+                            Active Accounts
+                        </div>
+                        <div className="fire-list-box admin3-list">
+                            <div className="active-list-row list-header">
+                                <div className="col">
+                                    No.
+                                </div>
+
+
+                                <div className="col address">
+                                    Address
+                                </div>
+
+
                             </div>
+
+                            {
+                                activeArr.map((item, index) => (
+                                    <div className="list-item active-list-row" key={index}>
+                                        <div className="col no">
+                                            {index + 1}
+                                        </div>
+
+                                        <div className="col address">
+                                            {item}
+                                        </div>
+
+                                    </div>)
+                                )
+                            }
+
                         </div>
                     </div>
-
                 </div>
             )
 
