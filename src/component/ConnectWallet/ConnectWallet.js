@@ -149,7 +149,6 @@ const ConnectWallet = (props) => {
         },
         {
             label: <p style={{
-                fontSize: '16px',
                 fontFamily: 'Roboto-Medium, Roboto',
                 fontWeight: '500',
                 color: '#8A8080',
@@ -161,7 +160,6 @@ const ConnectWallet = (props) => {
         },
         {
             label: <p style={{
-                fontSize: '16px',
                 fontFamily: 'Roboto-Medium, Roboto',
                 fontWeight: '500',
                 color: '#8A8080',

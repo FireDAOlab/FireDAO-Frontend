@@ -269,7 +269,7 @@ const OGPoolPublic = (props) => {
         setPageCount2(count)
     }
     const getMyTeam = async (address) => {
-        address = "0x0a5302c74742b6ce851c79ac94451a2ab4b7124c"
+        address = state.account
         const myTeamArr = []
         let level1Res = await getAllRegisters(address)
         if (level1Res.data && level1Res.data.allRegisters) {
