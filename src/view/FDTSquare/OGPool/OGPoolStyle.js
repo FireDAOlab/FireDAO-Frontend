@@ -4,9 +4,44 @@ export default styled.div`
   .ant-select-selector {
     border: none !important;
   }
+  .reward-item{
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+    img{
+      margin-right: 6px;
+    }
+  }
   .active-list-row{
     .col:nth-child(2){
       width: 60%!important;
+    }
+  }
+  .status-info{
+    display: flex;
+    .info-item{
+      margin-right: 10px;
+    }
+  }
+  .team-part{
+    .in-line{
+      display: flex;
+      justify-content: flex-start;
+      margin-top: 10px;
+      .left{
+        font-weight: bold;
+        margin-right: 20px;
+      }
+      .info-item{
+        margin-right: 10px;
+        strong{
+          margin-right: 10px;
+        }
+      }
+    }
+    .flex-title{
+      display: flex;
+      justify-content: space-between;
     }
   }
   .list-header{

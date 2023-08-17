@@ -48,51 +48,44 @@ const ConnectWallet = (props) => {
         try {
             let curChainId = await window.ethereum.request({ method: "eth_chainId" })
             if (curChainId != develop.chainId) {
-                const permissions = await window.ethereum.request({
-                    method: 'wallet_getPermissions',
-                });
+                // const permissions = await window.ethereum.request({
+                //     method: 'wallet_getPermissions',
+                // });
 
-                const hasPermission = permissions.some((permission) =>
-                    permission.parentCapability === 'eth_chainId' && permission.caveats.some((caveat) => {
-                        const chainId = caveat.type === 'chainId' && caveat.value;
-                        return chainId === develop.chainId;
-                    }),
-                );
-                if (hasPermission) {
-                    await window.ethereum.request({
-                        method: 'wallet_switchEthereumChain',
-                        params: [{ chainId: '0x' + develop.chainId.toString(16) }],
-                    });
-
-                } else {
-                    const chainId = "0x13881"
-                    try {
-                        let paramsArry = [
-                            {
-                                chainId: Network[chainId].chainId,
-                                chainName: Network[chainId].chainName,
-                                rpcUrls: Network[chainId].rpcUrls,
-                                nativeCurrency: Network[chainId].nativeCurrency,
-                                blockExplorerUrls: Network[chainId].blockExplorerUrls ? Network[chainId].blockExplorerUrls : null,
-                            },
-                        ];
-                        await window.ethereum.request({
-                            method: 'wallet_addEthereumChain',
-                            params: paramsArry,
-                        });
-
-                        await this.$refs["wallet"].registerWeb3()
-                    } catch (addError) {
-                        console.log({ addError });
-                    }
-                }
-                const ChainId = (await window.ethereum.request({ method: 'eth_chainId' }))
-                if (ChainId == "0x66eed") {
-                    dispatch({ type: "SET_NETWORKID", payload: 421613 })
-                } else if (ChainId == "0xa4b1") {
-                    dispatch({ type: "SET_NETWORKID", payload: 42161 })
-                }
-                console.log(state.networkId)
+                // const hasPermission = permissions.some((permission) =>
+                //     permission.parentCapability === 'eth_chainId' && permission.caveats.some((caveat) => {
+                //         const chainId = caveat.type === 'chainId' && caveat.value;
+                //         return chainId === develop.chainId;
+                //     }),
+                // );
+                // if (hasPermission) {
+                //     await window.ethereum.request({
+                //         method: 'wallet_switchEthereumChain',
+                //         params: [{ chainId: '0x' + develop.chainId.toString(16) }],
+                //     });
+                //
+                // } else {
+                //     const chainId = "0x13881"
+                //     try {
+                //         let paramsArry = [
+                //             {
+                //                 chainId: Network[chainId].chainId,
+                //                 chainName: Network[chainId].chainName,
+                //                 rpcUrls: Network[chainId].rpcUrls,
+                //                 nativeCurrency: Network[chainId].nativeCurrency,
+                //                 blockExplorerUrls: Network[chainId].blockExplorerUrls ? Network[chainId].blockExplorerUrls : null,
+                //             },
+                //         ];
+                //         await window.ethereum.request({
+                //             method: 'wallet_addEthereumChain',
+                //             params: paramsArry,
+                //         });
+                //
+                //         await this.$refs["wallet"].registerWeb3()
+                //     } catch (addError) {
+                //         console.log({ addError });
+                //     }
+                // }
             }
         } catch (e) {
             console.log(e)
@@ -149,7 +142,6 @@ const ConnectWallet = (props) => {
         },
         {
             label: <p style={{
-                fontSize: '16px',
                 fontFamily: 'Roboto-Medium, Roboto',
                 fontWeight: '500',
                 color: '#8A8080',
@@ -161,7 +153,6 @@ const ConnectWallet = (props) => {
         },
         {
             label: <p style={{
-                fontSize: '16px',
                 fontFamily: 'Roboto-Medium, Roboto',
                 fontWeight: '500',
                 color: '#8A8080',

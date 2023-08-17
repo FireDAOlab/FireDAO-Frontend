@@ -421,7 +421,7 @@ const Distribution = (props) => {
                     </div>
                 </div>
                 <div className="panel-container">
-                    <div className="panel-title flex-box">
+                    <div className="panel-title flex-box1">
                         Leaderboard
 
                         <div className="search-box">
@@ -547,7 +547,7 @@ const Distribution = (props) => {
                         </div>
                     </div>
                     <div className="fire-list-box fire-list-box-userclaim">
-                        <div className='listheadert'>
+                        <div className='listheadert1'>
                             <div className="list-header">
                                 <div className="col">
                                     No.
@@ -638,7 +638,7 @@ const Distribution = (props) => {
                     </div>
 
                     <div className="fire-list-box fire-list-box-deposit">
-                        <div className='listheadert'>
+                        <div className='listheadert2'>
                             <div className="list-header">
                                 <div className="col">
                                     No.
@@ -714,7 +714,8 @@ const Distribution = (props) => {
 
                         />
                         <div className='fkk'>
-                            <span className='ftitle'>FLM</span><span className='fval'></span>
+                            <span className='ftitle'>FLM</span>
+                            <span className='fval'></span>
                         </div>
                     </div>
 
@@ -733,7 +734,7 @@ const Distribution = (props) => {
                             </div>
                         </div>
                         <div className="fire-list-box fire-list-box-airdroplist">
-                            <div className="listheadert">
+                            <div className="listheadert3">
                                 <div className="list-header">
                                     <div className="col">
                                         No.
