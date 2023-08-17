@@ -4,6 +4,11 @@ export default   styled.div`
   left: 0;
   top: 0;
   z-index: 1;
+  .ant-form-item-row{
+    width: 100%;
+    margin: 0em;
+  }
+  @media screen and (max-width: 1950px) {
   .address-list {
     .address-item {
       display: flex;
@@ -13,7 +18,7 @@ export default   styled.div`
         width: 150px !important;
       }
 
-      .address {zz
+      .address {
         .ant-form-item-control-input {
           width: 300px;
         }
@@ -58,17 +63,24 @@ export default   styled.div`
     border-radius: 13px;
     border: 1px solid #3E3737;
     padding: 30px;
-    .header{
-      display: flex;
-      justify-content: space-between;
-      .title{
-        font-size: 25px;
-        font-family: Roboto-Bold, Roboto;
-        font-weight: bold;
-      }
-      .close{
+    .header{ 
+        display: flex;
+ justify-content:end;
+    justify-content: center;
+    .close{
         cursor: pointer;
+         
       }
+        .title{
+      font-size: 23px;
+      text-align: center;
+      font-family: Roboto-Bold, Roboto;
+      font-weight: bold;
+      color: #FFFFFF;
+      margin:0 auto;
+      line-height: 29px;
+      }
+    }
     }
     .dialog-value{
       height: 24px;
@@ -105,7 +117,7 @@ export default   styled.div`
     }
   }
   /* mobile style */
-  @media screen and (max-width: 1000px) {
+  @media screen and (max-width: 1500px) {
     .dialog-content{
       width: 90vw;
       left: calc(5vw);

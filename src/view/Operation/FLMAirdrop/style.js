@@ -585,7 +585,7 @@ color: #FFFFFF;
         } 
     }
     .list-item:last-child {
-            /* border-bottom:none; */
+            border-bottom:none;
         }
     .list-item {
         padding: 1em 0.5em;
@@ -1191,7 +1191,7 @@ color: #FFFFFF;
         } 
     }
     .list-item:last-child {
-            /* border-bottom:none; */
+            border-bottom:none;
         }
     .list-item {
         padding: 1em 0.5em;
@@ -1805,7 +1805,7 @@ color: #FFFFFF;
         } 
     }
     .list-item:last-child {
-            /* border-bottom:none; */
+            border-bottom:none;
         }
     .list-item {
         padding: 1em 0.5em;
@@ -2426,7 +2426,7 @@ overflow: scroll;
         } 
     }
     .list-item:last-child {
-            /* border-bottom:none; */
+            border-bottom:none;
         }
     .list-item {
         padding: 1em 0.5em;

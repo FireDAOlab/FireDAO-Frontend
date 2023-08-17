@@ -80,10 +80,13 @@ const FireLock = (props) => {
 
     const removeOwner = (item, index) => {
         let tempArr = [...whitelist]
-
-        tempArr.splice(index, 1, tempArr);
+        tempArr.map((item,index)=>{
+              tempArr.splice(index, 1,tempArr);
+        })
+      
         console.log(tempArr);
         setWhitelistArr(tempArr)
+        console.log(whitelist);
     }
     const onChangePage = async (page) => {
         getData(page)
@@ -446,7 +449,7 @@ const FireLock = (props) => {
                             <p >L2 Admin</p>
                             <div className='tj' >
                                 <div type="primary" className='kk' onClick={() => { setShowAdd(true) }}>Add</div>
-                                <div type="primary" className='kk' onClick={(e) => { e.target.innerHTML = 'Delete'; }}>Mass Delete</div>
+                                <div type="primary" className='kk' onClick={(e) => { e.target.innerHTML = 'Delete';setShowRemove(true) }}>Mass Delete</div>
                             </div>
                         </div>
                         <div className="fire-list-box ffad">
@@ -488,12 +491,12 @@ const FireLock = (props) => {
                                                     </div>
 
                                                 )}
-                                                {(index == ownerArr.length - 1) && (
+                                                {/* {(index == ownerArr.length - 1) && (
                                                     <div className="col1 sc1" onClick={() => { removeOwner() }}>
                                                         <img src={sc} className="sc" />
                                                     </div>
 
-                                                )}
+                                                )} */}
                                             </div>
 
                                         </Form>

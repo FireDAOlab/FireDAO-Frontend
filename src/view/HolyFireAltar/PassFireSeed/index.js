@@ -252,27 +252,37 @@ const LockList = (props) => {
 
                     <div className="content1">
 
-                        <div className="list">
+<div className="list">
+    {
+        state.fireSeedList.length == 0 ? <Empty style={{width:'100%'}} image={Empty.PRESENTED_IMAGE_SIMPLE} /> :
+        state.fireSeedList.map(item => (
 
-                        </div>
-                        <div className="panel-container1">
-                            <div className='tp'>
-                                {
-                                    
-                                    state.fireSeedList.length==0? <Empty style={{width:'100%'}} image={Empty.PRESENTED_IMAGE_SIMPLE} />:
-                                    state.fireSeedList.map(item => (
-                                        <div className='tpitem' onClick={() => {
-                                            setID(item.id)
-                                        }}>
-                                            <img src={passport} />
-                                            <p>FireSeed # {item.id} ×{item.balance}</p>
-                                        </div>
-                                    ))
-                                }
-
-                            </div>
+            <div className="list-item" onClick={() => {
+            }}>
+                <img className="img" src={passport} alt="" />
+                <div className="item-info">
+                    <div className="id">
+                        <p>FireSeed</p>
+                    </div>
+                    <div className="number-box">
+                        <div className="number">
+                            <p className='itemid'>
+                                 #{item.id}
+                                 </p>
+                                 <p className='itemval'>
+                                 ×{item.balance}
+                                 
+                                 </p>
                         </div>
                     </div>
+
+                </div>
+            </div>
+        ))
+    } 
+</div>
+
+</div>
                 </div>
             </div>
 
