@@ -19,28 +19,24 @@ import {
 } from 'antd';
 import {getContractByName, getContractByContract} from "../../../api/connectContract";
 import {dealMethod, dealPayMethod, viewMethod} from "../../../utils/contractUtil"
-import ethIcon from "../../../imgs/eth_icon.webp";
-import downIcon from "../../../imgs/down_icon.webp";
+
 import listIcon from "../../../imgs/list-icon.webp";
 import develop from "../../../env";
 import {useNavigate} from "react-router-dom";
 import judgeStatus from "../../../utils/judgeStatus";
-import {getDonateRecord, getAllRegisters} from "../../../graph/donate";
+import {getDonateRecord, getAllRegisters, getRecommender} from "../../../graph/donate";
 import OGPoolStyle from "./OGPoolStyle";
 import {ETHDecimals, FDTDecimals, USDTDecimals, FLMDecimals, ZeroAddress} from "../../../config/constants";
-import TextArea from "antd/es/input/TextArea";
-import register from "../../HolyFireAltar/MintPassport/Register";
+import FDTIcon from "../../../imgs/FDT-icon.png";
 
 const OGPoolPublic = (props) => {
     let {state, dispatch} = useConnect();
     const [activeNav, setActiveNav] = useState(1)
     const [total, setTotal] = useState(0)
-    const [total2, setTotal2] = useState(0)
+    const [myRecommender, setMyRecommender] = useState()
     const [recordNav, setRecordNav] = useState(1)
-    const [curPage, setCurPage] = useState(1)
     const [pageCount, setPageCount] = useState(20)
-    const [pageCount2, setPageCount2] = useState(20)
-    const [curPage2, setCurPage2] = useState(1)
+    const [curPage, setCurPage] = useState(1)
     const [FDTBalance, setFDTBalance] = useState(0)
     const [totalDonate, setTotalDonate] = useState(0)
     const [exchangeAmount, setExchangeAmount] = useState(0)
@@ -52,13 +48,15 @@ const OGPoolPublic = (props) => {
     const [allRecords, setAllRecords] = useState([])
     const [refRecords, setREFRecords] = useState([])
     const [myRecords, seMyRecords] = useState([])
-    const [whiteList, setAllWhiteList] = useState([])
-    const [isInWhiteList, setIsInWhiteList] = useState(false)
     const [isShowRegister, setIsShowRegister] = useState(false)
     const [salePrice, setSalePriceV] = useState(0.01)
     const [status, setStatus] = useState(0)
     const [isAdmin, setIsAdmin] = useState(false)
     const [myTeam, setMyTeamArr] = useState([])
+
+    const [levelCountObj, setLevelCountObj] = useState({})
+    const [rewardTotalETH, setRewardTotalETH] = useState({})
+    const [rewardTotalFLM, setRewardTotalFLM] = useState({})
     const [myTeamRecord, setMyTeamRecord] = useState([])
     const [inviteRateArr, setInvArr] = useState([])
     const [myStatus, setMyStatus] = useState({})
@@ -192,6 +190,7 @@ const OGPoolPublic = (props) => {
             return
         }
         await handleDealMethod("register", [addr.toString()])
+        setIsShowRegister(false)
     }
 
 
@@ -249,7 +248,7 @@ const OGPoolPublic = (props) => {
             getActivateAccount()
 
             await getInviteRate()
-
+            getAddressRecommender()
             getMyTeam(state.account)
         } catch (e) {
 
@@ -258,15 +257,17 @@ const OGPoolPublic = (props) => {
     const onChangePage = async (page) => {
         await setCurPage(page)
     }
-    const onChangePage2 = async (page) => {
-        await setCurPage2(page)
-    }
+
 
     const handleShowSizeChange = async (page, count) => {
         setPageCount(count)
     }
-    const handleShowSizeChange2 = async (page, count) => {
-        setPageCount2(count)
+
+    const getAddressRecommender = async ()=>{
+        const res =  await getRecommender(state.account)
+        if(res && res.data){
+            setMyRecommender(res.data.allRegisters[0].recommenders)
+        }
     }
     const getMyTeam = async (address) => {
         address = state.account
@@ -321,21 +322,58 @@ const OGPoolPublic = (props) => {
 
             }
             let myTeamRecord = []
-            console.log(myTeamRecord, myTeamArr, inviteRateArr)
 
+            // count my team level number
+
+            let levelRewardObj = {
+                level1Total: 0,
+                level2Total: 0,
+                level3Total: 0,
+                level4Total: 0,
+                level5Total: 0,
+            }
+            // count my team level number
+            for (let i = 0; i < myTeamArr.length; i++) {
+                const item = myTeamArr[i]
+                if (item.level == 1) {
+                    levelRewardObj.level1Total++
+                }
+                if (item.level == 2) {
+                    levelRewardObj.level2Total++
+                }
+                if (item.level == 3) {
+                    levelRewardObj.level3Total++
+                }
+                if (item.level == 4) {
+                    levelRewardObj.level4Total++
+                }
+                if (item.level == 5) {
+                    levelRewardObj.level5Total++
+                }
+
+            }
+            // operate reward and get record
+            let totalETH = 0, totalFLM = 0
             for (let i = 0; i < myTeamArr.length; i++) {
                 const item = myTeamArr[i]
                 allRecords.forEach(record => {
-                    if (item._user == record.addr) {
+                    if (item._user.toLowerCase() == record.addr.toLowerCase()) {
                         item.ethIncome = BigNumber(record.ethAmount).multipliedBy(inviteRateArr[item.level - 1]).dividedBy(100).dividedBy(10 ** ETHDecimals).toString()
                         item.flmIncome = BigNumber(record.flmAmount).multipliedBy(inviteRateArr[item.level - 1]).dividedBy(100).dividedBy(10 ** FLMDecimals).toString()
+                        totalETH = BigNumber(totalETH).plus(item.ethIncome)
+                        totalFLM = BigNumber(totalFLM).plus(item.flmIncome)
+
                         record.level = item.level
+
                         myTeamRecord.push(record)
                     }
                 })
             }
             setMyTeamRecord(myTeamRecord)
             setMyTeamArr(myTeamArr)
+            setLevelCountObj(levelRewardObj)
+            setRewardTotalFLM(totalFLM)
+            setRewardTotalETH(totalETH)
         }
 
 
@@ -437,24 +475,36 @@ const OGPoolPublic = (props) => {
 
     return (
         <OGPoolStyle>
-            <Modal className="model-dialog" title="Modify List" open={isShowRegister} onOk={handleRegister}
+            <Modal className="model-dialog" title="Sign up" open={isShowRegister} onOk={handleRegister}
                    footer={[
 
                        <Button className="add-btn" type="primary" onClick={() => {
                            handleRegister()
-                       }}>Register</Button>
+                       }}>Submit</Button>
 
                    ]}
                    onCancel={() => {
                        setIsShowRegister(false)
                    }}>
                 <Form form={form} name="control-hooks" className="form">
+                    <strong>Wallet Address</strong>
                     <Form.Item
                         name="referralCode"
                         validateTrigger="onBlur"
                         validateFirst={true}
                     >
                         <div className="input-box">
+                            {state.account}
+                        </div>
+                    </Form.Item>
+                    <strong>Referral Code</strong>
+                    <Form.Item
+                        name="referralCode"
+                        validateTrigger="onBlur"
+                        validateFirst={true}
+                    >
+                        <div className="input-box">
+
                             <Input/>
                         </div>
                     </Form.Item>
@@ -526,10 +576,22 @@ const OGPoolPublic = (props) => {
                     <div className="panel-box">
                         <div className="panel-container">
                             <div className="panel-title">
-                                OG Round 1
                                 {/* <div className="pid">
                                     PID：{state.pid}
                                 </div> */}
+                            </div>
+                            <div className="status-info">
+                                <div className="info-item">
+                                    {!myStatus.registerStatus && <Button onClick={() => {
+                                        setIsShowRegister(true)
+                                    }}>Unregistered</Button>}
+                                    {myStatus.registerStatus && <Button>Registered</Button>}
+                                </div>
+                                <div className="info-item">
+
+                                    {!myStatus.activeStatus && <Button>Inactivated</Button>}
+                                    {myStatus.activeStatus && <Button>Activated</Button>}
+                                </div>
                             </div>
                             <div className="donate-info">
                                 <div className="info-item">
@@ -555,6 +617,7 @@ const OGPoolPublic = (props) => {
                                         </div>
                                         <div className="value">
                                             <p><img src={ethereum}
+                                                    width={20}
                                                     style={{
                                                         marginTop: '-5px',
                                                         marginRight: '10px'
@@ -566,31 +629,13 @@ const OGPoolPublic = (props) => {
 
                                 </div>
                             </div>
-                            <div className="donate-info">
-                                <div className="info-item">
-                                    {!myStatus.registerStatus && <Button onClick={() => {
-                                        setIsShowRegister(true)
-                                    }}>Unregistered</Button>}
-                                    {myStatus.registerStatus && <Button>Registered</Button>}
-                                </div>
-                                <div className="info-item">
 
-                                    {!myStatus.activeStatus && <Button>Inactivated</Button>}
-                                    {myStatus.activeStatus && <Button>Activated</Button>}
-                                </div>
-                            </div>
 
                             <div className="donation-box">
 
                                 <div className="title donate-header">
                                     Donate
-                                    <div className="isW">
-                                        Whitelist
-                                        <div className="is">
-                                            {isInWhiteList == false && "No"}
-                                            {isInWhiteList == true && "Yes"}
-                                        </div>
-                                    </div>
+
                                 </div>
                                 <Form form={form} name="control-hooks" className="form">
                                     <div className="donate-part">
@@ -638,11 +683,17 @@ const OGPoolPublic = (props) => {
                                     <div className="donate-part" style={{marginTop: '8px'}}>
                                         <div className="balance-box">
                                             <div className="name" style={{fontSize: '16px'}}>
-                                                Balance:
+                                                Your receive
                                             </div>
-                                            <div className="value" style={{fontSize: '16px'}}>
-                                                {showNum(fdtBalance)} <span>FDT</span>
+                                            <div className="balance-box">
+                                                <div className="name">
+                                                    Balance:
+                                                </div>
+                                                <div className="value" style={{fontSize: '16px'}}>
+                                                    {showNum(fdtBalance)} <span>FDT</span>
+                                                </div>
                                             </div>
+
                                         </div>
                                         <Form.Item
                                             name="pid"
@@ -655,7 +706,7 @@ const OGPoolPublic = (props) => {
                                                     {exchangeAmount}
                                                 </div>
                                                 <div className="right-tip">
-                                                    <img className="coin-icon" src={ethereum} alt=""/>
+                                                    <img className="coin-icon" width={20} src={FDTIcon} alt=""/>
                                                     FDT-OG
                                                 </div>
                                             </div>
@@ -692,7 +743,7 @@ const OGPoolPublic = (props) => {
                             </div>
                         </div>
                     </div>
-                    <div className="panel-box part2" style={{display:"none"}}>
+                    <div className="panel-box part2" style={{display: "none"}}>
                         <div className="panel-container">
                             <div className="list-top-part">
                                 <div className="panel-title">
@@ -785,14 +836,71 @@ const OGPoolPublic = (props) => {
                 </div>
             )}
             {activeNav == 2 && (
-                <div className="white-list">
+                <div className="team-part">
                     <div className="panel-box">
                         <div className="panel-container">
-                            <div className="panel-title">
+                            <div className="panel-title flex-title" >
                                 Team Income
+                                <div className="right flex-box">
+                                    <div className="reward-item">
+                                        <img width={20} src={ethereum} alt=""/>  {showNum(rewardTotalETH)}
+                                    </div>
+                                    <div className="reward-item">
+                                        <img width={20} src={FDTIcon} alt=""/> { showNum(rewardTotalFLM)}
+                                    </div>
+                                </div>
                             </div>
-                            <div className="fire-list-box">
-                                <div className="list-header flex-box2">
+                            <div className="in-line">
+                                <div className="left">
+                                    Wallet Address
+                                </div>
+                                <div className="right">
+                                    {state.account}
+                                </div>
+                            </div>
+                            <div className="in-line">
+                                <div className="left">
+                                    Recommender
+                                </div>
+                                <div className="right">
+                                    {myRecommender}
+                                </div>
+                            </div>
+                        </div>
+                        <div className="panel-container">
+
+
+                            <div className="team-count">
+                               <div className="panel-title">
+                                   Team
+                               </div>
+                                <div className="in-line">
+                                    <div className="info-item">
+                                        <strong>Level1</strong>
+                                        <span>{levelCountObj.level1Total}</span>
+                                    </div>
+                                    <div className="info-item">
+                                        <strong>Level2</strong>
+                                        <span>{levelCountObj.level2Total}</span>
+                                    </div>
+                                    <div className="info-item">
+                                        <strong>Level3</strong>
+                                        <span>{levelCountObj.level3Total}</span>
+                                    </div>
+                                    <div className="info-item">
+                                        <strong>Level4</strong>
+                                        <span>{levelCountObj.level4Total}</span>
+                                    </div>
+                                    <div className="info-item">
+                                        <strong>Level5</strong>
+                                        <span>{levelCountObj.level5Total}</span>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div className="fire-list-box team-list">
+
+                                <div className="list-header">
                                     <div className="col">
                                         No.
                                     </div>
@@ -812,7 +920,7 @@ const OGPoolPublic = (props) => {
                                 </div>
                                 {
                                     myTeam.map((item, index) => (
-                                        index >= pageCount2 * (curPage2 - 1) && index < pageCount2 * curPage2 &&
+                                        index >= pageCount * (curPage - 1) && index < pageCount * curPage &&
                                         <div className="list-item row2-list-item" key={index}>
                                             <div className="col no">
                                                 {index + 1}
@@ -835,14 +943,7 @@ const OGPoolPublic = (props) => {
 
 
                             </div>
-                            <div className="pagination">
-                                {
-                                    <Pagination current={curPage2} showSizeChanger
-                                                onShowSizeChange={handleShowSizeChange2}
-                                                onChange={onChangePage2} total={total2}
-                                                defaultPageSize={pageCount2}/>
-                                }
-                            </div>
+
                         </div>
 
                         <div className="panel-container">
@@ -870,7 +971,7 @@ const OGPoolPublic = (props) => {
                                 </div>
                                 {
                                     myTeamRecord.map((item, index) => (
-                                        index >= pageCount2 * (curPage2 - 1) && index < pageCount2 * curPage2 &&
+                                        index >= pageCount * (curPage - 1) && index < pageCount * curPage &&
                                         <div className="list-item row2-list-item" key={index}>
                                             <div className="col no">
                                                 {index + 1}
@@ -895,10 +996,10 @@ const OGPoolPublic = (props) => {
                             </div>
                             <div className="pagination">
                                 {
-                                    <Pagination current={curPage2} showSizeChanger
-                                                onShowSizeChange={handleShowSizeChange2}
-                                                onChange={onChangePage2} total={total2}
-                                                defaultPageSize={pageCount2}/>
+                                    <Pagination current={curPage} showSizeChanger
+                                                onShowSizeChange={handleShowSizeChange}
+                                                onChange={onChangePage} total={total}
+                                                defaultPageSize={pageCount}/>
                                 }
                             </div>
                         </div>
