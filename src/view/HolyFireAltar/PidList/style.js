@@ -46,11 +46,12 @@ export default styled.div`
       }
 
       .nav-list-box {
-        margin: 2em 0;
-        display: flex;
-        width: 90%;
-        .fire-nav-list{
-            height: 45px;
+        height: 50px;
+            margin: 1.5em 0;
+            display: flex;
+            width: 90%;
+            .fire-nav-list{
+                height: 50px;
             width: 30%;
             margin: 0;
             .nav-item{
@@ -232,11 +233,12 @@ a{
           }
 
           .nav-list-box {
-            margin: 2em 0;
+            height: 50px;
+            margin: 1.5em 0;
             display: flex;
             width: 90%;
             .fire-nav-list{
-                height: 45px;
+                height: 50px;
                 width: 30%;
                 margin: 0;
                 .nav-item{
@@ -420,9 +422,10 @@ a{
           }
 
           .nav-list-box {
-            margin: 2em 0;
+            margin: 1.5em 0;
             display: flex;
-            width: 90%;
+            width: 70%;
+            height: 45px;
             .fire-nav-list{
                 height: 45px;
                 width: 50%;
@@ -455,10 +458,10 @@ a{
       }
 
       .listheadert{
-width: 870px;
+width: 900px;
 }
 .listitemt{
-width: 870px;
+width: 900px;
 }
 .fire-list-box {
     margin: 1em 0em;
@@ -594,9 +597,10 @@ a{
             margin: 1em 0;
             display: block;
             width: 100%;
+            height: 40px;
             .fire-nav-list{
                 height: 40px;
-                width: 66%;
+                width: 60%;
                 margin: 0;
                 .nav-item{
                   font-size:14px;
@@ -627,10 +631,10 @@ a{
       }
 
 .listheadert{
-    width: 810px;
+    width: 850px;
 }
 .listitemt{
-    width: 810px;
+    width: 850px;
 }
       .fire-list-box {
         margin: 1em 0em;
