@@ -34,7 +34,8 @@ justify-content: space-between;
   .content-box{
     display: flex;
     justify-content: space-between;
-    margin-top: 30px;
+    margin: 1.5em auto;
+
     padding: 0;
 
     .left-part, .right-part {
@@ -227,7 +228,7 @@ justify-content: space-between;
             }
 
 .fire-list-box-airdrop{
-    margin:1em 0em;
+    margin:1.5em 0em;
         .list-header {
             padding: 20px 1.8em;
         }
@@ -340,7 +341,7 @@ border: 1px solid rgba(254,109,70,0.5);
         
     }
     .fire-list-box-userclaim{
-        margin:1em 0em;
+        margin:1.5em 0em;
         .list-header {
             padding: 20px 1.8em;
         }
@@ -421,7 +422,7 @@ border: 1px solid rgba(205,158,87,0.5);
 
  .panel-container{
 .fire-list-box-deposit{
-    margin:1em 0em;
+    margin:1.5em 0em;
         .list-header {
             padding: 20px 1.8em;
         }
@@ -554,7 +555,7 @@ color: #FFFFFF;
    
     .fire-list-box-airdroplist{
 
-        margin:1em 0em;
+        margin:1.5em 0em;
         .list-header {
             padding: 20px 1.7em;
         }
@@ -585,7 +586,7 @@ color: #FFFFFF;
         } 
     }
     .list-item:last-child {
-            /* border-bottom:none; */
+            border-bottom:none;
         }
     .list-item {
         padding: 1em 0.5em;
@@ -636,7 +637,8 @@ justify-content: space-between;
   .content-box{
     display: flex;
     justify-content: space-between;
-    margin-top: 30px;
+    margin: 1.5em auto;
+
     padding: 0;
 
     .left-part, .right-part {
@@ -826,7 +828,7 @@ justify-content: space-between;
             }
 
 .fire-list-box-airdrop{
-    margin:1em 0em;
+    margin:1.5em 0em;
         .list-header {
             padding: 20px 1.8em;
         }
@@ -939,7 +941,7 @@ border: 1px solid rgba(254,109,70,0.5);
         
     }
     .fire-list-box-userclaim{
-        margin:1em 0em;
+        margin:1.5em 0em;
         .list-header {
             padding: 20px 1.8em;
         }
@@ -1023,7 +1025,7 @@ border: 1px solid rgba(205,158,87,0.5);
 
  .panel-container{
 .fire-list-box-deposit{
-    margin:1em 0em;
+    margin:1.5em 0em;
         .list-header {
             padding: 20px 1.8em;
         }
@@ -1159,7 +1161,7 @@ color: #FFFFFF;
    
     .fire-list-box-airdroplist{
 
-        margin:1em 0em;
+        margin:1.5em 0em;
         .list-header {
             padding: 20px 1.7em;
         }
@@ -1191,7 +1193,7 @@ color: #FFFFFF;
         } 
     }
     .list-item:last-child {
-            /* border-bottom:none; */
+            border-bottom:none;
         }
     .list-item {
         padding: 1em 0.5em;
@@ -1246,7 +1248,8 @@ justify-content: space-between;
   .content-box{
     display: flex;
     justify-content: space-between;
-    margin-top: 30px;
+    margin: 1.5em auto;
+
     padding: 0;
 
     .left-part, .right-part {
@@ -1438,7 +1441,7 @@ justify-content: space-between;
             }
 
 .fire-list-box-airdrop{
-    margin:1em 0em;
+    margin:1.5em 0em;
         .list-header {
             padding: 20px 1.8em;
         }
@@ -1551,7 +1554,7 @@ border: 1px solid rgba(254,109,70,0.5);
         
     }
     .fire-list-box-userclaim{
-        margin:1em 0em;
+        margin:1.5em 0em;
         .list-header {
             padding: 20px 1.5em;
         }
@@ -1636,15 +1639,13 @@ border: 1px solid rgba(205,158,87,0.5);
 
  .panel-container{
 .fire-list-box-deposit{
-    margin:1em 0em;
+    margin:1.5em 0em;
         .list-header {
             padding: 20px 1.5em;
         }
         .list-item, .list-header {
           justify-content: flex-start;
           /* padding: 0.5em 2.5em 0.5em 2em; */
-       
-
         .col {
           text-align: left;
           font-size:14px;
@@ -1773,7 +1774,7 @@ color: #FFFFFF;
    
     .fire-list-box-airdroplist{
 
-        margin:1em 0em;
+        margin:1.5em 0em;
         .list-header {
             padding: 20px 1.5em;
         }
@@ -1805,7 +1806,7 @@ color: #FFFFFF;
         } 
     }
     .list-item:last-child {
-            /* border-bottom:none; */
+            border-bottom:none;
         }
     .list-item {
         padding: 1em 0.5em;
@@ -1854,7 +1855,8 @@ border: 1px solid rgba(205,158,87,0.5);
 } 
   .content-box{
     display: block;
-    margin-top: 30px;
+    margin: 1.5em auto;
+
     padding: 0;
 
     .left-part, .right-part {
@@ -2047,7 +2049,7 @@ border: 1px solid rgba(205,158,87,0.5);
     width: 550px;
 }
 .fire-list-box-airdrop{
-    margin:1em 0em;
+    margin:1.5em 0em;
     overflow: scroll;
    
         .list-header {
@@ -2165,7 +2167,7 @@ border: 1px solid rgba(254,109,70,0.5);
     width: 715px;
 }
     .fire-list-box-userclaim{
-        margin:1em 0em;
+        margin:1.5em 0em;
         overflow: scroll;
         .list-header {
             padding: 20px 1.5em;
@@ -2254,7 +2256,7 @@ border: 1px solid rgba(205,158,87,0.5);
     width: 715px;
 }
 .fire-list-box-deposit{
-    margin:1em 0em;
+    margin:1.5em 0em;
     overflow: scroll;
         .list-header {
             padding: 20px 1.5em;
@@ -2392,7 +2394,7 @@ color: #FFFFFF;
 }
     .fire-list-box-airdroplist{
 overflow: scroll;
-        margin:1em 0em;
+        margin:1.5em 0em;
         .list-header {
             padding: 20px 1.5em;
         }
@@ -2426,7 +2428,7 @@ overflow: scroll;
         } 
     }
     .list-item:last-child {
-            /* border-bottom:none; */
+            border-bottom:none;
         }
     .list-item {
         padding: 1em 0.5em;

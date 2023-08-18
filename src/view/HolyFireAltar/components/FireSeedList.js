@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useConnect } from "../../../api/contracts";
-import { Button, Card, Form, Input, Radio, Switch, message } from "antd";
+import { Button,Empty, Card, Form, Input, Radio, Switch, message } from "antd";
 import { getContractByName } from "../../../api/connectContract";
 import { dealMethod, viewMethod } from "../../../utils/contractUtil";
 import { useNavigate } from "react-router-dom";
@@ -56,38 +56,36 @@ const FireSeedList = (props) => {
 
                         <div className="list">
                             {
+                                state.fireSeedList.length == 0 ? <Empty style={{width:'100%'}} image={Empty.PRESENTED_IMAGE_SIMPLE} /> :
                                 state.fireSeedList.map(item => (
-                                    
+
                                     <div className="list-item" onClick={() => {
                                     }}>
                                         <img className="img" src={passport} alt="" />
                                         <div className="item-info">
                                             <div className="id">
-                                            <p>FireSeed</p> 
+                                                <p>FireSeed</p>
                                             </div>
                                             <div className="number-box">
                                                 <div className="number">
-                                                    <span># {item.id}</span>
-                                                    ×{item.balance}
+                                                    <p style={{color:'rgba(254, 109, 70, 1)'}}>#
+                                                         {item.id}
+                                                         </p>
+                                                         <p>
+                                                         ×{item.balance}
+                                                         
+                                                         </p>
                                                 </div>
                                             </div>
 
                                         </div>
                                     </div>
-                                ))
-                            }
+                                 ))
+                            } 
                         </div>
-                       
+
                     </div>
-                    <div className="panel-container1">
-                            <div className='tp'>
-                                <div className='tpitem'>
-                                    <img src={passport} />
-                                    <p>FireSeed</p>
-                                </div>
-                                
-                            </div>
-                        </div>
+                    
                 </div>
             </div>
         </FireSeedListStyle>

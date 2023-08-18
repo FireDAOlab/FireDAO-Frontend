@@ -8,6 +8,7 @@ export default   styled.div`
     width: 100%;
     margin: 0em;
   }
+  
   @media screen and (min-width: 1950px) {
     .ant-form {input{
 text-align:center;
@@ -178,9 +179,8 @@ overflow-y: auto;
       
       display: flex;
     -webkit-box-pack: justify;
-    justify-content: center;
-}     
-      .close{
+    justify-content: center; 
+     .close{
         cursor: pointer;
          
       }
@@ -193,6 +193,8 @@ overflow-y: auto;
       margin: auto;
       line-height: 29px;
       }
+}     
+    
     }
   
     .dialog-value{
@@ -397,20 +399,24 @@ overflow-y: auto;
     padding: 30px;
 
     .header{
-      text-align: right;      
-      .close{
+      
+      display: flex;
+    -webkit-box-pack: justify;
+    justify-content: center; 
+     .close{
         cursor: pointer;
+         
       }
-    }
-    .title{
+        .title{
       font-size: 23px;
       text-align: center;
       font-family: Roboto-Bold, Roboto;
       font-weight: bold;
       color: #FFFFFF;
-      /* margin-top: 1em; */
+      margin: auto;
       line-height: 29px;
       }
+}     
     .dialog-value{
       height: 24px;
       font-size: 20px;
@@ -619,20 +625,24 @@ height:400px;
     padding: 30px;
 
     .header{
-      text-align: right;      
-      .close{
+      
+      display: flex;
+    -webkit-box-pack: justify;
+    justify-content: center; 
+     .close{
         cursor: pointer;
+         
       }
-    }
-    .title{
+        .title{
       font-size: 20px;
       text-align: center;
       font-family: Roboto-Bold, Roboto;
       font-weight: bold;
       color: #FFFFFF;
-      /* margin-top: 1em; */
+      margin: auto;
       line-height: 29px;
       }
+}     
     .dialog-value{
       height: 24px;
       font-size: 20px;
@@ -664,7 +674,7 @@ height:400px;
       font-size: 17px;
       margin: 1.5em 44px 0.5em;
       width: 400px;
-      height: 50px;
+      height: 45px;
     }
   }
     
@@ -692,24 +702,24 @@ height: ;
     padding: 30px;
     overflow-y: auto;
     .header{
-        display:flex;
-        justify-content:flex-end;
-      text-align: right;      
-      .close{
+      
+      display: flex;
+    -webkit-box-pack: justify;
+    justify-content: center; 
+     .close{
         cursor: pointer;
+         
       }
-      .title{
-      font-size: 16px;
+        .title{
+      font-size: 20px;
       text-align: center;
-      margin:0 auto;
       font-family: Roboto-Bold, Roboto;
       font-weight: bold;
       color: #FFFFFF;
-      /* margin-top: 1em; */
+      margin: auto;
       line-height: 29px;
       }
-
-    }
+}     
     
     .dialog-name,.ant-form-item-label label{
       padding-bottom: 1em ;
@@ -723,6 +733,7 @@ height: ;
     .sub-btn{
       width: 100%;
       margin: 0.5em auto;
+      height: 40px;
     }
   }
  
@@ -788,25 +799,25 @@ width: 85%;
     padding: 30px;
 
     .header{
-        display:flex;
-        justify-content:flex-end;
-      text-align: right;      
-      .close{
+      
+      display: flex;
+    -webkit-box-pack: justify;
+    justify-content: center; 
+     .close{
         cursor: pointer;
+         
       }
-      .title{
-      font-size: 16px;
+        .title{
+      font-size: 20px;
       text-align: center;
-      margin:0 auto;
       font-family: Roboto-Bold, Roboto;
       font-weight: bold;
       color: #FFFFFF;
-      /* margin-top: 1em; */
+      margin: auto;
       line-height: 29px;
       }
-    }
+}     
     
-
     .dialog-name,.ant-form-item-label label{
       padding-bottom: 1em ;
       font-size: 14px;
@@ -817,8 +828,9 @@ width: 85%;
       line-height: 29px;
     }
     .sub-btn{
-        width: 100%;
-        margin: 0.5em auto;
+      width: 100%;
+      margin: 0.5em auto;
+      height: 40px;
     }
   }
  

@@ -10,14 +10,10 @@ export  default   styled.div`
  
 
 .ss1{
-    margin: 1em 0em;
+    margin: 1.5em 0em;
     .list-header{
             padding: 20px 1.7em;
         }
-        .list-item{
-            padding: 0.5em;
-        }
-        
         .list-item, .list-header {
           justify-content: flex-start;
     
@@ -69,6 +65,7 @@ export  default   styled.div`
 
           }
           .no{
+            padding: 2px 4px;
             color: #FE6D46;
 
           }
@@ -77,7 +74,7 @@ export  default   styled.div`
    
 
     .sbt11{
-        margin: 1em 0em;
+        margin: 1.5em 0em;
         text-align:left;
        
        
@@ -85,9 +82,6 @@ export  default   styled.div`
             
             padding: 20px 1.2em;
         } 
-        .flex-nn{
-            padding: 0.5em;
-        }
         .flex-nn, .flex-box2 {
           justify-content: flex-start;
        
@@ -191,14 +185,10 @@ border: 1px solid rgba(254,109,70,0.5);
     .panel-container {
     padding:30px 11.7%;
     .ss1{
-        margin:1em 0em;
+        margin:1.5em 0em;
     .list-header{
             padding: 20px 1.7em;
         }
-        .list-item{
-            padding: 0.5em;
-        }
-        
         .list-item, .list-header {
           justify-content: flex-start;
     
@@ -259,7 +249,7 @@ border: 1px solid rgba(254,109,70,0.5);
    
 
       .sbt11{
-        margin: 1em 0em;
+        margin: 1.5em 0em;
         text-align:left;
        
        
@@ -267,9 +257,6 @@ border: 1px solid rgba(254,109,70,0.5);
             
             padding: 20px 1.2em;
         } 
-        .flex-nn{
-            padding: 0.5em;
-        }
         .flex-nn, .flex-box2 {
           justify-content: flex-start;
        
@@ -377,15 +364,12 @@ border: 1px solid rgba(254,109,70,0.5);
     .panel-container {
     padding:30px 11.7%;
     .listheadert{
-        width: 830px;
+        width: 759px;
     }
-.ss1{
+.ss1{ margin:1.5em 0em;
     overflow-x: scroll;
     .list-header{
             padding: 20px 1.7em;
-        }
-        .list-item{
-            padding: 0.5em;
         }
        
         .list-item, .list-header {
@@ -420,7 +404,7 @@ border: 1px solid rgba(254,109,70,0.5);
             margin-right:5px;
           }
           &:nth-child(7){
-            width:100px;
+            width:90px;
             margin-right:5px;
           }
         }
@@ -435,13 +419,18 @@ border: 1px solid rgba(254,109,70,0.5);
             overflow: hidden;
 
           }
+          .no{
+            padding: 2px 4px;
+            color: #FE6D46;
+
+          }
         }
       }
  
 
    
       .sbt11{
-        margin:1em 0em;
+        margin:1.5em 0em;
         text-align:left;
        overflow: normal;
        
@@ -449,9 +438,6 @@ border: 1px solid rgba(254,109,70,0.5);
             
             padding: 20px 1.2em;
         } 
-        .flex-nn{
-            padding: 0.5em;
-        }
         .flex-nn, .flex-box2 {
           justify-content: flex-start;
        
@@ -562,13 +548,10 @@ border: 1px solid rgba(254,109,70,0.5);
             width: 730px;
         }
         .ss1{
-            margin:1em 0em;
+            margin:1.5em 0em;
     overflow-x: scroll;
     .list-header{
             padding: 20px 1.7em;
-        }
-        .list-item{
-            padding: 0.5em;
         }
        
         .list-item, .list-header {
@@ -618,21 +601,23 @@ border: 1px solid rgba(254,109,70,0.5);
             overflow: hidden;
 
           }
+          .no{
+            padding: 2px 4px;
+            color: #FE6D46;
+
+          }
         }
       }
  
 
       .sbt11{
-        margin: 1em 0em;
+        margin: 1.5em 0em;
         text-align:left;
        
         .flex-box2 {
             
             padding: 20px 1.2em;
         } 
-        .flex-nn{
-            padding: 0.5em;
-        }
         .flex-nn, .flex-box2 {
           justify-content: flex-start;
        
@@ -743,13 +728,10 @@ border: 1px solid rgba(254,109,70,0.5);
             width: 730px;
         }
         .ss1{
-            margin:1em 0em;
+            margin:1.5em 0em;
     overflow-x: scroll;
     .list-header{
             padding: 20px 1.7em;
-        }
-        .list-item{
-            padding: 0.5em;
         }
        
         .list-item, .list-header {
@@ -799,21 +781,23 @@ border: 1px solid rgba(254,109,70,0.5);
             overflow: hidden;
 
           }
+          .no{
+            padding: 2px 4px;
+            color: #FE6D46;
+
+          }
         }
       }
  
   
       .sbt11{
-        margin:1em 0em;
+        margin:1.5em 0em;
         text-align:left;
        
         .flex-box2 {
             
             padding: 20px 1.2em;
         } 
-        .flex-nn{
-            padding: 0.5em;
-        }
         .flex-nn, .flex-box2 {
           justify-content: flex-start;
        
