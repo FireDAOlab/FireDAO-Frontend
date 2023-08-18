@@ -6,7 +6,7 @@ import {
     message,
     Form,
     Input,
-    Switch, Pagination
+    Switch, Pagination, Modal
 } from 'antd';
 import {getContractByName, getContractByContract} from "../../../api/connectContract";
 import {dealMethod, dealPayMethod, viewMethod} from "../../../utils/contractUtil"
@@ -39,8 +39,11 @@ const OgPoolAdmin = (props) => {
     const [FDTBalance, setFDTBalance] = useState(0)
     const [totalDonate, setTotalDonate] = useState(0)
     const [salePriceV, setSalePriceV] = useState(0)
-    const [maxThree, setMaxThree] = useState(0)
     const [maxThreeAdmin, setMaxThreeAdmin] = useState(0)
+    const [maxFourAdmin, setMaxFourAdmin] = useState(0)
+
+    const [maxTwoAdmin, setMaxTwoAdmin] = useState(0)
+
 
     const [withdrawCoinAddr, setWithdrawCoinAddr] = useState()
     const [sumArr, setSumArr] = useState([])
@@ -56,6 +59,8 @@ const OgPoolAdmin = (props) => {
     const [isPause, setIsPause] = useState()
     const [ownerAddress, setOwnerAddress] = useState("")
     const [curAddr, setCurAddr] = useState("")
+    const [curDelLev2Addr, setCurDelLev2Addr] = useState("")
+    const [isShowDelLev2, setShowDelLev2] = useState(false)
     const [curId, setCurId] = useState("")
     const [coinInfo, setCoinInfo] = useState({})
 
@@ -71,6 +76,11 @@ const OgPoolAdmin = (props) => {
 
     const onChange = (checked) => {
         console.log(`switch to ${checked}`);
+        if(isPause){
+            handleUnpause()
+        }else{
+            handlePause()
+        }
     };
     const handleViewMethod = async (name, params) => {
         let contractTemp = await getContractByName("PrivateExchangePoolOG", state.api,)
@@ -180,21 +190,19 @@ const OgPoolAdmin = (props) => {
     }
     const getMaxThree = async () => {
         let res = await handleViewMethod("maxThree", [])
-        setMaxThree(res)
-    }
-    const getMaxThreeAdmin = async () => {
-        let res = await handleViewMethod("adminLevelThreeMax", [])
         setMaxThreeAdmin(res)
     }
-
-    const getShowWhiteList = async () => {
-        let length = await handleViewMethod("getWhiteListLength", [])
-        let arr = []
-        for (let i = 0; i < length; i++) {
-            let res = await handleViewMethod("ShowWhiteList", [i])
-            arr.push(res)
-        }
-        setAllWhiteList(arr)
+    const getMaxThreeAdmin = async () => {
+        let res = await handleViewMethod("maxThree", [])
+        setMaxThreeAdmin(res)
+    }
+    const getMaxTwoAdmin = async () => {
+        let res = await handleViewMethod("maxTwo", [])
+        setMaxThreeAdmin(res)
+    }
+    const getMaxFourAdmin= async () => {
+        let res = await handleViewMethod("maxFour", [])
+        setMaxFourAdmin(res)
     }
 
 
@@ -321,9 +329,11 @@ const OgPoolAdmin = (props) => {
 
     const handlePause = async () => {
         await handleDealMethod("pause", [])
+        getPause()
     }
     const handleUnpause = async () => {
         await handleDealMethod("unpause", [])
+        getPause()
     }
     const setInviteRate = async () => {
         await handleDealMethod("setInviteRate", [form2.getFieldValue().inviteRateID, form2.getFieldValue().inviteRate])
@@ -337,16 +347,27 @@ const OgPoolAdmin = (props) => {
         await handleDealMethod("removeAdminLevelTwo", [form.getFieldValue().adminaddress])
         getSecondAdmins()
     }
+    const deleteLevel2Admin = async () => {
+        await handleDealMethod("removeAdminLevelTwo", [curDelLev2Addr])
+        getSecondAdmins()
+    }
     const setWhiteListAmount = async () => {
         await handleDealMethod("setWhiteMaxForThree", [(form2.getFieldValue().max)])
         getMaxThree()
     }
 
     const setAdminLevelThreeMax = async () => {
-        await handleDealMethod("setAdminLevelThreeMax", [(form2.getFieldValue().maxThree)])
+        await handleDealMethod("setAdminForThree", [(form2.getFieldValue().maxThree)])
         getMaxThreeAdmin()
     }
-
+    const setAdminLevelTwoMax = async () => {
+        await handleDealMethod("setAdminForTwo", [(form2.getFieldValue().maxThree)])
+        getMaxTwoAdmin()
+    }
+    const setAdminLevelFourMax = async () => {
+        await handleDealMethod("setAdminForFour", [(form2.getFieldValue().maxThree)])
+        getMaxFourAdmin()
+    }
     const withdraw = async () => {
         await handleDealMethod("Claim", [fdtAddr, state.api.utils.toWei(form2.getFieldValue().withdrawNum)])
         this.getData()
@@ -535,6 +556,19 @@ const OgPoolAdmin = (props) => {
 
     return (
         <OGPoolAdminStyle>
+            <Modal className="model-dialog" title="Delete WhiteList User" open={isShowDelLev2} onOk={deleteLevel2Admin}
+                   onCancel={() => {
+                       setShowDelLev2(false)
+                   }}>
+                <h3>
+                    Wallet Address
+                </h3>
+                <div className="value">
+                    {curDelLev2Addr}
+                </div>
+
+
+            </Modal>
             <div className="page-title">
                 OG Pool
             </div>
@@ -600,15 +634,15 @@ const OgPoolAdmin = (props) => {
                     <div className="panel-box">
                         <div className="panel-container">
                             <div className="panel-title1">
-                                Contract Status : {isPause ? "Running" : "Stop"}
+                                Contract Status : {isPause ? "Stop" : "Running"}
                             </div>
                             <Form form={form} name="control-hooks" className="form">
                                 <div className='switchh'>
-                                    <p><span>Running</span><Switch defaultChecked onChange={onChange}/></p>
-                                    <p><span>Pause</span><Switch onChange={onChange}/></p>
+                                    <p><span>Running</span><Switch checked={!isPause} onChange={onChange}/></p>
+                                    <p><span>Pause</span><Switch checked={isPause} onChange={onChange}/></p>
                                 </div>
-                                {/* <Button type="primary" onClick={handlePause}>Pause</Button>
-                                <Button type="primary" onClick={handleUnpause}>Unpause</Button> */}
+                                {/*<Button type="primary" onClick={handlePause}>Pause</Button>*/}
+                                {/*<Button type="primary" onClick={handleUnpause}>Unpause</Button>*/}
                             </Form>
                             <div className="info tip-box">
                                 This function is related to the running status of the contract, please use it with
@@ -675,12 +709,7 @@ const OgPoolAdmin = (props) => {
                                     <div className="col">
                                         No.
                                     </div>
-                                    <div className="col">
-                                        PID
-                                    </div>
-                                    <div className="col">
-                                        Username
-                                    </div>
+
                                     <div className="col">
                                         Wallet Address
                                     </div>
@@ -704,7 +733,7 @@ const OgPoolAdmin = (props) => {
                                                 {item}
                                             </div>
                                             <div className="col del">
-                                                <img className="icon" src={del} />
+                                                <img className="icon" onClick={()=>{ setShowDelLev2(item) ;setCurDelLev2Addr(item)}} src={del} />
                                             </div>
                                         </div>
                                     ))
@@ -712,16 +741,8 @@ const OgPoolAdmin = (props) => {
 
                             </div>
 
-                            <div className="btns" style={{textAlign: 'center', marginTop: '1.7em'}}>
-                                <Button className="add-btn" type="primary" onClick={() => {
-                                    setAdmins()
-                                }}>addAdmins</Button>
-                                <Button className="add-btn" type="primary" onClick={() => {
-                                    removeAdmin()
-                                }}>removeAdmin</Button>
-                            </div>
-                            {/* <Form form={form} name="control-hooks" className="form">
 
+                          <Form form={form} name="control-hooks" className="form">
                                 <Form.Item
                                     name="adminaddress"
                                     validateTrigger="onBlur"
@@ -732,11 +753,38 @@ const OgPoolAdmin = (props) => {
                                         <Input />
                                     </div>
                                 </Form.Item>
-
-                            </Form> */}
+                            </Form>
+                            <div className="btns" style={{textAlign: 'center', marginTop: '1.7em'}}>
+                                <Button className="add-btn" type="primary" onClick={() => {
+                                    setAdmins()
+                                }}>addAdmins</Button>
+                                <Button className="add-btn" type="primary" onClick={() => {
+                                    removeAdmin()
+                                }}>removeAdmin</Button>
+                            </div>
                         </div>
 
                         <div className="panel-container">
+                            <div className="panel-title">
+                                Set Level4 admin Amount: ( {maxFourAdmin} )
+                            </div>
+                            <Form form={form2} name="control-hooks" className="form">
+                                <Form.Item
+                                    name="maxThree"
+                                    validateTrigger="onBlur"
+                                    validateFirst={true}
+                                >
+                                    <div className="input-box">
+                                        <Input/>
+                                    </div>
+                                </Form.Item>
+
+                                <div className="btns">
+                                    <Button className="add-btn" type="primary" onClick={() => {
+                                        setAdminLevelFourMax()
+                                    }}>Submit</Button>
+                                </div>
+                            </Form>
                             <div className="panel-title">
                                 Set Level3 admin Amount: ( {maxThreeAdmin} )
                             </div>
@@ -754,12 +802,12 @@ const OgPoolAdmin = (props) => {
                                 <div className="btns">
                                     <Button className="add-btn" type="primary" onClick={() => {
                                         setAdminLevelThreeMax()
-                                    }}>setWhiteListAmount</Button>
+                                    }}>Submit</Button>
                                 </div>
                             </Form>
 
                             <div className="panel-title">
-                                Set WhiteList Amount: ( {maxThree} )
+                                Set Level2 admin Amount: ( {maxTwoAdmin} )
                             </div>
                             <Form form={form2} name="control-hooks" className="form">
 
@@ -775,8 +823,8 @@ const OgPoolAdmin = (props) => {
 
                                 <div className="btns">
                                     <Button className="add-btn" type="primary" onClick={() => {
-                                        setWhiteListAmount()
-                                    }}>setWhiteListAmount</Button>
+                                        setAdminLevelTwoMax()
+                                    }}>Submit</Button>
                                 </div>
                             </Form>
                             <div className="panel-title">
