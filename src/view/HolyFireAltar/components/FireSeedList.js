@@ -80,8 +80,8 @@ const FireSeedList = (props) => {
 
                                         </div>
                                     </div>
-                                ))
-                            }
+                                 ))
+                            } 
                         </div>
 
                     </div>

@@ -167,14 +167,14 @@ const MyPassport = (props) => {
         <MyPassportStyle>
             {showTip && <Destorytc closeDialog={() => { setShowTip(false) }} />}
             {/* <div className="panel-box"> */}
-            <div className="panel-title11" style={{ marginBottom: '0.7em' }}>
+            <div className="panel-title11" style={{'marginBottom': '1.5em'}}>
                 <span>My Passport</span>
                 <Button style={{ background: '#373232', textAlign: 'center', lineHeight: '28px', width: "32px", height: '32px', border: '1px solid rgba(255, 255, 255, 0.15)', borderRadius: '50%', }}>
                     <img src={user3} style={{ width: '22px', marginLeft: '-10px', marginTop: '-10px' }} />
                 </Button>
             </div>
             <div className="panel-box userinfo-box" style={{ width: '100%' }}>
-                <div className="panel-title" style={{ marginBottom: '0.7em' }}>
+                <div className="panel-title" style={{'marginBottom': '1.5em'}}>
                     <span>My Passport</span>
                     <Button onClick={() => goPage("/passportAdmin")} style={{ background: '#373232', textAlign: 'center', lineHeight: '28px', width: "32px", height: '32px', border: '1px solid rgba(255, 255, 255, 0.15)', borderRadius: '50%', }}>
                         {/* {isAdmin && */}
@@ -437,7 +437,7 @@ const MyPassport = (props) => {
                             {
                                  SBTARR.length==0? <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />:
                                 SBTARR.map((item, index) => (
-                                    // index > 10 * (curSBTPage - 1) && index < 10 * curSBTPage && 
+                                    index > 10 * (curSBTPage - 1) && index < 10 * curSBTPage && 
                                     <div className="list-item sbt1">
                                         <div className="col id">
                                             SBT-{index}
@@ -488,10 +488,10 @@ const MyPassport = (props) => {
                                 </div>
                             </div>
                             {
-                                SBTARR.length==0? <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />:
+                               SBTARR.length==0? <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />:
                                 
-                        SBTARR.map((item, index) => (
-                                //    index > 10 * (curSBTPage - 1) && index < 10 * curSBTPage &&
+                       SBTARR.map((item, index) => (
+                                   index > 10 * (curSBTPage - 1) && index < 10 * curSBTPage &&
                                 <div className='asc sbt1'>
                                     <div className="list-item ss1">
 
@@ -539,8 +539,8 @@ const MyPassport = (props) => {
                                         </div>
                                     </div>
                                 </div>
-                                   ))
-                            }
+                                  ))
+                             } 
                         </div>
                     </div>
                 </div>

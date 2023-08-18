@@ -7,7 +7,7 @@ import {dealMethod} from "../../../../utils/contractUtil";
 import {UserAddOutlined, UserDeleteOutlined} from "@ant-design/icons";
 const FireLock = (props) => {
     const {closeDialog,updateData} = props
-
+console.log(props);
     let {state, dispatch} = useConnect();
     const [form] = Form.useForm();
     const [ownerArr, setOwnerArr] = useState(['owner0'])
@@ -35,7 +35,7 @@ const FireLock = (props) => {
         for (let i = 0; i < ownerArr.length; i++) {
             _to.push(form.getFieldValue()["owner" + i])
         }
-        await handleDealMethod("removeFromWhiteList",[_to])
+        await handleDealMethod("removeFromWhiteList",[])
         updateData()
         closeDialog()
     }
@@ -67,24 +67,23 @@ const FireLock = (props) => {
                     {ownerArr.map((item, index) => {
                         return (
                             <div className="address-item" key={index}>
+
                                 <Form.Item
                                     name={item}
                                     label="Wallet Address"
                                     className="address"
                                 >
-                                    <div className="flex-box">
-                                        <Input/>
-                                    </div>
+                                    <Input placeholder={this.props.a} />
                                 </Form.Item>
 
-                                {(ownerArr.length > 1 && index == 0) && (
+                                {/* {(ownerArr.length > 1 && index == 0) && (
                                     <UserDeleteOutlined className="icon" onClick={() => {
                                         removeOwner()
                                     }}/>)}
                                 {(index == ownerArr.length - 1) && (
                                     <UserAddOutlined className="icon" onClick={() => {
                                         addOwner()
-                                    }}/>)}
+                                    }}/>)} */}
                             </div>
                         )
                     })}

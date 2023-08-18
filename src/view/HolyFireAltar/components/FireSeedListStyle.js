@@ -14,11 +14,11 @@ export default styled.div`
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
+    margin: 1.5em auto;
 
     .list-item {
       cursor: pointer;
       padding: 10px;
-      margin-top: 2em;
       margin-right: 2.5%;
       text-align:center;
       width: 23%;
@@ -84,11 +84,11 @@ font-weight: bold;
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
+    margin: 1.5em auto;
 
     .list-item {
       cursor: pointer;
       padding: 10px;
-      margin-top: 2em;
       margin-right: 2.5%;
       text-align:center;
       width: 23%;
@@ -156,11 +156,11 @@ font-weight: bold;
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
+    margin: 1.5em auto;
 
     .list-item {
       cursor: pointer;
       padding: 10px;
-      margin-top: 2em;
       margin-right: 2.5%;
       text-align:center;
       width: 23%;
@@ -229,11 +229,11 @@ font-weight: bold;
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
+    margin: 1.5em auto;
 
     .list-item {
       cursor: pointer;
       padding: 10px;
-      margin-top: 2em;
       margin-right: 2.5%;
       text-align:center;
       width: 48%;

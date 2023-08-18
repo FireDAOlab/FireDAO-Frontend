@@ -48,7 +48,6 @@ justify-content:end;
     }
 
     }
-
     .sub-btn {
       font-weight: bold;
       background: linear-gradient(32deg, #FF4E50 0%, #F9D423 100%);

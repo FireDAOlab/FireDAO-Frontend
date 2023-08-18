@@ -147,8 +147,8 @@ font-weight: bold;
           background-color: #1A1414;
           border-radius: 20px;
           border: 1px solid rgba(255, 255, 255, 0.1);
-          margin: 2em auto;
-          margin-bottom: 0em;
+          margin: 1.5em auto;
+
         }
 
         .form-value {
@@ -356,6 +356,7 @@ font-weight: bold;
             /* border-bottom:none; */
         }
         .fire-list-box {
+            margin:1.5em 0em;
           .list-header {
             padding: 20px 2.5em;
           }
@@ -564,8 +565,8 @@ font-weight: bold;
           background-color: #1A1414;
           border-radius: 20px;
           border: 1px solid rgba(255, 255, 255, 0.1);
-          margin: 2em auto;
-          margin-bottom: 0em;
+          margin: 1.5em auto;
+
         }
 
         .form-value {
@@ -774,6 +775,7 @@ font-weight: bold;
             /* border-bottom:none; */
         }
         .fire-list-box {
+            margin:1.5em 0em;
           .list-header {
             padding: 20px 2.5em;
           }
@@ -986,8 +988,7 @@ font-weight: bold;
           background-color: #1A1414;
           border-radius: 20px;
           border: 1px solid rgba(255, 255, 255, 0.1);
-          margin: 2em auto;
-          margin-bottom: 0em;
+          margin: 1.5em auto;
         }
 
         .form-value {
@@ -1192,6 +1193,7 @@ font-weight: bold;
 
 
         .fire-list-box {
+            margin:1.5em 0em;
             overflow-x: scroll;
 
             .listheadert{
@@ -1428,7 +1430,8 @@ font-weight: bold;
 
       .describe{
         width: 100%;
-        margin: 1em auto;
+        margin: 1.5em auto;
+
         border-radius:10px;
         padding: 0px;
         border: none;
@@ -1530,6 +1533,7 @@ font-weight: bold;
         width: 1190px;
       }
       .fire-list-box{
+           margin:1.5em 0em;
         overflow-x: scroll;
         border-radius:10px;
       
@@ -1766,7 +1770,7 @@ font-weight: bold;
 .describe{
   width: 100%;
   padding: 0px;
-  margin: 1em auto;
+  margin: 1.5em auto;
   border:none;
   background: rgba(36, 27, 27, 1);
   .ant-form-item-label > label {
@@ -1865,6 +1869,7 @@ background: rgba(36, 27, 27, 1);
         width: 1190px;
       }
       .fire-list-box{
+        margin:1.5em 0em;
         overflow-x: scroll;
         border-radius:10px;
       

@@ -325,20 +325,20 @@ justify-content:end;
     .dialog-info {
       text-align: left;
       margin: 1em 0em;
-      font-size: 16px;
+      font-size: 15px;
       font-family: Roboto-Bold, Roboto;
       font-weight: bold;
       line-height: 15px;
 
       .name {
-        font-size:16px;
+        font-size:15px;
         color:rgba(138, 128, 128, 1);
         line-height:15px;
       }
 
       .fid {
         line-height: 35px;
-        font-size: 16px;
+        font-size: 12px;
         width:100%;
         height: 35px;
         margin: 15px 0px;
@@ -349,6 +349,7 @@ justify-content:end;
         border: 1px solid rgba(255,255,255,0.1);
       }
       .soulaccount{
+        overflow: hidden;
         width:100%;
         line-height: 35px;
         font-size: 14px;
@@ -386,22 +387,8 @@ justify-content:end;
     }
   }
 }
- 
-/* 
-  mobile style
-  @media screen and (max-width: 1000px) {
-    .dialog-content {
-      width: 90vw;
-      left: calc(5vw);
-    }
 
-    .btn-box {
-      .sub-btn {
-        &:nth-child(2) {
-          margin-left: 20px !important;
-        }
-      }
-    }
-  } */
+
+
 `
 

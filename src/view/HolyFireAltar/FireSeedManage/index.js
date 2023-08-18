@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useConnect } from "../../../api/contracts";
-import { Pagination, Empty, Button, Select, Descriptions, message, Form, List, Input, notification, Card } from 'antd';
+import { Pagination, Modal, Empty, Button, Select, Descriptions, message, Form, List, Input, notification, Card } from 'antd';
 import { getContractByName, getContractByContract } from "../../../api/connectContract";
 import { dealMethod, viewMethod } from "../../../utils/contractUtil"
 import { useNavigate, useLocation } from "react-router-dom";
@@ -8,9 +8,13 @@ import FireLockStyle from "./style";
 import judgeStatus from "../../../utils/judgeStatus";
 import AddWhiteListAddr from "./component/AddWhiteListAddr";
 import sc from "../../../imgs/sc.png"
+import wxz from "../../../imgs/wxz.png"
+import xz from "../../../imgs/xz.png"
 import RemoveWhiteListAddr from "./component/RemoveWhiteListAddr";
+// import RemoveOnly from "./component/RemoveOnly";
 const FireLock = (props) => {
     const { closeDialog, updateData } = props
+    const [picture, setPicture] = useState();
     let { state, dispatch } = useConnect();
     const [whitelist, setWhitelistArr] = useState([])
     const [curNav, setCurNav] = useState(1)
@@ -21,6 +25,9 @@ const FireLock = (props) => {
     const [whiteMaxMint, setWhiteMaxMint] = useState(0)
     const [isShowAdd, setShowAdd] = useState(false)
     const [isShowRemove, setShowRemove] = useState(false)
+    const [isRemoveAddress, setRemoveAddress] = useState('')
+    const [isShowRemoveonly, setShowRemoveonly] = useState(true)
+    const [isRemoveOpen, setisRemoveOpen] = useState(false)
     const [activeNav, setNav] = useState(1)
     const [curPage, setCurPage] = useState(1)
     const [pageCount, setPageCount] = useState(20)
@@ -80,10 +87,10 @@ const FireLock = (props) => {
 
     const removeOwner = (item, index) => {
         let tempArr = [...whitelist]
-        tempArr.map((item,index)=>{
-              tempArr.splice(index, 1,tempArr);
+        tempArr.map((item, index) => {
+            tempArr.splice(index, 1, tempArr);
         })
-      
+
         console.log(tempArr);
         setWhitelistArr(tempArr)
         console.log(whitelist);
@@ -160,9 +167,7 @@ const FireLock = (props) => {
         setWhitelistArr(arr)
     }
 
-    const del = async () => {
-        //     const arrnew=;
-    }
+ 
     const getWhiteMaxMint = async () => {
         const maxM = await handleViewMethod("whiteListPerMintMax", [])
         setWhiteMaxMint(maxM)
@@ -231,6 +236,19 @@ const FireLock = (props) => {
         updateData()
         closeDialog()
     }
+    const handleDelAddress = async () => {
+
+        await handleDealMethod("removeFromWhiteList", [[isRemoveAddress]])
+        getWhitelist()
+    }
+       const changePicture = () => {
+        setPicture([
+            wxz,xz
+        ])
+    }
+    const muchSelect = () => {
+        changePicture()
+    }
     useEffect(async () => {
         let judgeRes = await judgeStatus(state)
         if (!judgeRes) {
@@ -245,6 +263,7 @@ const FireLock = (props) => {
         <FireLockStyle>
             {isShowAdd && <AddWhiteListAddr updateData={() => { getWhitelist() }} closeDialog={() => { setShowAdd(false) }} />}
             {isShowRemove && <RemoveWhiteListAddr updateData={() => { getWhitelist() }} closeDialog={() => { setShowRemove(false) }} />}
+            {/* {isShowRemoveonly && <RemoveOnly updateData={() => { getWhitelist() }} closeDialog={() => { setShowRemoveonly(false) }} />} */}
             <div className="page-title">
                 FireSeed Manage
             </div>
@@ -443,13 +462,34 @@ const FireLock = (props) => {
                 </div>}
             {curNav == 2 &&
                 <div className='panel-box'>
+                    <Modal className="model-dialog" title="Delete" open={isRemoveOpen} onOk={handleDelAddress}
+                        onCancel={() => {
+                            setisRemoveOpen(false)
+                        }}>
+                        <div className="del-content">
+                            <Form form={form} name="control-hooks">
+                                <Form.Item
+                                    name="address"
+                                    label="Wallet Address"
+                                    className="address-box"
+                                >
+                                    {isRemoveAddress}
+
+                                </Form.Item>
+                            </Form>
+                        </div>
+                    </Modal>
                     <div className="panel-container">
 
                         <div className="panel-title" style={{ display: 'flex', justifyContent: 'space-between' }}>
                             <p >L2 Admin</p>
                             <div className='tj' >
                                 <div type="primary" className='kk' onClick={() => { setShowAdd(true) }}>Add</div>
-                                <div type="primary" className='kk' onClick={(e) => { e.target.innerHTML = 'Delete';setShowRemove(true) }}>Mass Delete</div>
+                                <div type="primary" className='kk' onClick={(e) => { 
+                                    // e.target.innerHTML = 'Delete'; 
+                                muchSelect();
+                                // setShowRemove(true) 
+                                }}>Mass Delete</div>
                             </div>
                         </div>
                         <div className="fire-list-box ffad">
@@ -472,7 +512,7 @@ const FireLock = (props) => {
                             {
                                 whitelist.length == 0 ? <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} /> :
                                     whitelist.map((item, index) => (
-                                        <Form className='ffad'>
+                                        <Form className='bdval'>
                                             <div className="list-item" key={index}>
                                                 <Form.Item className="col1 no">
 
@@ -480,23 +520,19 @@ const FireLock = (props) => {
 
                                                 </Form.Item>
                                                 {/* <div className="col1 pid">
-                                {item}
-                                </div> */}
+                                                        {item}
+                                                    </div> */}
                                                 <div className="col1 address">
-                                                    <a> {item}</a>
+                                                    <a name="address"> {item}</a>
                                                 </div>
-                                                {(index == ownerArr.length - 1) && (
-                                                    <div className="col1 sc1" onClick={() => { removeOwner() }}>
-                                                        <img src={sc} className="sc" />
-                                                    </div>
+                                             
+                                                <div className="col1 sc1" onClick={() => {
+                                                    setisRemoveOpen(true)
+                                                    setRemoveAddress(item)
+                                                }}>
+                                                    <img src={picture} className="sc" />
+                                                </div>
 
-                                                )}
-                                                {/* {(index == ownerArr.length - 1) && (
-                                                    <div className="col1 sc1" onClick={() => { removeOwner() }}>
-                                                        <img src={sc} className="sc" />
-                                                    </div>
-
-                                                )} */}
                                             </div>
 
                                         </Form>
@@ -637,55 +673,56 @@ const FireLock = (props) => {
                                         </div>
                                     </div>
                                     {
-                                         discountArr.length==0? <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />:
-                                        discountArr.map((item,index) => {
+                                        discountArr.length == 0 ? <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} /> :
+                                            discountArr.map((item, index) => {
                                                 return (
-                                        <Form form={form} name="control-hooks">
+                                                    <Form form={form} name="control-hooks">
 
 
-                                            <div className="list-item dis">
-                                                <div className='col range'>
-                                                    <Form.Item className='start'
-                                                        validateFirst={true}
-                                                        rules={[
-                                                            // { required: true, message: 'Please input start!' },
-                                                        ]}>
-                                                        <Input placeholder='{item.start}' className="dtoo1" />
+                                                        <div className="list-item dis">
+                                                            <div className='col range'>
+                                                                <Form.Item className='start'
+                                                                    validateFirst={true}
+                                                                    rules={[
+                                                                        // { required: true, message: 'Please input start!' },
+                                                                    ]}>
+                                                                    <Input placeholder='{item.start}' className="dtoo1" />
 
 
-                                                    </Form.Item>
-                                                    <span className='space'>-</span>
-                                                    <Form.Item className='end'
-                                                        validateFirst={true}
-                                                        rules={[
-                                                            // { required: true, message: 'Please input end!' },
-                                                        ]}>
-                                                        <Input placeholder='{item.end}' className="dtoo1" />
+                                                                </Form.Item>
+                                                                <span className='space'>-</span>
+                                                                <Form.Item className='end'
+                                                                    validateFirst={true}
+                                                                    rules={[
+                                                                        // { required: true, message: 'Please input end!' },
+                                                                    ]}>
+                                                                    <Input placeholder='{item.end}' className="dtoo1" />
 
-                                                    </Form.Item>
-                                                </div>
-                                                <div className='col disamount'>
-                                                    <Form.Item className='dis1'
-                                                        validateFirst={true}
-                                                        rules={[
-                                                            // { required: true, message: 'Please input discount!' },
-                                                        ]}>
-                                                        <Input placeholder='{item.discount}' className="dtoo1" />
+                                                                </Form.Item>
+                                                            </div>
+                                                            <div className='col disamount'>
+                                                                <Form.Item className='dis1'
+                                                                    validateFirst={true}
+                                                                    rules={[
+                                                                        // { required: true, message: 'Please input discount!' },
+                                                                    ]}>
+                                                                    <Input placeholder='{item.discount}' className="dtoo1" />
 
-                                                    </Form.Item>
+                                                                </Form.Item>
 
-                                                </div>
-                                                <div className='col price'>
-                                                    czxc
-                                                </div>
-                                            </div>
+                                                            </div>
+                                                            <div className='col price'>
+                                                                czxc
+                                                            </div>
+                                                        </div>
 
 
-                                        </Form>
+                                                    </Form>
 
-                                           ) })
-                                    }   
-                                    </div>
+                                                )
+                                            })
+                                    }
+                                </div>
                             </div>
                             <Button type="primary" className="max-btn" style={{ width: '45%', margin: '1em 25%' }} onClick={() => {
                                 setDiscountFactor()

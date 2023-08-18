@@ -26,7 +26,7 @@ export default styled.div`
       @media screen and (min-width: 1950px) {
         .content-box {
           display: flex;
-          padding: 2em 0;
+          padding: 1.5em 0;
         }
 
    
@@ -121,7 +121,7 @@ export default styled.div`
       @media screen and (max-width: 1950px) {
         .content-box {
           display: flex;
-          padding: 2em 0;
+          padding:1.5em 0;
         }
 
    
@@ -214,7 +214,7 @@ export default styled.div`
       @media screen and (max-width: 1500px) {
         .content-box {
           display: flex;
-          padding: 2em 0;
+          padding: 1.5em 0;
         }
 
      
@@ -304,7 +304,7 @@ export default styled.div`
 
         .content-box {
           display: block;
-          padding: 1em 0;
+          padding: 1.5em 0;
         }
 
         .panel-box {

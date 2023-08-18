@@ -119,9 +119,72 @@ export default   styled.div`
   /* mobile style */
   @media screen and (max-width: 1500px) {
     .dialog-content{
-      width: 90vw;
-      left: calc(5vw);
+    position: fixed;
+    z-index: 1;
+    top: calc(20vh);
+    left: calc(50vw - 250px);
+    width: 550px;
+    background: #241B1B;
+    border-radius: 13px;
+    overflow-y: auto;
+height:400px;
+    border: 1px solid #3E3737;
+    padding: 30px;
+
+    .header{
+      
+      display: flex;
+    -webkit-box-pack: justify;
+    justify-content: center; 
+     .close{
+        cursor: pointer;
+         
+      }
+        .title{
+      font-size: 20px;
+      text-align: center;
+      font-family: Roboto-Bold, Roboto;
+      font-weight: bold;
+      color: #FFFFFF;
+      margin: auto;
+      line-height: 29px;
+      }
+}     
+    .dialog-value{
+      height: 24px;
+      font-size: 20px;
+      font-family: Helvetica-Bold, Helvetica;
+      font-weight: bold;
+      color: #FFFFFF;
+      line-height: 24px;
     }
+    .dialog-name,.ant-form-item-label label{
+      padding-bottom: 1em ;
+      font-size: 18px;
+      font-family: Roboto-Bold, Roboto;
+      font-weight: bold;
+      color: #aaa;
+      margin-top: 1em;
+      line-height: 29px;
+    }
+
+    
+    .dialog-address{
+      text-align: center;
+      font-size: 20px;
+      font-family: Helvetica-Bold, Helvetica;
+      font-weight: bold;
+      color: #FF9260;
+      line-height: 24px;
+    }
+    .sub-btn{
+      font-size: 17px;
+      margin: 1.5em 44px 0.5em;
+      width: 400px;
+      height: 45px;
+    }
+  }
+    
 
   }
 `

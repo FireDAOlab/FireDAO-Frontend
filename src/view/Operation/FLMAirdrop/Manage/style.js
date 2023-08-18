@@ -1,22 +1,255 @@
 import styled from "styled-components";
-export default   styled.div`
-  .panel-box {
+export default styled.div`
+
+@media screen and (max-width: 1950px){
+    .panel-box {
     width: 100%;
-
-    .panel-container {
-      width: 90%;
-
-      .search-box {
-        display: flex;
-      }
-    }
-
-    .panel-title {
+    .panel-container{
       width: 100%;
-      display: flex;
-      justify-content: space-between;
     }
   }
+  
+  .page-title{
+    font-size: 30px;
+    font-family: Roboto-Bold, Roboto;
+    font-weight: bold;
+    padding: 0px 11.7%;
+    color: white;
+  }
+  .header-nav {
+    padding: 10px 11.7%;
+    display: flex;
+    width: 100%;
+
+    .fire-nav-list {
+      height: 50px;
+    width: 45%;
+    line-height:15px;
+      .nav-item {
+        width:42%;
+        font-size:18px;
+      }
+    }
+  }
+  .ant-form-item-label>label {
+                color: rgba(138, 128, 128, 1);
+                font-size:18px ;
+            }
+            .ant-input-affix-wrapper{
+                font-size:18px ;
+                color: white;
+                border-radius: 50px;
+            }
+  .ant-form-item-control-input{
+    border-radius:50px;
+    .ant-input{
+        border-radius:50px;
+        font-size:18px;
+    }
+  }
+  
+  .content-item{
+        .title{
+            font-size:30px;
+            font-family: Roboto-Bold, Roboto;
+font-weight: bold;
+text-align:left;
+margin-bottom:0.6em;
+        }
+    }
+
+    .part1{
+    .content-item{
+        .ownerModify{
+           
+            width: 50%;
+            .ownerLeft{
+                width: 100%;
+                font-size: 18px;
+font-family: Roboto-SemiBold, Roboto;
+font-weight: 600;
+color: #8A8080;
+
+                .current{
+                    width: 100%;
+                    height: 40px;
+                    border: 1px solid rgba(255, 255, 255, 0.10);
+                    background:rgba(255,255,255,0.1);
+                    text-align:left;
+
+                    p{
+                        width: 100%;
+                        height: 100%;
+                        color: white;
+                        font-size:18px;
+                        padding: 0em 1em;
+                        line-height:40px;
+                    }
+                }
+            }
+            .ownerRight{
+                margin:1em 0;
+                width: 100%;
+                font-size: 18px;
+font-family: Roboto-SemiBold, Roboto;
+font-weight: 600;
+color: #8A8080;
+                
+                .ant-form input, .ant-form textarea{
+                        font-size:14px;
+                    }
+            }
+        }
+
+        .status{
+            width: 18%;
+            .pause{
+                font-size: 18px;
+font-family: Roboto-Medium, Roboto;
+font-weight: 600;
+color: #8A8080;
+margin:1em 0;
+            }
+           
+              
+.current,.statues {
+    display: inline-flex;
+    justify-content: space-between;
+    width: 100%;
+                font-size: 16px;
+font-family: Roboto-Medium, Roboto;
+font-weight: 500;  
+}
+  
+
+
+        }
+        .submi{
+            width:50%;
+            display:flex;
+            justify-content:space-between;
+            .max-btn{
+            width: 45%;
+            font-size: 20px;
+font-family: Russo One-Regular, Russo One;
+font-weight: 400;
+height: 40px;
+margin: 0.5em 0em;
+border-radius:50px;
+background: linear-gradient(32deg, #FF4E50 0%, #F9D423 100%);
+        }
+        }
+        .max-btn{
+            width: 18%;
+            font-size: 20px;
+font-family: Russo One-Regular, Russo One;
+font-weight: 400;
+height: 40px;
+margin: 0.5em 0em;
+border-radius:50px;
+background: linear-gradient(32deg, #FF4E50 0%, #F9D423 100%);
+        }
+
+
+        .coinModify{
+            width: 50%;
+            .current{
+                font-family: Roboto-SemiBold, Roboto;
+                    font-weight: 600;   
+                    width: 100%;
+                    height: 40px;
+                    border: 1px solid rgba(255, 255, 255, 0.10);
+                    background:rgba(255,255,255,0.1);
+                    text-align:left;
+
+                    p{
+                       
+                        width: 100%;
+                        height: 100%;
+                        color: white;
+                        font-size:18px;
+                        padding: 0em 1em;
+                        line-height:40px;
+                    }
+                }
+        }
+
+
+        .coinWith{
+            width: 50%;
+            .current{
+                font-family: Roboto-SemiBold, Roboto;
+                    font-weight: 600;   
+                    width: 100%;
+                    height: 40px;
+                    border: 1px solid rgba(255, 255, 255, 0.10);
+                    background:rgba(255,255,255,0.1);
+                    text-align:left;
+
+                    p{
+                       
+                        width: 100%;
+                        height: 100%;
+                        color: white;
+                        font-size:18px;
+                        padding: 0em 1em;
+                        line-height:40px;
+                    }
+                }
+              
+        }
+
+        .setFq{
+            width: 50%;
+            .current{
+                font-family: Roboto-SemiBold, Roboto;
+                    font-weight: 600;   
+                    width: 100%;
+                    height: 40px;
+                    border: 1px solid rgba(255, 255, 255, 0.10);
+                    background:rgba(255,255,255,0.1);
+                    text-align:left;
+
+                    p{
+                       
+                        width: 100%;
+                        height: 100%;
+                        color: white;
+                        font-size:18px;
+                        padding: 0em 1em;
+                        line-height:40px;
+                    }
+                }
+              
+        }
+
+        .setFlm{
+            width: 50%;
+            .current{
+                font-family: Roboto-SemiBold, Roboto;
+                    font-weight: 600;   
+                    width: 100%;
+                    height: 40px;
+                    border: 1px solid rgba(255, 255, 255, 0.10);
+                    background:rgba(255,255,255,0.1);
+                    text-align:left;
+
+                    p{
+                       
+                        width: 100%;
+                        height: 100%;
+                        color: white;
+                        font-size:18px;
+                        padding: 0em 1em;
+                        line-height:40px;
+                    }
+                }
+              
+        }
+    }
+  }
+
+
 
   .fire-list-box-airdrop {
     .col:nth-child(1) {
@@ -103,49 +336,9 @@ export default   styled.div`
     }
   }
 
-  .content-item {
-    margin-top: 2em;
-  }
 
-  .current {
-    display: flex;
-    align-items: center;
-
-    .name {
-      font-weight: bold;
-      font-size: 18px;
-    }
-
-    .value {
-      margin-left: 10px;
-    }
-  }
-
-  .nav-list {
-
-    display: flex;
-    background: #3F3535;
-    border-radius: 10px;
-    border: 1px solid #333333;
-    padding: 3px;
-
-    .nav-item {
-      cursor: pointer;
-      padding: 10px 30px;
-      border-radius: 10px;
-      margin-right: 10px;
-      font-size: 16px;
-      font-weight: bold;
-
-      &.active {
-        background: linear-gradient(320deg, #DD3642 0%, #FFC02C 100%);
-        box-shadow: 0px 3px 6px 0px rgba(128, 4, 149, 0.3);
-      }
-
-      &:nth-last-child(1) {
-        margin-right: 0;
-      }
-    }
-  }
+  
+}
+ 
 `
 
