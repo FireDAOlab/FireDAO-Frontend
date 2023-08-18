@@ -839,17 +839,7 @@ const OGPoolPublic = (props) => {
                 <div className="team-part">
                     <div className="panel-box">
                         <div className="panel-container">
-                            <div className="panel-title flex-title" >
-                                Team Income
-                                <div className="right flex-box">
-                                    <div className="reward-item">
-                                        <img width={20} src={ethereum} alt=""/>  {showNum(rewardTotalETH)}
-                                    </div>
-                                    <div className="reward-item">
-                                        <img width={20} src={FDTIcon} alt=""/> { showNum(rewardTotalFLM)}
-                                    </div>
-                                </div>
-                            </div>
+
                             <div className="in-line">
                                 <div className="left">
                                     Wallet Address
@@ -871,9 +861,17 @@ const OGPoolPublic = (props) => {
 
 
                             <div className="team-count">
-                               <div className="panel-title">
-                                   Team
-                               </div>
+                                <div className="panel-title flex-title" >
+                                    Team Income
+                                    <div className="right flex-box">
+                                        <div className="reward-item">
+                                            <img width={20} src={ethereum} alt=""/>  {showNum(rewardTotalETH)}
+                                        </div>
+                                        <div className="reward-item">
+                                            <img width={20} src={FDTIcon} alt=""/> { showNum(rewardTotalFLM)}
+                                        </div>
+                                    </div>
+                                </div>
                                 <div className="in-line">
                                     <div className="info-item">
                                         <strong>Level1</strong>
@@ -929,7 +927,7 @@ const OGPoolPublic = (props) => {
                                                 {item.level}
                                             </div>
                                             <div className="col address">
-                                                {item._user}
+                                                <a target="_blank" href={develop.ethScan  + "/address/" + item._user}> {item._user} </a>
                                             </div>
                                             <div className="col">
                                                 {showNum(item.ethIncome, 6)}
