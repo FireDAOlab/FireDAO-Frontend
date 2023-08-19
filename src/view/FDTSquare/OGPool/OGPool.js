@@ -1,11 +1,11 @@
-import React, {useEffect, useRef, useState} from 'react';
-import {useConnect} from "../../../api/contracts";
+import React, { useEffect, useRef, useState } from 'react';
+import { useConnect } from "../../../api/contracts";
 import BigNumber from "bignumber.js"
 import AddNomalWhiteList from "./ThreelWhiteList";
 import AddThreeWhiteList from "./components/OgAdminLevel2";
-import {showNum} from "../../../utils/bigNumberUtil";
+import { showNum } from "../../../utils/bigNumberUtil";
 import ethereum from "../../../imgs/ethereum.svg";
-import {formatAddress} from "../../../utils/publicJs";
+import { formatAddress } from "../../../utils/publicJs";
 import ConnectWallet from "../../../component/ConnectWallet/ConnectWallet";
 import user3 from "../../../imgs/user3.png"
 import download from "../../../imgs/download.png"
@@ -17,20 +17,20 @@ import {
     Form,
     Pagination, Input, Modal
 } from 'antd';
-import {getContractByName, getContractByContract} from "../../../api/connectContract";
-import {dealMethod, dealPayMethod, viewMethod} from "../../../utils/contractUtil"
+import { getContractByName, getContractByContract } from "../../../api/connectContract";
+import { dealMethod, dealPayMethod, viewMethod } from "../../../utils/contractUtil"
 
 import listIcon from "../../../imgs/list-icon.webp";
 import develop from "../../../env";
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import judgeStatus from "../../../utils/judgeStatus";
-import {getDonateRecord, getAllRegisters, getRecommender} from "../../../graph/donate";
+import { getDonateRecord, getAllRegisters, getRecommender } from "../../../graph/donate";
 import OGPoolStyle from "./OGPoolStyle";
-import {ETHDecimals, FDTDecimals, USDTDecimals, FLMDecimals, ZeroAddress} from "../../../config/constants";
+import { ETHDecimals, FDTDecimals, USDTDecimals, FLMDecimals, ZeroAddress } from "../../../config/constants";
 import FDTIcon from "../../../imgs/FDT-icon.png";
 
 const OGPoolPublic = (props) => {
-    let {state, dispatch} = useConnect();
+    let { state, dispatch } = useConnect();
     const [activeNav, setActiveNav] = useState(1)
     const [total, setTotal] = useState(0)
     const [myRecommender, setMyRecommender] = useState()
@@ -99,7 +99,7 @@ const OGPoolPublic = (props) => {
     const getUserInfo = async () => {
         if (!state.pid) {
             const userInfo = await handleUserViewMethod("userInfo", [state.account])
-            dispatch({type: "SET_PID", payload: userInfo.PID})
+            dispatch({ type: "SET_PID", payload: userInfo.PID })
         }
     }
     const getAdmin = async () => {
@@ -263,9 +263,9 @@ const OGPoolPublic = (props) => {
         setPageCount(count)
     }
 
-    const getAddressRecommender = async ()=>{
-        const res =  await getRecommender(state.account)
-        if(res && res.data){
+    const getAddressRecommender = async () => {
+        const res = await getRecommender(state.account)
+        if (res && res.data) {
             setMyRecommender(res.data.allRegisters[0].recommenders)
         }
     }
@@ -476,16 +476,16 @@ const OGPoolPublic = (props) => {
     return (
         <OGPoolStyle>
             <Modal className="model-dialog" title="Sign up" open={isShowRegister} onOk={handleRegister}
-                   footer={[
+                footer={[
 
-                       <Button className="add-btn" type="primary" onClick={() => {
-                           handleRegister()
-                       }}>Submit</Button>
+                    <Button className="add-btn" type="primary" onClick={() => {
+                        handleRegister()
+                    }}>Submit</Button>
 
-                   ]}
-                   onCancel={() => {
-                       setIsShowRegister(false)
-                   }}>
+                ]}
+                onCancel={() => {
+                    setIsShowRegister(false)
+                }}>
                 <Form form={form} name="control-hooks" className="form">
                     <strong>Wallet Address</strong>
                     <Form.Item
@@ -505,7 +505,7 @@ const OGPoolPublic = (props) => {
                     >
                         <div className="input-box">
 
-                            <Input/>
+                            <Input />
                         </div>
                     </Form.Item>
 
@@ -513,7 +513,8 @@ const OGPoolPublic = (props) => {
             </Modal>
             <div className="page-title">
                 OG Pool
-                {isAdmin && <Button style={{
+                {/* {isAdmin &&  */}
+                <Button style={{
                     float: 'right',
                     background: '#373232',
                     margin: '0px 13px',
@@ -524,11 +525,12 @@ const OGPoolPublic = (props) => {
                     border: '1px solid rgba(255, 255, 255, 0.15)',
                     borderRadius: '50%',
                 }}
-                                    onClick={() => {
-                                        history("/OGPoolAdmin")
-                                    }}>
-                    <img src={user3} style={{width: '22px', marginLeft: '-10px', marginTop: '-10px'}}/>
-                </Button>}
+                    onClick={() => {
+                        history("/OGPoolAdmin")
+                    }}>
+                    <img src={user3} style={{ width: '22px', marginLeft: '-10px', marginTop: '-10px' }} />
+                </Button>
+                {/* } */}
                 {(isSecondAdmin | isThreeAdmin || isFourAdmin) &&
                     <Button style={{
                         float: 'right',
@@ -541,10 +543,10 @@ const OGPoolPublic = (props) => {
                         border: '1px solid rgba(255, 255, 255, 0.15)',
                         borderRadius: '50%',
                     }}
-                            onClick={() => {
-                                history("/OGUserAdmin")
-                            }}>
-                        <img src={user3} style={{width: '22px', marginLeft: '-10px', marginTop: '-10px'}}/>
+                        onClick={() => {
+                            history("/OGUserAdmin")
+                        }}>
+                        <img src={user3} style={{ width: '22px', marginLeft: '-10px', marginTop: '-10px' }} />
                     </Button>
                 }
 
@@ -580,43 +582,40 @@ const OGPoolPublic = (props) => {
                                     PID：{state.pid}
                                 </div> */}
                             </div>
-                            <div className="status-info">
-                                <div className="info-item">
-                                    {!myStatus.registerStatus && <Button onClick={() => {
-                                        setIsShowRegister(true)
-                                    }}>Unregistered</Button>}
-                                    {myStatus.registerStatus && <Button>Registered</Button>}
-                                </div>
-                                <div className="info-item">
 
-                                    {!myStatus.activeStatus && <Button>Inactivated</Button>}
-                                    {myStatus.activeStatus && <Button>Activated</Button>}
-                                </div>
-                            </div>
                             <div className="donate-info">
                                 <div className="info-item">
                                     <div className="name">
-                                        FDT-OG Donate Pool Amount
+                                        FDT-OG Amount
                                     </div>
                                     <div className="value">
                                         {showNum(FDTBalance)}
                                     </div>
                                 </div>
-                                <div className="flex-box">
-                                    <div className="info-item">
-                                        <div className="name">
-                                            Value
-                                        </div>
-                                        <div className="value">
-                                            {showNum(BigNumber(FDTBalance).multipliedBy(salePrice))}
-                                        </div>
+                                {/* <div className="flex-box"> */}
+                                <div className="info-item">
+                                    <div className="name">
+                                        Price
                                     </div>
-                                    <div className="info-item">
+                                    <div className="value">
+                                        1 FDT-OG = 0.01 USDT
+                                    </div>
+                                </div>
+                                <div className="info-item">
+                                    <div className="name">
+                                        Value
+                                    </div>
+                                    <div className="value">
+                                        {showNum(BigNumber(FDTBalance).multipliedBy(salePrice))}
+                                    </div>
+                                    {/* </div> */}
+                                    {/* <div className="info-item">
                                         <div className="name">
                                             Total Donate
                                         </div>
                                         <div className="value">
-                                            <p><img src={ethereum}
+                                            <p>
+                                                <img src={ethereum}
                                                     width={20}
                                                     style={{
                                                         marginTop: '-5px',
@@ -624,7 +623,7 @@ const OGPoolPublic = (props) => {
                                                     }}/>{showNum(totalDonate)} ETH
                                             </p>
                                         </div>
-                                    </div>
+                                    </div> */}
 
 
                                 </div>
@@ -632,7 +631,35 @@ const OGPoolPublic = (props) => {
 
 
                             <div className="donation-box">
+                                <div className="status-info">
+                                    <div className="info-item">
+                                        {!myStatus.registerStatus &&
+                                            <Button onClick={() => {
+                                                setIsShowRegister(true)
+                                            }}>
+                                                <div className='statusbtu'></div>
+                                                Unregistered
+                                            </Button>}
+                                        {myStatus.registerStatus && 
+                                        <Button>
+                                            <div className='statusbtu1'></div>
+                                            Registered
+                                        </Button>}
+                                    </div>
+                                    <div className="info-item">
 
+                                        {!myStatus.activeStatus && 
+                                        <Button>
+                                             <div className='statusbtu1'></div>
+                                            Inactivated
+                                            </Button>}
+                                        {myStatus.activeStatus && 
+                                        <Button>
+                                             <div className='statusbtu'></div>
+                                            Activated
+                                            </Button>}
+                                    </div>
+                                </div>
                                 <div className="title donate-header">
                                     Donate
 
@@ -642,13 +669,12 @@ const OGPoolPublic = (props) => {
                                         <div className="balance-box">
 
                                             <p>Value: $ </p>
-
+                                        
                                             <div className="name">
-                                                Balance:
+                                                Balance:{showNum(state.ethBalance)} 
+                                                {/* <span>ETH</span> */}
                                             </div>
-                                            <div className="value">
-                                                {showNum(state.ethBalance)} <span>ETH</span>
-                                            </div>
+                                           
                                         </div>
                                         <Form.Item
                                             name="amount"
@@ -662,7 +688,7 @@ const OGPoolPublic = (props) => {
                                                     onChange={(e) => {
                                                         getfdtAmount(e)
                                                     }}
-                                                    style={{width: 200}}
+                                                    style={{ width: 200 }}
                                                     options={coinOptions}
                                                     placeholder="0"
                                                     filterOption={(inputValue, option) =>
@@ -671,27 +697,26 @@ const OGPoolPublic = (props) => {
                                                     }
                                                 />
                                                 <div className="right-tip">
-                                                    <img className="coin-icon" src={ethereum} alt=""/>
+                                                    <img className="coin-icon" src={ethereum} alt="" />
                                                     ETH
                                                 </div>
                                             </div>
                                         </Form.Item>
                                     </div>
-                                    <img className="down-icon" src={download} alt=""/>
+                                    <img className="down-icon" src={download} alt="" />
 
 
-                                    <div className="donate-part" style={{marginTop: '8px'}}>
+                                    <div className="donate-part" style={{ marginTop: '8px' }}>
                                         <div className="balance-box">
-                                            <div className="name" style={{fontSize: '16px'}}>
+                                            <div className="name" style={{ fontSize: '16px' }}>
                                                 Your receive
                                             </div>
                                             <div className="balance-box">
                                                 <div className="name">
-                                                    Balance:
+                                                    Balance:{showNum(fdtBalance)} 
+                                                    {/* <span>FDT</span> */}
                                                 </div>
-                                                <div className="value" style={{fontSize: '16px'}}>
-                                                    {showNum(fdtBalance)} <span>FDT</span>
-                                                </div>
+                                              
                                             </div>
 
                                         </div>
@@ -706,13 +731,13 @@ const OGPoolPublic = (props) => {
                                                     {exchangeAmount}
                                                 </div>
                                                 <div className="right-tip">
-                                                    <img className="coin-icon" width={20} src={FDTIcon} alt=""/>
+                                                    <img className="coin-icon" width={20} src={FDTIcon} alt="" />
                                                     FDT-OG
                                                 </div>
                                             </div>
                                         </Form.Item>
                                     </div>
-                                    {status == 0 && <ConnectWallet className="connect-button"/>}
+                                    {status == 0 && <ConnectWallet className="connect-button" />}
                                     {
                                         status == 1 && !inputValue &&
                                         <Button type="primary" className="donate">
@@ -734,16 +759,16 @@ const OGPoolPublic = (props) => {
                                         </Button>
                                     }
 
-                                    <div className="tip">
-                                        I have already donated {} ETH, I can donate up to {} ETH, I can continue
+                                    {/* <div className="tip">
+                                        I have already donated { } ETH, I can donate up to { } ETH, I can continue
                                         donating {showNum(state.ethBalance)} ETH.
-                                        {/* 1FDT-OG = {salePrice} USD ，Donate up to 2ETH */}
-                                    </div>
+                                        1FDT-OG = {salePrice} USD ，Donate up to 2ETH
+                                    </div> */}
                                 </Form>
                             </div>
                         </div>
                     </div>
-                    <div className="panel-box part2" style={{display: "none"}}>
+                    <div className="panel-box part2" style={{ display: "none" }}>
                         <div className="panel-container">
                             <div className="list-top-part">
                                 <div className="panel-title">
@@ -770,13 +795,13 @@ const OGPoolPublic = (props) => {
                                     }
                                 </div>
                             </div>
-                            <div className="fire-list-box" style={{minWidth: '100%'}}>
+                            <div className="fire-list-box" style={{ minWidth: '100%' }}>
                                 <div className="list-header flex-box1">
                                     <div className="col">
                                         No.
                                     </div>
                                     <div className="col">
-                                        PID<img src={listIcon} alt="" className="list-icon"/>
+                                        PID<img src={listIcon} alt="" className="list-icon" />
                                     </div>
                                     <div className="col">
                                         Username
@@ -825,9 +850,9 @@ const OGPoolPublic = (props) => {
                             <div className="pagination">
                                 {
                                     recordNav == 1 && <Pagination current={curPage} showSizeChanger
-                                                                  onShowSizeChange={handleShowSizeChange}
-                                                                  onChange={onChangePage} total={total}
-                                                                  defaultPageSize={pageCount}/>
+                                        onShowSizeChange={handleShowSizeChange}
+                                        onChange={onChangePage} total={total}
+                                        defaultPageSize={pageCount} />
                                 }
                             </div>
                         </div>
@@ -843,10 +868,10 @@ const OGPoolPublic = (props) => {
                                 Team Income
                                 <div className="right flex-box">
                                     <div className="reward-item">
-                                        <img width={20} src={ethereum} alt=""/>  {showNum(rewardTotalETH)}
+                                        <img width={20} src={ethereum} alt="" />  {showNum(rewardTotalETH)}
                                     </div>
                                     <div className="reward-item">
-                                        <img width={20} src={FDTIcon} alt=""/> { showNum(rewardTotalFLM)}
+                                        <img width={20} src={FDTIcon} alt="" /> {showNum(rewardTotalFLM)}
                                     </div>
                                 </div>
                             </div>
@@ -871,9 +896,9 @@ const OGPoolPublic = (props) => {
 
 
                             <div className="team-count">
-                               <div className="panel-title">
-                                   Team
-                               </div>
+                                <div className="panel-title">
+                                    Team
+                                </div>
                                 <div className="in-line">
                                     <div className="info-item">
                                         <strong>Level1</strong>
@@ -997,9 +1022,9 @@ const OGPoolPublic = (props) => {
                             <div className="pagination">
                                 {
                                     <Pagination current={curPage} showSizeChanger
-                                                onShowSizeChange={handleShowSizeChange}
-                                                onChange={onChangePage} total={total}
-                                                defaultPageSize={pageCount}/>
+                                        onShowSizeChange={handleShowSizeChange}
+                                        onChange={onChangePage} total={total}
+                                        defaultPageSize={pageCount} />
                                 }
                             </div>
                         </div>

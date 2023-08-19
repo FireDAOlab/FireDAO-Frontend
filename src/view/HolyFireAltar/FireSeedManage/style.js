@@ -1866,7 +1866,8 @@ line-height: 18px;
 .ant-input{
   font-size:14px;
 }
-.ant-form{ input{
+.ant-form{ 
+    input{
   font-size:14px;
 
 }}
@@ -2143,7 +2144,7 @@ line-height: 18px;
           }
           &:nth-child(3){
             width: 32%;
-            margin-left:5px;
+            margin-left:10px;
           }
          
         }
@@ -2155,7 +2156,7 @@ line-height: 18px;
                 border-radius:0px;
                 border-bottom:1px solid rgba(255, 255, 255, 0.1);
                 .value{
-                  
+                    margin-left:10px;
                   .dtoo1{
       width: 85%;
       text-align:center;        
@@ -2560,7 +2561,7 @@ line-height: 18px;
          margin: 1.5em 0;
             
             .flex-box1 {
-                padding: 20px 1.5em;
+                padding: 20px 1em;
               }
             .flex-box1,.lever {
                 justify-content: flex-start;  
@@ -2589,7 +2590,7 @@ line-height: 18px;
                 border-radius:0px;
                 border-bottom:1px solid rgba(255, 255, 255, 0.1);
                 .value{
-                  
+                  margin-left:10px;
                   .dtoo1{
       width: 85%;
       text-align:center;        

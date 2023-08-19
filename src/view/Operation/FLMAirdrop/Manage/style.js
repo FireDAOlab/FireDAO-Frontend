@@ -14,6 +14,22 @@ export default styled.div`
     border-radius:5px;
 
 }
+.ant-switch-checked {
+      /* margin-left: 50px; */
+      background: linear-gradient(32deg, #FF4E50 0%, #F9D423 100%);
+    }
+    .ant-switch-handle {
+      width: 24px;
+      height: 24px;
+      top: 0px;
+    }
+
+    .ant-switch {
+      margin-left: 55px;
+      min-width: 45px;
+      height: 25px;
+      margin-top: 6px;
+    }
 
 @media screen and (min-width: 1950px){
     .panel-box {
@@ -39,6 +55,7 @@ export default styled.div`
       height: 50px;
     width:100%;
     line-height:15px;
+    padding: 0em;
     .nav-list{
         width:38%;
         height: 50px;
@@ -76,7 +93,7 @@ export default styled.div`
     border-radius:50px;
     .ant-input{
         border-radius:50px;
-        font-size:18px;
+        font-size:16px;
     }
   }
   
@@ -113,7 +130,7 @@ color: #8A8080;
                         width: 100%;
                         height: 100%;
                         color: white;
-                        font-size:18px;
+                        font-size:16px;
                         padding: 0em 1em;
                         line-height:40px;
                     }
@@ -134,9 +151,9 @@ color: #8A8080;
         }
 
         .status{
-            width: 18%;
+            width: 20%;
             .pause{
-                font-size: 18px;
+                font-size: 17px;
 font-family: Roboto-Medium, Roboto;
 font-weight: 600;
 color: #8A8080;
@@ -144,13 +161,15 @@ margin:1em 0;
             }
            
               
-.current,.statues {
-    display: inline-flex;
-    justify-content: space-between;
+.statues {
     width: 100%;
-                font-size: 16px;
+p{
+    font-size: 18px;
 font-family: Roboto-Medium, Roboto;
-font-weight: 500;  
+font-weight: 500;
+    display: flex;
+        justify-content: space-between;
+}
 }
   
 
@@ -172,7 +191,7 @@ background: linear-gradient(32deg, #FF4E50 0%, #F9D423 100%);
         }
         }
         .max-btn{
-            width: 18%;
+            width: 20%;
             font-size: 20px;
 font-family: Russo One-Regular, Russo One;
 font-weight: bold;
@@ -199,7 +218,7 @@ background: linear-gradient(32deg, #FF4E50 0%, #F9D423 100%);
                         width: 100%;
                         height: 100%;
                         color: white;
-                        font-size:18px;
+                        font-size:16px;
                         padding: 0em 1em;
                         line-height:40px;
                     }
@@ -223,7 +242,7 @@ background: linear-gradient(32deg, #FF4E50 0%, #F9D423 100%);
                         width: 100%;
                         height: 100%;
                         color: white;
-                        font-size:18px;
+                        font-size:16px;
                         padding: 0em 1em;
                         line-height:40px;
                     }
@@ -247,7 +266,7 @@ background: linear-gradient(32deg, #FF4E50 0%, #F9D423 100%);
                         width: 100%;
                         height: 100%;
                         color: white;
-                        font-size:18px;
+                        font-size:16px;
                         padding: 0em 1em;
                         line-height:40px;
                     }
@@ -271,7 +290,7 @@ background: linear-gradient(32deg, #FF4E50 0%, #F9D423 100%);
                         width: 100%;
                         height: 100%;
                         color: white;
-                        font-size:18px;
+                        font-size:16px;
                         padding: 0em 1em;
                         line-height:40px;
                     }
@@ -355,7 +374,7 @@ margin-right:10px;
       }
         .list-item-admin {
             &:last-child{
-                /* border-bottom: none; */
+                border-bottom: none;
             }
             padding:1em 0.5em;
             width: 94%;
@@ -427,7 +446,7 @@ text-align:left;
       }
         .list-item-airdropA {
             &:last-child{
-                /* border-bottom: none; */
+                border-bottom: none;
             }
             padding:1em 0.5em;
             width: 94%;
@@ -466,12 +485,15 @@ text-align:left;
 .panel-container{
     .panel-title{
         display: flex; 
+        .tj2{
+            display: none;
+        }
         .selectbox{
             display: flex; 
             justify-content:end;
             width: 77%;
             .tj1{
-                margin-left:5px;
+                margin-right:5px;
   width: 17%;
   .kk{
   width: 100%;
@@ -540,7 +562,7 @@ margin-right:10px;
       }
         .list-item-airdrop {
             &:last-child{
-                /* border-bottom: none; */
+                border-bottom: none;
             }
             padding:1em 0.5em;
             width: 94%;
@@ -627,6 +649,7 @@ text-align:left;
     width: 100%;
 
     .fire-nav-list {
+        padding: 0em;
       height: 50px;
     width:100%;
     line-height:15px;
@@ -667,7 +690,7 @@ text-align:left;
     border-radius:50px;
     .ant-input{
         border-radius:50px;
-        font-size:18px;
+        font-size:16px;
     }
   }
   
@@ -704,7 +727,7 @@ color: #8A8080;
                         width: 100%;
                         height: 100%;
                         color: white;
-                        font-size:18px;
+                        font-size:16px;
                         padding: 0em 1em;
                         line-height:40px;
                     }
@@ -725,9 +748,9 @@ color: #8A8080;
         }
 
         .status{
-            width: 18%;
+            width: 20%;
             .pause{
-                font-size: 18px;
+                font-size: 17px;
 font-family: Roboto-Medium, Roboto;
 font-weight: 600;
 color: #8A8080;
@@ -735,13 +758,15 @@ margin:1em 0;
             }
            
               
-.current,.statues {
-    display: inline-flex;
-    justify-content: space-between;
+.statues {
     width: 100%;
-                font-size: 16px;
+p{
+    font-size: 18px;
 font-family: Roboto-Medium, Roboto;
-font-weight: 500;  
+font-weight: 500;
+    display: flex;
+        justify-content: space-between;
+}
 }
   
 
@@ -763,7 +788,7 @@ background: linear-gradient(32deg, #FF4E50 0%, #F9D423 100%);
         }
         }
         .max-btn{
-            width: 18%;
+            width: 20%;
             font-size: 20px;
 font-family: Russo One-Regular, Russo One;
 font-weight: bold;
@@ -790,7 +815,7 @@ background: linear-gradient(32deg, #FF4E50 0%, #F9D423 100%);
                         width: 100%;
                         height: 100%;
                         color: white;
-                        font-size:18px;
+                        font-size:16px;
                         padding: 0em 1em;
                         line-height:40px;
                     }
@@ -814,7 +839,7 @@ background: linear-gradient(32deg, #FF4E50 0%, #F9D423 100%);
                         width: 100%;
                         height: 100%;
                         color: white;
-                        font-size:18px;
+                        font-size:16px;
                         padding: 0em 1em;
                         line-height:40px;
                     }
@@ -838,7 +863,7 @@ background: linear-gradient(32deg, #FF4E50 0%, #F9D423 100%);
                         width: 100%;
                         height: 100%;
                         color: white;
-                        font-size:18px;
+                        font-size:16px;
                         padding: 0em 1em;
                         line-height:40px;
                     }
@@ -862,7 +887,7 @@ background: linear-gradient(32deg, #FF4E50 0%, #F9D423 100%);
                         width: 100%;
                         height: 100%;
                         color: white;
-                        font-size:18px;
+                        font-size:16px;
                         padding: 0em 1em;
                         line-height:40px;
                     }
@@ -945,7 +970,7 @@ margin-right:10px;
       }
         .list-item-admin {
             &:last-child{
-                /* border-bottom: none; */
+                border-bottom: none;
             }
             padding:1em 0.5em;
             width: 94%;
@@ -1017,7 +1042,7 @@ text-align:left;
       }
         .list-item-airdropA {
             &:last-child{
-                /* border-bottom: none; */
+                border-bottom: none;
             }
             padding:1em 0.5em;
             width: 94%;
@@ -1056,12 +1081,15 @@ text-align:left;
 .panel-container{
     .panel-title{
         display: flex; 
+        .tj2{
+            display: none;
+        }
         .selectbox{
             display: flex; 
             justify-content:end;
             width: 77%;
             .tj1{
-                margin-left:5px;
+                margin-right:5px;
   width: 17%;
   .kk{
   width: 100%;
@@ -1130,7 +1158,7 @@ margin-right:10px;
       }
         .list-item-airdrop {
             &:last-child{
-                /* border-bottom: none; */
+                border-bottom: none;
             }
             padding:1em 0.5em;
             width: 94%;
@@ -1218,6 +1246,7 @@ text-align:left;
     width: 100%;
 
     .fire-nav-list {
+        padding: 0em;
         height: 45px;
     width:100%;
     line-height:15px;
@@ -1314,23 +1343,25 @@ color: #8A8080;
         }
 
         .status{
-            width: 18%;
+            width: 20%;
             .pause{
-                font-size: 16px;
+                font-size: 15px;
 font-family: Roboto-Medium, Roboto;
 font-weight: 600;
 color: #8A8080;
 margin:1em 0;
             }
            
-              
-.current,.statues {
-    display: inline-flex;
-    justify-content: space-between;
+.statues {
     width: 100%;
-                font-size: 14px;
+             
+p{
+    font-size: 16px;
 font-family: Roboto-Medium, Roboto;
-font-weight: 500;  
+font-weight: 500;
+    display: flex;
+        justify-content: space-between;
+}
 }
   
 
@@ -1352,7 +1383,7 @@ background: linear-gradient(32deg, #FF4E50 0%, #F9D423 100%);
         }
         }
         .max-btn{
-            width: 18%;
+            width: 20%;
             font-size:16px;
 font-family: Russo One-Regular, Russo One;
 font-weight: bold;
@@ -1534,7 +1565,7 @@ margin-right:10px;
       }
         .list-item-admin {
             &:last-child{
-                /* border-bottom: none; */
+                border-bottom: none;
             }
             padding:1em 0.5em;
             width: 94%;
@@ -1590,7 +1621,7 @@ text-align:left;
           }
 
           &:nth-child(2) {
-            width: 35%;
+            width: 30%;
             margin-left:10px;
           }
 
@@ -1599,14 +1630,14 @@ text-align:left;
             margin-left:10px;
           }
           &:nth-child(4) {
-            width:24%;
+            width:30%;
             margin-left:10px;
           }
         }
       }
         .list-item-airdropA {
             &:last-child{
-                /* border-bottom: none; */
+                border-bottom: none;
             }
             padding:1em 0.5em;
             width: 94%;
@@ -1645,12 +1676,15 @@ text-align:left;
 .panel-container{
     .panel-title{
         display: flex; 
+        .tj2{
+            display: none;
+        }
         .selectbox{
             display: flex; 
             justify-content:end;
             width: 77%;
             .tj1{
-                margin-left:5px;
+                margin-right:5px;
   width: 17%;
   .kk{
   width: 100%;
@@ -1719,7 +1753,7 @@ margin-right:10px;
       }
         .list-item-airdrop {
             &:last-child{
-                /* border-bottom: none; */
+                border-bottom: none;
             }
             padding:1em 0.5em;
             width: 94%;
@@ -1797,24 +1831,25 @@ text-align:left;
     font-size: 18px;
     font-family: Roboto-Bold, Roboto;
     font-weight: bold;
-    padding: 0px 11.7%;
+    padding: 0px;
     color: white;
   }
   .header-nav {
-    padding: 10px 11.7%;
+    padding: 0px;
     display: flex;
     width: 100%;
 
     .fire-nav-list {
+        padding: 0em;
         height: 40px;
     width:100%;
     line-height:15px;
     .nav-list{
-        width:65%;
+        width:67%;
         height: 40px;
         display: flex;
         .nav-item {
-        width:50%;
+        width:49%;
         font-size:14px;
       }
     }
@@ -1862,10 +1897,10 @@ margin-bottom:0.6em;
     .content-item{
         .ownerModify{
            
-            width: 50%;
+            width: 100%;
             .ownerLeft{
                 width: 100%;
-                font-size: 16px;
+                font-size: 14px;
 font-family: Roboto-SemiBold, Roboto;
 font-weight: 600;
 color: #8A8080;
@@ -1890,7 +1925,7 @@ color: #8A8080;
             .ownerRight{
                 margin:1em 0;
                 width: 100%;
-                font-size: 16px;
+                font-size: 14px;
 font-family: Roboto-SemiBold, Roboto;
 font-weight: 600;
 color: #8A8080;
@@ -1902,9 +1937,9 @@ color: #8A8080;
         }
 
         .status{
-            width: 18%;
+            width: 100%;
             .pause{
-                font-size: 16px;
+                font-size: 13px;
 font-family: Roboto-Medium, Roboto;
 font-weight: 600;
 color: #8A8080;
@@ -1912,24 +1947,23 @@ margin:1em 0;
             }
            
               
-.current,.statues {
-    display: inline-flex;
-    justify-content: space-between;
+.statues {
     width: 100%;
-                font-size: 14px;
+p{
+    font-size: 14px;
 font-family: Roboto-Medium, Roboto;
-font-weight: 500;  
+font-weight: 500;
+    display: flex;
+        justify-content: space-between;
 }
-  
-
-
+}
         }
         .submi{
-            width:50%;
+            width:100%;
             display:flex;
             justify-content:space-between;
             .max-btn{
-            width: 45%;
+            width: 100%;
             font-size: 16px;
 font-family: Russo One-Regular, Russo One;
 font-weight: bold;
@@ -1940,7 +1974,7 @@ background: linear-gradient(32deg, #FF4E50 0%, #F9D423 100%);
         }
         }
         .max-btn{
-            width: 18%;
+            width: 100%;
             font-size:16px;
 font-family: Russo One-Regular, Russo One;
 font-weight: bold;
@@ -1952,7 +1986,7 @@ background: linear-gradient(32deg, #FF4E50 0%, #F9D423 100%);
 
 
         .coinModify{
-            width: 50%;
+            width: 100%;
             .current{
                 font-family: Roboto-SemiBold, Roboto;
                     font-weight: 600;   
@@ -1976,7 +2010,7 @@ background: linear-gradient(32deg, #FF4E50 0%, #F9D423 100%);
 
 
         .coinWith{
-            width: 50%;
+            width: 100%;
             .current{
                 font-family: Roboto-SemiBold, Roboto;
                     font-weight: 600;   
@@ -2000,7 +2034,7 @@ background: linear-gradient(32deg, #FF4E50 0%, #F9D423 100%);
         }
 
         .setFq{
-            width: 50%;
+            width: 100%;
             .current{
                 font-family: Roboto-SemiBold, Roboto;
                     font-weight: 600;   
@@ -2024,7 +2058,7 @@ background: linear-gradient(32deg, #FF4E50 0%, #F9D423 100%);
         }
 
         .setFlm{
-            width: 50%;
+            width: 100%;
             .current{
                 font-family: Roboto-SemiBold, Roboto;
                     font-weight: 600;   
@@ -2052,15 +2086,16 @@ background: linear-gradient(32deg, #FF4E50 0%, #F9D423 100%);
 width: 100%;
 .panel-container{
     .panel-title{
-        display: flex; 
-        justify-content: space-between ; 
+        display: block; 
         .tj{
+            margin-top:0.5em;
   display: flex;
-  width: 27%;
+  width: 100%;
+
   .kk{
-  width: 48%;
-  height: 40px;
-  line-height:40px;
+  width: 30%;
+  height: 30px;
+  line-height:30px;
   background: rgba(255,255,255,0.15);
 border-radius: 34px 34px 34px 34px;
 font-size:14px;
@@ -2072,7 +2107,7 @@ margin-right:10px;
 
 }
 .search-container {
-            margin-bottom:1em;
+            margin:0.5em 0em;
             .search-box {
               display: flex;
               align-items: center;
@@ -2092,11 +2127,12 @@ margin-right:10px;
             }
           }
     }
+   
 .fire-list-box-admin{
     margin:1.5em 0em;
         .flex-box1{
-          padding: 20px 2.5em;
-          font-size:16px;
+          padding: 20px 1.8em;
+          font-size:14px;
         }
         .flex-box1,  .list-item{
           justify-content: flex-start;
@@ -2104,25 +2140,25 @@ margin-right:10px;
           font-size:14px;
           text-align:left;
           &:nth-child(1) {
-            width: 20%;
-            margin-left:20px;
+            width: 22%;
+            margin-left:5px;
           }
 
           &:nth-child(2) {
-            width: 50%;
-            margin-left:20px;
+            width:45%;
+            margin-left:5px;
           }
 
           &:nth-child(3) {
-            width:10%;
-            margin-left:100px;
+            width:25%;
+            margin-left:5px;
           }
          
         }
       }
         .list-item-admin {
             &:last-child{
-                /* border-bottom: none; */
+                border-bottom: none;
             }
             padding:1em 0.5em;
             width: 94%;
@@ -2161,11 +2197,14 @@ text-align:left;
 }
 }
 
-
+.listheadert{
+    width: 530px;
+}
   .fire-list-box-airdropAmount {
+    overflow: scroll;
     margin:1.5em 0em;
         .flex-box2{
-          padding: 20px 2.5em;
+          padding: 20px 1.8em;
         }
         .flex-box2,  .list-item{
           justify-content: flex-start;
@@ -2173,28 +2212,28 @@ text-align:left;
           font-size:14px;
           text-align:left;
           &:nth-child(1) {
-            width: 15%;
-            margin-left:10px;
+            width: 80px;
+            margin-left:0px;
           }
 
           &:nth-child(2) {
-            width: 35%;
-            margin-left:10px;
+            width: 140px;
+            margin-left:5px;
           }
 
           &:nth-child(3) {
-            width:20%;
-            margin-left:10px;
+            width:80px;
+            margin-left:5px;
           }
           &:nth-child(4) {
-            width:24%;
-            margin-left:10px;
+            width:180px;
+            margin-left:5px;
           }
         }
       }
         .list-item-airdropA {
             &:last-child{
-                /* border-bottom: none; */
+                border-bottom: none;
             }
             padding:1em 0.5em;
             width: 94%;
@@ -2232,18 +2271,16 @@ text-align:left;
     width: 100%;
 .panel-container{
     .panel-title{
-        display: flex; 
-        .selectbox{
-            display: flex; 
-            justify-content:end;
-            width: 77%;
-            .tj1{
+        display: block; 
+        .tj2{
+            float: right;
+            display:block;
                 margin-left:5px;
-  width: 17%;
+  width: 30%;
   .kk{
   width: 100%;
-  height: 40px;
-  line-height:40px;
+  height: 30px;
+  line-height:30px;
   background: rgba(255,255,255,0.15);
 border-radius: 34px 34px 34px 34px;
 font-size:14px;
@@ -2254,8 +2291,14 @@ margin-right:10px;
 }
 
 }
+        .selectbox{
+            display: block; 
+            width: 100%;
+           .tj1{
+            display: none;
+           }
 .search-container {
-            margin-bottom:1em;
+            margin:1em 0em;
             .search-box {
               display: flex;
               align-items: center;
@@ -2275,10 +2318,15 @@ margin-right:10px;
             }
           }}
     }
+    .listheadert{
+        width: 570px;
+    }
   .fire-list-box-airdrop {
     margin:1.5em 0em;
+    overflow: scroll;
         .flex-box3{
-          padding: 20px 2.5em;
+          padding: 20px 1.8em;
+          
         }
         .flex-box3,  .list-item{
           justify-content: flex-start;
@@ -2286,28 +2334,28 @@ margin-right:10px;
           font-size:14px;
           text-align:left;
           &:nth-child(1) {
-            width: 15%;
-            margin-left:10px;
+            width: 80px;
+            margin-left:0px;
           }
 
           &:nth-child(2) {
-            width: 35%;
-            margin-left:10px;
+            width: 140px;
+            margin-left:5px;
           }
 
           &:nth-child(3) {
-            width:20%;
-            margin-left:10px;
+            width:120px;
+            margin-left:5px;
           }
           &:nth-child(4) {
-            width:24%;
-            margin-left:10px;
+            width:190px;
+            margin-left:5px;
           }
         }
       }
         .list-item-airdrop {
             &:last-child{
-                /* border-bottom: none; */
+                border-bottom: none;
             }
             padding:1em 0.5em;
             width: 94%;

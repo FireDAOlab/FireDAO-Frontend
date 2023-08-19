@@ -17,33 +17,8 @@ export default styled.div`
       width: 60%!important;
     }
   }
-  .status-info{
-    display: flex;
-    .info-item{
-      margin-right: 10px;
-    }
-  }
-  .team-part{
-    .in-line{
-      display: flex;
-      justify-content: flex-start;
-      margin-top: 10px;
-      .left{
-        font-weight: bold;
-        margin-right: 20px;
-      }
-      .info-item{
-        margin-right: 10px;
-        strong{
-          margin-right: 10px;
-        }
-      }
-    }
-    .flex-title{
-      display: flex;
-      justify-content: space-between;
-    }
-  }
+  
+ 
   .list-header{
     padding: 10px 6px;
   }
@@ -88,11 +63,11 @@ export default styled.div`
       display: flex;
 
       .fire-nav-list {
-        height: 45px;
-        width: auto;
+        height: 50px;
+        width: 50%;
         .nav-item {
-          width: auto;
-          padding: 0 20px;
+          width: 32%;
+          padding: 0 ;
           font-size: 18px;
         }
       }
@@ -172,25 +147,15 @@ export default styled.div`
       }
 
       .donate-info {
-        margin-top: 2em;
+        margin: 0.5em 0em;
         display: flex;
         justify-content: space-between;
-
-        .flex-box {
-          justify-content: space-between;
-          width: 60%;
-
-          .info-item {
-            margin-left: 50px;
-
-            .value {
-              line-height: 50px !important;
-              font-size: 24px !important;
-            }
-          }
-        }
-
         .info-item {
+            width: 32%;
+            padding: 2em 1.5em;
+            background-color: rgba(26, 20, 20, 1);
+        border-radius: 20px ;
+        border: 1px solid rgba(255,255,255,0.1);
 
           .name {
             font-size: 16px;
@@ -201,28 +166,75 @@ export default styled.div`
           }
 
           .value {
-            font-size: 24px;
+            line-height: 50px !important;
+              font-size: 24px !important;
+font-weight: 900;
             font-family: Roboto-Bold, Roboto;
-            font-weight: bold;
-            color: #FFA756;
-            line-height: 50px;
-            background: white;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: white;
           }
         }
+        /* .flex-box {
+          justify-content: space-between;
+          width: 60%;
+
+          .info-item {
+            background-color: rgba(26, 20, 20, 1);
+        border-radius: 20px ;
+        border: 1px solid rgba(255,255,255,0.1);
+            margin-left: 50px;
+
+            .value {
+              line-height: 50px !important;
+              font-size: 24px !important;
+            }
+          }
+        } */
+
+      
       }
 
 
       .donation-box {
         width: 46%;
-
-        margin: 0 auto;
+        margin: 1em auto;
         background: rgba(26, 20, 20, 1);
         border-radius: 20px;
         border: 1px solid rgba(255, 255, 255, 0.1);
         padding: 20px;
-
+        .status-info{
+    display: flex;
+    justify-content:space-between;
+   margin-bottom:1.5em;
+    .info-item{
+        width: 35%;
+        display: flex;
+        background: rgba(255,255,255,0.1);
+border-radius: 50px;
+border: 1px solid rgba(255,255,255,0.1);
+.statusbtu{
+display: inline-table;
+    width: 8px;
+height: 8px;
+margin-right:1em;
+background: #60C064;
+border-radius:50%;
+border: 2px solid rgba(255,255,255,0.3);
+}
+.statusbtu1{
+    display: inline-table;
+    width: 8px;
+height: 8px;
+margin-right:1em;
+background: #D8D8D8;
+border-radius:50%;
+opacity: 1;
+}
+    }
+    .ant-btn{
+       border: none;
+       font-size:16px;
+    }
+  }
         .title {
           font-size: 24px;
           font-family: Roboto-Bold, Roboto;
@@ -265,14 +277,14 @@ export default styled.div`
               line-height: 30px;
             }
 
-            .value {
+            /* .value {
               font-size: 16px;
               font-weight: bold;
               color: #796B6B;
               display: flex;
               line-height: 30px;
               margin-left: 10px;
-            }
+            } */
           }
 
           .input-box {
@@ -355,7 +367,7 @@ export default styled.div`
 
 
       .donate {
-        margin-top: 1em;
+        margin: 1em auto;
         width: 100%;
         height: 50px;
         font-size: 20px;
@@ -376,6 +388,33 @@ export default styled.div`
 
 
     }
+
+
+    .team-part{
+    .in-line{
+      display: flex;
+      justify-content: flex-start;
+      margin-top: 10px;
+      .left{
+        font-weight: bold;
+        margin-right: 20px;
+      }
+      .info-item{
+        margin-right: 10px;
+        strong{
+          margin-right: 10px;
+        }
+      }
+    }
+    .flex-title{
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+
+
+
+
 
     .part2 {
       .list-top-part {

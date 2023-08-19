@@ -84,6 +84,15 @@ const FireLock = (props) => {
             },
         });
     };
+    const onChange = (checked) => {
+        console.log(`switch to ${checked}`);
+        if(isPause){
+            unPause()
+        }
+        else{
+            pause()
+        }
+    };
     const handleDealMethod = async (name, params) => {
         let contractTemp = await getContractByName("FLMAirdrop", state.api,)
         if (!contractTemp) {
@@ -310,9 +319,7 @@ const FireLock = (props) => {
         await handleDealMethod("setUserAmount", [_to, _amount, infoString])
         getWList()
     }
-    const onChange = (checked) => {
-        // console.log(`switch to ${checked}`);
-    };
+   
     const setFlm = async (addr) => {
         await handleDealMethod("setFlm", [form.getFieldValue().flmAddr])
         getFLMAddr()
@@ -448,27 +455,16 @@ const FireLock = (props) => {
 
                                     </Form>
                                     <div className="status">
-                                        <p className='pause'>Contract Status</p>
-                                        <Form form={form} name="control-hooks">
-                                            <div className="current">
-                                                <div className="name">
-                                                    Current:
-
-                                                </div>
-                                                <div className="value">
-                                                    {isPause ? (<Switch checked={true} defaultChecked onChange={onChange} />) : (<Switch checked={false} onChange={onChange} />)}
-                                                </div>
-                                            </div>
-
-                                        </Form>
-                                        <div className='statues'>
-                                            <p >Running</p>{!isPause && <Switch checked={true} defaultChecked onChange={onChange} onClick={() => {
-                                                pause()
-                                            }} />}<p>暂停</p>
-                                            <p >Pause</p>{isPause && <Switch defaultChecked onChange={onChange} onClick={() => {
-                                                unPause()
-                                            }} />}<p>运行</p>
+                                        <div className='pause'>Contract Status:  
+                                        {/* {isPause ? 'Pause' : 'Running'} */}
                                         </div>
+                                        <Form form={form} name="control-hooks">
+                                        <div className='statues'>
+                                            <p ><span>Running</span>{ <Switch checked={!isPause}  onChange={onChange}  />}</p>
+                                            <p ><span>Pause</span>{<Switch checked={isPause} onChange={onChange}  />}</p>
+                                        </div>
+                                        </Form>
+                                       
                                     </div>
                                     <Button type="primary" className="max-btn" onClick={() => {
                                         transferOwnership()
@@ -519,7 +515,7 @@ const FireLock = (props) => {
                                         }}>
                                             Approve
                                         </Button>
-                                        <Button type="primary" className="max-btn" onClick={() => {
+                                        <Button type="primary" className="max-btn" style={{ marginLeft: '10px' }} onClick={() => {
                                             deposit()
                                         }}>
                                             Deposit
@@ -740,123 +736,139 @@ const FireLock = (props) => {
                             <div className="panel-container">
                                 <div className="panel-title">
                                     Set Airdrop List
-                                    <div className='selectbox'>
-                                    <div className="search-container">
-                                        <div className="search-box">
-                                            <Input value={searchContent}
-                                            style={{ borderRadius: '50px' }}
-                                            placeholder="Search"
-                                             onChange={(e) => {
-                                                setSearchContent(e.target.value)
-                                                if (!e.target.value) setShowSearch(false)
-                                            }} allowClear />
-                                            <Button className="search-btnant-btn ant-btn-primary search-btn" style={{ width: '45px', borderRadius: '45px', height: '40px' }} onClick={() => {
-                                                handleSearch()
-                                            }}>
-                                                <img src={search} style={{ width: '25px', margin: '0px -10px' }} />
-                                            </Button>
-                                        </div>
-                                    </div>
-                                    <div className="tj1">
+                                    <div className="tj2">
 
                                         <div type="primary" className='kk' onClick={() => {
                                             setShowAdd(true)
                                         }}>Add
                                         </div>
                                     </div>
-                                    </div>
-                                </div>
+                                    <div className='selectbox'>
+                                        <div className="tj1">
 
-                                <div className="fire-list-box fire-list-box-airdrop">
-                                    <div className="list-header flex-box3">
-                                        <div className="col">
-                                            No.
+                                            <div type="primary" className='kk' onClick={() => {
+                                                setShowAdd(true)
+                                            }}>Add
+                                            </div>
                                         </div>
-
-                                        <div className="col">
-                                            Address
-                                        </div>
-                                        <div className="col">
-                                            Amount
-                                        </div>
-                                        <div className="col">
-                                            Modify
-                                            <div className="remove-check">
-                                                {!isCheckAll && <img className="check-icon" onClick={() => {
-                                                    setIsCheckAll(true);
-                                                    handleCheckAll(true)
-                                                }} src={checkIcon} alt="" />}
-                                                {isCheckAll && <img className="check-icon" onClick={() => {
-                                                    setIsCheckAll(false);
-                                                    handleCheckAll(false)
-                                                }} src={checkActiveIcon} alt="" />}
-
-                                                <Button onClick={() => {
-                                                    setIsModifyMolOpen(true)
-                                                    getModifList()
-                                                }}>Modify</Button>
+                                        <div className="search-container">
+                                            <div className="search-box">
+                                                <Input value={searchContent}
+                                                    style={{ borderRadius: '50px' }}
+                                                    placeholder="Search"
+                                                    onChange={(e) => {
+                                                        setSearchContent(e.target.value)
+                                                        if (!e.target.value) setShowSearch(false)
+                                                    }} allowClear />
+                                                <Button className="search-btnant-btn ant-btn-primary search-btn" style={{ width: '45px', borderRadius: '45px', height: '40px' }} onClick={() => {
+                                                    handleSearch()
+                                                }}>
+                                                    <img src={search} style={{ width: '25px', margin: '0px -10px' }} />
+                                                </Button>
                                             </div>
                                         </div>
 
                                     </div>
-                                    {!showSearch && curPage && whitelist.map((item, index) => {
-                                        if (index >= pageCount * (curPage - 1) && index < pageCount * curPage) {
-                                            return (<div className="list-item list-item-airdrop" key={index}>
-                                                <div className="col no">
-                                                    {index + 1}
-                                                </div>
-                                                <div className="col address">
-                                                    <a>{item.user}</a>
-                                                </div>
-                                                <div className="col">
-                                                    {showNum(item.amount / 10 ** 18)}
-                                                </div>
-                                                <div className="col">
-                                                    {/*<Checkbox value={item.checked} onChange={(e) => {*/}
-                                                    {/*    handleCheck(item, index, e)*/}
-                                                    {/*}}>*/}
-                                                    {/*</Checkbox>*/}
-                                                    {!item.checked && <img className="check-icon" onClick={() => {
-                                                        handleCheck(item, index, true)
+                                </div>
+
+                                <div className="fire-list-box fire-list-box-airdrop">
+                                    <div className='listheadert'>
+                                        <div className="list-header flex-box3">
+                                            <div className="col">
+                                                No.
+                                            </div>
+
+                                            <div className="col">
+                                                Address
+                                            </div>
+                                            <div className="col">
+                                                Amount
+                                            </div>
+                                            <div className="col">
+                                                Modify
+                                                <div className="remove-check">
+                                                    {!isCheckAll && <img className="check-icon" onClick={() => {
+                                                        setIsCheckAll(true);
+                                                        handleCheckAll(true)
                                                     }} src={checkIcon} alt="" />}
-                                                    {item.checked && <img className="check-icon" onClick={() => {
-                                                        handleCheck(item, index, false)
+                                                    {isCheckAll && <img className="check-icon" onClick={() => {
+                                                        setIsCheckAll(false);
+                                                        handleCheckAll(false)
                                                     }} src={checkActiveIcon} alt="" />}
-                                                    <Button className="remove-btn" onClick={() => {
-                                                        // removeWhiteList(item.user)
-                                                        setIsModifyMolOpen(true)
-                                                        getSingleModifList(item)
-                                                    }}>Modify</Button>
-                                                </div>
-                                            </div>)
-                                        }
 
-                                    })}
-                                    {showSearch && whitelist.map((item, index) => {
-                                        if (item.user.toLowerCase() == searchContent.toString().toLowerCase()) {
-                                            return (<div className="list-item" key={index}>
-                                                <div className="col">
-                                                    {index + 1}
-                                                </div>
-
-                                                <div className="col">
-                                                    {item.user}
-                                                </div>
-                                                <div className="col">
-                                                    {showNum(item.amount / 10 ** 18)}
-                                                </div>
-                                                <div className="col">
                                                     <Button onClick={() => {
-                                                        // removeWhiteList(item.user)
                                                         setIsModifyMolOpen(true)
-                                                        getSingleModifList(item)
+                                                        getModifList()
                                                     }}>Modify</Button>
                                                 </div>
-                                            </div>)
-                                        }
+                                            </div>
 
-                                    })}
+                                        </div>
+                                        {!showSearch && curPage && whitelist.map((item, index) => {
+                                            if (index >= pageCount * (curPage - 1) && index < pageCount * curPage) {
+                                                return (
+                                                    <div className="list-item list-item-airdrop"
+                                                        key={index}
+                                                    >
+                                                        <div className="col no">
+                                                            {index + 1}
+                                                        </div>
+                                                        <div className="col address">
+                                                            <a>
+                                                                {item.user}
+                                                            </a>
+                                                        </div>
+                                                        <div className="col">
+                                                            {showNum(item.amount / 10 ** 18)}
+                                                        </div>
+                                                        <div className="col">
+                                                            {/*<Checkbox value={item.checked} onChange={(e) => {*/}
+                                                            {/*    handleCheck(item, index, e)*/}
+                                                            {/*}}>*/}
+                                                            {/*</Checkbox>*/}
+                                                            {!item.checked && <img className="check-icon" onClick={() => {
+                                                                handleCheck(item, index, true)
+                                                            }} src={checkIcon} alt="" />}
+                                                            {item.checked && <img className="check-icon" onClick={() => {
+                                                                handleCheck(item, index, false)
+                                                            }} src={checkActiveIcon} alt="" />}
+                                                            <Button className="remove-btn" onClick={() => {
+                                                                // removeWhiteList(item.user)
+                                                                setIsModifyMolOpen(true)
+                                                                getSingleModifList(item)
+                                                            }}>Modify</Button>
+                                                        </div>
+                                                    </div>
+                                                )
+                                            }
 
+                                        })}
+
+                                        {showSearch && whitelist.map((item, index) => {
+                                            if (item.user.toLowerCase() == searchContent.toString().toLowerCase()) {
+                                                return (<div className="list-item" key={index}>
+                                                    <div className="col no">
+                                                        {index + 1}
+                                                    </div>
+
+                                                    <div className="col address">
+                                                        {item.user}
+                                                    </div>
+                                                    <div className="col">
+                                                        {showNum(item.amount / 10 ** 18)}
+                                                    </div>
+                                                    <div className="col">
+                                                        <Button onClick={() => {
+                                                            // removeWhiteList(item.user)
+                                                            setIsModifyMolOpen(true)
+                                                            getSingleModifList(item)
+                                                        }}>Modify</Button>
+                                                    </div>
+                                                </div>)
+                                            }
+
+                                        })}
+                                    </div>
                                 </div>
                                 <div className="pagination">
                                     {
@@ -939,74 +951,83 @@ const FireLock = (props) => {
                         </div>
 
                         <div className="fire-list-box fire-list-box-airdropAmount">
-                            <div className="list-header flex-box2">
-                                <div className="col">
-                                    No.
-                                </div>
+                            <div className='listheadert'>
+                                <div className="list-header flex-box2">
+                                    <div className="col">
+                                        No.
+                                    </div>
 
-                                <div className="col">
-                                    Address
-                                </div>
-                                <div className="col">
-                                    Amount
-                                </div>
-                                <div className="col">
-                                    Set Amount
-                                </div>
+                                    <div className="col">
+                                        Address
+                                    </div>
+                                    <div className="col">
+                                        Amount
+                                    </div>
+                                    <div className="col">
+                                        Set Amount
+                                    </div>
 
+                                </div>
+                                {!showSearch && curPage && whitelist.map((item, index) => {
+                                    if (index >= pageCount * (curPage - 1) && index < pageCount * curPage) {
+                                        return (
+                                            <div className="list-item list-item-airdropA"
+                                                key={index}
+                                            >
+                                                <div className="col no">
+                                                    {index + 1}
+                                                </div>
+                                                <div className="col address">
+                                                    <a>
+                                                        {item.user}
+                                                    </a>
+                                                </div>
+                                                <div className="col">
+                                                    {showNum(item.amount / 10 ** flmDecimal)}
+                                                </div>
+                                                <div className="col">
+                                                    {!item.checked && <img className="check-icon" onClick={() => {
+                                                        handleCheck(item, index, true)
+                                                    }} src={checkIcon} alt="" />}
+                                                    {item.checked && <img className="check-icon" onClick={() => {
+                                                        handleCheck(item, index, false)
+                                                    }} src={checkActiveIcon} alt="" />}
+                                                    <Button className="remove-btn" onClick={() => {
+                                                        // removeWhiteList(item.user)
+                                                        setIsSetAmountOpen(true)
+                                                        getSingleModifList(item)
+                                                    }}>Set Amount</Button>
+                                                </div>
+                                            </div>
+                                        )
+                                    }
+
+                                })}
+
+                                {showSearch && whitelist.map((item, index) => {
+                                    if (item.user.toLowerCase() == searchContent.toString().toLowerCase()) {
+                                        return (
+                                            <div className="list-item list-item-airdropA" key={index}>
+                                                <div className="col no">
+                                                    {index + 1}
+                                                </div>
+                                                <div className="col address">
+                                                    <a>{item.user}</a>
+                                                </div>
+                                                <div className="col">
+                                                    {showNum(item.amount / 10 ** flmDecimal)}
+                                                </div>
+                                                <div className="col">
+                                                    <Button onClick={() => {
+                                                        // removeWhiteList(item.user)
+                                                        setIsSetAmountOpen(true)
+                                                        getSingleModifList(item)
+                                                    }}>Set Amount</Button>
+                                                </div>
+                                            </div>)
+                                    }
+                                })}
                             </div>
-                            {!showSearch && curPage && whitelist.map((item, index) => {
-                                if (index >= pageCount * (curPage - 1) && index < pageCount * curPage) {
-                                    return (<div className="list-item list-item-airdropA" key={index}>
-                                        <div className="col no">
-                                            {index + 1}
-                                        </div>
-                                        <div className="col address">
-                                            <a>{item.user}</a>
-                                        </div>
-                                        <div className="col">
-                                            {showNum(item.amount / 10 ** flmDecimal)}
-                                        </div>
-                                        <div className="col">
-                                            {!item.checked && <img className="check-icon" onClick={() => {
-                                                handleCheck(item, index, true)
-                                            }} src={checkIcon} alt="" />}
-                                            {item.checked && <img className="check-icon" onClick={() => {
-                                                handleCheck(item, index, false)
-                                            }} src={checkActiveIcon} alt="" />}
-                                            <Button className="remove-btn" onClick={() => {
-                                                // removeWhiteList(item.user)
-                                                setIsSetAmountOpen(true)
-                                                getSingleModifList(item)
-                                            }}>Set Amount</Button>
-                                        </div>
-                                    </div>)
-                                }
-
-                            })}
-                            {showSearch && whitelist.map((item, index) => {
-                                if (item.user.toLowerCase() == searchContent.toString().toLowerCase()) {
-                                    return (<div className="list-item" key={index}>
-                                        <div className="col no">
-                                            {index + 1}
-                                        </div>
-                                        <div className="col address">
-                                            <a>{item.user}</a>
-                                        </div>
-                                        <div className="col">
-                                            {showNum(item.amount / 10 ** flmDecimal)}
-                                        </div>
-                                        <div className="col">
-                                            <Button onClick={() => {
-                                                // removeWhiteList(item.user)
-                                                setIsSetAmountOpen(true)
-                                                getSingleModifList(item)
-                                            }}>Set Amount</Button>
-                                        </div>
-                                    </div>)
-                                }
-                            })}
-
                         </div>
                         <div className="pagination">
                             {

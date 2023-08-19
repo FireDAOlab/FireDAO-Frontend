@@ -242,12 +242,12 @@ const FireLock = (props) => {
         getWhitelist()
     }
        const changePicture = () => {
-        setPicture([
-            wxz,xz
-        ])
+       
     }
     const muchSelect = () => {
-        changePicture()
+         setPicture([
+            wxz,xz
+        ])
     }
     useEffect(async () => {
         let judgeRes = await judgeStatus(state)

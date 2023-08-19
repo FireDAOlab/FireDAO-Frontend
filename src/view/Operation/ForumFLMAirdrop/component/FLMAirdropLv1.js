@@ -223,31 +223,31 @@ const FLMAirdropLv1 = (props) => {
         // this.ruleForm.pub_date=nyr
         // console.log(nyr);
     }
-    // const chooseItem = (item, index) => {
+    const chooseItem = (item, index) => {
 
-    //     let tempArra = [...FlmArra]
-    //     console.log(tempArra);
-    //     const tempItem = [tempArra].map((item,index)=>(
-    //             item
+        let tempArra = [...FlmArra]
+        console.log(tempArra);
+        const tempItem = [tempArra].map((item,index)=>(
+                item
 
-    //         ))
-    //     tempItem.ischoosed = !tempItem.ischoosed
-    //     tempArra.splice(index, 1, tempItem)
-    //     setFlmArra(tempArra)
-    // }
-    // const rain = (item, index) => {
-    //     let tempArra = []
-    //     console.log(FlmArra);
-    //     for (let i = 0; i < FlmArra.length; i++) {
-    //         if (FlmArra[i].ischoosed == true) {
-    //             tempArra.push(FlmArra[i])
-    //         }
+            ))
+        tempItem.ischoosed = !tempItem.ischoosed
+        tempArra.splice(index, 1, tempItem)
+        setFlmArra(tempArra)
+    }
+    const rain = (item, index) => {
+        let tempArra = []
+        console.log(FlmArra);
+        for (let i = 0; i < FlmArra.length; i++) {
+            if (FlmArra[i].ischoosed == true) {
+                tempArra.push(FlmArra[i])
+            }
 
-    //     }
-    //     setDelData(tempArra)
+        }
+        setDelData(tempArra)
 
 
-    // }
+    }
     useEffect(() => {
         if (!state.account) {
 
@@ -426,12 +426,12 @@ const FLMAirdropLv1 = (props) => {
                 {item ? item.substr(0, 7) + "..." + item.substr(item.length - 4, item.length) : ""}
             </div>
 
-            {/* <Button className="sc col" onClick={() => { 
+            <Button className="sc col" onClick={() => { 
                 chooseItem(item, index) 
                 }}>
 
                 <img className='sc1' src={item.ischoosed ? xz : wxz} />
-            </Button> */}
+            </Button>
         </div>
     }
     const handleSearchChangea = async (e) => {

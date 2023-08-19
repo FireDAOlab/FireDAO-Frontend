@@ -467,7 +467,7 @@ width: 900px;
     margin: 1em 0em;
 overflow-x: scroll;
   .list-header {
-      padding: 20px 1.6em;
+      padding: 20px 2em;
   }
   .list-item, .list-header {
     justify-content: flex-start;
@@ -640,7 +640,7 @@ a{
         margin: 1em 0em;
         overflow: scroll;
         .list-header {
-        padding: 20px 1.6em;
+        padding: 20px 2em;
     }
         
    
