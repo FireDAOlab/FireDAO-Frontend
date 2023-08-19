@@ -133,7 +133,7 @@ const AddThreeWhiteList = ({allRecords}) => {
                                 </div>
 
 
-                                <div className="col address">
+                                <div className="col ">
                                     Address
                                 </div>
                                 <div className="col">

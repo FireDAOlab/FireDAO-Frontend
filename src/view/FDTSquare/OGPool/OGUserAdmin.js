@@ -233,7 +233,7 @@ const OGPoolPublic = (props) => {
                 <div className="panel-container">
                     <div className="list-top-part">
                         <div className="panel-title">
-                            Donate Records
+                            All Donate Records
                         </div>
                         <div className="fire-nav-list">
 

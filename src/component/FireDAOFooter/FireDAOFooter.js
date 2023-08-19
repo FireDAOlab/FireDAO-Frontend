@@ -33,7 +33,6 @@ const FireDAOFooter = () => {
     const rootSubmenuKeys = footerMap.map(items => {
         return items.key
     });
-    console.log(footerMap)
     const toggleCollapsed = () => {
         setCollapsed(!collapsed);
     };

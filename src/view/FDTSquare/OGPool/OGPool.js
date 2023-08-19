@@ -1,19 +1,21 @@
 import React, {useEffect, useRef, useState} from 'react';
 import {useConnect} from "../../../api/contracts";
 import BigNumber from "bignumber.js"
-import AddNomalWhiteList from "./ThreelWhiteList";
-import AddThreeWhiteList from "./components/OgAdminLevel2";
 import {showNum} from "../../../utils/bigNumberUtil";
 import ethereum from "../../../imgs/ethereum.svg";
+import FDTIcon from "../../../imgs/FDT-icon.png";
+import USDTIcon from "../../../imgs/usdt.png";
 import {formatAddress} from "../../../utils/publicJs";
 import ConnectWallet from "../../../component/ConnectWallet/ConnectWallet";
 import user3 from "../../../imgs/user3.png"
 import download from "../../../imgs/download.png"
 import manage from "../../../imgs/svg/manage.svg"
+import {ETHPriceDecimals} from "../../../config/constants";
 import {
     Button,
     message,
     AutoComplete,
+    Select,
     Form,
     Pagination, Input, Modal
 } from 'antd';
@@ -24,16 +26,18 @@ import listIcon from "../../../imgs/list-icon.webp";
 import develop from "../../../env";
 import {useNavigate} from "react-router-dom";
 import judgeStatus from "../../../utils/judgeStatus";
-import {getDonateRecord, getAllRegisters, getRecommender} from "../../../graph/donate";
+import {getDonateRecord, getAllRegisters, getRecommender, getAddressFromId} from "../../../graph/donate";
 import OGPoolStyle from "./OGPoolStyle";
 import {ETHDecimals, FDTDecimals, USDTDecimals, FLMDecimals, ZeroAddress} from "../../../config/constants";
-import FDTIcon from "../../../imgs/FDT-icon.png";
+import search from "../../../imgs/search.png";
+import {dealTime} from "../../../utils/timeUtil";
 
 const OGPoolPublic = (props) => {
     let {state, dispatch} = useConnect();
     const [activeNav, setActiveNav] = useState(1)
     const [total, setTotal] = useState(0)
     const [myRecommender, setMyRecommender] = useState()
+    const [myId, setMyId] = useState()
     const [recordNav, setRecordNav] = useState(1)
     const [pageCount, setPageCount] = useState(20)
     const [curPage, setCurPage] = useState(1)
@@ -41,6 +45,8 @@ const OGPoolPublic = (props) => {
     const [totalDonate, setTotalDonate] = useState(0)
     const [exchangeAmount, setExchangeAmount] = useState(0)
     const [inputValue, setInputValue] = useState(0)
+    const [curAddress, setCurAddress] = useState()
+
     const [isSecondAdmin, setIsSecondAdmin] = useState(false)
     const [isThreeAdmin, setIsThreeAdmin] = useState(false)
     const [isFourAdmin, setIsFourAdmin] = useState(false)
@@ -61,18 +67,15 @@ const OGPoolPublic = (props) => {
     const [inviteRateArr, setInvArr] = useState([])
     const [myStatus, setMyStatus] = useState({})
     const [activeArr, setActiveArr] = useState([])
-    const history = useNavigate();
+    const [ethPrice, setETHPrice] = useState()
+    const [userBuyMax, setUserBuyMax] = useState(0)
+    const [userTotalBuy, setUserTotalBuy] = useState(0)
+    const [searchData, setSearchData] = useState()
 
+    const history = useNavigate();
     const [form] = Form.useForm();
 
 
-    const handleUserViewMethod = async (name, params) => {
-        let contractTemp = await getContractByName("user", state.api,)
-        if (!contractTemp) {
-            message.warn("Please connect", 5)
-        }
-        return await viewMethod(contractTemp, state.account, name, params)
-    }
     const handleDealMethod = async (name, params) => {
         let contractTemp = await getContractByName("PrivateExchangePoolOG", state.api,)
         if (!contractTemp) {
@@ -96,11 +99,31 @@ const OGPoolPublic = (props) => {
         }
         return await viewMethod(contractTemp, state.account, name, params)
     }
-    const getUserInfo = async () => {
-        if (!state.pid) {
-            const userInfo = await handleUserViewMethod("userInfo", [state.account])
-            dispatch({type: "SET_PID", payload: userInfo.PID})
+
+    const handleSearchChange = async (e) => {
+        setSearchData(e.target.value);
+    }
+    const handleSearch = async () => {
+        const res = await getAddressFromId(searchData)
+        if (searchData == undefined) {
+            const hide = message.loading('', 0);
+            await getMyTeam(state.account)
+            setTimeout(hide, 1000)
+            setCurAddress(state.account)
+            getAddressRecommender(state.account)
         }
+        if (res.data && res.data.allRegisters[0]) {
+            if (state.api.utils.isAddress(res.data.allRegisters[0]._user)) {
+                const address = res.data.allRegisters[0]._user
+                setCurAddress(address)
+                getAddressRecommender(address)
+                const hide = message.loading('', 0);
+                await getMyTeam(address)
+                setTimeout(hide, 1000)
+            }
+
+        }
+
     }
     const getAdmin = async () => {
         let res = await handleViewMethod("owner", [])
@@ -150,7 +173,6 @@ const OGPoolPublic = (props) => {
             <div className="col ">
                 {BigNumber(item.fdtAmount / 10 ** FDTDecimals).toFixed(2)}
             </div>
-
             <div className="col">
                 {item.time}
             </div>
@@ -177,7 +199,10 @@ const OGPoolPublic = (props) => {
             setExchangeAmount(BigNumber(res).dividedBy(10 ** FDTDecimals).toFixed(2).toString())
         }
     }
-
+    const getETHPrice = async () => {
+        let price = await handleViewMethod("getLatesPrice", [])
+        setETHPrice(BigNumber(price).dividedBy(10 ** ETHPriceDecimals))
+    }
     const exchangeFdt = async () => {
         if (inputValue > 0) {
             await handlePayDealMethod("donate", [(BigNumber(inputValue).multipliedBy(10 ** ETHDecimals)).toString()], (BigNumber(inputValue).multipliedBy(10 ** ETHDecimals)).toString())
@@ -190,6 +215,7 @@ const OGPoolPublic = (props) => {
             return
         }
         await handleDealMethod("register", [addr.toString()])
+        getMyStatus()
         setIsShowRegister(false)
     }
 
@@ -246,9 +272,11 @@ const OGPoolPublic = (props) => {
             getMyStatus()
 
             getActivateAccount()
+            getETHPrice()
+            getUserBuyMax()
 
             await getInviteRate()
-            getAddressRecommender()
+            getAddressRecommender(state.account)
             getMyTeam(state.account)
         } catch (e) {
 
@@ -263,14 +291,20 @@ const OGPoolPublic = (props) => {
         setPageCount(count)
     }
 
-    const getAddressRecommender = async ()=>{
-        const res =  await getRecommender(state.account)
-        if(res && res.data){
+    const getAddressRecommender = async (address) => {
+        const res = await getRecommender(address)
+        if (res && res.data && res.data.allRegisters[0]) {
             setMyRecommender(res.data.allRegisters[0].recommenders)
+            setMyId(res.data.allRegisters[0].Contract_id)
         }
     }
+    const getUserBuyMax = async () => {
+        const res = await handleViewMethod("userBuyMax", [])
+        const buyNum = await handleViewMethod("userTotalBuy", [state.account])
+        setUserTotalBuy(BigNumber(buyNum).dividedBy(10 ** ETHDecimals).toString())
+        setUserBuyMax(BigNumber(res).dividedBy(10 ** ETHDecimals).toString())
+    }
     const getMyTeam = async (address) => {
-        address = state.account
         const myTeamArr = []
         let level1Res = await getAllRegisters(address)
         if (level1Res.data && level1Res.data.allRegisters) {
@@ -331,10 +365,12 @@ const OGPoolPublic = (props) => {
                 level3Total: 0,
                 level4Total: 0,
                 level5Total: 0,
+                total: 0
             }
             // count my team level number
             for (let i = 0; i < myTeamArr.length; i++) {
                 const item = myTeamArr[i]
+                levelRewardObj.total++
                 if (item.level == 1) {
                     levelRewardObj.level1Total++
                 }
@@ -359,12 +395,12 @@ const OGPoolPublic = (props) => {
                 allRecords.forEach(record => {
                     if (item._user.toLowerCase() == record.addr.toLowerCase()) {
                         item.ethIncome = BigNumber(record.ethAmount).multipliedBy(inviteRateArr[item.level - 1]).dividedBy(100).dividedBy(10 ** ETHDecimals).toString()
-                        item.flmIncome = BigNumber(record.flmAmount).multipliedBy(inviteRateArr[item.level - 1]).dividedBy(100).dividedBy(10 ** FLMDecimals).toString()
+                        item.flmIncome = BigNumber(record.fdtAmount).multipliedBy(inviteRateArr[item.level - 1]).dividedBy(100).dividedBy(10 ** FLMDecimals).toString()
                         totalETH = BigNumber(totalETH).plus(item.ethIncome)
                         totalFLM = BigNumber(totalFLM).plus(item.flmIncome)
 
                         record.level = item.level
-
+                        record.rate = inviteRateArr[item.level - 1]
                         myTeamRecord.push(record)
                     }
                 })
@@ -375,7 +411,6 @@ const OGPoolPublic = (props) => {
             setRewardTotalFLM(totalFLM)
             setRewardTotalETH(totalETH)
         }
-
 
     }
     const getInviteRate = async () => {
@@ -391,7 +426,6 @@ const OGPoolPublic = (props) => {
     const getRecord = async () => {
         try {
             let res = await getDonateRecord()
-            let allRecord = res.data.allRecords
             if (res.data) {
                 let arr = []
                 res.data.allRecords.forEach(item => {
@@ -420,6 +454,7 @@ const OGPoolPublic = (props) => {
 
     }, []);
     useEffect(() => {
+        setCurAddress(state.account)
         getData()
     }, [state.account]);
     useEffect(() => {
@@ -575,23 +610,27 @@ const OGPoolPublic = (props) => {
                 <div className="part1">
                     <div className="panel-box">
                         <div className="panel-container">
-                            <div className="panel-title">
-                                {/* <div className="pid">
-                                    PID：{state.pid}
-                                </div> */}
-                            </div>
-                            <div className="status-info">
-                                <div className="info-item">
-                                    {!myStatus.registerStatus && <Button onClick={() => {
-                                        setIsShowRegister(true)
-                                    }}>Unregistered</Button>}
-                                    {myStatus.registerStatus && <Button>Registered</Button>}
-                                </div>
-                                <div className="info-item">
 
-                                    {!myStatus.activeStatus && <Button>Inactivated</Button>}
-                                    {myStatus.activeStatus && <Button>Activated</Button>}
+                            <div className="status-info">
+                                <div className="left flex-box">
+                                    <div className="info-item">
+                                        {!myStatus.registerStatus && <Button onClick={() => {
+                                            setIsShowRegister(true)
+                                        }}>Unregistered</Button>}
+                                        {myStatus.registerStatus && <Button>Registered</Button>}
+                                    </div>
+                                    <div className="info-item">
+
+                                        {!myStatus.activeStatus && <Button>Inactivated</Button>}
+                                        {myStatus.activeStatus && <Button>Activated</Button>}
+                                    </div>
                                 </div>
+                                {myId &&
+                                    <div className="my-id pid">
+                                        ID: {myId}
+                                    </div>
+                                }
+
                             </div>
                             <div className="donate-info">
                                 <div className="info-item">
@@ -608,7 +647,7 @@ const OGPoolPublic = (props) => {
                                             Value
                                         </div>
                                         <div className="value">
-                                            {showNum(BigNumber(FDTBalance).multipliedBy(salePrice))}
+                                            ${showNum(BigNumber(FDTBalance).multipliedBy(salePrice))}
                                         </div>
                                     </div>
                                     <div className="info-item">
@@ -641,13 +680,16 @@ const OGPoolPublic = (props) => {
                                     <div className="donate-part">
                                         <div className="balance-box">
 
-                                            <p>Value: $ </p>
+                                            <p>Value: ${showNum(ethPrice * inputValue)} </p>
 
                                             <div className="name">
                                                 Balance:
                                             </div>
                                             <div className="value">
-                                                {showNum(state.ethBalance)} <span>ETH</span>
+                                                <span style={{marginRight: '6px'}}>
+                                                     {showNum(state.ethBalance)}
+                                                </span>
+                                                <span>ETH</span>
                                             </div>
                                         </div>
                                         <Form.Item
@@ -656,8 +698,7 @@ const OGPoolPublic = (props) => {
                                             validateFirst={true}
                                         >
                                             <div className="input-box">
-                                                <AutoComplete
-                                                    allowClear
+                                                <Select
                                                     value={inputValue}
                                                     onChange={(e) => {
                                                         getfdtAmount(e)
@@ -685,12 +726,13 @@ const OGPoolPublic = (props) => {
                                             <div className="name" style={{fontSize: '16px'}}>
                                                 Your receive
                                             </div>
-                                            <div className="balance-box">
+                                            <div className="balance-box ">
                                                 <div className="name">
                                                     Balance:
                                                 </div>
-                                                <div className="value" style={{fontSize: '16px'}}>
-                                                    {showNum(fdtBalance)} <span>FDT</span>
+                                                <div className="value">
+                                                    <span style={{marginRight: '6px'}}>{showNum(fdtBalance)}</span>
+                                                    <span> FDT-OG</span>
                                                 </div>
                                             </div>
 
@@ -735,8 +777,9 @@ const OGPoolPublic = (props) => {
                                     }
 
                                     <div className="tip">
-                                        I have already donated {} ETH, I can donate up to {} ETH, I can continue
-                                        donating {showNum(state.ethBalance)} ETH.
+                                        I have already donated {showNum(userTotalBuy)} ETH, I can donate up
+                                        to {showNum(userBuyMax)} ETH, I can continue
+                                        donating {showNum(BigNumber(userBuyMax).minus(userTotalBuy))} ETH.
                                         {/* 1FDT-OG = {salePrice} USD ，Donate up to 2ETH */}
                                     </div>
                                 </Form>
@@ -845,7 +888,7 @@ const OGPoolPublic = (props) => {
                                     Wallet Address
                                 </div>
                                 <div className="right">
-                                    {state.account}
+                                    {curAddress}
                                 </div>
                             </div>
                             <div className="in-line">
@@ -861,50 +904,68 @@ const OGPoolPublic = (props) => {
 
 
                             <div className="team-count">
-                                <div className="panel-title flex-title" >
+                                <div className="panel-title flex-title">
                                     Team Income
                                     <div className="right flex-box">
                                         <div className="reward-item">
-                                            <img width={20} src={ethereum} alt=""/>  {showNum(rewardTotalETH)}
+                                            <img width={20} src={ethereum} alt=""/> {showNum(rewardTotalETH)}
                                         </div>
                                         <div className="reward-item">
-                                            <img width={20} src={FDTIcon} alt=""/> { showNum(rewardTotalFLM)}
+                                            <img width={20} src={FDTIcon} alt=""/> {showNum(rewardTotalFLM)}
                                         </div>
                                     </div>
                                 </div>
-                                <div className="in-line">
-                                    <div className="info-item">
-                                        <strong>Level1</strong>
-                                        <span>{levelCountObj.level1Total}</span>
-                                    </div>
-                                    <div className="info-item">
-                                        <strong>Level2</strong>
-                                        <span>{levelCountObj.level2Total}</span>
-                                    </div>
-                                    <div className="info-item">
-                                        <strong>Level3</strong>
-                                        <span>{levelCountObj.level3Total}</span>
-                                    </div>
-                                    <div className="info-item">
-                                        <strong>Level4</strong>
-                                        <span>{levelCountObj.level4Total}</span>
-                                    </div>
-                                    <div className="info-item">
-                                        <strong>Level5</strong>
-                                        <span>{levelCountObj.level5Total}</span>
-                                    </div>
-                                </div>
+                                <div className="in-line" style={{justifyContent: "space-between"}}>
+                                    <div className="in-line">
 
+                                        <div className="info-item">
+                                            <strong>Total</strong>
+                                            <span>{levelCountObj.total}</span>
+                                        </div>
+                                        <div className="info-item">
+                                            <strong>Level1</strong>
+                                            <span>{levelCountObj.level1Total}</span>
+                                        </div>
+                                        <div className="info-item">
+                                            <strong>Level2</strong>
+                                            <span>{levelCountObj.level2Total}</span>
+                                        </div>
+                                        <div className="info-item">
+                                            <strong>Level3</strong>
+                                            <span>{levelCountObj.level3Total}</span>
+                                        </div>
+                                        <div className="info-item">
+                                            <strong>Level4</strong>
+                                            <span>{levelCountObj.level4Total}</span>
+                                        </div>
+                                        <div className="info-item">
+                                            <strong>Level5</strong>
+                                            <span>{levelCountObj.level5Total}</span>
+                                        </div>
+
+                                    </div>
+                                    <form className="search-box">
+                                        <Input style={{borderRadius: '50px'}} allowClear value={searchData}
+                                               onChange={handleSearchChange} placeholder="ID"/>
+                                        <Button className="search-btn"
+                                                style={{width: '45px', borderRadius: '45px', height: '40px'}}
+                                                onClick={handleSearch} type="primary">
+                                            <img src={search} style={{width: '25px', margin: '0px -10px'}}/>
+                                        </Button>
+                                    </form>
+                                </div>
                             </div>
                             <div className="fire-list-box team-list">
 
                                 <div className="list-header">
                                     <div className="col">
+                                        Level
+                                    </div>
+                                    <div className="col">
                                         No.
                                     </div>
-
                                     <div className="col">
-                                        Level
+                                        ID
                                     </div>
                                     <div className="col">
                                         Address
@@ -915,19 +976,27 @@ const OGPoolPublic = (props) => {
                                     <div className="col">
                                         FLM Income
                                     </div>
+
                                 </div>
                                 {
                                     myTeam.map((item, index) => (
                                         index >= pageCount * (curPage - 1) && index < pageCount * curPage &&
-                                        <div className="list-item row2-list-item" key={index}>
-                                            <div className="col no">
-                                                {index + 1}
-                                            </div>
+                                        <div className="list-item " key={index}>
                                             <div className="col">
                                                 {item.level}
                                             </div>
-                                            <div className="col address">
-                                                <a target="_blank" href={develop.ethScan  + "/address/" + item._user}> {item._user} </a>
+                                            <div className="col no">
+                                                {index + 1}
+                                            </div>
+                                            <div className="col id" style={{cursor:"pointer"}} onClick={()=>{setSearchData(item.Contract_id);handleSearch()}}>
+                                                {(item.Contract_id||item.Contract_id==0) ?item.Contract_id:"--"}
+                                            </div>
+                                            <div className="col ">
+                                                <div className="address">
+                                                    <a target="_blank"
+                                                       href={develop.ethScan + "/address/" + item._user}> {formatAddress(item._user)} </a>
+                                                </div>
+
                                             </div>
                                             <div className="col">
                                                 {showNum(item.ethIncome, 6)}
@@ -935,6 +1004,7 @@ const OGPoolPublic = (props) => {
                                             <div className="col">
                                                 {showNum(item.flmIncome, 3)}
                                             </div>
+
                                         </div>
                                     ))
                                 }
@@ -948,8 +1018,8 @@ const OGPoolPublic = (props) => {
                             <div className="panel-title">
                                 Team Donate Records
                             </div>
-                            <div className="fire-list-box">
-                                <div className="list-header flex-box2">
+                            <div className="fire-list-box donate-list">
+                                <div className="list-header ">
                                     <div className="col">
                                         No.
                                     </div>
@@ -958,33 +1028,78 @@ const OGPoolPublic = (props) => {
                                         Level
                                     </div>
                                     <div className="col">
+                                        Divide<br/> Percentage
+                                    </div>
+                                    <div className="col">
                                         Address
                                     </div>
                                     <div className="col">
                                         ETH
                                     </div>
                                     <div className="col">
-                                        FLM
+                                        FDT-OG
+                                    </div>
+
+                                    <div className="col">
+                                        Price
+                                    </div>
+                                    <div className="col">
+                                        Cost
+                                    </div>
+                                    <div className="col">
+                                        Rewards
+                                    </div>
+                                    <div className="col">
+                                        Time
                                     </div>
                                 </div>
                                 {
                                     myTeamRecord.map((item, index) => (
                                         index >= pageCount * (curPage - 1) && index < pageCount * curPage &&
-                                        <div className="list-item row2-list-item" key={index}>
+                                        <div className="list-item" key={index}>
                                             <div className="col no">
                                                 {index + 1}
                                             </div>
                                             <div className="col">
                                                 {item.level}
                                             </div>
-                                            <div className="col address">
-                                                {item.addr}
+                                            <div className="col">
+                                                {item.rate}%
+                                            </div>
+                                            <div className="col ">
+                                                <div className="address">
+                                                    <a target="_blank"
+                                                       href={develop.ethScan + "/address/" + item.addr}> {formatAddress(item.addr)} </a>
+                                                </div>
                                             </div>
                                             <div className="col">
-                                                {showNum(item.ethAmount / 10 ** ETHDecimals, 6)}
+                                                <img width={20} height={20} style={{marginRight:"3px"}} src={ethereum} alt=""/>
+                                                {showNum(item.ethAmount / 10 ** ETHDecimals, 3)}
                                             </div>
                                             <div className="col">
-                                                {showNum(item.flmAmount / 10 ** FLMDecimals, 3)}
+                                                <img width={20} height={20}  style={{marginRight:"3px"}} src={FDTIcon} alt=""/>
+                                                {showNum(item.fdtAmount / 10 ** FDTDecimals, 1)}
+                                            </div>
+                                            <div className="col price">
+                                                <img width={20} height={20}  style={{marginRight:"3px"}} src={USDTIcon} alt=""/>
+                                                {showNum(0.01)}
+                                            </div>
+                                            <div className="col cost">
+                                                <img width={20} height={20}  style={{marginRight:"3px"}} src={USDTIcon} alt=""/>
+                                                {showNum(item.usdtAmount / 10 ** USDTDecimals, 3)}
+                                            </div>
+                                            <div className="col flex-box ">
+                                                <div className="item">
+                                                    <img width={20} height={20}  style={{marginRight:"3px"}} src={ethereum} alt=""/>
+                                                    {showNum(BigNumber(item.ethAmount/ 10 ** ETHDecimals).multipliedBy(item.rate / 100)  , 3)}
+                                                </div>
+                                                <div className="item" style={{marginLeft:"10px"}}>
+                                                    <img width={20} height={20}  style={{marginRight:"3px"}} src={FDTIcon} alt=""/>
+                                                    {showNum(BigNumber(item.fdtAmount/ 10 ** FLMDecimals).multipliedBy(item.rate / 100)  , 1)}
+                                                </div>
+                                            </div>
+                                            <div className="col">
+                                                {item.time}
                                             </div>
                                         </div>
                                     ))

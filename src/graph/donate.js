@@ -89,10 +89,22 @@ export function getAllRegisters(address) {
         }`
     }, "")
 }
+
 export function getRecommender(address) {
     return fetchQueryBase("patton-sr/testog1", {
         text: `{
             allRegisters(first:10,where: {_user_contains: "${address}"}) {
+                Contract_id
+                recommenders
+                _user
+            }
+        }`
+    }, "")
+}
+export function getAddressFromId(id) {
+    return fetchQueryBase("patton-sr/testog1", {
+        text: `{
+            allRegisters(first:10,where: {Contract_id: "${id}"}) {
                 Contract_id
                 recommenders
                 _user
