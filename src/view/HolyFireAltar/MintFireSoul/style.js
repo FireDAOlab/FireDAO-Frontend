@@ -40,7 +40,7 @@ export default styled.div`
       }
       .content-box {
         display: flex;
-        padding: 2em 0;
+        padding: 1.5em 0;
       }
       .ecos{
           font-size:17px;
@@ -204,7 +204,7 @@ background: linear-gradient(32deg, #FF4E50 0%, #F9D423 100%);
       }
       .content-box {
         display: flex;
-        padding: 2em 0;
+        padding: 1.5em 0;
       }
       .ecos{
           font-size:17px;
@@ -372,7 +372,7 @@ background: linear-gradient(32deg, #FF4E50 0%, #F9D423 100%);
       }
       .content-box {
         display: flex;
-        padding: 2em 0;
+        padding: 1.5em 0;
       }
       .ecos{
           font-size:13px;
@@ -540,7 +540,7 @@ background: linear-gradient(32deg, #FF4E50 0%, #F9D423 100%);
       }
       .content-box {
         display: block;
-        padding: 1em 0;
+        padding: 1.5em 0;
       }
       .ecos{
           font-size:16px;

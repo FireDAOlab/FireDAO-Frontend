@@ -98,24 +98,24 @@ const SBTList = (props) => {
                                     Other
                                 </div>
                             </div>
-                           {/* { 
+                           { 
                            PIDARR.length==0? <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />:
-                           PIDARR.map((item,index) => ( */}
+                           PIDARR.map((item,index) => (
                                 
                             <div className="list-item sbtl">
                                 <div className="col no" style={{ color: '#E48686' }}>
-                                {/* {index+1} */}hjkj
+                                {index+1}
                                 </div>
                                 <div className="col">
-                                    {/* {item.blockNumber} */}
-                                 vjkvh
+                                    {item.blockNumber}
+                                 
                                 </div>
                                 <div className="col">
-                                    {/* {item.from} */}
+                                    {item.from}
                                    
                                 </div>
                                 <div className="col">
-                                    {/* {item.to} */}
+                                    {item.to}
                                   
                                 </div>
                                 <div className="col">
@@ -128,9 +128,9 @@ const SBTList = (props) => {
                                    
                                 </div>
                             </div>
-                            {/* ))
+                             ))
 
-                        }  */}
+                        }  
                         </div>
                     </div>
                 </div>

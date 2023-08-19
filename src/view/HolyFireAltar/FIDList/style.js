@@ -27,6 +27,7 @@ export default styled.div`
           align-items: center;
           justify-content: space-between;
           position: relative;
+          height:80px;
         }
 
         .nav-list-box {
@@ -147,7 +148,7 @@ export default styled.div`
           }
         }
         .pid{
-          
+        text-align:center; 
           color:rgba(254, 109, 70, 1);
           background: rgba(254,109,70,0.1);
 border-radius: 30px 30px 30px 30px;
@@ -155,7 +156,7 @@ padding: 2px 5px;
 opacity: 1;
 border: 1px solid rgba(254,109,70,0.5);
         }
-        .fid{
+        .fid{ text-align:center; 
             padding: 2px 5px;
           color:rgba(254, 109, 70, 1);
           background: rgba(254,109,70,0.1);
@@ -165,11 +166,14 @@ border: 1px solid rgba(254,109,70,0.5);
         }
         .address{
             padding: 2px 5px;
-          color:rgba(205, 158, 87, 1);
+            text-align:center; 
           background: rgba(205,158,87,0.1);
 border-radius: 30px 30px 30px 30px;
 opacity: 1;
 border: 1px solid rgba(205,158,87,0.5);
+a{
+    color:rgba(205, 158, 87, 1)
+}
         }
 }
 }
@@ -188,6 +192,7 @@ border: 1px solid rgba(205,158,87,0.5);
           align-items: center;
           justify-content: space-between;
           position: relative;
+                height:80px;
         }
 
         .nav-list-box {
@@ -229,10 +234,6 @@ border: 1px solid rgba(205,158,87,0.5);
         .list-header {
             padding: 20px 2.2em;
         }
-        .list-item{
-            padding: 1em 0.5em;
-           
-        }
         .list-item, .list-header {
           justify-content: flex-start;
           /* padding: 0.5em 2.5em 0.5em 2em; */
@@ -314,17 +315,16 @@ border: 1px solid rgba(205,158,87,0.5);
           }
         }
         .pid{
-            padding: 2px 4px;
-          text-align:center;
+        text-align:center; 
           color:rgba(254, 109, 70, 1);
           background: rgba(254,109,70,0.1);
 border-radius: 30px 30px 30px 30px;
+padding: 2px 5px;
 opacity: 1;
 border: 1px solid rgba(254,109,70,0.5);
         }
-        .fid{
-            padding: 2px 4px;
-            text-align:center;
+        .fid{ text-align:center; 
+            padding: 2px 5px;
           color:rgba(254, 109, 70, 1);
           background: rgba(254,109,70,0.1);
 border-radius: 30px 30px 30px 30px;
@@ -332,13 +332,15 @@ opacity: 1;
 border: 1px solid rgba(254,109,70,0.5);
         }
         .address{
-            padding: 2px 4px;
-            text-align:center;
-          color:rgba(205, 158, 87, 1);
+            padding: 2px 5px;
+            text-align:center; 
           background: rgba(205,158,87,0.1);
 border-radius: 30px 30px 30px 30px;
 opacity: 1;
 border: 1px solid rgba(205,158,87,0.5);
+a{
+    color:rgba(205, 158, 87, 1)
+}
         }
 }
 } }
@@ -354,6 +356,7 @@ border: 1px solid rgba(205,158,87,0.5);
       align-items: center;
       justify-content: space-between;
       position: relative;
+      height:80px;
     }
 
     .nav-list-box {
@@ -400,10 +403,6 @@ width: 1130px;
 overflow-x: scroll;
   .list-header {
       padding: 20px 2em;
-  }
-  .list-item{
-    padding: 0.5em;
-    
   }
   .list-item, .list-header {
     justify-content: flex-start;
@@ -474,13 +473,33 @@ padding: 1 0.5em;
       overflow: hidden;
     }
     .pid{
-        text-align:center;
-        
-      }
-      .fid{
-        text-align:center;
-        
-      }
+        text-align:center; 
+          color:rgba(254, 109, 70, 1);
+          background: rgba(254,109,70,0.1);
+border-radius: 30px 30px 30px 30px;
+padding: 2px 5px;
+opacity: 1;
+border: 1px solid rgba(254,109,70,0.5);
+        }
+        .fid{ text-align:center; 
+            padding: 2px 5px;
+          color:rgba(254, 109, 70, 1);
+          background: rgba(254,109,70,0.1);
+border-radius: 30px 30px 30px 30px;
+opacity: 1;
+border: 1px solid rgba(254,109,70,0.5);
+        }
+        .address{
+            padding: 2px 5px;
+            text-align:center; 
+          background: rgba(205,158,87,0.1);
+border-radius: 30px 30px 30px 30px;
+opacity: 1;
+border: 1px solid rgba(205,158,87,0.5);
+a{
+    color:rgba(205, 158, 87, 1)
+}
+        }
     }
   }
 }   }
@@ -497,6 +516,7 @@ padding: 1 0.5em;
         align-items: center;
         justify-content: space-between;
         position: relative;
+        height:100px;
       }
 
       .nav-list-box {
@@ -544,10 +564,6 @@ padding: 1 0.5em;
     overflow: scroll;
       .list-header {
           padding: 20px 2.2em;
-      }
-      .list-item{
-        padding: 0.5em;
-        
       }
       .list-item, .list-header {
         justify-content: flex-start;
@@ -618,18 +634,38 @@ font-size:14px;
           overflow: hidden;
         }
         .pid{
-            text-align:center;
-            
-          }
-          .fid{
-            text-align:center;
-            
-          }
+        text-align:center; 
+          color:rgba(254, 109, 70, 1);
+          background: rgba(254,109,70,0.1);
+border-radius: 30px 30px 30px 30px;
+padding: 2px 5px;
+opacity: 1;
+border: 1px solid rgba(254,109,70,0.5);
+        }
+        .fid{ text-align:center; 
+            padding: 2px 5px;
+          color:rgba(254, 109, 70, 1);
+          background: rgba(254,109,70,0.1);
+border-radius: 30px 30px 30px 30px;
+opacity: 1;
+border: 1px solid rgba(254,109,70,0.5);
+        }
+        .address{
+            padding: 2px 5px;
+            text-align:center; 
+          background: rgba(205,158,87,0.1);
+border-radius: 30px 30px 30px 30px;
+opacity: 1;
+border: 1px solid rgba(205,158,87,0.5);
+a{
+    color:rgba(205, 158, 87, 1)
+}
+        }
         }
       }
 }
 }
-@media screen and (max-width: 450px) {
+@media screen and (max-width: 400px) {
 
 
 .panel-container {
@@ -640,6 +676,7 @@ padding:30px 4.6%;
       align-items: center;
       justify-content: space-between;
       position: relative;
+      height:100px;
     }
 
     .nav-list-box {
@@ -686,10 +723,6 @@ padding:30px 4.6%;
   overflow: scroll;
     .list-header {
         padding: 20px 2.2em;
-    }
-    .list-item{
-      padding: 0.5em;
-      
     }
     .list-item, .list-header {
       justify-content: flex-start;
@@ -760,12 +793,32 @@ font-size:14px;
         overflow: hidden;
       }
       .pid{
-          text-align:center;
-          
+        text-align:center; 
+          color:rgba(254, 109, 70, 1);
+          background: rgba(254,109,70,0.1);
+border-radius: 30px 30px 30px 30px;
+padding: 2px 5px;
+opacity: 1;
+border: 1px solid rgba(254,109,70,0.5);
         }
-        .fid{
-          text-align:center;
-          
+        .fid{ text-align:center; 
+            padding: 2px 5px;
+          color:rgba(254, 109, 70, 1);
+          background: rgba(254,109,70,0.1);
+border-radius: 30px 30px 30px 30px;
+opacity: 1;
+border: 1px solid rgba(254,109,70,0.5);
+        }
+        .address{
+            padding: 2px 5px;
+            text-align:center; 
+          background: rgba(205,158,87,0.1);
+border-radius: 30px 30px 30px 30px;
+opacity: 1;
+border: 1px solid rgba(205,158,87,0.5);
+a{
+    color:rgba(205, 158, 87, 1)
+}
         }
       }
     }

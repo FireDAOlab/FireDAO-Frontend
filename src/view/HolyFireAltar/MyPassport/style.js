@@ -339,7 +339,7 @@ border: 1px solid rgba(87,141,205,0.5);
       .nft-list {
         justify-content: center;
 width: 100%;
-margin-top: 2em;
+margin-top: 1.5em;
 .boxshadow{
 width: 48%;
 margin: 0 auto;
@@ -445,7 +445,7 @@ color: rgb(254, 109, 70);
 }
 
 .myFireSeed {
-    margin-top:1em;
+    margin-top:1.5em;
    
   .fire-list-box {
     .list-item:last-child{
@@ -519,11 +519,9 @@ font-size:16px;
 }
 }
     .myWall {
-        margin-top:1em;
+        margin-top:1.5em;
        .fire-list-box {
-        &:last-child .list-item {
-    border-bottom:none!important;
-}
+   
           .flex-box11 {
             padding: 20px 2.2em;
           }
@@ -531,10 +529,7 @@ font-size:16px;
             padding: 0em;
 
 }
-.ss1{
-    padding: 1em 0.5em;
-    border-radius:0px;
-}
+
           .sbt1, .flex-box11{
             justify-content: flex-start;
          
@@ -569,6 +564,9 @@ font-size:16px;
 }
 
           .ss1 {
+            &:last-child  {
+    border-bottom:none!important;
+}
             padding:1em 0.5em;
             width: 94%;
             margin: 0em auto;
@@ -598,7 +596,7 @@ font-size:16px;
 }
 
     .myfdt {
-        margin-top:1em;
+        margin-top:1.5em;
        .fire-list-box {
         .list-item:last-child{
     border-bottom:none!important;
@@ -726,7 +724,7 @@ font-size:16px;
       .fdtkk{
         margin-top:-6px;
         margin-left:8px;
-        width: 70%;
+        width: 120px;
         height: 35px;
         line-height: 35px;
         font-size:16px;
@@ -740,7 +738,7 @@ font-size:16px;
       .valuekk{
         margin-top:-6px;
         margin-left:8px;
-        width: 70%;
+        width: 120px;
         height: 35px;
         line-height: 35px;
         font-size:16px;
@@ -1081,7 +1079,7 @@ border: 1px solid rgba(87,141,205,0.5);
       .nft-list {
         justify-content: center;
 width: 100%;
-margin-top: 2em;
+margin-top: 1.5em;
 .boxshadow{
 width: 48%;
 margin: 0 auto;
@@ -1187,7 +1185,7 @@ color: rgb(254, 109, 70);
 }
 
 .myFireSeed {
-    margin-top:1em;
+    margin-top:1.5em;
    
  
     .fire-list-box {
@@ -1263,11 +1261,9 @@ font-size:16px;
 }
     .myWall {
         
-        margin-top:1em;
+        margin-top:1.5em;
              .fire-list-box {
-                &:last-child .list-item {
-    border-bottom:none!important;
-}
+           
           .flex-box11 {
             padding: 20px 2.2em;
           }
@@ -1313,6 +1309,9 @@ font-size:16px;
 }
 
           .ss1 {
+            &:last-child  {
+    border-bottom:none!important;
+}
             padding:1em 0.5em;
             width: 94%;
             margin: 0em auto;
@@ -1342,7 +1341,7 @@ font-size:16px;
 }
 
     .myfdt {
-        margin-top:1em;
+        margin-top:1.5em;
         .fire-list-box {
             .list-item:last-child{
     border-bottom:none!important;
@@ -1470,7 +1469,7 @@ font-size:16px;
     .fdtkk{
       margin-top:-6px;
       margin-left:8px;
-      width: 70%;
+      width: 120px;
       height: 35px;
       line-height: 35px;
       font-size:16px;
@@ -1484,7 +1483,7 @@ font-size:16px;
     .valuekk{
       margin-top:-6px;
       margin-left:8px;
-      width: 70%;
+      width: 120px;
       height: 35px;
       line-height: 35px;
       font-size:16px;
@@ -1824,7 +1823,7 @@ border: 1px solid rgba(87,141,205,0.5);
       .nft-list {
         justify-content: center;
 width: 100%;
-margin-top: 2em;
+margin-top: 1.5em;
 .boxshadow{
   
 width: 48%;
@@ -1921,7 +1920,7 @@ color: rgb(254, 109, 70);
     }
 
     .myFireSeed {
-    margin-top:1em;
+    margin-top:1.5em;
    
     .fire-list-box {
         .list-item:last-child{
@@ -1994,11 +1993,8 @@ font-size:14px;
 }
 }
 .myWall {
-        margin-top:1em;
+        margin-top:1.5em;
         .fire-list-box {
-            &:last-child .list-item {
-    border-bottom:none!important;
-}
           .flex-box11 {
             padding: 20px 1.5em;
           }
@@ -2044,6 +2040,9 @@ font-size:14px;
 }
 
           .ss1 {
+            &:last-child  {
+    border-bottom:none!important;
+}
             padding:1em 0.5em;
             width: 94%;
             margin: 0em auto;
@@ -2072,7 +2071,7 @@ font-size:14px;
 }
 }
 .myfdt {
-        margin-top:1em;
+        margin-top:1.5em;
         .fire-list-box {
             .list-item:last-child{
     border-bottom:none!important;
@@ -2183,7 +2182,7 @@ font-size:14px;
       }
     }
     .fdt{
-      width: 40%;
+      width: 45%;
       display: flex;
       align-items:center;
   
@@ -2200,7 +2199,7 @@ font-size:14px;
       .fdtkk{
         margin-top:-8px;
         margin-left:8px;
-        width: 70%;
+        width: 120px;
         height: 35px;
         line-height: 35px;
         font-size:14px;
@@ -2214,7 +2213,7 @@ font-size:14px;
       .valuekk{
         margin-top:-8px;
         margin-left:8px;
-        width: 70%;
+        width: 120px;
         height: 35px;
         line-height: 35px;
         font-size:14px;
@@ -2587,7 +2586,7 @@ font-family: Roboto-SemiBold, Roboto;
     display: block;
     justify-content: center;
 width: 100%;
-margin-top: 2em;
+margin-top: 1.5em;
 .boxshadow{
 
 width: 100%;
@@ -2682,7 +2681,7 @@ color: rgb(254, 109, 70);
 }
 
 .myFireSeed {
-    margin-top:1em;
+    margin-top:1.5em;
   
     .fire-list-box {
           .flex-box11 {
@@ -2753,11 +2752,9 @@ font-size:14px;
 }
 }
 .myWall {
-        margin-top:1em;
+        margin-top:1.5em;
         .fire-list-box {
-          .flex-box11 {
-            padding: 20px 1.2em;
-          }
+          
           .sbt1 {
             padding: 0em;
 
@@ -2800,6 +2797,9 @@ font-size:14px;
 }
 
           .ss1 {
+            &:last-child  {
+    border-bottom:none!important;
+}
             padding:1em 0.5em;
             width: 94%;
             margin: 0em auto;
@@ -2822,7 +2822,7 @@ font-size:14px;
     width: 460px;
 }
     .myfdt {
-        margin-top:1em;
+        margin-top:1.5em;
        .fire-list-box {
         overflow:scroll;
         .list-item{
@@ -3372,7 +3372,7 @@ font-family: Roboto-SemiBold, Roboto;
     display: block;
     justify-content: center;
 width: 100%;
-margin-top: 2em;
+margin-top: 1.5em;
 .boxshadow{
 
 width: 100%;
@@ -3468,7 +3468,7 @@ color: rgb(254, 109, 70);
 }
 
 .myFireSeed {
-    margin-top:1em;
+    margin-top:1.5em;
     .fire-list-box {
           .flex-box11 {
             padding: 20px 1.3em;
@@ -3538,7 +3538,7 @@ font-size:14px;
 }
 }
 .myWall {
-        margin-top:1em;
+        margin-top:1.5em;
         .fire-list-box {
           .flex-box11 {
             padding: 20px 1.2em;
@@ -3547,10 +3547,7 @@ font-size:14px;
             padding: 0em;
 
 }
-.ss1{
-    padding: 1em 0.5em;
-    border-radius:0px;
-}
+
           .sbt1, .flex-box11{
             justify-content: flex-start;
          
@@ -3585,6 +3582,9 @@ font-size:14px;
 }
 
           .ss1 {
+            &:last-child  {
+    border-bottom:none!important;
+}
             padding:1em 0.5em;
             width: 94%;
             margin: 0em auto;
@@ -3607,7 +3607,7 @@ font-size:14px;
     width: 460px;
 }
     .myfdt {
-        margin-top:1em;
+        margin-top:1.5em;
        .fire-list-box {
         overflow:scroll;
         .list-item{

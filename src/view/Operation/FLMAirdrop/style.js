@@ -34,7 +34,8 @@ justify-content: space-between;
   .content-box{
     display: flex;
     justify-content: space-between;
-    margin-top: 30px;
+    margin: 1.5em auto;
+
     padding: 0;
 
     .left-part, .right-part {
@@ -48,7 +49,7 @@ justify-content: space-between;
       .title {
         font-size:20px;
         font-family: Roboto-Medium, Roboto;
-        font-weight: 500;
+        font-weight: 600;
         color: #8A8080;
       }
 
@@ -76,7 +77,7 @@ justify-content: space-between;
           .name {
             font-size: 16px;
             font-family: Roboto-Medium, Roboto;
-            font-weight: 500;
+            font-weight: 600;
             color: #8A8080;
           }
 
@@ -105,7 +106,7 @@ justify-content: space-between;
     font-size: 16px;
     white-space: nowrap;
     .pid {
-      width: 80px;
+      width:100px;
     
       margin-left: 6px;
       height: 28px;
@@ -190,7 +191,7 @@ justify-content: space-between;
           font-weight: 600;
         width: 100%;
         height: 40px;
-        font-size: 16px;
+        font-size: 18px;
       }
   
     }
@@ -227,7 +228,7 @@ justify-content: space-between;
             }
 
 .fire-list-box-airdrop{
-    margin:1em 0em;
+    margin:1.5em 0em;
         .list-header {
             padding: 20px 1.8em;
         }
@@ -340,7 +341,7 @@ border: 1px solid rgba(254,109,70,0.5);
         
     }
     .fire-list-box-userclaim{
-        margin:1em 0em;
+        margin:1.5em 0em;
         .list-header {
             padding: 20px 1.8em;
         }
@@ -421,7 +422,7 @@ border: 1px solid rgba(205,158,87,0.5);
 
  .panel-container{
 .fire-list-box-deposit{
-    margin:1em 0em;
+    margin:1.5em 0em;
         .list-header {
             padding: 20px 1.8em;
         }
@@ -554,7 +555,7 @@ color: #FFFFFF;
    
     .fire-list-box-airdroplist{
 
-        margin:1em 0em;
+        margin:1.5em 0em;
         .list-header {
             padding: 20px 1.7em;
         }
@@ -585,7 +586,7 @@ color: #FFFFFF;
         } 
     }
     .list-item:last-child {
-            /* border-bottom:none; */
+            border-bottom:none;
         }
     .list-item {
         padding: 1em 0.5em;
@@ -636,7 +637,8 @@ justify-content: space-between;
   .content-box{
     display: flex;
     justify-content: space-between;
-    margin-top: 30px;
+    margin: 1.5em auto;
+
     padding: 0;
 
     .left-part, .right-part {
@@ -650,7 +652,7 @@ justify-content: space-between;
       .title {
         font-size:20px;
         font-family: Roboto-Medium, Roboto;
-        font-weight: 500;
+        font-weight: 600;
         color: #8A8080;
       }
 
@@ -678,7 +680,7 @@ justify-content: space-between;
           .name {
             font-size: 16px;
             font-family: Roboto-Medium, Roboto;
-            font-weight: 500;
+            font-weight: 600;
             color: #8A8080;
           }
 
@@ -707,7 +709,7 @@ justify-content: space-between;
     font-size: 16px;
     white-space: nowrap;
     .pid {
-      width: 80px;
+      width:100px;
     
       margin-left: 6px;
       height: 28px;
@@ -792,7 +794,7 @@ justify-content: space-between;
           font-weight: 600;
         width: 100%;
         height: 40px;
-        font-size: 16px;
+        font-size: 18px;
       }
   
     }
@@ -826,7 +828,7 @@ justify-content: space-between;
             }
 
 .fire-list-box-airdrop{
-    margin:1em 0em;
+    margin:1.5em 0em;
         .list-header {
             padding: 20px 1.8em;
         }
@@ -939,7 +941,7 @@ border: 1px solid rgba(254,109,70,0.5);
         
     }
     .fire-list-box-userclaim{
-        margin:1em 0em;
+        margin:1.5em 0em;
         .list-header {
             padding: 20px 1.8em;
         }
@@ -1023,7 +1025,7 @@ border: 1px solid rgba(205,158,87,0.5);
 
  .panel-container{
 .fire-list-box-deposit{
-    margin:1em 0em;
+    margin:1.5em 0em;
         .list-header {
             padding: 20px 1.8em;
         }
@@ -1159,7 +1161,7 @@ color: #FFFFFF;
    
     .fire-list-box-airdroplist{
 
-        margin:1em 0em;
+        margin:1.5em 0em;
         .list-header {
             padding: 20px 1.7em;
         }
@@ -1191,7 +1193,7 @@ color: #FFFFFF;
         } 
     }
     .list-item:last-child {
-            /* border-bottom:none; */
+            border-bottom:none;
         }
     .list-item {
         padding: 1em 0.5em;
@@ -1246,7 +1248,8 @@ justify-content: space-between;
   .content-box{
     display: flex;
     justify-content: space-between;
-    margin-top: 30px;
+    margin: 1.5em auto;
+
     padding: 0;
 
     .left-part, .right-part {
@@ -1260,7 +1263,7 @@ justify-content: space-between;
       .title {
         font-size:16px;
         font-family: Roboto-Medium, Roboto;
-        font-weight: 500;
+        font-weight: 600;
         color: #8A8080;
       }
 
@@ -1288,7 +1291,7 @@ justify-content: space-between;
           .name {
             font-size: 14px;
             font-family: Roboto-Medium, Roboto;
-            font-weight: 500;
+            font-weight: 600;
             color: #8A8080;
           }
 
@@ -1317,7 +1320,7 @@ justify-content: space-between;
     font-size: 14px;
     white-space: nowrap;
     .pid {
-      width: 60px;
+      width:80px;
       margin-left: 6px;
       height: 28px;
       background: rgba(254, 109, 70, 0.1);
@@ -1378,7 +1381,7 @@ justify-content: space-between;
         }
 
         .max-btn {
-            margin: 0px 5px;
+            margin: 0px 2px;
           width: 65px;
           height: 30px;
           background: linear-gradient(32deg, #FF4E50 0%, #F9D423 100%);
@@ -1438,7 +1441,7 @@ justify-content: space-between;
             }
 
 .fire-list-box-airdrop{
-    margin:1em 0em;
+    margin:1.5em 0em;
         .list-header {
             padding: 20px 1.8em;
         }
@@ -1530,7 +1533,7 @@ border: 1px solid rgba(254,109,70,0.5);
 
         .fire-nav-list {
           width: 36%;
-          height: 50px;
+          height: 45px;
         .nav-item {
           cursor: pointer;
           width: 45%;
@@ -1551,7 +1554,7 @@ border: 1px solid rgba(254,109,70,0.5);
         
     }
     .fire-list-box-userclaim{
-        margin:1em 0em;
+        margin:1.5em 0em;
         .list-header {
             padding: 20px 1.5em;
         }
@@ -1636,15 +1639,13 @@ border: 1px solid rgba(205,158,87,0.5);
 
  .panel-container{
 .fire-list-box-deposit{
-    margin:1em 0em;
+    margin:1.5em 0em;
         .list-header {
             padding: 20px 1.5em;
         }
         .list-item, .list-header {
           justify-content: flex-start;
           /* padding: 0.5em 2.5em 0.5em 2em; */
-       
-
         .col {
           text-align: left;
           font-size:14px;
@@ -1773,7 +1774,7 @@ color: #FFFFFF;
    
     .fire-list-box-airdroplist{
 
-        margin:1em 0em;
+        margin:1.5em 0em;
         .list-header {
             padding: 20px 1.5em;
         }
@@ -1805,7 +1806,7 @@ color: #FFFFFF;
         } 
     }
     .list-item:last-child {
-            /* border-bottom:none; */
+            border-bottom:none;
         }
     .list-item {
         padding: 1em 0.5em;
@@ -1854,7 +1855,8 @@ border: 1px solid rgba(205,158,87,0.5);
 } 
   .content-box{
     display: block;
-    margin-top: 30px;
+    margin: 1.5em auto;
+
     padding: 0;
 
     .left-part, .right-part {
@@ -1863,12 +1865,13 @@ border: 1px solid rgba(205,158,87,0.5);
       border-radius: 10px;
       border: 1px solid rgba(255, 255, 255, 0.1);
       padding: 25px 30px;
+      margin-bottom:0.5em;
     }
     .left-part {
       .title {
         font-size:16px;
         font-family: Roboto-Medium, Roboto;
-        font-weight: 500;
+        font-weight: 600;
         color: #8A8080;
       }
 
@@ -1896,7 +1899,7 @@ border: 1px solid rgba(205,158,87,0.5);
           .name {
             font-size: 14px;
             font-family: Roboto-Medium, Roboto;
-            font-weight: 500;
+            font-weight: 600;
             color: #8A8080;
           }
 
@@ -1913,19 +1916,19 @@ border: 1px solid rgba(205,158,87,0.5);
 
     .right-part {
       .info-box {
-        display: flex;
-        justify-content: space-between;
+        display: block;
         margin-bottom: 8px;
         .pid-box {
     font-family: Roboto-SemiBold, Roboto;
     font-weight: 600;
     color: #8A8080;
     display: flex;
+        justify-content: space-between;
     align-items: center;
     font-size: 14px;
     white-space: nowrap;
     .pid {
-      width: 60px;
+      width: 95px;
       margin-left: 6px;
       height: 28px;
       background: rgba(254, 109, 70, 0.1);
@@ -1943,20 +1946,29 @@ border: 1px solid rgba(205,158,87,0.5);
 
   }
   .can-claim{
+    margin-top:0.5em;
     font-family: Roboto-SemiBold, Roboto;
     font-weight: 600;
     color: #8A8080;
     display: flex;
+        justify-content: space-between;
     align-items: center;
     font-size: 14px;
     white-space: nowrap;
     strong{
-        font-family: Roboto-SemiBold, Roboto;
-    font-weight: 600;
-    display: flex;
-    align-items: center;
-    font-size: 14px;
-    white-space: nowrap;
+    width: 100px;
+      margin-left: 6px;
+      height: 28px;
+      background: rgba(254, 109, 70, 0.1);
+      border-radius: 38px 38px 38px 38px;
+      opacity: 1;
+      border: 1px solid rgba(254, 109, 70, 0.5);
+      display: flex;
+      font-family: Roboto-SemiBold, Roboto;
+      font-weight: 600;
+      align-items:center;
+      color: #FE6D46;
+      justify-content: center;
     }
   }
       }
@@ -1986,7 +1998,7 @@ border: 1px solid rgba(205,158,87,0.5);
         }
 
         .max-btn {
-            margin: 0px 5px;
+            margin: 0px 2px;
           width: 65px;
           height: 30px;
           background: linear-gradient(32deg, #FF4E50 0%, #F9D423 100%);
@@ -2017,6 +2029,7 @@ border: 1px solid rgba(205,158,87,0.5);
   }
 
   .search-box {
+    margin:0.5em 0;
               display: flex;
               align-items: center;
               background: #3F3535;
@@ -2047,7 +2060,7 @@ border: 1px solid rgba(205,158,87,0.5);
     width: 550px;
 }
 .fire-list-box-airdrop{
-    margin:1em 0em;
+    margin:1.5em 0em;
     overflow: scroll;
    
         .list-header {
@@ -2141,7 +2154,7 @@ border: 1px solid rgba(254,109,70,0.5);
 
         .fire-nav-list {
           width: 72%;
-          height: 50px;
+          height: 40px;
         .nav-item {
           cursor: pointer;
           width: 45%;
@@ -2165,7 +2178,7 @@ border: 1px solid rgba(254,109,70,0.5);
     width: 715px;
 }
     .fire-list-box-userclaim{
-        margin:1em 0em;
+        margin:1.5em 0em;
         overflow: scroll;
         .list-header {
             padding: 20px 1.5em;
@@ -2254,7 +2267,7 @@ border: 1px solid rgba(205,158,87,0.5);
     width: 715px;
 }
 .fire-list-box-deposit{
-    margin:1em 0em;
+    margin:1.5em 0em;
     overflow: scroll;
         .list-header {
             padding: 20px 1.5em;
@@ -2392,7 +2405,7 @@ color: #FFFFFF;
 }
     .fire-list-box-airdroplist{
 overflow: scroll;
-        margin:1em 0em;
+        margin:1.5em 0em;
         .list-header {
             padding: 20px 1.5em;
         }
@@ -2426,7 +2439,7 @@ overflow: scroll;
         } 
     }
     .list-item:last-child {
-            /* border-bottom:none; */
+            border-bottom:none;
         }
     .list-item {
         padding: 1em 0.5em;

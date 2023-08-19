@@ -128,8 +128,7 @@ padding: 0px 10px;
   }
   .current-box{
     width:45%;
-
-margin: 2em auto;
+    margin: 1.5em auto;
 background: rgba(26, 20, 20, 1);
 border-radius: 20px;
 border: 1px solid rgba(255,255,255,0.1);
@@ -162,20 +161,19 @@ padding: 20px;
                   }
   }
 
-  .ffad{
+  .bdval{
     &:last-child .list-item{
     border-bottom:none!important;
+    }
 }
+  .ffad{
     margin:0em;
-        .list-item{
-          padding: 0.5em;
-         
-        }
         .flex-box2{
-          padding: 20px 2.5em;
+          padding: 20px 2.5em;    
         }
         .flex-box2,  .list-item{
           justify-content: flex-start;
+      
         .col1 {
           font-size:16px;
           text-align:left;
@@ -211,7 +209,7 @@ padding: 20px;
           .no{
             padding: 2px 4px;
             color: #FE6D46;
-text-align:center;
+text-align:left;
           }
           .pid{
             padding: 2px 4px;
@@ -239,7 +237,7 @@ text-align:center;
  
         }
           .ff1{
-        margin: 1em 0em;
+            margin: 1.5em 0em;
         text-align:left;
         &:last-child .list-item {
     border-bottom:none!important;
@@ -328,6 +326,7 @@ text-align:center;
 
 
           .ff2{
+            margin:1.5em 0em;
             .list-item:last-child{
     border-bottom:none!important;
 }
@@ -381,8 +380,7 @@ text-align:center;
   .amountbox{
     width:100%;
 
-margin: 2em auto;
-
+    margin: 1.5em auto;
 display: flex;
 justify-content:space-between;
 
@@ -701,7 +699,7 @@ width: 52%;
     .fire-nav-list {
       height: 50px;
     width: 60%;
-    line-height:15px;
+    /* line-height:15px; */
       .nav-item {
         width:42%;
         font-size:18px;
@@ -747,8 +745,7 @@ width: 52%;
   }
   .current-box{
     width:45%;
-
-margin: 2em auto;
+    margin: 1.5em auto;
 background: rgba(26, 20, 20, 1);
 border-radius: 20px;
 border: 1px solid rgba(255,255,255,0.1);
@@ -781,20 +778,19 @@ padding: 20px;
                   }
   }
 
-  .ffad{
+  .bdval{
     &:last-child .list-item{
     border-bottom:none!important;
-}
-    margin:0em;
-    .list-item{
-      padding: 0.5em;
-     
     }
+}
+  .ffad{
+    margin:0em;
     .flex-box2{
       padding: 20px 2.5em;
     }
     .flex-box2,  .list-item{
       justify-content: flex-start;
+     
     .col1 {
       font-size:16px;
       text-align:left;
@@ -829,7 +825,7 @@ padding: 20px;
       }
       .no{padding: 2px 4px;
         color: #FE6D46;
-        text-align:center;
+        text-align:left;
       }
       .pid{padding: 2px 4px;
         color: #FE6D46;
@@ -856,7 +852,7 @@ padding: 20px;
 
     }
     .ff1{
-        margin: 1em 0em;
+        margin: 1.5em 0em;
         text-align:left;
         &:last-child .list-item {
     border-bottom:none!important;
@@ -940,7 +936,7 @@ font-size:16px;
           height: 40px;
         }
         .ff2{
-        margin: 1em 0;
+        margin: 1.5em 0;
         .list-item:last-child{
     border-bottom:none!important;
 }
@@ -993,8 +989,7 @@ font-size:16px;
   .amountbox{
     width:100%;
 
-margin: 2em auto;
-
+    margin: 1.5em auto;
 display: flex;
 justify-content:space-between;
 
@@ -1308,12 +1303,11 @@ width: 52%;
 
     .fire-nav-list {
       height: 45px;
-    width: 68%;
+    width: 75%;
     
     line-height:15px;
       .nav-item {
-        width:42%;
-        font-size:14px;
+        font-size:16px;
       }
     }
   }
@@ -1353,8 +1347,7 @@ width: 52%;
   }
   .current-box{
     width:60%;
-
-margin: 2em auto;
+    margin: 1.5em auto;
 background: rgba(26, 20, 20, 1);
 border-radius: 20px;
 border: 1px solid rgba(255,255,255,0.1);
@@ -1387,14 +1380,17 @@ padding: 20px;
   .ant-form-item-control-input-content{
           height: 40px;
         }
+    
+.bdval{
+    &:last-child .list-item{
+    border-bottom:none!important;
+    }
+}
         .ffad{
     margin:1em 0em;
-            .list-item{
-              padding: 0.5em;
-             
-            }
             .flex-box2{
               padding: 20px 2em;
+              font-size:16px;
             }
             .flex-box2,  .list-item{
               justify-content: flex-start;
@@ -1432,7 +1428,7 @@ padding: 20px;
               }
               .no{padding: 2px 4px;
                 color: #FE6D46;
-                text-align:center;
+                text-align:left;
               }
               .pid{padding: 2px 4px;
                 color: #FE6D46;
@@ -1460,7 +1456,7 @@ padding: 20px;
             }
 
             .ff1{
-        margin: 1em 0em;
+                margin: 1.5em 0em;
                 text-align:left;
                 &:last-child .list-item {
     border-bottom:none!important;
@@ -1543,6 +1539,7 @@ padding: 20px;
 
 
         .ff2{
+            margin: 1.5em 0;
             .list-item:last-child{
     border-bottom:none!important;
 }
@@ -1596,7 +1593,7 @@ padding: 20px;
   .amountbox{
     width:100%;
 
-margin: 2em auto;
+margin: 1.5em auto;
 
 display: flex;
 justify-content:space-between;
@@ -1869,7 +1866,8 @@ line-height: 18px;
 .ant-input{
   font-size:14px;
 }
-.ant-form{ input{
+.ant-form{ 
+    input{
   font-size:14px;
 
 }}
@@ -1897,7 +1895,7 @@ line-height: 18px;
       }
       .current-box{
         width: 100%;
-        margin: 1em 0;
+        margin: 1.5em 0;
         .current{
           .name{
             font-size:14px;
@@ -1970,10 +1968,6 @@ line-height: 18px;
 
           .ffad{
             margin:1em 0em;
-            .list-item{
-              padding: 0.5em;
-             
-            }
             .flex-box2{
               padding: 20px 1.8em;
             }
@@ -2011,9 +2005,10 @@ line-height: 18px;
                 //text-overflow: ellipsis;
     
               }
-              .no{padding: 2px 4px;
+              .no{
+                padding: 2px 4px;
                 color: #FE6D46;
-                text-align:center;
+                text-align:left;
               }
               .pid{padding: 2px 4px;
                 color: #FE6D46;
@@ -2045,7 +2040,7 @@ line-height: 18px;
 }
 
 .ff1{
-        margin: 1em 0em;
+    margin: 1.5em 0em;
                 overflow: scroll;
                 text-align:left;
                 .ant-form {
@@ -2129,9 +2124,8 @@ line-height: 18px;
           height: 28px;
           line-height:28px;
         }
-        .ff2{
-        margin: 1em 0;
-            
+        .ff2{ 
+            margin: 1.5em 0;
             .flex-box1 {
                 padding: 20px 1.5em;
               }
@@ -2150,7 +2144,7 @@ line-height: 18px;
           }
           &:nth-child(3){
             width: 32%;
-            margin-left:5px;
+            margin-left:10px;
           }
          
         }
@@ -2162,7 +2156,7 @@ line-height: 18px;
                 border-radius:0px;
                 border-bottom:1px solid rgba(255, 255, 255, 0.1);
                 .value{
-                  
+                    margin-left:10px;
                   .dtoo1{
       width: 85%;
       text-align:center;        
@@ -2335,7 +2329,7 @@ line-height: 18px;
       }
       .current-box{
         width: 100%;
-        margin: 1em 0;
+        margin: 1.5em 0;
         .current{
           .name{
             font-size:14px;
@@ -2408,10 +2402,6 @@ line-height: 18px;
           }
           .ffad{
             margin:1em 0em;
-            .list-item{
-              padding: 0.5em;
-             
-            }
             .flex-box2{
               padding: 20px 1.5em;
             }
@@ -2451,7 +2441,7 @@ line-height: 18px;
               }
               .no{padding: 2px 4px;
                 color: #FE6D46;
-                text-align:center;
+                text-align:left;
               }
               .pid{padding: 2px 4px;
                 color: #FE6D46;
@@ -2483,7 +2473,7 @@ line-height: 18px;
             }
             
             .ff1{
-        margin: 1em 0em;
+                margin: 1.5em 0em;
                             overflow: scroll;
                             text-align:left;
                             .ant-form {
@@ -2568,10 +2558,10 @@ line-height: 18px;
           line-height:28px;
         }
         .ff2{
-        margin: 1em 0;
+         margin: 1.5em 0;
             
             .flex-box1 {
-                padding: 20px 1.5em;
+                padding: 20px 1em;
               }
             .flex-box1,.lever {
                 justify-content: flex-start;  
@@ -2600,7 +2590,7 @@ line-height: 18px;
                 border-radius:0px;
                 border-bottom:1px solid rgba(255, 255, 255, 0.1);
                 .value{
-                  
+                  margin-left:10px;
                   .dtoo1{
       width: 85%;
       text-align:center;        

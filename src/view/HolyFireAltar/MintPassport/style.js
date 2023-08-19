@@ -99,7 +99,7 @@ img{
 
     .content-box {
       display: flex;
-      padding: 2em 0;
+      padding: 1.5em 0;
 
       .left {
         width: 50%;
@@ -287,7 +287,7 @@ img{
 
     .content-box {
       display: flex;
-      padding: 2em 0;
+      padding: 1.5em 0;
 
       .left {
         width: 50%;
@@ -473,7 +473,7 @@ img{
 
     .content-box {
       display: flex;
-      padding: 2em 0;
+      padding: 1.5em 0;
 
       .left {
         width: 50%;
@@ -648,7 +648,7 @@ img{
 
     .content-box {
         display: block;
-        padding: 2em 0;
+        padding: 1.5em 0;
 
       .left {
         width: 100%;

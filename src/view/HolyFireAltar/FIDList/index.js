@@ -219,7 +219,7 @@ const FIDList = (props) => {
                                             
                                         </div>
                                         <div className="col address">
-                                            {item.soulAccount ? item.soulAccount :'-'}
+                                            <a>{item.soulAccount ? item.soulAccount :'-'}</a>
                                         </div>
                                         <div className="col">
                                             

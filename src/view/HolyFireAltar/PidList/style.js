@@ -30,7 +30,7 @@ export default styled.div`
       align-items: center;
       justify-content: space-between;
       position: relative;
-
+      height: 80px;
       .fresh-icon {
         position: absolute;
         left: 260px;
@@ -46,11 +46,12 @@ export default styled.div`
       }
 
       .nav-list-box {
-        margin: 2em 0;
-        display: flex;
-        width: 90%;
-        .fire-nav-list{
-            height: 45px;
+        height: 50px;
+            margin: 1.5em 0;
+            display: flex;
+            width: 90%;
+            .fire-nav-list{
+                height: 50px;
             width: 30%;
             margin: 0;
             .nav-item{
@@ -173,7 +174,7 @@ export default styled.div`
 
           }
           .pid{
-          
+        text-align:center; 
           color:rgba(254, 109, 70, 1);
           background: rgba(254,109,70,0.1);
 border-radius: 30px 30px 30px 30px;
@@ -181,7 +182,7 @@ padding: 2px 5px;
 opacity: 1;
 border: 1px solid rgba(254,109,70,0.5);
         }
-        .fid{
+        .fid{ text-align:center; 
             padding: 2px 5px;
           color:rgba(254, 109, 70, 1);
           background: rgba(254,109,70,0.1);
@@ -191,7 +192,7 @@ border: 1px solid rgba(254,109,70,0.5);
         }
         .address{
             padding: 2px 5px;
-          
+            text-align:center; 
           background: rgba(205,158,87,0.1);
 border-radius: 30px 30px 30px 30px;
 opacity: 1;
@@ -210,6 +211,7 @@ a{
     .panel-container {
        padding:30px 4.6%;
         .header-box {
+            height: 80px;
           display: flex;
           width: 100%;
           align-items: center;
@@ -231,11 +233,12 @@ a{
           }
 
           .nav-list-box {
-            margin: 2em 0;
+            height: 50px;
+            margin: 1.5em 0;
             display: flex;
             width: 90%;
             .fire-nav-list{
-                height: 45px;
+                height: 50px;
                 width: 30%;
                 margin: 0;
                 .nav-item{
@@ -357,7 +360,7 @@ a{
 
           }
           .pid{
-          
+        text-align:center; 
           color:rgba(254, 109, 70, 1);
           background: rgba(254,109,70,0.1);
 border-radius: 30px 30px 30px 30px;
@@ -365,7 +368,7 @@ padding: 2px 5px;
 opacity: 1;
 border: 1px solid rgba(254,109,70,0.5);
         }
-        .fid{
+        .fid{ text-align:center; 
             padding: 2px 5px;
           color:rgba(254, 109, 70, 1);
           background: rgba(254,109,70,0.1);
@@ -375,7 +378,7 @@ border: 1px solid rgba(254,109,70,0.5);
         }
         .address{
             padding: 2px 5px;
-          
+            text-align:center; 
           background: rgba(205,158,87,0.1);
 border-radius: 30px 30px 30px 30px;
 opacity: 1;
@@ -403,7 +406,7 @@ a{
           align-items: center;
           justify-content: space-between;
           position: relative;
-
+          height: 80px;
           .fresh-icon {
             position: absolute;
             left: 260px;
@@ -419,9 +422,10 @@ a{
           }
 
           .nav-list-box {
-            margin: 2em 0;
+            margin: 1.5em 0;
             display: flex;
-            width: 90%;
+            width: 70%;
+            height: 45px;
             .fire-nav-list{
                 height: 45px;
                 width: 50%;
@@ -454,20 +458,16 @@ a{
       }
 
       .listheadert{
-width: 870px;
+width: 900px;
 }
 .listitemt{
-width: 870px;
+width: 900px;
 }
 .fire-list-box {
     margin: 1em 0em;
 overflow-x: scroll;
   .list-header {
-      padding: 20px 1.6em;
-  }
-  .list-item{
-    padding: 0.5em;
-    
+      padding: 20px 2em;
   }
   .list-item, .list-header {
     justify-content: flex-start;
@@ -537,13 +537,33 @@ font-size:14px;
       overflow: hidden;
     }
     .pid{
-        text-align:center;
-        
-      }
-      .fid{
-        text-align:center;
-        
-      }
+        text-align:center; 
+          color:rgba(254, 109, 70, 1);
+          background: rgba(254,109,70,0.1);
+border-radius: 30px 30px 30px 30px;
+padding: 2px 5px;
+opacity: 1;
+border: 1px solid rgba(254,109,70,0.5);
+        }
+        .fid{ text-align:center; 
+            padding: 2px 5px;
+          color:rgba(254, 109, 70, 1);
+          background: rgba(254,109,70,0.1);
+border-radius: 30px 30px 30px 30px;
+opacity: 1;
+border: 1px solid rgba(254,109,70,0.5);
+        }
+        .address{
+            padding: 2px 5px;
+            text-align:center; 
+          background: rgba(205,158,87,0.1);
+border-radius: 30px 30px 30px 30px;
+opacity: 1;
+border: 1px solid rgba(205,158,87,0.5);
+a{
+    color:rgba(205, 158, 87, 1)
+}
+        }
         }
       }
     }
@@ -558,7 +578,7 @@ font-size:14px;
           align-items: center;
           justify-content: space-between;
           position: relative;
-
+          height: 100px;
           .fresh-icon {
             position: absolute;
             left: 260px;
@@ -577,9 +597,10 @@ font-size:14px;
             margin: 1em 0;
             display: block;
             width: 100%;
+            height: 40px;
             .fire-nav-list{
                 height: 40px;
-                width: 66%;
+                width: 60%;
                 margin: 0;
                 .nav-item{
                   font-size:14px;
@@ -610,21 +631,18 @@ font-size:14px;
       }
 
 .listheadert{
-    width: 810px;
+    width: 850px;
 }
 .listitemt{
-    width: 810px;
+    width: 850px;
 }
       .fire-list-box {
         margin: 1em 0em;
         overflow: scroll;
         .list-header {
-        padding: 20px 1.6em;
+        padding: 20px 2em;
     }
-        .list-item{
-            padding: 0.5em;
-        }
-       
+        
    
         .list-item, .list-header {
           justify-content: flex-start;
@@ -690,13 +708,33 @@ font-size:14px;
           overflow: hidden;
         }
         .pid{
-            text-align:center;
-            
-          }
-          .fid{
-            text-align:center;
-            
-          }
+        text-align:center; 
+          color:rgba(254, 109, 70, 1);
+          background: rgba(254,109,70,0.1);
+border-radius: 30px 30px 30px 30px;
+padding: 2px 5px;
+opacity: 1;
+border: 1px solid rgba(254,109,70,0.5);
+        }
+        .fid{ text-align:center; 
+            padding: 2px 5px;
+          color:rgba(254, 109, 70, 1);
+          background: rgba(254,109,70,0.1);
+border-radius: 30px 30px 30px 30px;
+opacity: 1;
+border: 1px solid rgba(254,109,70,0.5);
+        }
+        .address{
+            padding: 2px 5px;
+            text-align:center; 
+          background: rgba(205,158,87,0.1);
+border-radius: 30px 30px 30px 30px;
+opacity: 1;
+border: 1px solid rgba(205,158,87,0.5);
+a{
+    color:rgba(205, 158, 87, 1)
+}
+        }
         }
       }
     }
