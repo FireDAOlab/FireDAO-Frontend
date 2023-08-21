@@ -1343,7 +1343,7 @@ color: #8A8080;
         }
 
         .status{
-            width: 20%;
+            width: 25%;
             .pause{
                 font-size: 15px;
 font-family: Roboto-Medium, Roboto;
@@ -1383,7 +1383,7 @@ background: linear-gradient(32deg, #FF4E50 0%, #F9D423 100%);
         }
         }
         .max-btn{
-            width: 20%;
+            width: 25%;
             font-size:16px;
 font-family: Russo One-Regular, Russo One;
 font-weight: bold;
@@ -1499,7 +1499,7 @@ width: 100%;
         justify-content: space-between ; 
         .tj{
   display: flex;
-  width: 27%;
+  width: 32%;
   .kk{
   width: 48%;
   height: 40px;
@@ -1538,7 +1538,7 @@ margin-right:10px;
 .fire-list-box-admin{
     margin:1.5em 0em;
         .flex-box1{
-          padding: 20px 2.5em;
+          padding: 20px 2.2em;
           font-size:16px;
         }
         .flex-box1,  .list-item{
@@ -1547,7 +1547,7 @@ margin-right:10px;
           font-size:14px;
           text-align:left;
           &:nth-child(1) {
-            width: 20%;
+            width: 13%;
             margin-left:20px;
           }
 
@@ -1557,8 +1557,8 @@ margin-right:10px;
           }
 
           &:nth-child(3) {
-            width:10%;
-            margin-left:100px;
+            width:15%;
+            margin-left:40px;
           }
          
         }

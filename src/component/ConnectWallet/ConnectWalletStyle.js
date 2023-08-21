@@ -4,10 +4,21 @@ export default   styled.div`
  .ant-btn-primary::after{
   background: #140E0E;
  }
- .ant-dropdown-menu-item:hover{
-background-color: hsl(0deg 0% 12.16%) !important;
-}
 
+.ant-dropdown-menu-item {
+    .ant-dropdown-menu-item-only-child{
+    background-color: hsla(0, 14%, 12%, 1) !important;
+}}
+.ant-dropdown-menu-item
+    .ant-dropdown-menu-item-active
+        .ant-dropdown-menu-item:hover{
+             background-color: hsla(0, 14%, 12%, 1) !important;
+        }
+
+
+.ant-dropdown-menu-item:hover{
+    background-color: hsla(0, 14%, 12%, 1) !important;
+}
 
 @media screen and (min-width: 1950px) {
   .ant-btn-primary{

@@ -413,18 +413,18 @@ const FLMAirdropLv1 = (props) => {
             <div className="xuhao col">
                 {index+1}
             </div>
-            {/* <div className="pid col">
+            <div className="pid col">
 
             </div>
             <div className='username col'>
 
-            </div> */}
-            {/* <div className="zchang col">
-               {item._amount}
-            </div> */}
-            <div className="address col">
-                {item ? item.substr(0, 7) + "..." + item.substr(item.length - 4, item.length) : ""}
             </div>
+            <div className="zchang col">
+               {item._amount}
+            </div>
+            {/* <div className="address col">
+                {item }
+            </div> */}
 
             <Button className="sc col" onClick={() => { 
                 chooseItem(item, index) 
