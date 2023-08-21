@@ -7,11 +7,27 @@ const OGPoolStyle = styled.div`
       }
     }
   }
+  
+  .flex-box{
+    display: flex;
+  }
   .other-reward{
     display: flex;
     justify-content: space-between;
   }
+  .address {
+    a {
+      color: rgba(205, 158, 87, 1);
+    }
 
+    width: 130px;
+    margin-right: 45px;
+
+    border: 1px solid rgba(205, 158, 87, 1);
+    background: rgba(205, 158, 87, 0.20);
+    border-radius: 25px;
+    text-align: center;
+  }
   @media screen and (max-width: 1950px ) {
     .ant-input {
       font-size: 16px;
@@ -271,7 +287,6 @@ const OGPoolStyle = styled.div`
           .address {
             a {
               color: rgba(205, 158, 87, 1);
-
             }
 
             width: 130px;
@@ -521,7 +536,6 @@ const OGPoolStyle = styled.div`
       }
 
       .rate1 {
-        display: block;
         margin-top: 0.5em;
 
         .info-item {

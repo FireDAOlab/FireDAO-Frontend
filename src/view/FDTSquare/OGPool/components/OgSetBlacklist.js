@@ -126,46 +126,6 @@ const AddThreeWhiteList = ({allRecords}) => {
                         <div className="panel-title">
                             Set Blacklist
                         </div>
-                        <div className="fire-list-box admin3-list">
-                            <div className="list-header3 list-header">
-                                <div className="col">
-                                    No.
-                                </div>
-
-
-                                <div className="col ">
-                                    Address
-                                </div>
-                                <div className="col">
-                                    Del
-                                </div>
-
-                            </div>
-
-                            {
-                                blackList.map((item, index) => (
-                                    <div className="list-item " key={index}>
-                                        <div className="col no">
-                                            {index + 1}
-                                        </div>
-
-                                        <div className="col address">
-                                            {item}
-                                        </div>
-
-                                        <div className="col">
-                                            <Button className="del-button" onClick={() => {
-                                                deleteWhite(item)
-                                            }}>
-                                                Delete
-                                            </Button>
-                                        </div>
-
-                                    </div>)
-                                )
-                            }
-
-                        </div>
                         <Form form={form2} name="control-hooks" className="form">
 
                             {addWhiteArr.map((item, index) => {
@@ -211,6 +171,47 @@ const AddThreeWhiteList = ({allRecords}) => {
                             {/*    removeWhiteList()*/}
                             {/*}}>Remove</Button>*/}
                         </div>
+                        <div className="fire-list-box admin3-list">
+                            <div className="list-header3 list-header">
+                                <div className="col">
+                                    No.
+                                </div>
+
+
+                                <div className="col ">
+                                    Address
+                                </div>
+                                <div className="col">
+                                    Del
+                                </div>
+
+                            </div>
+
+                            {
+                                blackList.map((item, index) => (
+                                    <div className="list-item " key={index}>
+                                        <div className="col no">
+                                            {index + 1}
+                                        </div>
+
+                                        <div className="col address">
+                                            {item}
+                                        </div>
+
+                                        <div className="col">
+                                            <Button className="del-button" onClick={() => {
+                                                deleteWhite(item)
+                                            }}>
+                                                Delete
+                                            </Button>
+                                        </div>
+
+                                    </div>)
+                                )
+                            }
+
+                        </div>
+
 
                     </div>
                 </div>

@@ -246,7 +246,7 @@ const AddWhiteList = ({allRecords}) => {
                         <div className="btns">
                             <Button className="add-btn" type="primary" onClick={() => {
                                 addWhiteList()
-                            }}>Add Whitelist</Button>
+                            }}>Add Three Admin</Button>
                             <Button className="add-btn" type="primary" onClick={() => {
                                 removeWhiteList()
                             }}>Remove</Button>

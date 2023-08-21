@@ -14,6 +14,30 @@ export default styled.div`
       margin-right: 6px;
     }
   }
+  .active-content-box{
+    .flex-box{
+      margin-top: 10px;
+      align-items: center;
+      .name{
+        font-size: 16px;
+      }
+      .value{
+        font-size: 18px;
+      }
+    }
+    .content-list{
+      justify-content: space-between;
+      margin-bottom: 10px;
+      .content-item{
+        .name{
+          font-size: 16px;
+        }
+        .value{
+          font-size: 18px;
+        }
+      }
+    }
+  }
   .donate-list{
     min-width: 1200px;
     .col {
