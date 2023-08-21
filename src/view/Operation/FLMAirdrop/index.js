@@ -394,9 +394,9 @@ const Distribution = (props) => {
                         </div>
                         <div className="right-part">
                             <div className="info-box">
-                                <div className="pid-box">PID : <div className="pid">{state.pid ? state.pid : 0}</div>
+                                <div className="pid-box">PID: <div className="pid"> {state.pid ? state.pid : 0}</div>
                                 </div>
-                                <div className="can-claim"> Unclaimed Balance :  <strong> {canClaim}</strong></div>
+                                <div className="can-claim"> Unclaimed Balance:  <strong> {canClaim}</strong></div>
                             </div>
                             <Form form={form} className="withdrawForm">
                                 <Form.Item label="Withdraw">

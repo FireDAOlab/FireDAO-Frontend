@@ -106,47 +106,6 @@ const AddThreeWhiteList = ({allRecords, isFourAdmin}) => {
                 </Modal>
                 <div className="panel-box">
                     <div className="panel-container">
-
-                        <div className="fire-list-box ">
-                            <div className=" list-header">
-                                <div className="col">
-                                    No.
-                                </div>
-
-
-                                <div className="col address">
-                                    Address
-                                </div>
-                                {/*<div className="col">*/}
-                                {/*    Del*/}
-                                {/*</div>*/}
-
-                            </div>
-
-                            {
-                                activeArr.map((item, index) => (
-                                    <div className="list-item " key={index}>
-                                        <div className="col no">
-                                            {index + 1}
-                                        </div>
-
-                                        <div className="col address">
-                                            {item}
-                                        </div>
-
-                                        {/*<div className="col">*/}
-                                        {/*    <Button className="del-button" onClick={() => {*/}
-                                        {/*        deleteWhite(item)*/}
-                                        {/*    }}>*/}
-                                        {/*        Delete*/}
-                                        {/*    </Button>*/}
-                                        {/*</div>*/}
-
-                                    </div>)
-                                )
-                            }
-
-                        </div>
                         <Form form={form2} name="control-hooks" className="form">
 
                             {addWhiteArr.map((item, index) => {
@@ -187,11 +146,52 @@ const AddThreeWhiteList = ({allRecords, isFourAdmin}) => {
                         <div className="btns">
                             <Button className="add-btn" type="primary" onClick={() => {
                                 handleSetAdminLevelThree()
-                            }}>Add Whitelist</Button>
+                            }}>Submit</Button>
                             {/*<Button className="add-btn" type="primary" onClick={() => {*/}
                             {/*    removeWhiteList()*/}
                             {/*}}>Remove</Button>*/}
                         </div>
+                        <div className="fire-list-box ">
+                            <div className=" list-header">
+                                <div className="col">
+                                    No.
+                                </div>
+
+
+                                <div className="col ">
+                                    Address
+                                </div>
+                                {/*<div className="col">*/}
+                                {/*    Del*/}
+                                {/*</div>*/}
+
+                            </div>
+
+                            {
+                                activeArr.map((item, index) => (
+                                    <div className="list-item " key={index}>
+                                        <div className="col no">
+                                            {index + 1}
+                                        </div>
+
+                                        <div className="col address">
+                                            {item}
+                                        </div>
+
+                                        {/*<div className="col">*/}
+                                        {/*    <Button className="del-button" onClick={() => {*/}
+                                        {/*        deleteWhite(item)*/}
+                                        {/*    }}>*/}
+                                        {/*        Delete*/}
+                                        {/*    </Button>*/}
+                                        {/*</div>*/}
+
+                                    </div>)
+                                )
+                            }
+
+                        </div>
+
 
                     </div>
                 </div>

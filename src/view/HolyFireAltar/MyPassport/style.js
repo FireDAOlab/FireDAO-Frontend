@@ -724,7 +724,7 @@ font-size:16px;
       .fdtkk{
         margin-top:-6px;
         margin-left:8px;
-        width: 120px;
+        width: 70%;
         height: 35px;
         line-height: 35px;
         font-size:16px;
@@ -738,7 +738,7 @@ font-size:16px;
       .valuekk{
         margin-top:-6px;
         margin-left:8px;
-        width: 120px;
+        width: 70%;
         height: 35px;
         line-height: 35px;
         font-size:16px;
@@ -1469,7 +1469,7 @@ font-size:16px;
     .fdtkk{
       margin-top:-6px;
       margin-left:8px;
-      width: 120px;
+      width: 70%;
       height: 35px;
       line-height: 35px;
       font-size:16px;
@@ -1483,7 +1483,7 @@ font-size:16px;
     .valuekk{
       margin-top:-6px;
       margin-left:8px;
-      width: 120px;
+      width: 70%;
       height: 35px;
       line-height: 35px;
       font-size:16px;
@@ -2199,7 +2199,7 @@ font-size:14px;
       .fdtkk{
         margin-top:-8px;
         margin-left:8px;
-        width: 120px;
+        width: 70%;
         height: 35px;
         line-height: 35px;
         font-size:14px;
@@ -2213,7 +2213,7 @@ font-size:14px;
       .valuekk{
         margin-top:-8px;
         margin-left:8px;
-        width: 120px;
+        width: 70%;
         height: 35px;
         line-height: 35px;
         font-size:14px;

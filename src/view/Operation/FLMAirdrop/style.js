@@ -49,7 +49,7 @@ justify-content: space-between;
       .title {
         font-size:20px;
         font-family: Roboto-Medium, Roboto;
-        font-weight: 500;
+        font-weight: 600;
         color: #8A8080;
       }
 
@@ -77,7 +77,7 @@ justify-content: space-between;
           .name {
             font-size: 16px;
             font-family: Roboto-Medium, Roboto;
-            font-weight: 500;
+            font-weight: 600;
             color: #8A8080;
           }
 
@@ -106,7 +106,7 @@ justify-content: space-between;
     font-size: 16px;
     white-space: nowrap;
     .pid {
-      width: 80px;
+      width:100px;
     
       margin-left: 6px;
       height: 28px;
@@ -191,7 +191,7 @@ justify-content: space-between;
           font-weight: 600;
         width: 100%;
         height: 40px;
-        font-size: 16px;
+        font-size: 18px;
       }
   
     }
@@ -652,7 +652,7 @@ justify-content: space-between;
       .title {
         font-size:20px;
         font-family: Roboto-Medium, Roboto;
-        font-weight: 500;
+        font-weight: 600;
         color: #8A8080;
       }
 
@@ -680,7 +680,7 @@ justify-content: space-between;
           .name {
             font-size: 16px;
             font-family: Roboto-Medium, Roboto;
-            font-weight: 500;
+            font-weight: 600;
             color: #8A8080;
           }
 
@@ -709,7 +709,7 @@ justify-content: space-between;
     font-size: 16px;
     white-space: nowrap;
     .pid {
-      width: 80px;
+      width:100px;
     
       margin-left: 6px;
       height: 28px;
@@ -794,7 +794,7 @@ justify-content: space-between;
           font-weight: 600;
         width: 100%;
         height: 40px;
-        font-size: 16px;
+        font-size: 18px;
       }
   
     }
@@ -1257,13 +1257,13 @@ justify-content: space-between;
       background: #1A1414;
       border-radius: 20px;
       border: 1px solid rgba(255, 255, 255, 0.1);
-      padding: 35px 30px;
+      padding: 25px 20px;
     }
     .left-part {
       .title {
         font-size:16px;
         font-family: Roboto-Medium, Roboto;
-        font-weight: 500;
+        font-weight: 600;
         color: #8A8080;
       }
 
@@ -1291,7 +1291,7 @@ justify-content: space-between;
           .name {
             font-size: 14px;
             font-family: Roboto-Medium, Roboto;
-            font-weight: 500;
+            font-weight: 600;
             color: #8A8080;
           }
 
@@ -1320,8 +1320,8 @@ justify-content: space-between;
     font-size: 14px;
     white-space: nowrap;
     .pid {
-      width: 60px;
-      margin-left: 6px;
+      width:75px;
+      margin-left: 0px;
       height: 28px;
       background: rgba(254, 109, 70, 0.1);
       border-radius: 38px 38px 38px 38px;
@@ -1381,7 +1381,7 @@ justify-content: space-between;
         }
 
         .max-btn {
-            margin: 0px 5px;
+            margin: 0px 2px;
           width: 65px;
           height: 30px;
           background: linear-gradient(32deg, #FF4E50 0%, #F9D423 100%);
@@ -1533,7 +1533,7 @@ border: 1px solid rgba(254,109,70,0.5);
 
         .fire-nav-list {
           width: 36%;
-          height: 50px;
+          height: 45px;
         .nav-item {
           cursor: pointer;
           width: 45%;
@@ -1865,12 +1865,13 @@ border: 1px solid rgba(205,158,87,0.5);
       border-radius: 10px;
       border: 1px solid rgba(255, 255, 255, 0.1);
       padding: 25px 30px;
+      margin-bottom:0.5em;
     }
     .left-part {
       .title {
         font-size:16px;
         font-family: Roboto-Medium, Roboto;
-        font-weight: 500;
+        font-weight: 600;
         color: #8A8080;
       }
 
@@ -1898,7 +1899,7 @@ border: 1px solid rgba(205,158,87,0.5);
           .name {
             font-size: 14px;
             font-family: Roboto-Medium, Roboto;
-            font-weight: 500;
+            font-weight: 600;
             color: #8A8080;
           }
 
@@ -1915,19 +1916,19 @@ border: 1px solid rgba(205,158,87,0.5);
 
     .right-part {
       .info-box {
-        display: flex;
-        justify-content: space-between;
+        display: block;
         margin-bottom: 8px;
         .pid-box {
     font-family: Roboto-SemiBold, Roboto;
     font-weight: 600;
     color: #8A8080;
     display: flex;
+        justify-content: space-between;
     align-items: center;
     font-size: 14px;
     white-space: nowrap;
     .pid {
-      width: 60px;
+      width: 95px;
       margin-left: 6px;
       height: 28px;
       background: rgba(254, 109, 70, 0.1);
@@ -1945,20 +1946,29 @@ border: 1px solid rgba(205,158,87,0.5);
 
   }
   .can-claim{
+    margin-top:0.5em;
     font-family: Roboto-SemiBold, Roboto;
     font-weight: 600;
     color: #8A8080;
     display: flex;
+        justify-content: space-between;
     align-items: center;
     font-size: 14px;
     white-space: nowrap;
     strong{
-        font-family: Roboto-SemiBold, Roboto;
-    font-weight: 600;
-    display: flex;
-    align-items: center;
-    font-size: 14px;
-    white-space: nowrap;
+    width: 100px;
+      margin-left: 6px;
+      height: 28px;
+      background: rgba(254, 109, 70, 0.1);
+      border-radius: 38px 38px 38px 38px;
+      opacity: 1;
+      border: 1px solid rgba(254, 109, 70, 0.5);
+      display: flex;
+      font-family: Roboto-SemiBold, Roboto;
+      font-weight: 600;
+      align-items:center;
+      color: #FE6D46;
+      justify-content: center;
     }
   }
       }
@@ -1988,7 +1998,7 @@ border: 1px solid rgba(205,158,87,0.5);
         }
 
         .max-btn {
-            margin: 0px 5px;
+            margin: 0px 2px;
           width: 65px;
           height: 30px;
           background: linear-gradient(32deg, #FF4E50 0%, #F9D423 100%);
@@ -2019,6 +2029,7 @@ border: 1px solid rgba(205,158,87,0.5);
   }
 
   .search-box {
+    margin:0.5em 0;
               display: flex;
               align-items: center;
               background: #3F3535;
@@ -2143,7 +2154,7 @@ border: 1px solid rgba(254,109,70,0.5);
 
         .fire-nav-list {
           width: 72%;
-          height: 50px;
+          height: 40px;
         .nav-item {
           cursor: pointer;
           width: 45%;

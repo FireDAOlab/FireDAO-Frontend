@@ -1493,7 +1493,7 @@ font-weight: bold;
             font-size:14px;
           }
           .value{
-            font-size:14px;
+            font-size:12px;
             margin:1em 0;
           }
         }
@@ -1830,8 +1830,7 @@ background: rgba(36, 27, 27, 1);
       font-size:14px;
     }
     .value{
-      font-size:12px;
-      overflow: scroll;
+      font-size:11.5px;
     }
   }
   .myteamsize{

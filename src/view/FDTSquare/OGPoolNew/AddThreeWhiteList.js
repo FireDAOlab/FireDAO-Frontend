@@ -125,7 +125,7 @@ const AddWhiteList = ({allRecords}) => {
 
     return (
         <AddThreeWhiteListStyle>
-            <Modal className="model-dialog" title="Delete WhiteList User" open={isDelMolOpen} onOk={removeWhiteListUser}
+            <Modal className="model-dialog" title={"Delete WhiteList User" } open={isDelMolOpen} onOk={removeWhiteListUser}
                    onCancel={() => {
                        setDelOpen(false)
                    }}>
@@ -246,7 +246,7 @@ const AddWhiteList = ({allRecords}) => {
                         <div className="btns">
                             <Button className="add-btn" type="primary" onClick={() => {
                                 addWhiteList()
-                            }}>Add Whitelist</Button>
+                            }}>Add Three Admin</Button>
                             <Button className="add-btn" type="primary" onClick={() => {
                                 removeWhiteList()
                             }}>Remove</Button>

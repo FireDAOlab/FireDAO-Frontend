@@ -65,7 +65,7 @@ const NavList = (props) => {
             
                 <div
                     className="navBox"
-                    onClick={closeDialog }
+                    // onClick={closeDialog }
                     style={{
                         width: 256,
 
@@ -73,16 +73,17 @@ const NavList = (props) => {
                 >
 
                     <Menu
-                        className="menu"
-                        defaultSelectedKeys={[]}
-                        defaultOpenKeys={[selectNav]}
-                        selectedKeys={selectedKeys}
-                        mode="inline"
-                        
-                        theme="dark"
-                        inlineCollapsed={collapsed}
-                        items={items}
-                        onClick={(e) => goPage(e)}
+                          className="menu"
+                          mode="inline"
+                          defaultSelectedKeys={[]}
+                          defaultOpenKeys={[selectNav]}
+                          selectedKeys={selectedKeys}
+                          openKeys={openKeys}
+                          onOpenChange={onOpenChange}
+                          theme="dark"
+                          inlineCollapsed={collapsed}
+                          items={items}
+                          onClick={(e) =>{ goPage(e);closeDialog()}}
                     />
                     <div className="lng-choose">
                         <img src={english} alt="" />

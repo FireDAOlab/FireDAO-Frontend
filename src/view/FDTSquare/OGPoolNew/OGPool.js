@@ -1,8 +1,6 @@
 import React, {useEffect, useRef, useState} from 'react';
 import {useConnect} from "../../../api/contracts";
 import BigNumber from "bignumber.js"
-import AddNomalWhiteList from "./AddNomalWhiteList";
-import AddThreeWhiteList from "./AddThreeWhiteList";
 import {
     Card,
     Button,
