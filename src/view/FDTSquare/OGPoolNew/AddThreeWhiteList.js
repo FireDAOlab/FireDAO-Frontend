@@ -125,7 +125,7 @@ const AddWhiteList = ({allRecords}) => {
 
     return (
         <AddThreeWhiteListStyle>
-            <Modal className="model-dialog" title="Delete WhiteList User" open={isDelMolOpen} onOk={removeWhiteListUser}
+            <Modal className="model-dialog" title={"Delete WhiteList User" } open={isDelMolOpen} onOk={removeWhiteListUser}
                    onCancel={() => {
                        setDelOpen(false)
                    }}>

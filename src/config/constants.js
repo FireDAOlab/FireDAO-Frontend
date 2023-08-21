@@ -3,6 +3,7 @@ import BigNumber from "bignumber.js";
 const ZeroAddress = '0x0000000000000000000000000000000000000000';
 const MaxUint256 = BigNumber('0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff').toFixed(0);
 const ETHDecimals = 18
+const ETHPriceDecimals = 8
 const FDTDecimals = 18
 const USDTDecimals = 18
 const FLMDecimals = 18
@@ -34,4 +35,7 @@ const Network = {
     },
   },
 };
-export { Network, ZeroAddress,MaxUint256 ,ETHDecimals,FDTDecimals,USDTDecimals,FLMDecimals };
+export { Network, ZeroAddress,MaxUint256
+  ,ETHDecimals,FDTDecimals,
+  ETHPriceDecimals,
+  USDTDecimals,FLMDecimals };

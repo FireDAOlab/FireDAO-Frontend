@@ -217,7 +217,7 @@ const AddThreeWhiteList = ({allRecords, isLevel2}) => {
                                 </div>
 
 
-                                <div className="col address">
+                                <div className="col ">
                                     Address
                                 </div>
                                 <div className="col">

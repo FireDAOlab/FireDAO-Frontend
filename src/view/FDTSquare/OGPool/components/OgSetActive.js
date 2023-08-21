@@ -114,7 +114,7 @@ const AddThreeWhiteList = ({allRecords, isFourAdmin}) => {
                                 </div>
 
 
-                                <div className="col address">
+                                <div className="col ">
                                     Address
                                 </div>
                                 {/*<div className="col">*/}
