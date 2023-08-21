@@ -1257,7 +1257,7 @@ justify-content: space-between;
       background: #1A1414;
       border-radius: 20px;
       border: 1px solid rgba(255, 255, 255, 0.1);
-      padding: 35px 30px;
+      padding: 25px 20px;
     }
     .left-part {
       .title {
@@ -1320,8 +1320,8 @@ justify-content: space-between;
     font-size: 14px;
     white-space: nowrap;
     .pid {
-      width:80px;
-      margin-left: 6px;
+      width:75px;
+      margin-left: 0px;
       height: 28px;
       background: rgba(254, 109, 70, 0.1);
       border-radius: 38px 38px 38px 38px;
