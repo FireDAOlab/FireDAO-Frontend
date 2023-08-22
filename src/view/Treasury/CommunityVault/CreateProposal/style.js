@@ -8,6 +8,16 @@ export default   styled.div`
 
   .panel-container {
     width: 100%;
+    .panel-title{
+        font-size: 20px;
+font-family: Roboto-Medium, Roboto;
+font-weight: 500;
+color: #FFFFFF;
+line-height: 26px;
+img{
+    width: 40px;
+}
+    }
     .index-box{
       width: 30px;
       height: 30px;
@@ -20,6 +30,13 @@ export default   styled.div`
     }
     .step-box{
       margin-top: 30px;
+      .ant-stps-item-title{
+        font-size: 16px;
+font-family: Roboto-Medium, Roboto;
+font-weight: 500;
+color: #FFFFFF;
+line-height: 21px;
+      }
     }
     .ant-form-item-control-input{
       background: none;

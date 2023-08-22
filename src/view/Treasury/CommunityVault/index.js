@@ -1,19 +1,25 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styled from "styled-components";
-import {useConnect} from "../../../api/contracts";
-import {Card, Button, Descriptions, message, Form, List, Input, notification} from 'antd';
-import {getContractByName, getContractByContract} from "../../../api/connectContract";
-import {dealMethod, viewMethod} from "../../../utils/contractUtil"
+import { useConnect } from "../../../api/contracts";
+import { Card, Button, Descriptions, message, Form, List, Input, notification } from 'antd';
+import { getContractByName, getContractByContract } from "../../../api/connectContract";
+import { dealMethod, viewMethod } from "../../../utils/contractUtil"
 
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import judgeStatus from "../../../utils/judgeStatus";
 import DistributionStyle from "./style"
+import twitter from '../../../imgs/twitter.png'
+import telegram from '../../../imgs/telegram.png'
+import githu from '../../../imgs/66.png'
+import tb from '../../../imgs/99.png'
+import t5 from '../../../imgs/t5.png'
+import kg from '../../../imgs/kg.png'
 import addressMap from "../../../api/addressMap";
 import headerImg from "../../../imgs/header_icon.webp";
 import twitterIcon from "../../../imgs/twitter.webp"
 const Distribution = (props) => {
 
-    let {state, dispatch} = useConnect();
+    let { state, dispatch } = useConnect();
     const history = useNavigate();
     const goPage = (url) => {
         history(url);
@@ -72,7 +78,7 @@ const Distribution = (props) => {
         for (let i = 0; i < length; i++) {
             const address = await handleViewMethod("AllocationFundAddress", [i])
             const rate = await handleViewMethod("distributionRatio", [address])
-            arr.push({address, rate, amount: assets * rate / 100, balance: await getTokenBalance(address)})
+            arr.push({ address, rate, amount: assets * rate / 100, balance: await getTokenBalance(address) })
         }
         setAllocationFundAddress(arr)
     }
@@ -109,15 +115,18 @@ const Distribution = (props) => {
 
                             <Button type="primary" onClick={() => {
                                 history("/")
-                            }}>My Draft</Button>
+                            }}>My Voting Power</Button>
                         </div>
                     </div>
                     <div className="header-content">
                         <div className="banner">
+                            <Button onClick={() => goPage("/")} style={{ float: 'right', background: '#373232', textAlign: 'center', lineHeight: '28px', width: "32px", height: '32px', border: '1px solid rgba(255, 255, 255, 0.15)', borderRadius: '50%', }}>
+                                <img src={kg} style={{ width: '22px', marginLeft: '-10px', marginTop: '-10px' }} />
+                            </Button>
 
                         </div>
                         <div className="header-icon">
-                            <img src={headerImg} alt=""/>
+                            <img src={headerImg} alt="" />
                         </div>
                         <div className="community-info">
                             <div className="title">
@@ -129,6 +138,16 @@ const Distribution = (props) => {
                                     Let's build the Bit Civilization together！
                                 </span>
                             </div>
+                            <div className='listPic'>
+                                <img src={twitter} />
+                                <img src={telegram} />
+                                <img src={githu} />
+                                <img src={tb} />
+                                <img src={t5} />
+                                <span >ERC-20</span>
+                                <span >ERC-20</span>
+                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -246,7 +265,7 @@ const Distribution = (props) => {
                         <div className="delegate-item">
                             <div className="header">
                                 <div className="left">
-                                    <img src={headerImg} className="headerIcon" alt=""/>
+                                    <img src={headerImg} className="headerIcon" alt="" />
                                     <div className="left-content">
                                         <div className="name">
                                             Username
@@ -257,7 +276,7 @@ const Distribution = (props) => {
                                     </div>
                                 </div>
                                 <div className="right">
-                                    <Button type="primary">Delegate</Button>
+                                    <Button class="ant-btn ant-btn-primary" type="primary">Delegate</Button>
                                 </div>
                             </div>
                             <div className="delegate-content">
@@ -265,10 +284,10 @@ const Distribution = (props) => {
                                     Introduction
                                 </div>
                                 <div className="twitter">
-                                    <img className="icon" src={twitterIcon} alt=""/>
+                                    <img className="icon" src={twitter} alt="" />
                                     @FireDAO
                                 </div>
-                                <div className="">
+                                <div className="truste">
                                     Trusted by 34 accounts
                                 </div>
                             </div>

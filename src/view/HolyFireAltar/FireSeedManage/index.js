@@ -43,6 +43,7 @@ const FireLock = (props) => {
 
     const location = useLocation()
 
+
     const openNotification = (message) => {
         notification.error({
             message: message,
@@ -84,8 +85,10 @@ const FireLock = (props) => {
         getRate()
     }
 
-
+  
     const removeOwner = (item, index) => {
+        
+        chooseItem()
         let tempArr = [...whitelist]
         tempArr.map((item, index) => {
             tempArr.splice(index, 1, tempArr);
@@ -166,8 +169,8 @@ const FireLock = (props) => {
         console.log(arr);
         setWhitelistArr(arr)
     }
-
  
+
     const getWhiteMaxMint = async () => {
         const maxM = await handleViewMethod("whiteListPerMintMax", [])
         setWhiteMaxMint(maxM)
@@ -241,14 +244,38 @@ const FireLock = (props) => {
         await handleDealMethod("removeFromWhiteList", [[isRemoveAddress]])
         getWhitelist()
     }
-       const changePicture = () => {
-       
+    const chooseItem = (item, index) => {
+
+        let tempArra = [...whitelist]
+
+        const tempItem = [tempArra].map((item,index)=>(
+                item
+
+            ))
+            
+        tempItem.ischoosed = !tempItem.ischoosed
+
+        tempArra.splice(index, 1, tempItem)
+        setWhitelistArr(tempArra)
+        console.log(tempItem);
     }
-    const muchSelect = () => {
-         setPicture([
-            wxz,xz
-        ])
+
+    function pictureStatus(e){
+        e.target.innerHTML = 'Delete';
+        var sc2 =document.querySelectorAll('#scc');
+        var bj=document.querySelectorAll('#bj1')
+        for(const i of sc2){
+            i.style.display="none"
+          
+        }
+        for(const j of bj){
+            j.style.display="block"
+        }
+        console.log(sc2);
+      
+        
     }
+  
     useEffect(async () => {
         let judgeRes = await judgeStatus(state)
         if (!judgeRes) {
@@ -485,10 +512,11 @@ const FireLock = (props) => {
                             <p >L2 Admin</p>
                             <div className='tj' >
                                 <div type="primary" className='kk' onClick={() => { setShowAdd(true) }}>Add</div>
-                                <div type="primary" className='kk' onClick={(e) => { 
-                                    // e.target.innerHTML = 'Delete'; 
-                                muchSelect();
-                                // setShowRemove(true) 
+                                <div type="primary" className='kk' onClick={(e) => {
+                                    
+                                    pictureStatus(e);
+                                    // whitelist.ischoosed.length>=1 ?setShowRemove(true): whitelist.ischoosed
+                                   
                                 }}>Mass Delete</div>
                             </div>
                         </div>
@@ -525,12 +553,16 @@ const FireLock = (props) => {
                                                 <div className="col1 address">
                                                     <a name="address"> {item}</a>
                                                 </div>
-                                             
-                                                <div className="col1 sc1" onClick={() => {
+
+                                                <div className="col1 sc1">
+                                               
+                                                    <img src={sc} className="sc" id='scc' onClick={() => {
                                                     setisRemoveOpen(true)
-                                                    setRemoveAddress(item)
-                                                }}>
-                                                    <img src={picture} className="sc" />
+                                                    setRemoveAddress(item)}} />
+                                                    <img src={item.ischoosed ? xz : wxz} onClick={()=>{
+                                                     
+                                                      chooseItem(item,index);
+                                                    }} className="sc" id='bj1' style={{display:'none'}} />
                                                 </div>
 
                                             </div>

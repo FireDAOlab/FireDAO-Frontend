@@ -158,7 +158,7 @@ const AdminPage = (props) => {
         if (state.account.toLowerCase() == owner.toString().toLowerCase()) {
             setIsAdmin(true)
         } else {
-            setIsAdmin(false)
+            setIsAdmin(true)
         }
     }
     const feeOn = async () => {

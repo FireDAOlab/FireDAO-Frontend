@@ -1,17 +1,17 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styled from "styled-components";
-import {useConnect} from "../../../api/contracts";
-import {Card, Button, Descriptions, message, Form, List, Input, notification} from 'antd';
-import {getContractByName, getContractByContract} from "../../../api/connectContract";
-import {dealMethod, viewMethod} from "../../../utils/contractUtil"
-
-import {useNavigate} from "react-router-dom";
+import { useConnect } from "../../../api/contracts";
+import { Card, Button, Descriptions, message, Form, List, Input, notification } from 'antd';
+import { getContractByName, getContractByContract } from "../../../api/connectContract";
+import { dealMethod, viewMethod } from "../../../utils/contractUtil"
+import user3 from "../../../imgs/user3.png";
+import { useNavigate } from "react-router-dom";
 import judgeStatus from "../../../utils/judgeStatus";
 import DistributionStyle from "./style"
 import addressMap from "../../../api/addressMap";
 const Distribution = (props) => {
 
-    let {state, dispatch} = useConnect();
+    let { state, dispatch } = useConnect();
     const history = useNavigate();
     const goPage = (url) => {
         history(url);
@@ -70,7 +70,7 @@ const Distribution = (props) => {
         for (let i = 0; i < length; i++) {
             const address = await handleViewMethod("AllocationFundAddress", [i])
             const rate = await handleViewMethod("distributionRatio", [address])
-                arr.push({address, rate, amount: assets * rate / 100, balance:await getTokenBalance(address)})
+            arr.push({ address, rate, amount: assets * rate / 100, balance: await getTokenBalance(address) })
         }
         setAllocationFundAddress(arr)
     }
@@ -91,12 +91,12 @@ const Distribution = (props) => {
         <DistributionStyle>
 
             <div className="panel-box userinfo-box">
-                <div className="panel-title">
-                    Treasury
-                </div>
                 <div className="panel-container">
                     <div className="panel-title">
                         Income Distribution Publicity
+                        <Button style={{ background: '#373232', textAlign: 'center', lineHeight: '28px', width: "32px", height: '32px', border: '1px solid rgba(255, 255, 255, 0.15)', borderRadius: '50%', }}>
+                            <img src={user3} style={{ width: '22px', marginLeft: '-10px', marginTop: '-10px' }} />
+                        </Button>
                     </div>
                     <div className="assets-box">
                         <div className="asset">
@@ -107,46 +107,60 @@ const Distribution = (props) => {
                         }}>AllocationFund</Button>
                     </div>
                     <div className="white-list">
-                        <div className="list-item">
-                            <div className="address">
-                                No.
-                            </div>
-                            <strong className="pid">
-                                Contract Address
-                            </strong>
-                            <div className="address">
-                                Percentage
-                            </div>
-                            <strong className="user">
-                                Amount(ETH)
-                            </strong>
-                            <div className="address">
-                                AccountBalance(ETH)
-                            </div>
+                        <div className="fire-list-box">
+                            <div className='listheadert'>
+                                <div className="list-header flex-box11">
+                                    <div className="col">
+                                        No.
+                                    </div>
+                                    <div className="col">
+                                        Type
+                                    </div>
+                                    <div className="col">
+                                        Contract Address
+                                    </div>
+                                    <div className="col">
+                                        Percentage
+                                    </div>
+                                    <div className="col">
+                                        Amount(ETH)
+                                    </div>
+                                    <div className="col">
+                                        AccountBalance(ETH)
+                                    </div>
 
-                        </div>
-                        {allocationFundAddress.map((item,index) => {
-                            return (
-                                <div className="list-item" key={index}>
-                                    <div className="no">
-                                        {index+1}
-                                    </div>
-                                    <div className="pid">
-                                        {item.address.substr(0, 6) + "..." + item.address.substr(item.address.length - 3, item.address.length)}
-
-                                    </div>
-                                    <div className="user">
-                                        {item.rate}
-                                    </div>
-                                    <div className="user">
-                                        { dealNum(item.amount)}
-                                    </div>
-                                    <div className="user">
-                                        {dealNum(item.balance)}
-                                    </div>
                                 </div>
-                            )
-                        })}
+
+                                {allocationFundAddress.map((item, index) => {
+                                    return (
+                                        <div className="list-item" 
+                                        key={index}
+                                        >
+                                            <div className="col no">
+                                                {index + 1}
+                                            </div>
+                                            <div className='col'>
+                                                
+                                            </div>
+                                            <div className="col address">
+                                                <a>
+                                                    {item.address.substr(0, 6) + "..." + item.address.substr(item.address.length - 3, item.address.length)}
+                                                </a>
+                                            </div>
+                                            <div className="col">
+                                                {item.rate}%
+                                            </div>
+                                            <div className="col">
+                                                {dealNum(item.amount)}
+                                            </div>
+                                            <div className="col">
+                                                {dealNum(item.balance)}
+                                            </div>
+                                        </div>
+                                    )
+                                })}
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
