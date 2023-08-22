@@ -286,9 +286,10 @@ const OGPoolPublic = (props) => {
             getUserBuyMax()
 
             await getInviteRate()
-            getMyInviteCount()
-            getAddressRecommender(state.account)
+            await getAddressRecommender(state.account)
+
             getMyTeam(state.account)
+
         } catch (e) {
 
         }
@@ -302,7 +303,10 @@ const OGPoolPublic = (props) => {
         setPageCount(count)
     }
     const getMyInviteCount = async (address) => {
-        const used = await handleViewMethod("activeUsedAmount", [state.account])
+        if(!address){
+            address = myRecommender
+        }
+        const used = await handleViewMethod("activeUsedAmount", [address])
         const total = await handleViewMethod("activateAccountUsedAmount", [])
 
         setActiveUsedAmount(used)
@@ -313,6 +317,9 @@ const OGPoolPublic = (props) => {
         if (res && res.data && res.data.allRegisters[0]) {
             setMyRecommender(res.data.allRegisters[0].recommenders)
             setMyId(res.data.allRegisters[0].Contract_id)
+
+            getMyInviteCount(res.data.allRegisters[0].recommenders)
+
         }
     }
     const getUserBuyMax = async () => {
@@ -587,24 +594,7 @@ const OGPoolPublic = (props) => {
                                     }}>
                     <img src={user3} style={{width: '22px', marginLeft: '-10px', marginTop: '-10px'}}/>
                 </Button>}
-                {(isSecondAdmin | isThreeAdmin || isFourAdmin) &&
-                    <Button style={{
-                        float: 'right',
-                        background: '#373232',
-                        margin: '0px 13px',
-                        textAlign: 'center',
-                        lineHeight: '28px',
-                        width: "32px",
-                        height: '32px',
-                        border: '1px solid rgba(255, 255, 255, 0.15)',
-                        borderRadius: '50%',
-                    }}
-                            onClick={() => {
-                                history("/OGUserAdmin")
-                            }}>
-                        <img src={user3} style={{width: '22px', marginLeft: '-10px', marginTop: '-10px'}}/>
-                    </Button>
-                }
+
 
             </div>
             <div className="header-nav">
@@ -625,6 +615,15 @@ const OGPoolPublic = (props) => {
                         Active Accounts
                     </div>
 
+                    {(isSecondAdmin | isThreeAdmin || isFourAdmin) &&
+
+                        <div className={"nav-item " + (activeNav == 4 ? "active" : "")} onClick={() => {
+                            history("/OGUserAdmin")
+                        }}>
+                            Lv{isSecondAdmin?2:""}{isThreeAdmin?3:""}{isFourAdmin?4:""} Admin
+                        </div>
+
+                    }
 
                 </div>
 
@@ -675,7 +674,7 @@ const OGPoolPublic = (props) => {
 
                                     <div className="info-item">
                                         <div className="name">
-                                            Total Donate
+                                            Price
                                         </div>
                                         <div className="value">
                                              ${salePrice}
@@ -1152,7 +1151,10 @@ const OGPoolPublic = (props) => {
                             Active Accounts
                         </div>
                         <div className="active-content-box">
-                            <div className="flex-box">
+                            <div className="flex-box" style={{justifyContent:"space-between"}}>
+                                <div className="address" style={{width:"auto"}}>
+                                    {state.account}
+                                </div>
                                 <div className="my-id pid">
                                     ID: {myId}
                                 </div>
@@ -1187,7 +1189,7 @@ const OGPoolPublic = (props) => {
                                         Available  times
                                     </div>
                                     <div className="value">
-                                        {BigNumber(activeUsedAmount).minus(activeUsedAmount).toString()}
+                                        {BigNumber(activateAccountUsedAmount).minus(activeUsedAmount).toString()}
                                     </div>
                                 </div>
                             </div>
