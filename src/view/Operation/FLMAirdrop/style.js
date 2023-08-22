@@ -1956,7 +1956,7 @@ border: 1px solid rgba(205,158,87,0.5);
     font-size: 14px;
     white-space: nowrap;
     strong{
-    width: 100px;
+    width: 95px;
       margin-left: 6px;
       height: 28px;
       background: rgba(254, 109, 70, 0.1);

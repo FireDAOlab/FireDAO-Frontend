@@ -183,9 +183,7 @@ const Distribution = (props) => {
         <StyleBox>
 
             <div className="panel-box userinfo-box">
-                <div className="panel-title">
-                    Create Proposal
-                </div>
+             
                 <div className="panel-container">
                     <div className="panel-title">
                         <div className="index-box">1</div>  Connect your wallet & sign in

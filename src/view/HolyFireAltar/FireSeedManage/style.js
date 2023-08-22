@@ -21,6 +21,7 @@ export default styled.div`
 
   
 }
+
 .ant-form-item-control-input-content{
   display: flex;
   text-align:center;

@@ -35,7 +35,7 @@ export default styled.div`
             display: flex;
             width: 90%;
             .fire-nav-list{
-                height: 45px;
+                height: 50px;
                 width: 30%;
                 margin: 0;
                 .nav-item{
@@ -200,7 +200,7 @@ a{
             display: flex;
             width: 90%;
             .fire-nav-list{
-                height: 45px;
+                height:50px;
                 width: 30%;
                 margin: 0;
                 .nav-item{
@@ -362,7 +362,7 @@ a{
     .nav-list-box {
         margin: 2em 0;
         display: flex;
-        width: 90%;
+        width: 70%;
         .fire-nav-list{
             height: 45px;
             width: 50%;
