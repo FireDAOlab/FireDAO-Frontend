@@ -5,6 +5,18 @@ export default   styled.div`
   flex-direction: column;
   align-items: stretch;
   /* pc style */
+  .disAd{
+        float: right;
+     background: #373232;
+     margin: 0px 13px;
+     text-align: center;
+     line-height: 28px;
+     width: 32px;
+     height: 32px;
+     border: 1px solid rgba(255, 255, 255, 0.15);
+     border-radius: 50%;
+
+}
   @media screen and (min-width: 1950px) {
     .panel-box{
       
@@ -100,61 +112,37 @@ color:rgba(205, 158, 87, 1)
       }
     }
 }
-    .assets-box{
-      padding-top: 1em;
-      align-items: center;
-      display: flex;
+.assets-box{
+      margin-top: 1.5em;
+      width: 100%;
+      background: #1A1414;
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 35px 30px;
+      .title{
+        font-size: 20px;
+    font-family: Roboto-Medium, Roboto;
+    font-weight: 600;
+    color: rgb(138, 128, 128);
+      }
       .asset{
-        font-size: 30px;
-        margin-right: 20px;
+        margin:8px 0px;
+        font-size: 31px;
+        font-family: Russo One-Regular, Russo One;
+        font-weight: 600;
+        background: linear-gradient(32deg, #FF4E50 0%, #F9D423 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      .ant-btn{
+        margin-top: 10px;
+    font-family: Roboto-SemiBold, Roboto;
+    font-weight: 600;
+    width:25%;
+    height: 40px;
+    font-size: 18px;
       }
     }
-
-    .userinfo-box {
-      width: 90%;
-      margin: 0 auto;
-
-
-      .user-info {
-        position: relative;
-        align-items: flex-start;
-
-        .userinfo-header {
-          display: flex;
-
-          .header-icon {
-            position: relative;
-
-            img {
-              width: 150px;
-              height: 150px;
-              position: relative;
-              z-index: 1;
-            }
-
-            &::after {
-              content: '';
-              width: 104px;
-              z-index: -1;
-              height: 104px;
-              background: rgba(223, 66, 66, 0.3);
-              filter: blur(19px);
-              position: absolute;
-              top: 50%;
-              left: 20px;
-            }
-          }
-
-   
-        }
-
-    
-
-     
-      }
-
-    }
-
 }
 }
   }
@@ -255,60 +243,36 @@ color:rgba(205, 158, 87, 1)
     }
 }
     .assets-box{
-      padding-top: 1em;
-      align-items: center;
-      display: flex;
+      margin-top: 1.5em;
+      width: 100%;
+      background: #1A1414;
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 35px 30px;
+      .title{
+        font-size: 20px;
+    font-family: Roboto-Medium, Roboto;
+    font-weight: 600;
+    color: rgb(138, 128, 128);
+      }
       .asset{
-        font-size: 30px;
-        margin-right: 20px;
+        margin:8px 0px;
+        font-size: 31px;
+        font-family: Russo One-Regular, Russo One;
+        font-weight: 600;
+        background: linear-gradient(32deg, #FF4E50 0%, #F9D423 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      .ant-btn{
+        margin-top: 10px;
+    font-family: Roboto-SemiBold, Roboto;
+    font-weight: 600;
+    width: 25%;
+    height: 40px;
+    font-size: 18px;
       }
     }
-
-    .userinfo-box {
-      width: 90%;
-      margin: 0 auto;
-
-
-      .user-info {
-        position: relative;
-        align-items: flex-start;
-
-        .userinfo-header {
-          display: flex;
-
-          .header-icon {
-            position: relative;
-
-            img {
-              width: 150px;
-              height: 150px;
-              position: relative;
-              z-index: 1;
-            }
-
-            &::after {
-              content: '';
-              width: 104px;
-              z-index: -1;
-              height: 104px;
-              background: rgba(223, 66, 66, 0.3);
-              filter: blur(19px);
-              position: absolute;
-              top: 50%;
-              left: 20px;
-            }
-          }
-
-   
-        }
-
-    
-
-     
-      }
-
-    }
-
 }
 }
   }
@@ -410,61 +374,37 @@ color:rgba(205, 158, 87, 1)
       }
     }
 }
-    .assets-box{
-      padding-top: 1em;
-      align-items: center;
-      display: flex;
+.assets-box{
+      margin-top: 1.5em;
+      width: 100%;
+      background: #1A1414;
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 35px 30px;
+      .title{
+        font-size: 16px;
+    font-family: Roboto-Medium, Roboto;
+    font-weight: 600;
+    color: rgb(138, 128, 128);
+      }
       .asset{
-        font-size: 30px;
-        margin-right: 20px;
+        margin:8px 0px;
+        font-size: 26px;
+        font-family: Russo One-Regular, Russo One;
+        font-weight: 600;
+        background: linear-gradient(32deg, #FF4E50 0%, #F9D423 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      .ant-btn{
+        margin-top: 10px;
+    font-family: Roboto-SemiBold, Roboto;
+    font-weight: 600;
+    width: 25%;
+    height: 40px;
+    font-size: 16px;
       }
     }
-
-    .userinfo-box {
-      width: 90%;
-      margin: 0 auto;
-
-
-      .user-info {
-        position: relative;
-        align-items: flex-start;
-
-        .userinfo-header {
-          display: flex;
-
-          .header-icon {
-            position: relative;
-
-            img {
-              width: 150px;
-              height: 150px;
-              position: relative;
-              z-index: 1;
-            }
-
-            &::after {
-              content: '';
-              width: 104px;
-              z-index: -1;
-              height: 104px;
-              background: rgba(223, 66, 66, 0.3);
-              filter: blur(19px);
-              position: absolute;
-              top: 50%;
-              left: 20px;
-            }
-          }
-
-   
-        }
-
-    
-
-     
-      }
-
-    }
-
 }
 }
   }
@@ -568,60 +508,38 @@ color:rgba(205, 158, 87, 1)
       }
     }
 }
-    .assets-box{
-      padding-top: 1em;
-      align-items: center;
-      display: flex;
+.assets-box{
+      margin-top: 1.5em;
+      width: 100%;
+      background: #1A1414;
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 35px 30px;
+      .title{
+        font-size: 16px;
+    font-family: Roboto-Medium, Roboto;
+    font-weight: 600;
+    color: rgb(138, 128, 128);
+      }
       .asset{
-        font-size: 30px;
-        margin-right: 20px;
+        margin:8px 0px;
+        font-size: 26px;
+        font-family: Russo One-Regular, Russo One;
+        font-weight: 600;
+        background: linear-gradient(32deg, #FF4E50 0%, #F9D423 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      .ant-btn{
+        margin-top: 10px;
+    font-family: Roboto-SemiBold, Roboto;
+    font-weight: 600;
+    width: 100%;
+    height: 40px;
+    font-size: 16px;
       }
     }
 
-    .userinfo-box {
-      width: 90%;
-      margin: 0 auto;
-
-
-      .user-info {
-        position: relative;
-        align-items: flex-start;
-
-        .userinfo-header {
-          display: flex;
-
-          .header-icon {
-            position: relative;
-
-            img {
-              width: 150px;
-              height: 150px;
-              position: relative;
-              z-index: 1;
-            }
-
-            &::after {
-              content: '';
-              width: 104px;
-              z-index: -1;
-              height: 104px;
-              background: rgba(223, 66, 66, 0.3);
-              filter: blur(19px);
-              position: absolute;
-              top: 50%;
-              left: 20px;
-            }
-          }
-
-   
-        }
-
-    
-
-     
-      }
-
-    }
 
 }
 }

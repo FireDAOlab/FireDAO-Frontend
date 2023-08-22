@@ -18,6 +18,7 @@ import {
     getDeleteData,
     getsSetAmountData
 } from "../../../graph/flmAirdrop";
+import user3 from "../../../imgs/user3.png";
 import { dealTime } from "../../../utils/timeUtil";
 import { formatAddress } from "../../../utils/publicJs";
 import develop from "../../../env"
@@ -344,16 +345,18 @@ const Distribution = (props) => {
                 <div className="panel-container">
                     <div className="panel-title flex-box">
                         FLM Airdrop
+                        <div style={{display:'flex'}}>
                         <div className="add-coin" onClick={addToken}>
                             Add FLM Address
                         </div>
-                        {isAdmin && (
-                            <div className="admin-icon-box" onClick={() => {
+                        {/* {isAdmin && ( */}
+                            <Button className="flmAd" onClick={() => {
                                 history("/FLMAirdropManage")
                             }}>
-                                <img className="admin-icon" src={manage} alt="" />
-                            </div>
-                        )}
+                                <img src={user3} style={{ width: '22px', marginLeft: '-10px', marginTop: '-10px' }} />
+                            </Button>
+                        {/* )} */}
+                        </div>
                     </div>
                     <div className="content-box">
                         <div className="left-part">

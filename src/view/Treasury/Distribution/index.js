@@ -72,6 +72,7 @@ const Distribution = (props) => {
             const rate = await handleViewMethod("distributionRatio", [address])
             arr.push({ address, rate, amount: assets * rate / 100, balance: await getTokenBalance(address) })
         }
+       
         setAllocationFundAddress(arr)
     }
     const dealNum = (num) => {
@@ -83,7 +84,6 @@ const Distribution = (props) => {
             return
         }
         getAssets()
-
     }, [state.account, state.networkId]);
 
 
@@ -94,17 +94,21 @@ const Distribution = (props) => {
                 <div className="panel-container">
                     <div className="panel-title">
                         Income Distribution Publicity
-                        <Button style={{ background: '#373232', textAlign: 'center', lineHeight: '28px', width: "32px", height: '32px', border: '1px solid rgba(255, 255, 255, 0.15)', borderRadius: '50%', }}>
+                        <Button onClick={() => goPage("/DisManage")} className="disAd">
                             <img src={user3} style={{ width: '22px', marginLeft: '-10px', marginTop: '-10px' }} />
                         </Button>
                     </div>
                     <div className="assets-box">
+                        <div className='title'>
+                        Assets
+                        </div>
                         <div className="asset">
                             {assets}
                         </div>
-                        <Button type="primary" onClick={() => {
+                        <Button type="primary" className='ant-btn ant-btn-primary' onClick={() => {
                             AllocationFund()
-                        }}>AllocationFund</Button>
+                        }}>AllocationFund
+                        </Button>
                     </div>
                     <div className="white-list">
                         <div className="fire-list-box">
@@ -140,7 +144,7 @@ const Distribution = (props) => {
                                                 {index + 1}
                                             </div>
                                             <div className='col'>
-                                                
+                                              
                                             </div>
                                             <div className="col address">
                                                 <a>
