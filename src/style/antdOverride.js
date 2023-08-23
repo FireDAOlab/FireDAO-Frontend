@@ -226,6 +226,7 @@ const AntdOverride = createGlobalStyle`
     }
     .input-content{
       padding: 0 20px;
+      width: 100%;
     }
     .dialog-input,.input-content{
       margin-top: 10px;
@@ -236,6 +237,9 @@ const AntdOverride = createGlobalStyle`
       font-size: 18px;
       overflow: hidden; 
       display: flex;
+      .ant-row{
+        width: 100%;
+      }
       align-items: center;
       .temp-input{
         padding: 0 20px;
@@ -244,8 +248,11 @@ const AntdOverride = createGlobalStyle`
       .ant-form-item-control-input{
         background: none;
         height: 100%;
+        
       }
+  
       .ant-input{
+        
         height: 60px;
         border-radius: 50px;
         border: none;

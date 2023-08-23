@@ -26,7 +26,7 @@ import listIcon from "../../../imgs/list-icon.webp";
 import develop from "../../../env";
 import {useNavigate} from "react-router-dom";
 import judgeStatus from "../../../utils/judgeStatus";
-import {getDonateRecord, getAllRegisters, getRecommender, getAddressFromId} from "../../../graph/donate";
+import {getDonateRecord, getAllRegisters, getRecommender, getAddressFromId} from "../../../graph/donateV5";
 import OGPoolStyle from "./OGPoolStyle";
 import {ETHDecimals, FDTDecimals, USDTDecimals, FLMDecimals, ZeroAddress} from "../../../config/constants";
 import search from "../../../imgs/search.png";
@@ -222,9 +222,11 @@ const OGPoolPublic = (props) => {
             refAddr = form.getFieldValue().referralCode
         }
 
-        await handleDealMethod("register", [refAddr.toString()])
-        getMyStatus()
-        setIsShowRegister(false)
+        const res = await handleDealMethod("register", [refAddr.toString()])
+        await getMyStatus()
+        if(myStatus.registerStatus){
+            setIsShowRegister(false)
+        }
     }
 
 
@@ -534,7 +536,6 @@ const OGPoolPublic = (props) => {
         <OGPoolStyle>
             <Modal className="signup-dialog" title="Sign up" open={isShowRegister} onOk={handleRegister}
                    footer={[
-
                        <Button className="add-btn" type="primary" onClick={() => {
                            handleRegister()
                        }}>Submit</Button>
@@ -763,10 +764,10 @@ const OGPoolPublic = (props) => {
                                     {/*not Regist*/}
                                     {!myStatus.registerStatus &&
 
-                                            <Button  type="primary" className="donate">
-                                                {!myStatus.registerStatus && <span onClick={() => {
-                                                    setIsShowRegister(true)
-                                                }}>Sign Up</span>}
+                                            <Button onClick={() => {
+                                                setIsShowRegister(true)
+                                            }}  type="primary" className="donate">
+                                                {!myStatus.registerStatus && <span>Sign Up</span>}
                                             </Button>
 
                                     }
