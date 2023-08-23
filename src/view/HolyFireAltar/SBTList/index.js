@@ -4,11 +4,17 @@ import { Card, Button, Descriptions, message, Form, List, Input,Empty , notifica
 import { getContractByName, getContractByContract } from "../../../api/connectContract";
 import { dealMethod, viewMethod } from "../../../utils/contractUtil"
 import user3 from "../../../imgs/user3.png";
+import { useNavigate } from "react-router-dom";
 import { getIpfs } from "../../../utils/ipfsApi";
 import StyleBox from "./style"
-const SBTList = (props) => {
-    const [form] = Form.useForm();
+const SBTList = (props) => {    
     let { state, dispatch } = useConnect();
+    const history = useNavigate();
+    const goPage = (url) => {
+        history(url);
+    }
+    const [form] = Form.useForm();
+
     const [PIDARR, setPIDARR] = useState([])
 
     const openNotification = (message) => {
@@ -68,7 +74,7 @@ const SBTList = (props) => {
                         <h2 className="panel-title">
                             SBT List
                         </h2>
-                        <Button style={{ float: 'right', background: '#373232', margin: '0px 13px', textAlign: 'center', lineHeight: '28px', width: "32px", height: '32px', border: '1px solid rgba(255, 255, 255, 0.15)', borderRadius: '50%', }}>
+                        <Button onClick={() => goPage("/sbtAdmin")} className='sbtAd'>
                             <img src={user3} style={{ width: '22px', marginLeft: '-10px', marginTop: '-10px' }} />
                         </Button>
                     </div>

@@ -97,7 +97,23 @@ const Distribution = (props) => {
 
     return (
         <DistributionStyle>
+            <div className="header-box11">
+                <div className="panel-title">
+                    Community Vault
+                </div>
+                <div className="btn-box">
+                    <Button type="primary" onClick={() => {
+                        history("/CreateProposal")
+                    }}>New Proposals</Button>
+                    <Button type="primary" onClick={() => {
+                        history("/CommunityMyDraft")
+                    }}>My Draft</Button>
 
+                    <Button type="primary" onClick={() => {
+                        history("/")
+                    }}>My Voting Power</Button>
+                </div>
+            </div>
             <div className="panel-box userinfo-box">
 
                 <div className="panel-container">
@@ -120,7 +136,7 @@ const Distribution = (props) => {
                     </div>
                     <div className="header-content">
                         <div className="banner">
-                            <Button onClick={() => goPage("/")} style={{ float: 'right', background: '#373232', textAlign: 'center', lineHeight: '28px', width: "32px", height: '32px', border: '1px solid rgba(255, 255, 255, 0.15)', borderRadius: '50%', }}>
+                            <Button onClick={() => goPage("/")} className="commBj">
                                 <img src={kg} style={{ width: '22px', marginLeft: '-10px', marginTop: '-10px' }} />
                             </Button>
 
@@ -145,13 +161,13 @@ const Distribution = (props) => {
                                 <img src={tb} />
                                 <img src={t5} />
                                 <span >ERC-20</span>
-                                <span >ERC-20</span>
+                                <span >FRT</span>
                             </div>
 
                         </div>
                     </div>
                 </div>
-                <div className="panel-container">
+                <div className="panel-container" style={{padding: '20px 6%'}}>
                     <div className="panel-title">
                         Contract Parameters
                     </div>
@@ -184,7 +200,7 @@ const Distribution = (props) => {
                         </div>
                     </div>
                 </div>
-                <div className="panel-container">
+                <div className="panel-container" style={{padding: '20px 6%'}}>
                     <div className="info-list">
                         <div className="info-item">
                             <div className="value">
@@ -228,36 +244,68 @@ const Distribution = (props) => {
                         </div>
                     </div>
                 </div>
-                <div className="panel-container">
+                <div className="panel-container" style={{padding: '20px 6%'}}>
                     <div className="panel-title">
                         Proposals
                     </div>
                     <div className="fire-list-box proposal-list">
-                        <div className="list-header">
-                            <div className="col">
-                                Proposal
+                        <div className='listheadert'>
+                            <div className="list-header flex-box11">
+                                <div className="col">
+                                    Proposal
+                                </div>
+                                <div className="col">
+                                    Proposer
+                                </div>
+                                <div className="col">
+                                    Votes YAE
+                                </div>
+                                <div className="col">
+                                    Votes NAY
+                                </div>
+                                <div className="col">
+                                    Votes ABSTAIN
+                                </div>
+                                <div className="col">
+                                    Total votes
+                                </div>
                             </div>
-                            <div className="col">
-                                Proposer
-                            </div>
-                            <div className="col">
-                                Votes YAE
-                            </div>
-                            <div className="col">
-                                Votes NAY
-                            </div>
-                            <div className="col">
-                                Votes ABSTAIN
-                            </div>
-                            <div className="col">
-                                Total votes
+
+                            <div className="list-item">
+                                <div className="col">
+                                    <div className="logo">
+                                        <img className="logoPic" src={headerImg} />
+                                        <div className='mixBox'>
+                                            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                                                <span className='tit'>Title</span>
+                                                <span className='titleBox'>Delegating</span>
+                                            </div>
+                                            <p>Published on Jun 8th, 2023</p>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div className="col address">
+                                    <a>Proposer</a>
+                                </div>
+                                <div className="col">
+                                    Votes YAE
+                                </div>
+                                <div className="col">
+                                    Votes NAY
+                                </div>
+                                <div className="col">
+                                    Votes ABSTAIN
+                                </div>
+                                <div className="col">
+                                    Total votes
+                                </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
 
-                <div className="panel-container">
+                <div className="panel-container" style={{padding: '20px 6%'}}>
                     <div className="panel-title">
                         Trendding Delegates
                     </div>
