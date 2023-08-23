@@ -9,7 +9,6 @@ import {formatAddress} from "../../../utils/publicJs";
 import ConnectWallet from "../../../component/ConnectWallet/ConnectWallet";
 import user3 from "../../../imgs/user3.png"
 import download from "../../../imgs/download.png"
-import manage from "../../../imgs/svg/manage.svg"
 import {zeroAddress} from "viem";
 import {ETHPriceDecimals} from "../../../config/constants";
 import {
@@ -31,7 +30,6 @@ import {getDonateRecord, getAllRegisters, getRecommender, getAddressFromId} from
 import OGPoolStyle from "./OGPoolStyle";
 import {ETHDecimals, FDTDecimals, USDTDecimals, FLMDecimals, ZeroAddress} from "../../../config/constants";
 import search from "../../../imgs/search.png";
-import {dealTime} from "../../../utils/timeUtil";
 
 const OGPoolPublic = (props) => {
     let {state, dispatch} = useConnect();
@@ -534,7 +532,7 @@ const OGPoolPublic = (props) => {
 
     return (
         <OGPoolStyle>
-            <Modal className="model-dialog" title="Sign up" open={isShowRegister} onOk={handleRegister}
+            <Modal className="signup-dialog" title="Sign up" open={isShowRegister} onOk={handleRegister}
                    footer={[
 
                        <Button className="add-btn" type="primary" onClick={() => {
@@ -546,17 +544,19 @@ const OGPoolPublic = (props) => {
                        setIsShowRegister(false)
                    }}>
                 <Form form={form} name="control-hooks" className="form">
-                    <strong>Wallet Address</strong>
+                    <strong className="input-title">Wallet Address</strong>
                     <Form.Item
                         name="referralCode"
                         validateTrigger="onBlur"
                         validateFirst={true}
+                        className="dialog-input"
                     >
-                        <div className="input-box">
+                        <div className="temp-input">
                             {state.account}
                         </div>
                     </Form.Item>
-                    <strong>Referral Code</strong>
+                    <strong className="input-title">Referral Code</strong>
+
                     {myStatus.activeStatus && myRecommender &&<>
                     {myRecommender}
                     </>}
@@ -565,11 +565,9 @@ const OGPoolPublic = (props) => {
                             name="referralCode"
                             validateTrigger="onBlur"
                             validateFirst={true}
+                            className="dialog-input"
                         >
-                            <div className="input-box">
-
-                                <Input/>
-                            </div>
+                            <Input/>
                         </Form.Item>
                     </div>}
 
@@ -589,9 +587,9 @@ const OGPoolPublic = (props) => {
                     border: '1px solid rgba(255, 255, 255, 0.15)',
                     borderRadius: '50%',
                 }}
-                                    onClick={() => {
-                                        history("/OGPoolAdmin")
-                                    }}>
+                        onClick={() => {
+                            history("/OGPoolAdmin")
+                        }}>
                     <img src={user3} style={{width: '22px', marginLeft: '-10px', marginTop: '-10px'}}/>
                 </Button>}
 
@@ -633,34 +631,6 @@ const OGPoolPublic = (props) => {
                     <div className="panel-box">
                         <div className="panel-container">
 
-                            <div className="status-info">
-                                <div className="left flex-box">
-                                    <div className="info-item">
-                                        {!myStatus.registerStatus && <Button >Unregistered</Button>}
-                                        {myStatus.registerStatus && <Button>Registered</Button>}
-                                    </div>
-                                    <div className="info-item">
-
-                                        {!myStatus.activeStatus && <Button>Inactivated</Button>}
-                                        {myStatus.activeStatus && <Button>Activated</Button>}
-                                    </div>
-                                </div>
-                                {myId &&
-                                    <div>
-                                        <div className="info-item">
-                                            {!myStatus.registerStatus && <Button onClick={() => {
-                                                setIsShowRegister(true)
-                                            }}>Sign Up</Button>}
-                                        </div>
-                                        {myStatus.registerStatus && <div className="my-id pid">
-                                            ID: {myId}
-                                        </div>}
-
-                                    </div>
-
-                                }
-
-                            </div>
                             <div className="donate-info">
                                 <div className="info-item">
                                     <div className="name">
@@ -671,13 +641,12 @@ const OGPoolPublic = (props) => {
                                     </div>
                                 </div>
                                 <div className="flex-box">
-
                                     <div className="info-item">
                                         <div className="name">
                                             Price
                                         </div>
                                         <div className="value">
-                                             ${salePrice}
+                                            ${salePrice}
                                         </div>
                                     </div>
                                     <div className="info-item">
@@ -689,12 +658,23 @@ const OGPoolPublic = (props) => {
                                         </div>
                                     </div>
 
+
                                 </div>
                             </div>
 
 
                             <div className="donation-box">
+                                <div className="status-info">
+                                        <div className="info-item">
+                                            {!myStatus.registerStatus && < >Unregistered</>}
+                                            {myStatus.registerStatus && <>Registered</>}
+                                        </div>
+                                        <div className="info-item">
 
+                                            {!myStatus.activeStatus && <>Inactivated</>}
+                                            {myStatus.activeStatus && <>Activated</>}
+                                        </div>
+                                </div>
                                 <div className="title donate-header">
                                     Donate
 
@@ -777,6 +757,18 @@ const OGPoolPublic = (props) => {
                                             </div>
                                         </Form.Item>
                                     </div>
+                                    {!myId &&
+
+                                            <Button  type="primary" className="donate">
+                                                {!myStatus.registerStatus && <span onClick={() => {
+                                                    setIsShowRegister(true)
+                                                }}>Sign Up</span>}
+                                            </Button>
+
+                                    }
+                                    {
+
+                                    }
                                     {status == 0 && <ConnectWallet className="connect-button"/>}
                                     {
                                         status == 1 && !inputValue &&
