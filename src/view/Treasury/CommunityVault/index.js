@@ -167,7 +167,7 @@ const Distribution = (props) => {
                         </div>
                     </div>
                 </div>
-                <div className="panel-container" style={{padding: '20px 6%'}}>
+                <div className="panel-container">
                     <div className="panel-title">
                         Contract Parameters
                     </div>
@@ -191,8 +191,8 @@ const Distribution = (props) => {
                             </div>
                             <div className="content-list">
                                 <div className="in-line">
-                                    <div className="name">Governor</div>
-                                    <div className="value">
+                                    <div className="name">Proposal threshold</div>
+                                    <div className="valuePro">
                                         0x21641….B60d
                                     </div>
                                 </div>
@@ -200,7 +200,7 @@ const Distribution = (props) => {
                         </div>
                     </div>
                 </div>
-                <div className="panel-container" style={{padding: '20px 6%'}}>
+                <div className="panel-container" >
                     <div className="info-list">
                         <div className="info-item">
                             <div className="value">
@@ -244,7 +244,7 @@ const Distribution = (props) => {
                         </div>
                     </div>
                 </div>
-                <div className="panel-container" style={{padding: '20px 6%'}}>
+                <div className="panel-container" >
                     <div className="panel-title">
                         Proposals
                     </div>
@@ -305,7 +305,7 @@ const Distribution = (props) => {
                     </div>
                 </div>
 
-                <div className="panel-container" style={{padding: '20px 6%'}}>
+                <div className="panel-container" >
                     <div className="panel-title">
                         Trendding Delegates
                     </div>
@@ -340,6 +340,7 @@ const Distribution = (props) => {
                                 </div>
                             </div>
                         </div>
+                        
                     </div>
                 </div>
             </div>

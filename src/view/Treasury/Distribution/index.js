@@ -94,7 +94,7 @@ const Distribution = (props) => {
                 <div className="panel-container">
                     <div className="panel-title">
                         Income Distribution Publicity
-                        <Button onClick={() => goPage("/DisManage")} className="disAd">
+                        <Button onClick={() => goPage("/TreasuryDistributionManage")} className="disAd">
                             <img src={user3} style={{ width: '22px', marginLeft: '-10px', marginTop: '-10px' }} />
                         </Button>
                     </div>

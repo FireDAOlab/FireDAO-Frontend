@@ -1,21 +1,21 @@
-import React, {useEffect, useRef, useState} from 'react';
-import {useConnect} from "../../../../api/contracts";
-import {Card, Button, Steps, Upload, message, Form, List, Input, notification, Tooltip} from 'antd';
-import {getContractByName, getContractByContract} from "../../../../api/connectContract";
-import {dealMethod, viewMethod} from "../../../../utils/contractUtil"
+import React, { useEffect, useRef, useState } from 'react';
+import { useConnect } from "../../../../api/contracts";
+import { Card, Button, Steps, Upload, message, Form, List, Input, notification, Tooltip } from 'antd';
+import { getContractByName, getContractByContract } from "../../../../api/connectContract";
+import { dealMethod, viewMethod } from "../../../../utils/contractUtil"
 
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import judgeStatus from "../../../../utils/judgeStatus";
 import ConnectWallet from "../../../../component/ConnectWallet/ConnectWallet";
 import StyleBox from "./style"
 import develop from "../../../../env";
-import {LoadingOutlined, PlusOutlined, QuestionCircleOutlined} from "@ant-design/icons";
-import {Editor, EditorState} from 'draft-js';
+import { LoadingOutlined, PlusOutlined, QuestionCircleOutlined } from "@ant-design/icons";
+import { Editor, EditorState } from 'draft-js';
 
 const Distribution = (props) => {
     const [form] = Form.useForm();
 
-    let {state, dispatch} = useConnect();
+    let { state, dispatch } = useConnect();
     const history = useNavigate();
     const goPage = (url) => {
         history(url);
@@ -26,9 +26,9 @@ const Distribution = (props) => {
     const [step, setStep] = useState(0)
     const [pageStep, setPageStep] = useState(0)
     const [curAction, setCurAction] = useState(0)
-    const [actionArr,setActionArr] = useState([])
-    const [uploading,setUploading] = useState()
-    const [imageUrl,setImageUrl] = useState()
+    const [actionArr, setActionArr] = useState([])
+    const [uploading, setUploading] = useState()
+    const [imageUrl, setImageUrl] = useState()
     const [fileList, setFileList] = useState([]);
     const handleViewMethod = async (name, params) => {
         let contractTemp = await getContractByName("TreasuryDistribution", state.api,)
@@ -47,23 +47,23 @@ const Distribution = (props) => {
     const goStep = (step) => {
         switch (step) {
             case 2:
-                if(!form.getFieldValue().title){
+                if (!form.getFieldValue().title) {
                     return
                 }
         }
 
         setPageStep(step)
     }
-    const setType = (item, type)=>{
-        item.type= type
+    const setType = (item, type) => {
+        item.type = type
         setActionArr([...actionArr])
     }
-    const addAction = ()=>{
+    const addAction = () => {
         let tempArr = [...actionArr]
         tempArr.push({})
         setActionArr(tempArr)
     }
-    const removeAction= ()=>{
+    const removeAction = () => {
         let tempArr = [...actionArr]
         tempArr.pop()
         setActionArr(tempArr)
@@ -98,10 +98,11 @@ const Distribution = (props) => {
         <StyleBox>
 
             <div className="panel-box userinfo-box">
+             
+                <div className="panel-container">
                 <div className="panel-title">
                     My Draft
                 </div>
-                <div className="panel-container">
                     <div className="fire-list-box">
                         <div className="list-header">
                             <div className="col">
@@ -109,6 +110,17 @@ const Distribution = (props) => {
                             </div>
                             <div className="col">
                                 Created
+                            </div>
+                        </div>
+                        <div className='list-item'>
+                            <div className="col">
+                                <span>Title</span>
+                                <span className='draft'>Draft</span>
+                                <span className='chain'>On-Chain</span>
+
+                            </div>
+                            <div className="col">
+                            Jun 4th, 2023 14:34
                             </div>
                         </div>
                     </div>
