@@ -7,10 +7,10 @@ import { useNavigate, useLocation } from "react-router-dom";
 import FireLockStyle from "./style";
 import judgeStatus from "../../../utils/judgeStatus";
 import AddWhiteListAddr from "./component/AddWhiteListAddr";
+import RemoveWhiteListAddr from "./component/RemoveWhiteListAddr";
 import sc from "../../../imgs/sc.png"
 import wxz from "../../../imgs/wxz.png"
 import xz from "../../../imgs/xz.png"
-import RemoveWhiteListAddr from "./component/RemoveWhiteListAddr";
 // import RemoveOnly from "./component/RemoveOnly";
 const FireLock = (props) => {
     const { closeDialog, updateData } = props

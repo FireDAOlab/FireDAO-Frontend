@@ -1909,10 +1909,10 @@ border: 1px solid rgba(205,158,87,0.5);
 
     .left-part, .right-part {
       width: 100%;
-      background: #1A1414;
+      background: rgb(36, 27, 27);
       border-radius: 10px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      padding: 25px 30px;
+      border: none;
+      padding: 15px 0px;
       margin-bottom:0.5em;
     }
     .left-part {

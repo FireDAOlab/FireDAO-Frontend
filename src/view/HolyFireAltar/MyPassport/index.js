@@ -182,7 +182,7 @@ const MyPassport = (props) => {
                         {/* }  */}
                     </Button>
                 </div>
-                <div className="panel-container user-info" style={{ border: 'none', width: '100%', padding: '0em', margin: '0', boxShadow: 'none' }}>
+                <div className="panel-container user-info" style={{  width: '100%', padding: '0em', margin: '0', boxShadow: 'none' }}>
                     <div className="passport-header-bg">
                         <Button onClick={() => goPage("/ChangeUserInfo")} className='passportAd'>
                             <img src={kg} style={{ width: '22px', marginLeft: '-10px', marginTop: '-10px' }} />
@@ -341,7 +341,7 @@ const MyPassport = (props) => {
             </div>
             {/* </div> */}
             <div className="panel-box web3id-box">
-                <div className="panel-container" style={{ border: 'none' }}>
+                <div className="panel-container">
                     <div className="panel-title" >
                         My Web3 ID
                     </div>

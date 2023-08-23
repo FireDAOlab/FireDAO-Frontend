@@ -509,12 +509,12 @@ color:rgba(205, 158, 87, 1)
     }
 }
 .assets-box{
-      margin-top: 1.5em;
+      margin-top: 0.5em;
       width: 100%;
-      background: #1A1414;
+      background: rgb(36, 27, 27);
       border-radius: 20px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      padding: 35px 30px;
+      border: none;
+      padding: 10px 0px;
       .title{
         font-size: 16px;
     font-family: Roboto-Medium, Roboto;

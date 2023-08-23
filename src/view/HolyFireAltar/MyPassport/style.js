@@ -2276,17 +2276,19 @@ font-size:14px;
   background: #241B1B;
   padding: 0px 0%;
   border-radius:10px;
-  margin:0.5em 0;
+  margin:1em 0;
+  border: 1px solid rgba(255, 255, 255, 0.1);
   
 }
 .userinfo-box {
   width: 90%;
   margin: 0px;
-border: none;
+
 padding: 0px 0%;
 box-shadow:none;
   .panel-container {
     width: 100%;
+    
   }
 
   .user-info {
