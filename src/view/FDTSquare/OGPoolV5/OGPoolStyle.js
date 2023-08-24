@@ -11,6 +11,66 @@ export default styled.div`
     }
   }
 
+  .status-header {
+    display: flex;
+    justify-content: space-between;
+
+    .signUp-btn {
+      width: 160px;
+      height: 40px;
+      border-radius: 50px;
+      opacity: 1;
+      border: 1px solid rgba(255, 174, 78, 1);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    .status-info {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+
+      .info-item {
+        margin-right: 10px;
+        flex: 1;
+        height: 40px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 49px 49px 49px 49px;
+        opacity: 1;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        width: 160px;
+        padding: 0 20px;
+        font-size: 16px;
+        font-family: Roboto-Medium, Roboto;
+        font-weight: 500;
+        color: #FFFFFF;
+        display: flex;
+        align-items: center;
+
+        .dot {
+          width: 8px;
+          height: 8px;
+          background: #D8D8D8;
+          border-radius: 50%;
+          margin-right: 20px;
+
+          &.active {
+            background: #60C064;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+          }
+        }
+      }
+
+      .my-id {
+        float: right;
+      }
+
+    }
+
+  }
+
   .reward-item {
     display: flex;
     align-items: center;
@@ -22,6 +82,42 @@ export default styled.div`
   }
 
   .active-content-box {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+
+    .content-item-box {
+      flex-wrap: wrap;
+      width: 48%;
+      background: #1A1414;
+      border-radius: 20px;
+      padding: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+
+      .name {
+        opacity: 0.5;
+        margin-bottom: 10px;
+      }
+      .address{
+        padding: 3px 6px;
+
+        color: #CD9E57;
+      }
+      & {
+        &::-webkit-scrollbar {
+          display: none;
+        }
+
+        scrollbar-width: none;
+      }
+
+      .item {
+        .address {
+          font-size: 12px;
+        }
+      }
+    }
+
     .flex-box {
       margin-top: 10px;
       align-items: center;
@@ -131,34 +227,6 @@ export default styled.div`
     }
   }
 
-  .status-info {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    margin-bottom: 10px;
-
-    .info-item {
-      margin-right: 10px;
-      flex: 1;
-      height: 40px;
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 49px 49px 49px 49px;
-      opacity: 1;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-
-      font-size: 16px;
-      font-family: Roboto-Medium, Roboto;
-      font-weight: 500;
-      color: #FFFFFF;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .my-id {
-      float: right;
-    }
-  }
 
   .team-part {
     .in-line {
@@ -322,12 +390,9 @@ export default styled.div`
       .flex-box {
         justify-content: space-between;
         width: 60%;
-
-
       }
 
       .info-item {
-        margin-left: 50px;
         width: 326px;
         height: 140px;
         background: #1A1414;
@@ -822,7 +887,7 @@ export default styled.div`
 
       .donation-box {
         width: 62%;
-        
+
         margin: 20px auto 0;
         background: rgba(26, 20, 20, 1);
         border-radius: 20px;

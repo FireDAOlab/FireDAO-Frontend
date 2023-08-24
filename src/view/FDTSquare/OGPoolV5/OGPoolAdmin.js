@@ -30,7 +30,7 @@ const OgPoolAdmin = (props) => {
     let {state, dispatch} = useConnect();
     const [initTeamRate, setInitTeamRate] = useState()
     const [initRate, setInitRate] = useState()
-
+    const [initFLMRate, setInitFLMRate] = useState()
     const [searchData, setSearchData] = useState("")
     const [activeNav, setActiveNav] = useState(1)
     const [recordNav, setRecordNav] = useState(1)
@@ -64,6 +64,7 @@ const OgPoolAdmin = (props) => {
     const [status2, setStatus2] = useState()
     const [fdtAddr, setFDTAddressValue] = useState()
     const [flmAddr, setFLMAddressValue] = useState()
+    const [FireSeedCoupon, setFireSeedCoupon] = useState()
 
     const [isPause, setIsPause] = useState()
     const [ownerAddress, setOwnerAddress] = useState("")
@@ -75,6 +76,8 @@ const OgPoolAdmin = (props) => {
 
     const [totalInviteRate, setTotalInviteRate] = useState(0)
     const [inviteRateArr, setInvArr] = useState([])
+    const [inviteFLMRateArr, setInvFLMArr] = useState([])
+
 
     const [totalTeamRate, setTotalTeamRate] = useState(0)
     const [teamRateArr, setTeamRateArr] = useState([])
@@ -218,6 +221,11 @@ const OgPoolAdmin = (props) => {
         let res = await handleViewMethod("flm", [])
         setFLMAddressValue(res)
     }
+
+    const getFireSeedCoupon = async () => {
+        let res = await handleViewMethod("FireSeedCoupon", [])
+        setFireSeedCoupon(res)
+    }
     const getSecondAdmins = async () => {
         // const arr = await handleViewMethod("getAdminsLevelTwoList", [])
         // setSecondAdmin(arr)
@@ -245,6 +253,21 @@ const OgPoolAdmin = (props) => {
         }
         setTotalInviteRate(totalRate.toString())
         setInvArr(tempArr)
+    }
+    const getInviteFLMRate = async () => {
+        let initRate = await handleViewMethod("initFlmRate", [])
+        setInitFLMRate(initRate)
+        if (!initRate) {
+            return
+        }
+        let tempArr = [], totalRate = 0
+        for (let i = 0; i < 5; i++) {
+            const inviteRate = await handleViewMethod("flmRate", [i])
+            tempArr.push({index: i + 1, inviteRate: inviteRate.toString()})
+            totalRate = BigNumber(totalRate).plus(inviteRate)
+        }
+        // setTotalInviteFLMRate(totalRate.toString())
+        setInvFLMArr(tempArr)
     }
 
     const getTeamRate = async () => {
@@ -299,6 +322,13 @@ const OgPoolAdmin = (props) => {
             rate: rate1.toLocaleString()
         }])
     }
+    const addInviteFLMRate = async () => {
+        const tempArr = [form2.getFieldValue().inviteFLMRate0, form2.getFieldValue().inviteFLMRate1,
+            form2.getFieldValue().inviteFLMRate2, form2.getFieldValue().inviteFLMRate3, form2.getFieldValue().inviteFLMRate4]
+        await handleDealMethod("addFlmRate", [tempArr])
+        getInviteFLMRate()
+    }
+
     const addInviteRate = async () => {
         const tempArr = [form2.getFieldValue().inviteRate0, form2.getFieldValue().inviteRate1,
             form2.getFieldValue().inviteRate2, form2.getFieldValue().inviteRate3, form2.getFieldValue().inviteRate4]
@@ -313,6 +343,10 @@ const OgPoolAdmin = (props) => {
         await handleDealMethod("setAdminFlmReward", [form.getFieldValue().flmRewardId-1, form.getFieldValue().flmRewardRate])
         getAdminFlmReward()
     }
+    const handleSetFlmRate= async () => {
+        await handleDealMethod("setFlmRate", [form.getFieldValue().flmInviteId-1, form.getFieldValue().flmInviteRate])
+        getInviteFLMRate()
+    }
     const setPidStatusForAdmin = async () => {
         await handleDealMethod("setPidStatusForAdmin", [])
         getpidStatusForAdmin()
@@ -324,6 +358,10 @@ const OgPoolAdmin = (props) => {
     const setFlmAddress = async () => {
         await handleDealMethod("setFlmAddress", [form.getFieldValue().fdtAddress])
         getFLMAddress()
+    }
+    const handleSetFSC = async () => {
+        await handleDealMethod("setFSC", [form.getFieldValue().FireSeedCoupon])
+        getFireSeedCoupon()
     }
     const setPidStatusForUser = async () => {
         await handleDealMethod("setPidStatusForUser", [])
@@ -454,6 +492,7 @@ const OgPoolAdmin = (props) => {
         getReceiveRemainingTeamRewards()
         getRecord()
         getInviteRate()
+        getInviteFLMRate()
         getTeamRate()
         getAssignAndRates()
         getAdminFlmReward()
@@ -616,7 +655,20 @@ const OgPoolAdmin = (props) => {
             render: (rate) => <span>{rate}%</span>,
         },
     ]
+    const FLMColumns = [
+        {
+            title: 'Level',
+            dataIndex: 'index',
+            key: 'index',
+        },
 
+        {
+            title: 'InviteRate',
+            dataIndex: 'inviteRate',
+            key: 'inviteRate',
+            render: (text) => <span>{text}%</span>,
+        },
+    ]
     return (
         <OGPoolAdminStyle>
             <Modal className="model-dialog" title="Delete  Level 2 Admin" open={isShowDelLev2} onOk={deleteLevel2Admin}
@@ -777,6 +829,23 @@ const OgPoolAdmin = (props) => {
                                     </div>
                                 </Form.Item>
                                 <Button type="primary" onClick={setFlmAddress}>Submit</Button>
+                            </Form>
+                        </div>
+
+                        <div className="panel-container">
+                            <div className="panel-title">
+                                setFSC: {FireSeedCoupon}
+                            </div>
+                            <Form form={form} name="control-hooks" className="form">
+                                <Form.Item
+                                    name="FireSeedCoupon"
+                                    label="FireSeedCoupon"
+                                >
+                                    <div className="input-box">
+                                        <Input/>
+                                    </div>
+                                </Form.Item>
+                                <Button type="primary" onClick={handleSetFSC}>Submit</Button>
                             </Form>
                         </div>
                     </div>
@@ -1295,7 +1364,7 @@ const OgPoolAdmin = (props) => {
                             Referral Rewards
                         </h2>
                         <Table pagination={false} columns={inviteColumns} dataSource={inviteRateArr}/>
-                        {inviteRateArr.length == 0 && (<div className="content-item">
+                        {!initRate && (<div className="content-item">
                             <div className="panel-title">
                                 Add Invite Rate
                             </div>
@@ -1652,6 +1721,75 @@ const OgPoolAdmin = (props) => {
                             </Form>
 
                         </div>
+                    </div>
+
+                    <div className="panel-container">
+                        <div className="panel-title">
+                            OG invite flm rewards
+                        </div>
+                        <Table pagination={false} columns={FLMColumns} dataSource={inviteFLMRateArr}/>
+
+                        {!initFLMRate && (<div className="content-item">
+                            <div className="panel-title">
+                                Add Invite FLM Rate
+                            </div>
+                            <Form form={form2} name="control-hooks" className="form">
+                                {[0, 1, 2, 3, 4].map((index) => {
+                                    return (<>
+                                        <h5> Level Admin <strong>{index + 1}</strong></h5>
+                                        <Form.Item
+                                            name={"inviteFLMRate" + index}
+                                            validateTrigger="onBlur"
+                                            validateFirst={true}
+                                        >
+                                            <div className="input-box">
+                                                <Input/>
+                                            </div>
+                                        </Form.Item>
+                                    </>)
+                                })}
+
+                                <div className="btns">
+                                    <Button className="add-btn" type="primary" onClick={() => {
+                                        addInviteFLMRate()
+                                    }}>Add Invite Rate</Button>
+                                </div>
+                            </Form>
+                        </div>)}
+                        {initFLMRate&&<div className="content-item">
+                            <div className="panel-title">
+                                Set FLM Invite Rewards
+                            </div>
+                            <Form form={form} name="control-hooks" className="form">
+
+                                <Form.Item
+                                    name="flmInviteId"
+                                    label="flmInviteId"
+                                    validateTrigger="onBlur"
+                                    validateFirst={true}
+                                >
+                                    <div className="input-box">
+                                        <Input/>
+                                    </div>
+                                </Form.Item>
+                                <Form.Item
+                                    name="flmInviteRate"
+                                    label="flmInviteRate"
+                                    validateTrigger="onBlur"
+                                    validateFirst={true}
+                                >
+                                    <div className="input-box">
+                                        <Input/>
+                                    </div>
+                                </Form.Item>
+                                <div className="btns">
+                                    <Button className="add-btn" type="primary" onClick={() => {
+                                        handleSetFlmRate()
+                                    }}>Submit</Button>
+                                </div>
+                            </Form>
+
+                        </div>}
                     </div>
                 </div>)
             }

@@ -213,20 +213,22 @@ const OGPoolPublic = (props) => {
     }
     const handleRegister = async () => {
         let refAddr = ""
-        if(myStatus.activeStatus && myRecommender){
-            refAddr=  zeroAddress
-        }else{
+        if (myStatus.activeStatus && myRecommender) {
+            refAddr = state.account
+        } else {
             if (!state.api.utils.isAddress(form.getFieldValue().referralCode)) {
                 return
             }
             refAddr = form.getFieldValue().referralCode
         }
 
-        const res = await handleDealMethod("register", [refAddr.toString()])
+        await handleDealMethod("register", [refAddr.toString()])
         await getMyStatus()
-        if(myStatus.registerStatus){
-            setIsShowRegister(false)
-        }
+        setTimeout(() => {
+            if (myStatus.registerStatus) {
+                setIsShowRegister(false)
+            }
+        }, 1000)
     }
 
 
@@ -303,7 +305,7 @@ const OGPoolPublic = (props) => {
         setPageCount(count)
     }
     const getMyInviteCount = async (address) => {
-        if(!address){
+        if (!address) {
             address = myRecommender
         }
         const used = await handleViewMethod("activeUsedAmount", [address])
@@ -558,7 +560,7 @@ const OGPoolPublic = (props) => {
                     </Form.Item>
                     <strong className="input-title">Referral Code</strong>
 
-                    {myStatus.activeStatus && myRecommender &&<div className="input-content">
+                    {myStatus.activeStatus && myRecommender && <div className="input-content">
                         {myRecommender}
                     </div>}
                     {!(myStatus.activeStatus && myRecommender) && <div>
@@ -588,9 +590,9 @@ const OGPoolPublic = (props) => {
                     border: '1px solid rgba(255, 255, 255, 0.15)',
                     borderRadius: '50%',
                 }}
-                        onClick={() => {
-                            history("/OGPoolV5Admin")
-                        }}>
+                                    onClick={() => {
+                                        history("/OGPoolV5Admin")
+                                    }}>
                     <img src={user3} style={{width: '22px', marginLeft: '-10px', marginTop: '-10px'}}/>
                 </Button>}
 
@@ -608,18 +610,19 @@ const OGPoolPublic = (props) => {
                     }}>
                         Team
                     </div>
-                    <div className={"nav-item " + (activeNav == 3 ? "active" : "")} onClick={() => {
-                        setActiveNav(3)
-                    }}>
-                        Active Accounts
-                    </div>
+                    {myStatus.activeStatus &&
+                        <div className={"nav-item " + (activeNav == 3 ? "active" : "")} onClick={() => {
+                            setActiveNav(3)
+                        }}>
+                            Active Accounts
+                        </div>}
 
                     {(isSecondAdmin | isThreeAdmin || isFourAdmin) &&
 
                         <div className={"nav-item " + (activeNav == 4 ? "active" : "")} onClick={() => {
                             history("/OGV5UserAdmin")
                         }}>
-                            Lv{isSecondAdmin?2:""}{isThreeAdmin?3:""}{isFourAdmin?4:""} Admin
+                            Lv{isSecondAdmin ? 2 : ""}{isThreeAdmin ? 3 : ""}{isFourAdmin ? 4 : ""} Admin
                         </div>
 
                     }
@@ -631,11 +634,29 @@ const OGPoolPublic = (props) => {
                 <div className="part1">
                     <div className="panel-box">
                         <div className="panel-container">
-
+                            <div className="flex-box status-header">
+                                <div className="status-info">
+                                    <div className="info-item">
+                                        <div className={"dot " + (myStatus.registerStatus ? " active" : "")}></div>
+                                        {!myStatus.registerStatus && < >Unregistered</>}
+                                        {myStatus.registerStatus && <>Registered</>}
+                                    </div>
+                                    <div className="info-item">
+                                        <div className={"dot" + (myStatus.activeStatus ? " active" : "")}></div>
+                                        {!myStatus.activeStatus && <>Inactivated</>}
+                                        {myStatus.activeStatus && <>Activated</>}
+                                    </div>
+                                </div>
+                                <div className="signUp-btn" onClick={() => {
+                                    setIsShowRegister(true)
+                                }}>
+                                    Sign Up
+                                </div>
+                            </div>
                             <div className="donate-info">
                                 <div className="info-item">
                                     <div className="name">
-                                        FDT-OG Donate Pool Amount
+                                        FDT-OG Pool Amount
                                     </div>
                                     <div className="value">
                                         {showNum(FDTBalance)}
@@ -664,22 +685,10 @@ const OGPoolPublic = (props) => {
                             </div>
 
 
-
                             <div className="donation-box">
-                                <div className="status-info">
-                                        <div className="info-item">
-                                            {!myStatus.registerStatus && < >Unregistered</>}
-                                            {myStatus.registerStatus && <>Registered</>}
-                                        </div>
-                                        <div className="info-item">
 
-                                            {!myStatus.activeStatus && <>Inactivated</>}
-                                            {myStatus.activeStatus && <>Activated</>}
-                                        </div>
-                                </div>
                                 <div className="title donate-header">
                                     Donate
-
                                 </div>
                                 <Form form={form} name="control-hooks" className="form">
                                     <div className="donate-part">
@@ -730,7 +739,7 @@ const OGPoolPublic = (props) => {
 
                                     <div className="donate-part" style={{marginTop: '8px'}}>
                                         <div className="balance-box">
-                                            <strong className="" >
+                                            <strong className="">
                                                 Your receive
                                             </strong>
                                             <div className="balance-box ">
@@ -764,15 +773,15 @@ const OGPoolPublic = (props) => {
                                     {/*not Regist*/}
                                     {!myStatus.registerStatus &&
 
-                                            <Button onClick={() => {
-                                                setIsShowRegister(true)
-                                            }}  type="primary" className="donate">
-                                                {!myStatus.registerStatus && <span>Sign Up</span>}
-                                            </Button>
+                                        <Button onClick={() => {
+                                            setIsShowRegister(true)
+                                        }} type="primary" className="donate">
+                                            {!myStatus.registerStatus && <span>Sign Up</span>}
+                                        </Button>
 
                                     }
                                     {/*registed*/}
-                                    {myStatus.registerStatus&&<div>
+                                    {myStatus.registerStatus && <div>
                                         {status == 0 && <ConnectWallet className="connect-button"/>}
                                         {
                                             status == 1 && !inputValue &&
@@ -907,20 +916,22 @@ const OGPoolPublic = (props) => {
                     <div className="panel-box">
                         <div className="panel-container">
 
-                            <div className="in-line">
-                                <div className="left">
-                                    Wallet Address
+                            <div className="active-content-box">
+                                <div className="content-item-box">
+                                    <div className="name">
+                                        Wallet Address
+                                    </div>
+                                    <div className="value address" style={{width:"auto"}}>
+                                        {curAddress}
+                                    </div>
                                 </div>
-                                <div className="right">
-                                    {curAddress}
-                                </div>
-                            </div>
-                            <div className="in-line">
-                                <div className="left">
-                                    Recommender
-                                </div>
-                                <div className="right">
-                                    {myRecommender}
+                                <div className="content-item-box">
+                                    <div className="name">
+                                        Recommender
+                                    </div>
+                                    <div className="address value " style={{width:"auto"}}>
+                                        {myRecommender}
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -979,7 +990,7 @@ const OGPoolPublic = (props) => {
                                     </form>
                                 </div>
                             </div>
-                            <div className="fire-list-box team-list">
+                            <div className="fire-list-box team-list" style={{marginTop:"20px"}}>
 
                                 <div className="list-header">
                                     <div className="col">
@@ -1012,8 +1023,11 @@ const OGPoolPublic = (props) => {
                                             <div className="col no">
                                                 {index + 1}
                                             </div>
-                                            <div className="col id" style={{cursor:"pointer"}} onClick={()=>{setSearchData(item.Contract_id);handleSearch()}}>
-                                                {(item.Contract_id||item.Contract_id==0) ?item.Contract_id:"--"}
+                                            <div className="col id" style={{cursor: "pointer"}} onClick={() => {
+                                                setSearchData(item.Contract_id);
+                                                handleSearch()
+                                            }}>
+                                                {(item.Contract_id || item.Contract_id == 0) ? item.Contract_id : "--"}
                                             </div>
                                             <div className="col ">
                                                 <div className="address">
@@ -1097,29 +1111,35 @@ const OGPoolPublic = (props) => {
                                                 </div>
                                             </div>
                                             <div className="col">
-                                                <img width={20} height={20} style={{marginRight:"3px"}} src={ethereum} alt=""/>
+                                                <img width={20} height={20} style={{marginRight: "3px"}} src={ethereum}
+                                                     alt=""/>
                                                 {showNum(item.ethAmount / 10 ** ETHDecimals, 3)}
                                             </div>
                                             <div className="col">
-                                                <img width={20} height={20}  style={{marginRight:"3px"}} src={FDTIcon} alt=""/>
+                                                <img width={20} height={20} style={{marginRight: "3px"}} src={FDTIcon}
+                                                     alt=""/>
                                                 {showNum(item.fdtAmount / 10 ** FDTDecimals, 1)}
                                             </div>
                                             <div className="col price">
-                                                <img width={20} height={20}  style={{marginRight:"3px"}} src={USDTIcon} alt=""/>
+                                                <img width={20} height={20} style={{marginRight: "3px"}} src={USDTIcon}
+                                                     alt=""/>
                                                 {showNum(0.01)}
                                             </div>
                                             <div className="col cost">
-                                                <img width={20} height={20}  style={{marginRight:"3px"}} src={USDTIcon} alt=""/>
+                                                <img width={20} height={20} style={{marginRight: "3px"}} src={USDTIcon}
+                                                     alt=""/>
                                                 {showNum(item.usdtAmount / 10 ** USDTDecimals, 3)}
                                             </div>
                                             <div className="col flex-box ">
                                                 <div className="item">
-                                                    <img width={20} height={20}  style={{marginRight:"3px"}} src={ethereum} alt=""/>
-                                                    {showNum(BigNumber(item.ethAmount/ 10 ** ETHDecimals).multipliedBy(item.rate / 100)  , 3)}
+                                                    <img width={20} height={20} style={{marginRight: "3px"}}
+                                                         src={ethereum} alt=""/>
+                                                    {showNum(BigNumber(item.ethAmount / 10 ** ETHDecimals).multipliedBy(item.rate / 100), 3)}
                                                 </div>
-                                                <div className="item" style={{marginLeft:"10px"}}>
-                                                    <img width={20} height={20}  style={{marginRight:"3px"}} src={FDTIcon} alt=""/>
-                                                    {showNum(BigNumber(item.fdtAmount/ 10 ** FLMDecimals).multipliedBy(item.rate / 100)  , 1)}
+                                                <div className="item" style={{marginLeft: "10px"}}>
+                                                    <img width={20} height={20} style={{marginRight: "3px"}}
+                                                         src={FDTIcon} alt=""/>
+                                                    {showNum(BigNumber(item.fdtAmount / 10 ** FLMDecimals).multipliedBy(item.rate / 100), 1)}
                                                 </div>
                                             </div>
                                             <div className="col">
@@ -1152,47 +1172,60 @@ const OGPoolPublic = (props) => {
                             Active Accounts
                         </div>
                         <div className="active-content-box">
-                            <div className="flex-box" style={{justifyContent:"space-between"}}>
-                                <div className="address" style={{width:"auto"}}>
-                                    {state.account}
+                            <div className="content-item-box flex-box" style={{justifyContent:"space-between"}}>
+                                <div className="item">
+                                    <div className="name">
+                                        My Address
+                                    </div>
+                                    <div className="address value" style={{width: "auto"}}>
+                                        {state.account}
+                                    </div>
                                 </div>
-                                <div className="my-id pid">
-                                    ID: {myId}
+                                <div className="item" style={{justifyContent: "space-between"}}>
+                                    <div className="name">
+                                        ID
+                                    </div>
+                                    <div className="my-id pid">
+                                        {myId}
+                                    </div>
                                 </div>
                             </div>
-                            <div className="flex-box">
-                                <div className="name" style={{marginRight:"10px"}}>
-                                    Referral  Code
-                                </div>
-                                <div className="value">
-                                    {myRecommender}
-                                </div>
-                            </div>
-                            <div className="flex-box content-list">
-                                <div className="content-item">
-                                    <div className="name">
-                                        Total times
+                            <div className="content-item-box">
+                                <div className="item flex-box">
+                                    <div className="name" style={{marginRight: "10px"}}>
+                                        Referral Code
                                     </div>
-                                    <div className="value">
-                                        {activateAccountUsedAmount}
+                                    <div className="address" style={{flex: "1"}}>
+                                        {myRecommender}
                                     </div>
                                 </div>
-                                <div className="content-item">
-                                    <div className="name">
-                                        Used times
+                                <div className="flex-box  content-list">
+                                    <div className="content-item">
+                                        <div className="name">
+                                            Total times
+                                        </div>
+                                        <div className="value">
+                                            {activateAccountUsedAmount}
+                                        </div>
                                     </div>
-                                    <div className="value">
-                                        {activeUsedAmount}
+                                    <div className="content-item">
+                                        <div className="name">
+                                            Used times
+                                        </div>
+                                        <div className="value">
+                                            {activeUsedAmount}
+                                        </div>
+                                    </div>
+                                    <div className="content-item">
+                                        <div className="name">
+                                            Available times
+                                        </div>
+                                        <div className="value">
+                                            {BigNumber(activateAccountUsedAmount).minus(activeUsedAmount).toString()}
+                                        </div>
                                     </div>
                                 </div>
-                                <div className="content-item">
-                                    <div className="name">
-                                        Available  times
-                                    </div>
-                                    <div className="value">
-                                        {BigNumber(activateAccountUsedAmount).minus(activeUsedAmount).toString()}
-                                    </div>
-                                </div>
+
                             </div>
                         </div>
                         <div className="fire-list-box admin3-list">
