@@ -359,9 +359,13 @@ const OgPoolAdmin = (props) => {
         await handleDealMethod("setFlmAddress", [form.getFieldValue().fdtAddress])
         getFLMAddress()
     }
-    const handleSetFSC = async () => {
-        await handleDealMethod("setFSC", [form.getFieldValue().FireSeedCoupon])
+
+    const  handleSetFireSeedCoupon = async ()=>{
+        await handleDealMethod("setFireSeedCoupon", [form.getFieldValue().FireSeedCoupon])
         getFireSeedCoupon()
+    }
+    const handleSetFSC = async () => {
+        await handleDealMethod("setFSC", [form.getFieldValue().FSC])
     }
     const setPidStatusForUser = async () => {
         await handleDealMethod("setPidStatusForUser", [])
@@ -834,7 +838,24 @@ const OgPoolAdmin = (props) => {
 
                         <div className="panel-container">
                             <div className="panel-title">
-                                setFSC: {FireSeedCoupon}
+                                setFSC
+                            {/*    {FireSeedCoupon}*/}
+                            </div>
+                            <Form form={form} name="control-hooks" className="form">
+                                <Form.Item
+                                    name="FSC"
+                                    label="FSC Count"
+                                >
+                                    <div className="input-box">
+                                        <Input/>
+                                    </div>
+                                </Form.Item>
+                                <Button type="primary" onClick={handleSetFSC}>Submit</Button>
+                            </Form>
+                        </div>
+                        <div className="panel-container">
+                            <div className="panel-title">
+                                SetFireSeedCoupon {FireSeedCoupon}
                             </div>
                             <Form form={form} name="control-hooks" className="form">
                                 <Form.Item
@@ -845,7 +866,7 @@ const OgPoolAdmin = (props) => {
                                         <Input/>
                                     </div>
                                 </Form.Item>
-                                <Button type="primary" onClick={handleSetFSC}>Submit</Button>
+                                <Button type="primary" onClick={handleSetFireSeedCoupon}>Submit</Button>
                             </Form>
                         </div>
                     </div>

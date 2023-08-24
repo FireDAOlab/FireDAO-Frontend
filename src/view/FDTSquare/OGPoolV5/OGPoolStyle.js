@@ -16,7 +16,7 @@ export default styled.div`
     justify-content: space-between;
 
     .signUp-btn {
-      width: 160px;
+      width: 170px;
       height: 40px;
       border-radius: 50px;
       opacity: 1;
@@ -40,7 +40,7 @@ export default styled.div`
         border-radius: 49px 49px 49px 49px;
         opacity: 1;
         border: 1px solid rgba(255, 255, 255, 0.1);
-        width: 160px;
+        width: 170px;
         padding: 0 20px;
         font-size: 16px;
         font-family: Roboto-Medium, Roboto;
@@ -55,7 +55,7 @@ export default styled.div`
           background: #D8D8D8;
           border-radius: 50%;
           margin-right: 20px;
-
+          flex-shrink: 0;
           &.active {
             background: #60C064;
             border: 2px solid rgba(255, 255, 255, 0.3);
@@ -424,7 +424,7 @@ export default styled.div`
     .donation-box {
       width: 46%;
 
-      margin: 0 auto;
+      margin: 20px auto;
       background: rgba(26, 20, 20, 1);
       border-radius: 20px;
       border: 1px solid rgba(255, 255, 255, 0.1);

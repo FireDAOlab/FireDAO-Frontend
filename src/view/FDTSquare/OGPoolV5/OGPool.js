@@ -49,6 +49,9 @@ const OGPoolPublic = (props) => {
     const [isSecondAdmin, setIsSecondAdmin] = useState(false)
     const [isThreeAdmin, setIsThreeAdmin] = useState(false)
     const [isFourAdmin, setIsFourAdmin] = useState(false)
+    const [isFiveAdmin, setIsFiveAdmin] = useState(false)
+
+
     const [fdtBalance, setFdtBalance] = useState(0)
 
     const [activeUsedAmount, setActiveUsedAmount] = useState(0)
@@ -236,10 +239,11 @@ const OGPoolPublic = (props) => {
         const isS = await handleViewMethod("checkAddrForAdminLevelTwo", [state.account])
         const isT = await handleViewMethod("checkAddrForAdminLevelThree", [state.account])
         const isF = await handleViewMethod("checkAddrForAdminLevelFour", [state.account])
-
+        const isFive = await handleViewMethod("checkAddrForAdminLevelFive", [state.account])
         setIsSecondAdmin(isS)
         setIsThreeAdmin(isT)
         setIsFourAdmin(isF)
+        setIsFiveAdmin(isFive)
     }
     const getSalePrice = async () => {
         let res = await handleViewMethod("salePrice", [])
@@ -617,12 +621,12 @@ const OGPoolPublic = (props) => {
                             Active Accounts
                         </div>}
 
-                    {(isSecondAdmin | isThreeAdmin || isFourAdmin) &&
+                    {(isSecondAdmin | isThreeAdmin || isFourAdmin || isFiveAdmin) &&
 
                         <div className={"nav-item " + (activeNav == 4 ? "active" : "")} onClick={() => {
                             history("/OGV5UserAdmin")
                         }}>
-                            Lv{isSecondAdmin ? 2 : ""}{isThreeAdmin ? 3 : ""}{isFourAdmin ? 4 : ""} Admin
+                            Lv{isSecondAdmin ? 2 : ""}{isThreeAdmin ? 3 : ""}{isFourAdmin ? 4 : ""}{isFiveAdmin ? 5 : ""} Admin
                         </div>
 
                     }
@@ -637,7 +641,7 @@ const OGPoolPublic = (props) => {
                             <div className="flex-box status-header">
                                 <div className="status-info">
                                     <div className="info-item">
-                                        <div className={"dot " + (myStatus.registerStatus ? " active" : "")}></div>
+                                        <div className={"dot" + (myStatus.registerStatus ? " active" : "")}></div>
                                         {!myStatus.registerStatus && < >Unregistered</>}
                                         {myStatus.registerStatus && <>Registered</>}
                                     </div>
