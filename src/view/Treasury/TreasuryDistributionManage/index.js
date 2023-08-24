@@ -368,54 +368,57 @@ const FireLock = (props) => {
                         </div>
 
                         <div className="fire-list-box cate">
-                            <div className="list-header flex-box1">
-                                <div className="col1">
-                                    No.
-                                </div>
-                                <div className="col1">
-                                    Category
-                                </div>
-                                <div className="col1">
-                                    Contract  Address
-                                </div>
-                                <div className="col1">
-                                    Percentage
-                                </div>
-                                <div className="col1">
-                                    Delete
-                                </div>
-                            </div>
-                            {allocationFundAddress.map((item, index) => (
-                                <Form className='bdval'>
-                                    <div className="list-item catelist" key={index}>
-                                        <div className="col1 no">
-                                            {index + 1}
-                                        </div>
-                                        <div className="col1">
-                                            Community's Ecological Operation Fund
-                                        </div>
-                                        <div className="col1 address">
-                                            <a>{item.address}</a>
-                                        </div>
-                                        <Form.Item className="col1 value"
-                                            validateFirst={true}
-                                            rules={[
-                                                // { required: true, message: 'Please input rate1!' },
-                                            ]}>
-
-                                            <Input placeholder={item.rate} className="dtoo1" />
-                                            <span className='dtoo1dw'>%</span>
-                                        </Form.Item>
-                                        <div className="col1 sc1">
-                                            <img src={sc} className="sc" id='scc' />
-                                        </div>
+                            <div className='listheadert'>
+                                <div className="list-header flex-box1">
+                                    <div className="col1">
+                                        No.
                                     </div>
-                                </Form>
-                            )
-                            )
-                            }
-                        </div>
+                                    <div className="col1">
+                                        Category
+                                    </div>
+                                    <div className="col1">
+                                        Contract  Address
+                                    </div>
+                                    <div className="col1">
+                                        Percentage
+                                    </div>
+                                    <div className="col1">
+                                        Delete
+                                    </div>
+                                </div>
+                                {
 
+                                    allocationFundAddress.map((item, index) => (
+                                        <Form className='bdval'>
+                                            <div className="list-item catelist" key={index}>
+                                                <div className="col1 no">
+                                                    {index + 1}
+                                                </div>
+                                                <div className="col1">
+                                                    Community's Ecological Operation Fund
+                                                </div>
+                                                <div className="col1 address">
+                                                    <a>{item.address}</a>
+                                                </div>
+                                                <Form.Item className="col1 value"
+                                                    validateFirst={true}
+                                                    rules={[
+                                                        // { required: true, message: 'Please input rate1!' },
+                                                    ]}>
+
+                                                    <Input placeholder={item.rate} className="dtoo1" />
+                                                    <span className='dtoo1dw'>%</span>
+                                                </Form.Item>
+                                                <div className="col1 sc1">
+                                                    <img src={sc} className="sc" id='scc' />
+                                                </div>
+                                            </div>
+                                        </Form>
+                                    )
+                                    )
+                                }
+                            </div>
+                        </div>
                     </div>}
                     {curNav == 3 && <div className="part1">
                         <div className="content-item">
@@ -620,12 +623,12 @@ const FireLock = (props) => {
                                 <div className="col2">
                                     Symbol
                                 </div>
-                                <strong className="col2">
+                                <div className="col2">
                                     Token Address
-                                </strong>
-                                <strong className="col2">
+                                </div>
+                                <div className="col2">
                                     Delete
-                                </strong>
+                                </div>
                             </div>
                             {allocationFundAddress.map((item, index) => (
                                 <Form className='bdvalToken'>

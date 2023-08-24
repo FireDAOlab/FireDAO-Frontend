@@ -310,32 +310,32 @@ border-bottom:none!important;
         text-align: left;
 font-size:14px;
         &:nth-child(1) {
-          width:10%;
-         margin-left:5px;
+          width:9%;
+         margin-left:0px;
         }
 
         &:nth-child(2) {
-          width: 15%;
-          margin-left:10px;
+          width: 16%;
+          margin-left:5px;
         }
 
         &:nth-child(3) {
-          width: 17%;
-          margin-left:10px;
+          width: 20%;
+          margin-left:5px;
         }
 
         &:nth-child(4) {
-          width: 15%;
-          margin-left:10px;
+          width: 13%;
+          margin-left:5px;
         }
         &:nth-child(5) {
           width: 15%;
-          margin-left:10px;
+          margin-left:5px;
         }
 
         &:nth-child(6) {
           width: 15%;
-          margin-left:10px;
+          margin-left:5px;
         }
 
        
