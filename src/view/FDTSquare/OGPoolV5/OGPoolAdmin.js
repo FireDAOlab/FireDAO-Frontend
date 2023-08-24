@@ -487,6 +487,7 @@ const OgPoolAdmin = (props) => {
         getMaxThreeAdmin()
         getMaxTwoAdmin()
         getMaxFourAdmin()
+        getMaxFiveAdmin()
         getPause()
         getpidStatusForAdmin()
         getpidStatusForAdmin()
@@ -536,7 +537,7 @@ const OgPoolAdmin = (props) => {
 
     }
     const withdrawToken = async (item) => {
-        await handleDealMethod("Claim", [form.getFieldValue().withdrawCoinAddr, form.getFieldValue().withdrawAmount])
+        await handleDealMethod("Claim", [form.getFieldValue().withdrawCoinAddr, BigNumber(form.getFieldValue().withdrawAmount).multipliedBy(10**coinInfo.decimal) ])
     }
     useEffect(() => {
         getData()
@@ -1140,7 +1141,7 @@ const OgPoolAdmin = (props) => {
                                                 Decimals
                                             </div>
                                             <div className="value">
-                                                {coinInfo.decmials}
+                                                {coinInfo.decimal}
                                             </div>
                                         </div>
                                         <Form.Item
