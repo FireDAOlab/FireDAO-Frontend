@@ -548,14 +548,9 @@
 	{
 		"inputs": [
 			{
-				"internalType": "uint256",
-				"name": "_id",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
+				"internalType": "uint256[]",
 				"name": "_rate",
-				"type": "uint256"
+				"type": "uint256[]"
 			}
 		],
 		"name": "setAdminFlmReward",
@@ -719,6 +714,19 @@
 	{
 		"inputs": [
 			{
+				"internalType": "address",
+				"name": "_addr",
+				"type": "address"
+			}
+		],
+		"name": "setFireSeedCoupon",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
 				"internalType": "contract ERC20",
 				"name": "_flm",
 				"type": "address"
@@ -733,11 +741,16 @@
 		"inputs": [
 			{
 				"internalType": "uint256",
-				"name": "_ratio",
+				"name": "_id",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_rate",
 				"type": "uint256"
 			}
 		],
-		"name": "setFlmRatio",
+		"name": "setFlmRate",
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
@@ -840,6 +853,19 @@
 			}
 		],
 		"name": "setUserBuyMax",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_rate",
+				"type": "uint256"
+			}
+		],
+		"name": "setUserFlmRewards",
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
@@ -1180,19 +1206,6 @@
 	},
 	{
 		"inputs": [],
-		"name": "flmRatio",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
 		"name": "getActivateAccount",
 		"outputs": [
 			{
@@ -1251,6 +1264,25 @@
 			}
 		],
 		"name": "getAdminsLevelThreeLength",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_adminTwo",
+				"type": "address"
+			}
+		],
+		"name": "getAdminsLevelTwoLength",
 		"outputs": [
 			{
 				"internalType": "uint256",
@@ -1747,6 +1779,19 @@
 	{
 		"inputs": [],
 		"name": "userBuyMax",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "userFlmRewardRate",
 		"outputs": [
 			{
 				"internalType": "uint256",
