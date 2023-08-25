@@ -1255,7 +1255,7 @@ const OGPoolPublic = (props) => {
                                         </div>
 
                                         <div className="col address">
-                                            {item}
+                                            <a href={develop.ethScan + "/address/" + item} target="_blank">{item}</a>
                                         </div>
 
                                     </div>)

@@ -195,7 +195,7 @@ export default styled.div`
       color: rgba(205, 158, 87, 1);
       text-align: center;
     }
-
+    color: rgba(205, 158, 87, 1);
     padding: 0 5px;
     width: 100px;
     border: 1px solid rgba(205, 158, 87, 1);
@@ -1161,7 +1161,7 @@ export default styled.div`
           color: rgba(205, 158, 87, 1);
           text-align: center;
         }
-
+        color: rgba(205, 158, 87, 1);
         width: 100px;
         border: 1px solid rgba(205, 158, 87, 1);
         background: rgba(205, 158, 87, 0.20);
