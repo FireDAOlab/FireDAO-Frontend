@@ -169,22 +169,22 @@ const MyPassport = (props) => {
             {/* <div className="panel-box"> */}
             <div className="panel-title11" style={{'marginBottom': '1.5em'}}>
                 <span>My Passport</span>
-                <Button style={{ background: '#373232', textAlign: 'center', lineHeight: '28px', width: "32px", height: '32px', border: '1px solid rgba(255, 255, 255, 0.15)', borderRadius: '50%', }}>
-                    <img src={user3} style={{ width: '22px', marginLeft: '-10px', marginTop: '-10px' }} />
+                <Button onClick={() => goPage("/passportAdmin")} className='passportAd' >
+                    <img src={user3}  style={{ width: '22px', marginLeft: '-10px', marginTop: '-10px' }} />
                 </Button>
             </div>
             <div className="panel-box userinfo-box" style={{ width: '100%' }}>
                 <div className="panel-title" style={{'marginBottom': '1.5em'}}>
                     <span>My Passport</span>
-                    <Button onClick={() => goPage("/passportAdmin")} style={{ background: '#373232', textAlign: 'center', lineHeight: '28px', width: "32px", height: '32px', border: '1px solid rgba(255, 255, 255, 0.15)', borderRadius: '50%', }}>
+                    <Button onClick={() => goPage("/passportAdmin")}  className='passportAd'>
                         {/* {isAdmin && */}
                         <img src={user3} style={{ width: '22px', marginLeft: '-10px', marginTop: '-10px' }} />
                         {/* }  */}
                     </Button>
                 </div>
-                <div className="panel-container user-info" style={{ border: 'none', width: '100%', padding: '0em', margin: '0', boxShadow: 'none' }}>
+                <div className="panel-container user-info" style={{  width: '100%', padding: '0em', margin: '0', boxShadow: 'none' }}>
                     <div className="passport-header-bg">
-                        <Button onClick={() => goPage("/ChangeUserInfo")} style={{ float: 'right', background: '#373232', textAlign: 'center', lineHeight: '28px', width: "32px", height: '32px', border: '1px solid rgba(255, 255, 255, 0.15)', borderRadius: '50%', }}>
+                        <Button onClick={() => goPage("/ChangeUserInfo")} className='passportAd'>
                             <img src={kg} style={{ width: '22px', marginLeft: '-10px', marginTop: '-10px' }} />
                         </Button>
                     </div>
@@ -341,7 +341,7 @@ const MyPassport = (props) => {
             </div>
             {/* </div> */}
             <div className="panel-box web3id-box">
-                <div className="panel-container" style={{ border: 'none' }}>
+                <div className="panel-container">
                     <div className="panel-title" >
                         My Web3 ID
                     </div>

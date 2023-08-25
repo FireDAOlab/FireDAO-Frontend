@@ -4,6 +4,18 @@ export  default   styled.div`
 .list-item:last-child{
     border-bottom:none!important;
 }
+.sbtAd{
+        float: right;
+     background: #373232;
+     margin: 0px 13px;
+     text-align: center;
+     line-height: 28px;
+     width: 32px;
+     height: 32px;
+     border: 1px solid rgba(255, 255, 255, 0.15);
+     border-radius: 50%;
+
+}
 @media screen and (min-width: 1950px) {
     .panel-container {
     padding:30px 11.7%;

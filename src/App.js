@@ -54,6 +54,11 @@ import CommunityMyDraft from "./view/Treasury/CommunityVault/MyDraft";
 import OGPool from "./view/FDTSquare/OGPool/OGPool";
 import OGPoolAdmin from "./view/FDTSquare/OGPool/OGPoolAdmin";
 import OGUserAdmin from "./view/FDTSquare/OGPool/OGUserAdmin";
+
+import OGPoolV5 from "./view/FDTSquare/OGPoolV5/OGPool";
+import OGPoolV5Admin from "./view/FDTSquare/OGPoolV5/OGPoolAdmin";
+import OGV5UserAdmin from "./view/FDTSquare/OGPoolV5/OGUserAdmin";
+
 import FDTRelease from "./view/FDTSquare/FDTRelease/index";
 import FDTReleaseManage from "./view/FDTSquare/FDTReleaseManage/index";
 import FDTOgToFdt from "./view/FDTSquare/FDTOgToFdt"
@@ -163,6 +168,10 @@ function App() {
                                 {/* FDTSquare*/}
                                 <Route path="/OGPool" element={<OGPool/>}/>
                                 <Route path="/OGPoolAdmin" element={<OGPoolAdmin/>}/>
+                                <Route path="/OGUserAdmin" element={<OGUserAdmin/>}/>
+                                <Route path="/OGPoolV5" element={<OGPoolV5/>}/>
+                                <Route path="/OGPoolV5Admin" element={<OGPoolV5Admin/>}/>
+                                <Route path="/OGV5UserAdmin" element={<OGV5UserAdmin/>}/>
                                 <Route path="/FDTRelease" element={<FDTRelease/>}/>
                                 <Route path="/FDTReleaseManage" element={<FDTReleaseManage/>}/>
                                 <Route path="/FDTOgToFdt" element={<FDTOgToFdt/>}/>
@@ -171,7 +180,6 @@ function App() {
                                 <Route path="/AutoReflowLPManage" element={<AutoReflowLPManage/>}/>
                                 <Route path="/SeedDonation" element={<SeedDonation/>}/>
                                 <Route path="/SeedDonationManage" element={<SeedDonationManage/>}/>
-                                <Route path="/OGUserAdmin" element={<OGUserAdmin/>}/>
                                 {/*Operation*/}
                                 <Route path="/FireLock" element={<FireLock/>}/>
                                 <Route path="/FireLockView" element={<FireLockView/>}/>

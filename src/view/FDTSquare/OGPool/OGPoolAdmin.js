@@ -20,9 +20,10 @@ import eth from "../../../imgs/ethereum.svg";
 import {getDonateRecord, getSecondDonateRecord, getThreeDonateRecord} from "../../../graph/donate";
 import BigNumber from "bignumber.js";
 import addressMap from "../../../api/addressMap";
-import {FDTDecimals,ETHDecimals, USDTDecimals} from "../../../config/constants";
+import {FDTDecimals, ETHDecimals, USDTDecimals} from "../../../config/constants";
 import {formatAddress} from "../../../utils/publicJs";
 import listIcon from "../../../imgs/list-icon.webp";
+import TeamIncome from "../OGPoolV5/components/TeamIncome";
 
 const OgPoolAdmin = (props) => {
 
@@ -82,9 +83,9 @@ const OgPoolAdmin = (props) => {
 
     const onChange = (checked) => {
         console.log(`switch to ${checked}`);
-        if(isPause){
+        if (isPause) {
             handleUnpause()
-        }else{
+        } else {
             handlePause()
         }
     };
@@ -160,11 +161,11 @@ const OgPoolAdmin = (props) => {
     }
     const getWhitelist = async (addr) => {
         let res = await getThreeDonateRecord(addr)
-        if(res&&res.data){
+        if (res && res.data) {
             return res.data.allRecords
 
         }
-        return  []
+        return []
     }
 
     const getAdminWhiteList = async (addr) => {
@@ -213,7 +214,7 @@ const OgPoolAdmin = (props) => {
         let res = await handleViewMethod("maxTwo", [])
         setMaxTwoAdmin(res)
     }
-    const getMaxFourAdmin= async () => {
+    const getMaxFourAdmin = async () => {
         let res = await handleViewMethod("maxFour", [])
         setMaxFourAdmin(res)
     }
@@ -265,7 +266,7 @@ const OgPoolAdmin = (props) => {
         return arr
     }
     const getFLMBalance = async () => {
-        let res2 = await handleViewMethod("getBalanceOfFlm",[])
+        let res2 = await handleViewMethod("getBalanceOfFlm", [])
         setFLMBalance(BigNumber(res2).dividedBy(10 ** FDTDecimals).toString())
     }
     const getRate = async () => {
@@ -297,7 +298,7 @@ const OgPoolAdmin = (props) => {
 
     const getAssignAndRates = async () => {
         const length = await handleViewMethod("getAssignAndRateslength", [])
-        let resArr = [],totalRate = 0
+        let resArr = [], totalRate = 0
         for (let i = 0; i < length; i++) {
             const res = await handleViewMethod("assignAndRates", [i])
             resArr.push(res)
@@ -311,13 +312,13 @@ const OgPoolAdmin = (props) => {
         const rate2 = await handleViewMethod("adminFlmReward", [1])
         const rate3 = await handleViewMethod("adminFlmReward", [2])
         setAdminFlmReward([{
-            name:"Level 4 Admin",
-            rate:rate1.toLocaleString()
-        },{
-            name:"Level 3 Admin",
-            rate:rate2.toLocaleString()
-        },{
-            name:"Level 2 Admin",
+            name: "Level 4 Admin",
+            rate: rate1.toLocaleString()
+        }, {
+            name: "Level 3 Admin",
+            rate: rate2.toLocaleString()
+        }, {
+            name: "Level 2 Admin",
             rate: rate3.toLocaleString()
         }])
     }
@@ -328,7 +329,7 @@ const OgPoolAdmin = (props) => {
         getInviteRate()
     }
     const setTeamRate = async () => {
-        await handleDealMethod("setTeamRate", [form.getFieldValue().level - 1 , form.getFieldValue().rate])
+        await handleDealMethod("setTeamRate", [form.getFieldValue().level - 1, form.getFieldValue().rate])
         getTeamRate()
     }
 
@@ -369,7 +370,7 @@ const OgPoolAdmin = (props) => {
     }
 
     const setInviteRate = async () => {
-        await handleDealMethod("setInviteRate", [form.getFieldValue().inviteRateID -1 , form.getFieldValue().inviteRate])
+        await handleDealMethod("setInviteRate", [form.getFieldValue().inviteRateID - 1, form.getFieldValue().inviteRate])
         getInviteRate()
     }
     const setAdmins = async () => {
@@ -502,7 +503,7 @@ const OgPoolAdmin = (props) => {
 
     }
     const withdrawToken = async (item) => {
-        await handleDealMethod("Claim", [form.getFieldValue().withdrawCoinAddr,form.getFieldValue().withdrawAmount])
+        await handleDealMethod("Claim", [form.getFieldValue().withdrawCoinAddr, form.getFieldValue().withdrawAmount])
     }
     useEffect(() => {
         getData()
@@ -667,11 +668,11 @@ const OgPoolAdmin = (props) => {
                     }}>
                         Rewards And Allocation
                     </div>
-                    {/* <div className={"nav-item " + (activeNav == 4 ? "active" : "")} onClick={() => {
-                    setActiveNav(4)
-                }}>
-                    Summary
-                </div> */}
+                    <div className={"nav-item " + (activeNav == 4 ? "active" : "")} onClick={() => {
+                        setActiveNav(4)
+                    }}>
+                        Team Income
+                    </div>
                 </div>
             </div>
             {activeNav == 1 && (
@@ -827,7 +828,10 @@ const OgPoolAdmin = (props) => {
                                                 {item}
                                             </div>
                                             <div className="col del">
-                                                <img className="icon" onClick={()=>{ setShowDelLev2(item) ;setCurDelLev2Addr(item)}} src={del} />
+                                                <img className="icon" onClick={() => {
+                                                    setShowDelLev2(item);
+                                                    setCurDelLev2Addr(item)
+                                                }} src={del}/>
                                             </div>
                                         </div>
                                     ))
@@ -836,7 +840,7 @@ const OgPoolAdmin = (props) => {
                             </div>
 
 
-                          <Form form={form} name="control-hooks" className="form">
+                            <Form form={form} name="control-hooks" className="form">
                                 <Form.Item
                                     name="adminaddress"
                                     validateTrigger="onBlur"
@@ -844,7 +848,7 @@ const OgPoolAdmin = (props) => {
                                     validateFirst={true}
                                 >
                                     <div className="input-box">
-                                        <Input />
+                                        <Input/>
                                     </div>
                                 </Form.Item>
                             </Form>
@@ -1001,10 +1005,10 @@ const OgPoolAdmin = (props) => {
                                     </div>
                                     <div className="info-item">
                                         <div className="name">
-                                            FLM  Pool Amount
+                                            FLM Pool Amount
                                         </div>
                                         <div className="value">
-                                            { showNum(FLMBalance)}
+                                            {showNum(FLMBalance)}
                                         </div>
                                     </div>
                                 </div>
@@ -1137,103 +1141,7 @@ const OgPoolAdmin = (props) => {
                     </div>
                 )
             }
-            {
-                activeNav == 4 && (
-                    <div className="part4">
-                        <div className="panel-box">
-                            <div className="panel-container">
-                                <div className="sum-list">
-                                    {
-                                        sumArr.map((sumItem, index) => (
-                                            <div className="sum-item-box" key={index}>
-                                                <div className="sum-list-header">
-                                                    <div className="index">
-                                                        {index}、二级管理员
-                                                    </div>
-                                                    <div className="address">
-                                                        {sumItem.addr}
-                                                    </div>
-                                                </div>
-                                                {
-                                                    sumItem.thrArr.map((thrUser, index) => {
-                                                        return (
-                                                            <div className="sum-box">
-                                                                <div className="sum-item-header">
-                                                                    <div className="col">
-                                                                        idx
-                                                                    </div>
-                                                                    <div className="col">
-                                                                        userAddr
-                                                                    </div>
-
-                                                                </div>
-
-                                                                {Row(thrUser.user, index)}
-                                                                <div className="sum-item-header">
-                                                                    <div className="col">
-                                                                        idx
-                                                                    </div>
-                                                                    <div className="col">
-                                                                        Pid
-                                                                    </div>
-                                                                    <div className="col">
-                                                                        name
-                                                                    </div>
-                                                                    <div className="col">
-                                                                        userAddr
-                                                                    </div>
-                                                                    <div className="col">
-                                                                        fdtAmount
-                                                                    </div>
-                                                                    <div className="col">
-                                                                        ethAmount
-                                                                    </div>
-                                                                    <div className="col">
-                                                                        usdtAmount
-                                                                    </div>
-                                                                </div>
-
-                                                                {
-                                                                    thrUser.whitelist.map((user, indexUser) => {
-                                                                        return (
-                                                                            Row(user, indexUser)
-                                                                        )
-                                                                    })
-                                                                }
-                                                            </div>
-
-
-                                                        )
-                                                    })
-                                                }
-                                                <div className="sum-list-footer">
-                                                    <div className="col">
-                                                        Amount:
-                                                    </div>
-                                                    <div className="col">
-                                                        {sumItem.tAmount}
-                                                    </div>
-                                                    <div className="col">
-                                                        ETH:
-                                                    </div>
-                                                    <div className="col">
-                                                        {sumItem.tETH}
-                                                    </div>
-                                                    <div className="col">
-                                                        USDT:
-                                                    </div>
-                                                    <div className="col">
-                                                        {showNum(sumItem.tUSDT)}
-                                                    </div>
-                                                </div>
-                                            </div>))
-                                    }
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                )
-            }
+         
             {
                 activeNav == 5 && (<div className="panel-box">
                     <div className="panel-container">
@@ -1261,7 +1169,7 @@ const OgPoolAdmin = (props) => {
                                 <div className="col">
                                     Team Rewards
                                 </div>
-                                <div className="col" >
+                                <div className="col">
                                     {totalTeamRate}
                                 </div>
                             </div>
@@ -1467,7 +1375,8 @@ const OgPoolAdmin = (props) => {
                                         </div>
 
                                         <div className="col address">
-                                            <a target="_blank" href={develop.ethScan + "/address/" + item.assign}> {formatAddress(item.assign)}</a>
+                                            <a target="_blank"
+                                               href={develop.ethScan + "/address/" + item.assign}> {formatAddress(item.assign)}</a>
 
                                         </div>
                                         <div className="col ">
@@ -1476,7 +1385,7 @@ const OgPoolAdmin = (props) => {
                                         <div className="col del" onClick={() => {
                                             delARRow(item)
                                         }}>
-                                            <img className="icon" src={del} />
+                                            <img className="icon" src={del}/>
                                         </div>
 
                                     </div>

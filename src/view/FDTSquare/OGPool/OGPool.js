@@ -9,7 +9,6 @@ import {formatAddress} from "../../../utils/publicJs";
 import ConnectWallet from "../../../component/ConnectWallet/ConnectWallet";
 import user3 from "../../../imgs/user3.png"
 import download from "../../../imgs/download.png"
-import manage from "../../../imgs/svg/manage.svg"
 import {zeroAddress} from "viem";
 import {ETHPriceDecimals} from "../../../config/constants";
 import {
@@ -31,7 +30,6 @@ import {getDonateRecord, getAllRegisters, getRecommender, getAddressFromId} from
 import OGPoolStyle from "./OGPoolStyle";
 import {ETHDecimals, FDTDecimals, USDTDecimals, FLMDecimals, ZeroAddress} from "../../../config/constants";
 import search from "../../../imgs/search.png";
-import {dealTime} from "../../../utils/timeUtil";
 
 const OGPoolPublic = (props) => {
     let {state, dispatch} = useConnect();
@@ -286,9 +284,10 @@ const OGPoolPublic = (props) => {
             getUserBuyMax()
 
             await getInviteRate()
-            getMyInviteCount()
-            getAddressRecommender(state.account)
+            await getAddressRecommender(state.account)
+
             getMyTeam(state.account)
+
         } catch (e) {
 
         }
@@ -302,7 +301,10 @@ const OGPoolPublic = (props) => {
         setPageCount(count)
     }
     const getMyInviteCount = async (address) => {
-        const used = await handleViewMethod("activeUsedAmount", [state.account])
+        if(!address){
+            address = myRecommender
+        }
+        const used = await handleViewMethod("activeUsedAmount", [address])
         const total = await handleViewMethod("activateAccountUsedAmount", [])
 
         setActiveUsedAmount(used)
@@ -313,6 +315,9 @@ const OGPoolPublic = (props) => {
         if (res && res.data && res.data.allRegisters[0]) {
             setMyRecommender(res.data.allRegisters[0].recommenders)
             setMyId(res.data.allRegisters[0].Contract_id)
+
+            getMyInviteCount(res.data.allRegisters[0].recommenders)
+
         }
     }
     const getUserBuyMax = async () => {
@@ -527,7 +532,7 @@ const OGPoolPublic = (props) => {
 
     return (
         <OGPoolStyle>
-            <Modal className="model-dialog" title="Sign up" open={isShowRegister} onOk={handleRegister}
+            <Modal className="signup-dialog" title="Sign up" open={isShowRegister} onOk={handleRegister}
                    footer={[
 
                        <Button className="add-btn" type="primary" onClick={() => {
@@ -539,17 +544,19 @@ const OGPoolPublic = (props) => {
                        setIsShowRegister(false)
                    }}>
                 <Form form={form} name="control-hooks" className="form">
-                    <strong>Wallet Address</strong>
+                    <strong className="input-title">Wallet Address</strong>
                     <Form.Item
                         name="referralCode"
                         validateTrigger="onBlur"
                         validateFirst={true}
+                        className="dialog-input"
                     >
-                        <div className="input-box">
+                        <div className="temp-input">
                             {state.account}
                         </div>
                     </Form.Item>
-                    <strong>Referral Code</strong>
+                    <strong className="input-title">Referral Code</strong>
+
                     {myStatus.activeStatus && myRecommender &&<>
                     {myRecommender}
                     </>}
@@ -558,11 +565,9 @@ const OGPoolPublic = (props) => {
                             name="referralCode"
                             validateTrigger="onBlur"
                             validateFirst={true}
+                            className="dialog-input"
                         >
-                            <div className="input-box">
-
-                                <Input/>
-                            </div>
+                            <Input/>
                         </Form.Item>
                     </div>}
 
@@ -582,29 +587,12 @@ const OGPoolPublic = (props) => {
                     border: '1px solid rgba(255, 255, 255, 0.15)',
                     borderRadius: '50%',
                 }}
-                                    onClick={() => {
-                                        history("/OGPoolAdmin")
-                                    }}>
+                        onClick={() => {
+                            history("/OGPoolAdmin")
+                        }}>
                     <img src={user3} style={{width: '22px', marginLeft: '-10px', marginTop: '-10px'}}/>
                 </Button>}
-                {(isSecondAdmin | isThreeAdmin || isFourAdmin) &&
-                    <Button style={{
-                        float: 'right',
-                        background: '#373232',
-                        margin: '0px 13px',
-                        textAlign: 'center',
-                        lineHeight: '28px',
-                        width: "32px",
-                        height: '32px',
-                        border: '1px solid rgba(255, 255, 255, 0.15)',
-                        borderRadius: '50%',
-                    }}
-                            onClick={() => {
-                                history("/OGUserAdmin")
-                            }}>
-                        <img src={user3} style={{width: '22px', marginLeft: '-10px', marginTop: '-10px'}}/>
-                    </Button>
-                }
+
 
             </div>
             <div className="header-nav">
@@ -625,6 +613,15 @@ const OGPoolPublic = (props) => {
                         Active Accounts
                     </div>
 
+                    {(isSecondAdmin | isThreeAdmin || isFourAdmin) &&
+
+                        <div className={"nav-item " + (activeNav == 4 ? "active" : "")} onClick={() => {
+                            history("/OGUserAdmin")
+                        }}>
+                            Lv{isSecondAdmin?2:""}{isThreeAdmin?3:""}{isFourAdmin?4:""} Admin
+                        </div>
+
+                    }
 
                 </div>
 
@@ -634,34 +631,6 @@ const OGPoolPublic = (props) => {
                     <div className="panel-box">
                         <div className="panel-container">
 
-                            <div className="status-info">
-                                <div className="left flex-box">
-                                    <div className="info-item">
-                                        {!myStatus.registerStatus && <Button >Unregistered</Button>}
-                                        {myStatus.registerStatus && <Button>Registered</Button>}
-                                    </div>
-                                    <div className="info-item">
-
-                                        {!myStatus.activeStatus && <Button>Inactivated</Button>}
-                                        {myStatus.activeStatus && <Button>Activated</Button>}
-                                    </div>
-                                </div>
-                                {myId &&
-                                    <div>
-                                        <div className="info-item">
-                                            {!myStatus.registerStatus && <Button onClick={() => {
-                                                setIsShowRegister(true)
-                                            }}>Sign Up</Button>}
-                                        </div>
-                                        {myStatus.registerStatus && <div className="my-id pid">
-                                            ID: {myId}
-                                        </div>}
-
-                                    </div>
-
-                                }
-
-                            </div>
                             <div className="donate-info">
                                 <div className="info-item">
                                     <div className="name">
@@ -672,13 +641,12 @@ const OGPoolPublic = (props) => {
                                     </div>
                                 </div>
                                 <div className="flex-box">
-
                                     <div className="info-item">
                                         <div className="name">
-                                            Total Donate
+                                            Price
                                         </div>
                                         <div className="value">
-                                             ${salePrice}
+                                            ${salePrice}
                                         </div>
                                     </div>
                                     <div className="info-item">
@@ -690,12 +658,23 @@ const OGPoolPublic = (props) => {
                                         </div>
                                     </div>
 
+
                                 </div>
                             </div>
 
 
                             <div className="donation-box">
+                                <div className="status-info">
+                                        <div className="info-item">
+                                            {!myStatus.registerStatus && < >Unregistered</>}
+                                            {myStatus.registerStatus && <>Registered</>}
+                                        </div>
+                                        <div className="info-item">
 
+                                            {!myStatus.activeStatus && <>Inactivated</>}
+                                            {myStatus.activeStatus && <>Activated</>}
+                                        </div>
+                                </div>
                                 <div className="title donate-header">
                                     Donate
 
@@ -778,6 +757,18 @@ const OGPoolPublic = (props) => {
                                             </div>
                                         </Form.Item>
                                     </div>
+                                    {!myId &&
+
+                                            <Button  type="primary" className="donate">
+                                                {!myStatus.registerStatus && <span onClick={() => {
+                                                    setIsShowRegister(true)
+                                                }}>Sign Up</span>}
+                                            </Button>
+
+                                    }
+                                    {
+
+                                    }
                                     {status == 0 && <ConnectWallet className="connect-button"/>}
                                     {
                                         status == 1 && !inputValue &&
@@ -1152,7 +1143,10 @@ const OGPoolPublic = (props) => {
                             Active Accounts
                         </div>
                         <div className="active-content-box">
-                            <div className="flex-box">
+                            <div className="flex-box" style={{justifyContent:"space-between"}}>
+                                <div className="address" style={{width:"auto"}}>
+                                    {state.account}
+                                </div>
                                 <div className="my-id pid">
                                     ID: {myId}
                                 </div>
@@ -1187,7 +1181,7 @@ const OGPoolPublic = (props) => {
                                         Available  times
                                     </div>
                                     <div className="value">
-                                        {BigNumber(activeUsedAmount).minus(activeUsedAmount).toString()}
+                                        {BigNumber(activateAccountUsedAmount).minus(activeUsedAmount).toString()}
                                     </div>
                                 </div>
                             </div>

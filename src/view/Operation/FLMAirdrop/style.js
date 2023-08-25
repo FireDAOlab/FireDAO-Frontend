@@ -20,7 +20,20 @@ export default styled.div`
 .panel-container .search-container .search-box .ant-input-affix-wrapper{
     border:none;
 }
+
   @media screen and (min-width: 1950px) {
+    .flmAd{
+        float: right;
+     background: #373232;
+     margin: 8px 13px;
+     text-align: center;
+     line-height: 28px;
+     width: 32px;
+     height: 32px;
+     border: 1px solid rgba(255, 255, 255, 0.15);
+     border-radius: 50%;
+
+}
     .panel-title.flex-box {
         display: flex;
 
@@ -625,6 +638,18 @@ border: 1px solid rgba(205,158,87,0.5);
 
 }
   @media screen and (max-width: 1950px) {
+    .flmAd{
+        float: right;
+     background: #373232;
+     margin: 8px 13px;
+     text-align: center;
+     line-height: 28px;
+     width: 32px;
+     height: 32px;
+     border: 1px solid rgba(255, 255, 255, 0.15);
+     border-radius: 50%;
+
+}
     .panel-title.flex-box {
         display: flex;
 
@@ -1236,7 +1261,18 @@ border: 1px solid rgba(205,158,87,0.5);
       }
 
   @media screen and (max-width: 1500px) {
+    .flmAd{
+        float: right;
+     background: #373232;
+     margin: 2px 13px;
+     text-align: center;
+     line-height: 28px;
+     width: 32px;
+     height: 32px;
+     border: 1px solid rgba(255, 255, 255, 0.15);
+     border-radius: 50%;
 
+}
     .panel-title.flex-box {
         display: flex;
     justify-content: space-between;
@@ -1847,6 +1883,18 @@ border: 1px solid rgba(205,158,87,0.5);
 
   
   @media screen and (max-width: 450px) {
+    .flmAd{
+        float: right;
+     background: #373232;
+     margin: 2px 13px;
+     text-align: center;
+     line-height: 28px;
+     width: 32px;
+     height: 32px;
+     border: 1px solid rgba(255, 255, 255, 0.15);
+     border-radius: 50%;
+
+}
     .panel-title.flex-box {
     justify-content: space-between;
   } 
@@ -1861,10 +1909,10 @@ border: 1px solid rgba(205,158,87,0.5);
 
     .left-part, .right-part {
       width: 100%;
-      background: #1A1414;
+      background: rgb(36, 27, 27);
       border-radius: 10px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      padding: 25px 30px;
+      border: none;
+      padding: 15px 0px;
       margin-bottom:0.5em;
     }
     .left-part {
@@ -1956,7 +2004,7 @@ border: 1px solid rgba(205,158,87,0.5);
     font-size: 14px;
     white-space: nowrap;
     strong{
-    width: 100px;
+    width: 95px;
       margin-left: 6px;
       height: 28px;
       background: rgba(254, 109, 70, 0.1);

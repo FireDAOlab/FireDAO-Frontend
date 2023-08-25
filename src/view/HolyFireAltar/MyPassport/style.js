@@ -14,6 +14,18 @@ export default styled.div`
   .ant-btn-primary::after{
     background: none;
   }
+  .passportAd{
+        float: right;
+     background: #373232;
+     margin: 0px 13px;
+     text-align: center;
+     line-height: 28px;
+     width: 32px;
+     height: 32px;
+     border: 1px solid rgba(255, 255, 255, 0.15);
+     border-radius: 50%;
+
+}
   @media screen and (min-width: 1950px) {
     .boxhr{
       display: none;
@@ -2265,16 +2277,18 @@ font-size:14px;
   padding: 0px 0%;
   border-radius:10px;
   margin:0.5em 0;
+  border: 1px solid rgba(255, 255, 255, 0.1);
   
 }
 .userinfo-box {
   width: 90%;
-  margin: 0px;
-border: none;
+  margin:0.5em 0px;
+
 padding: 0px 0%;
 box-shadow:none;
   .panel-container {
     width: 100%;
+    
   }
 
   .user-info {
@@ -3056,7 +3070,7 @@ background: rgba(205, 158, 87, 0.1);
 }
 .userinfo-box {
   width: 90%;
-  margin: 0px;
+  margin: 0.5em 0px;
 border: none;
 padding: 0px 0%;
 box-shadow:none;

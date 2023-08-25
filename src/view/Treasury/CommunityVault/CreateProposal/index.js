@@ -9,6 +9,9 @@ import judgeStatus from "../../../../utils/judgeStatus";
 import ConnectWallet from "../../../../component/ConnectWallet/ConnectWallet";
 import StyleBox from "./style"
 import develop from "../../../../env";
+import eth from "../../../../imgs/ethereum.png"
+import orangeRight from '../../../../imgs/orangegou.png';
+import greenRight from '../../../../imgs/greengou.png';
 import {LoadingOutlined, PlusOutlined, QuestionCircleOutlined} from "@ant-design/icons";
 import {Editor, EditorState} from 'draft-js';
 
@@ -183,28 +186,32 @@ const Distribution = (props) => {
         <StyleBox>
 
             <div className="panel-box userinfo-box">
-                <div className="panel-title">
-                    Create Proposal
-                </div>
+             
                 <div className="panel-container">
                     <div className="panel-title">
-                        <div className="index-box">1</div>  Connect your wallet & sign in
+                        <div className="index-box">
+                            <img src={orangeRight}  style={{width:"100%"}}/>
+                        </div>  Connect your wallet & sign in
                     </div>
                     {pageStep==0&&(<div>
                         <Steps
                             direction="vertical"
                             className="step-box"
                             current={step}
+
                             items={[
                                 {
-                                    title: '  You must connect your wallet.',
+                                    icon:<img src={greenRight} style={{width:'100%'}} />,
+                                    title: 'You must connect your wallet.',
                                     description: (<div>{!isConnected && <ConnectWallet/>}</div>)
                                 },
-                                {
+                                { 
+                                    icon:<img src={greenRight} style={{width:'100%'}} />,
                                     title: 'Wallet is connected to arbiturm.',
                                 },
                                 {
-                                    title: '    You must be a member of this group.',
+                                    icon:<img src={greenRight} style={{width:'100%'}} />,
+                                    title: 'You must be a member of this group.',
                                 },
                             ]}
                         />
@@ -241,15 +248,17 @@ const Distribution = (props) => {
                 </div>
                 <div className="panel-container">
                     <div className="panel-title">
-                        <div className="index-box">1</div> Name your proposal
+                        <div className="index-box">2</div> Name your proposal
                     </div>
-                    {pageStep==1&&(<div>
+                    {/* {pageStep==1&&( */}
+                    <div>
                         <div className="tip-box">
                             Give your proposal a title and a description. They will be public when your proposal goes live!
                         </div>
                         <Form form={form} name="control-hooks" className="form">
 
                             <Form.Item
+                            className='name'
                                 name="title"
                                 validateTrigger="onBlur"
                                 label="Title"
@@ -258,6 +267,7 @@ const Distribution = (props) => {
                                 <Input type="text"></Input>
                             </Form.Item>
                             <Form.Item
+                            className='descri'
                                 name="description"
                                 validateTrigger="onBlur"
                                 label="Description"
@@ -267,8 +277,12 @@ const Distribution = (props) => {
                                     Support for formatting with
                                     <span>Markdown</span>
                                 </div>
+                                <div className='titleW'>
+                                    <span>Write</span> 
+                                    <span>Preview</span>
+                                </div>
                                 <textarea type="text" className="desc-box"></textarea>
-                                <MyEditor/>
+                                {/* <MyEditor/> */}
                             </Form.Item>
                         </Form>
                         <Button type="primary" className="continue-btn" onClick={() => {
@@ -276,7 +290,8 @@ const Distribution = (props) => {
                         }}>
                             Continue
                         </Button>
-                    </div>)}
+                    </div>
+                    {/* )} */}
                 </div>
                 <div className="panel-container">
                     <div className="panel-title">
@@ -333,8 +348,18 @@ const Distribution = (props) => {
                                             <div className="tip-box">
                                                 The amount of token to send from the transfer address to the target address
                                             </div>
-                                            <Input type="text"></Input>
+                                            <Input type="text">
+                                                <img src={eth} />ETH
+                                            </Input>
                                         </Form.Item>
+                                        <div className='tj'>
+                                <div type="primary" className='kk' onClick={() => {
+                                    
+                                }}>Add</div>
+                                <div type="primary" className='kk' onClick={() => {
+                                    
+                                }}>Mass Delete</div>
+                            </div>
                                     </Form>
                                 )}
                                 {item.type==2&&(

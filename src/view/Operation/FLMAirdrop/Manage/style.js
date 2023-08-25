@@ -361,13 +361,13 @@ margin-right:10px;
           }
 
           &:nth-child(2) {
-            width: 50%;
+            width: 20%;
             margin-left:20px;
           }
 
           &:nth-child(3) {
             width:10%;
-            margin-left:100px;
+            margin-left:410px;
           }
          
         }
@@ -957,13 +957,13 @@ margin-right:10px;
           }
 
           &:nth-child(2) {
-            width: 50%;
+            width: 20%;
             margin-left:20px;
           }
 
           &:nth-child(3) {
             width:10%;
-            margin-left:100px;
+            margin-left:410px;
           }
          
         }
@@ -1552,13 +1552,13 @@ margin-right:10px;
           }
 
           &:nth-child(2) {
-            width: 50%;
+            width: 25%;
             margin-left:20px;
           }
 
           &:nth-child(3) {
             width:15%;
-            margin-left:40px;
+            margin-left:230px;
           }
          
         }
@@ -2145,13 +2145,13 @@ margin-right:10px;
           }
 
           &:nth-child(2) {
-            width:45%;
+            width:40%;
             margin-left:5px;
           }
 
           &:nth-child(3) {
-            width:25%;
-            margin-left:5px;
+            width:28%;
+            margin-left:10px;
           }
          
         }

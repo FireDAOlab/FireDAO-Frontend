@@ -227,10 +227,11 @@ const FLMAirdropLv1 = (props) => {
 
         let tempArra = [...FlmArra]
         console.log(tempArra);
-        const tempItem = [tempArra].map((item,index)=>(
-                item
-
-            ))
+        const tempItem = tempArra.map((item,index)=>{
+           console.log(item)
+       
+        })
+            tempItem.push(item)
         tempItem.ischoosed = !tempItem.ischoosed
         tempArra.splice(index, 1, tempItem)
         setFlmArra(tempArra)
@@ -403,7 +404,7 @@ const FLMAirdropLv1 = (props) => {
         if (!judgeRes) {
             return
         }
-        // getDatac()
+        getDatac()
         handleSearchc()
     }, [state.account]);
 
@@ -422,9 +423,9 @@ const FLMAirdropLv1 = (props) => {
             <div className="zchang col">
                {item._amount}
             </div>
-            {/* <div className="address col">
+            <div className="address col">
                 {item }
-            </div> */}
+            </div>
 
             <Button className="sc col" onClick={() => { 
                 chooseItem(item, index) 
@@ -860,7 +861,7 @@ const FLMAirdropLv1 = (props) => {
                             <div className='username col'>Username</div> */}
                             {/* <div className='zchang col'>Amount(s)</div> */}
                             <div className='address col'>Address</div>
-                            {/* <div className='sc col' >Delete</div> */}
+                            <div className='sc col' >Delete</div>
                         </div>
                         {
                             !searchDataa && activeNav == 1 && FlmArra.map((item, index) => (

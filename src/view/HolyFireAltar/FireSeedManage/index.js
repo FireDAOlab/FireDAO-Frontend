@@ -7,10 +7,12 @@ import { useNavigate, useLocation } from "react-router-dom";
 import FireLockStyle from "./style";
 import judgeStatus from "../../../utils/judgeStatus";
 import AddWhiteListAddr from "./component/AddWhiteListAddr";
+import RemoveWhiteListAddr from "./component/RemoveWhiteListAddr";
+import { formatAddress } from "../../../utils/publicJs";
+import develop from "../../../env"
 import sc from "../../../imgs/sc.png"
 import wxz from "../../../imgs/wxz.png"
 import xz from "../../../imgs/xz.png"
-import RemoveWhiteListAddr from "./component/RemoveWhiteListAddr";
 // import RemoveOnly from "./component/RemoveOnly";
 const FireLock = (props) => {
     const { closeDialog, updateData } = props
@@ -42,6 +44,7 @@ const FireLock = (props) => {
     const [form] = Form.useForm();
 
     const location = useLocation()
+
 
     const openNotification = (message) => {
         notification.error({
@@ -85,16 +88,7 @@ const FireLock = (props) => {
     }
 
 
-    const removeOwner = (item, index) => {
-        let tempArr = [...whitelist]
-        tempArr.map((item, index) => {
-            tempArr.splice(index, 1, tempArr);
-        })
-
-        console.log(tempArr);
-        setWhitelistArr(tempArr)
-        console.log(whitelist);
-    }
+    
     const onChangePage = async (page) => {
         getData(page)
         await setCurPage(page)
@@ -167,7 +161,7 @@ const FireLock = (props) => {
         setWhitelistArr(arr)
     }
 
- 
+
     const getWhiteMaxMint = async () => {
         const maxM = await handleViewMethod("whiteListPerMintMax", [])
         setWhiteMaxMint(maxM)
@@ -240,15 +234,61 @@ const FireLock = (props) => {
 
         await handleDealMethod("removeFromWhiteList", [[isRemoveAddress]])
         getWhitelist()
+    } 
+
+    const removeOwner = (item, index) => {
+        // chooseItem()
+        // let tempArr = [...whitelist]
+        // tempArr.map((item, index) => {
+        //     tempArr.splice(index, 1, tempArr);
+        // })
+
+        let tempArr=[]
+        for (let i = 0; i < whitelist.length; i++) {
+            if (whitelist[i].ischoosed == true) {
+                tempArr.push(whitelist[i])
+            }
+
+        }
+        console.log(tempArr);
+        setWhitelistArr(tempArr)
     }
-       const changePicture = () => {
-       
+    
+    function pictureStatus(e) {
+        e.target.innerHTML = 'Delete';
+        var sc2 = document.querySelectorAll('#scc');
+        var bj = document.querySelectorAll('#bj1')
+        for (const i of sc2) {
+            i.style.display = "none"
+
+        }
+        for (const j of bj) {
+            j.style.display = "block"
+        }
+        console.log(sc2);
+        chooseItem()
+        // removeOwner()
+
     }
-    const muchSelect = () => {
-         setPicture([
-            wxz,xz
-        ])
+
+
+    const chooseItem = (item, index) => {
+        let tempArra = [...whitelist]
+        console.log(tempArra);
+        const tempItem = tempArra.map((item, index) => {
+
+            console.log(item);
+
+        })
+        tempItem.push(item)
+        // console.log(tempItem);
+        tempItem.ischoosed = !tempItem.ischoosed
+        tempArra.splice(index, 1, tempItem)
+        setWhitelistArr(tempArra)
     }
+
+   
+
     useEffect(async () => {
         let judgeRes = await judgeStatus(state)
         if (!judgeRes) {
@@ -485,10 +525,10 @@ const FireLock = (props) => {
                             <p >L2 Admin</p>
                             <div className='tj' >
                                 <div type="primary" className='kk' onClick={() => { setShowAdd(true) }}>Add</div>
-                                <div type="primary" className='kk' onClick={(e) => { 
-                                    // e.target.innerHTML = 'Delete'; 
-                                muchSelect();
-                                // setShowRemove(true) 
+                                <div type="primary" className='kk' onClick={(e) => {
+
+                                    pictureStatus(e);
+
                                 }}>Mass Delete</div>
                             </div>
                         </div>
@@ -523,14 +563,20 @@ const FireLock = (props) => {
                                                         {item}
                                                     </div> */}
                                                 <div className="col1 address">
-                                                    <a name="address"> {item}</a>
+                                                    <a name="address" href={develop.ethScan + "/address/" + item} target="_blank">
+                                                        {item}</a>
                                                 </div>
-                                             
-                                                <div className="col1 sc1" onClick={() => {
-                                                    setisRemoveOpen(true)
-                                                    setRemoveAddress(item)
-                                                }}>
-                                                    <img src={picture} className="sc" />
+
+                                                <div className="col1 sc1">
+
+                                                    <img src={sc} className="sc" id='scc' onClick={() => {
+                                                        setisRemoveOpen(true)
+                                                        setRemoveAddress(item)
+                                                    }} />
+                                                <div  onClick={() => { chooseItem(item,index);}}>
+                                                    <img src={item.ischoosed ? xz : wxz}  className="sc" id='bj1' style={{ display: 'none' }} />
+                                                </div>
+                                                    
                                                 </div>
 
                                             </div>

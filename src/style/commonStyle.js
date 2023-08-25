@@ -2,7 +2,7 @@ import {createGlobalStyle} from "styled-components";
 
 const CommonStyle = createGlobalStyle`
   .fire-nav-list {
-   
+
     margin: 10px 0;
     display: flex;
     height: 50px;
@@ -13,7 +13,7 @@ const CommonStyle = createGlobalStyle`
     font-weight: bold;
     color: #999999;
     padding: 3px;
-
+ 
     .nav-item {
 
       display: flex;
@@ -37,8 +37,8 @@ const CommonStyle = createGlobalStyle`
         border: none;
         font-weight: bold;
         color: #FFFFFF;
-       
-background: linear-gradient(32deg, #FF4E50 0%, #F9D423 100%);
+
+        background: linear-gradient(32deg, #FF4E50 0%, #F9D423 100%);
         /* box-shadow: 0px 3px 6px 0px rgba(128, 4, 149, 0.3); */
 
       }

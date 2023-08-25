@@ -5,6 +5,8 @@ import { getContractByName, getContractByContract } from "../../../api/connectCo
 import { dealMethod, viewMethod } from "../../../utils/contractUtil"
 import search from '../../../imgs/search.png'
 import { getIpfs } from "../../../utils/ipfsApi";
+import { formatAddress } from "../../../utils/publicJs";
+import develop from "../../../env"
 import StyleBox from "./style"
 const FIDList = (props) => {
 
@@ -219,7 +221,9 @@ const FIDList = (props) => {
                                             
                                         </div>
                                         <div className="col address">
-                                            <a>{item.soulAccount ? item.soulAccount :'-'}</a>
+                                            <a href={develop.ethScan + "/address/" + item.soulAccount} target="_blank">
+                                                {item.soulAccount}
+                                            </a>
                                         </div>
                                         <div className="col">
                                             

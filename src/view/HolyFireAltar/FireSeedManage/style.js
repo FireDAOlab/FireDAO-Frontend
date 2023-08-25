@@ -21,6 +21,7 @@ export default styled.div`
 
   
 }
+
 .ant-form-item-control-input-content{
   display: flex;
   text-align:center;
@@ -183,13 +184,13 @@ padding: 20px;
           }
 
           &:nth-child(2) {
-            width: 50%;
+            width: 20%;
             margin-left:20px;
           }
 
           &:nth-child(3) {
             width:10%;
-            margin-left:100px;
+            margin-left:410px;
           }
          
         }
@@ -800,13 +801,13 @@ padding: 20px;
       }
 
       &:nth-child(2) {
-        width: 50%;
+        width: 20%;
         margin-left:20px;
       }
 
       &:nth-child(3) {
         width:10%;
-        margin-left:100px;
+        margin-left:410px;
       }
      
     }
@@ -1403,13 +1404,13 @@ padding: 20px;
               }
     
               &:nth-child(2) {
-                width: 50%;
+                width: 25%;
                 margin-left:20px;
               }
     
               &:nth-child(3) {
                 width:10%;
-                margin-left:100px;
+                margin-left:220px;
               }
              
             }
@@ -1868,7 +1869,7 @@ line-height: 18px;
 }
 .ant-form{ 
     input{
-  font-size:14px;
+  font-size:13px;
 
 }}
   .page-title{
@@ -1895,13 +1896,17 @@ line-height: 18px;
       }
       .current-box{
         width: 100%;
-        margin: 1.5em 0;
+        margin: 1em 0;
+            background: rgb(36, 27, 27);
+
+    border: none;
+    padding: 0px;
         .current{
           .name{
             font-size:14px;
           }
           .value{
-            font-size:14px;
+            font-size:13px;
           }
         }
       
@@ -1915,6 +1920,14 @@ line-height: 18px;
         .general{
           width: 100%;
           font-size:14px;
+          background: rgb(36, 27, 27);
+border: none;
+padding: 0px;
+p{
+    font-family: Roboto-SemiBold, Roboto;
+font-weight: 600;
+margin:1.5em 0 0.5em 0;
+}
           .user{
             display: block;
             .name{
@@ -1934,6 +1947,14 @@ line-height: 18px;
         margin: 10px 0;
           width: 100%;
           font-size:14px;
+          background: rgb(36, 27, 27);
+border: none;
+padding: 0px;
+p{
+    font-family: Roboto-SemiBold, Roboto;
+font-weight: 600;
+margin:1.5em 0 0.5em 0;
+}
           .user{
             display: block;
             .name{
@@ -1982,13 +2003,13 @@ line-height: 18px;
               }
     
               &:nth-child(2) {
-                width: 50%;
+                width: 45%;
                 margin-left:5px;
               }
     
               &:nth-child(3) {
-                width:15%;
-                margin-left:5px;
+                width: 10%;
+    margin-left: 40px;
               }
              
             }
@@ -2180,6 +2201,14 @@ line-height: 18px;
             .mintfee{
               width: 100%;
           font-size:14px;
+          background: rgb(36, 27, 27);
+border: none;
+padding: 0px;
+p{
+    font-family: Roboto-SemiBold, Roboto;
+font-weight: 600;
+margin:1.5em 0 0.5em 0;
+}
           .fee1{
             display: block;
             .name{
@@ -2194,7 +2223,7 @@ line-height: 18px;
               font-size:14px;
               .too1{
                 font-size:14px;
-  width: 70%;
+  width: 74%;
   text-align:center;        
 }
 .too1dw{
@@ -2218,9 +2247,16 @@ line-height: 18px;
           }
             }
             .mintdis{
-              margin: 10px 0;
               width: 100%;
           font-size:14px;
+          background: rgb(36, 27, 27);
+border: none;
+padding: 0px;
+p{
+    font-family: Roboto-SemiBold, Roboto;
+font-weight: 600;
+margin:1.5em 0 0.5em 0;
+}
           .fee1{
             display: block;
             .name{
@@ -2256,9 +2292,18 @@ line-height: 18px;
             }
           }
           .discount1{
-            margin: 10px auto;
+            margin: 0px auto;
             display: block;
             width: 100%;
+            background: rgb(36, 27, 27);
+border: none;
+padding: 0px;
+p{
+    display: none;
+    ont-family: Roboto-SemiBold, Roboto;
+font-weight: 600;
+margin:1.5em 0 0.5em 0;
+}
             .disac{
               .name{
               width: 100%;
@@ -2302,7 +2347,7 @@ line-height: 18px;
   font-size:14px;
 }
 .ant-form{ input{
-  font-size:14px;
+  font-size:12px;
 
 }}
   .page-title{
@@ -2316,7 +2361,7 @@ line-height: 18px;
       width: 100%;
     height: 40px;
     .nav-item{
-      font-size:12px;
+      font-size:14px;
       padding:0px ;
     }
     }
@@ -2329,13 +2374,17 @@ line-height: 18px;
       }
       .current-box{
         width: 100%;
-        margin: 1.5em 0;
+        margin: 1em 0;
+            background: rgb(36, 27, 27);
+
+    border: none;
+    padding: 0px;
         .current{
           .name{
             font-size:14px;
           }
           .value{
-            font-size:14px;
+            font-size:12px;
           }
         }
         
@@ -2416,13 +2465,13 @@ line-height: 18px;
               }
     
               &:nth-child(2) {
-                width: 50%;
+                width: 48%;
                 margin-left:5px;
               }
     
               &:nth-child(3) {
                 width:15%;
-                margin-left:5px;
+                margin-left:15px;
               }
              
             }

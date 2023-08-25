@@ -178,5 +178,99 @@ const AntdOverride = createGlobalStyle`
   .ant-steps-item-finish > .ant-steps-item-container > .ant-steps-item-tail:after {
     background-color: #FF8D4D;
   }
+
+  .ant-modal-content{
+ 
+    background-color: #241B1B!important;
+    border-radius: 20px 20px 20px 20px;
+    opacity: 1;
+    border: 1px solid rgba(255,255,255,0.1);
+    .ant-modal-header{
+      background: none;
+      border-bottom: none;
+      
+    }
+    .ant-modal-close-x{
+      margin: 14px 6px 0 0;
+      .anticon-close {
+        border-radius: 50%;
+        border: 1px solid #bbb;
+        padding: 3px;
+      }
+
+      svg{
+        position: relative;
+        transform: translateX(-800px);
+        filter: drop-shadow(#fff 800px 0);
+        border-left: 4px solid transparent;
+        border-right: 4px solid transparent;
+        width: 20px;
+        opacity: 1;
+        height: 20px;
+      }
+    }
+    .ant-modal-title{
+      text-align: center;
+      font-size: 22px;
+      font-family: Roboto-SemiBold, Roboto;
+      font-weight: 600;
+      padding: 10px 0;
+      color: #FFFFFF;
+    }
+    
+    .input-title{
+      font-size: 20px;
+      font-family: Roboto-Bold, Roboto;
+      font-weight: bold;
+      color: #8A8080;
+    }
+    .input-content{
+      padding: 0 20px;
+      width: 100%;
+    }
+    .dialog-input,.input-content{
+      margin-top: 10px;
+      border-radius: 50px;
+      height: 60px;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.1);
+      font-size: 18px;
+      overflow: hidden; 
+      display: flex;
+      .ant-row{
+        width: 100%;
+      }
+      align-items: center;
+      .temp-input{
+        padding: 0 20px;
+        font-size: 18px;
+      }
+      .ant-form-item-control-input{
+        background: none;
+        height: 100%;
+        
+      }
+  
+      .ant-input{
+        
+        height: 60px;
+        border-radius: 50px;
+        border: none;
+        padding: 0 20px;
+        font-size: 18px;
+      }
+    }
+    .ant-modal-footer{
+      padding-bottom: 30px;
+      display: flex;
+      justify-content: center;
+      border: none;
+      .ant-btn{
+        flex-grow: 1;
+        height: 50px;
+        font-size: 18px;
+      }
+    }
+  }
 `
 export default AntdOverride
