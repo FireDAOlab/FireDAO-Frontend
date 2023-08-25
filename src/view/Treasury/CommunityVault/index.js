@@ -180,7 +180,7 @@ const Distribution = (props) => {
                                 <div className="in-line">
                                     <div className="name">Governor</div>
                                     <div className="value">
-                                        0x21641….B60d
+                                        -
                                     </div>
                                 </div>
                             </div>
@@ -193,7 +193,7 @@ const Distribution = (props) => {
                                 <div className="in-line">
                                     <div className="name">Proposal threshold</div>
                                     <div className="valuePro">
-                                        0x21641….B60d
+                                        -
                                     </div>
                                 </div>
                             </div>

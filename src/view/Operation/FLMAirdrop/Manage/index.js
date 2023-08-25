@@ -28,11 +28,13 @@ import addressMap from "../../../../api/addressMap";
 import { MaxUint256 } from "../../../../config/constants";
 import checkIcon from ".././../../../imgs/svg/checkbox-checked.svg"
 import checkActiveIcon from ".././../../../imgs/svg/checkbox-checked-active.svg"
-
+import { formatAddress } from "../../../../utils/publicJs";
+import develop from "../../../../env"
 import BigNumber from "bignumber.js";
 import search from '../../../../imgs/search.png'
 import { showNum } from "../../../../utils/bigNumberUtil";
 import TextArea from "antd/es/input/TextArea";
+import { format } from 'url';
 
 const FireLock = (props) => {
     let { state, dispatch } = useConnect();
@@ -916,7 +918,7 @@ const FireLock = (props) => {
                                         {index + 1}
                                     </div>
 
-                                    <div className="col address">
+                                    <div className="col address" href={develop.ethScan + "/address/" + item} target="_blank">
                                         <a>{item}</a>
                                     </div>
                                     <div className="col">
@@ -978,8 +980,8 @@ const FireLock = (props) => {
                                                     {index + 1}
                                                 </div>
                                                 <div className="col address">
-                                                    <a>
-                                                        {item.user}
+                                                    <a href={develop.ethScan + "/address/" + item.user} target="_blank">
+                                                        {formatAddress((item.user))}
                                                     </a>
                                                 </div>
                                                 <div className="col">
@@ -992,7 +994,7 @@ const FireLock = (props) => {
                                                     {item.checked && <img className="check-icon" onClick={() => {
                                                         handleCheck(item, index, false)
                                                     }} src={checkActiveIcon} alt="" />}
-                                                    <Button className="remove-btn" onClick={() => {
+                                                    <Button className="eremove-btn" onClick={() => {
                                                         // removeWhiteList(item.user)
                                                         setIsSetAmountOpen(true)
                                                         getSingleModifList(item)
@@ -1012,7 +1014,9 @@ const FireLock = (props) => {
                                                     {index + 1}
                                                 </div>
                                                 <div className="col address">
-                                                    <a>{item.user}</a>
+                                                <a href={develop.ethScan + "/address/" + item.user} target="_blank">
+                                                        {item.user}
+                                                    </a>
                                                 </div>
                                                 <div className="col">
                                                     {showNum(item.amount / 10 ** flmDecimal)}

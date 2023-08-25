@@ -1,5 +1,5 @@
 import styled from "styled-components";
-export default   styled.div`
+export default styled.div`
   display: flex;
   flex-direction: column;
   align-items: stretch;
@@ -7,6 +7,7 @@ export default   styled.div`
   margin: 0 auto;
 
 @media screen and (max-width: 1950px){
+    
     .ant-form-item{
         margin:1.5em 0px;
     }
@@ -14,7 +15,19 @@ export default   styled.div`
         font-size:16px;
         color:white;
     }
-    
+    .titleW{
+        font-size:16px;
+        color: white;
+        font-family: Roboto-Medium, Roboto;
+font-weight: 500;
+margin:1em 0;
+border-bottom: 1px solid #3E3E3E;
+span{
+    padding:0 10px ;
+ 
+}
+
+    }
     .ant-form-item-control-input{
         border-radius:50px;
         width: 33%;
@@ -58,10 +71,11 @@ line-height: 21px;
     .ant-form-item-control-input{
       background: none;
       input,textarea{
-        background: rgba(255, 255, 255, 0.15);;
+        background: rgba(255, 255, 255, 0.15);
       }
       textarea{
         border-radius: 10px;
+        line-height:5em;
       }
     }
     .panel-title{
@@ -71,8 +85,16 @@ line-height: 21px;
     .toolTip{
       margin-left: 10px;
     }
+  
     .continue-btn{
-      margin-top: 20px;
+      margin-top: 0.5em;
+      width: 13%;
+      height: 40px;
+      font-size: 18px;
+font-family: Roboto-Medium, Roboto;
+font-weight: bold;
+color: #FFFFFF;
+      background: linear-gradient(32deg, #FF4E50 0%, #F9D423 100%);
     }
     .btn-box{
       margin: 20px 0 0;
@@ -91,20 +113,34 @@ line-height: 21px;
       .choose-item{
         width: 248px;
         height: 52px;
+        font-size:16px;
         display: flex;
         justify-content: center;
         align-items: center;
         margin-left: 20px;
+
         background: rgba(255,255,255,0.1);
-        border-radius: 38px;
+        border-radius: 51px;
         cursor: pointer;
         border: 1px solid rgba(255,255,255,0.1);
+        
         &:first-child{
           margin-left: 0;
+          border-radius: 51px;
+          background: linear-gradient(32deg, #FF4E50 0%, #F9D423 100%);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+border: 1px solid;
+border-image: linear-gradient(90deg, rgba(255, 78, 80, 1), rgba(249, 212, 35, 1)) 1 1;
         }
         &.active{
-          background: linear-gradient(32deg, #FF4E50 0%, #F9D423 100%);
-          border: 1px solid #FF4E50;
+            background: linear-gradient(32deg, #FF4E50 0%, #F9D423 100%);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+border: 1px solid;
+border-image: linear-gradient(90deg, rgba(255, 78, 80, 1), rgba(249, 212, 35, 1)) 1 1;
+border-radius: 51px 51px 51px 51px;
+
         }
       }
     }

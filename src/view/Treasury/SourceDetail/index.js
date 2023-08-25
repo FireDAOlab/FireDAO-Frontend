@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styled from "styled-components";
 import { useConnect } from "../../../api/contracts";
-import { Card,Pagination, Button, Descriptions, message, Form, List, Input, notification } from 'antd';
+import { Card,Empty,Pagination, Button, Descriptions, message, Form, List, Input, notification } from 'antd';
 import { getContractByName, getContractByContract } from "../../../api/connectContract";
 import { dealMethod, viewMethod } from "../../../utils/contractUtil"
 import { useNavigate, useLocation } from "react-router-dom";
@@ -107,7 +107,10 @@ const MyPassport = (props) => {
                                     Time(UTC)
                                 </div>
                             </div>
-                            {records.map((item, index) => {
+                            
+                            {
+                              records.length == 0 ? <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} /> :
+                            records.map((item, index) => {
                                 if (item.num == num) {
                                     return (
                                         <div className="list-item">

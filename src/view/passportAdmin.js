@@ -4,7 +4,7 @@ import {useConnect} from "../api/contracts";
 import {Card, Button, Switch, message, Form, Input, notification} from 'antd';
 import {getContractByName} from "../api/connectContract";
 import {dealMethod,viewMethod } from "../utils/contractUtil"
-
+import PassportAdmin from "./passportAdminStyle"
 const AdminPage = (props) => {
     const [form] = Form.useForm();
     const [form2] = Form.useForm();
@@ -14,25 +14,7 @@ const AdminPage = (props) => {
     const [form6] = Form.useForm();
     const [form7] = Form.useForm();
     const [form8] = Form.useForm();
-    const AdminPage = styled.div`
-      .ant-card{
-        margin-top: 2em;
-        .info{
-          margin-bottom: 1em;
-          box-shadow: #fff 0px 0px 2px;
-          padding: 10px;
-        }
-      }
-      .info-box {
-        width: 1200px;
-        margin: 3em auto;
-        border-radius: 30px;
-
-        .connect {
-          margin: 3em 0;
-        }
-      }
-    `
+  
 
     let {state, dispatch} = useConnect();
     const [contract, setContract] = useState(null)
@@ -197,10 +179,10 @@ const AdminPage = (props) => {
 
     },[state.account])
     return (
-        <AdminPage>
+        <PassportAdmin>
             {isAdmin&&(
                 <div>
-                    <h2>User</h2>
+                   <div className="panel-title flex-box">User</div>
                     <Card title="changeOwner修改管理员" extra={<a href="#"></a>} style={{width: "50vw"}}>
                         <div className="info">
                             <strong>当前管理员：</strong>
@@ -327,7 +309,7 @@ const AdminPage = (props) => {
                 </div>
             )}
 
-        </AdminPage>
+        </PassportAdmin>
     )
 }
 export default AdminPage
