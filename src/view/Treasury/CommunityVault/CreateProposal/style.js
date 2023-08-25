@@ -3,10 +3,27 @@ export default   styled.div`
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  width: 90%;
+  width:100%;
   margin: 0 auto;
 
-  .panel-container {
+@media screen and (max-width: 1950px){
+    .ant-form-item{
+        margin:1.5em 0px;
+    }
+    .ant-form-item-label>label{
+        font-size:16px;
+        color:white;
+    }
+    
+    .ant-form-item-control-input{
+        border-radius:50px;
+        width: 33%;
+    }
+    .ant-input{
+        font-size:16px;
+        border-radius:50px;
+    }
+    .panel-container {
     width: 100%;
     .panel-title{
         font-size: 20px;
@@ -93,8 +110,25 @@ line-height: 21px;
     }
     .tip-box{
       margin: 20px 0 10px;
-      opacity: 0.6;
+      font-size:16px;
+     
     }
+    .descri{
+        .ant-form-item-control-input {
+    border-radius: 0px;
+    width: 33%;
+}
+      }
+
+      .tip{
+        color: #8A8080;
+        font-size:16px;
+        span{
+            color: white;
+            
+        font-size:16px;
+        }
+      }
     .desc-box{
       width: 100%;
       height:100%;
@@ -103,5 +137,6 @@ line-height: 21px;
      
     }
   }
+}
 `
 
