@@ -11,6 +11,7 @@ import user3 from "../../../imgs/user3.png"
 import download from "../../../imgs/download.png"
 import {zeroAddress} from "viem";
 import {ETHPriceDecimals} from "../../../config/constants";
+import FLMIcon from "../../../imgs/FLMIcon.png"
 import {
     Button,
     message,
@@ -26,10 +27,17 @@ import listIcon from "../../../imgs/list-icon.webp";
 import develop from "../../../env";
 import {useNavigate} from "react-router-dom";
 import judgeStatus from "../../../utils/judgeStatus";
-import {getDonateRecord, getAllRegisters, getRecommender, getAddressFromId} from "../../../graph/donateV5";
+import {
+    getDonateRecord,
+    getAllRegisters,
+    getRecommender,
+    getAddressFromId,
+    getAllInvites
+} from "../../../graph/donateV5";
 import OGPoolStyle from "./OGPoolStyle";
 import {ETHDecimals, FDTDecimals, USDTDecimals, FLMDecimals, ZeroAddress} from "../../../config/constants";
 import search from "../../../imgs/search.png";
+import {dealTime} from "../../../utils/timeUtil";
 
 const OGPoolPublic = (props) => {
     let {state, dispatch} = useConnect();
@@ -70,6 +78,9 @@ const OGPoolPublic = (props) => {
     const [rewardTotalFLM, setRewardTotalFLM] = useState({})
     const [myTeamRecord, setMyTeamRecord] = useState([])
     const [inviteRateArr, setInvArr] = useState([])
+    const [inviteRecordArr, setInvRecord] = useState([])
+
+
     const [myStatus, setMyStatus] = useState({})
     const [activeArr, setActiveArr] = useState([])
     const [ethPrice, setETHPrice] = useState()
@@ -278,23 +289,23 @@ const OGPoolPublic = (props) => {
             if (!judgeRes) {
                 return
             }
+            await getInviteRate()
+            await getInviteRecord()
+
             getIsAdmin()
             getTotalDonate()
             getBalanceOfFDT()
             CoinBalance()
             getSalePrice()
             getAdmin()
-            getRecord()
             getMyStatus()
-
             getActivateAccount()
             getETHPrice()
             getUserBuyMax()
 
-            await getInviteRate()
+
             await getAddressRecommender(state.account)
 
-            getMyTeam(state.account)
 
         } catch (e) {
 
@@ -318,6 +329,7 @@ const OGPoolPublic = (props) => {
         setActiveUsedAmount(used)
         setActivateAccountUsedAmount(total)
     }
+
     const getAddressRecommender = async (address) => {
         const res = await getRecommender(address)
         if (res && res.data && res.data.allRegisters[0]) {
@@ -334,57 +346,56 @@ const OGPoolPublic = (props) => {
         setUserTotalBuy(BigNumber(buyNum).dividedBy(10 ** ETHDecimals).toString())
         setUserBuyMax(BigNumber(res).dividedBy(10 ** ETHDecimals).toString())
     }
-    const getMyTeam = async (address) => {
-        const myTeamArr = []
-        let level1Res = await getAllRegisters(address)
-        if (level1Res.data && level1Res.data.allRegisters) {
-            const level1Arr = level1Res.data.allRegisters
-            myTeamArr.push(...level1Arr)
-
-            for (let i = 0; i < level1Arr.length; i++) {
-                const item = level1Arr[i]
-                item.level = 1
-
-                let res = await getAllRegisters(item._user)
-                const level2Arr = res.data.allRegisters
-                myTeamArr.push(...level2Arr)
-
-                for (let i = 0; i < level2Arr.length; i++) {
-                    const item = level2Arr[i]
-                    item.level = 2
-                    let res = await getAllRegisters(item._user)
-                    const level3Arr = res.data.allRegisters
-                    myTeamArr.push(...level3Arr)
-
-                    for (let i = 0; i < level3Arr.length; i++) {
-                        const item = level3Arr[i]
-                        item.level = 3
-                        let res = await getAllRegisters(item._user)
-                        const level4Arr = res.data.allRegisters
-                        myTeamArr.push(...level4Arr)
-
-
-                        for (let i = 0; i < level4Arr.length; i++) {
-                            const item = level4Arr[i]
-                            item.level = 4
-                            let res = await getAllRegisters(item._user)
-                            const level5Arr = res.data.allRegisters
-                            myTeamArr.push(...level5Arr)
-
-                            for (let i = 0; i < level5Arr.length; i++) {
-                                const item = level5Arr[i]
-                                item.level = 5
-                                let res = await getAllRegisters(item._user)
-                                const level6Arr = res.data.allRegisters
-                                myTeamArr.push(...level6Arr)
-                            }
-                        }
-
-                    }
-
-                }
-
+    const getRefArr = async (address, myTeamArr, level) => {
+        let refRes = await getAllRegisters(address)
+        if (refRes.data && refRes.data.allRegisters && refRes.data.allRegisters.length > 0) {
+            const refArr = refRes.data.allRegisters
+            if (refArr[0]._user != address) {
+                refArr.forEach(item => {
+                    item.level = level
+                })
+                myTeamArr.push(...refArr)
             }
+            level++
+            for (let i = 0; i < refArr.length; i++) {
+                if (refArr[i]._user != address) {
+                    await getRefArr(refArr[i]._user, myTeamArr, level)
+                }
+            }
+        }
+        return myTeamArr
+
+    }
+    const getLevelInviteRate = async (address)=>{
+        for(let i=0;i<inviteRecordArr.length;i++){
+            const item = inviteRecordArr[i]
+            if(item.addr == address){
+                if(item.recommender1.toString().toLowerCase() == state.account.toString().toLowerCase()){
+                    return item.rate1
+                }
+                if(item.recommender2.toLowerCase() == state.account.toLowerCase()){
+                    return item.rate2
+                }
+                if(item.recommender3.toLowerCase() == state.account.toLowerCase()){
+                    return item.rate3
+                }
+                if(item.recommender4.toLowerCase() == state.account.toLowerCase()){
+                    return item.rate4
+                }
+                if(item.recommender5.toLowerCase() == state.account.toLowerCase()){
+                    return item.rate5
+                }
+            }
+        }
+        return 0
+
+    }
+    const getMyTeam = async (address) => {
+        let res = await getDonateRecord()
+
+        if (res.data && res.data.allRecords) {
+            const myTeamArr = await getRefArr(address, [], 1)
+            const allRecords = res.data.allRecords
             let myTeamRecord = []
 
             // count my team level number
@@ -420,18 +431,24 @@ const OGPoolPublic = (props) => {
             }
             // operate reward and get record
             let totalETH = 0, totalFLM = 0
+
             for (let i = 0; i < myTeamArr.length; i++) {
                 const item = myTeamArr[i]
-                allRecords.forEach(record => {
+                allRecords.forEach(async record => {
                     if (item._user.toLowerCase() == record.addr.toLowerCase()) {
-                        item.ethIncome = BigNumber(record.ethAmount).multipliedBy(inviteRateArr[item.level - 1]).dividedBy(100).dividedBy(10 ** ETHDecimals).toString()
-                        item.flmIncome = BigNumber(record.fdtAmount).multipliedBy(inviteRateArr[item.level - 1]).dividedBy(100).dividedBy(10 ** FLMDecimals).toString()
+                        let rate =await getLevelInviteRate(item._user)
+                        if(!rate){
+                            rate = 0
+                        }
+                        item.ethIncome = BigNumber(record.ethAmount).multipliedBy(rate).dividedBy(100).dividedBy(10 ** ETHDecimals).toString()
+                        item.flmIncome = BigNumber(record.fdtAmount).multipliedBy(rate).dividedBy(100).dividedBy(10 ** FLMDecimals).toString()
                         totalETH = BigNumber(totalETH).plus(item.ethIncome)
                         totalFLM = BigNumber(totalFLM).plus(item.flmIncome)
-
-                        record.level = item.level
-                        record.rate = inviteRateArr[item.level - 1]
-                        myTeamRecord.push(record)
+                        if (item.level) {
+                            record.level = item.level
+                            record.rate = inviteRateArr[item.level - 1]
+                            myTeamRecord.push(record)
+                        }
                     }
                 })
             }
@@ -450,39 +467,19 @@ const OGPoolPublic = (props) => {
             const inviteRate = await handleViewMethod("inviteRate", [i])
             tempArr.push(inviteRate.toString())
         }
-        setInvArr(tempArr)
+        await setInvArr(tempArr)
     }
-
-    const getRecord = async () => {
-        try {
-            let res = await getDonateRecord()
-            if (res.data) {
-                let arr = []
-                res.data.allRecords.forEach(item => {
-                    if (item.time) {
-                        item.time = new Date(item.time * 1000).toUTCString()
-                    }
-                    if (state.account && item.addr.toString() == state.account.toLowerCase()) {
-                        arr.push(item)
-                    }
-                })
-
-                if (res.data.allRecords && res.data.allRecords.length > 0) {
-                    setAllRecords(res.data.allRecords)
-                    setTotal(res.data.allRecords.length)
-                    seMyRecords(arr)
-                }
-
-            }
-        } catch (e) {
-            console.log(e)
+    const getInviteRecord = async () => {
+        const res = await getAllInvites()
+        if (res && res.data) {
+            setInvRecord(res.data.allInvites)
         }
     }
+
     useEffect(async () => {
+        getMyTeam(state.account)
 
-        getRecord()
-
-    }, []);
+    }, [inviteRateArr]);
     useEffect(() => {
         setCurAddress(state.account)
         getData()
@@ -925,18 +922,19 @@ const OGPoolPublic = (props) => {
                                     <div className="name">
                                         Wallet Address
                                     </div>
-                                    <div className="value address" style={{width:"auto"}}>
+                                    <div className="value address" style={{width: "auto"}}>
                                         {curAddress}
                                     </div>
                                 </div>
-                                <div className="content-item-box">
+                                {myRecommender && <div className="content-item-box">
                                     <div className="name">
                                         Recommender
                                     </div>
-                                    <div className="address value " style={{width:"auto"}}>
+                                    <div className="address value " style={{width: "auto"}}>
                                         {myRecommender}
                                     </div>
-                                </div>
+                                </div>}
+
                             </div>
                         </div>
                         <div className="panel-container">
@@ -994,7 +992,7 @@ const OGPoolPublic = (props) => {
                                     </form>
                                 </div>
                             </div>
-                            <div className="fire-list-box team-list" style={{marginTop:"20px"}}>
+                            <div className="fire-list-box team-list" style={{marginTop: "20px"}}>
 
                                 <div className="list-header">
                                     <div className="col">
@@ -1040,10 +1038,14 @@ const OGPoolPublic = (props) => {
                                                 </div>
 
                                             </div>
-                                            <div className="col">
+                                            <div className="col flex-box">
+                                                <img width={20} height={20} style={{marginRight: "3px"}} src={ethereum}
+                                                     alt=""/>
                                                 {showNum(item.ethIncome, 6)}
                                             </div>
-                                            <div className="col">
+                                            <div className="col flex-box">
+                                                <img width={20} height={20} style={{marginRight: "3px"}} src={FLMIcon}
+                                                     alt=""/>
                                                 {showNum(item.flmIncome, 3)}
                                             </div>
 
@@ -1060,7 +1062,7 @@ const OGPoolPublic = (props) => {
                             <div className="panel-title">
                                 Team Donate Records
                             </div>
-                            <div className="fire-list-box donate-list">
+                            <div style={{marginTop: "20px"}} className="fire-list-box donate-list">
                                 <div className="list-header ">
                                     <div className="col">
                                         No.
@@ -1135,19 +1137,19 @@ const OGPoolPublic = (props) => {
                                                 {showNum(item.usdtAmount / 10 ** USDTDecimals, 3)}
                                             </div>
                                             <div className="col flex-box ">
-                                                <div className="item">
+                                                <div className="item flex-box">
                                                     <img width={20} height={20} style={{marginRight: "3px"}}
                                                          src={ethereum} alt=""/>
                                                     {showNum(BigNumber(item.ethAmount / 10 ** ETHDecimals).multipliedBy(item.rate / 100), 3)}
                                                 </div>
-                                                <div className="item" style={{marginLeft: "10px"}}>
+                                                <div className="item flex-box" style={{marginLeft: "10px"}}>
                                                     <img width={20} height={20} style={{marginRight: "3px"}}
                                                          src={FDTIcon} alt=""/>
                                                     {showNum(BigNumber(item.fdtAmount / 10 ** FLMDecimals).multipliedBy(item.rate / 100), 1)}
                                                 </div>
                                             </div>
                                             <div className="col">
-                                                {item.time}
+                                                {dealTime(item.blockTimestamp)}
                                             </div>
                                         </div>
                                     ))
@@ -1176,7 +1178,7 @@ const OGPoolPublic = (props) => {
                             Active Accounts
                         </div>
                         <div className="active-content-box">
-                            <div className="content-item-box flex-box" style={{justifyContent:"space-between"}}>
+                            <div className="content-item-box flex-box" style={{justifyContent: "space-between"}}>
                                 <div className="item">
                                     <div className="name">
                                         My Address

@@ -22,8 +22,11 @@ export default styled.div`
       opacity: 1;
       border: 1px solid rgba(255, 174, 78, 1);
       display: flex;
+      color: rgba(255, 174, 78, 1);
       justify-content: center;
       align-items: center;
+      font-family: Roboto-SemiBold, Roboto;
+      font-weight: 600;
       cursor: pointer;
     }
 
@@ -33,6 +36,7 @@ export default styled.div`
       margin-bottom: 10px;
 
       .info-item {
+        
         margin-right: 10px;
         flex: 1;
         height: 40px;
@@ -241,7 +245,7 @@ export default styled.div`
 
       .info-item {
         margin-right: 10px;
-
+     
         strong {
           margin-right: 10px;
         }
@@ -393,8 +397,8 @@ export default styled.div`
       }
 
       .info-item {
-        width: 326px;
         height: 140px;
+        min-width: 200px;
         background: #1A1414;
         border-radius: 20px 20px 20px 20px;
         opacity: 1;
@@ -1200,68 +1204,59 @@ export default styled.div`
       }
 
       &:nth-child(5) {
-        width: 50px;
+        width: 120px;
       }
 
       &:nth-child(6) {
-        width: 50px;
+        width: 120px;
       }
     }
   }
 
   .donate-list {
-    min-width: 1200px;
-
-    .list-header, .list-item {
-      justify-content: flex-start;
-      overflow: hidden;
-    }
 
     .col {
       text-align: left;
-      white-space: nowrap;
-      padding: 0 10px;
-      overflow: hidden;
 
 
       &:nth-child(1) {
-        margin-left: 10px;
-        width: 60px;
+        width: 50px;
+        padding-left: 20px;
       }
 
       &:nth-child(2) {
-        width: 80px;
+        width: 50px;
+
       }
 
       &:nth-child(3) {
         width: 100px;
+
       }
 
       &:nth-child(4) {
-        width: 150px;
+        width: 100px;
       }
 
       &:nth-child(5) {
-        width: 80px;
+        width: 100px;
       }
 
       &:nth-child(6) {
-        width: 80px;
+        width: 100px;
       }
-
       &:nth-child(7) {
-        width: 80px
+        width: 100px;
       }
-
       &:nth-child(8) {
-        width: 110px
+        width: 100px;
       }
-
       &:nth-child(9) {
-        width: 180px;
-
+        width: 160px;
       }
-
+      &:nth-child(10) {
+        width: 100px;
+      }
     }
   }
 `

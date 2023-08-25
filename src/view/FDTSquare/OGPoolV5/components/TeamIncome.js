@@ -1,30 +1,30 @@
 import React, {useEffect, useRef, useState} from 'react';
-import {useConnect} from "../../../api/contracts";
+import {useConnect} from "../../../../api/contracts";
 import BigNumber from "bignumber.js"
-import AddNomalWhiteList from "./ThreelWhiteList";
-import AddThreeWhiteList from "./components/OgAdminLevel2";
-import {formatAddress} from "../../../utils/publicJs";
+import AddNomalWhiteList from "../../OGPool/ThreelWhiteList";
+import AddThreeWhiteList from "../../OGPool/components/OgAdminLevel2";
+import {formatAddress} from "../../../../utils/publicJs";
 
 import {
     message,
     Form, Pagination,
 } from 'antd';
-import {getContractByName, getContractByContract} from "../../../api/connectContract";
-import {dealMethod, dealPayMethod, viewMethod} from "../../../utils/contractUtil"
+import {getContractByName, getContractByContract} from "../../../../api/connectContract";
+import {dealMethod, dealPayMethod, viewMethod} from "../../../../utils/contractUtil"
 
-import develop from "../../../env";
+import develop from "../../../../env";
 import {useNavigate} from "react-router-dom";
-import judgeStatus from "../../../utils/judgeStatus";
-import {getDonateRecord, getAllRegisters} from "../../../graph/donateV5";
-import OGUserAdminStyle from "./OGUserAdminStyle";
-import OgSetActive from "./components/OgSetActive";
-import OgSetBlacklist from "./components/OgSetBlacklist";
-import FDTIcon from "../../../imgs/fdt.png";
-import ethereum from "../../../imgs/ethereum.png";
-import {ETHDecimals, FDTDecimals, FLMDecimals, USDTDecimals} from "../../../config/constants";
-import {showNum} from "../../../utils/bigNumberUtil";
-import {dealTime} from "../../../utils/timeUtil";
-import USDTIcon from "../../../imgs/usdt.png";
+import judgeStatus from "../../../../utils/judgeStatus";
+import {getDonateRecord, getAllRegisters} from "../../../../graph/donateV5";
+import OGUserAdminStyle from "./TeamIncomeStyle.js";
+import OgSetActive from "../../OGPool/components/OgSetActive";
+import OgSetBlacklist from "../../OGPool/components/OgSetBlacklist";
+import FDTIcon from "../../../../imgs/fdt.png";
+import ethereum from "../../../../imgs/ethereum.png";
+import {ETHDecimals, FDTDecimals, FLMDecimals, USDTDecimals} from "../../../../config/constants";
+import {showNum} from "../../../../utils/bigNumberUtil";
+import {dealTime} from "../../../../utils/timeUtil";
+import USDTIcon from "../../../../imgs/usdt.png";
 
 const OGPoolPublic = (props) => {
     let {state, dispatch} = useConnect();
@@ -110,6 +110,7 @@ const OGPoolPublic = (props) => {
         if(isFiveAdmin){
             return 5
         }
+        return 1
     }
 
     const getData = async () => {
@@ -186,7 +187,6 @@ const OGPoolPublic = (props) => {
 
 
     useEffect(() => {
-        setActiveNav()
         getData()
         getRecord()
 
@@ -198,74 +198,7 @@ const OGPoolPublic = (props) => {
     return (
         <OGUserAdminStyle>
 
-            <div className="page-title">
-                OG Pool Manage
-            </div>
-            <div className="header-nav">
-                <div className="fire-nav-list ">
-                    {
-                        (isSecondAdmin || isFiveAdmin) &&
-                        <div className={"nav-item " + (activeNav == 1 ? "active" : "")} onClick={() => {
-                            setActiveNav(1)
-                        }}>
-                            Set Active Accounts
-                        </div>
-                    }
-
-                    {
-                        <div className={"nav-item " + (activeNav == 2 ? "active" : "")} onClick={() => {
-                            setActiveNav(2)
-                        }}>
-                            Team Income
-                        </div>
-                    }
-                    {
-                        isSecondAdmin && (
-                            <div className={"nav-item " + (activeNav == 5 ? "active" : "")} onClick={() => {
-                                setActiveNav(5)
-                            }}>
-                                Set Blacklist
-                            </div>
-                        )
-                    }
-                    {
-                        isSecondAdmin && (
-
-                            <div className={"nav-item " + (activeNav == 4 ? "active" : "")} onClick={() => {
-                                setActiveNav(4)
-                            }}>
-                                Set Lv3 Admin
-                            </div>
-                        )
-                    }
-                    {
-                        isThreeAdmin && (
-
-                            <div className={"nav-item " + (activeNav == 6 ? "active" : "")} onClick={() => {
-                                setActiveNav(6)
-                            }}>
-                                Set Lv4 Admin
-                            </div>
-                        )
-                    }
-                    {
-                        isFourAdmin && (
-
-                            <div className={"nav-item " + (activeNav == 7 ? "active" : "")} onClick={() => {
-                                setActiveNav(7)
-                            }}>
-                                Set Lv5 Admin
-                            </div>
-                        )
-                    }
-                </div>
-
-            </div>
-
-            {activeNav == 1 && (<OgSetActive isFiveAdmin={isFiveAdmin}/>)}
-            {activeNav == 5 && (<OgSetBlacklist/>)}
-
-            {activeNav == 2 && (<div className="panel-box part2">
+            <div className="panel-box part2">
                 <div className="panel-container">
                     <div className="list-top-part">
                         <div className="panel-title">
@@ -283,39 +216,39 @@ const OGPoolPublic = (props) => {
                         </div>
                     </div>
                     <div className="fire-list-box donate-list" style={{minWidth: '100%'}}>
-                            <div className="list-header ">
-                                <div className="col">
-                                    No.
-                                </div>
-                                <div className="col">
-                                    Level
-                                </div>
-                                <div className="col">
-                                    Divide<br/> Percentage
-                                </div>
-                                <div className="col">
-                                    Address
-                                </div>
-                                <div className="col">
-                                    ETH
-                                </div>
-                                <div className="col">
-                                    FDT-OG
-                                </div>
-
-                                <div className="col">
-                                    Price
-                                </div>
-                                <div className="col">
-                                    Cost
-                                </div>
-                                <div className="col">
-                                    Rewards
-                                </div>
-                                <div className="col">
-                                    Time
-                                </div>
+                        <div className="list-header ">
+                            <div className="col">
+                                No.
                             </div>
+                            <div className="col">
+                                Level
+                            </div>
+                            <div className="col">
+                                Divide<br/> Percentage
+                            </div>
+                            <div className="col">
+                                Address
+                            </div>
+                            <div className="col">
+                                ETH
+                            </div>
+                            <div className="col">
+                                FDT-OG
+                            </div>
+
+                            <div className="col">
+                                Price
+                            </div>
+                            <div className="col">
+                                Cost
+                            </div>
+                            <div className="col">
+                                Rewards
+                            </div>
+                            <div className="col">
+                                Time
+                            </div>
+                        </div>
 
                         {
                             teamRecordArr.map((item, index) => (
@@ -386,15 +319,9 @@ const OGPoolPublic = (props) => {
                         }
                     </div>
                 </div>
+            </div>
 
-            </div>)}
-            {activeNav == 4 && (
-                <AddThreeWhiteList isLevel2={isSecondAdmin} isThreeAdmin={isThreeAdmin} allRecords={allRecords}/>)}
-            {activeNav == 6 && (
-                <AddThreeWhiteList isLevel2={isSecondAdmin} isThreeAdmin={isThreeAdmin} allRecords={allRecords}/>)}
-            {activeNav == 7 && (
-                <AddThreeWhiteList isLevel2={isSecondAdmin} isLevel3={isThreeAdmin} isFourAdmin={isFourAdmin}
-                                   allRecords={allRecords}/>)}
+
         </OGUserAdminStyle>
     )
 }

@@ -3,7 +3,7 @@ import {fetchQueryBase} from "./index";
 export function getDonateRecord() {
     return fetchQueryBase("patton-sr/og4", {
         text: `{
-             allRecords(first:1000){
+           allRecords(first:1000 orderBy:no orderDirection:desc){
               no
               addr
               ethAmount
