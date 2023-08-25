@@ -245,19 +245,16 @@ const FireLock = (props) => {
         getWhitelist()
     }
     const chooseItem = (item, index) => {
-
         let tempArra = [...whitelist]
 
-        const tempItem = [tempArra].map((item,index)=>(
-                item
-
-            ))
-            
-        tempItem.ischoosed = !tempItem.ischoosed
-
+        console.log(tempArra);
+        const tempItem=[tempArra].map((item,index)=>(
+                console.log(item)
+           
+                ))
+        console.log(tempItem);
         tempArra.splice(index, 1, tempItem)
         setWhitelistArr(tempArra)
-        console.log(tempItem);
     }
 
     function pictureStatus(e){

@@ -9,6 +9,8 @@ import judgeStatus from "../../../../utils/judgeStatus";
 import ConnectWallet from "../../../../component/ConnectWallet/ConnectWallet";
 import StyleBox from "./style"
 import develop from "../../../../env";
+import orangeRight from '../../../../imgs/orangegou.png';
+import greenRight from '../../../../imgs/greengou.png';
 import {LoadingOutlined, PlusOutlined, QuestionCircleOutlined} from "@ant-design/icons";
 import {Editor, EditorState} from 'draft-js';
 
@@ -186,7 +188,9 @@ const Distribution = (props) => {
              
                 <div className="panel-container">
                     <div className="panel-title">
-                        <div className="index-box">1</div>  Connect your wallet & sign in
+                        <div className="index-box">
+                            <img src={orangeRight}  style={{width:"100%"}}/>
+                        </div>  Connect your wallet & sign in
                     </div>
                     {pageStep==0&&(<div>
                         <Steps
@@ -239,15 +243,17 @@ const Distribution = (props) => {
                 </div>
                 <div className="panel-container">
                     <div className="panel-title">
-                        <div className="index-box">1</div> Name your proposal
+                        <div className="index-box">2</div> Name your proposal
                     </div>
-                    {pageStep==1&&(<div>
+                    {/* {pageStep==1&&( */}
+                    <div>
                         <div className="tip-box">
                             Give your proposal a title and a description. They will be public when your proposal goes live!
                         </div>
                         <Form form={form} name="control-hooks" className="form">
 
                             <Form.Item
+                            className='name'
                                 name="title"
                                 validateTrigger="onBlur"
                                 label="Title"
@@ -256,6 +262,7 @@ const Distribution = (props) => {
                                 <Input type="text"></Input>
                             </Form.Item>
                             <Form.Item
+                            className='descri'
                                 name="description"
                                 validateTrigger="onBlur"
                                 label="Description"
@@ -263,7 +270,7 @@ const Distribution = (props) => {
                             >
                                 <div className="tip">
                                     Support for formatting with
-                                    <span>Markdown</span>
+                                    <span> Markdown</span>
                                 </div>
                                 <textarea type="text" className="desc-box"></textarea>
                                 <MyEditor/>
@@ -274,7 +281,8 @@ const Distribution = (props) => {
                         }}>
                             Continue
                         </Button>
-                    </div>)}
+                    </div>
+                    {/* )} */}
                 </div>
                 <div className="panel-container">
                     <div className="panel-title">

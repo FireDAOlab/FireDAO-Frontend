@@ -228,10 +228,10 @@ const FLMAirdropLv1 = (props) => {
         let tempArra = [...FlmArra]
         console.log(tempArra);
         const tempItem = [tempArra].map((item,index)=>(
-                item
-
+           console.log(item)
             ))
-        tempItem.ischoosed = !tempItem.ischoosed
+        
+        // tempItem.ischoosed = !tempItem.ischoosed
         tempArra.splice(index, 1, tempItem)
         setFlmArra(tempArra)
     }
