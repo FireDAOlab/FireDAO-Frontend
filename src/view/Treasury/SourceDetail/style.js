@@ -45,9 +45,8 @@ font-size:16px;
               width: 22%;
              margin-left:70px;
             }
-
             &:nth-child(2) {
-              width: 22%;
+              width: 18%;
               margin-left:10px;
             }
 
@@ -57,10 +56,9 @@ font-size:16px;
             }
 
             &:nth-child(4) {
-              width: 22%;
-              margin-left:10px;
+              width: 18%;
+              margin-left:80px;
             }
-           
           }
         }
         
@@ -132,7 +130,7 @@ font-size:16px;
             }
 
             &:nth-child(2) {
-              width: 22%;
+              width: 18%;
               margin-left:10px;
             }
 
@@ -142,8 +140,8 @@ font-size:16px;
             }
 
             &:nth-child(4) {
-              width: 22%;
-              margin-left:10px;
+              width: 18%;
+              margin-left:80px;
             }
            
           }

@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useConnect } from "../../../api/contracts";
-import { Pagination, Button, Select, Descriptions, message, Form, List, Input, notification, Card } from 'antd';
+import { Pagination, Empty, Button, Select, Descriptions, message, Form, List, Input, notification, Card } from 'antd';
 import { getContractByName, getContractByContract } from "../../../api/connectContract";
 import { dealMethod, viewMethod } from "../../../utils/contractUtil"
 import { useNavigate, useLocation } from "react-router-dom";
@@ -8,6 +8,8 @@ import FireLockStyle from "./style";
 import judgeStatus from "../../../utils/judgeStatus";
 import AddCateGoryAddr from "./component/AddCateGoryAddr.js";
 import RemoveAddr from "./component/RemoveAddr";
+import { formatAddress } from "../../../utils/publicJs";
+import develop from "../../../env"
 import sc from "../../../imgs/sc.png"
 import wxz from "../../../imgs/wxz.png"
 import xz from "../../../imgs/xz.png"
@@ -387,35 +389,36 @@ const FireLock = (props) => {
                                     </div>
                                 </div>
                                 {
+                                    allocationFundAddress.length == 0 ? <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} /> :
+                                        allocationFundAddress.map((item, index) => (
+                                            <Form className='bdval'>
+                                                <div className="list-item catelist" key={index}>
+                                                    <div className="col1 no">
+                                                        {index + 1}
+                                                    </div>
+                                                    <div className="col1">
 
-                                    allocationFundAddress.map((item, index) => (
-                                        <Form className='bdval'>
-                                            <div className="list-item catelist" key={index}>
-                                                <div className="col1 no">
-                                                    {index + 1}
-                                                </div>
-                                                <div className="col1">
-                                                    Community's Ecological Operation Fund
-                                                </div>
-                                                <div className="col1 address">
-                                                    <a>{item.address}</a>
-                                                </div>
-                                                <Form.Item className="col1 value"
-                                                    validateFirst={true}
-                                                    rules={[
-                                                        // { required: true, message: 'Please input rate1!' },
-                                                    ]}>
+                                                    </div>
+                                                    <div className="col1 address">
+                                                        <a href={develop.ethScan + "/address/" + item.address} target="_blank">
+                                                            {formatAddress(item.address)}</a>
+                                                    </div>
+                                                    <Form.Item className="col1 value"
+                                                        validateFirst={true}
+                                                        rules={[
+                                                            // { required: true, message: 'Please input rate1!' },
+                                                        ]}>
 
-                                                    <Input placeholder={item.rate} className="dtoo1" />
-                                                    <span className='dtoo1dw'>%</span>
-                                                </Form.Item>
-                                                <div className="col1 sc1">
-                                                    <img src={sc} className="sc" id='scc' />
+                                                        <Input placeholder={item.rate} className="dtoo1" />
+                                                        <span className='dtoo1dw'>%</span>
+                                                    </Form.Item>
+                                                    <div className="col1 sc1">
+                                                        <img src={sc} className="sc" id='scc' />
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </Form>
-                                    )
-                                    )
+                                            </Form>
+                                        )
+                                        )
                                 }
                             </div>
                         </div>
@@ -630,17 +633,20 @@ const FireLock = (props) => {
                                     Delete
                                 </div>
                             </div>
-                            {allocationFundAddress.map((item, index) => (
+                            { allocationFundAddress.length == 0 ? <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} /> :
+                            allocationFundAddress.map((item, index) => (
                                 <Form className='bdvalToken'>
                                     <div className="list-item tokenlist" key={index}>
                                         <div className="col2 no">
                                             {index + 1}
                                         </div>
                                         <div className='col2'>
-                                            WBTC
+
                                         </div>
+
                                         <div className="col2 address">
-                                            <a>{item.address}</a>
+                                            <a href={develop.ethScan + "/address/" + item.address} target="_blank">
+                                                {item.address}</a>
                                         </div>
                                         <div className="col2 sc1">
                                             <img src={sc} className="sc" id='scc' />

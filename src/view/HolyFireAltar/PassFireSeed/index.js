@@ -8,6 +8,7 @@ import passport from "../../../imgs/long.png"
 import { useNavigate } from "react-router-dom";
 import user3 from "../../../imgs/user3.png";
 import judgeStatus from "../../../utils/judgeStatus.js"
+import develop from "../../../env"
 import { getPasslist } from "../../../graph/myFireseed";
 import coinInfo from "../../../config/coinInfo";
 import StyleBox from "./style"
@@ -548,7 +549,9 @@ const LockList = (props) => {
                                     -
                                 </div>
                                 <div className="col address">
-                                   <a> {item.transferTime}</a>
+                                   <a  href={develop.ethScan + "/address/" + item.transferTime} target="_blank">
+                                    {item.transferTime}
+                                    </a>
                                 </div>
                                 <div className="col pid">
                                     {item.from}

@@ -90,6 +90,8 @@ color: #FFFFFF;
           }
 
           .value {
+            text-align:center;
+            width: 135px;
             background: rgba(205, 158, 87, 0.1);
             border-radius: 38px 38px 38px 38px;
             padding: 5px 10px;
@@ -101,6 +103,8 @@ color: #CD9E57;
             border: 1px solid rgba(205, 158, 87, 0.5);
           }
           .valuePro {
+            width: 130px;
+text-align:right;
             font-size: 14px;
 font-family: Roboto-SemiBold, Roboto;
 font-weight: 600;
@@ -495,6 +499,8 @@ color: #FFFFFF;
           }
 
           .value {
+            width: 140px;
+            text-align:center;
             background: rgba(205, 158, 87, 0.1);
             border-radius: 38px 38px 38px 38px;
             padding: 5px 10px;
@@ -506,6 +512,8 @@ color: #CD9E57;
             border: 1px solid rgba(205, 158, 87, 0.5);
           }
           .valuePro {
+            width: 130px;
+text-align:right;
             font-size: 14px;
 font-family: Roboto-SemiBold, Roboto;
 font-weight: 600;
@@ -904,6 +912,8 @@ color: #FFFFFF;
           }
 
           .value {
+            width: 120px;
+            text-align:center;
             background: rgba(205, 158, 87, 0.1);
             border-radius: 38px 38px 38px 38px;
             padding: 5px 10px;
@@ -915,6 +925,8 @@ color: #CD9E57;
             border: 1px solid rgba(205, 158, 87, 0.5);
           }
           .valuePro {
+            width: 125px;
+            text-align:right;
             font-size: 13px;
 font-family: Roboto-SemiBold, Roboto;
 font-weight: 600;
@@ -977,7 +989,7 @@ margin: 1em 0;
         position: relative;
         padding-left: 38px;
 
-      top:95px;
+      top:80px;
       /* user-select: none; */
 
       img {
@@ -1333,6 +1345,8 @@ color: #FFFFFF;
           }
 
           .value {
+            width: 130px;
+text-align:center;
             background: rgba(205, 158, 87, 0.1);
             border-radius: 38px 38px 38px 38px;
             padding: 5px 10px;
@@ -1344,6 +1358,8 @@ color: #CD9E57;
             border: 1px solid rgba(205, 158, 87, 0.5);
           }
           .valuePro {
+            width: 130px;
+text-align:center;
             font-size: 13px;
 font-family: Roboto-SemiBold, Roboto;
 font-weight: 600;

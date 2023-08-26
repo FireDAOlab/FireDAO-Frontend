@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styled from "styled-components";
 import { useConnect } from "../../../api/contracts";
-import { Card, Button, Descriptions, message, Form, List, Input, notification } from 'antd';
+import { Card,Empty, Button, Descriptions, message, Form, List, Input, notification } from 'antd';
 import { getContractByName, getContractByContract } from "../../../api/connectContract";
 import { dealMethod, viewMethod } from "../../../utils/contractUtil"
 import user3 from "../../../imgs/user3.png";
@@ -135,7 +135,8 @@ const Distribution = (props) => {
 
                                 </div>
 
-                                {allocationFundAddress.map((item, index) => {
+                                {  allocationFundAddress.length == 0 ? <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} /> :
+                                allocationFundAddress.map((item, index) => {
                                     return (
                                         <div className="list-item" 
                                         key={index}
