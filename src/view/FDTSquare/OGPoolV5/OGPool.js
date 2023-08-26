@@ -358,6 +358,9 @@ const OGPoolPublic = (props) => {
                 myTeamArr.push(...refArr)
             }
             level++
+            if(level>5){
+                return
+            }
             for (let i = 0; i < refArr.length; i++) {
                 if (refArr[i]._user != address) {
                     await getRefArr(refArr[i]._user, myTeamArr, level)
