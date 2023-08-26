@@ -14,7 +14,11 @@ export default styled.div`
   .status-header {
     display: flex;
     justify-content: space-between;
-
+    .id-box{
+      font-size: 18px;
+      color: #CD9E57;
+      font-weight: bold;
+    }
     .signUp-btn {
       width: 170px;
       height: 40px;
@@ -300,13 +304,15 @@ export default styled.div`
   .header-nav {
     padding: 10px 11.7%;
     display: flex;
-
+    overflow: auto;
     .fire-nav-list {
       height: 45px;
       width: auto;
 
       .nav-item {
-        width: auto;
+        width: auto!important;
+        white-space: nowrap;
+        min-width: 120px;
         padding: 0 20px;
         font-size: 18px;
       }
@@ -527,7 +533,7 @@ export default styled.div`
             .ant-input-number-input-wrap, .ant-select-selector, input {
               height: 100%;
               width: 100% !important;
-              font-size: 20px !important;
+              font-size: 20px ;
               font-family: Roboto-Black, Roboto;
               display: flex;
               align-items: center;
@@ -860,7 +866,6 @@ export default styled.div`
 
             .value {
               line-height: 50px !important;
-              font-size: 20px !important;
             }
           }
         }
@@ -991,7 +996,6 @@ export default styled.div`
               .ant-input-number-input-wrap, .ant-select-selector, input {
                 height: 100%;
                 width: 100% !important;
-                font-size: 20px !important;
                 font-family: Roboto-Black, Roboto;
                 display: flex;
                 align-items: center;
@@ -1257,6 +1261,43 @@ export default styled.div`
       &:nth-child(10) {
         width: 100px;
       }
+    }
+  }
+  @media screen and (max-width: 1000px) {
+    .donation-box{
+      width: 120%!important;
+      transform: scale(0.8) translateX(-10%);
+    }
+    .status-header{
+      flex-direction: column;
+      transform: scale(0.8) translateX(-10%);
+    }
+    .header-nav{
+      .fire-nav-list {
+
+        .nav-item {
+      
+        }
+      }
+    }
+    .donate-info{
+      flex-direction: column;
+      .flex-box{
+        margin-top: 20px;
+        .info-item{
+          margin-left: 0px!important;
+          min-width: 160px;
+          .name{
+            font-size: 14px!important;
+          }
+          .value{
+            font-size: 14px!important;
+          }
+        }
+      }
+    }
+    .down-icon{
+      margin-top: -20px;
     }
   }
 `
