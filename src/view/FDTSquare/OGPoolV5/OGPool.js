@@ -38,6 +38,7 @@ import OGPoolStyle from "./OGPoolStyle";
 import {ETHDecimals, FDTDecimals, USDTDecimals, FLMDecimals, ZeroAddress} from "../../../config/constants";
 import search from "../../../imgs/search.png";
 import {dealTime} from "../../../utils/timeUtil";
+import coinInfo from "../../../config/coinInfo";
 
 const OGPoolPublic = (props) => {
     let {state, dispatch} = useConnect();
@@ -357,6 +358,9 @@ const OGPoolPublic = (props) => {
                 myTeamArr.push(...refArr)
             }
             level++
+            if(level>5){
+                return
+            }
             for (let i = 0; i < refArr.length; i++) {
                 if (refArr[i]._user != address) {
                     await getRefArr(refArr[i]._user, myTeamArr, level)
@@ -491,6 +495,20 @@ const OGPoolPublic = (props) => {
             setStatus(0)
         }
     }, [state.account, state.networkId, state.apiState])
+
+    const addToken = async (tokenId) => {
+        await window.ethereum.request({
+            method: 'wallet_watchAsset',
+            params: {
+                type: coinInfo.FDTOg.type,
+                options: {
+                    address: coinInfo.FDTOg.address,
+                    symbol: coinInfo.FDTOg.name,
+                    image: coinInfo.FDTOg.image,
+                },
+            },
+        });
+    }
     const coinOptions = [
         {
             label: "0.2ETH",
@@ -648,11 +666,14 @@ const OGPoolPublic = (props) => {
                                         {myStatus.activeStatus && <>Activated</>}
                                     </div>
                                 </div>
-                                <div className="signUp-btn" onClick={() => {
+                                {!myStatus.registerStatus&&<div className="signUp-btn" onClick={() => {
                                     setIsShowRegister(true)
                                 }}>
                                     Sign Up
-                                </div>
+                                </div>}
+                                {myStatus.registerStatus&&<div className="id-box">
+                                   ID: {myId}
+                                </div>}
                             </div>
                             <div className="donate-info">
                                 <div className="info-item">
