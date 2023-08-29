@@ -51,6 +51,7 @@ const FireLock = (props) => {
 
             }
         })
+        console.log(_to);
         await handleDealMethod("removeAdminsLevelTwo", [_to])
         updateData()
         setOwnerArr(_to)
@@ -96,15 +97,15 @@ const FireLock = (props) => {
                             return (
                                 <div className="address-item" key={index}>
                                     <Form form={form} name="control-hooks">
-                                    <div className="flex-box">
+                                        <div className="flex-box" key={index}>
                                             <Form.Item className="col no1"  >
                                                 {index + 1}
                                             </Form.Item >
 
-                                            <Form.Item   
-                                        name={"owner" + index} 
+                                            <Form.Item
+                                                name={item}
                                                 className="col address1" >
-                                              { formatAddress( item.address)}
+                                                {formatAddress(item.address)}
                                             </Form.Item>
 
                                         </div>
@@ -128,11 +129,11 @@ const FireLock = (props) => {
                     <div className="content-item">
                         {ownerArr.map((item, index) => {
                             return (
-                                <div className='discount' key={index}>
+                                <div className='discount' >
 
 
                                     <Form form={form} name="control-hooks">
-                                        <div className='mintfee'>
+                                        <div className='mintfee' key={index}>
                                             <div className="fee1">
                                                 <div className="name">
                                                     No.
@@ -148,15 +149,15 @@ const FireLock = (props) => {
                                                 </div>
                                                 <Form.Item
                                                     className='value'
-                                                    name={"owner" + index}
+                                                    name={item}
                                                     validateTrigger="onBlur"
-                                              
+
                                                 >
-                                                    { formatAddress( item.address)}
+                                                    {formatAddress(item.address)}
                                                 </Form.Item>
                                             </div>
                                         </div>
-                                     
+
                                     </Form>
                                 </div>
                             )

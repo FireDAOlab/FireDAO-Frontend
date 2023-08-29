@@ -264,6 +264,7 @@ const FireLock = (props) => {
 
     const handleCheck = (item, index, val) => {
         let tempArra = [...whitelist]
+        
         console.log(item);
         item.checked = val
 

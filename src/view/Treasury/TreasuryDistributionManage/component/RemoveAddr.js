@@ -32,17 +32,19 @@ const FireLock = (props) => {
 
 
     const handleSetAddress = async () => {
-        let _to = []
+        let _to = [], _rate = []
         props.delDataArr.map((item, index) => {
             if (item.checked == true) {
-                _to.push(item)
-
+                _to.push(item.address)
+                _rate.push(item.rate)
             }
+
         })
         console.log(_to);
-        await handleDealMethod("removeAddr", [_to])
+        console.log(_rate);
+        await handleDealMethod("removeAddr", [_to, _rate])
         updateData()
-        setOwnerArr(_to)
+        setOwnerArr(_to, _rate)
         closeDialog()
     }
     useEffect(() => {
@@ -93,13 +95,13 @@ const FireLock = (props) => {
                                             </div >
 
                                             <Form.Item
-                                                name={"owner" + index}
+                                                name={item}
                                                 className="col address1" >
                                                 {formatAddress(item.address)}
                                             </Form.Item>
                                             <Form.Item
-                                                name={"owner" + index}
-                                                className="col" >
+                                                name={"rate" + index}
+                                                className="col rate" >
                                                 {Number(item.rate)}%
                                             </Form.Item>
                                         </div>
@@ -107,12 +109,74 @@ const FireLock = (props) => {
                                 </div>
                             )
                         })}
-                        </div>
                     </div>
-                    <Button className="sub-btn" onClick={handleSetAddress} type="primary">
-                        Submit
-                    </Button>
-                
+                </div>
+                <div className='phone-list'>
+                    <div className="content-item">
+                        {ownerArr.map((item, index) => {
+                            return (
+                                <div className='discount' key={index}>
+
+
+                                    <Form form={form} name="control-hooks">
+                                        <div className='mintfee'>
+                                            <div className="fee1">
+                                                <div className="name">
+                                                    No.
+                                                </div>
+
+                                                <Form.Item className="value"   >
+                                                    {index + 1}
+                                                </Form.Item >
+                                            </div>
+                                            <div className='fee1'>
+                                                <div className="name">
+                                                    Address
+                                                </div>
+                                                <Form.Item
+                                                    className='value'
+                                                    name="address"
+                                                    validateTrigger="onBlur"
+                                                // validateFirst={true}
+                                                // rules={[
+                                                //     { required: true, message: 'Please input MintFee!' },
+                                                // ]}
+                                                >
+                                                    {formatAddress(item.address)}
+                                                </Form.Item>
+                                                <div className='fee1'>
+                                                    <div className="name">
+                                                        Percentage
+                                                    </div>
+                                                    <Form.Item
+                                                        className='value'
+                                                        name="rate"
+                                                        validateTrigger="onBlur"
+                                                    >
+                                                        {Number(item.rate)}%
+                                                    </Form.Item>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {/* {(index == ownerArr.length - 1) && (
+                                             <img className="icon" src={add} onClick={() => {
+                                                addOwner()
+                                            }} />)}
+                                        {(ownerArr.length >= 1 && index > 0) && (
+                                            <img className="icon" src={remove1} onClick={() => {
+                                                removeOwner()
+                                            }} />)} */}
+
+                                    </Form>
+                                </div>
+                            )
+                        })}
+                    </div>
+                </div>
+                <Button className="sub-btn" onClick={handleSetAddress} type="primary">
+                    Submit
+                </Button>
+
 
             </div>
         </RemoveAddrStyle>

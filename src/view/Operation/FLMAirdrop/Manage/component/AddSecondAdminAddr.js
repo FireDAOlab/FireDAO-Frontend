@@ -40,12 +40,14 @@ const FireLock = (props) => {
             _to.push(form.getFieldValue()["owner" + i])
 
         }
-
+console.log(_to);
         await handleDealMethod("setAdminsLevelTwo", [_to])
         updateData()
+        setOwnerArr(_to)
         closeDialog()
     }
     useEffect(() => {
+
     }, []);
 
     return (
@@ -89,7 +91,7 @@ const FireLock = (props) => {
                                                 <Form.Item className="col no1"  >
                                                     {index + 1}
                                                 </Form.Item >
-                                                <Form.Item name={"owner" + index} className="col address1" >
+                                                <Form.Item name={item} className="col address1" >
 
                                                     <Input />
 
@@ -138,7 +140,7 @@ const FireLock = (props) => {
                                                 </div>
                                                 <Form.Item
                                                     className='value'
-                                                    name={"owner" + index}
+                                                    name={item}
                                                     validateTrigger="onBlur"
                                                     validateFirst={true}
                                                     rules={[

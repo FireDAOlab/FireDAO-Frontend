@@ -128,13 +128,15 @@ const FireLock = (props) => {
         }
         setAllocationFundAddress(arr)
     }
+
+
     function pictureStatus(e) {
-        e.target.style.display="none";
+        e.target.style.display = "none";
         var dele = document.querySelector('.kk1');
 
         var sc2 = document.querySelectorAll('#scc');
         var bj = document.querySelectorAll('#bj1');
-        dele.style.display="block";
+        dele.style.display = "block";
         console.log(dele);
         for (const i of sc2) {
             i.style.display = "none"
@@ -200,9 +202,12 @@ const FireLock = (props) => {
         getWethAddr()
     }
 
-    const  handleDelAddress = async ()=>{
+    const handleDelAddress = async () => {
         await handleDealMethod("removeAddr", [[isRemoveAddress]])
-        updateData()
+        console.log(isRemoveAddress);
+        // updateData();
+        setAllocationFundAddress()
+        getAllocationFundAddress()
         closeDialog()
     }
     useEffect(async () => {
@@ -217,7 +222,7 @@ const FireLock = (props) => {
     return (
         <FireLockStyle>
             {isShowSubAdd && <AddCateGoryAddr updateData={() => { getAllocationFundAddress() }} closeDialog={() => { setShowSubAdd(false) }} />}
-            {isShowRemove && <RemoveAddr  delDataArr={allocationFundAddress}  updateData={() => { getAllocationFundAddress() }} closeDialog={() => { setShowRemove(false) }} />}
+            {isShowRemove && <RemoveAddr delDataArr={allocationFundAddress} updateData={() => { getAllocationFundAddress() }} closeDialog={() => { setShowRemove(false) }} />}
 
             <div className="page-title">
                 Distribution Manage
@@ -417,10 +422,10 @@ const FireLock = (props) => {
                                         pictureStatus(e);
                                         // setShowRemove(true)
                                     }}>Mass Delete</div>
-                                     <div type="primary" className='kk1' style={{ display: 'none' }} onClick={() => {
+                                    <div type="primary" className='kk1' style={{ display: 'none' }} onClick={() => {
 
-                                    setShowRemove(true)
-                                }}>Delete</div>
+                                        setShowRemove(true)
+                                    }}>Delete</div>
                                 </div>
 
                             </div>
@@ -469,20 +474,20 @@ const FireLock = (props) => {
                                                             <span className='dtoo1dw'>%</span>
                                                         </Form.Item>
                                                         <div className="col1 sc1">
-                                                        <img src={sc} className="sc" id='scc' onClick={() => {
-                                                        setisRemoveOpen(true)
-                                                        setRemoveAddress(item.address)
-                                                    }} />
-                                                    <div className="sc" id='bj1' style={{ display: 'none' }}>
-                                                        {item.checked && <img style={{ width: '100%' }} className="check-icon" onClick={() => {
-                                                            handleCheck(item, index, false)
-                                                        }} src={xz} alt="" />}
-                                                        {!item.checked && <img style={{ width: '100%' }} className="check-icon" onClick={() => {
-                                                            handleCheck(item, index, true)
-                                                        }} src={wxz} alt="" />}
+                                                            <img src={sc} className="sc" id='scc' onClick={() => {
+                                                                setisRemoveOpen(true)
+                                                                setRemoveAddress(item.address)
+                                                            }} />
+                                                            <div className="sc" id='bj1' style={{ display: 'none' }}>
+                                                                {item.checked && <img style={{ width: '100%' }} className="check-icon" onClick={() => {
+                                                                    handleCheck(item, index, false)
+                                                                }} src={xz} alt="" />}
+                                                                {!item.checked && <img style={{ width: '100%' }} className="check-icon" onClick={() => {
+                                                                    handleCheck(item, index, true)
+                                                                }} src={wxz} alt="" />}
 
 
-                                                    </div>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </Form>
@@ -679,23 +684,7 @@ const FireLock = (props) => {
                     </div>}
 
                     {curNav == 4 && <div className="part1">
-                    <Modal className="model-dialog" title="Delete" open={isRemoveOpen} onOk={handleDelAddress}
-                        onCancel={() => {
-                            setisRemoveOpen(false)
-                        }}>
-                        <div className="del-content">
-                            <Form form={form} name="control-hooks">
-                                <Form.Item
-                                    name="address"
-                                    label="Wallet Address"
-                                    className="address-box"
-                                >
-                                    {isRemoveAddress}
 
-                                </Form.Item>
-                            </Form>
-                        </div>
-                    </Modal>
                         <div className="panel-title">
                             <p>Token</p>
                             <div className='tj' >
@@ -732,7 +721,7 @@ const FireLock = (props) => {
 
                                             <div className="col2 address">
                                                 <a href={develop.ethScan + "/address/" + item.address} target="_blank">
-                                                    {formatAddress(item.address)}</a>
+                                                    {item.address}</a>
                                             </div>
                                             <div className="col2 sc1">
                                                 <img src={sc} className="sc" id='scc' />

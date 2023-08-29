@@ -42,6 +42,7 @@ const FireLock = (props) => {
             
             }
         })
+        console.log(_to);
         await handleDealMethod("removeFromWhiteList", [_to])
    
         updateData()

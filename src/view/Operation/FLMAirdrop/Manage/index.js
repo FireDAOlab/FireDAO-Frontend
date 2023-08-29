@@ -239,22 +239,22 @@ const FireLock = (props) => {
 
     const getAdmins = async () => {
         const res = await handleViewMethod("getAdminsLevelTwoList", [])
-        // res.forEach(addr => {
-        //     if (addr.toString().toLowerCase() == state.account.toLowerCase()) {
-        //         setISSecAdmin(true)
-        //         setCurNav(3)
-        //     }
-        // })
+console.log(res);
         let tempArr = []
         res.map((item) => {
-            item.toString().toLowerCase()
             tempArr.push({
                 address: item
             })
         })
         console.log(tempArr);
         setWAdminArr(tempArr)
-
+        res.forEach(addr => {
+            if (addr.toString().toLowerCase() == state.account.toLowerCase()) {
+                setISSecAdmin(true)
+                console.log(addr);
+                setCurNav(3)
+            }
+        })
     }
 
     const handleCheckd = (item, index, val) => {
@@ -432,7 +432,7 @@ const FireLock = (props) => {
             }} closeDialog={() => {
                 setShowAddLevel2(false)
             }} />}
-            {isShowRemove && <RemoveWhiteListAddr delDataArr={adminArr} updateData={() => {
+            {isShowRemove && <RemoveWhiteListAddr  delDataArr={adminArr}  updateData={() => {
                 getAdmins()
             }} closeDialog={() => {
                 setShowRemove(false)
