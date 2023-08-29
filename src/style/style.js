@@ -1,7 +1,9 @@
 import {createGlobalStyle} from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
-
+    
+    ${require('./variable.css')};
+    
   @font-face {
     font-family: "RoBoto-Medium";
     src: url("./font/RobotoMedium.ttf");

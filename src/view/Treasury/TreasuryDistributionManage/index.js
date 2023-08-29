@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useConnect } from "../../../api/contracts";
-import { Pagination, Empty, Button, Select, Descriptions, message, Form, List, Input, notification, Card } from 'antd';
+import { Pagination, Empty, Modal, Button, Select, Descriptions, message, Form, List, Input, notification, Card } from 'antd';
 import { getContractByName, getContractByContract } from "../../../api/connectContract";
 import { dealMethod, viewMethod } from "../../../utils/contractUtil"
 import { useNavigate, useLocation } from "react-router-dom";
@@ -14,6 +14,7 @@ import sc from "../../../imgs/sc.png"
 import wxz from "../../../imgs/wxz.png"
 import xz from "../../../imgs/xz.png"
 const FireLock = (props) => {
+    const { closeDialog, updateData } = props
     let { state, dispatch } = useConnect();
     const [whitelist, setWhitelistArr] = useState([])
     const [allocation, setAllocation] = useState({})
@@ -30,8 +31,9 @@ const FireLock = (props) => {
     const [isShowSubAdd, setShowSubAdd] = useState(false)
 
     const [isShowRemove, setShowRemove] = useState(false)
+    const [isRemoveOpen, setisRemoveOpen] = useState(false)
     const [isShowSubRemove, setShowSubRemove] = useState(false)
-
+    const [isRemoveAddress, setRemoveAddress] = useState('')
     const [intervalTime, setIntervalTime] = useState()
     const [ReputationAmount, setReputationAmount] = useState()
     const [userTime, setUserTime] = useState()
@@ -126,6 +128,30 @@ const FireLock = (props) => {
         }
         setAllocationFundAddress(arr)
     }
+    function pictureStatus(e) {
+        e.target.style.display="none";
+        var dele = document.querySelector('.kk1');
+
+        var sc2 = document.querySelectorAll('#scc');
+        var bj = document.querySelectorAll('#bj1');
+        dele.style.display="block";
+        console.log(dele);
+        for (const i of sc2) {
+            i.style.display = "none"
+        }
+        for (const j of bj) {
+            j.style.display = "block"
+        }
+        console.log(sc2)
+    }
+    const handleCheck = (item, index, val) => {
+        let tempArra = [...allocationFundAddress]
+        console.log(item);
+        item.checked = val
+
+        setAllocationFundAddress(tempArra)
+    }
+
 
     const getTokenList = async () => {
         const length = await handleViewMethod("getTokensLength", [])
@@ -173,6 +199,12 @@ const FireLock = (props) => {
         await handleDealMethod("setWeth", [form.getFieldValue().Weth])
         getWethAddr()
     }
+
+    const  handleDelAddress = async ()=>{
+        await handleDealMethod("removeAddr", [[isRemoveAddress]])
+        updateData()
+        closeDialog()
+    }
     useEffect(async () => {
         let judgeRes = await judgeStatus(state)
         if (!judgeRes) {
@@ -185,7 +217,7 @@ const FireLock = (props) => {
     return (
         <FireLockStyle>
             {isShowSubAdd && <AddCateGoryAddr updateData={() => { getAllocationFundAddress() }} closeDialog={() => { setShowSubAdd(false) }} />}
-            {isShowRemove && <RemoveAddr updateData={() => { getAllocationFundAddress() }} closeDialog={() => { setShowRemove(false) }} />}
+            {isShowRemove && <RemoveAddr  delDataArr={allocationFundAddress}  updateData={() => { getAllocationFundAddress() }} closeDialog={() => { setShowRemove(false) }} />}
 
             <div className="page-title">
                 Distribution Manage
@@ -356,73 +388,110 @@ const FireLock = (props) => {
                     </div>}
 
 
-                    {curNav == 2 && <div className="part1">
-                        <div className="panel-title">
-                            <p>Category</p>
-                            <div className='tj' >
-                                <div type="primary" className='kk' onClick={() => { setShowSubAdd(true) }}>Add</div>
-                                <div type="primary" className='kk' onClick={(e) => {
-                                    // whitelist.ischoosed.length>=1 ?setShowRemove(true): whitelist.ischoosed
-                                    setShowRemove(true)
-                                }}>Mass Delete</div>
-                            </div>
+                    {curNav == 2 &&
 
-                        </div>
+                        <div className="part1">
+                            <Modal className="model-dialog" title="Delete" open={isRemoveOpen} onOk={handleDelAddress}
+                                onCancel={() => {
+                                    setisRemoveOpen(false)
+                                }}>
+                                <div className="del-content">
+                                    <Form form={form} name="control-hooks">
+                                        <Form.Item
+                                            name="address"
+                                            label="Wallet Address"
+                                            className="address-box"
+                                        >
+                                            {isRemoveAddress}
 
-                        <div className="fire-list-box cate">
-                            <div className='listheadert'>
-                                <div className="list-header flex-box1">
-                                    <div className="col1">
-                                        No.
-                                    </div>
-                                    <div className="col1">
-                                        Category
-                                    </div>
-                                    <div className="col1">
-                                        Contract  Address
-                                    </div>
-                                    <div className="col1">
-                                        Percentage
-                                    </div>
-                                    <div className="col1">
-                                        Delete
-                                    </div>
+                                        </Form.Item>
+                                    </Form>
                                 </div>
-                                {
-                                    allocationFundAddress.length == 0 ? <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} /> :
-                                        allocationFundAddress.map((item, index) => (
-                                            <Form className='bdval'>
-                                                <div className="list-item catelist" key={index}>
-                                                    <div className="col1 no">
-                                                        {index + 1}
-                                                    </div>
-                                                    <div className="col1">
+                            </Modal>
+                            <div className="panel-title">
+                                <p>Category</p>
+                                <div className='tj' >
+                                    <div type="primary" className='kk' onClick={() => { setShowSubAdd(true) }}>Add</div>
+                                    <div type="primary" className='kk' onClick={(e) => {
+                                        // whitelist.ischoosed.length>=1 ?setShowRemove(true): whitelist.ischoosed
+                                        pictureStatus(e);
+                                        // setShowRemove(true)
+                                    }}>Mass Delete</div>
+                                     <div type="primary" className='kk1' style={{ display: 'none' }} onClick={() => {
 
-                                                    </div>
-                                                    <div className="col1 address">
-                                                        <a href={develop.ethScan + "/address/" + item.address} target="_blank">
-                                                            {formatAddress(item.address)}</a>
-                                                    </div>
-                                                    <Form.Item className="col1 value"
-                                                        validateFirst={true}
-                                                        rules={[
-                                                            // { required: true, message: 'Please input rate1!' },
-                                                        ]}>
+                                    setShowRemove(true)
+                                }}>Delete</div>
+                                </div>
 
-                                                        <Input placeholder={item.rate} className="dtoo1" />
-                                                        <span className='dtoo1dw'>%</span>
-                                                    </Form.Item>
-                                                    <div className="col1 sc1">
-                                                        <img src={sc} className="sc" id='scc' />
-                                                    </div>
-                                                </div>
-                                            </Form>
-                                        )
-                                        )
-                                }
                             </div>
-                        </div>
-                    </div>}
+
+                            <div className="fire-list-box cate">
+                                <div className='listheadert'>
+                                    <div className="list-header flex-box1">
+                                        <div className="col1">
+                                            No.
+                                        </div>
+                                        <div className="col1">
+                                            Category
+                                        </div>
+                                        <div className="col1">
+                                            Contract  Address
+                                        </div>
+                                        <div className="col1">
+                                            Percentage
+                                        </div>
+                                        <div className="col1">
+                                            Delete
+                                        </div>
+                                    </div>
+                                    {
+                                        allocationFundAddress.length == 0 ? <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} /> :
+                                            allocationFundAddress.map((item, index) => (
+                                                <Form className='bdval'>
+                                                    <div className="list-item catelist" key={index}>
+                                                        <div className="col1 no">
+                                                            {index + 1}
+                                                        </div>
+                                                        <div className="col1">
+
+                                                        </div>
+                                                        <div className="col1 address">
+                                                            <a href={develop.ethScan + "/address/" + item.address} target="_blank">
+                                                                {formatAddress(item.address)}</a>
+                                                        </div>
+                                                        <Form.Item className="col1 value"
+                                                            validateFirst={true}
+                                                            rules={[
+                                                                // { required: true, message: 'Please input rate1!' },
+                                                            ]}>
+
+                                                            <Input placeholder={item.rate} className="dtoo1" />
+                                                            <span className='dtoo1dw'>%</span>
+                                                        </Form.Item>
+                                                        <div className="col1 sc1">
+                                                        <img src={sc} className="sc" id='scc' onClick={() => {
+                                                        setisRemoveOpen(true)
+                                                        setRemoveAddress(item.address)
+                                                    }} />
+                                                    <div className="sc" id='bj1' style={{ display: 'none' }}>
+                                                        {item.checked && <img style={{ width: '100%' }} className="check-icon" onClick={() => {
+                                                            handleCheck(item, index, false)
+                                                        }} src={xz} alt="" />}
+                                                        {!item.checked && <img style={{ width: '100%' }} className="check-icon" onClick={() => {
+                                                            handleCheck(item, index, true)
+                                                        }} src={wxz} alt="" />}
+
+
+                                                    </div>
+                                                        </div>
+                                                    </div>
+                                                </Form>
+                                            )
+                                            )
+                                    }
+                                </div>
+                            </div>
+                        </div>}
                     {curNav == 3 && <div className="part1">
                         <div className="content-item">
                             <div className="panel-title">Require</div>
@@ -610,6 +679,23 @@ const FireLock = (props) => {
                     </div>}
 
                     {curNav == 4 && <div className="part1">
+                    <Modal className="model-dialog" title="Delete" open={isRemoveOpen} onOk={handleDelAddress}
+                        onCancel={() => {
+                            setisRemoveOpen(false)
+                        }}>
+                        <div className="del-content">
+                            <Form form={form} name="control-hooks">
+                                <Form.Item
+                                    name="address"
+                                    label="Wallet Address"
+                                    className="address-box"
+                                >
+                                    {isRemoveAddress}
+
+                                </Form.Item>
+                            </Form>
+                        </div>
+                    </Modal>
                         <div className="panel-title">
                             <p>Token</p>
                             <div className='tj' >
@@ -633,29 +719,29 @@ const FireLock = (props) => {
                                     Delete
                                 </div>
                             </div>
-                            { allocationFundAddress.length == 0 ? <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} /> :
-                            allocationFundAddress.map((item, index) => (
-                                <Form className='bdvalToken'>
-                                    <div className="list-item tokenlist" key={index}>
-                                        <div className="col2 no">
-                                            {index + 1}
-                                        </div>
-                                        <div className='col2'>
+                            {allocationFundAddress.length == 0 ? <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} /> :
+                                allocationFundAddress.map((item, index) => (
+                                    <Form className='bdvalToken'>
+                                        <div className="list-item tokenlist" key={index}>
+                                            <div className="col2 no">
+                                                {index + 1}
+                                            </div>
+                                            <div className='col2'>
+
+                                            </div>
+
+                                            <div className="col2 address">
+                                                <a href={develop.ethScan + "/address/" + item.address} target="_blank">
+                                                    {formatAddress(item.address)}</a>
+                                            </div>
+                                            <div className="col2 sc1">
+                                                <img src={sc} className="sc" id='scc' />
+                                            </div>
 
                                         </div>
-
-                                        <div className="col2 address">
-                                            <a href={develop.ethScan + "/address/" + item.address} target="_blank">
-                                                {item.address}</a>
-                                        </div>
-                                        <div className="col2 sc1">
-                                            <img src={sc} className="sc" id='scc' />
-                                        </div>
-
-                                    </div>
-                                </Form>
-                            )
-                            )}
+                                    </Form>
+                                )
+                                )}
                         </div>
 
                     </div>}

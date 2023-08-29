@@ -12,6 +12,7 @@ import develop from "../../../env"
 import { getPasslist } from "../../../graph/myFireseed";
 import coinInfo from "../../../config/coinInfo";
 import StyleBox from "./style"
+import { formatAddress } from '../../../utils/publicJs';
 let logs = []
 
 const LockList = (props) => {
@@ -550,7 +551,7 @@ const LockList = (props) => {
                                 </div>
                                 <div className="col address">
                                    <a  href={develop.ethScan + "/address/" + item.transferTime} target="_blank">
-                                    {item.transferTime}
+                                    {formatAddress(item.transferTime)}
                                     </a>
                                 </div>
                                 <div className="col pid">

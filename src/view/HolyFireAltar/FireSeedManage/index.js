@@ -18,6 +18,9 @@ const FireLock = (props) => {
     const { closeDialog, updateData } = props
     const [picture, setPicture] = useState();
     let { state, dispatch } = useConnect();
+
+    const [isCheck, setIsCheck] = useState(false)
+
     const [whitelist, setWhitelistArr] = useState([])
     const [curNav, setCurNav] = useState(1)
     const [ownerAddr, setOwner] = useState("")
@@ -28,13 +31,11 @@ const FireLock = (props) => {
     const [isShowAdd, setShowAdd] = useState(false)
     const [isShowRemove, setShowRemove] = useState(false)
     const [isRemoveAddress, setRemoveAddress] = useState('')
-    const [isShowRemoveonly, setShowRemoveonly] = useState(true)
     const [isRemoveOpen, setisRemoveOpen] = useState(false)
     const [activeNav, setNav] = useState(1)
     const [curPage, setCurPage] = useState(1)
     const [pageCount, setPageCount] = useState(20)
     const [total, setTotal] = useState(0)
-    const [ownerArr, setOwnerArr] = useState(['owner0'])
     const [fee, setFee] = useState(0)
     const [whitelistDiscount, setWhitelistDiscount] = useState(0)
     const [referObj, setReferObj] = useState({})
@@ -88,7 +89,7 @@ const FireLock = (props) => {
     }
 
 
-    
+
     const onChangePage = async (page) => {
         getData(page)
         await setCurPage(page)
@@ -157,8 +158,20 @@ const FireLock = (props) => {
     }
     const getWhitelist = async () => {
         const arr = await handleViewMethod("getAirDropList", [])
-        console.log(arr);
-        setWhitelistArr(arr)
+       
+        let tempArr = []
+        arr.map((item) => {
+            tempArr.push({
+                address: item
+            })
+        })
+
+        // tempArr.forEach(item => {
+        //     item.checked = false
+        // })
+        // tempArr.sort()
+        // setIsCheck(false)
+        setWhitelistArr(tempArr)
     }
 
 
@@ -219,91 +232,61 @@ const FireLock = (props) => {
         getWhitelist()
     }
 
-    const handleSetAddress = async () => {
-        let _to = []
-        console.log(form.getFieldValue())
-        for (let i = 0; i < ownerArr.length; i++) {
-            _to.push(form.getFieldValue()["owner" + i])
-        }
 
-        await handleDealMethod("addWhiteListUser", [_to])
-        updateData()
-        closeDialog()
-    }
     const handleDelAddress = async () => {
 
         await handleDealMethod("removeFromWhiteList", [[isRemoveAddress]])
+        updateData()
+        setWhitelistArr()
+        closeDialog()
         getWhitelist()
-    } 
-
-    const removeOwner = (item, index) => {
-        // chooseItem()
-        // let tempArr = [...whitelist]
-        // tempArr.map((item, index) => {
-        //     tempArr.splice(index, 1, tempArr);
-        // })
-
-        let tempArr=[]
-        for (let i = 0; i < whitelist.length; i++) {
-            if (whitelist[i].ischoosed == true) {
-                tempArr.push(whitelist[i])
-            }
-
-        }
-        console.log(tempArr);
-        setWhitelistArr(tempArr)
     }
-    
+
+  
+
     function pictureStatus(e) {
-        e.target.innerHTML = 'Delete';
+        e.target.style.display="none";
+        var dele = document.querySelector('.kk1');
+
         var sc2 = document.querySelectorAll('#scc');
-        var bj = document.querySelectorAll('#bj1')
+        var bj = document.querySelectorAll('#bj1');
+        dele.style.display="block";
+        console.log(dele);
         for (const i of sc2) {
             i.style.display = "none"
-
         }
         for (const j of bj) {
             j.style.display = "block"
         }
-        console.log(sc2);
-        chooseItem()
-        // removeOwner()
-
+        console.log(sc2)
     }
 
 
-    const chooseItem = (item, index) => {
+    const handleCheck = (item, index, val) => {
         let tempArra = [...whitelist]
-        console.log(tempArra);
-        const tempItem = tempArra.map((item, index) => {
+        console.log(item);
+        item.checked = val
 
-            console.log(item);
-
-        })
-        tempItem.push(item)
-        // console.log(tempItem);
-        tempItem.ischoosed = !tempItem.ischoosed
-        tempArra.splice(index, 1, tempItem)
         setWhitelistArr(tempArra)
     }
-
    
-
     useEffect(async () => {
         let judgeRes = await judgeStatus(state)
         if (!judgeRes) {
             return
         }
         await getData()
+    
 
-
-    }, [state.account]);
+    }, [state.account]); 
 
     return (
         <FireLockStyle>
             {isShowAdd && <AddWhiteListAddr updateData={() => { getWhitelist() }} closeDialog={() => { setShowAdd(false) }} />}
-            {isShowRemove && <RemoveWhiteListAddr updateData={() => { getWhitelist() }} closeDialog={() => { setShowRemove(false) }} />}
-            {/* {isShowRemoveonly && <RemoveOnly updateData={() => { getWhitelist() }} closeDialog={() => { setShowRemoveonly(false) }} />} */}
+            {isShowRemove && <RemoveWhiteListAddr 
+            delDataArr={whitelist} 
+            updateData={() => { getWhitelist() }} closeDialog={() => { setShowRemove(false) }} />}
+
             <div className="page-title">
                 FireSeed Manage
             </div>
@@ -514,7 +497,6 @@ const FireLock = (props) => {
                                     className="address-box"
                                 >
                                     {isRemoveAddress}
-
                                 </Form.Item>
                             </Form>
                         </div>
@@ -528,8 +510,11 @@ const FireLock = (props) => {
                                 <div type="primary" className='kk' onClick={(e) => {
 
                                     pictureStatus(e);
-
                                 }}>Mass Delete</div>
+                                <div type="primary" className='kk1' style={{ display: 'none' }} onClick={() => {
+
+                                    setShowRemove(true)
+                                }}>Delete</div>
                             </div>
                         </div>
                         <div className="fire-list-box ffad">
@@ -555,28 +540,33 @@ const FireLock = (props) => {
                                         <Form className='bdval'>
                                             <div className="list-item" key={index}>
                                                 <Form.Item className="col1 no">
-
                                                     {index + 1}
-
                                                 </Form.Item>
                                                 {/* <div className="col1 pid">
                                                         {item}
                                                     </div> */}
                                                 <div className="col1 address">
                                                     <a name="address" href={develop.ethScan + "/address/" + item} target="_blank">
-                                                        {item}</a>
+                                                        {formatAddress(item.address)}
+                                                    </a>
                                                 </div>
 
                                                 <div className="col1 sc1">
-
                                                     <img src={sc} className="sc" id='scc' onClick={() => {
                                                         setisRemoveOpen(true)
-                                                        setRemoveAddress(item)
+                                                        setRemoveAddress(item.address)
                                                     }} />
-                                                <div  onClick={() => { chooseItem(item,index);}}>
-                                                    <img src={item.ischoosed ? xz : wxz}  className="sc" id='bj1' style={{ display: 'none' }} />
-                                                </div>
-                                                    
+                                                    <div className="sc" id='bj1' style={{ display: 'none' }}>
+                                                        {item.checked && <img style={{ width: '100%' }} className="check-icon" onClick={() => {
+                                                            handleCheck(item, index, false)
+                                                        }} src={xz} alt="" />}
+                                                        {!item.checked && <img style={{ width: '100%' }} className="check-icon" onClick={() => {
+                                                            handleCheck(item, index, true)
+                                                        }} src={wxz} alt="" />}
+
+
+                                                    </div>
+
                                                 </div>
 
                                             </div>

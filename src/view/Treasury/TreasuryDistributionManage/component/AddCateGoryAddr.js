@@ -4,6 +4,8 @@ import AddWhiteListAddrStyle from "./AddWhiteListAddrStyle";
 import { Button, Card, Form, Input, notification, Radio, Switch } from "antd";
 import { getContractByName } from "../../../../api/connectContract";
 import { dealMethod } from "../../../../utils/contractUtil";
+import add from "../../../../imgs/add.png";
+import remove1 from "../../../../imgs/remove.png";
 import { UserAddOutlined, UserDeleteOutlined } from "@ant-design/icons";
 const FireLock = (props) => {
     const { closeDialog, updateData } = props
@@ -66,7 +68,7 @@ const FireLock = (props) => {
 
                 <div className="address-list">
                     <div className="fire-list-box1">
-                        <div className="list-header flex-box">
+                        {/* <div className="list-header flex-box">
                             <div className="col">
                                 No.
                             </div>
@@ -77,17 +79,26 @@ const FireLock = (props) => {
                             <div className="col">
                                 Percentage
                             </div>
-                        </div>
+                        </div> */}
                         <Form form={form} name="control-hooks">
                             {ownerArr.map((item, index) => {
+                               
                                 return (
                                     <div className="address-item" key={index}>
-                                        <Form.Item className="col no1"  >
+                                        <Form.Item className="col no1"
+                                            label='No.'>
                                             {index + 1}
                                         </Form.Item >
                                         <Form.Item
+                                          
+                                            label='Category'
+                                            className="col"
+                                        >
+                                            <Input />
+                                        </Form.Item>
+                                        <Form.Item
                                             name={item}
-
+                                            label='Contract Address'
                                             className="col address1"
                                         >
                                             <Input />
@@ -95,18 +106,20 @@ const FireLock = (props) => {
                                         <Form.Item
                                             name={"rate" + index}
                                             className="col number"
+                                            label='Percentage'
                                         >
                                             <Input type="number" max={100} />
 
                                         </Form.Item>
-                                        {/* {(ownerArr.length > 1 && index == 0) && (
-                                            <UserDeleteOutlined className="icon" onClick={() => {
-                                                removeOwner()
-                                            }} />)} */}
                                         {(index == ownerArr.length - 1) && (
-                                            <UserAddOutlined className="icon" onClick={() => {
+                                             <img className="icon" src={add} onClick={() => {
                                                 addOwner()
                                             }} />)}
+                                        {(ownerArr.length >= 1 && index > 0) && (
+                                            <img className="icon" src={remove1} onClick={() => {
+                                                removeOwner()
+                                            }} />)}
+                                        
                                     </div>
                                 )
                             })}

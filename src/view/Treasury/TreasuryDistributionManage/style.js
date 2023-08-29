@@ -16,9 +16,7 @@ export default   styled.div`
 }
 .ant-form-item-control-input{
   border-radius:25px;
-  line-height:40px;
-
-  
+  line-height:35px;
 }
 
 .ant-form-item-control-input-content{
@@ -53,7 +51,7 @@ padding: 0px 10px;
   margin-bottom:0px;
 }
 .ant-form-item-row{
-  margin: 5px 0em ;
+  margin: 0em ;
 }
 .max-btn{
           background: linear-gradient(32deg, #FF4E50 0%, #F9D423 100%);
@@ -227,6 +225,18 @@ font-size:16px;
   width: 27%;
 }
 .kk{
+  width: 45%;
+  height: 40px;
+  line-height:40px;
+  background: rgba(255,255,255,0.15);
+border-radius: 34px 34px 34px 34px;
+font-size:16px;
+border: 1px solid rgba(255,255,255,0.15);
+text-align:center;
+font-weight:400;
+margin-right:10px;
+}
+.kk1{
   width: 45%;
   height: 40px;
   line-height:40px;
@@ -431,7 +441,7 @@ margin-right:10px;
   margin-bottom:0px;
 }
 .ant-form-item-row{
-  margin: 5px 0em ;
+  margin:0em ;
 }
 .max-btn{
           background: linear-gradient(32deg, #FF4E50 0%, #F9D423 100%);
@@ -605,6 +615,18 @@ font-size:16px;
   width: 27%;
 }
 .kk{
+  width: 45%;
+  height: 40px;
+  line-height:40px;
+  background: rgba(255,255,255,0.15);
+border-radius: 34px 34px 34px 34px;
+font-size:16px;
+border: 1px solid rgba(255,255,255,0.15);
+text-align:center;
+font-weight:400;
+margin-right:10px;
+}
+.kk1{
   width: 45%;
   height: 40px;
   line-height:40px;
@@ -811,7 +833,7 @@ color: white;
 margin-bottom:0px;
 }
 .ant-form-item-row{
-margin: 5px 0em ;
+margin: 0em ;
 }
 .max-btn{
       background: linear-gradient(32deg, #FF4E50 0%, #F9D423 100%);
@@ -998,6 +1020,19 @@ text-align:center;
 font-weight:400;
 margin-right:10px;
 }
+.kk1{
+    width: 45%;
+    height: 40px;
+    line-height: 40px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 34px;
+    font-size: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    text-align: center;
+    font-weight: 400;
+    margin-right: 10px;
+}
+            }
 .sc{
 width: 25px;
 }
@@ -1192,7 +1227,7 @@ color: white;
 margin-bottom:0px;
 }
 .ant-form-item-row{
-margin: 5px 0em ;
+margin: 0em ;
 }
 .max-btn{
       background: linear-gradient(32deg, #FF4E50 0%, #F9D423 100%);
@@ -1374,6 +1409,11 @@ text-align:center;
 font-weight:400;
 margin-right:10px;
 }
+.kk1{
+              font-size:14px;
+              height: 30px;
+              line-height:30px;
+            }
 .sc{
 width: 25px;
 }

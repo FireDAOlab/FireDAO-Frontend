@@ -30,8 +30,11 @@ export default styled.div`
       height: 25px;
       margin-top: 6px;
     }
-
+.sc{
+    width: 25px;
+}
 @media screen and (min-width: 1950px){
+
     .panel-box {
     width: 100%;
     .panel-container{
@@ -53,7 +56,7 @@ export default styled.div`
 
     .fire-nav-list {
       height: 50px;
-    width:100%;
+    width:85%;
     line-height:15px;
     padding: 0em;
     .nav-list{
@@ -303,6 +306,7 @@ background: linear-gradient(32deg, #FF4E50 0%, #F9D423 100%);
 width: 100%;
 .panel-container{
     .panel-title{
+        
         display: flex; 
         justify-content: space-between ; 
         .tj{
@@ -320,7 +324,18 @@ text-align:center;
 font-weight:400;
 margin-right:10px;
 }
-
+.kk1{
+  width: 45%;
+  height: 40px;
+  line-height:40px;
+  background: rgba(255,255,255,0.15);
+border-radius: 34px 34px 34px 34px;
+font-size:16px;
+border: 1px solid rgba(255,255,255,0.15);
+text-align:center;
+font-weight:400;
+margin-right:10px;
+}
 }
 .search-container {
             margin-bottom:1em;
@@ -343,6 +358,11 @@ margin-right:10px;
             }
           }
     }
+    .bdval{
+    &:last-child .list-item{
+    border-bottom:none!important;
+    }
+}
 .fire-list-box-admin{
     margin:1.5em 0em;
         .flex-box1{
@@ -373,9 +393,6 @@ margin-right:10px;
         }
       }
         .list-item-admin {
-            &:last-child{
-                border-bottom: none;
-            }
             padding:1em 0.5em;
             width: 94%;
             margin: 0em auto;
@@ -651,7 +668,7 @@ text-align:left;
     .fire-nav-list {
         padding: 0em;
       height: 50px;
-    width:100%;
+    width:85%;
     line-height:15px;
     .nav-list{
         width:38%;
@@ -896,6 +913,10 @@ background: linear-gradient(32deg, #FF4E50 0%, #F9D423 100%);
         }
     }
   }
+.scc{
+    
+}
+
 .setl2{
 width: 100%;
 .panel-container{
@@ -917,7 +938,18 @@ text-align:center;
 font-weight:400;
 margin-right:10px;
 }
-
+.kk1{
+  width: 45%;
+  height: 40px;
+  line-height:40px;
+  background: rgba(255,255,255,0.15);
+border-radius: 34px 34px 34px 34px;
+font-size:16px;
+border: 1px solid rgba(255,255,255,0.15);
+text-align:center;
+font-weight:400;
+margin-right:10px;
+}
 }
 .search-container {
             margin-bottom:1em;
@@ -940,6 +972,11 @@ margin-right:10px;
             }
           }
     }
+    .bdval{
+    &:last-child .list-item{
+    border-bottom:none!important;
+    }
+}
 .fire-list-box-admin{
     margin:1.5em 0em;
         .flex-box1{
@@ -965,13 +1002,10 @@ margin-right:10px;
             width:10%;
             margin-left:410px;
           }
-         
+          
         }
       }
         .list-item-admin {
-            &:last-child{
-                border-bottom: none;
-            }
             padding:1em 0.5em;
             width: 94%;
             margin: 0em auto;
@@ -1248,7 +1282,7 @@ text-align:left;
     .fire-nav-list {
         padding: 0em;
         height: 45px;
-    width:100%;
+    width:95%;
     line-height:15px;
     .nav-list{
         width:42%;
@@ -1322,7 +1356,7 @@ color: #8A8080;
                         width: 100%;
                         height: 100%;
                         color: white;
-                        font-size:14px;
+                        font-size:13px;
                         padding: 0em 1em;
                         line-height:40px;
                     }
@@ -1410,7 +1444,7 @@ background: linear-gradient(32deg, #FF4E50 0%, #F9D423 100%);
                         width: 100%;
                         height: 100%;
                         color: white;
-                        font-size:14px;
+                        font-size:13px;
                         padding: 0em 1em;
                         line-height:40px;
                     }
@@ -1512,7 +1546,18 @@ text-align:center;
 font-weight:400;
 margin-right:10px;
 }
-
+.kk1{
+    width: 45%;
+    height: 40px;
+    line-height: 40px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 34px;
+    font-size: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    text-align: center;
+    font-weight: 400;
+    margin-right: 10px;
+}
 }
 .search-container {
             margin-bottom:1em;
@@ -1535,6 +1580,11 @@ margin-right:10px;
             }
           }
     }
+    .bdval{
+    &:last-child .list-item{
+    border-bottom:none!important;
+    }
+}
 .fire-list-box-admin{
     margin:1.5em 0em;
         .flex-box1{
@@ -1564,9 +1614,7 @@ margin-right:10px;
         }
       }
         .list-item-admin {
-            &:last-child{
-                border-bottom: none;
-            }
+            
             padding:1em 0.5em;
             width: 94%;
             margin: 0em auto;
@@ -1682,7 +1730,7 @@ text-align:left;
         .selectbox{
             display: flex; 
             justify-content:end;
-            width: 77%;
+            width: 74%;
             .tj1{
                 margin-right:5px;
   width: 17%;
@@ -1833,6 +1881,7 @@ text-align:left;
     font-weight: bold;
     padding: 0px;
     color: white;
+    display:flex;
   }
   .header-nav {
     padding: 0px;
@@ -2086,14 +2135,14 @@ background: linear-gradient(32deg, #FF4E50 0%, #F9D423 100%);
 width: 100%;
 .panel-container{
     .panel-title{
-        display: block; 
+        display: flex;
+        justify-content:space-between; 
         .tj{
-            margin-top:0.5em;
   display: flex;
-  width: 100%;
-
+  justify-content:space-between; 
+width: 60%;
   .kk{
-  width: 30%;
+    width: 44;
   height: 30px;
   line-height:30px;
   background: rgba(255,255,255,0.15);
@@ -2102,9 +2151,19 @@ font-size:14px;
 border: 1px solid rgba(255,255,255,0.15);
 text-align:center;
 font-weight:400;
-margin-right:10px;
+margin-right:5px;
+&:last-child{
+    margin-right:0px;
 }
-
+}
+.kk1{
+    font-size:14px;
+              height: 30px;
+              line-height:30px;
+&:last-child{
+    margin-right:0px;
+}
+}
 }
 .search-container {
             margin:0.5em 0em;
@@ -2128,10 +2187,15 @@ margin-right:10px;
           }
     }
    
+    .bdval{
+    &:last-child .list-item{
+    border-bottom:none!important;
+    }
+}
 .fire-list-box-admin{
     margin:1.5em 0em;
         .flex-box1{
-          padding: 20px 1.8em;
+          padding: 20px 1.5em;
           font-size:14px;
         }
         .flex-box1,  .list-item{
@@ -2150,16 +2214,15 @@ margin-right:10px;
           }
 
           &:nth-child(3) {
-            width:28%;
-            margin-left:10px;
+            width:16%;
+            margin-left:43px;
           }
          
         }
       }
         .list-item-admin {
-            &:last-child{
-                border-bottom: none;
-            }
+        
+            
             padding:1em 0.5em;
             width: 94%;
             margin: 0em auto;

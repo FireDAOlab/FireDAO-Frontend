@@ -31,6 +31,9 @@ import checkActiveIcon from ".././../../../imgs/svg/checkbox-checked-active.svg"
 import { formatAddress } from "../../../../utils/publicJs";
 import develop from "../../../../env"
 import BigNumber from "bignumber.js";
+import sc from "../../../../imgs/sc.png"
+import wxz from "../../../../imgs/wxz.png"
+import xz from "../../../../imgs/xz.png"
 import search from '../../../../imgs/search.png'
 import { showNum } from "../../../../utils/bigNumberUtil";
 import TextArea from "antd/es/input/TextArea";
@@ -39,11 +42,13 @@ import { format } from 'url';
 const FireLock = (props) => {
     let { state, dispatch } = useConnect();
     const [total, setTotal] = useState(0)
+    const [isRemoveOpen, setisRemoveOpen] = useState(false)
     const [curPage, setCurPage] = useState(1)
     const [pageCount, setPageCount] = useState(20)
     const [whitelist, setWhitelistArr] = useState([])
     const [flmDecimal, setFLMDecimal] = useState(0)
     const [adminArr, setWAdminArr] = useState([])
+    const [isRemoveAddress, setRemoveAddress] = useState('')
     const [isSecAdmin, setISSecAdmin] = useState(true)
     const [isPause, setIsPause] = useState(false)
     const [isModifyMolOpen, setIsModifyMolOpen] = useState(false)
@@ -88,10 +93,10 @@ const FireLock = (props) => {
     };
     const onChange = (checked) => {
         console.log(`switch to ${checked}`);
-        if(isPause){
+        if (isPause) {
             unPause()
         }
-        else{
+        else {
             pause()
         }
     };
@@ -215,15 +220,49 @@ const FireLock = (props) => {
         setTotal(resArr.length)
     }
 
+    function pictureStatus(e) {
+        e.target.style.display = "none";
+        var dele = document.querySelector('.kk1');
+
+        var sc2 = document.querySelectorAll('#scc');
+        var bj = document.querySelectorAll('#bj1');
+        dele.style.display = "block";
+        console.log(dele);
+        for (const i of sc2) {
+            i.style.display = "none"
+        }
+        for (const j of bj) {
+            j.style.display = "block"
+        }
+        console.log(sc2)
+    }
+
     const getAdmins = async () => {
         const res = await handleViewMethod("getAdminsLevelTwoList", [])
-        setWAdminArr(res)
-        res.forEach(addr => {
-            if (addr.toString().toLowerCase() == state.account.toLowerCase()) {
-                setISSecAdmin(true)
-                setCurNav(3)
-            }
+        // res.forEach(addr => {
+        //     if (addr.toString().toLowerCase() == state.account.toLowerCase()) {
+        //         setISSecAdmin(true)
+        //         setCurNav(3)
+        //     }
+        // })
+        let tempArr = []
+        res.map((item) => {
+            item.toString().toLowerCase()
+            tempArr.push({
+                address: item
+            })
         })
+        console.log(tempArr);
+        setWAdminArr(tempArr)
+
+    }
+
+    const handleCheckd = (item, index, val) => {
+        let tempArra = [...adminArr]
+        console.log(item);
+        item.checked = val
+
+        setWAdminArr(tempArra)
     }
     const getFLMAddr = async () => {
         const res = await handleViewMethod("flm", [])
@@ -241,6 +280,7 @@ const FireLock = (props) => {
     }
     const unPause = async () => {
         await handleDealMethod("unpause", [])
+        console.log();
         getISPause()
     }
     const transferOwnership = async () => {
@@ -321,13 +361,13 @@ const FireLock = (props) => {
         await handleDealMethod("setUserAmount", [_to, _amount, infoString])
         getWList()
     }
-   
+
     const setFlm = async (addr) => {
         await handleDealMethod("setFlm", [form.getFieldValue().flmAddr])
         getFLMAddr()
     }
     const removeAdminsLevelTwo = async (addr) => {
-        await handleDealMethod("removeAdminsLevelTwo", [[addr]])
+        await handleDealMethod("removeAdminsLevelTwo", [[isRemoveAddress]])
         getAdmins()
     }
     const deposit = async () => {
@@ -360,9 +400,11 @@ const FireLock = (props) => {
             getTokenBalance()
         }
     }, [coinAddr]);
+
     const handleCheck = (item, index, val) => {
         const tempArr = [...whitelist]
         item.checked = val
+        console.log(item);
         tempArr[index] = item
         setWhitelistArr(tempArr)
     }
@@ -370,7 +412,9 @@ const FireLock = (props) => {
         const tempArr = [...whitelist]
         tempArr.forEach(item => {
             item.checked = val
+
         })
+        console.log(tempArr);
         setWhitelistArr(tempArr)
     }
     return (
@@ -388,7 +432,7 @@ const FireLock = (props) => {
             }} closeDialog={() => {
                 setShowAddLevel2(false)
             }} />}
-            {isShowRemove && <RemoveWhiteListAddr updateData={() => {
+            {isShowRemove && <RemoveWhiteListAddr delDataArr={adminArr} updateData={() => {
                 getAdmins()
             }} closeDialog={() => {
                 setShowRemove(false)
@@ -409,7 +453,7 @@ const FireLock = (props) => {
                                 <div className={"nav-item " + (curNav == 3 ? "active" : "")} onClick={() => {
                                     setCurNav(3)
                                 }}>
-                                    Set Admin Level2
+                                    Set Admin L2
                                 </div>
                             </div>)
                         }
@@ -457,16 +501,16 @@ const FireLock = (props) => {
 
                                     </Form>
                                     <div className="status">
-                                        <div className='pause'>Contract Status:  
-                                        {/* {isPause ? 'Pause' : 'Running'} */}
+                                        <div className='pause'>Contract Status:
+                                            {/* {isPause ? 'Pause' : 'Running'} */}
                                         </div>
                                         <Form form={form} name="control-hooks">
-                                        <div className='statues'>
-                                            <p ><span>Running</span>{ <Switch checked={!isPause}  onChange={onChange}  />}</p>
-                                            <p ><span>Pause</span>{<Switch checked={isPause} onChange={onChange}  />}</p>
-                                        </div>
+                                            <div className='statues'>
+                                                <p ><span>Running</span>{<Switch checked={!isPause} onChange={onChange} />}</p>
+                                                <p ><span>Pause</span>{<Switch checked={isPause} onChange={onChange} />}</p>
+                                            </div>
                                         </Form>
-                                       
+
                                     </div>
                                     <Button type="primary" className="max-btn" onClick={() => {
                                         transferOwnership()
@@ -737,7 +781,7 @@ const FireLock = (props) => {
                         <div className="panel-box">
                             <div className="panel-container">
                                 <div className="panel-title">
-                                    Set Airdrop List
+                                    <span>Set Airdrop List</span>
                                     <div className="tj2">
 
                                         <div type="primary" className='kk' onClick={() => {
@@ -799,7 +843,7 @@ const FireLock = (props) => {
                                                     }} src={checkActiveIcon} alt="" />}
 
                                                     <Button onClick={() => {
-                                                        setIsModifyMolOpen(true)
+                                                        setIsModifyMolOpen(false)
                                                         getModifList()
                                                     }}>Modify</Button>
                                                 </div>
@@ -816,7 +860,7 @@ const FireLock = (props) => {
                                                             {index + 1}
                                                         </div>
                                                         <div className="col address">
-                                                            <a>
+                                                            <a >
                                                                 {item.user}
                                                             </a>
                                                         </div>
@@ -885,165 +929,206 @@ const FireLock = (props) => {
                     </div>
 
                 }
-                {curNav == 3 && <div className="panel-box setl2">
-                    <div className="panel-container ">
+                {curNav == 3 &&
+                    <div className="panel-box setl2">
 
-                        <div className="panel-title" >
-                            Set Admin Level2
-                            <div className='tj'>
-                                <div type="primary" className='kk' onClick={() => {
-                                    setShowAddLevel2(true)
-                                }}>Add</div>
-                                <div type="primary" className='kk' onClick={() => {
-                                    setShowRemove(true)
-                                }}>Mass Delete</div>
+                        <Modal className="model-dialog" title="Delete" open={isRemoveOpen} onOk={removeAdminsLevelTwo}
+                            onCancel={() => {
+                                setisRemoveOpen(false)
+                            }}>
+                            <div className="del-content">
+                                <Form form={form} name="control-hooks">
+                                    <Form.Item
+                                        name="address"
+                                        label="Wallet Address"
+                                        className="address-box"
+                                    >
+                                        {isRemoveAddress}
+
+                                    </Form.Item>
+                                </Form>
                             </div>
-                        </div>
-                        <div className="fire-list-box fire-list-box-admin">
-                            <div className="list-header flex-box1">
-                                <div className="col">
-                                    No.
-                                </div>
-                                <div className="col">
-                                    Address
-                                </div>
-                                <div className="col">
-                                    Delete
-                                </div>
+                        </Modal>
+                        <div className="panel-container ">
 
+                            <div className="panel-title" >
+                                <span>Set Admin L2</span>
+                                <div className='tj'>
+                                    <div type="primary" className='kk' onClick={() => {
+                                        setShowAddLevel2(true)
+                                    }}>Add</div>
+                                    <div type="primary" className='kk' onClick={(e) => {
+                                        pictureStatus(e);
+                                        //    setShowRemove(true)
+                                    }}>Mass Delete</div>
+                                    <div type="primary" className='kk1' style={{ display: 'none' }} onClick={() => {
+
+                                        setShowRemove(true)
+                                    }}>Delete</div>
+                                </div>
                             </div>
-                            {adminArr.map((item, index) => {
-                                return (<div className="list-item list-item-admin" key={index}>
-                                    <div className="col no">
-                                        {index + 1}
-                                    </div>
-
-                                    <div className="col address" href={develop.ethScan + "/address/" + item} target="_blank">
-                                        <a>{item}</a>
-                                    </div>
-                                    <div className="col">
-                                        <Button onClick={() => {
-                                            removeAdminsLevelTwo(item)
-                                        }}>Delete
-                                        </Button>
-                                    </div>
-                                </div>)
-                            })}
-                        </div>
-                    </div>
-
-                    <div className="panel-container">
-                        <div className="panel-title">
-                            Set Airdrop User Amount
-                            <div className="search-container">
-                                <form className="search-box">
-                                    <Input style={{ borderRadius: '50px' }}
-                                        placeholder="Search"
-                                        value={searchContent} onChange={(e) => {
-                                            setSearchContent(e.target.value)
-                                            if (!e.target.value) setShowSearch(false)
-                                        }} allowClear />
-                                    <Button className="search-btnant-btn ant-btn-primary search-btn" style={{ width: '45px', borderRadius: '45px', height: '40px' }} onClick={() => {
-                                        handleSearch()
-                                    }}>
-                                        <img src={search} style={{ width: '25px', margin: '0px -10px' }} />
-                                    </Button>
-                                </form>
-                            </div>
-                        </div>
-
-                        <div className="fire-list-box fire-list-box-airdropAmount">
-                            <div className='listheadert'>
-                                <div className="list-header flex-box2">
+                            <div className="fire-list-box fire-list-box-admin">
+                                <div className="list-header flex-box1">
                                     <div className="col">
                                         No.
                                     </div>
-
                                     <div className="col">
-                                        Address
+                                        Wallet Address
                                     </div>
                                     <div className="col">
-                                        Amount
-                                    </div>
-                                    <div className="col">
-                                        Set Amount
+                                        Delete
                                     </div>
 
                                 </div>
-                                {!showSearch && curPage && whitelist.map((item, index) => {
-                                    if (index >= pageCount * (curPage - 1) && index < pageCount * curPage) {
-                                        return (
-                                            <div className="list-item list-item-airdropA"
-                                                key={index}
-                                            >
-                                                <div className="col no">
-                                                    {index + 1}
-                                                </div>
-                                                <div className="col address">
-                                                    <a href={develop.ethScan + "/address/" + item.user} target="_blank">
-                                                        {formatAddress((item.user))}
-                                                    </a>
-                                                </div>
-                                                <div className="col">
-                                                    {showNum(item.amount / 10 ** flmDecimal)}
-                                                </div>
-                                                <div className="col">
-                                                    {!item.checked && <img className="check-icon" onClick={() => {
-                                                        handleCheck(item, index, true)
-                                                    }} src={checkIcon} alt="" />}
-                                                    {item.checked && <img className="check-icon" onClick={() => {
-                                                        handleCheck(item, index, false)
-                                                    }} src={checkActiveIcon} alt="" />}
-                                                    <Button className="eremove-btn" onClick={() => {
-                                                        // removeWhiteList(item.user)
-                                                        setIsSetAmountOpen(true)
-                                                        getSingleModifList(item)
-                                                    }}>Set Amount</Button>
-                                                </div>
+                                {adminArr.map((item, index) =>
+                                (<Form className='bdval'>
+                                    <div className="list-item list-item-admin" key={index}>
+
+                                        <div className="col no">
+                                            {index + 1}
+                                        </div>
+
+                                        <div className="col address" href={develop.ethScan + "/address/" + item} target="_blank">
+                                            <a name="address" href={develop.ethScan + "/address/" + item} target="_blank">
+                                                {formatAddress(item.address)}</a>
+                                        </div>
+
+                                        <div className="col sc1">
+                                            <img src={sc} className="sc" id='scc' onClick={() => {
+                                                setisRemoveOpen(true)
+                                                setRemoveAddress(item.address)
+                                            }} />
+                                            <div className="sc" id='bj1' style={{ display: 'none' }}>
+                                                {item.checked && <img style={{ width: '100%' }} className="check-icon" onClick={() => {
+                                                    handleCheckd(item, index, false)
+                                                }} src={xz} alt="" />}
+                                                {!item.checked && <img style={{ width: '100%' }} className="check-icon" onClick={() => {
+                                                    handleCheckd(item, index, true)
+                                                }} src={wxz} alt="" />}
+
+
                                             </div>
-                                        )
-                                    }
 
-                                })}
+                                        </div>
 
-                                {showSearch && whitelist.map((item, index) => {
-                                    if (item.user.toLowerCase() == searchContent.toString().toLowerCase()) {
-                                        return (
-                                            <div className="list-item list-item-airdropA" key={index}>
-                                                <div className="col no">
-                                                    {index + 1}
-                                                </div>
-                                                <div className="col address">
-                                                <a href={develop.ethScan + "/address/" + item.user} target="_blank">
-                                                        {item.user}
-                                                    </a>
-                                                </div>
-                                                <div className="col">
-                                                    {showNum(item.amount / 10 ** flmDecimal)}
-                                                </div>
-                                                <div className="col">
-                                                    <Button onClick={() => {
-                                                        // removeWhiteList(item.user)
-                                                        setIsSetAmountOpen(true)
-                                                        getSingleModifList(item)
-                                                    }}>Set Amount</Button>
-                                                </div>
-                                            </div>)
-                                    }
-                                })}
+                                    </div>
+                                </Form>)
+                                )}
                             </div>
                         </div>
-                        <div className="pagination">
-                            {
-                                <Pagination current={curPage} showSizeChanger
-                                    onShowSizeChange={handleShowSizeChange}
-                                    onChange={onChangePage} total={total}
-                                    defaultPageSize={pageCount} />
-                            }
-                        </div>
-                    </div>
 
-                </div>
+                        <div className="panel-container">
+                            <div className="panel-title">
+                                Set Airdrop User Amount
+                                <div className="search-container">
+                                    <form className="search-box">
+                                        <Input style={{ borderRadius: '50px' }}
+                                            placeholder="Search"
+                                            value={searchContent} onChange={(e) => {
+                                                setSearchContent(e.target.value)
+                                                if (!e.target.value) setShowSearch(false)
+                                            }} allowClear />
+                                        <Button className="search-btnant-btn ant-btn-primary search-btn" style={{ width: '45px', borderRadius: '45px', height: '40px' }} onClick={() => {
+                                            handleSearch()
+                                        }}>
+                                            <img src={search} style={{ width: '25px', margin: '0px -10px' }} />
+                                        </Button>
+                                    </form>
+                                </div>
+                            </div>
+
+                            <div className="fire-list-box fire-list-box-airdropAmount">
+                                <div className='listheadert'>
+                                    <div className="list-header flex-box2">
+                                        <div className="col">
+                                            No.
+                                        </div>
+
+                                        <div className="col">
+                                            Address
+                                        </div>
+                                        <div className="col">
+                                            Amount
+                                        </div>
+                                        <div className="col">
+                                            Set Amount
+                                        </div>
+
+                                    </div>
+                                    {!showSearch && curPage && whitelist.map((item, index) => {
+                                        if (index >= pageCount * (curPage - 1) && index < pageCount * curPage) {
+                                            return (
+                                                <div className="list-item list-item-airdropA"
+                                                    key={index}
+                                                >
+                                                    <div className="col no">
+                                                        {index + 1}
+                                                    </div>
+                                                    <div className="col address">
+                                                        <a href={develop.ethScan + "/address/" + item.user} target="_blank">
+                                                            {formatAddress((item.user))}
+                                                        </a>
+                                                    </div>
+                                                    <div className="col">
+                                                        {showNum(item.amount / 10 ** flmDecimal)}
+                                                    </div>
+                                                    <div className="col">
+                                                        {!item.checked && <img className="check-icon" onClick={() => {
+                                                            handleCheck(item, index, true)
+                                                        }} src={checkIcon} alt="" />}
+                                                        {item.checked && <img className="check-icon" onClick={() => {
+                                                            handleCheck(item, index, false)
+                                                        }} src={checkActiveIcon} alt="" />}
+                                                        <Button className="eremove-btn" onClick={() => {
+                                                            // removeWhiteList(item.user)
+                                                            setIsSetAmountOpen(true)
+                                                            getSingleModifList(item)
+                                                        }}>Set Amount</Button>
+                                                    </div>
+                                                </div>
+                                            )
+                                        }
+
+                                    })}
+
+                                    {showSearch && whitelist.map((item, index) => {
+                                        if (item.user.toLowerCase() == searchContent.toString().toLowerCase()) {
+                                            return (
+                                                <div className="list-item list-item-airdropA" key={index}>
+                                                    <div className="col no">
+                                                        {index + 1}
+                                                    </div>
+                                                    <div className="col address">
+                                                        <a href={develop.ethScan + "/address/" + item.user} target="_blank">
+                                                            {item.user}
+                                                        </a>
+                                                    </div>
+                                                    <div className="col">
+                                                        {showNum(item.amount / 10 ** flmDecimal)}
+                                                    </div>
+                                                    <div className="col">
+                                                        <Button onClick={() => {
+                                                            // removeWhiteList(item.user)
+                                                            setIsSetAmountOpen(true)
+                                                            getSingleModifList(item)
+                                                        }}>Set Amount</Button>
+                                                    </div>
+                                                </div>)
+                                        }
+                                    })}
+                                </div>
+                            </div>
+                            <div className="pagination">
+                                {
+                                    <Pagination current={curPage} showSizeChanger
+                                        onShowSizeChange={handleShowSizeChange}
+                                        onChange={onChangePage} total={total}
+                                        defaultPageSize={pageCount} />
+                                }
+                            </div>
+                        </div>
+
+                    </div>
                 }
             </div>
             }
