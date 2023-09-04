@@ -222,7 +222,7 @@ const FIDList = (props) => {
                                         </div>
                                         <div className="col address">
                                             <a href={develop.ethScan + "/address/" + item.soulAccount} target="_blank">
-                                                {item.soulAccount}
+                                                {formatAddress(item.soulAccount)}
                                             </a>
                                         </div>
                                         <div className="col">

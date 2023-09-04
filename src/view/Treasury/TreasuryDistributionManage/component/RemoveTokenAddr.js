@@ -1,51 +1,47 @@
 import React, {useEffect, useRef, useState} from 'react';
 import {useConnect} from "../../../../api/contracts";
-import AddWhiteListAddrStyle from "./AddWhiteListAddrStyle";
+import RemoveAddrStyle from "./RemoveAddrStyle";
 import {Button, Card, Form, Input, notification, Radio, Switch} from "antd";
 import {getContractByName} from "../../../../api/connectContract";
 import {dealMethod} from "../../../../utils/contractUtil";
 import {UserAddOutlined, UserDeleteOutlined} from "@ant-design/icons";
 const FireLock = (props) => {
     const {closeDialog,updateData} = props
-console.log(props);
+
     let {state, dispatch} = useConnect();
     const [form] = Form.useForm();
     const [ownerArr, setOwnerArr] = useState(['owner0'])
-    const removeOwner = () => {
-        let tempArr = Object.assign([], ownerArr)
-        tempArr.shift()
-        setOwnerArr(tempArr)
-    }
-    const addOwner = () => {
-        let tempArr = Object.assign([], ownerArr)
-        tempArr.push('owner' + tempArr.length)
-        setOwnerArr(tempArr)
-    }
 
     const handleDealMethod = async (name, params) => {
-        let contractTemp = await getContractByName("MintFireSeed", state.api,)
+        let contractTemp = await getContractByName("Reputation", state.api,)
         if (!contractTemp) {
         }
         return dealMethod(contractTemp, state.account, name, params)
     }
+    const delDate = (item, index) => {
+
+        let tempArr = []
+        props.delDataArr.map((item, index) => {
+            if (item.checked == true) {
+                tempArr.push(item)
+            }
+        })
+        setOwnerArr(tempArr)
+    }
 
 
     const  handleSetAddress = async ()=>{
-        let  _to = []
-        for (let i = 0; i < ownerArr.length; i++) {
-            _to.push(form.getFieldValue()["owner" + i])
-        }
-        await handleDealMethod("removeFromWhiteList",[])
+        await handleDealMethod("deleteSubToken", [form.getFieldValue().address])
         updateData()
         closeDialog()
     }
     useEffect(() => {
+        delDate()
     }, []);
 
     return (
-        <AddWhiteListAddrStyle>
+        <RemoveAddrStyle>
             <div className="mask">
-
             </div>
             <div className="dialog-content">
                 <div className="header">
@@ -64,36 +60,24 @@ console.log(props);
 
                 <div className="address-list">
                     <Form form={form} name="control-hooks">
-                    {ownerArr.map((item, index) => {
-                        return (
-                            <div className="address-item" key={index}>
-
-                                <Form.Item
-                                    name={item}
-                                    label="Wallet Address"
-                                    className="address"
-                                >
-                                    <Input placeholder={this.props.a} />
-                                </Form.Item>
-
-                                {/* {(ownerArr.length > 1 && index == 0) && (
-                                    <UserDeleteOutlined className="icon" onClick={() => {
-                                        removeOwner()
-                                    }}/>)}
-                                {(index == ownerArr.length - 1) && (
-                                    <UserAddOutlined className="icon" onClick={() => {
-                                        addOwner()
-                                    }}/>)} */}
-                            </div>
-                        )
-                    })}
+                        <div className="address-item">
+                            <Form.Item
+                                name="address"
+                                label="Address"
+                                className="address"
+                            >
+                                <div className="flex-box">
+                                    <Input/>
+                                </div>
+                            </Form.Item>
+                        </div>
                     </Form>
                 </div>
                 <Button className="sub-btn"  onClick={handleSetAddress} type="primary">
                     Submit
                 </Button>
             </div>
-        </AddWhiteListAddrStyle>
+        </RemoveAddrStyle>
     )
 }
 export default FireLock

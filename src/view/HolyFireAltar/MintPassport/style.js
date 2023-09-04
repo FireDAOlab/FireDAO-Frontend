@@ -268,7 +268,9 @@ img{
       font-size: 16px;
       height: 100%;
     }
-
+.panel-title{
+    /* color: var(--mainColor)!important; */
+}
     .panel-box {
       .panel-container {
         width: 100%;

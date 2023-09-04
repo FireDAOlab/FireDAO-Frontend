@@ -1379,7 +1379,7 @@ justify-content: space-between;
     color: #8A8080;
     display: flex;
     align-items: center;
-    font-size: 16px;
+    font-size: 15px;
     white-space: nowrap;
     strong{
         font-family: Roboto-SemiBold, Roboto;
@@ -1392,7 +1392,7 @@ justify-content: space-between;
   }
       }
       .ant-form-item-label>label{
-        font-size:16px;
+        font-size:15px;
         font-family: Roboto-SemiBold, Roboto;
     font-weight: 600;
         color: #8A8080;
@@ -1411,7 +1411,7 @@ justify-content: space-between;
         border-radius:25px;
         input {
             border-radius:25px;
-          font-size: 16px;
+          font-size: 15px;
           font-family: Russo One-Regular, Russo One;
           font-weight: 400;
         }
