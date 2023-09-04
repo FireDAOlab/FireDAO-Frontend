@@ -51,6 +51,7 @@ text-align:center;
       .icon {
         margin-top:10px;
         width: 25px;
+        margin-right:10px;
         line-height: 30px;
         font-size: 26px;
       }
@@ -275,6 +276,7 @@ text-align:center;
       .icon {
         margin-top:10px;
         width: 25px;
+        margin-right:10px;
         line-height: 30px;
         font-size: 26px;
       }
@@ -503,6 +505,7 @@ text-align:center;
     margin-top:10px;
     width: 25px;
     line-height: 30px;
+    margin-right:10px;
     font-size: 26px;
   }
 }
@@ -681,6 +684,9 @@ height:400px;
 
   }
   @media screen and (max-width: 450px) {
+    .ant-form{
+    text-align:center;
+  }
     .address-list{
       display: none;
     }
@@ -696,6 +702,7 @@ height:400px;
     /* width: 520px; */
     background: #241B1B;
     border-radius: 13px;
+    
 width: 85%;
 height: ;
     border: 1px solid #3E3737;
@@ -745,17 +752,21 @@ height: ;
         width: 25px;
         line-height: 30px;
         font-size: 26px;
-        margin-left: 45%;
+        margin-right:10px;
       }
             .mintfee{
               width: 100%;
           font-size:14px;
-          
+          background: rgb(36, 27, 27);
+          padding: 0px;
+          border:none;
           .fee1{
-            display: block;
+            display: block;   margin-top:1em;
             .name{
+                display:flex;
               width: 100%;
               font-size:14px;
+           
             }
             .value{
               width:100%;
@@ -778,6 +789,9 @@ height: ;
 
   }
   @media screen and (max-width: 400px) {
+    .ant-form{
+    text-align:center;
+  }
     .address-list{
       display: none;
     }
@@ -842,7 +856,7 @@ width: 85%;
         width: 25px;
         line-height: 30px;
         font-size: 26px;
-        margin-left: 45%;
+        margin-right:10px;
       }
             .mintfee{
               width: 100%;
@@ -852,6 +866,7 @@ width: 85%;
             .name{
               width: 100%;
               font-size:14px;
+              display: flex;
             }
             .value{
               width:100%;

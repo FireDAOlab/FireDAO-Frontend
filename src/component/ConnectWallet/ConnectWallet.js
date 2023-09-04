@@ -96,19 +96,19 @@ const ConnectWallet = (props) => {
         {
             label: <div className="sss" style={{
                 width: '230px', marginLeft: '-3px', display: 'flex', height: '65px',
-                background: '#241B1B',
+                background: '#241B1B',   
                 borderRadius: '20px', padding: '0px 5px', border: '1px solid rgba(234,234,234,0.1)'
             }} onClick={() => { connectWallet() }}>
                 <img style={{ width: '50px', height: '50px', marginTop: '10px' }} src={sz} />
                
-                <span style={{ width: '50%', fontSize: '15px', lineHeight: '63px'}}>MetaMask
-                <span style={{ dontSize:'14px',color:'#999999',display:'block',marginTop: '-40px' }}> {
+                <span style={{ width: '50%', fontSize: '15px', lineHeight: '63px', marginLeft: '12px'}}>MetaMask
+                {/* <span style={{ dontSize:'14px',color:'#999999',display:'block',marginTop: '-40px' }}> {
                                 state.account ? state.account.substr(0, 5) + "..." + state.account.substr(state.account.length - 5, state.account.length) : ""
                             }
-                    </span>
+                    </span> */}
                     {/* <img style={{width:'15px',margin: '-132px 0px 0px 100px'}} src={fz} /> */}
                 </span>
-                <img style={{ width: '20px', height: '15px', marginTop: '23px', marginLeft: '20px' }} src={right} />
+                <img style={{ width: '20px', height: '15px', marginTop: '23px', marginLeft: '0px' }} src={right} />
                 
                 </div>
             // key: '0',

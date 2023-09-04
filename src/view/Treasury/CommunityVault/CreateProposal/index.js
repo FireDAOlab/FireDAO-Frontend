@@ -1,24 +1,24 @@
-import React, {useEffect, useRef, useState} from 'react';
-import {useConnect} from "../../../../api/contracts";
-import {Card, Button, Steps, Upload, message, Form, List, Input, notification, Tooltip} from 'antd';
-import {getContractByName, getContractByContract} from "../../../../api/connectContract";
-import {dealMethod, viewMethod} from "../../../../utils/contractUtil"
+import React, { useEffect, useRef, useState } from 'react';
+import { useConnect } from "../../../../api/contracts";
+import { Card, Button, Steps, Upload, message, Form, List, Input, notification, Tooltip } from 'antd';
+import { getContractByName, getContractByContract } from "../../../../api/connectContract";
+import { dealMethod, viewMethod } from "../../../../utils/contractUtil"
 
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import judgeStatus from "../../../../utils/judgeStatus";
 import ConnectWallet from "../../../../component/ConnectWallet/ConnectWallet";
-import StyleBox from "./style"
+import StyleBox from "./style";
 import develop from "../../../../env";
-import eth from "../../../../imgs/ethereum.png"
+import eth from "../../../../imgs/ethereum.png";
 import orangeRight from '../../../../imgs/orangegou.png';
 import greenRight from '../../../../imgs/greengou.png';
-import {LoadingOutlined, PlusOutlined, QuestionCircleOutlined} from "@ant-design/icons";
-import {Editor, EditorState} from 'draft-js';
+import { LoadingOutlined, PlusOutlined, QuestionCircleOutlined } from "@ant-design/icons";
+import { Editor, EditorState } from 'draft-js';
 
 const Distribution = (props) => {
     const [form] = Form.useForm();
 
-    let {state, dispatch} = useConnect();
+    let { state, dispatch } = useConnect();
     const history = useNavigate();
     const goPage = (url) => {
         history(url);
@@ -29,9 +29,9 @@ const Distribution = (props) => {
     const [step, setStep] = useState(0)
     const [pageStep, setPageStep] = useState(0)
     const [curAction, setCurAction] = useState(0)
-    const [actionArr,setActionArr] = useState([])
-    const [uploading,setUploading] = useState()
-    const [imageUrl,setImageUrl] = useState()
+    const [actionArr, setActionArr] = useState([])
+    const [uploading, setUploading] = useState()
+    const [imageUrl, setImageUrl] = useState()
     const [fileList, setFileList] = useState([]);
     const handleViewMethod = async (name, params) => {
         let contractTemp = await getContractByName("TreasuryDistribution", state.api,)
@@ -50,23 +50,23 @@ const Distribution = (props) => {
     const goStep = (step) => {
         switch (step) {
             case 2:
-                if(!form.getFieldValue().title){
+                if (!form.getFieldValue().title) {
                     return
                 }
         }
 
         setPageStep(step)
     }
-    const setType = (item, type)=>{
-        item.type= type
+    const setType = (item, type) => {
+        item.type = type
         setActionArr([...actionArr])
     }
-    const addAction = ()=>{
+    const addAction = () => {
         let tempArr = [...actionArr]
         tempArr.push({})
         setActionArr(tempArr)
     }
-    const removeAction= ()=>{
+    const removeAction = () => {
         let tempArr = [...actionArr]
         tempArr.pop()
         setActionArr(tempArr)
@@ -106,7 +106,7 @@ const Distribution = (props) => {
         const formData = new FormData();
         console.log(fileList)
         const fr = new FileReader()
-        if(!fileList&&fileList.length==0){
+        if (!fileList && fileList.length == 0) {
             return
         }
         fileList.forEach((file) => {
@@ -115,9 +115,9 @@ const Distribution = (props) => {
             fr.onload = () => {
                 // 读取到的 ArrayBuffer
                 console.log(fr.result)
-                const  res = fr.result
+                const res = fr.result
                 console.log(res)
-                formData.append('files[]',res );
+                formData.append('files[]', res);
 
                 const metadata = JSON.stringify({
                     name: file.name,
@@ -134,8 +134,8 @@ const Distribution = (props) => {
                     method: 'POST',
                     maxBodyLength: "Infinity",
                     body: formData,
-                    headers:{
-                        "authorization": "Bearer "+process.env.REACT_APP_PinataAPIJWT
+                    headers: {
+                        "authorization": "Bearer " + process.env.REACT_APP_PinataAPIJWT
                     }
                 })
                     .then((res) => res.json())
@@ -186,14 +186,14 @@ const Distribution = (props) => {
         <StyleBox>
 
             <div className="panel-box userinfo-box">
-             
+
                 <div className="panel-container">
                     <div className="panel-title">
                         <div className="index-box">
-                            <img src={orangeRight}  style={{width:"100%"}}/>
+                            <img src={orangeRight} style={{ width: "100%" }} />
                         </div>  Connect your wallet & sign in
                     </div>
-                    {pageStep==0&&(<div>
+                    {pageStep == 0 && (<div>
                         <Steps
                             direction="vertical"
                             className="step-box"
@@ -201,16 +201,16 @@ const Distribution = (props) => {
 
                             items={[
                                 {
-                                    icon:<img src={greenRight} style={{width:'100%'}} />,
+                                    icon: <img src={greenRight} style={{ width: '100%' }} />,
                                     title: 'You must connect your wallet.',
-                                    description: (<div>{!isConnected && <ConnectWallet/>}</div>)
+                                    description: (<div>{!isConnected && <ConnectWallet />}</div>)
                                 },
-                                { 
-                                    icon:<img src={greenRight} style={{width:'100%'}} />,
+                                {
+                                    icon: <img src={greenRight} style={{ width: '100%' }} />,
                                     title: 'Wallet is connected to arbiturm.',
                                 },
                                 {
-                                    icon:<img src={greenRight} style={{width:'100%'}} />,
+                                    icon: <img src={greenRight} style={{ width: '100%' }} />,
                                     title: 'You must be a member of this group.',
                                 },
                             ]}
@@ -258,7 +258,7 @@ const Distribution = (props) => {
                         <Form form={form} name="control-hooks" className="form">
 
                             <Form.Item
-                            className='name'
+                                className='name'
                                 name="title"
                                 validateTrigger="onBlur"
                                 label="Title"
@@ -267,7 +267,7 @@ const Distribution = (props) => {
                                 <Input type="text"></Input>
                             </Form.Item>
                             <Form.Item
-                            className='descri'
+                                className='descri'
                                 name="description"
                                 validateTrigger="onBlur"
                                 label="Description"
@@ -278,7 +278,7 @@ const Distribution = (props) => {
                                     <span>Markdown</span>
                                 </div>
                                 <div className='titleW'>
-                                    <span>Write</span> 
+                                    <span>Write</span>
                                     <span>Preview</span>
                                 </div>
                                 <textarea type="text" className="desc-box"></textarea>
@@ -298,35 +298,35 @@ const Distribution = (props) => {
                         <div className="index-box">3</div> Add actions(optional)
                         <Tooltip
                             title="Actions are on-chain calls that will execute after a proposal passes and then gets executed.If you choose to skip this step, a transfer of 0 ETH to you (the proposer) will be added, as Governor requires one executable action for the proposal to be submitted on-chain.">
-                            <QuestionCircleOutlined className="toolTip"/>
+                            <QuestionCircleOutlined className="toolTip" />
                         </Tooltip>
                     </div>
-                    {pageStep==2&&(<div>
-                        {actionArr.map((item,index)=>{
+                    {pageStep == 2 && (<div>
+                        {actionArr.map((item, index) => {
                             return (<div key={index} className="action-box">
                                 <h3 className="title">
-                                    Action{index+1}
+                                    Action{index + 1}
                                 </h3>
-                                {!item.type&&(
+                                {!item.type && (
                                     <div className="action-choose">
                                         <div className={"choose-item " + (curAction == 1 ? "active" : "")} onClick={() => {
-                                            setType(item,1)
+                                            setType(item, 1)
                                         }}>
                                             Transfer Token
                                         </div>
                                         <div className={"choose-item " + (curAction == 2 ? "active" : "")} onClick={() => {
-                                            setType(item,2)
+                                            setType(item, 2)
                                         }}>
                                             Custom Action
                                         </div>
                                     </div>
                                 )}
-                                {item.type==1&&(
+                                {item.type == 1 && (
                                     <Form form={form} name="control-hooks" className="form">
                                         <Form.Item
                                             name="contract"
                                             validateTrigger="onBlur"
-                                            label="Transfer address(FireDAO community contract)"
+                                            label="Transfer address(FireDAO commuFnity contract)"
                                             validateFirst={true}
                                         >
                                             <Input type="text"></Input>
@@ -343,26 +343,30 @@ const Distribution = (props) => {
                                             name="value"
                                             validateTrigger="onBlur"
                                             label="Value"
+                                            className='val'
                                             validateFirst={true}
                                         >
                                             <div className="tip-box">
                                                 The amount of token to send from the transfer address to the target address
                                             </div>
-                                            <Input type="text">
-                                                <img src={eth} />ETH
-                                            </Input>
+                                            <Input type="text" />
+                                            <div className='valueImg'>
+                                                <img src={eth} /><span>ETH</span>
+                                            </div>
                                         </Form.Item>
                                         <div className='tj'>
-                                <div type="primary" className='kk' onClick={() => {
-                                    
-                                }}>Add</div>
-                                <div type="primary" className='kk' onClick={() => {
-                                    
-                                }}>Mass Delete</div>
-                            </div>
+                                            <div type="primary" className='kk' onClick={() => {
+
+                                            }}>Add
+                                            </div>
+                                            <div type="primary" className='kk' onClick={() => {
+
+                                            }}>Mass Delete
+                                            </div>
+                                        </div>
                                     </Form>
                                 )}
-                                {item.type==2&&(
+                                {item.type == 2 && (
                                     <Form form={form} name="control-hooks" className="form">
                                         <Form.Item
                                             name="contract"
@@ -406,7 +410,7 @@ const Distribution = (props) => {
 
                         <div className="btn-box">
                             <Button type="primary" onClick={addAction}>Add action</Button>
-                            <Button type="primary"  onClick={removeAction}>Remove action</Button>
+                            <Button type="primary" onClick={removeAction}>Remove action</Button>
                         </div>
                         <div className="btn-box">
                             <Button type="primary" className="continue-btn" onClick={() => {
@@ -426,7 +430,7 @@ const Distribution = (props) => {
                     <div className="panel-title">
                         <div className="index-box">4</div> Preview your proposal
                     </div>
-                    {pageStep==3&&<div>
+                    {pageStep == 3 && <div>
                         <div className="tip-box">
                             Please review your proposal carefully！
                         </div>

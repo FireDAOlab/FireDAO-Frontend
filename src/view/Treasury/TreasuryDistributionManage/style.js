@@ -16,9 +16,7 @@ export default   styled.div`
 }
 .ant-form-item-control-input{
   border-radius:25px;
-  line-height:40px;
-
-  
+  line-height:35px;
 }
 
 .ant-form-item-control-input-content{
@@ -53,7 +51,7 @@ padding: 0px 10px;
   margin-bottom:0px;
 }
 .ant-form-item-row{
-  margin: 5px 0em ;
+  margin: 0em ;
 }
 .max-btn{
           background: linear-gradient(32deg, #FF4E50 0%, #F9D423 100%);
@@ -123,6 +121,7 @@ font-weight: 600;
   align-items:center;
   justify-content:space-between;
   width: 100%;
+  margin:1em 0;
   .name{
     font-size:18px;
     font-family: Roboto-SemiBold, Roboto;
@@ -183,6 +182,7 @@ font-weight: 600;
   align-items:center;
   justify-content:space-between;
   width: 100%;
+  margin:1em 0;
   .name{
     font-family: Roboto-SemiBold, Roboto;
 font-weight: 600;
@@ -238,6 +238,18 @@ text-align:center;
 font-weight:400;
 margin-right:10px;
 }
+.kk1{
+  width: 45%;
+  height: 40px;
+  line-height:40px;
+  background: rgba(255,255,255,0.15);
+border-radius: 34px 34px 34px 34px;
+font-size:16px;
+border: 1px solid rgba(255,255,255,0.15);
+text-align:center;
+font-weight:400;
+margin-right:10px;
+}
 .sc{
     width: 25px;
   }
@@ -256,6 +268,7 @@ margin-right:10px;
     margin:0em;
     .flex-box1{
       padding: 20px 2.5em;
+      
     }
     .catelist{
         .value{
@@ -311,6 +324,7 @@ margin-right:10px;
         border-radius:0px;
         border-bottom:1px solid rgba(255, 255, 255, 0.1);
       .col1 {
+        font-size:16px;
         overflow: hidden;
         padding-left: 0%;
         //text-overflow: ellipsis;
@@ -431,7 +445,7 @@ margin-right:10px;
   margin-bottom:0px;
 }
 .ant-form-item-row{
-  margin: 5px 0em ;
+  margin:0em ;
 }
 .max-btn{
           background: linear-gradient(32deg, #FF4E50 0%, #F9D423 100%);
@@ -501,6 +515,7 @@ font-weight: 600;
   align-items:center;
   justify-content:space-between;
   width: 100%;
+  margin:1em 0;
   .name{
     font-size:18px;
     font-family: Roboto-SemiBold, Roboto;
@@ -561,6 +576,7 @@ font-weight: 600;
   align-items:center;
   justify-content:space-between;
   width: 100%;
+  margin:1em 0;
   .name{
     font-family: Roboto-SemiBold, Roboto;
 font-weight: 600;
@@ -605,6 +621,18 @@ font-size:16px;
   width: 27%;
 }
 .kk{
+  width: 45%;
+  height: 40px;
+  line-height:40px;
+  background: rgba(255,255,255,0.15);
+border-radius: 34px 34px 34px 34px;
+font-size:16px;
+border: 1px solid rgba(255,255,255,0.15);
+text-align:center;
+font-weight:400;
+margin-right:10px;
+}
+.kk1{
   width: 45%;
   height: 40px;
   line-height:40px;
@@ -691,6 +719,7 @@ margin-right:10px;
       .col1 {
         overflow: hidden;
         padding-left: 0%;
+        font-size:16px;
         //text-overflow: ellipsis;
 
       }
@@ -811,7 +840,7 @@ color: white;
 margin-bottom:0px;
 }
 .ant-form-item-row{
-margin: 5px 0em ;
+margin: 0em ;
 }
 .max-btn{
       background: linear-gradient(32deg, #FF4E50 0%, #F9D423 100%);
@@ -998,6 +1027,19 @@ text-align:center;
 font-weight:400;
 margin-right:10px;
 }
+.kk1{
+    width: 45%;
+    height: 40px;
+    line-height: 40px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 34px;
+    font-size: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    text-align: center;
+    font-weight: 400;
+    margin-right: 10px;
+}
+            
 .sc{
 width: 25px;
 }
@@ -1072,6 +1114,7 @@ color:rgba(228, 134, 134, 1);
     border-radius:0px;
     border-bottom:1px solid rgba(255, 255, 255, 0.1);
   .col1 {
+    font-size:14px;
     overflow: hidden;
     padding-left: 0%;
     //text-overflow: ellipsis;
@@ -1192,7 +1235,7 @@ color: white;
 margin-bottom:0px;
 }
 .ant-form-item-row{
-margin: 5px 0em ;
+margin: 0em ;
 }
 .max-btn{
       background: linear-gradient(32deg, #FF4E50 0%, #F9D423 100%);
@@ -1374,6 +1417,11 @@ text-align:center;
 font-weight:400;
 margin-right:10px;
 }
+.kk1{
+              font-size:14px;
+              height: 30px;
+              line-height:30px;
+            }
 .sc{
 width: 25px;
 }
@@ -1453,6 +1501,7 @@ color:rgba(228, 134, 134, 1);
   .col1 {
     overflow: hidden;
     padding-left: 0%;
+      font-size:14px;
     //text-overflow: ellipsis;
 
   }
@@ -1490,7 +1539,6 @@ padding: 2px 4px;
 margin:1.5em 0em;
 .flex-box2{
   padding: 20px 1.6em;
-  font-size:14px;
 }
 .flex-box2,  .tokenlist{
   justify-content: flex-start;

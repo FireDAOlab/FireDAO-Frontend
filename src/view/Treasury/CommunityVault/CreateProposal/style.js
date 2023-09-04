@@ -29,7 +29,6 @@ span{
 
     }
     .ant-form-item-control-input{
-        border-radius:50px;
         width: 33%;
     }
     .ant-input{
@@ -171,6 +170,27 @@ border-radius: 51px 51px 51px 51px;
       background: none;
       border: none;
      
+    }
+  }
+
+  .val{
+    position: relative;
+    .valueImg{
+        position: absolute;
+        top:73%;
+        left:75%;
+        
+        img{
+            width: 25px;
+            margin-right:5px;
+        }
+
+        span{
+            vertical-align:center;
+            font-size: 16px;
+            font-family: Roboto-Black, Roboto;
+            font-weight: 900;
+        }
     }
   }
 }

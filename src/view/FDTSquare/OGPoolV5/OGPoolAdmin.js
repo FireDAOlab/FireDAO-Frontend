@@ -316,8 +316,8 @@ const OgPoolAdmin = (props) => {
         }])
     }
     const addInviteFLMRate = async () => {
-        const tempArr = [form2.getFieldValue().inviteFLMRate0, form2.getFieldValue().inviteFLMRate1,
-            form2.getFieldValue().inviteFLMRate2, form2.getFieldValue().inviteFLMRate3, form2.getFieldValue().inviteFLMRate4]
+        const tempArr = [form2.getFieldValue().inviteFLMRate4, form2.getFieldValue().inviteFLMRate3,
+            form2.getFieldValue().inviteFLMRate2, form2.getFieldValue().inviteFLMRate1, form2.getFieldValue().inviteFLMRate0]
         await handleDealMethod("addFlmRate", [tempArr])
         getInviteFLMRate()
     }

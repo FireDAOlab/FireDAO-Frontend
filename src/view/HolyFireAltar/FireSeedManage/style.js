@@ -474,6 +474,18 @@ font-weight:400;
 margin-right:10px;
 }
 
+.kk{
+  width: 45%;
+  height: 40px;
+  line-height:40px;
+  background: rgba(255,255,255,0.15);
+border-radius: 34px 34px 34px 34px;
+font-size:16px;
+border: 1px solid rgba(255,255,255,0.15);
+text-align:center;
+font-weight:400;
+margin-right:10px;
+}
 .discount{
   width:100%;
 
@@ -660,6 +672,7 @@ width: 52%;
 
 
   @media screen and (max-width: 1950px) {
+   
     .max-btn{
           font-size:18px;
         }
@@ -1083,6 +1096,18 @@ font-weight:400;
 margin-right:10px;
 }
 
+.kk1{
+  width: 45%;
+  height: 40px;
+  line-height:40px;
+  background: rgba(255,255,255,0.15);
+border-radius: 34px 34px 34px 34px;
+font-size:16px;
+border: 1px solid rgba(255,255,255,0.15);
+text-align:center;
+font-weight:400;
+margin-right:10px;
+}
 .discount{
   width:100%;
 
@@ -1694,6 +1719,18 @@ font-weight:400;
 margin-right:10px;
 }
 
+.kk1{
+  width: 45%;
+  height: 40px;
+  line-height:40px;
+  background: rgba(255,255,255,0.15);
+border-radius: 34px 34px 34px 34px;
+font-size:16px;
+border: 1px solid rgba(255,255,255,0.15);
+text-align:center;
+font-weight:400;
+margin-right:10px;
+}
 
 .discount{
   width:100%;
@@ -1978,6 +2015,12 @@ margin:1.5em 0 0.5em 0;
             }
           }
           .kk{
+              font-size:14px;
+              height: 30px;
+              line-height:30px;
+            }
+
+            .kk1{
               font-size:14px;
               height: 30px;
               line-height:30px;
@@ -2441,6 +2484,12 @@ margin:1.5em 0 0.5em 0;
             }
           }
           .kk{
+              font-size:14px;
+              height: 30px;
+              line-height:30px;
+            }
+
+            .kk1{
               font-size:14px;
               height: 30px;
               line-height:30px;

@@ -40,6 +40,7 @@ const FireLock = (props) => {
 
         await handleDealMethod("addWhiteListUser", [_to])
         updateData()
+        setOwnerArr(_to)
         closeDialog()
     }
     useEffect(() => {
@@ -91,8 +92,12 @@ const FireLock = (props) => {
 
                                         </div>
                                         {(index == ownerArr.length - 1) && (
-                                            <img className="icon" src={add} onClick={() => {
+                                             <img className="icon" src={add} onClick={() => {
                                                 addOwner()
+                                            }} />)}
+                                        {(ownerArr.length >= 1 && index > 0) && (
+                                            <img className="icon" src={remove1} onClick={() => {
+                                                removeOwner()
                                             }} />)}
                                     </Form>
                                 </div>
@@ -135,13 +140,13 @@ const FireLock = (props) => {
                                                 </Form.Item>
                                             </div>
                                         </div>
-                                        {(ownerArr.length > 1 && index == 0) && (
+                                        {(index == ownerArr.length - 1) && (
+                                             <img className="icon" src={add} onClick={() => {
+                                                addOwner()
+                                            }} />)}
+                                        {(ownerArr.length >= 1 && index > 0) && (
                                             <img className="icon" src={remove1} onClick={() => {
                                                 removeOwner()
-                                            }} />)}
-                                        {(index == ownerArr.length - 1) && (
-                                            <img className="icon" src={add} onClick={() => {
-                                                addOwner()
                                             }} />)}
 
                                     </Form>
